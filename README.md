@@ -31,7 +31,11 @@
 
 	git clone https://github.com/KnpLabs/behat-webapi-demo
 
-###Run It
+###Start Selenium
+
+	java -jar selenium-server-standalone-2.43.1.jar
+
+###Run Tests
 
 	bin/behat
 
