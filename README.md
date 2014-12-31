@@ -1,4 +1,4 @@
-# A Behat+WebApiContext Demo
+# Behat Web API Context
 
 ## Installation
 
