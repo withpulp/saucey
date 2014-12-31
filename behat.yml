@@ -1,0 +1,11 @@
+default:
+    context:
+        parameters:
+            base_url: http://ad-stage.adcade.com
+        class:  'FeatureContext'
+    extensions:
+        Behat\MinkExtension\Extension:
+            base_url:  'http://adcade.com/'
+            javascript_session:  'selenium2'
+            goutte:              ~
+            selenium2:

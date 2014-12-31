@@ -1,0 +1,35 @@
+{
+    "name":         "behat/mink-selenium-driver",
+    "description":  "Selenium driver for Mink framework",
+    "keywords":     ["selenium", "javascript", "ajax", "testing", "browser"],
+    "homepage":     "http://mink.behat.org/",
+    "type":         "mink-driver",
+    "license":      "MIT",
+
+    "authors": [
+        {
+            "name":      "Konstantin Kudryashov",
+            "email":     "ever.zet@gmail.com",
+            "homepage":  "http://everzet.com"
+        }
+    ],
+
+    "require": {
+        "php":                           ">=5.3.1",
+        "behat/mink":                    ">=1.4,<1.5-dev",
+        "symfony/dom-crawler":           ">=2.0,<2.4-dev",
+        "alexandresalome/php-selenium":  ">=1.0,<1.2-dev"
+    },
+
+    "autoload": {
+        "psr-0": {
+            "Behat\\Mink\\Driver": "src/"
+        }
+    },
+
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.0.x-dev"
+        }
+    }
+}

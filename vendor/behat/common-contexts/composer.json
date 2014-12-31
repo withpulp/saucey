@@ -1,0 +1,49 @@
+{
+    "name":         "behat/common-contexts",
+    "description":  "Commonly used contexts for Behat",
+    "keywords":     ["BDD", "Behat", "Symfony2", "Context"],
+    "homepage":     "http://behat.org/",
+    "type":         "library",
+    "license":      "MIT",
+    "authors":      [
+        {
+            "name":      "Konstantin Kudryashov",
+            "email":     "ever.zet@gmail.com",
+            "homepage":  "http://everzet.com"
+        },
+        {
+            "name":      "Johannes M. Schmitt",
+            "email":     "schmittjoh@gmail.com",
+            "homepage":  "https://github.com/schmittjoh"
+        },
+        {
+            "name":      "Jakub Zalas",
+            "email":     "jakub@zalas.pl",
+            "homepage":  "http://www.zalas.eu/"
+        },
+        {
+            "name":      "Geoffrey Bachelet",
+            "email":     "geoffrey.bachelet@gmail.com",
+            "homepage":  "https://github.com/ubermuda"
+        }
+    ],
+
+    "require": {
+        "php":          ">=5.3.1",
+        "behat/behat":  ">=2.2.2"
+    },
+
+    "suggest": {
+        "behat/symfony2-extension":     "*",
+        "behat/mink-extension":         "*",
+        "doctrine/doctrine-bundle":     "*",
+        "doctrine/data-fixtures":       "*",
+        "kriswallsmith/buzz":           ">=0.5.0"
+    },
+
+    "autoload": {
+        "psr-0": {
+            "Behat\\CommonContexts": ""
+        }
+    }
+}
