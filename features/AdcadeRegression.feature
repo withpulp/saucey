@@ -1,4 +1,4 @@
-Feature: I want to automate continous integration and regression tests for API and End Points
+Feature: I want to automate continous integration and regression tests for Adcade API and End Points
 
   As a tester
   I want to evaluate API and end-points
@@ -24,7 +24,7 @@ Feature: I want to automate continous integration and regression tests for API a
       | http://ad-stage.adcade.com/2/event/81983ac5-2703-4631-b9de-19e1a724e7e6/ | {"adId":"STPALF14SLITAB72890WEB","pId":"0","startTime":1419997205271,"events":[{"type":"ctr","time":4255016,"key":"std.interact.Slingshot_PlayAgain"},{"type":"tup","time":4255022,"x":111,"y":24}]} |
       | http://ad-stage.adcade.com/2/event/81983ac5-2703-4631-b9de-19e1a724e7e6/ | {"adId":"STPALF14SLITAB72890WEB","pId":"0","startTime":1419997205271,"events":[{"type":"ctr","time":4277802,"key":"std.interact.collapse"},{"type":"tup","time":4277814,"x":661,"y":17}]}: |
 
-    @regression @smoke @POSTRequests @Videos
+    @regression @smoke @POSTRequests @Videos @TiffanyR29
     Scenario Outline: Metric Requests for Refinery 29 Video H-Unit
       Given I send a POST request to "<requestURL>" with body:
       """
@@ -42,7 +42,7 @@ Feature: I want to automate continous integration and regression tests for API a
 
 
     @javascript @regression @smoke @GETRequests
-    Scenario Outline: GET 200 Requests
+    Scenario Outline: GET 200 Requests for assets and Production
       Given I am on "<requestURL>"
       Then the response should contain "<expectedOutcome>"
 
