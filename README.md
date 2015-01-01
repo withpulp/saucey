@@ -1,14 +1,22 @@
-# Behat Web API Context
+# HTTP-API-Web-Testing-Kit
+Automation of HTTP, HTTPS, API and UI using PHPUnit, Behat, Mink, Pear and Selenium.
+
+## Dependancies
+On Mac OS X, this requires:
+
+1. [XCode](https://developer.apple.com/xcode/downloads/)
+2. [Developer Tools](http://stackoverflow.com/questions/9329243/xcode-4-4-and-later-install-command-line-tools) for XCode
+3. [Java JDK](http://www.oracle.com/technetwork/java/javase/downloads/jdk7-downloads-1880260.html), see [documentation](http://docs.oracle.com/javase/7/docs/webnotes/install/mac/mac-jdk.html) 
+4. [cURL](http://curl.haxx.se/download.html)
+5. [PHP](http://php.net/manual/en/install.macosx.php)
 
 ## Installation
-
-### Requirements
-#### Composer & Dependancies
+#### Composer
 
 	curl http://getcomposer.org/installer | php
 	php composer.phar install
 
--or-
+Or you may need to just update to install thhe dependancies listed in `composer.json` via:
 
 	php composer.phar update
 	
