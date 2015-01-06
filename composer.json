@@ -13,9 +13,12 @@
         "behat/common-contexts": "*",
         "kriswallsmith/buzz":    ">=0.5",
         "phpunit/phpunit": "3.7.*",
-        "phpunit/phpunit-selenium": ">=1.2"
-
-    },
-
-    "config": { "bin-dir": "bin/" }
-}
+        "phpunit/phpunit-selenium": ">=1.2",
+        "sauce/sausage": ">=0.5",
+        "sauce/connect": ">=3.0"
+      },
+      "minimum-stability": "dev",
+      "config": {
+        "bin-dir": "bin/"
+      }
+    }

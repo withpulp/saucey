@@ -1,8 +1,8 @@
-Feature: I want to automate continous integration and regression tests for Adcade API and End Points
+Feature: I want to automate continuous integration and regression tests for Adcade API and End Points
 
   As a tester
-  I want to evaluate API and end-points
-  So that I can automate continous integration and regression tests
+  I want to evaluate Assets, API and end-points
+  So that regression tests pass
 
     @regression @smoke @POSTRequests @Staples
     Scenario Outline: Metric Requests for Staples Accelerator

@@ -1,8 +1,8 @@
-Feature: I want to automate continous integration and regression tests for Music Makes Music API and End Points
+Feature: I want to automate continuous integration and regression tests for Music Makes Music API and End Points
 
   As a tester
   I want to evaluate API and end-points
-  So that I can automate continous integration and regression tests
+  So that regression tests pass
 
     @javascript @regression @smoke @GETRequests
     Scenario Outline: GET 200 Requests for assets and Production
