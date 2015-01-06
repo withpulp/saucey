@@ -28,6 +28,7 @@ Then `COMMAND + T` or open a new Terminal tab. Then:
 
 You should see:
 
+```gherkin
 	Feature: I want to automate continous integration and regression tests for API and End Points
 	  
 	  As a tester
@@ -46,8 +47,6 @@ You should see:
 	      | requestURL | body |
 	      | http://ad-stage.adcade.com/2/event/81983ac5-2703-4631-b9de-19e1a724e7e6/ | POST DATA|
 	      ...
-	      
-	      
 	      | http://ad-stage.adcade.com/2/event/81983ac5-2703-4631-b9de-19e1a724e7e6/ | POST DATA |
 	
 	  @regression @smoke @POSTRequests @Videos
@@ -59,12 +58,10 @@ You should see:
 	    Then the response code should be 200                         # Behat\CommonContexts\WebApiContext::theResponseCodeShouldBe()
 	
 	    Examples:
-	      | requestURL | body |
-	      | https://ad-stage.adcade.com/2/event/cf7964c2-2619-42b2-9bac-81cb26d0da97/ | POST DATA |
-	      
+	     | requestURL | body |
+	     | https://ad-stage.adcade.com/2/event/cf7964c2-2619-42b2-9bac-81cb26d0da97/ | POST DATA |
 			...
-	     
-	     | https://ad-stage.adcade.com/2/event/cf7964c2-2619-42b2-9bac-81cb26d0da97/ | POST DATA   |
+			| https://ad-stage.adcade.com/2/event/cf7964c2-2619-42b2-9bac-81cb26d0da97/ | POST DATA |
 	
 	  @javascript @regression @smoke @GETRequests
 	  Scenario Outline: GET 200 Requests                             # features/AdcadeAPI.feature:45
@@ -72,16 +69,17 @@ You should see:
 	    Then the response should contain "<expectedOutcome>"         # FeatureContext::assertResponseContains()
 	
 	    Examples:
-	      | requestURL                                                                                                                       | expectedOutcome  |
-	      
-	      ...
-	      
-	      | https://resource.adcade.com/ad-assets/f2a81d25-a9cb-4404-9840-fb48db6445c7/assets/vid/video.mp4?q=3d7c2c79b16b                   | video.mp4        |
+	      | requestURL | expectedOutcome |
+	      ...	      
+	      | https://resource.adcade.com/ad-assets/f2a81d25-a9cb-4404-9840-fb48db6445c7/assets/vid/video.mp4?q=3d7c2c79b16b | video.mp4 |
 	
 	38 scenarios (38 passed)
 	76 steps (76 passed)
 	0m9.96s
+```
 
+##Components
+This repository is powered by:
 #### Composer
 
 	curl http://getcomposer.org/installer | php
