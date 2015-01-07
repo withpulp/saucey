@@ -1,0 +1,68 @@
+#!/usr/bin/env php
+<?php
+
+require_once dirname(__FILE__).'/../../../autoload.php';
+
+use Sauce\Sausage\SauceConfig;
+
+$CONNECT_BINARY = dirname(__FILE__).'/../lib/Sauce-Connect.jar';
+
+list($username, $api_key) = SauceConfig::GetConfig();
+
+if (!$username || !$api_key) {
+    echo "You need to run sauce_config to set your username and api key!\n";
+    exit(1);
+}
+
+if (count($argv) > 1) {
+    $args = " ".join(' ', array_slice($argv, 1));
+} else {
+    $args = "";
+}
+
+$cmd = "java -jar $CONNECT_BINARY $username $api_key$args";
+
+$process = proc_open($cmd, array(array("pipe", "r"), array("pipe", "w"), array("pipe", "w")), $pipes, NULL);
+stream_set_blocking($pipes[1], 0);
+stream_set_blocking($pipes[2], 0);
+$status = proc_get_status($process);
+$is_terminating = false;
+$has_connected = false;
+$connect_msg_shown = false;
+$all_output = '';
+echo "Starting Sauce connect...\n";
+
+while ($status['running']) {
+    $status = proc_get_status($process);
+    $out_streams = array($pipes[1], $pipes[2]);
+    $e = NULL; $f = NULL;
+    $num_changed = stream_select($out_streams, $e, $f, 0, 20000);
+    if ($num_changed) {
+        foreach ($out_streams as $changed_stream) {
+            $out = stream_get_contents($changed_stream);
+            echo $out;
+            $all_output .= $out;
+        }
+    }
+    if (stripos($all_output, "Connected! You may start your tests") !== false)
+        $has_connected = true;
+
+    if ($has_connected && !$connect_msg_shown) {
+        echo "\nSauce Connect is running!";
+        $connect_msg_shown = true;
+    }
+
+    if ($has_connected && !$is_terminating) {
+        echo "\nPress any key to see more output, or q to shutdown: ";
+        $in = fgets(STDIN);
+        if (strtolower(trim($in)) == "q") {
+            proc_terminate($process, 2);
+            $is_terminating = true;
+        }
+    }
+}
+
+fclose($pipes[0]);
+fclose($pipes[1]);
+fclose($pipes[2]);
+proc_close($process);

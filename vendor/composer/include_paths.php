@@ -15,4 +15,5 @@ return array(
     $vendorDir . '/phpunit/phpunit',
     $vendorDir . '/symfony/yaml',
     $vendorDir . '/phpunit/phpunit-selenium',
+    $vendorDir . '/appium/php-client',
 );

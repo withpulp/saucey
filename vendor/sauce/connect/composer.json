@@ -1,0 +1,26 @@
+{
+  "name": "sauce/connect",
+  "type": "library",
+  "description": "PHP package for the Sauce Connect Java binary",
+  "keywords": ["sauce", "saucelabs", "api", "testing", "phpunit", "selenium", "tunnel"],
+  "homepage": "http://github.com/saucelabs/sauce-connect-composer",
+  "license": "Apache-2.0",
+  "authors": [{
+    "name": "Jonathan Lipps",
+    "email": "jlipps@saucelabs.com",
+    "homepage": "http://www.saucelabs.com",
+    "role": "Lead"
+  }],
+  "require": {
+    "php": ">=5.3.0",
+    "sauce/sausage": ">=0.5.0"
+  },
+  "autoload": {
+    "psr-0": {"Sauce": "src/"}
+  },
+  "support": {
+    "email": "help@saucelabs.com",
+    "irc": "irc://irc.freenode.org/saucelabs"
+  },
+  "bin": ["bin/sauce_connect"]
+}

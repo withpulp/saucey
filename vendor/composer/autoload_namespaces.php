@@ -21,7 +21,10 @@ return array(
     'Symfony\\Component\\Config\\' => array($vendorDir . '/symfony/config'),
     'Symfony\\Component\\BrowserKit\\' => array($vendorDir . '/symfony/browser-kit'),
     'Selenium' => array($vendorDir . '/alexandresalome/php-selenium/src'),
+    'Sauce' => array($vendorDir . '/sauce/sausage-installer/src', $vendorDir . '/sauce/sausage/src', $vendorDir . '/sauce/connect/src'),
+    'ParaTest' => array($vendorDir . '/brianium/paratest/src'),
     'Illuminate\\Support' => array($vendorDir . '/illuminate/support'),
+    'Habitat' => array($vendorDir . '/brianium/habitat/src'),
     'Guzzle\\Tests' => array($vendorDir . '/guzzle/guzzle/tests'),
     'Guzzle\\Stream' => array($vendorDir . '/guzzle/stream'),
     'Guzzle\\Parser' => array($vendorDir . '/guzzle/parser'),
@@ -37,4 +40,5 @@ return array(
     'Behat\\Gherkin' => array($vendorDir . '/behat/gherkin/src'),
     'Behat\\CommonContexts' => array($vendorDir . '/behat/common-contexts'),
     'Behat\\Behat' => array($vendorDir . '/behat/behat/src'),
+    '' => array($vendorDir . '/brianium/paratest/test/unit', $vendorDir . '/brianium/paratest/test/functional'),
 );

@@ -14,9 +14,20 @@
         "kriswallsmith/buzz":    ">=0.5",
         "phpunit/phpunit": "3.7.*",
         "phpunit/phpunit-selenium": ">=1.2",
+<<<<<<< HEAD
         "behat/mink-browserkit-driver": "*"
 
     },
 
     "config": { "bin-dir": "bin/" }
 }
+=======
+        "sauce/sausage": ">=0.5",
+        "sauce/connect": ">=3.0"
+      },
+      "minimum-stability": "dev",
+      "config": {
+        "bin-dir": "bin/"
+      }
+    }
+>>>>>>> 21d15f12a5ada730990481878bf2ce7843acd707
