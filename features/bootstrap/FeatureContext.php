@@ -16,6 +16,7 @@ use GuzzleHttp\Client;
 //   require_once 'PHPUnit/Framework/Assert/Functions.php';
 //
 require_once 'RestContext.php';
+require_once 'vendor/autoload.php';
 
 /**
 * Features context.
@@ -23,6 +24,7 @@ require_once 'RestContext.php';
 
 class FeatureContext extends Behat\MinkExtension\Context\MinkContext
 {
+
     /**
      * Initializes context.
      * Every scenario gets its own context object.
@@ -38,4 +40,5 @@ class FeatureContext extends Behat\MinkExtension\Context\MinkContext
         $this->getSubcontext('api')
             ->setPlaceHolder('BASE_URL', rtrim($parameters['base_url'], '/'));
     }
+
 }
