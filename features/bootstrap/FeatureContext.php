@@ -41,4 +41,6 @@ class FeatureContext extends Behat\MinkExtension\Context\MinkContext
             ->setPlaceHolder('BASE_URL', rtrim($parameters['base_url'], '/'));
     }
 
+    
+
 }
