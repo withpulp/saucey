@@ -1,4 +1,4 @@
-# Saucy.php
+# saucy-php
 Automation of HTTP, HTTPS, API and UI using PHPUnit, Behat, Mink, Pear and Selenium.
 
 ## Dependancies
