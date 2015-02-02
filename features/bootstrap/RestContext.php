@@ -185,11 +185,12 @@ class RestContext extends BehatContext
      */
     public function theResponseStatusCodeShouldBe($httpStatus)
     {
-        if ((string)$this->_response->getStatusCode() !== $httpStatus) {
-          throw new \Exception('HTTP code does not match '.$httpStatus.
-            ' (actual: '.$this->_response->getStatusCode().')');
-        }
+      if ((string)$this->_response->getStatusCode() !== $httpStatus) {
+        throw new \Exception('HTTP code does not match '.$httpStatus.
+          ' (actual: '.$this->_response->getStatusCode().')');
+      }
     }
+
 
      /**
      * @Then /^echo last response$/

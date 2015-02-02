@@ -14,15 +14,12 @@
         "kriswallsmith/buzz":    ">=0.5",
         "phpunit/phpunit": "3.7.*",
         "phpunit/phpunit-selenium": ">=1.2",
-        "behat/mink-browserkit-driver": "*"
-
-    },
-
-    "config": { "bin-dir": "bin/" }
-}
+        "behat/mink-browserkit-driver": "*",
         "sauce/sausage": ">=0.5",
-        "sauce/connect": ">=3.0"
+        "sauce/connect": ">=3.0",
+        "sebastian/comparator": "~1.0"
       },
+
       "minimum-stability": "dev",
       "config": {
         "bin-dir": "bin/"

@@ -1,7 +1,7 @@
 default:
     context:
         parameters:
-            base_url: http://ad-stage.adcade.com
+            base_url: http://adcade.com
         class:  'FeatureContext'
 
     extensions:
@@ -10,3 +10,236 @@ default:
             javascript_session:  'selenium2'
             goutte:              ~
             selenium2:
+              browser: firefox
+
+LocalChrome:
+    context:
+        class:  'FeatureContext'
+
+    extensions:
+        Behat\MinkExtension\Extension:
+            base_url:  'http://adcade.com/'
+            javascript_session:  'selenium2'
+            goutte:              ~
+            selenium2:
+              browser: chrome
+
+LocalSafari:
+    context:
+        class:  'FeatureContext'
+
+    extensions:
+        Behat\MinkExtension\Extension:
+            base_url:  'http://adcade.com/'
+            javascript_session:  'selenium2'
+            goutte:              ~
+            selenium2:
+              browser: safari
+
+LocalIE:
+    context:
+        class:  'FeatureContext'
+
+    extensions:
+        Behat\MinkExtension\Extension:
+            base_url:  'http://adcade.com/'
+            javascript_session:  'selenium2'
+            goutte:              ~
+            selenium2:
+              browser: ie
+
+LocalIE:
+    context:
+        class:  'FeatureContext'
+
+    extensions:
+        Behat\MinkExtension\Extension:
+            base_url:  'http://adcade.com/'
+            javascript_session:  'selenium2'
+            goutte:              ~
+            selenium2:
+              browser: ie
+
+SauceChromeMac:
+    context:
+        class:  'FeatureContext'
+
+    extensions:
+        Behat\MinkExtension\Extension:
+            base_url:  'http://adcade.com/'
+            javascript_session:  'selenium2'
+            goutte:              ~
+            selenium2:
+              browser: chrome
+              wd_host: sajjadAdcade:f6bd677e-c92b-42ce-9564-e75f90d80cfb@ondemand.saucelabs.com/wd/hub
+              capabilities: {  "platform": "OS X 10.10", "version": "8", "name": "Mac OS X Chrome Regression Suite"}
+
+SauceMacFirefox:
+    context:
+        class:  'FeatureContext'
+
+    extensions:
+        Behat\MinkExtension\Extension:
+            base_url:  'http://adcade.com/'
+            javascript_session:  'selenium2'
+            goutte:              ~
+            selenium2:
+              browser: firefox
+              wd_host: sajjadAdcade:f6bd677e-c92b-42ce-9564-e75f90d80cfb@ondemand.saucelabs.com/wd/hub
+              capabilities: {  "platform": "OS X 10.10", "version": "8", "name": "Mac OS X Firefox Regression Suite"}
+
+SauceMacSafari:
+    context:
+        class:  'FeatureContext'
+
+    extensions:
+        Behat\MinkExtension\Extension:
+            base_url:  'http://adcade.com/'
+            javascript_session:  'selenium2'
+            goutte:              ~
+            selenium2:
+              browser: safari
+              wd_host: sajjadAdcade:f6bd677e-c92b-42ce-9564-e75f90d80cfb@ondemand.saucelabs.com/wd/hub
+              capabilities: {  "platform": "OS X 10.10", "version": "8", "name": "Mac OS X Safari Regression Suite"}
+
+SauceWindowsFirefox:
+    context:
+        class:  'FeatureContext'
+
+    extensions:
+        Behat\MinkExtension\Extension:
+            base_url:  'http://adcade.com/'
+            javascript_session:  'selenium2'
+            goutte:              ~
+            selenium2:
+              browser: firefox
+              wd_host: sajjadAdcade:f6bd677e-c92b-42ce-9564-e75f90d80cfb@ondemand.saucelabs.com/wd/hub
+              capabilities: {  "platform": "Windows 7", "version": "8", "name": "Windows 7 Firefox Regression Suite"}
+
+SauceWindowsIE:
+    context:
+        class:  'FeatureContext'
+
+    extensions:
+        Behat\MinkExtension\Extension:
+            base_url:  'http://adcade.com/'
+            javascript_session:  'selenium2'
+            goutte:              ~
+            selenium2:
+              browser: ie
+              wd_host: sajjadAdcade:f6bd677e-c92b-42ce-9564-e75f90d80cfb@ondemand.saucelabs.com/wd/hub
+              capabilities: {  "platform": "Windows 7", "version": "8", "name": "Windows 7 Internet Explorer Regression Suite"}
+
+SauceWindowsChrome:
+    context:
+        class:  'FeatureContext'
+
+    extensions:
+        Behat\MinkExtension\Extension:
+            base_url:  'http://adcade.com/'
+            javascript_session:  'selenium2'
+            goutte:              ~
+            selenium2:
+              browser: chrome
+              wd_host: sajjadAdcade:f6bd677e-c92b-42ce-9564-e75f90d80cfb@ondemand.saucelabs.com/wd/hub
+              capabilities: {  "platform": "Windows 7", "version": "8", "name": "Windows 7 Chrome Regression Suite"}
+
+
+AndroidPhone:
+    context:
+        class:  'FeatureContext'
+
+    extensions:
+        Behat\MinkExtension\Extension:
+            base_url:  'http://adcade.com/'
+            javascript_session:  'selenium2'
+            goutte:              ~
+            selenium2:
+              browser: android
+              wd_host: sajjadAdcade:f6bd677e-c92b-42ce-9564-e75f90d80cfb@ondemand.saucelabs.com/wd/hub
+              capabilities: {  "platform": "Linux", "version": "4.4", "name": "Android Phone Regression Suite", "deviceType": "phone"}
+
+AndroidTablet:
+    context:
+        class:  'FeatureContext'
+
+    extensions:
+        Behat\MinkExtension\Extension:
+            base_url:  'http://adcade.com/'
+            javascript_session:  'selenium2'
+            goutte:              ~
+            selenium2:
+              browser: android
+              wd_host: sajjadAdcade:f6bd677e-c92b-42ce-9564-e75f90d80cfb@ondemand.saucelabs.com/wd/hub
+              capabilities: {  "platform": "Linux", "version": "4.4", "name": "Android Tablet Regression Suite", "deviceType": "tablet"}
+
+AndroidTabletLandscape:
+    context:
+        class:  'FeatureContext'
+
+    extensions:
+        Behat\MinkExtension\Extension:
+            base_url:  'http://adcade.com/'
+            javascript_session:  'selenium2'
+            goutte:              ~
+            selenium2:
+              browser: android
+              wd_host: sajjadAdcade:f6bd677e-c92b-42ce-9564-e75f90d80cfb@ondemand.saucelabs.com/wd/hub
+              capabilities: {  "platform": "Linux", "version": "4.4", "name": "Android Tablet Regression Suite", "deviceOrientation": "landscape", "deviceType": "tablet"}
+
+AndroidTabletLandscape:
+    context:
+        class:  'FeatureContext'
+
+    extensions:
+        Behat\MinkExtension\Extension:
+            base_url:  'http://adcade.com/'
+            javascript_session:  'selenium2'
+            goutte:              ~
+            selenium2:
+              browser: android
+              wd_host: sajjadAdcade:f6bd677e-c92b-42ce-9564-e75f90d80cfb@ondemand.saucelabs.com/wd/hub
+              capabilities: {  "platform": "Linux", "version": "4.4", "name": "Android Tablet Regression Suite", "deviceType": "tablet"}
+
+iPhone:
+    context:
+        class:  'FeatureContext'
+
+    extensions:
+        Behat\MinkExtension\Extension:
+            base_url:  'http://adcade.com/'
+            javascript_session:  'selenium2'
+            goutte:              ~
+            selenium2:
+              browser: iphone
+              wd_host: sajjadAdcade:f6bd677e-c92b-42ce-9564-e75f90d80cfb@ondemand.saucelabs.com/wd/hub
+              capabilities: {  "platform": "OS X 10.9", "version": "8.1", "name": "iPhone Regression Suite"}
+
+
+iPad:
+    context:
+        class:  'FeatureContext'
+
+    extensions:
+        Behat\MinkExtension\Extension:
+            base_url:  'http://adcade.com/'
+            javascript_session:  'selenium2'
+            goutte:              ~
+            selenium2:
+              browser: iPad
+              wd_host: sajjadAdcade:f6bd677e-c92b-42ce-9564-e75f90d80cfb@ondemand.saucelabs.com/wd/hub
+              capabilities: {  "platform": "OS X 10.9", "version": "8.1", "name": "iPad Regression Suite"}
+
+iPadLandscape:
+    context:
+        class:  'FeatureContext'
+
+    extensions:
+        Behat\MinkExtension\Extension:
+            base_url:  'http://adcade.com/'
+            javascript_session:  'selenium2'
+            goutte:              ~
+            selenium2:
+              browser: iPad
+              wd_host: sajjadAdcade:f6bd677e-c92b-42ce-9564-e75f90d80cfb@ondemand.saucelabs.com/wd/hub
+              capabilities: {  "platform": "OS X 10.9", "version": "8.1", "name": "iPad Regression Suite", "deviceOrientation": "landscape"}

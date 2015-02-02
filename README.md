@@ -4,16 +4,16 @@ Automation of HTTP, HTTPS, API and UI using PHPUnit, Behat, Mink, Pear and Selen
 ## Dependancies
 On Mac OS X, this requires:
 
-1. [XCode](https://developer.apple.com/xcode/downloads/)
-2. [Developer Tools](http://stackoverflow.com/questions/9329243/xcode-4-4-and-later-install-command-line-tools) for XCode
+1. [XCode](https://developer.apple.com/xcode/downloads/) & [Developer Tools](http://stackoverflow.com/questions/9329243/xcode-4-4-and-later-install-command-line-tools)
 3. [Java JDK](http://www.oracle.com/technetwork/java/javase/downloads/jdk7-downloads-1880260.html), see [documentation](http://docs.oracle.com/javase/7/docs/webnotes/install/mac/mac-jdk.html) 
 4. [cURL](http://curl.haxx.se/download.html)
+5. [WAMP](http://www.wampserver.com/en/) `Windows Only` 
 
 
 ## Installation
 ##Clone It
 
-	git clone https://github.com/KnpLabs/behat-webapi-demo
+	git clone https://github.com/sajjadhossain/HTTP-API-Web-Testing-Kit.git
 
 ##Start Selenium
 Open Terminal, go to the project folder, and run:

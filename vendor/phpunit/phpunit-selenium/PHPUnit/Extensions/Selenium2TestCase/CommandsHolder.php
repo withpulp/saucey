@@ -111,7 +111,7 @@ abstract class PHPUnit_Extensions_Selenium2TestCase_CommandsHolder
 
     /**
      * @params string $commandClass     a class name, descending from
-                                        PHPUnit_Extensions_Selenium2TestCase_Command
+     * PHPUnit_Extensions_Selenium2TestCase_Command
      * @return callable
      */
     private function factoryMethod($commandClass)
