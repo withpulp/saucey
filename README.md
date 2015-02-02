@@ -1,4 +1,4 @@
-# HTTP-API-Web-Testing-Kit
+# Saucy.php
 Automation of HTTP, HTTPS, API and UI using PHPUnit, Behat, Mink, Pear and Selenium.
 
 ## Dependancies
@@ -13,7 +13,7 @@ On Mac OS X, this requires:
 ## Installation
 ##Clone It
 
-	git clone https://github.com/sajjadhossain/HTTP-API-Web-Testing-Kit.git
+	git clone https://github.com/sajjadhossain/SaucyPHP.git
 
 ##Start Selenium
 Open Terminal, go to the project folder, and run:
@@ -24,62 +24,50 @@ Then `COMMAND + T` or open a new Terminal tab. Then:
 
 ##Run Tests
 
-	bin/behat feature/AdcadeRegression.feature
+	bin/behat
 
 You should see:
 
 ```gherkin
-	Feature: I want to automate continous integration and regression tests for API and End Points
+
+	Feature: I want to make sure this test suite is up and running
 	  
 	  As a tester
-	  I want to evaluate API and end-points
-	  So that I can automate continous integration and regression tests
+	  I want to make sure this test suite is up and running
+	  So that I can automate continuous integration and regression tests
 	
-	  @regression @smoke @POSTRequests @Staples
-	  Scenario Outline: Metric Requests for Staples Accelerator  # features/AdcadeAPI.feature:8
-	    Given I send a POST request to "<requestURL>" with body: # Behat\CommonContexts\WebApiContext::iSendARequestWithBody()
-	      """
-	      BODY
-	      """
-	    Then the response code should be 200                     # Behat\CommonContexts\WebApiContext::theResponseCodeShouldBe()
+	@javascript @regression @sanity
+	  Scenario: Check against google.com and search # features/check.feature:8
+	    Given I am on "http://google.com"           # FeatureContext::visit()
+	    Then the response should contain "Google"   # FeatureContext::assertResponseContains()
+	    And I should see "Google Search"            # FeatureContext::assertPageContainsText()
+	    When I fill in "q" with "Adcade"            # FeatureContext::fillField()
+	    And I wait for 5 seconds                    # FeatureContext::iWaitForSeconds()
+	    Then I should see "Adcade"                  # FeatureContext::assertPageContainsText()
 	
-	    Examples:
-	      | requestURL | body |
-	      | http://ad-stage.adcade.com/2/event/81983ac5-2703-4631-b9de-19e1a724e7e6/ | POST DATA|
-	      ...
-	      | http://ad-stage.adcade.com/2/event/81983ac5-2703-4631-b9de-19e1a724e7e6/ | POST DATA |
-	
-	  @regression @smoke @POSTRequests @Videos
-	  Scenario Outline: Metric Requests for Refinery 29 Video H-Unit # features/AdcadeAPI.feature:28
-	    Given I send a POST request to "<requestURL>" with body:     # Behat\CommonContexts\WebApiContext::iSendARequestWithBody()
-	      """
-	      BODY
-	      """
-	    Then the response code should be 200                         # Behat\CommonContexts\WebApiContext::theResponseCodeShouldBe()
-	
-	    Examples:
-	     | requestURL | body |
-	     | https://ad-stage.adcade.com/2/event/cf7964c2-2619-42b2-9bac-81cb26d0da97/ | POST DATA |
-			...
-			| https://ad-stage.adcade.com/2/event/cf7964c2-2619-42b2-9bac-81cb26d0da97/ | POST DATA |
-	
-	  @javascript @regression @smoke @GETRequests
-	  Scenario Outline: GET 200 Requests                             # features/AdcadeAPI.feature:45
-	    Given I am on "<requestURL>"                                 # FeatureContext::visit()
-	    Then the response should contain "<expectedOutcome>"         # FeatureContext::assertResponseContains()
-	
-	    Examples:
-	      | requestURL | expectedOutcome |
-	      ...	      
-	      | https://resource.adcade.com/ad-assets/f2a81d25-a9cb-4404-9840-fb48db6445c7/assets/vid/video.mp4?q=3d7c2c79b16b | video.mp4 |
-	
-	38 scenarios (38 passed)
-	76 steps (76 passed)
-	0m9.96s
+
 ```
 
+##Reporting & More
+###Run tests and save reports in /report
+
+	bin/behat --format html --out report/<name>.html
+
+###Run tests grouped by tags
+A good example of this is accomplished for the help-center. 
+
+	bin/behat --tags "@helpCenter"
+
+These parameters can be combined, for say when you want reports generated for tests executed against scenarios grouped in a tag. 
+
+	bin/behat --tags "@helpCenter" --out report/<name>.html
+
+###More
+
+See `Guidelines.md` within this directory on how to run these tests against multiple browsers and on the cloud. Includes iOS and Android, Phone and Tablets.
+
 ##Components
-This repository is powered by:
+The below **ARE NOT REQUIREMENTS/DEPENDANCIES** , they simply make this tool functional. This repository is powered by:
 #### Composer
 
 	curl http://getcomposer.org/installer | php
