@@ -15,16 +15,33 @@ On Mac OS X, this requires:
 
 	git clone https://github.com/sajjadhossain/SaucyPHP.git
 
+
+#Local testing
+
 ##Start Selenium
 Open Terminal, go to the project folder, and run:
 
+For Firefox:
+
 	java -jar selenium-server-standalone-2.43.1.jar
+	
+For Chrome:
+
+	java -jar selenium-server-standalone-2.43.1.jar -Dwebdriver.chrome.driver=./Drivers/chromedriver
+
+For Safari:
+
+	java -jar selenium-server-standalone-2.43.1.jar -Dwebdriver.safari.noinstall=true
+
+For IE, on Windows:
+
+	java -jar selenium-server-standalone-2.43.1.jar -Dwebdriver.ie.driver=Drivers\IEDriverServer.exe
 
 Then `COMMAND + T` or open a new Terminal tab. Then:
 
 ##Run Tests
 
-	bin/behat
+	bin/behat --tags "@check"
 
 You should see:
 
@@ -36,7 +53,7 @@ You should see:
 	  I want to make sure this test suite is up and running
 	  So that I can automate continuous integration and regression tests
 	
-	@javascript @regression @sanity
+	@javascript @check
 	  Scenario: Check against google.com and search # features/check.feature:8
 	    Given I am on "http://google.com"           # FeatureContext::visit()
 	    Then the response should contain "Google"   # FeatureContext::assertResponseContains()
@@ -47,6 +64,55 @@ You should see:
 	
 
 ```
+
+#Cloud-Based with Sauce
+## Desktop
+Open Terminal, go to the project folder, and run:
+
+For Firefox:
+
+	bin/behat --tags "@check" -p SauceWindowsFirefox
+	
+	-or- 
+	
+	bin/behat --tags "@check" -p SauceMacFirefox
+	
+For Chrome:
+
+	bin/behat --tags "@check" -p SauceWindowsChrome 
+			
+	-or- 
+	
+	bin/behat --tags "@check" -p SauceMacChrome
+
+	
+For IE:
+
+	bin/behat --tags "@check" -p SauceWindowsIE
+	
+For Safari:
+
+	bin/behat --tags "@check" -p SauceMacSafari
+	
+## Mobile & Tablet
+Open Terminal, go to the project folder, and run:
+
+For iOS:
+
+	bin/behat --tags "@check" -p iPhone
+
+	bin/behat --tags "@check" -p iPad
+	
+	bin/behat --tags "@check" -p iPadLandscape
+
+For iOS:
+
+	bin/behat --tags "@check" -p AndroidPhone
+
+	bin/behat --tags "@check" -p AndroidTablet
+	
+	bin/behat --tags "@check" -p AndroidTabletLandscape
+		
 
 ##Reporting & More
 ###Run tests and save reports in /report
@@ -61,6 +127,10 @@ A good example of this is accomplished for the help-center.
 These parameters can be combined, for say when you want reports generated for tests executed against scenarios grouped in a tag. 
 
 	bin/behat --tags "@helpCenter" --out report/<name>.html
+	
+	-or-
+	
+	bin/behat --tags "@helpCenter" --out report/<name>.html -p SauceWindowsChrome
 
 ###More
 

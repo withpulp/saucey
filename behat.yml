@@ -128,7 +128,7 @@ SauceWindowsIE:
             selenium2:
               browser: ie
               wd_host: sajjadAdcade:f6bd677e-c92b-42ce-9564-e75f90d80cfb@ondemand.saucelabs.com/wd/hub
-              capabilities: {  "platform": "Windows 7", "version": "8", "name": "Windows 7 Internet Explorer Regression Suite"}
+              capabilities: {  "platform": "Windows 7", "version": "9.0"}
 
 SauceWindowsChrome:
     context:
@@ -186,20 +186,6 @@ AndroidTabletLandscape:
               browser: android
               wd_host: sajjadAdcade:f6bd677e-c92b-42ce-9564-e75f90d80cfb@ondemand.saucelabs.com/wd/hub
               capabilities: {  "platform": "Linux", "version": "4.4", "name": "Android Tablet Regression Suite", "deviceOrientation": "landscape", "deviceType": "tablet"}
-
-AndroidTabletLandscape:
-    context:
-        class:  'FeatureContext'
-
-    extensions:
-        Behat\MinkExtension\Extension:
-            base_url:  'http://adcade.com/'
-            javascript_session:  'selenium2'
-            goutte:              ~
-            selenium2:
-              browser: android
-              wd_host: sajjadAdcade:f6bd677e-c92b-42ce-9564-e75f90d80cfb@ondemand.saucelabs.com/wd/hub
-              capabilities: {  "platform": "Linux", "version": "4.4", "name": "Android Tablet Regression Suite", "deviceType": "tablet"}
 
 iPhone:
     context:
