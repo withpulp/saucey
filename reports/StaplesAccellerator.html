@@ -1,0 +1,2467 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns ="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+    <title>Behat Test Suite</title>
+    <style type="text/css">
+        body {
+            margin:0px;
+            padding:0px;
+            position:relative;
+            padding-top:75px;
+        }
+        #behat {
+            float:left;
+            font-family: Georgia, serif;
+            font-size:18px;
+            line-height:26px;
+            width:100%;
+        }
+        #behat .statistics {
+            float:left;
+            width:100%;
+            margin-bottom:15px;
+        }
+        #behat .statistics p {
+            text-align:right;
+            padding:5px 15px;
+            margin:0px;
+            border-right:10px solid #000;
+        }
+        #behat .statistics.failed p {
+            border-color:#C20000;
+        }
+        #behat .statistics.passed p {
+            border-color:#3D7700;
+        }
+        #behat .feature {
+            margin:15px;
+        }
+        #behat h2, #behat h3, #behat h4 {
+            margin:0px 0px 5px 0px;
+            padding:0px;
+            font-family:Georgia;
+        }
+        #behat h2 .title, #behat h3 .title, #behat h4 .title {
+            font-weight:normal;
+        }
+        #behat .path {
+            font-size:10px;
+            font-weight:normal;
+            font-family: 'Bitstream Vera Sans Mono', 'DejaVu Sans Mono', Monaco, Courier, monospace !important;
+            color:#999;
+            padding:0px 5px;
+            float:right;
+        }
+        #behat .path a:link,
+        #behat .path a:visited {
+            color:#999;
+        }
+        #behat .path a:hover,
+        #behat .path a:active {
+            background-color:#000;
+            color:#fff;
+        }
+        #behat h3 .path {
+            margin-right:4%;
+        }
+        #behat ul.tags {
+            font-size:14px;
+            font-weight:bold;
+            color:#246AC1;
+            list-style:none;
+            margin:0px;
+            padding:0px;
+        }
+        #behat ul.tags li {
+            display:inline;
+        }
+        #behat ul.tags li:after {
+            content:' ';
+        }
+        #behat ul.tags li:last-child:after {
+            content:'';
+        }
+        #behat .feature > p {
+            margin-top:0px;
+            margin-left:20px;
+        }
+        #behat .scenario {
+            margin-left:20px;
+            margin-bottom:20px;
+        }
+        #behat .scenario > ol,
+        #behat .scenario .examples > ol {
+            margin:0px;
+            list-style:none;
+            padding:0px;
+        }
+        #behat .scenario > ol {
+            margin-left:20px;
+        }
+        #behat .scenario > ol:after,
+        #behat .scenario .examples > ol:after {
+            content:'';
+            display:block;
+            clear:both;
+        }
+        #behat .scenario > ol li,
+        #behat .scenario .examples > ol li {
+            float:left;
+            width:95%;
+            padding-left:5px;
+            border-left:5px solid;
+            margin-bottom:4px;
+        }
+        #behat .scenario > ol li .argument,
+        #behat .scenario .examples > ol li .argument {
+            margin:10px 20px;
+            font-size:16px;
+            overflow:hidden;
+        }
+        #behat .scenario > ol li table.argument,
+        #behat .scenario .examples > ol li table.argument {
+            border:1px solid #d2d2d2;
+        }
+        #behat .scenario > ol li table.argument thead td,
+        #behat .scenario .examples > ol li table.argument thead td {
+            font-weight: bold;
+        }
+        #behat .scenario > ol li table.argument td,
+        #behat .scenario .examples > ol li table.argument td {
+            padding:5px 10px;
+            background:#f3f3f3;
+        }
+        #behat .scenario > ol li .keyword,
+        #behat .scenario .examples > ol li .keyword {
+            font-weight:bold;
+        }
+        #behat .scenario > ol li .path,
+        #behat .scenario .examples > ol li .path {
+            float:right;
+        }
+        #behat .scenario .examples {
+            margin-top:20px;
+            margin-left:40px;
+        }
+        #behat .scenario .examples h4 span {
+            font-weight:normal;
+            background:#f3f3f3;
+            color:#999;
+            padding:0 5px;
+            margin-left:10px;
+        }
+        #behat .scenario .examples table {
+            margin-left:20px;
+        }
+        #behat .scenario .examples table thead td {
+            font-weight:bold;
+            text-align:center;
+        }
+        #behat .scenario .examples table td {
+            padding:2px 10px;
+            font-size:16px;
+        }
+        #behat .scenario .examples table .failed.exception td {
+            border-left:5px solid #000;
+            border-color:#C20000 !important;
+            padding-left:0px;
+        }
+        pre {
+            font-family:monospace;
+        }
+        .snippet {
+            font-size:14px;
+            color:#000;
+            margin-left:20px;
+        }
+        .backtrace {
+            font-size:12px;
+            line-height:18px;
+            color:#000;
+            overflow:hidden;
+            margin-left:20px;
+            padding:15px;
+            border-left:2px solid #C20000;
+            background: #fff;
+            margin-right:15px;
+        }
+        #behat .passed {
+            background:#DBFFB4;
+            border-color:#65C400 !important;
+            color:#3D7700;
+        }
+        #behat .failed {
+            background:#FFFBD3;
+            border-color:#C20000 !important;
+            color:#C20000;
+        }
+        #behat .undefined, #behat .pending {
+            border-color:#FAF834 !important;
+            background:#FCFB98;
+            color:#000;
+        }
+        #behat .skipped {
+            background:lightCyan;
+            border-color:cyan !important;
+            color:#000;
+        }
+        #behat .summary {
+            position: absolute;
+            top: 0px;
+            left: 0px;
+            width:100%;
+            font-family: Arial, sans-serif;
+            font-size: 14px;
+            line-height: 18px;
+        }
+        #behat .summary .counters {
+            padding: 10px;
+            border-top: 0px;
+            border-bottom: 0px;
+            border-right: 0px;
+            border-left: 5px;
+            border-style: solid;
+            height: 52px;
+            overflow: hidden;
+        }
+        #behat .summary .switchers {
+            position: absolute;
+            right: 15px;
+            top: 25px;
+        }
+        #behat .summary .switcher {
+            text-decoration: underline;
+            cursor: pointer;
+        }
+        #behat .summary .switchers a {
+            margin-left: 10px;
+            color: #000;
+        }
+        #behat .summary .switchers a:hover {
+            text-decoration:none;
+        }
+        #behat .summary p {
+            margin:0px;
+        }
+        #behat .jq-toggle > .scenario,
+        #behat .jq-toggle > ol,
+        #behat .jq-toggle > .examples {
+            display:none;
+        }
+        #behat .jq-toggle-opened > .scenario,
+        #behat .jq-toggle-opened > ol,
+        #behat .jq-toggle-opened > .examples {
+            display:block;
+        }
+        #behat .jq-toggle > h2,
+        #behat .jq-toggle > h3 {
+            cursor:pointer;
+        }
+        #behat .jq-toggle > h2:after,
+        #behat .jq-toggle > h3:after {
+            content:' |+';
+            font-weight:bold;
+        }
+        #behat .jq-toggle-opened > h2:after,
+        #behat .jq-toggle-opened > h3:after {
+            content:' |-';
+            font-weight:bold;
+        }
+    </style>
+
+    <style type="text/css" media="print">
+        body {
+            padding:0px;
+        }
+
+        #behat {
+            font-size:11px;
+        }
+
+        #behat .jq-toggle > .scenario,
+        #behat .jq-toggle > .scenario .examples,
+        #behat .jq-toggle > ol {
+            display:block;
+        }
+
+        #behat .summary {
+            position:relative;
+        }
+
+        #behat .summary .counters {
+            border:none;
+        }
+
+        #behat .summary .switchers {
+            display:none;
+        }
+
+        #behat .step .path {
+            display:none;
+        }
+
+        #behat .jq-toggle > h2:after,
+        #behat .jq-toggle > h3:after {
+            content:'';
+            font-weight:bold;
+        }
+
+        #behat .jq-toggle-opened > h2:after,
+        #behat .jq-toggle-opened > h3:after {
+            content:'';
+            font-weight:bold;
+        }
+
+        #behat .scenario > ol li,
+        #behat .scenario .examples > ol li {
+            border-left:none;
+        }
+    </style>
+</head>
+<body>
+    <div id="behat">
+        
+<div class="feature">
+<h2>
+<span class="keyword">Feature: </span>
+<span class="title">I want to test tags and requests for the Staples Campaign</span>
+</h2>
+<p>
+<br />
+As a tester<br />
+I want to test tags and requests for the Staples Campaign<br />
+So that they remain functional after delivery<br />
+</p>
+
+<div class="scenario outline">
+<ul class="tags">
+<li>@javascript</li>
+<li>@StaplesAccellerator</li>
+<li>@adId</li>
+</ul>
+<h3>
+<span class="keyword">Scenario Outline: </span>
+<span class="title">I want to test tags and requests for the Staples Campaign</span>
+<span class="path">features/clientAds/Staples.feature:8</span>
+</h3>
+<ol>
+<li class="skipped">
+<div class="step">
+<span class="keyword">Given </span>
+<span class="text">I am on "<strong class="skipped_param">&lt;url&gt;</strong>"</span>
+<span class="path">FeatureContext::visit()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">Then </span>
+<span class="text">the response should contain "<strong class="skipped_param">Adcade</strong>"</span>
+<span class="path">FeatureContext::assertResponseContains()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">the response should contain "<strong class="skipped_param">&lt;adId&gt;</strong>"</span>
+<span class="path">FeatureContext::assertResponseContains()</span>
+</div>
+</li>
+</ol>
+<div class="examples">
+<h4>Examples</h4>
+<table>
+<thead>
+<tr class="skipped">
+<td>url</td>
+<td>adId</td>
+</tr>
+</thead>
+<tbody>
+<tr class="passed">
+<td>http://adcade.com/demo/cara/staple/calculator/300x250_inpage/index.html</td>
+<td>STPALF14CALDESK300250</td>
+</tr>
+<tr class="passed">
+<td>http://adcade.com/demo/cara/staple/calculator/300x600_inpage/index.html</td>
+<td>STPALF14CALDESK300600</td>
+</tr>
+<tr class="passed">
+<td>http://adcade.com/demo/cara/staple/calculator/320x50_fullscreen/index.html</td>
+<td>STPALF14CALMOB32050WEB</td>
+</tr>
+<tr class="passed">
+<td>http://adcade.com/demo/cara/staple/calculator/mraid/320x50_fs/index.html</td>
+<td>STPALF14CALMOB32050APP</td>
+</tr>
+<tr class="passed">
+<td>http://adcade.com/demo/cara/staple/calculator/728x90_fullscreen/index.html</td>
+<td>STPALF14CALTAB72890WEB</td>
+</tr>
+<tr class="passed">
+<td>http://adcade.com/demo/cara/staple/calculator/mraid/728x90_fs/index.html</td>
+<td>STPALF14CALTAB72890APP</td>
+</tr>
+<tr class="passed">
+<td>http://adcade.com/demo/cara/staple/calculator/300x250_fullscreen/index.html</td>
+<td>STPALF14CALTAB300250WEB</td>
+</tr>
+<tr class="passed">
+<td>http://adcade.com/demo/cara/staple/calculator/mraid/300x250_fs/index.html</td>
+<td>STPALF14CALTAB300250APP</td>
+</tr>
+<tr class="passed">
+<td>http://adcade.com/demo/cara/staple/calculator/300x600_inpage/index.html</td>
+<td>STPALF14CALDESK300600</td>
+</tr>
+<tr class="passed">
+<td>http://adcade.com/demo/cara/staple/calculator/300x250_inpage/index.html</td>
+<td>STPALF14CALDESK300250</td>
+</tr>
+<tr class="passed">
+<td>http://adcade.com/demo/staples/slingshot/320x50_web/</td>
+<td>STPALF14SLIMOB32050WEB</td>
+</tr>
+<tr class="passed">
+<td>http://adcade.com/demo/staples/slingshot/320x50_app/</td>
+<td>STPALF14SLIMOB32050APP</td>
+</tr>
+<tr class="passed">
+<td>http://adcade.com/demo/staples/slingshot/728x90_web/</td>
+<td>STPALF14SLITAB72890WEB</td>
+</tr>
+<tr class="passed">
+<td>http://adcade.com/demo/staples/slingshot/728x90_app/</td>
+<td>STPALF14SLITAB72890APP</td>
+</tr>
+<tr class="passed">
+<td>http://adcade.com/demo/staples/slingshot/300x250_web/</td>
+<td>STPALF14SLITAB300250WEB</td>
+</tr>
+<tr class="passed">
+<td>http://adcade.com/demo/staples/slingshot/300x250_app/</td>
+<td>STPALF14SLITAB300250APP</td>
+</tr>
+<tr class="passed">
+<td>http://adcade.com/demo/staples/slingshot/300x600/</td>
+<td>STPALF14SLIDESK300600</td>
+</tr>
+<tr class="passed">
+<td>http://adcade.com/demo/staples/slingshot/300x250/</td>
+<td>STPALF14SLIDESK300250</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="scenario outline">
+<ul class="tags">
+<li>@javascript</li>
+<li>@StaplesAccellerator</li>
+<li>@productsViaDesktop</li>
+</ul>
+<h3>
+<span class="keyword">Scenario Outline: </span>
+<span class="title">I want to test tags and requests for the Staples Campaign</span>
+<span class="path">features/clientAds/Staples.feature:36</span>
+</h3>
+<ol>
+<li class="skipped">
+<div class="step">
+<span class="keyword">Given </span>
+<span class="text">I am on "<strong class="skipped_param">&lt;url&gt;</strong>"</span>
+<span class="path">FeatureContext::visit()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">I wait for <strong class="skipped_param">2</strong> seconds</span>
+<span class="path">FeatureContext::iWaitForSeconds()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">Then </span>
+<span class="text">I should be on "<strong class="skipped_param">&lt;redirectURL&gt;</strong>"</span>
+<span class="path">FeatureContext::assertPageAddress()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">the response should contain "<strong class="skipped_param">Staples</strong>"</span>
+<span class="path">FeatureContext::assertResponseContains()</span>
+</div>
+</li>
+</ol>
+<div class="examples">
+<h4>Examples</h4>
+<table>
+<thead>
+<tr class="skipped">
+<td>url</td>
+<td>redirectURL</td>
+</tr>
+</thead>
+<tbody>
+<tr class="passed">
+<td>https://www.google.com/url?q=http://ad.doubleclick.net/ddm/clk/287800638;113795209;o&sa=D&usg=ALhdy29Ujv5TghzaXbxavaRq4sitvnMPvQ</td>
+<td>http://www.staples.com/?cid=BNR:CORP:8421537:1503232:113795148:287800637:0</td>
+</tr>
+<tr class="passed">
+<td>https://www.google.com/url?q=http://ad.doubleclick.net/ddm/clk/287800637;113795148;p&sa=D&usg=ALhdy28nnZE05L5_VjX5m_1lyyAoxgdhiQ</td>
+<td>http://www.staples.com/?cid=BNR:CORP:8421537:1503232:113795209:287800638:0</td>
+</tr>
+<tr class="passed">
+<td>https://www.google.com/url?q=http://ad.doubleclick.net/ddm/clk/287801028;113795209;i&sa=D&usg=ALhdy2_xJkqwiXoJ2_Zjgkp4N8yd5yHjqg</td>
+<td>http://storelocator.staples.com/?cid=BNR:CORP:8421537:1503232:113795209:287801028:0</td>
+</tr>
+<tr class="passed">
+<td>https://www.google.com/url?q=http://ad.doubleclick.net/ddm/clk/287801026;113795148;i&sa=D&usg=ALhdy2_v2ORiJlLZFWD5ktc4P_eW1Su3zw</td>
+<td>http://storelocator.staples.com/?cid=BNR:CORP:8421537:1503232:113795148:287801026:0</td>
+</tr>
+<tr class="passed">
+<td>https://www.google.com/url?q=http://ad.doubleclick.net/ddm/clk/287596738;113795209;b&sa=D&usg=ALhdy2_9lAXBPpeh6HoWat8ysAgvGJacvQ</td>
+<td>http://www.staples.com/M-M-s-Milk-Chocolate-Candy-42-oz-Bag/product_689504?cid=BNR:CORP:8421537:1503232:113795209:287596738:0</td>
+</tr>
+<tr class="passed">
+<td>https://www.google.com/url?q=http://ad.doubleclick.net/ddm/clk/287596047;113795148;w&sa=D&usg=ALhdy2-0LDfnw6MiuHmTqgGLppEUJsOSvg</td>
+<td>http://www.staples.com/M-M-s-Milk-Chocolate-Candy-42-oz-Bag/product_689504?cid=BNR:CORP:8421537:1503232:113795148:287596047:0</td>
+</tr>
+<tr class="passed">
+<td>https://www.google.com/url?q=http://ad.doubleclick.net/ddm/clk/287596739;113795209;c&sa=D&usg=ALhdy28XMPXNH8Wpb07P0EmNSDjWcwMzFg</td>
+<td>http://www.staples.com/Swingline-747-Rio-Red-Stapler-20-Sheet-Capacity/product_562485?cid=BNR:CORP:8421537:1503232:113795209:287596739:0</td>
+</tr>
+<tr class="passed">
+<td>https://www.google.com/url?q=http://ad.doubleclick.net/ddm/clk/287596046;113795148;v&sa=D&usg=ALhdy2-JAqG8lkBkQJZmGrx3Xlzw_Jg17w</td>
+<td>http://www.staples.com/Swingline-747-Rio-Red-Stapler-20-Sheet-Capacity/product_562485?cid=BNR:CORP:8421537:1503232:113795148:287596046:0</td>
+</tr>
+<tr class="passed">
+<td>https://www.google.com/url?q=http://ad.doubleclick.net/ddm/clk/287596741;113795209;v&sa=D&usg=ALhdy2_0PRPu0Jd2vGrwaJ9q67QSiRYzIQ</td>
+<td>http://www.staples.com/Staples-Copy-Paper-8-1-2-x-11-Case/product_135848?cid=BNR:CORP:8421537:1503232:113795209:287596741:0</td>
+</tr>
+<tr class="passed">
+<td>https://www.google.com/url?q=http://ad.doubleclick.net/ddm/clk/287596045;113795148;u&sa=D&usg=ALhdy2-apQm23eV25pv4cMiq5gsC5SAiaQ</td>
+<td>http://www.staples.com/Staples-Copy-Paper-8-1-2-x-11-Case/product_135848?cid=BNR:CORP:8421537:1503232:113795148:287596045:0</td>
+</tr>
+<tr class="passed">
+<td>https://www.google.com/url?q=http://ad.doubleclick.net/ddm/clk/287596742;113795209;w&sa=D&usg=ALhdy29n_WZWM3InQ6s9g0C0FZiGUA50cg</td>
+<td>http://www.staples.com/Bounty-Select-A-Size-Paper-Towel-Rolls-2-Ply-8-Rolls-Case/product_900103?cid=BNR:CORP:8421537:1503232:113795209:287596742:0</td>
+</tr>
+<tr class="passed">
+<td>https://www.google.com/url?q=http://ad.doubleclick.net/ddm/clk/287596728;113795148;c&sa=D&usg=ALhdy29VJiYqi7ZKd2Ydaau3O8Jd3PEKrg</td>
+<td>http://www.staples.com/Bounty-Select-A-Size-Paper-Towel-Rolls-2-Ply-8-Rolls-Case/product_900103?cid=BNR:CORP:8421537:1503232:113795148:287596728:0</td>
+</tr>
+<tr class="passed">
+<td>https://www.google.com/url?q=http://ad.doubleclick.net/ddm/clk/287596737;113795209;a&sa=D&usg=ALhdy2-lvcsi4_Y0IoGx4Kda_S-A6G1zkw</td>
+<td>http://www.staples.com/Toshiba-Satellite-15-6-Inch-Laptop-C55-B5299-/product_1064944?cid=BNR:CORP:8421537:1503232:113795209:287596737:0</td>
+</tr>
+<tr class="passed">
+<td>https://www.google.com/url?q=http://ad.doubleclick.net/ddm/clk/287596044;113795148;t&sa=D&usg=ALhdy2_5ho42QOLdKhVWf4bqI9ONrIAjUg</td>
+<td>http://www.staples.com/Toshiba-Satellite-15-6-Inch-Laptop-C55-B5299-/product_1064944?cid=BNR:CORP:8421537:1503232:113795148:287596044:0</td>
+</tr>
+<tr class="passed">
+<td>https://www.google.com/url?q=http://ad.doubleclick.net/ddm/clk/287594488;113795148;d&sa=D&usg=ALhdy28WjFICw-er2cV3eIdDyC28KEB_SQ</td>
+<td>http://www.staples.com/Epson-WorkForce-WF-2540-Color-Inkjet-All-in-One-Printer/product_954262?cid=BNR:CORP:8421537:1503232:113795148:287594488:0</td>
+</tr>
+<tr class="passed">
+<td>https://www.google.com/url?q=http://ad.doubleclick.net/ddm/clk/287596740;113795209;u&sa=D&usg=ALhdy2-YOOYQs5QtxQRtaXBt2Wr1hO_abg</td>
+<td>http://www.staples.com/Epson-WorkForce-WF-2540-Color-Inkjet-All-in-One-Printer/product_954262?cid=BNR:CORP:8421537:1503232:113795209:287596740:0</td>
+</tr>
+<tr class="passed">
+<td>https://www.google.com/url?q=http://ad.doubleclick.net/ddm/clk/287801316;114603586;f&sa=D&usg=ALhdy2-o4Suc7bO2HubgkvL1742BRlFAeQ</td>
+<td>http://www.staples.com/?cid=BNR:CORP:8421537:1503232:114603586:287801316:0</td>
+</tr>
+<tr class="passed">
+<td>https://www.google.com/url?q=http://ad.doubleclick.net/ddm/clk/287800661;114603586;h&sa=D&usg=ALhdy29sVNxqtLYbRgG7xig1r2S8Ql8Sfg</td>
+<td>http://www.staples.com/?cid=BNR:CORP:8421537:1503232:114603586:287800661:0</td>
+</tr>
+<tr class="passed">
+<td>https://www.google.com/url?q=http://ad.doubleclick.net/ddm/clk/287597154;114603586;r&sa=D&usg=ALhdy28RP5dFFqFVJc1IpQiXCzYzyid_YA</td>
+<td>http://www.staples.com/Toshiba-Satellite-15-6-Inch-Laptop-C55-B5299-/product_1064944?cid=BNR:CORP:8421537:1503232:114603586:287597154:0</td>
+</tr>
+<tr class="passed">
+<td>https://www.google.com/url?q=http://ad.doubleclick.net/ddm/clk/287597135;114603586;q&sa=D&usg=ALhdy2_p6w0Fmd28UywqztsCiGBGvSTAUA</td>
+<td>http://www.staples.com/M-M-s-Milk-Chocolate-Candy-42-oz-Bag/product_689504?cid=BNR:CORP:8421537:1503232:114603586:287597135:0</td>
+</tr>
+<tr class="passed">
+<td>https://www.google.com/url?q=http://ad.doubleclick.net/ddm/clk/287597141;114603586;n&sa=D&usg=ALhdy284wjoYeFsQ8zVmKamr59VQnP8YJw</td>
+<td>http://www.staples.com/Bounty-Select-A-Size-Paper-Towel-Rolls-2-Ply-8-Rolls-Case/product_900103?cid=BNR:CORP:8421537:1503232:114603586:287597141:0</td>
+</tr>
+<tr class="passed">
+<td>https://www.google.com/url?q=http://ad.doubleclick.net/ddm/clk/287597136;114603586;r&sa=D&usg=ALhdy2-57VXR3iY0HE9fCAoXBjCyT4Th-A</td>
+<td>http://www.staples.com/Swingline-747-Rio-Red-Stapler-20-Sheet-Capacity/product_562485?cid=BNR:CORP:8421537:1503232:114603586:287597136:0</td>
+</tr>
+<tr class="passed">
+<td>https://www.google.com/url?q=http://ad.doubleclick.net/ddm/clk/287597137;114603586;s&sa=D&usg=ALhdy28pWHF6ueUrwC41xsN58HfAz-ktgw</td>
+<td>http://www.staples.com/Staples-Copy-Paper-8-1-2-x-11-Case/product_135848?cid=BNR:CORP:8421537:1503232:114603586:287597137:0</td>
+</tr>
+<tr class="passed">
+<td>https://www.google.com/url?q=http://ad.doubleclick.net/ddm/clk/287597147;114603586;t&sa=D&usg=ALhdy29-Y6t8CDJYvdTJcpF5vN71Y3u_9g</td>
+<td>http://www.staples.com/Epson-WorkForce-WF-2540-Color-Inkjet-All-in-One-Printer/product_954262?cid=BNR:CORP:8421537:1503232:114603586:287597147:0</td>
+</tr>
+<tr class="passed">
+<td>https://www.google.com/url?q=http://ad.doubleclick.net/ddm/clk/287596662;114603586;u&sa=D&usg=ALhdy2-SP2DmkP7zma_GbFTKBMmh2rfdzg</td>
+<td>http://www.staples.com/Staples-reg-Space-Saver-10-Sheet-Cross-Cut-Shredder-Blue/product_89309?cid=BNR:CORP:8421537:1503232:114603586:287596662:0</td>
+</tr>
+<tr class="passed">
+<td>https://www.google.com/url?q=http://ad.doubleclick.net/ddm/clk/287596656;114603586;x&sa=D&usg=ALhdy29xYKzArAuhly3q5S84Y4KnE1kq2A</td>
+<td>http://www.staples.com/ZAGGKeys-Cover-Fit-for-Samsung-Galaxy-Note-12-Pro-Keyboard-Black/product_1114975?cid=BNR:CORP:8421537:1503232:114603586:287596656:0</td>
+</tr>
+<tr class="passed">
+<td>https://www.google.com/url?q=http://ad.doubleclick.net/ddm/clk/287596666;114603586;y&sa=D&usg=ALhdy28VU7nk2Fs_XxRtY3Uj-mc5Pv1ZOQ</td>
+<td>http://www.staples.com/Keurig-K-Cup-Starbucks-Breakfast-Blend-Regular-16-Pack/product_375623?cid=BNR:CORP:8421537:1503232:114603586:287596666:0</td>
+</tr>
+<tr class="passed">
+<td>https://www.google.com/url?q=http://ad.doubleclick.net/ddm/clk/287596671;114603586;u&sa=D&usg=ALhdy2_BvX7RFalkuCiJ6w0JtkQjJtEweg</td>
+<td>http://www.staples.com/Twizzlers-Strawberry-Flavored-Twists-Candy-105-Pieces-Tub/product_621508?externalize=certona&cid=BNR:CORP:8421537:1503232:114603586:287596671:0</td>
+</tr>
+<tr class="passed">
+<td>https://www.google.com/url?q=http://ad.doubleclick.net/ddm/clk/287596655;114603586;w&sa=D&usg=ALhdy2_nS0TMTc8qf1yQYhhZqhXvGglV3A</td>
+<td>http://www.staples.com/Post-it-3-x-3-Jaipur-Colors-Notes-5-Pads-Pack/product_470369?cid=BNR:CORP:8421537:1503232:114603586:287596655:0</td>
+</tr>
+<tr class="passed">
+<td>https://www.google.com/url?q=http://ad.doubleclick.net/ddm/clk/287596649;114603586;z&sa=D&usg=ALhdy2-mjC_lzX-EjZ5e528zm7xyP8f0Kg</td>
+<td>http://www.staples.com/Samsung-Gear-2-Neo-Watch-Black/product_1017404?cid=BNR:CORP:8421537:1503232:114603586:287596649:0</td>
+</tr>
+<tr class="passed">
+<td>https://www.google.com/url?q=http://ad.doubleclick.net/ddm/clk/287596668;114603586;a&sa=D&usg=ALhdy2_YtCkAcFdQ81Kp34Ii-pRdMJklug</td>
+<td>http://www.staples.com/Chef-Works-Chef-Hat-White/product_391455?cid=BNR:CORP:8421537:1503232:114603586:287596668:0</td>
+</tr>
+<tr class="passed">
+<td>https://www.google.com/url?q=http://ad.doubleclick.net/ddm/clk/287596652;114603586;t&sa=D&usg=ALhdy299GTBITAaU6lRx0Tv4kd5EL3m9PQ</td>
+<td>http://www.staples.com/StaplesProductDisplay?catalogIdentifier=2&langId=-1&productId=500175&storeId=10001&externalize=certona&cid=BNR:CORP:8421537:1503232:114603586:287596652:0</td>
+</tr>
+<tr class="passed">
+<td>https://www.google.com/url?q=http://ad.doubleclick.net/ddm/clk/287596654;114603586;v&sa=D&usg=ALhdy29HTBPx2r7tbj0DBe6ORR7MKbAlsw</td>
+<td>http://www.staples.com/Epson-200XL-200-High-Yield-Black-Standard-Color-C-M-Y-Ink-Cartridges-T200XL-BCS-Combo-4-Pack/product_189420?cid=BNR:CORP:8421537:1503232:114603586:287596654:0</td>
+</tr>
+<tr class="passed">
+<td>https://www.google.com/url?q=http://ad.doubleclick.net/ddm/clk/287596650;114603586;r&sa=D&usg=ALhdy2_Y0VKRVjyr-nUIoo97Emur4P0EDg</td>
+<td>http://www.staples.com/Toshiba-Canvio-Connect-1TB-Portable-Hard-Drive-Silver-/product_180279?cid=BNR:CORP:8421537:1503232:114603586:287596650:0</td>
+</tr>
+<tr class="passed">
+<td>https://www.google.com/url?q=http://ad.doubleclick.net/ddm/clk/287596658;114603586;z&sa=D&usg=ALhdy29fMog5Qiv1Id9uvPGQ-sl_Y1WGLA</td>
+<td>http://www.staples.com/Microsoft-Surface-Pro-3-12-Inch-Tablet-Intel-Core-i5-128GB-MQ2-00001-/product_1051214?cid=BNR:CORP:8421537:1503232:114603586:287596658:0</td>
+</tr>
+<tr class="passed">
+<td>https://www.google.com/url?q=http://ad.doubleclick.net/ddm/clk/287596653;114603586;u&sa=D&usg=ALhdy2-8IIKNniCKNp6ovmuBj47d8iiHcg</td>
+<td>http://www.staples.com/HP-80A-Black-Toner-Cartridge-CF280A-/product_665699?cid=BNR:CORP:8421537:1503232:114603586:287596653:0</td>
+</tr>
+<tr class="passed">
+<td>https://www.google.com/url?q=http://ad.doubleclick.net/ddm/clk/287596648;114603586;y&sa=D&usg=ALhdy2-I2pSDIJOSWK7Iy6Ni3autYhlsCw</td>
+<td>http://www.staples.com/Jawbone-UP24-Onyx-Fitness-Tracker-Medium/product_970135?cid=BNR:CORP:8421537:1503232:114603586:287596648:0</td>
+</tr>
+<tr class="passed">
+<td>https://www.google.com/url?q=http://ad.doubleclick.net/ddm/clk/287596661;114603586;t&sa=D&usg=ALhdy2_h2rqWfKn1-c-jG0rLQ3IHYpYCqg</td>
+<td>http://www.staples.com/Google-Chromecast-HDMI-Streaming-Media-Player/product_397061?cid=BNR:CORP:8421537:1503232:114603586:287596661:0</td>
+</tr>
+<tr class="passed">
+<td>https://www.google.com/url?q=http://ad.doubleclick.net/ddm/clk/287596663;114603586;v&sa=D&usg=ALhdy2-pTrUVFmwSlWALLY-xQXY7HEJ4rA</td>
+<td>http://www.staples.com/Pilot-G-2-Retractable-Gel-Ink-Pens-Fine-Point-Black-Dozen/product_429174?cid=BNR:CORP:8421537:1503232:114603586:287596663:0</td>
+</tr>
+<tr class="passed">
+<td>https://www.google.com/url?q=http://ad.doubleclick.net/ddm/clk/287596670;114603586;t&sa=D&usg=ALhdy28nXK8nKQ4EJJ70Ud_cuKy7BdUcpA</td>
+<td>http://www.staples.com/Band-Aid-Sheer-Wet-Flex-Bandages-Variety-Pack/product_485107?cid=BNR:CORP:8421537:1503232:114603586:287596670:0</td>
+</tr>
+<tr class="passed">
+<td>https://www.google.com/url?q=http://ad.doubleclick.net/ddm/clk/287596664;114603586;w&sa=D&usg=ALhdy29yHavWro7L27NG8UYOoo7vuhatFA</td>
+<td>http://www.staples.com/Sharpie-Fine-Point-Permanent-Markers-Black-Dozen-Box/product_125328?cid=BNR:CORP:8421537:1503232:114603586:287596664:0</td>
+</tr>
+<tr class="passed">
+<td>https://www.google.com/url?q=http://ad.doubleclick.net/ddm/clk/287596667;114603586;z&sa=D&usg=ALhdy2_b4VV-L-lyicBIArNcMI9Y3SiZDg</td>
+<td>http://www.staples.com/StaplesProductDisplay?catalogIdentifier=2&langId=-1&productId=491432&storeId=10001&externalize=certona&cid=BNR:CORP:8421537:1503232:114603586:287596667:0</td>
+</tr>
+<tr class="passed">
+<td>https://www.google.com/url?q=http://ad.doubleclick.net/ddm/clk/287596657;114603586;y&sa=D&usg=ALhdy2--2zfTaDg-rKpnUqZt4N-xT1edkg</td>
+<td>http://www.staples.com/StaplesProductDisplay?catalogIdentifier=2&langId=-1&productId=2163241&storeId=10001&externalize=certona&cid=BNR:CORP:8421537:1503232:114603586:287596657:0</td>
+</tr>
+<tr class="passed">
+<td>https://www.google.com/url?q=http://ad.doubleclick.net/ddm/clk/287596669;114603586;b&sa=D&usg=ALhdy29wvVL3Qty4OKwDDCj-FTmSx0W0hw</td>
+<td>http://www.staples.com/Staples-Hyken-Technical-Mesh-Task-Chair-Black/product_990119?cid=BNR:CORP:8421537:1503232:114603586:287596669:0</td>
+</tr>
+<tr class="passed">
+<td>https://www.google.com/url?q=http://ad.doubleclick.net/ddm/clk/287596660;114603586;s&sa=D&usg=ALhdy282WRZsyiIBqEPUZD9zQqqzoaBtvw</td>
+<td>http://www.staples.com/Kindle-Fire-HDX-7-16GB-Tablet-Wifi/product_306702?cid=BNR:CORP:8421537:1503232:114603586:287596660:0</td>
+</tr>
+<tr class="passed">
+<td>https://www.google.com/url?q=http://ad.doubleclick.net/ddm/clk/287596665;114603586;x&sa=D&usg=ALhdy286n38AYuh3dhdXbC2rl0SUZUqKPA</td>
+<td>http://www.staples.com/Keurig-reg-OfficePRO-reg-Single-Cup-Commercial-Coffee-Brewer-Black-Silver/product_853653?cid=BNR:CORP:8421537:1503232:114603586:287596665:0</td>
+</tr>
+<tr class="passed">
+<td>https://www.google.com/url?q=http://ad.doubleclick.net/ddm/clk/287596672;114603586;v&sa=D&usg=ALhdy2_iSNDv6LVu1RTUwcWBblqYjqyCfw</td>
+<td>http://www.staples.com/M-by-Staples-Arc-Customizable-Leather-Notebook-System-Black-9-1-2-x-11-1-2-/product_886232?cid=BNR:CORP:8421537:1503232:114603586:287596672:0</td>
+</tr>
+<tr class="passed">
+<td>https://www.google.com/url?q=http://ad.doubleclick.net/ddm/clk/287596651;114603586;s&sa=D&usg=ALhdy29Cx-JI0ckJkoculUtnpu-Po5XD_Q</td>
+<td>http://www.staples.com/NETGEAR-N600-Dual-Band-WiFi-Router-WNDR3400/product_886778?cid=BNR:CORP:8421537:1503232:114603586:287596651:0</td>
+</tr>
+<tr class="passed">
+<td>https://www.google.com/url?q=http://ad.doubleclick.net/ddm/clk/287596659;114603586;a&sa=D&usg=ALhdy28Tu7BOYzEGqV0yVnUNXoqc5flmJw</td>
+<td>http://www.staples.com/Samsung-Galaxy-Tab-4-7-Inch-Tablet-8GB-Black-SM-T230NYKAXAR-/product_1000426?cid=BNR:CORP:8421537:1503232:114603586:287596659:0</td>
+</tr>
+<tr class="passed">
+<td>https://www.google.com/url?q=http://ad.doubleclick.net/ddm/clk/287801313;114603482;x&sa=D&usg=ALhdy29AJRzqXprCF0ygt2LylG9n0Zyg9w</td>
+<td>http://www.staples.com/?cid=BNR:CORP:8421537:1503232:114603482:287801313:0</td>
+</tr>
+<tr class="passed">
+<td>https://www.google.com/url?q=http://ad.doubleclick.net/ddm/clk/287800657;114603482;h&sa=D&usg=ALhdy2-BTCal75x3FbgCKTKQS6w_vb80dQ</td>
+<td>http://www.staples.com/?cid=BNR:CORP:8421537:1503232:114603482:287800657:0</td>
+</tr>
+<tr class="passed">
+<td>https://www.google.com/url?q=http://ad.doubleclick.net/ddm/clk/287597131;114603482;h&sa=D&usg=ALhdy28n8HUCVSQPKKRHmbS5LnGFT7-w-w</td>
+<td>http://www.staples.com/Toshiba-Satellite-15-6-Inch-Laptop-C55-B5299-/product_1064944?cid=BNR:CORP:8421537:1503232:114603482:287597131:0</td>
+</tr>
+<tr class="passed">
+<td>https://www.google.com/url?q=http://ad.doubleclick.net/ddm/clk/287597132;114603482;i&sa=D&usg=ALhdy2_kmQnigRSHr94t4eTeIScvYnCZUg</td>
+<td>http://www.staples.com/M-M-s-Milk-Chocolate-Candy-42-oz-Bag/product_689504?cid=BNR:CORP:8421537:1503232:114603482:287597132:0</td>
+</tr>
+<tr class="passed">
+<td>https://www.google.com/url?q=http://ad.doubleclick.net/ddm/clk/287597133;114603482;j&sa=D&usg=ALhdy2_ZNUHgbv-M6DV4AlGo23eNfaBArg</td>
+<td>http://www.staples.com/Bounty-Select-A-Size-Paper-Towel-Rolls-2-Ply-8-Rolls-Case/product_900103?cid=BNR:CORP:8421537:1503232:114603482:287597133:0</td>
+</tr>
+<tr class="passed">
+<td>https://www.google.com/url?q=http://ad.doubleclick.net/ddm/clk/287597134;114603482;k&sa=D&usg=ALhdy2_46-AZApwVXcodGhoLpclYT69zaA</td>
+<td>http://www.staples.com/Swingline-747-Rio-Red-Stapler-20-Sheet-Capacity/product_562485?cid=BNR:CORP:8421537:1503232:114603482:287597134:0</td>
+</tr>
+<tr class="passed">
+<td>https://www.google.com/url?q=http://ad.doubleclick.net/ddm/clk/287597140;114603482;h&sa=D&usg=ALhdy2_gpHoq6Q-js4BhNfCckD0Ex_tsPw</td>
+<td>http://www.staples.com/Staples-Copy-Paper-8-1-2-x-11-Case/product_135848?cid=BNR:CORP:8421537:1503232:114603482:287597140:0</td>
+</tr>
+<tr class="passed">
+<td>https://www.google.com/url?q=http://ad.doubleclick.net/ddm/clk/287597146;114603482;n&sa=D&usg=ALhdy2_zSZQS6decyc85UTFLRhSsCk4U3A</td>
+<td>http://www.staples.com/Epson-WorkForce-WF-2540-Color-Inkjet-All-in-One-Printer/product_954262?cid=BNR:CORP:8421537:1503232:114603482:287597146:0</td>
+</tr>
+<tr class="passed">
+<td>https://www.google.com/url?q=http://ad.doubleclick.net/ddm/clk/287598272;114603482;o&sa=D&usg=ALhdy28P7BiExxehIjfP9_bIQIlP1ik9dA</td>
+<td>http://www.staples.com/Staples-reg-Space-Saver-10-Sheet-Cross-Cut-Shredder-Blue/product_89309?cid=BNR:CORP:8421537:1503232:114603482:287598272:0</td>
+</tr>
+<tr class="passed">
+<td>https://www.google.com/url?q=http://ad.doubleclick.net/ddm/clk/287598273;114603482;p&sa=D&usg=ALhdy2-mvrtWFUjM_bABPILvTCfzy7O6Aw</td>
+<td>http://www.staples.com/ZAGGKeys-Cover-Fit-for-Samsung-Galaxy-Note-12-Pro-Keyboard-Black/product_1114975?cid=BNR:CORP:8421537:1503232:114603482:287598273:0</td>
+</tr>
+<tr class="passed">
+<td>https://www.google.com/url?q=http://ad.doubleclick.net/ddm/clk/287598274;114603482;q&sa=D&usg=ALhdy29XsIjMv8dlPJRzbNHJcCUL_apTkg</td>
+<td>http://www.staples.com/Keurig-K-Cup-Starbucks-Breakfast-Blend-Regular-16-Pack/product_375623?cid=BNR:CORP:8421537:1503232:114603482:287598274:0</td>
+</tr>
+<tr class="passed">
+<td>https://www.google.com/url?q=http://ad.doubleclick.net/ddm/clk/287598275;114603482;r&sa=D&usg=ALhdy29xRTaMS3fwqk9wTkI9P3MO1yiNAQ</td>
+<td>http://www.staples.com/Twizzlers-Strawberry-Flavored-Twists-Candy-105-Pieces-Tub/product_621508?externalize=certona&cid=BNR:CORP:8421537:1503232:114603482:287598275:0</td>
+</tr>
+<tr class="passed">
+<td>https://www.google.com/url?q=http://ad.doubleclick.net/ddm/clk/287598276;114603482;s&sa=D&usg=ALhdy29fb10BN41m1oM1deu5mc6hVdK66w</td>
+<td>http://www.staples.com/Post-it-3-x-3-Jaipur-Colors-Notes-5-Pads-Pack/product_470369?cid=BNR:CORP:8421537:1503232:114603482:287598276:0</td>
+</tr>
+<tr class="passed">
+<td>https://www.google.com/url?q=http://ad.doubleclick.net/ddm/clk/287598278;114603482;u&sa=D&usg=ALhdy2_YHih8Sl7JqfolR5bP6-XDdwUibQ</td>
+<td>http://www.staples.com/Chef-Works-Chef-Hat-White/product_391455?cid=BNR:CORP:8421537:1503232:114603482:287598278:0</td>
+</tr>
+<tr class="passed">
+<td>https://www.google.com/url?q=http://ad.doubleclick.net/ddm/clk/287598279;114603482;v&sa=D&usg=ALhdy28ppT374cH8hKm6OK1LQSssAR_wJQ</td>
+<td>http://www.staples.com/StaplesProductDisplay?catalogIdentifier=2&langId=-1&productId=500175&storeId=10001&externalize=certona&cid=BNR:CORP:8421537:1503232:114603482:287598279:0</td>
+</tr>
+<tr class="passed">
+<td>https://www.google.com/url?q=http://ad.doubleclick.net/ddm/clk/287598280;114603482;n&sa=D&usg=ALhdy2-fcNXmjnK7MtrB1zehfW5IONrx9g</td>
+<td>http://www.staples.com/Epson-200XL-200-High-Yield-Black-Standard-Color-C-M-Y-Ink-Cartridges-T200XL-BCS-Combo-4-Pack/product_189420?cid=BNR:CORP:8421537:1503232:114603482:287598280:0</td>
+</tr>
+<tr class="passed">
+<td>https://www.google.com/url?q=http://ad.doubleclick.net/ddm/clk/287598281;114603482;o&sa=D&usg=ALhdy2-KMNGC4hqlSgB4LRTo44PtQLxFuA</td>
+<td>http://www.staples.com/Toshiba-Canvio-Connect-1TB-Portable-Hard-Drive-Silver-/product_180279?cid=BNR:CORP:8421537:1503232:114603482:287598281:0</td>
+</tr>
+<tr class="passed">
+<td>https://www.google.com/url?q=http://ad.doubleclick.net/ddm/clk/287598282;114603482;p&sa=D&usg=ALhdy2_RceGXMfxLQT6v0GYFxiTfJtSuOQ</td>
+<td>http://www.staples.com/Microsoft-Surface-Pro-3-12-Inch-Tablet-Intel-Core-i5-128GB-MQ2-00001-/product_1051214?cid=BNR:CORP:8421537:1503232:114603482:287598282:0</td>
+</tr>
+<tr class="passed">
+<td>https://www.google.com/url?q=http://ad.doubleclick.net/ddm/clk/287598283;114603482;q&sa=D&usg=ALhdy28ZijQASzUW__HWbNsumQ9myr69Nw</td>
+<td>http://www.staples.com/HP-80A-Black-Toner-Cartridge-CF280A-/product_665699?cid=BNR:CORP:8421537:1503232:114603482:287598283:0</td>
+</tr>
+<tr class="passed">
+<td>https://www.google.com/url?q=http://ad.doubleclick.net/ddm/clk/287598284;114603482;r&sa=D&usg=ALhdy28c_zYoZI1OaddriDL1TuJ9cyp3VA</td>
+<td>http://www.staples.com/Jawbone-UP24-Onyx-Fitness-Tracker-Medium/product_970135?cid=BNR:CORP:8421537:1503232:114603482:287598284:0</td>
+</tr>
+<tr class="passed">
+<td>https://www.google.com/url?q=http://ad.doubleclick.net/ddm/clk/287598285;114603482;s&sa=D&usg=ALhdy2-Q7KECOn0-V_YzFqCWpqAZs45JPQ</td>
+<td>http://www.staples.com/Google-Chromecast-HDMI-Streaming-Media-Player/product_397061?cid=BNR:CORP:8421537:1503232:114603482:287598285:0</td>
+</tr>
+<tr class="passed">
+<td>https://www.google.com/url?q=http://ad.doubleclick.net/ddm/clk/287598286;114603482;t&sa=D&usg=ALhdy2_-Dp1SjEZwuSa3n-fI1IDFG6Exqw</td>
+<td>http://www.staples.com/Pilot-G-2-Retractable-Gel-Ink-Pens-Fine-Point-Black-Dozen/product_429174?cid=BNR:CORP:8421537:1503232:114603482:287598286:0</td>
+</tr>
+<tr class="passed">
+<td>https://www.google.com/url?q=http://ad.doubleclick.net/ddm/clk/287598287;114603482;u&sa=D&usg=ALhdy2-sDZVeL4iJLwewTj_swX6ZETsHjg</td>
+<td>http://www.staples.com/Band-Aid-Sheer-Wet-Flex-Bandages-Variety-Pack/product_485107?cid=BNR:CORP:8421537:1503232:114603482:287598287:0</td>
+</tr>
+<tr class="passed">
+<td>https://www.google.com/url?q=http://ad.doubleclick.net/ddm/clk/287598288;114603482;v&sa=D&usg=ALhdy28OBN-fh7k_tQSpgPzQjsxpT4KLzA</td>
+<td>http://www.staples.com/Sharpie-Fine-Point-Permanent-Markers-Black-Dozen-Box/product_125328?cid=BNR:CORP:8421537:1503232:114603482:287598288:0</td>
+</tr>
+<tr class="passed">
+<td>https://www.google.com/url?q=http://ad.doubleclick.net/ddm/clk/287598289;114603482;w&sa=D&usg=ALhdy28dlT_YA8Gj8Y5un54XjQ0Lmobblw</td>
+<td>http://www.staples.com/StaplesProductDisplay?catalogIdentifier=2&langId=-1&productId=491432&storeId=10001&externalize=certona&cid=BNR:CORP:8421537:1503232:114603482:287598289:0</td>
+</tr>
+<tr class="passed">
+<td>https://www.google.com/url?q=http://ad.doubleclick.net/ddm/clk/287598290;114603482;o&sa=D&usg=ALhdy28yxesQA9bgaMbdyjeCHsMXYsf__Q</td>
+<td>http://www.staples.com/StaplesProductDisplay?catalogIdentifier=2&langId=-1&productId=2163241&storeId=10001&externalize=certona&cid=BNR:CORP:8421537:1503232:114603482:287598290:0</td>
+</tr>
+<tr class="passed">
+<td>https://www.google.com/url?q=http://ad.doubleclick.net/ddm/clk/287598291;114603482;p&sa=D&usg=ALhdy28HhaxdnnJ56Q3qDmWC2QynxiD_yA</td>
+<td>http://www.staples.com/Staples-Hyken-Technical-Mesh-Task-Chair-Black/product_990119?cid=BNR:CORP:8421537:1503232:114603482:287598291:0</td>
+</tr>
+<tr class="passed">
+<td>https://www.google.com/url?q=http://ad.doubleclick.net/ddm/clk/287598291;114603482;p&sa=D&usg=ALhdy28HhaxdnnJ56Q3qDmWC2QynxiD_yA</td>
+<td>http://www.staples.com/Staples-Hyken-Technical-Mesh-Task-Chair-Black/product_990119?cid=BNR:CORP:8421537:1503232:114603482:287598291:0</td>
+</tr>
+<tr class="passed">
+<td>https://www.google.com/url?q=http://ad.doubleclick.net/ddm/clk/287598292;114603482;q&sa=D&usg=ALhdy2-bXnvOQJX3KyXsEru_9h_fotXT7w</td>
+<td>http://www.staples.com/Kindle-Fire-HDX-7-16GB-Tablet-Wifi/product_306702?cid=BNR:CORP:8421537:1503232:114603482:287598292:0</td>
+</tr>
+<tr class="passed">
+<td>https://www.google.com/url?q=http://ad.doubleclick.net/ddm/clk/287598293;114603482;r&sa=D&usg=ALhdy29Ch69MaIt3OroV-RpWh5mRb-BMGw</td>
+<td>http://www.staples.com/Keurig-reg-OfficePRO-reg-Single-Cup-Commercial-Coffee-Brewer-Black-Silver/product_853653?cid=BNR:CORP:8421537:1503232:114603482:287598293:0</td>
+</tr>
+<tr class="passed">
+<td>https://www.google.com/url?q=http://ad.doubleclick.net/ddm/clk/287598294;114603482;s&sa=D&usg=ALhdy2_khCdTiq8pKmdYHIHpljg3_CPGWQ</td>
+<td>http://www.staples.com/M-by-Staples-Arc-Customizable-Leather-Notebook-System-Black-9-1-2-x-11-1-2-/product_886232?cid=BNR:CORP:8421537:1503232:114603482:287598294:0</td>
+</tr>
+<tr class="passed">
+<td>https://www.google.com/url?q=http://ad.doubleclick.net/ddm/clk/287598295;114603482;t&sa=D&usg=ALhdy2_fo5D1vuODhHhkBIfPmFQ639gkGw</td>
+<td>http://www.staples.com/NETGEAR-N600-Dual-Band-WiFi-Router-WNDR3400/product_886778?cid=BNR:CORP:8421537:1503232:114603482:287598295:0</td>
+</tr>
+<tr class="passed">
+<td>https://www.google.com/url?q=http://ad.doubleclick.net/ddm/clk/287598296;114603482;u&sa=D&usg=ALhdy2_c7cLtqxaiMb85vexlXS8boT4-vw</td>
+<td>http://www.staples.com/Samsung-Galaxy-Tab-4-7-Inch-Tablet-8GB-Black-SM-T230NYKAXAR-/product_1000426?cid=BNR:CORP:8421537:1503232:114603482:287598296:0</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="scenario outline">
+<ul class="tags">
+<li>@javascript</li>
+<li>@StaplesAccellerator</li>
+<li>@productsViaTablet</li>
+<li>@calculator</li>
+</ul>
+<h3>
+<span class="keyword">Scenario Outline: </span>
+<span class="title">I want to test tags and requests for the Staples Campaign</span>
+<span class="path">features/clientAds/Staples.feature:129</span>
+</h3>
+<ol>
+<li class="skipped">
+<div class="step">
+<span class="keyword">Given </span>
+<span class="text">I am on "<strong class="skipped_param">&lt;url&gt;</strong>"</span>
+<span class="path">FeatureContext::visit()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">I wait for <strong class="skipped_param">2</strong> seconds</span>
+<span class="path">FeatureContext::iWaitForSeconds()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">Then </span>
+<span class="text">I should be on "<strong class="skipped_param">&lt;redirectURL&gt;</strong>"</span>
+<span class="path">FeatureContext::assertPageAddress()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">the response should contain "<strong class="skipped_param">Staples</strong>"</span>
+<span class="path">FeatureContext::assertResponseContains()</span>
+</div>
+</li>
+</ol>
+<div class="examples">
+<h4>Examples</h4>
+<table>
+<thead>
+<tr class="skipped">
+<td>#</td>
+<td>url</td>
+<td>redirectURL</td>
+</tr>
+</thead>
+<tbody>
+<tr class="passed">
+<td>1</td>
+<td>https://www.google.com/url?q=http://ad.doubleclick.net/ddm/clk/287800639;113795074;p&sa=D&usg=ALhdy2-OGKOUeVNcKsSLmeZD2FpXOQZXpw</td>
+<td>http://www.staples.com/?cid=BNR:CORP:8421537:1503232:113795074:287800639:0</td>
+</tr>
+<tr class="passed">
+<td>2</td>
+<td>https://www.google.com/url?q=http://ad.doubleclick.net/ddm/clk/287801027;113795074;h&sa=D&usg=ALhdy2-Dydit-Kt6_mTsX_pk1g4djjbkLQ</td>
+<td>http://storelocator.staples.com/?cid=BNR:CORP:8421537:1503232:113795074:287801027:0</td>
+</tr>
+<tr class="passed">
+<td>3</td>
+<td>https://www.google.com/url?q=http://ad.doubleclick.net/ddm/clk/287595497;113795074;c&sa=D&usg=ALhdy28qmi_chmHX95waliA73fXpH_qG8g</td>
+<td>http://www.staples.com/M-M-s-Milk-Chocolate-Candy-42-oz-Bag/product_689504?cid=BNR:CORP:8421537:1503232:113795074:287595497:0</td>
+</tr>
+<tr class="passed">
+<td>4</td>
+<td>https://www.google.com/url?q=http://ad.doubleclick.net/ddm/clk/287597100;113795074;l&sa=D&usg=ALhdy28Z-Zityqy9f6eLa3u740Q692mL-g</td>
+<td>http://www.staples.com/Swingline-747-Rio-Red-Stapler-20-Sheet-Capacity/product_562485?cid=BNR:CORP:8421537:1503232:113795074:287597100:0</td>
+</tr>
+<tr class="passed">
+<td>5</td>
+<td>https://www.google.com/url?q=http://ad.doubleclick.net/ddm/clk/287597105;113795074;q&sa=D&usg=ALhdy2-FG-aJ-rikXzoeHCppeI6tbwR4Cw</td>
+<td>http://www.staples.com/Staples-Copy-Paper-8-1-2-x-11-Case/product_135848?cid=BNR:CORP:8421537:1503232:113795074:287597105:0</td>
+</tr>
+<tr class="passed">
+<td>6</td>
+<td>https://www.google.com/url?q=http://ad.doubleclick.net/ddm/clk/287597101;113795074;m&sa=D&usg=ALhdy29fEUxvNrV739G-AI21RCmmw9YsrA</td>
+<td>http://www.staples.com/Bounty-Select-A-Size-Paper-Towel-Rolls-2-Ply-8-Rolls-Case/product_900103?cid=BNR:CORP:8421537:1503232:113795074:287597101:0</td>
+</tr>
+<tr class="passed">
+<td>7</td>
+<td>https://www.google.com/url?q=http://ad.doubleclick.net/ddm/clk/287595496;113795074;b&sa=D&usg=ALhdy289Js5XYX3YkXfQHrK5o2GNmhsngw</td>
+<td>http://www.staples.com/Toshiba-Satellite-15-6-Inch-Laptop-C55-B5299-/product_1064944?cid=BNR:CORP:8421537:1503232:113795074:287595496:0</td>
+</tr>
+<tr class="passed">
+<td>8</td>
+<td>https://www.google.com/url?q=http://ad.doubleclick.net/ddm/clk/287597107;113795074;s&sa=D&usg=ALhdy2-ZBL86AM4O1v6eR3RTw0HICSLrhQ</td>
+<td>http://www.staples.com/Epson-WorkForce-WF-2540-Color-Inkjet-All-in-One-Printer/product_954262?cid=BNR:CORP:8421537:1503232:113795074:287597107:0</td>
+</tr>
+<tr class="passed">
+<td>9</td>
+<td>https://www.google.com/url?q=http://ad.doubleclick.net/ddm/clk/287800639;113795144;n&sa=D&usg=ALhdy28O_H4foWUsPHkAEmmiD12PnJqH4A</td>
+<td>http://www.staples.com/?cid=BNR:CORP:8421537:1503232:113795144:287800639:0</td>
+</tr>
+<tr class="passed">
+<td>10</td>
+<td>https://www.google.com/url?q=http://ad.doubleclick.net/ddm/clk/287801027;113795144;f&sa=D&usg=ALhdy2-xZH695K0XD1uPKD45iWxfJ-p1uw</td>
+<td>http://storelocator.staples.com/?cid=BNR:CORP:8421537:1503232:113795144:287801027:0</td>
+</tr>
+<tr class="passed">
+<td>11</td>
+<td>https://www.google.com/url?q=http://ad.doubleclick.net/ddm/clk/287595497;113795144;a&sa=D&usg=ALhdy2-_3Wb6aoUCXk8yBkEtlbvpALuf5A</td>
+<td>http://www.staples.com/M-M-s-Milk-Chocolate-Candy-42-oz-Bag/product_689504?cid=BNR:CORP:8421537:1503232:113795144:287595497:0</td>
+</tr>
+<tr class="passed">
+<td>12</td>
+<td>https://www.google.com/url?q=http://ad.doubleclick.net/ddm/clk/287597100;113795144;j&sa=D&usg=ALhdy2_PhWpuV2zbGFUhpkhmu6H8lnxUZQ</td>
+<td>http://www.staples.com/Swingline-747-Rio-Red-Stapler-20-Sheet-Capacity/product_562485?cid=BNR:CORP:8421537:1503232:113795144:287597100:0</td>
+</tr>
+<tr class="passed">
+<td>13</td>
+<td>https://www.google.com/url?q=http://ad.doubleclick.net/ddm/clk/287597105;113795144;o&sa=D&usg=ALhdy28Ylx0BKcwR9jRBxYt73AsCAzpoQA</td>
+<td>http://www.staples.com/Staples-Copy-Paper-8-1-2-x-11-Case/product_135848?cid=BNR:CORP:8421537:1503232:113795144:287597105:0</td>
+</tr>
+<tr class="passed">
+<td>14</td>
+<td>https://www.google.com/url?q=http://ad.doubleclick.net/ddm/clk/287597101;113795144;k&sa=D&usg=ALhdy2_wcGDtZ7JxV-aUVazZ_pGdlXIkBw</td>
+<td>http://www.staples.com/Bounty-Select-A-Size-Paper-Towel-Rolls-2-Ply-8-Rolls-Case/product_900103?cid=BNR:CORP:8421537:1503232:113795144:287597101:0</td>
+</tr>
+<tr class="passed">
+<td>15</td>
+<td>https://www.google.com/url?q=http://ad.doubleclick.net/ddm/clk/287595496;113795144;z&sa=D&usg=ALhdy29WjR36MIwzH7OY_OR-B7e4DffalQ</td>
+<td>http://www.staples.com/Toshiba-Satellite-15-6-Inch-Laptop-C55-B5299-/product_1064944?cid=BNR:CORP:8421537:1503232:113795144:287595496:0</td>
+</tr>
+<tr class="passed">
+<td>16</td>
+<td>https://www.google.com/url?q=http://ad.doubleclick.net/ddm/clk/287597107;113795144;q&sa=D&usg=ALhdy29mGflX6DE3wZoNU90ohsRQ9CrfUg</td>
+<td>http://www.staples.com/Epson-WorkForce-WF-2540-Color-Inkjet-All-in-One-Printer/product_954262?cid=BNR:CORP:8421537:1503232:113795144:287597107:0</td>
+</tr>
+<tr class="passed">
+<td>17</td>
+<td>https://www.google.com/url?q=http://ad.doubleclick.net/ddm/clk/287800637;113795076;p&sa=D&usg=ALhdy2-9Pw0JqwGmt2kCWhJNcKFdwD75Eg</td>
+<td>http://www.staples.com/?cid=BNR:CORP:8421537:1503232:113795076:287800637:0</td>
+</tr>
+<tr class="passed">
+<td>18</td>
+<td>https://www.google.com/url?q=http://ad.doubleclick.net/ddm/clk/287801026;113795076;i&sa=D&usg=ALhdy2_7igbPfqnPLTn45vJXTfyZNYGomQ</td>
+<td>http://storelocator.staples.com/?cid=BNR:CORP:8421537:1503232:113795076:287801026:0</td>
+</tr>
+<tr class="passed">
+<td>19</td>
+<td>https://www.google.com/url?q=http://ad.doubleclick.net/ddm/clk/287596047;113795076;w&sa=D&usg=ALhdy294YCPmKjNVT8pAUr6byPszYsI1Sw</td>
+<td>http://www.staples.com/M-M-s-Milk-Chocolate-Candy-42-oz-Bag/product_689504?cid=BNR:CORP:8421537:1503232:113795076:287596047:0</td>
+</tr>
+<tr class="passed">
+<td>20</td>
+<td>https://www.google.com/url?q=http://ad.doubleclick.net/ddm/clk/287596046;113795076;v&sa=D&usg=ALhdy2-D3XXbGzUncETor9Jwl-ZuZJ4cFQ</td>
+<td>http://www.staples.com/Swingline-747-Rio-Red-Stapler-20-Sheet-Capacity/product_562485?cid=BNR:CORP:8421537:1503232:113795076:287596046:0</td>
+</tr>
+<tr class="passed">
+<td>21</td>
+<td>https://www.google.com/url?q=http://ad.doubleclick.net/ddm/clk/287596045;113795076;u&sa=D&usg=ALhdy28BIG-hUZAUTxaZfwathOeTGhm3Xw</td>
+<td>http://www.staples.com/Staples-Copy-Paper-8-1-2-x-11-Case/product_135848?cid=BNR:CORP:8421537:1503232:113795076:287596045:0</td>
+</tr>
+<tr class="passed">
+<td>22</td>
+<td>https://www.google.com/url?q=http://ad.doubleclick.net/ddm/clk/287596728;113795076;c&sa=D&usg=ALhdy29BWmuHdwXhOqE7wiaMwDZwvnvyhQ</td>
+<td>http://www.staples.com/Bounty-Select-A-Size-Paper-Towel-Rolls-2-Ply-8-Rolls-Case/product_900103?cid=BNR:CORP:8421537:1503232:113795076:287596728:0</td>
+</tr>
+<tr class="passed">
+<td>23</td>
+<td>https://www.google.com/url?q=http://ad.doubleclick.net/ddm/clk/287596044;113795076;t&sa=D&usg=ALhdy2_j8aO1mXB8ogvfaxVTv-BKZAwZ2g</td>
+<td>http://www.staples.com/Toshiba-Satellite-15-6-Inch-Laptop-C55-B5299-/product_1064944?cid=BNR:CORP:8421537:1503232:113795076:287596044:0</td>
+</tr>
+<tr class="passed">
+<td>24</td>
+<td>https://www.google.com/url?q=http://ad.doubleclick.net/ddm/clk/287594488;113795076;d&sa=D&usg=ALhdy2-TKwyLgoIVerWhHweOiCdI1PCerA</td>
+<td>http://www.staples.com/Epson-WorkForce-WF-2540-Color-Inkjet-All-in-One-Printer/product_954262?cid=BNR:CORP:8421537:1503232:113795076:287594488:0</td>
+</tr>
+<tr class="passed">
+<td>25</td>
+<td>https://www.google.com/url?q=http://ad.doubleclick.net/ddm/clk/287800637;113795146;n&sa=D&usg=ALhdy28D2KNa751rxp2X_oWC5qBknCM8pw</td>
+<td>http://www.staples.com/?cid=BNR:CORP:8421537:1503232:113795146:287800637:0</td>
+</tr>
+<tr class="passed">
+<td>26</td>
+<td>https://www.google.com/url?q=http://ad.doubleclick.net/ddm/clk/287801026;113795146;g&sa=D&usg=ALhdy2-ycj7aKrkGqfBkOpaZrCIrfiOnLg</td>
+<td>http://storelocator.staples.com/?cid=BNR:CORP:8421537:1503232:113795146:287801026:0</td>
+</tr>
+<tr class="passed">
+<td>27</td>
+<td>https://www.google.com/url?q=http://ad.doubleclick.net/ddm/clk/287596047;113795146;u&sa=D&usg=ALhdy2_UI0q9LkaTzhewQ-8BQsUN0LCbXQ</td>
+<td>http://www.staples.com/M-M-s-Milk-Chocolate-Candy-42-oz-Bag/product_689504?cid=BNR:CORP:8421537:1503232:113795146:287596047:0</td>
+</tr>
+<tr class="passed">
+<td>28</td>
+<td>https://www.google.com/url?q=http://ad.doubleclick.net/ddm/clk/287596046;113795146;t&sa=D&usg=ALhdy2_x2xft_2abhp5IDRrsS3nE-rIq7g</td>
+<td>http://www.staples.com/Swingline-747-Rio-Red-Stapler-20-Sheet-Capacity/product_562485?cid=BNR:CORP:8421537:1503232:113795146:287596046:0</td>
+</tr>
+<tr class="passed">
+<td>29</td>
+<td>https://www.google.com/url?q=http://ad.doubleclick.net/ddm/clk/287596045;113795146;s&sa=D&usg=ALhdy296EtncFUpwg3C7pOHFmA2HsNPshw</td>
+<td>http://www.staples.com/Staples-Copy-Paper-8-1-2-x-11-Case/product_135848?cid=BNR:CORP:8421537:1503232:113795146:287596045:0</td>
+</tr>
+<tr class="passed">
+<td>30</td>
+<td>https://www.google.com/url?q=http://ad.doubleclick.net/ddm/clk/287596728;113795146;a&sa=D&usg=ALhdy29G5mG_xH1VooD__vgVwwXFAVLvNg</td>
+<td>http://www.staples.com/Bounty-Select-A-Size-Paper-Towel-Rolls-2-Ply-8-Rolls-Case/product_900103?cid=BNR:CORP:8421537:1503232:113795146:287596728:0</td>
+</tr>
+<tr class="passed">
+<td>31</td>
+<td>https://www.google.com/url?q=http://ad.doubleclick.net/ddm/clk/287596044;113795146;r&sa=D&usg=ALhdy29deOy5BDNhnWwu8xpO-ZXq1VaN7A</td>
+<td>http://www.staples.com/Toshiba-Satellite-15-6-Inch-Laptop-C55-B5299-/product_1064944?cid=BNR:CORP:8421537:1503232:113795146:287596044:0</td>
+</tr>
+<tr class="passed">
+<td>32</td>
+<td>https://www.google.com/url?q=http://ad.doubleclick.net/ddm/clk/287594488;113795146;b&sa=D&usg=ALhdy297-9JD1YaSHMt7o7tnN1WRBKWlVA</td>
+<td>http://www.staples.com/Epson-WorkForce-WF-2540-Color-Inkjet-All-in-One-Printer/product_954262?cid=BNR:CORP:8421537:1503232:113795146:287594488:0</td>
+</tr>
+<tr class="passed">
+<td>32</td>
+<td>https://www.google.com/url?q=http://ad.doubleclick.net/ddm/clk/287801316;114603675;e&sa=D&usg=ALhdy29y2vmQmsgxTBHiisCAlTU6lzsoig</td>
+<td>http://www.staples.com/?cid=BNR:CORP:8421537:1503232:114603675:287801316:0</td>
+</tr>
+<tr class="passed">
+<td>33</td>
+<td>https://www.google.com/url?q=http://ad.doubleclick.net/ddm/clk/287800661;114603675;g&sa=D&usg=ALhdy2-BJXOEq8zGljN6cAuGab9F10-tSw</td>
+<td>http://www.staples.com/?cid=BNR:CORP:8421537:1503232:114603675:287800661:0</td>
+</tr>
+<tr class="passed">
+<td>34</td>
+<td>https://www.google.com/url?q=http://ad.doubleclick.net/ddm/clk/287597154;114603675;q&sa=D&usg=ALhdy2-NTYq8ruR-yvNMnsLBoPWMxyNZ-g</td>
+<td>http://www.staples.com/Toshiba-Satellite-15-6-Inch-Laptop-C55-B5299-/product_1064944?cid=BNR:CORP:8421537:1503232:114603675:287597154:0</td>
+</tr>
+<tr class="passed">
+<td>35</td>
+<td>https://www.google.com/url?q=http://ad.doubleclick.net/ddm/clk/287597135;114603675;p&sa=D&usg=ALhdy2_tffswkdfuBnkzVuJZ8xoD_GT3_Q</td>
+<td>http://www.staples.com/M-M-s-Milk-Chocolate-Candy-42-oz-Bag/product_689504?cid=BNR:CORP:8421537:1503232:114603675:287597135:0</td>
+</tr>
+<tr class="passed">
+<td>36</td>
+<td>https://www.google.com/url?q=http://ad.doubleclick.net/ddm/clk/287597141;114603675;m&sa=D&usg=ALhdy28FXgz_rJezVg6kSaBHHAznT-A2-w</td>
+<td>http://www.staples.com/Bounty-Select-A-Size-Paper-Towel-Rolls-2-Ply-8-Rolls-Case/product_900103?cid=BNR:CORP:8421537:1503232:114603675:287597141:0</td>
+</tr>
+<tr class="passed">
+<td>37</td>
+<td>https://www.google.com/url?q=http://ad.doubleclick.net/ddm/clk/287597136;114603675;q&sa=D&usg=ALhdy28uLU5I-gOHgofvRqKbLZvHwRUrIg</td>
+<td>http://www.staples.com/Swingline-747-Rio-Red-Stapler-20-Sheet-Capacity/product_562485?cid=BNR:CORP:8421537:1503232:114603675:287597136:0</td>
+</tr>
+<tr class="passed">
+<td>38</td>
+<td>https://www.google.com/url?q=http://ad.doubleclick.net/ddm/clk/287597137;114603675;r&sa=D&usg=ALhdy29L2BYEgf3aaPflZ_hfBfsKIBMF8g</td>
+<td>http://www.staples.com/Staples-Copy-Paper-8-1-2-x-11-Case/product_135848?cid=BNR:CORP:8421537:1503232:114603675:287597137:0</td>
+</tr>
+<tr class="passed">
+<td>39</td>
+<td>https://www.google.com/url?q=http://ad.doubleclick.net/ddm/clk/287597147;114603675;s&sa=D&usg=ALhdy2-fQiHGgOkFBQ23KCk2loqMc0fe8A</td>
+<td>http://www.staples.com/Epson-WorkForce-WF-2540-Color-Inkjet-All-in-One-Printer/product_954262?cid=BNR:CORP:8421537:1503232:114603675:287597147:0</td>
+</tr>
+<tr class="passed">
+<td>40</td>
+<td>https://www.google.com/url?q=http://ad.doubleclick.net/ddm/clk/287596662;114603675;t&sa=D&usg=ALhdy29z6g6LQx528g1YUiiK9Dgo2spdjw</td>
+<td>http://www.staples.com/Staples-reg-Space-Saver-10-Sheet-Cross-Cut-Shredder-Blue/product_89309?cid=BNR:CORP:8421537:1503232:114603675:287596662:0</td>
+</tr>
+<tr class="passed">
+<td>41</td>
+<td>https://www.google.com/url?q=http://ad.doubleclick.net/ddm/clk/287596656;114603675;w&sa=D&usg=ALhdy2-olemjoHxDLZeoc21XyHrAk7hvOg</td>
+<td>http://www.staples.com/ZAGGKeys-Cover-Fit-for-Samsung-Galaxy-Note-12-Pro-Keyboard-Black/product_1114975?cid=BNR:CORP:8421537:1503232:114603675:287596656:0</td>
+</tr>
+<tr class="passed">
+<td>42</td>
+<td>https://www.google.com/url?q=http://ad.doubleclick.net/ddm/clk/287596666;114603675;x&sa=D&usg=ALhdy297KKHfhCBhnHlJeTDJB44sX33jHA</td>
+<td>http://www.staples.com/Keurig-K-Cup-Starbucks-Breakfast-Blend-Regular-16-Pack/product_375623?cid=BNR:CORP:8421537:1503232:114603675:287596666:0</td>
+</tr>
+<tr class="passed">
+<td>43</td>
+<td>https://www.google.com/url?q=http://ad.doubleclick.net/ddm/clk/287596671;114603675;t&sa=D&usg=ALhdy2-8Gdty3-z45aRV-WNMwTRpfuxs0w</td>
+<td>http://www.staples.com/Twizzlers-Strawberry-Flavored-Twists-Candy-105-Pieces-Tub/product_621508?externalize=certona&cid=BNR:CORP:8421537:1503232:114603675:287596671:0</td>
+</tr>
+<tr class="passed">
+<td>44</td>
+<td>https://www.google.com/url?q=http://ad.doubleclick.net/ddm/clk/287596655;114603675;v&sa=D&usg=ALhdy29kymJSAk1uWYbOM4Olz6vSvdpUHw</td>
+<td>http://www.staples.com/Post-it-3-x-3-Jaipur-Colors-Notes-5-Pads-Pack/product_470369?cid=BNR:CORP:8421537:1503232:114603675:287596655:0</td>
+</tr>
+<tr class="passed">
+<td>45</td>
+<td>https://www.google.com/url?q=http://ad.doubleclick.net/ddm/clk/287596649;114603675;y&sa=D&usg=ALhdy28MQFqz-wJMkYfzDmSCur9Si_1WTg</td>
+<td>http://www.staples.com/Samsung-Gear-2-Neo-Watch-Black/product_1017404?cid=BNR:CORP:8421537:1503232:114603675:287596649:0</td>
+</tr>
+<tr class="passed">
+<td>46</td>
+<td>https://www.google.com/url?q=http://ad.doubleclick.net/ddm/clk/287596668;114603675;z&sa=D&usg=ALhdy28ZMTbT96bldMcfcXkmJd9h8tLRbQ</td>
+<td>http://www.staples.com/Chef-Works-Chef-Hat-White/product_391455?cid=BNR:CORP:8421537:1503232:114603675:287596668:0</td>
+</tr>
+<tr class="passed">
+<td>47</td>
+<td>https://www.google.com/url?q=http://ad.doubleclick.net/ddm/clk/287596652;114603675;s&sa=D&usg=ALhdy29gqVwdJ3Cag-CFiih9vlRuqIkYIQ</td>
+<td>http://www.staples.com/StaplesProductDisplay?catalogIdentifier=2&langId=-1&productId=500175&storeId=10001&externalize=certona&cid=BNR:CORP:8421537:1503232:114603675:287596652:0</td>
+</tr>
+<tr class="passed">
+<td>49</td>
+<td>https://www.google.com/url?q=http://ad.doubleclick.net/ddm/clk/287596654;114603675;u&sa=D&usg=ALhdy2-j6t_X-ZjWePeuDkbuiq3KHg4EtA</td>
+<td>http://www.staples.com/Epson-200XL-200-High-Yield-Black-Standard-Color-C-M-Y-Ink-Cartridges-T200XL-BCS-Combo-4-Pack/product_189420?cid=BNR:CORP:8421537:1503232:114603675:287596654:0</td>
+</tr>
+<tr class="passed">
+<td>50</td>
+<td>https://www.google.com/url?q=http://ad.doubleclick.net/ddm/clk/287596650;114603675;q&sa=D&usg=ALhdy2-uRRkbPjoIdTWr8NhCQWYTpwExMA</td>
+<td>http://www.staples.com/Toshiba-Canvio-Connect-1TB-Portable-Hard-Drive-Silver-/product_180279?cid=BNR:CORP:8421537:1503232:114603675:287596650:0</td>
+</tr>
+<tr class="passed">
+<td>51</td>
+<td>https://www.google.com/url?q=http://ad.doubleclick.net/ddm/clk/287596658;114603675;y&sa=D&usg=ALhdy2_iPb4uxe56P_kmV6XkXI6OgfPpeA</td>
+<td>http://www.staples.com/Microsoft-Surface-Pro-3-12-Inch-Tablet-Intel-Core-i5-128GB-MQ2-00001-/product_1051214?cid=BNR:CORP:8421537:1503232:114603675:287596658:0</td>
+</tr>
+<tr class="passed">
+<td>52</td>
+<td>https://www.google.com/url?q=http://ad.doubleclick.net/ddm/clk/287596653;114603675;t&sa=D&usg=ALhdy2-GDqYiBAeaz5e2AEi561AoG7IauA</td>
+<td>http://www.staples.com/HP-80A-Black-Toner-Cartridge-CF280A-/product_665699?cid=BNR:CORP:8421537:1503232:114603675:287596653:0</td>
+</tr>
+<tr class="passed">
+<td>53</td>
+<td>https://www.google.com/url?q=http://ad.doubleclick.net/ddm/clk/287596648;114603675;x&sa=D&usg=ALhdy2-kDObsjs6KOcD-v2iWQUXm52Qnwg</td>
+<td>http://www.staples.com/Jawbone-UP24-Onyx-Fitness-Tracker-Medium/product_970135?cid=BNR:CORP:8421537:1503232:114603675:287596648:0</td>
+</tr>
+<tr class="passed">
+<td>54</td>
+<td>https://www.google.com/url?q=http://ad.doubleclick.net/ddm/clk/287596661;114603675;s&sa=D&usg=ALhdy28tiusSD4NIzCtESNYzpbMJ9lbjGA</td>
+<td>http://www.staples.com/Google-Chromecast-HDMI-Streaming-Media-Player/product_397061?cid=BNR:CORP:8421537:1503232:114603675:287596661:0</td>
+</tr>
+<tr class="passed">
+<td>55</td>
+<td>https://www.google.com/url?q=http://ad.doubleclick.net/ddm/clk/287596663;114603675;u&sa=D&usg=ALhdy28sMq222X8bebuBqzjEgpzFDycEow</td>
+<td>http://www.staples.com/Pilot-G-2-Retractable-Gel-Ink-Pens-Fine-Point-Black-Dozen/product_429174?cid=BNR:CORP:8421537:1503232:114603675:287596663:0</td>
+</tr>
+<tr class="passed">
+<td>56</td>
+<td>https://www.google.com/url?q=http://ad.doubleclick.net/ddm/clk/287596670;114603675;s&sa=D&usg=ALhdy29uwv9i_fRDEjdbn9iGR_r9BNVM9g</td>
+<td>http://www.staples.com/Band-Aid-Sheer-Wet-Flex-Bandages-Variety-Pack/product_485107?cid=BNR:CORP:8421537:1503232:114603675:287596670:0</td>
+</tr>
+<tr class="passed">
+<td>57</td>
+<td>https://www.google.com/url?q=http://ad.doubleclick.net/ddm/clk/287596664;114603675;v&sa=D&usg=ALhdy29_K5kiHTmbxSIRGh_PHXJSWpebYw</td>
+<td>http://www.staples.com/Sharpie-Fine-Point-Permanent-Markers-Black-Dozen-Box/product_125328?cid=BNR:CORP:8421537:1503232:114603675:287596664:0</td>
+</tr>
+<tr class="passed">
+<td>58</td>
+<td>https://www.google.com/url?q=http://ad.doubleclick.net/ddm/clk/287596667;114603675;y&sa=D&usg=ALhdy29U5k1xbsVMPcU7DfTzar2SqaPveQ</td>
+<td>http://www.staples.com/StaplesProductDisplay?catalogIdentifier=2&langId=-1&productId=491432&storeId=10001&externalize=certona&cid=BNR:CORP:8421537:1503232:114603675:287596667:0</td>
+</tr>
+<tr class="passed">
+<td>59</td>
+<td>https://www.google.com/url?q=http://ad.doubleclick.net/ddm/clk/287596657;114603675;x&sa=D&usg=ALhdy2_HGnqJ85YaheJntL2kv-kzdxZwqg</td>
+<td>http://www.staples.com/StaplesProductDisplay?catalogIdentifier=2&langId=-1&productId=2163241&storeId=10001&externalize=certona&cid=BNR:CORP:8421537:1503232:114603675:287596657:0</td>
+</tr>
+<tr class="passed">
+<td>60</td>
+<td>https://www.google.com/url?q=http://ad.doubleclick.net/ddm/clk/287596669;114603675;a&sa=D&usg=ALhdy29PSf9yyTLgFSZN6_KniIwtptcKcg</td>
+<td>http://www.staples.com/Staples-Hyken-Technical-Mesh-Task-Chair-Black/product_990119?cid=BNR:CORP:8421537:1503232:114603675:287596669:0</td>
+</tr>
+<tr class="passed">
+<td>61</td>
+<td>https://www.google.com/url?q=http://ad.doubleclick.net/ddm/clk/287596660;114603675;r&sa=D&usg=ALhdy28bCf-rac8H0u99Rwbg7S7hckhxjg</td>
+<td>http://www.staples.com/Kindle-Fire-HDX-7-16GB-Tablet-Wifi/product_306702?cid=BNR:CORP:8421537:1503232:114603675:287596660:0</td>
+</tr>
+<tr class="passed">
+<td>62</td>
+<td>https://www.google.com/url?q=http://ad.doubleclick.net/ddm/clk/287596665;114603675;w&sa=D&usg=ALhdy285VvML7TRlDQjxMQBk1ET2svtv3Q</td>
+<td>http://www.staples.com/Keurig-reg-OfficePRO-reg-Single-Cup-Commercial-Coffee-Brewer-Black-Silver/product_853653?cid=BNR:CORP:8421537:1503232:114603675:287596665:0</td>
+</tr>
+<tr class="passed">
+<td>63</td>
+<td>https://www.google.com/url?q=http://ad.doubleclick.net/ddm/clk/287596672;114603675;u&sa=D&usg=ALhdy280KF5y_avRTrV5Ya7tRe5DDTW8Uw</td>
+<td>http://www.staples.com/M-by-Staples-Arc-Customizable-Leather-Notebook-System-Black-9-1-2-x-11-1-2-/product_886232?cid=BNR:CORP:8421537:1503232:114603675:287596672:0</td>
+</tr>
+<tr class="passed">
+<td>64</td>
+<td>https://www.google.com/url?q=http://ad.doubleclick.net/ddm/clk/287596651;114603675;r&sa=D&usg=ALhdy2-o_M9EtK5wCWxsaRxEAd4dEcXfjw</td>
+<td>http://www.staples.com/NETGEAR-N600-Dual-Band-WiFi-Router-WNDR3400/product_886778?cid=BNR:CORP:8421537:1503232:114603675:287596651:0</td>
+</tr>
+<tr class="passed">
+<td>65</td>
+<td>https://www.google.com/url?q=http://ad.doubleclick.net/ddm/clk/287596659;114603675;z&sa=D&usg=ALhdy29RpLvz2HFNU9Josdt7Je2QsUpAJQ</td>
+<td>http://www.staples.com/Samsung-Galaxy-Tab-4-7-Inch-Tablet-8GB-Black-SM-T230NYKAXAR-/product_1000426?cid=BNR:CORP:8421537:1503232:114603675:287596659:0</td>
+</tr>
+<tr class="passed">
+<td>66</td>
+<td>https://www.google.com/url?q=http://ad.doubleclick.net/ddm/clk/287801316;114603676;f&sa=D&usg=ALhdy2-PKoQ3S2IDYXpJyjG4RwuFbdmqIQ</td>
+<td>http://www.staples.com/?cid=BNR:CORP:8421537:1503232:114603676:287801316:0</td>
+</tr>
+<tr class="passed">
+<td>67</td>
+<td>https://www.google.com/url?q=http://ad.doubleclick.net/ddm/clk/287800661;114603676;h&sa=D&usg=ALhdy2-iB0flNsCEYKHmcFIqsREArVlztQ</td>
+<td>http://www.staples.com/?cid=BNR:CORP:8421537:1503232:114603676:287800661:0</td>
+</tr>
+<tr class="passed">
+<td>68</td>
+<td>https://www.google.com/url?q=http://ad.doubleclick.net/ddm/clk/287597154;114603676;r&sa=D&usg=ALhdy2_brRtHdB63cXhx1_C_UA7N3S1AUg</td>
+<td>http://www.staples.com/Toshiba-Satellite-15-6-Inch-Laptop-C55-B5299-/product_1064944?cid=BNR:CORP:8421537:1503232:114603676:287597154:0</td>
+</tr>
+<tr class="passed">
+<td>69</td>
+<td>https://www.google.com/url?q=http://ad.doubleclick.net/ddm/clk/287597135;114603676;q&sa=D&usg=ALhdy287-lOiEth-34LaA7Ui9OboaF4qpA</td>
+<td>http://www.staples.com/M-M-s-Milk-Chocolate-Candy-42-oz-Bag/product_689504?cid=BNR:CORP:8421537:1503232:114603676:287597135:0</td>
+</tr>
+<tr class="passed">
+<td>70</td>
+<td>https://www.google.com/url?q=http://ad.doubleclick.net/ddm/clk/287597141;114603676;n&sa=D&usg=ALhdy2-7m-G433YxuXiqMS8J--rsAZJXZA</td>
+<td>http://www.staples.com/Bounty-Select-A-Size-Paper-Towel-Rolls-2-Ply-8-Rolls-Case/product_900103?cid=BNR:CORP:8421537:1503232:114603676:287597141:0</td>
+</tr>
+<tr class="passed">
+<td>71</td>
+<td>https://www.google.com/url?q=http://ad.doubleclick.net/ddm/clk/287597136;114603676;r&sa=D&usg=ALhdy29JsEVoAkubDGZQ_BGH7YUMif2apw</td>
+<td>http://www.staples.com/Swingline-747-Rio-Red-Stapler-20-Sheet-Capacity/product_562485?cid=BNR:CORP:8421537:1503232:114603676:287597136:0</td>
+</tr>
+<tr class="passed">
+<td>72</td>
+<td>https://www.google.com/url?q=http://ad.doubleclick.net/ddm/clk/287597137;114603676;s&sa=D&usg=ALhdy2-LhNPwdnSipAB-u4XQ6YgORRmLBQ</td>
+<td>http://www.staples.com/Staples-Copy-Paper-8-1-2-x-11-Case/product_135848?cid=BNR:CORP:8421537:1503232:114603676:287597137:0</td>
+</tr>
+<tr class="passed">
+<td>73</td>
+<td>https://www.google.com/url?q=http://ad.doubleclick.net/ddm/clk/287597147;114603676;t&sa=D&usg=ALhdy2-goGNalzjtyRM82ROH0twqHhVIZg</td>
+<td>http://www.staples.com/Epson-WorkForce-WF-2540-Color-Inkjet-All-in-One-Printer/product_954262?cid=BNR:CORP:8421537:1503232:114603676:287597147:0</td>
+</tr>
+<tr class="passed">
+<td>74</td>
+<td>https://www.google.com/url?q=http://ad.doubleclick.net/ddm/clk/287596662;114603676;u&sa=D&usg=ALhdy2__uZqIDtzf0RVq3seEowphmT8MDQ</td>
+<td>http://www.staples.com/Staples-reg-Space-Saver-10-Sheet-Cross-Cut-Shredder-Blue/product_89309?cid=BNR:CORP:8421537:1503232:114603676:287596662:0</td>
+</tr>
+<tr class="passed">
+<td>75</td>
+<td>https://www.google.com/url?q=http://ad.doubleclick.net/ddm/clk/287596656;114603676;x&sa=D&usg=ALhdy28h9awkuCjopmnhrfvst-tyWCbEEA</td>
+<td>http://www.staples.com/ZAGGKeys-Cover-Fit-for-Samsung-Galaxy-Note-12-Pro-Keyboard-Black/product_1114975?cid=BNR:CORP:8421537:1503232:114603676:287596656:0</td>
+</tr>
+<tr class="passed">
+<td>76</td>
+<td>https://www.google.com/url?q=http://ad.doubleclick.net/ddm/clk/287596666;114603676;y&sa=D&usg=ALhdy28NrXUa3fMJdfazmHNik1NPhdQC1g</td>
+<td>http://www.staples.com/Keurig-K-Cup-Starbucks-Breakfast-Blend-Regular-16-Pack/product_375623?cid=BNR:CORP:8421537:1503232:114603676:287596666:0</td>
+</tr>
+<tr class="passed">
+<td>77</td>
+<td>https://www.google.com/url?q=http://ad.doubleclick.net/ddm/clk/287596671;114603676;u&sa=D&usg=ALhdy2_3dyjGvqPBdigvcylt5cPiSqoC2Q</td>
+<td>http://www.staples.com/Twizzlers-Strawberry-Flavored-Twists-Candy-105-Pieces-Tub/product_621508?externalize=certona&cid=BNR:CORP:8421537:1503232:114603676:287596671:0</td>
+</tr>
+<tr class="passed">
+<td>78</td>
+<td>https://www.google.com/url?q=http://ad.doubleclick.net/ddm/clk/287596655;114603676;w&sa=D&usg=ALhdy28BQqUtA_CjAkK-G5K9XZytM2aNbA</td>
+<td>http://www.staples.com/Post-it-3-x-3-Jaipur-Colors-Notes-5-Pads-Pack/product_470369?cid=BNR:CORP:8421537:1503232:114603676:287596655:0</td>
+</tr>
+<tr class="passed">
+<td>79</td>
+<td>https://www.google.com/url?q=http://ad.doubleclick.net/ddm/clk/287596649;114603676;z&sa=D&usg=ALhdy290tuwY_biI-l4Fnk8r-Zd6diJWFw</td>
+<td>http://www.staples.com/Samsung-Gear-2-Neo-Watch-Black/product_1017404?cid=BNR:CORP:8421537:1503232:114603676:287596649:0</td>
+</tr>
+<tr class="passed">
+<td>80</td>
+<td>https://www.google.com/url?q=http://ad.doubleclick.net/ddm/clk/287596668;114603676;a&sa=D&usg=ALhdy29vtq5lPbN0nF_N-CaKscpMke3fQw</td>
+<td>http://www.staples.com/Chef-Works-Chef-Hat-White/product_391455?cid=BNR:CORP:8421537:1503232:114603676:287596668:0</td>
+</tr>
+<tr class="passed">
+<td>81</td>
+<td>https://www.google.com/url?q=http://ad.doubleclick.net/ddm/clk/287596652;114603676;t&sa=D&usg=ALhdy2-wZRRUpZKKfQkYWVy5YRIEItkwhg</td>
+<td>http://www.staples.com/StaplesProductDisplay?catalogIdentifier=2&langId=-1&productId=500175&storeId=10001&externalize=certona&cid=BNR:CORP:8421537:1503232:114603676:287596652:0</td>
+</tr>
+<tr class="passed">
+<td>82</td>
+<td>https://www.google.com/url?q=http://ad.doubleclick.net/ddm/clk/287596654;114603676;v&sa=D&usg=ALhdy2-hgNZbgjkVrn2GGHhARCu8xy6zXA</td>
+<td>http://www.staples.com/Epson-200XL-200-High-Yield-Black-Standard-Color-C-M-Y-Ink-Cartridges-T200XL-BCS-Combo-4-Pack/product_189420?cid=BNR:CORP:8421537:1503232:114603676:287596654:0</td>
+</tr>
+<tr class="passed">
+<td>83</td>
+<td>https://www.google.com/url?q=http://ad.doubleclick.net/ddm/clk/287596650;114603676;r&sa=D&usg=ALhdy2_UbMoSgb84GC_U9nfhgL_DqIis2w</td>
+<td>http://www.staples.com/Toshiba-Canvio-Connect-1TB-Portable-Hard-Drive-Silver-/product_180279?cid=BNR:CORP:8421537:1503232:114603676:287596650:0</td>
+</tr>
+<tr class="passed">
+<td>84</td>
+<td>https://www.google.com/url?q=http://ad.doubleclick.net/ddm/clk/287596658;114603676;z&sa=D&usg=ALhdy29x77dTqOj2cKa2IW-Lkzp-TqEXNA</td>
+<td>http://www.staples.com/Microsoft-Surface-Pro-3-12-Inch-Tablet-Intel-Core-i5-128GB-MQ2-00001-/product_1051214?cid=BNR:CORP:8421537:1503232:114603676:287596658:0</td>
+</tr>
+<tr class="passed">
+<td>85</td>
+<td>https://www.google.com/url?q=http://ad.doubleclick.net/ddm/clk/287596653;114603676;u&sa=D&usg=ALhdy2-1LGU7TsSxd-dX405dzKVh0wTsqw</td>
+<td>http://www.staples.com/HP-80A-Black-Toner-Cartridge-CF280A-/product_665699?cid=BNR:CORP:8421537:1503232:114603676:287596653:0</td>
+</tr>
+<tr class="passed">
+<td>86</td>
+<td>https://www.google.com/url?q=http://ad.doubleclick.net/ddm/clk/287596648;114603676;y&sa=D&usg=ALhdy2-jKWPtNkZhRLuzUL0k_3CUWHia7A</td>
+<td>http://www.staples.com/Jawbone-UP24-Onyx-Fitness-Tracker-Medium/product_970135?cid=BNR:CORP:8421537:1503232:114603676:287596648:0</td>
+</tr>
+<tr class="passed">
+<td>87</td>
+<td>https://www.google.com/url?q=http://ad.doubleclick.net/ddm/clk/287596661;114603676;t&sa=D&usg=ALhdy29FFelx7bk2j6bqFcALt6wekwRfsw</td>
+<td>http://www.staples.com/Google-Chromecast-HDMI-Streaming-Media-Player/product_397061?cid=BNR:CORP:8421537:1503232:114603676:287596661:0</td>
+</tr>
+<tr class="passed">
+<td>88</td>
+<td>https://www.google.com/url?q=http://ad.doubleclick.net/ddm/clk/287596663;114603676;v&sa=D&usg=ALhdy2_0OEBjUELIET5SOQTT-B8YUUb-1w</td>
+<td>http://www.staples.com/Pilot-G-2-Retractable-Gel-Ink-Pens-Fine-Point-Black-Dozen/product_429174?cid=BNR:CORP:8421537:1503232:114603676:287596663:0</td>
+</tr>
+<tr class="passed">
+<td>89</td>
+<td>https://www.google.com/url?q=http://ad.doubleclick.net/ddm/clk/287596670;114603676;t&sa=D&usg=ALhdy2-WdwxTu2DTmLQgTc0Rp85XTMYivw</td>
+<td>http://www.staples.com/Band-Aid-Sheer-Wet-Flex-Bandages-Variety-Pack/product_485107?cid=BNR:CORP:8421537:1503232:114603676:287596670:0</td>
+</tr>
+<tr class="passed">
+<td>90</td>
+<td>https://www.google.com/url?q=http://ad.doubleclick.net/ddm/clk/287596664;114603676;w&sa=D&usg=ALhdy2_JS75YtgiIba9c4GhMie-MBHvnvw</td>
+<td>http://www.staples.com/Sharpie-Fine-Point-Permanent-Markers-Black-Dozen-Box/product_125328?cid=BNR:CORP:8421537:1503232:114603676:287596664:0</td>
+</tr>
+<tr class="passed">
+<td>91</td>
+<td>https://www.google.com/url?q=http://ad.doubleclick.net/ddm/clk/287596667;114603676;z&sa=D&usg=ALhdy29dQO7ABI--pAw3gyWh6GLYy5zCZg</td>
+<td>http://www.staples.com/StaplesProductDisplay?catalogIdentifier=2&langId=-1&productId=491432&storeId=10001&externalize=certona&cid=BNR:CORP:8421537:1503232:114603676:287596667:0</td>
+</tr>
+<tr class="passed">
+<td>92</td>
+<td>https://www.google.com/url?q=http://ad.doubleclick.net/ddm/clk/287596657;114603676;y&sa=D&usg=ALhdy2-JWgkGrMsUnTKIILHFXWyosjpQSw</td>
+<td>http://www.staples.com/StaplesProductDisplay?catalogIdentifier=2&langId=-1&productId=2163241&storeId=10001&externalize=certona&cid=BNR:CORP:8421537:1503232:114603676:287596657:0</td>
+</tr>
+<tr class="passed">
+<td>93</td>
+<td>https://www.google.com/url?q=http://ad.doubleclick.net/ddm/clk/287596669;114603676;b&sa=D&usg=ALhdy28fzkSrgDkXZ7lKoXv1GHVo0a3n8w</td>
+<td>http://www.staples.com/Staples-Hyken-Technical-Mesh-Task-Chair-Black/product_990119?cid=BNR:CORP:8421537:1503232:114603676:287596669:0</td>
+</tr>
+<tr class="passed">
+<td>94</td>
+<td>https://www.google.com/url?q=http://ad.doubleclick.net/ddm/clk/287596660;114603676;s&sa=D&usg=ALhdy28TbZd6vYV0RxHXcwAZ1qx3VpRiuQ</td>
+<td>http://www.staples.com/Kindle-Fire-HDX-7-16GB-Tablet-Wifi/product_306702?cid=BNR:CORP:8421537:1503232:114603676:287596660:0</td>
+</tr>
+<tr class="passed">
+<td>95</td>
+<td>https://www.google.com/url?q=http://ad.doubleclick.net/ddm/clk/287596665;114603676;x&sa=D&usg=ALhdy2_mlZ1njCqCMOuA_enYyokkHq4qGw</td>
+<td>http://www.staples.com/Keurig-reg-OfficePRO-reg-Single-Cup-Commercial-Coffee-Brewer-Black-Silver/product_853653?cid=BNR:CORP:8421537:1503232:114603676:287596665:0</td>
+</tr>
+<tr class="passed">
+<td>96</td>
+<td>https://www.google.com/url?q=http://ad.doubleclick.net/ddm/clk/287596672;114603676;v&sa=D&usg=ALhdy29v4X0UNlN25fea41Sl_QnE8HmRXg</td>
+<td>http://www.staples.com/M-by-Staples-Arc-Customizable-Leather-Notebook-System-Black-9-1-2-x-11-1-2-/product_886232?cid=BNR:CORP:8421537:1503232:114603676:287596672:0</td>
+</tr>
+<tr class="passed">
+<td>97</td>
+<td>https://www.google.com/url?q=http://ad.doubleclick.net/ddm/clk/287596651;114603676;s&sa=D&usg=ALhdy295V56xGqs0wydj0BiA90xC1b_a4w</td>
+<td>http://www.staples.com/NETGEAR-N600-Dual-Band-WiFi-Router-WNDR3400/product_886778?cid=BNR:CORP:8421537:1503232:114603676:287596651:0</td>
+</tr>
+<tr class="passed">
+<td>98</td>
+<td>https://www.google.com/url?q=http://ad.doubleclick.net/ddm/clk/287596659;114603676;a&sa=D&usg=ALhdy29CuMXFeTgbUPmx2r1DnWxW67QeZQ</td>
+<td>http://www.staples.com/Samsung-Galaxy-Tab-4-7-Inch-Tablet-8GB-Black-SM-T230NYKAXAR-/product_1000426?cid=BNR:CORP:8421537:1503232:114603676:287596659:0</td>
+</tr>
+<tr class="passed">
+<td>99</td>
+<td>https://www.google.com/url?q=http://ad.doubleclick.net/ddm/clk/287801317;114603678;i&sa=D&usg=ALhdy289aLg0f4SljdLpZYlL9yU749wy2w</td>
+<td>http://www.staples.com/?cid=BNR:CORP:8421537:1503232:114603678:287801317:0</td>
+</tr>
+<tr class="passed">
+<td>100</td>
+<td>https://www.google.com/url?q=http://ad.doubleclick.net/ddm/clk/287800658;114603678;p&sa=D&usg=ALhdy2-bdYJk0C7Y-M5QZ5fo45brgu7Skw</td>
+<td>http://www.staples.com/?cid=BNR:CORP:8421537:1503232:114603678:287800658:0</td>
+</tr>
+<tr class="passed">
+<td>101</td>
+<td>https://www.google.com/url?q=http://ad.doubleclick.net/ddm/clk/287597148;114603678;w&sa=D&usg=ALhdy2-m8CbLsi0k-r3HSCfsL67XG32rIw</td>
+<td>http://www.staples.com/Toshiba-Satellite-15-6-Inch-Laptop-C55-B5299-/product_1064944?cid=BNR:CORP:8421537:1503232:114603678:287597148:0</td>
+</tr>
+<tr class="passed">
+<td>102</td>
+<td>https://www.google.com/url?q=http://ad.doubleclick.net/ddm/clk/287597152;114603678;r&sa=D&usg=ALhdy293gPDrPOuMxpUWGJfNFT5n-VYvIw</td>
+<td>http://www.staples.com/M-M-s-Milk-Chocolate-Candy-42-oz-Bag/product_689504?cid=BNR:CORP:8421537:1503232:114603678:287597152:0</td>
+</tr>
+<tr class="passed">
+<td>103</td>
+<td>https://www.google.com/url?q=http://ad.doubleclick.net/ddm/clk/287597150;114603678;p&sa=D&usg=ALhdy2-L3L5RTizGkrlJ5lhjiNHLR5WM_A</td>
+<td>http://www.staples.com/Bounty-Select-A-Size-Paper-Towel-Rolls-2-Ply-8-Rolls-Case/product_900103?cid=BNR:CORP:8421537:1503232:114603678:287597150:0</td>
+</tr>
+<tr class="passed">
+<td>104</td>
+<td>https://www.google.com/url?q=http://ad.doubleclick.net/ddm/clk/287597145;114603678;t&sa=D&usg=ALhdy29JJikYAiti9NVaKNzoDGQeUV1Zxg</td>
+<td>http://www.staples.com/Swingline-747-Rio-Red-Stapler-20-Sheet-Capacity/product_562485?cid=BNR:CORP:8421537:1503232:114603678:287597145:0</td>
+</tr>
+<tr class="passed">
+<td>105</td>
+<td>https://www.google.com/url?q=http://ad.doubleclick.net/ddm/clk/287597138;114603678;v&sa=D&usg=ALhdy28rZLG-8K6gzFt_3EiHFTR-uWP2tw</td>
+<td>http://www.staples.com/Staples-Copy-Paper-8-1-2-x-11-Case/product_135848?cid=BNR:CORP:8421537:1503232:114603678:287597138:0</td>
+</tr>
+<tr class="passed">
+<td>106</td>
+<td>https://www.google.com/url?q=http://ad.doubleclick.net/ddm/clk/287597139;114603678;w&sa=D&usg=ALhdy2--YCv4vD0sNE1Ar07vWi-JC3QWOw</td>
+<td>http://www.staples.com/Epson-WorkForce-WF-2540-Color-Inkjet-All-in-One-Printer/product_954262?cid=BNR:CORP:8421537:1503232:114603678:287597139:0</td>
+</tr>
+<tr class="passed">
+<td>107</td>
+<td>https://www.google.com/url?q=http://ad.doubleclick.net/ddm/clk/287598917;114603678;b&sa=D&usg=ALhdy2-dgGTBBRJwEcxv-pRLcTiz60DEFg</td>
+<td>http://www.staples.com/Staples-reg-Space-Saver-10-Sheet-Cross-Cut-Shredder-Blue/product_89309?cid=BNR:CORP:8421537:1503232:114603678:287598917:0</td>
+</tr>
+<tr class="passed">
+<td>108</td>
+<td>https://www.google.com/url?q=http://ad.doubleclick.net/ddm/clk/287598918;114603678;c&sa=D&usg=ALhdy2-UqjALw8KC8joHUnbTui_0-JBJ_g</td>
+<td>http://www.staples.com/ZAGGKeys-Cover-Fit-for-Samsung-Galaxy-Note-12-Pro-Keyboard-Black/product_1114975?cid=BNR:CORP:8421537:1503232:114603678:287598918:0</td>
+</tr>
+<tr class="passed">
+<td>109</td>
+<td>https://www.google.com/url?q=http://ad.doubleclick.net/ddm/clk/287598919;114603678;d&sa=D&usg=ALhdy28ED63rbtFwdznlFM8-ODsKvdKFtA</td>
+<td>http://www.staples.com/Keurig-K-Cup-Starbucks-Breakfast-Blend-Regular-16-Pack/product_375623?cid=BNR:CORP:8421537:1503232:114603678:287598919:0</td>
+</tr>
+<tr class="passed">
+<td>110</td>
+<td>https://www.google.com/url?q=http://ad.doubleclick.net/ddm/clk/287598920;114603678;v&sa=D&usg=ALhdy29L_SoHI9br84x6QIdUTpQd7AdUaw</td>
+<td>http://www.staples.com/Twizzlers-Strawberry-Flavored-Twists-Candy-105-Pieces-Tub/product_621508?externalize=certona&cid=BNR:CORP:8421537:1503232:114603678:287598920:0</td>
+</tr>
+<tr class="passed">
+<td>111</td>
+<td>https://www.google.com/url?q=http://ad.doubleclick.net/ddm/clk/287598921;114603678;w&sa=D&usg=ALhdy2-Y5NTvsE2Xv9m9N6DvFXyOMJbpWg</td>
+<td>http://www.staples.com/Post-it-3-x-3-Jaipur-Colors-Notes-5-Pads-Pack/product_470369?cid=BNR:CORP:8421537:1503232:114603678:287598921:0</td>
+</tr>
+<tr class="passed">
+<td>112</td>
+<td>https://www.google.com/url?q=http://ad.doubleclick.net/ddm/clk/287598922;114603678;x&sa=D&usg=ALhdy2-EpqoEPLTKXPGQqYj-2fur1He6HQ</td>
+<td>http://www.staples.com/Samsung-Gear-2-Neo-Watch-Black/product_1017404?cid=BNR:CORP:8421537:1503232:114603678:287598922:0</td>
+</tr>
+<tr class="passed">
+<td>113</td>
+<td>https://www.google.com/url?q=http://ad.doubleclick.net/ddm/clk/287598923;114603678;y&sa=D&usg=ALhdy293VBtnayIJlAfzXuxrG1qGAsDVAg</td>
+<td>http://www.staples.com/Chef-Works-Chef-Hat-White/product_391455?cid=BNR:CORP:8421537:1503232:114603678:287598923:0</td>
+</tr>
+<tr class="passed">
+<td>114</td>
+<td>https://www.google.com/url?q=http://ad.doubleclick.net/ddm/clk/287598924;114603678;z&sa=D&usg=ALhdy2-m6R5O2SvZaVS1rLYY4imyH-alXw</td>
+<td>http://www.staples.com/StaplesProductDisplay?catalogIdentifier=2&langId=-1&productId=500175&storeId=10001&externalize=certona&cid=BNR:CORP:8421537:1503232:114603678:287598924:0</td>
+</tr>
+<tr class="passed">
+<td>115</td>
+<td>https://www.google.com/url?q=http://ad.doubleclick.net/ddm/clk/287598925;114603678;a&sa=D&usg=ALhdy28_bCMPMj5KgQHo7OXE19vASbLzkA</td>
+<td>http://www.staples.com/Epson-200XL-200-High-Yield-Black-Standard-Color-C-M-Y-Ink-Cartridges-T200XL-BCS-Combo-4-Pack/product_189420?cid=BNR:CORP:8421537:1503232:114603678:287598925:0</td>
+</tr>
+<tr class="passed">
+<td>116</td>
+<td>https://www.google.com/url?q=http://ad.doubleclick.net/ddm/clk/287598926;114603678;b&sa=D&usg=ALhdy2-xJGNWa22nn4OITJRbcDa92ztKNg</td>
+<td>http://www.staples.com/Toshiba-Canvio-Connect-1TB-Portable-Hard-Drive-Silver-/product_180279?cid=BNR:CORP:8421537:1503232:114603678:287598926:0</td>
+</tr>
+<tr class="passed">
+<td>117</td>
+<td>https://www.google.com/url?q=http://ad.doubleclick.net/ddm/clk/287598927;114603678;c&sa=D&usg=ALhdy29YmEhUO7bzZCY2vaNvGJ1Mux3q9Q</td>
+<td>http://www.staples.com/Microsoft-Surface-Pro-3-12-Inch-Tablet-Intel-Core-i5-128GB-MQ2-00001-/product_1051214?cid=BNR:CORP:8421537:1503232:114603678:287598927:0</td>
+</tr>
+<tr class="passed">
+<td>118</td>
+<td>https://www.google.com/url?q=http://ad.doubleclick.net/ddm/clk/287598928;114603678;d&sa=D&usg=ALhdy29UwwhS8pOMq6KV544B8TJuFPal9g</td>
+<td>http://www.staples.com/HP-80A-Black-Toner-Cartridge-CF280A-/product_665699?cid=BNR:CORP:8421537:1503232:114603678:287598928:0</td>
+</tr>
+<tr class="passed">
+<td>119</td>
+<td>https://www.google.com/url?q=http://ad.doubleclick.net/ddm/clk/287598929;114603678;e&sa=D&usg=ALhdy29foIDhgwiZcFW-rxXDL31U3e6puA</td>
+<td>http://www.staples.com/Jawbone-UP24-Onyx-Fitness-Tracker-Medium/product_970135?cid=BNR:CORP:8421537:1503232:114603678:287598929:0</td>
+</tr>
+<tr class="passed">
+<td>120</td>
+<td>https://www.google.com/url?q=http://ad.doubleclick.net/ddm/clk/287598930;114603678;w&sa=D&usg=ALhdy2-49o6oYPnqmZKfR4tVoZAFnIswlA</td>
+<td>http://www.staples.com/Google-Chromecast-HDMI-Streaming-Media-Player/product_397061?cid=BNR:CORP:8421537:1503232:114603678:287598930:0</td>
+</tr>
+<tr class="passed">
+<td>121</td>
+<td>https://www.google.com/url?q=http://ad.doubleclick.net/ddm/clk/287598931;114603678;x&sa=D&usg=ALhdy2_oRJsqy-uQBFCKvMuFdgLJgmUDsw</td>
+<td>http://www.staples.com/Pilot-G-2-Retractable-Gel-Ink-Pens-Fine-Point-Black-Dozen/product_429174?cid=BNR:CORP:8421537:1503232:114603678:287598931:0</td>
+</tr>
+<tr class="passed">
+<td>122</td>
+<td>https://www.google.com/url?q=http://ad.doubleclick.net/ddm/clk/287598932;114603678;y&sa=D&usg=ALhdy29iZfyOEHoIJ5hwSpbt4s7z_kEVEA</td>
+<td>http://www.staples.com/Band-Aid-Sheer-Wet-Flex-Bandages-Variety-Pack/product_485107?cid=BNR:CORP:8421537:1503232:114603678:287598932:0</td>
+</tr>
+<tr class="passed">
+<td>123</td>
+<td>https://www.google.com/url?q=http://ad.doubleclick.net/ddm/clk/287598933;114603678;z&sa=D&usg=ALhdy28Q8-7pKnHn2e2dbJ-ZzZ_j7DNlVw</td>
+<td>http://www.staples.com/Sharpie-Fine-Point-Permanent-Markers-Black-Dozen-Box/product_125328?cid=BNR:CORP:8421537:1503232:114603678:287598933:0</td>
+</tr>
+<tr class="passed">
+<td>124</td>
+<td>https://www.google.com/url?q=http://ad.doubleclick.net/ddm/clk/287598934;114603678;a&sa=D&usg=ALhdy2_kmBhicG0zm87acYsXnJmSRd8SgQ</td>
+<td>http://www.staples.com/StaplesProductDisplay?catalogIdentifier=2&langId=-1&productId=491432&storeId=10001&externalize=certona&cid=BNR:CORP:8421537:1503232:114603678:287598934:0</td>
+</tr>
+<tr class="passed">
+<td>125</td>
+<td>https://www.google.com/url?q=http://ad.doubleclick.net/ddm/clk/287598936;114603678;c&sa=D&usg=ALhdy298DmEb-Y73ZgbJcT82QIe2k3Ga7A</td>
+<td>http://www.staples.com/Staples-Hyken-Technical-Mesh-Task-Chair-Black/product_990119?cid=BNR:CORP:8421537:1503232:114603678:287598936:0</td>
+</tr>
+<tr class="passed">
+<td>126</td>
+<td>https://www.google.com/url?q=http://ad.doubleclick.net/ddm/clk/287598937;114603678;d&sa=D&usg=ALhdy297mdLeOoD-s9KV3oJ_oJam9mheow</td>
+<td>http://www.staples.com/Kindle-Fire-HDX-7-16GB-Tablet-Wifi/product_306702?cid=BNR:CORP:8421537:1503232:114603678:287598937:0</td>
+</tr>
+<tr class="passed">
+<td>127</td>
+<td>https://www.google.com/url?q=http://ad.doubleclick.net/ddm/clk/287598938;114603678;e&sa=D&usg=ALhdy2_DTmTtDHB9ylpxvEJDwa7_mBFnug</td>
+<td>http://www.staples.com/Keurig-reg-OfficePRO-reg-Single-Cup-Commercial-Coffee-Brewer-Black-Silver/product_853653?cid=BNR:CORP:8421537:1503232:114603678:287598938:0</td>
+</tr>
+<tr class="passed">
+<td>128</td>
+<td>https://www.google.com/url?q=http://ad.doubleclick.net/ddm/clk/287598939;114603678;f&sa=D&usg=ALhdy28XK61HCxm1EsCuExhNQ9IDUzsnqw</td>
+<td>http://www.staples.com/M-by-Staples-Arc-Customizable-Leather-Notebook-System-Black-9-1-2-x-11-1-2-/product_886232?cid=BNR:CORP:8421537:1503232:114603678:287598939:0</td>
+</tr>
+<tr class="passed">
+<td>129</td>
+<td>https://www.google.com/url?q=http://ad.doubleclick.net/ddm/clk/287598940;114603678;x&sa=D&usg=ALhdy29x4mf8902xI5SLyOcQdROXgF40Qw</td>
+<td>http://www.staples.com/NETGEAR-N600-Dual-Band-WiFi-Router-WNDR3400/product_886778?cid=BNR:CORP:8421537:1503232:114603678:287598940:0</td>
+</tr>
+<tr class="passed">
+<td>130</td>
+<td>https://www.google.com/url?q=http://ad.doubleclick.net/ddm/clk/287598941;114603678;y&sa=D&usg=ALhdy2-SVifYB826yDrV9I8P9oSSFYQ8bw</td>
+<td>http://www.staples.com/Samsung-Galaxy-Tab-4-7-Inch-Tablet-8GB-Black-SM-T230NYKAXAR-/product_1000426?cid=BNR:CORP:8421537:1503232:114603678:287598941:0</td>
+</tr>
+<tr class="passed">
+<td>131</td>
+<td>https://www.google.com/url?q=http://ad.doubleclick.net/ddm/clk/287801317;114603483;c&sa=D&usg=ALhdy299vOfbCshtcY_DZWZ1gaJflBhLEg</td>
+<td>http://www.staples.com/?cid=BNR:CORP:8421537:1503232:114603483:287801317:0</td>
+</tr>
+<tr class="passed">
+<td>132</td>
+<td>http://ad.doubleclick.net/ddm/clk/287801317;114603483;c</td>
+<td>http://www.staples.com/?cid=BNR:CORP:8421537:1503232:114603483:287801317:0</td>
+</tr>
+<tr class="passed">
+<td>133</td>
+<td>http://ad.doubleclick.net/ddm/clk/287800658;114603483;j</td>
+<td>http://www.staples.com/?cid=BNR:CORP:8421537:1503232:114603483:287800658:0</td>
+</tr>
+<tr class="passed">
+<td>134</td>
+<td>http://ad.doubleclick.net/ddm/clk/287597148;114603483;q</td>
+<td>http://www.staples.com/Toshiba-Satellite-15-6-Inch-Laptop-C55-B5299-/product_1064944?cid=BNR:CORP:8421537:1503232:114603483:287597148:0</td>
+</tr>
+<tr class="passed">
+<td>135</td>
+<td>http://ad.doubleclick.net/ddm/clk/287597152;114603483;l</td>
+<td>http://www.staples.com/M-M-s-Milk-Chocolate-Candy-42-oz-Bag/product_689504?cid=BNR:CORP:8421537:1503232:114603483:287597152:0</td>
+</tr>
+<tr class="passed">
+<td>136</td>
+<td>http://ad.doubleclick.net/ddm/clk/287597150;114603483;j</td>
+<td>http://www.staples.com/Bounty-Select-A-Size-Paper-Towel-Rolls-2-Ply-8-Rolls-Case/product_900103?cid=BNR:CORP:8421537:1503232:114603483:287597150:0</td>
+</tr>
+<tr class="passed">
+<td>137</td>
+<td>http://ad.doubleclick.net/ddm/clk/287597145;114603483;n</td>
+<td>http://www.staples.com/Swingline-747-Rio-Red-Stapler-20-Sheet-Capacity/product_562485?cid=BNR:CORP:8421537:1503232:114603483:287597145:0</td>
+</tr>
+<tr class="passed">
+<td>148</td>
+<td>http://ad.doubleclick.net/ddm/clk/287597138;114603483;p</td>
+<td>http://www.staples.com/Staples-Copy-Paper-8-1-2-x-11-Case/product_135848?cid=BNR:CORP:8421537:1503232:114603483:287597138:0</td>
+</tr>
+<tr class="passed">
+<td>149</td>
+<td>http://ad.doubleclick.net/ddm/clk/287597139;114603483;q</td>
+<td>http://www.staples.com/Epson-WorkForce-WF-2540-Color-Inkjet-All-in-One-Printer/product_954262?cid=BNR:CORP:8421537:1503232:114603483:287597139:0</td>
+</tr>
+<tr class="passed">
+<td>140</td>
+<td>http://ad.doubleclick.net/ddm/clk/287598917;114603483;v</td>
+<td>http://www.staples.com/Staples-reg-Space-Saver-10-Sheet-Cross-Cut-Shredder-Blue/product_89309?cid=BNR:CORP:8421537:1503232:114603483:287598917:0</td>
+</tr>
+<tr class="passed">
+<td>142</td>
+<td>http://ad.doubleclick.net/ddm/clk/287598918;114603483;w</td>
+<td>http://www.staples.com/ZAGGKeys-Cover-Fit-for-Samsung-Galaxy-Note-12-Pro-Keyboard-Black/product_1114975?cid=BNR:CORP:8421537:1503232:114603483:287598918:0</td>
+</tr>
+<tr class="passed">
+<td>143</td>
+<td>http://ad.doubleclick.net/ddm/clk/287598919;114603483;x</td>
+<td>http://www.staples.com/Keurig-K-Cup-Starbucks-Breakfast-Blend-Regular-16-Pack/product_375623?cid=BNR:CORP:8421537:1503232:114603483:287598919:0</td>
+</tr>
+<tr class="passed">
+<td>144</td>
+<td>http://ad.doubleclick.net/ddm/clk/287598920;114603483;p</td>
+<td>http://www.staples.com/Twizzlers-Strawberry-Flavored-Twists-Candy-105-Pieces-Tub/product_621508?externalize=certona&cid=BNR:CORP:8421537:1503232:114603483:287598920:0</td>
+</tr>
+<tr class="failed">
+<td>145</td>
+<td>http://ad.doubleclick.net/ddm/clk/287598921;114603483;q</td>
+<td>http://ad.doubleclick.net/ddm/clk/287598921;114603483;q</td>
+</tr>
+<tr class="failed exception">
+<td colspan="3">
+<pre class="backtrace">Current page is &quot;/Post-it-3-x-3-Jaipur-Colors-Notes-5-Pads-Pack/product_470369&quot;, but &quot;/ddm/clk/287598921;114603483;q&quot; expected.</pre>
+</td>
+</tr>
+<tr class="failed">
+<td>146</td>
+<td>http://ad.doubleclick.net/ddm/clk/287598922;114603483;r</td>
+<td>http://www.staples.com/Post-it-3-x-3-Jaipur-Colors-Notes-5-Pads-Pack/product_470369?cid=BNR:CORP:8421537:1503232:114603483:287598921:0</td>
+</tr>
+<tr class="failed exception">
+<td colspan="3">
+<pre class="backtrace">Current page is &quot;/Samsung-Gear-2-Neo-Watch-Black/product_1017404&quot;, but &quot;/Post-it-3-x-3-Jaipur-Colors-Notes-5-Pads-Pack/product_470369&quot; expected.</pre>
+</td>
+</tr>
+<tr class="passed">
+<td>147</td>
+<td>http://ad.doubleclick.net/ddm/clk/287598923;114603483;s</td>
+<td>http://www.staples.com/Chef-Works-Chef-Hat-White/product_391455?cid=BNR:CORP:8421537:1503232:114603483:287598923:0</td>
+</tr>
+<tr class="passed">
+<td>148</td>
+<td>http://ad.doubleclick.net/ddm/clk/287598924;114603483;t</td>
+<td>http://www.staples.com/StaplesProductDisplay?catalogIdentifier=2&langId=-1&productId=500175&storeId=10001&externalize=certona&cid=BNR:CORP:8421537:1503232:114603483:287598924:0</td>
+</tr>
+<tr class="passed">
+<td>159</td>
+<td>http://ad.doubleclick.net/ddm/clk/287598925;114603483;u</td>
+<td>http://www.staples.com/Epson-200XL-200-High-Yield-Black-Standard-Color-C-M-Y-Ink-Cartridges-T200XL-BCS-Combo-4-Pack/product_189420?cid=BNR:CORP:8421537:1503232:114603483:287598925:0</td>
+</tr>
+<tr class="passed">
+<td>160</td>
+<td>http://ad.doubleclick.net/ddm/clk/287598926;114603483;v</td>
+<td>http://www.staples.com/Toshiba-Canvio-Connect-1TB-Portable-Hard-Drive-Silver-/product_180279?cid=BNR:CORP:8421537:1503232:114603483:287598926:0</td>
+</tr>
+<tr class="passed">
+<td>161</td>
+<td>http://ad.doubleclick.net/ddm/clk/287598927;114603483;w</td>
+<td>http://www.staples.com/Microsoft-Surface-Pro-3-12-Inch-Tablet-Intel-Core-i5-128GB-MQ2-00001-/product_1051214?cid=BNR:CORP:8421537:1503232:114603483:287598927:0</td>
+</tr>
+<tr class="passed">
+<td>162</td>
+<td>http://ad.doubleclick.net/ddm/clk/287598928;114603483;x</td>
+<td>http://www.staples.com/HP-80A-Black-Toner-Cartridge-CF280A-/product_665699?cid=BNR:CORP:8421537:1503232:114603483:287598928:0</td>
+</tr>
+<tr class="passed">
+<td>163</td>
+<td>http://ad.doubleclick.net/ddm/clk/287598929;114603483;y</td>
+<td>http://www.staples.com/Jawbone-UP24-Onyx-Fitness-Tracker-Medium/product_970135?cid=BNR:CORP:8421537:1503232:114603483:287598929:0</td>
+</tr>
+<tr class="passed">
+<td>164</td>
+<td>http://ad.doubleclick.net/ddm/clk/287598930;114603483;q</td>
+<td>http://www.staples.com/Google-Chromecast-HDMI-Streaming-Media-Player/product_397061?cid=BNR:CORP:8421537:1503232:114603483:287598930:0</td>
+</tr>
+<tr class="passed">
+<td>165</td>
+<td>http://ad.doubleclick.net/ddm/clk/287598931;114603483;r</td>
+<td>http://www.staples.com/Pilot-G-2-Retractable-Gel-Ink-Pens-Fine-Point-Black-Dozen/product_429174?cid=BNR:CORP:8421537:1503232:114603483:287598931:0</td>
+</tr>
+<tr class="passed">
+<td>166</td>
+<td>http://ad.doubleclick.net/ddm/clk/287598932;114603483;s</td>
+<td>http://www.staples.com/Band-Aid-Sheer-Wet-Flex-Bandages-Variety-Pack/product_485107?cid=BNR:CORP:8421537:1503232:114603483:287598932:0</td>
+</tr>
+<tr class="passed">
+<td>167</td>
+<td>http://ad.doubleclick.net/ddm/clk/287598933;114603483;t</td>
+<td>http://www.staples.com/Sharpie-Fine-Point-Permanent-Markers-Black-Dozen-Box/product_125328?cid=BNR:CORP:8421537:1503232:114603483:287598933:0</td>
+</tr>
+<tr class="passed">
+<td>169</td>
+<td>http://ad.doubleclick.net/ddm/clk/287598934;114603483;u</td>
+<td>http://www.staples.com/StaplesProductDisplay?catalogIdentifier=2&langId=-1&productId=491432&storeId=10001&externalize=certona&cid=BNR:CORP:8421537:1503232:114603483:287598934:0</td>
+</tr>
+<tr class="passed">
+<td>170</td>
+<td>http://ad.doubleclick.net/ddm/clk/287598935;114603483;v</td>
+<td>http://www.staples.com/StaplesProductDisplay?catalogIdentifier=2&langId=-1&productId=2163241&storeId=10001&externalize=certona&cid=BNR:CORP:8421537:1503232:114603483:287598935:0</td>
+</tr>
+<tr class="passed">
+<td>171</td>
+<td>http://ad.doubleclick.net/ddm/clk/287598936;114603483;w</td>
+<td>http://www.staples.com/Staples-Hyken-Technical-Mesh-Task-Chair-Black/product_990119?cid=BNR:CORP:8421537:1503232:114603483:287598936:0</td>
+</tr>
+<tr class="passed">
+<td>172</td>
+<td>http://ad.doubleclick.net/ddm/clk/287598937;114603483;x</td>
+<td>http://www.staples.com/Kindle-Fire-HDX-7-16GB-Tablet-Wifi/product_306702?cid=BNR:CORP:8421537:1503232:114603483:287598937:0</td>
+</tr>
+<tr class="passed">
+<td>173</td>
+<td>http://ad.doubleclick.net/ddm/clk/287598938;114603483;y</td>
+<td>http://www.staples.com/Keurig-reg-OfficePRO-reg-Single-Cup-Commercial-Coffee-Brewer-Black-Silver/product_853653?cid=BNR:CORP:8421537:1503232:114603483:287598938:0</td>
+</tr>
+<tr class="passed">
+<td>174</td>
+<td>http://ad.doubleclick.net/ddm/clk/287598939;114603483;z</td>
+<td>http://www.staples.com/M-by-Staples-Arc-Customizable-Leather-Notebook-System-Black-9-1-2-x-11-1-2-/product_886232?cid=BNR:CORP:8421537:1503232:114603483:287598939:0</td>
+</tr>
+<tr class="passed">
+<td>175</td>
+<td>http://ad.doubleclick.net/ddm/clk/287598940;114603483;r</td>
+<td>http://www.staples.com/NETGEAR-N600-Dual-Band-WiFi-Router-WNDR3400/product_886778?cid=BNR:CORP:8421537:1503232:114603483:287598940:0</td>
+</tr>
+<tr class="passed">
+<td>176</td>
+<td>http://ad.doubleclick.net/ddm/clk/287598941;114603483;s</td>
+<td>http://www.staples.com/Samsung-Galaxy-Tab-4-7-Inch-Tablet-8GB-Black-SM-T230NYKAXAR-/product_1000426?cid=BNR:CORP:8421537:1503232:114603483:287598941:0</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="scenario outline">
+<ul class="tags">
+<li>@javascript</li>
+<li>@StaplesAccellerator</li>
+<li>@productsViaMobile</li>
+<li>@calculator</li>
+</ul>
+<h3>
+<span class="keyword">Scenario Outline: </span>
+<span class="title">I want to test tags and requests for the Staples Campaign</span>
+<span class="path">features/clientAds/Staples.feature:303</span>
+</h3>
+<ol>
+<li class="skipped">
+<div class="step">
+<span class="keyword">Given </span>
+<span class="text">I am on "<strong class="skipped_param">&lt;url&gt;</strong>"</span>
+<span class="path">FeatureContext::visit()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">I wait for <strong class="skipped_param">2</strong> seconds</span>
+<span class="path">FeatureContext::iWaitForSeconds()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">Then </span>
+<span class="text">I should be on "<strong class="skipped_param">&lt;redirectURL&gt;</strong>"</span>
+<span class="path">FeatureContext::assertPageAddress()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">the response should contain "<strong class="skipped_param">Staples</strong>"</span>
+<span class="path">FeatureContext::assertResponseContains()</span>
+</div>
+</li>
+</ol>
+<div class="examples">
+<h4>Examples</h4>
+<table>
+<thead>
+<tr class="skipped">
+<td>url</td>
+<td>redirectURL</td>
+</tr>
+</thead>
+<tbody>
+<tr class="passed">
+<td>https://www.google.com/url?q=http://ad.doubleclick.net/ddm/clk/287799687;113795072;h&sa=D&usg=ALhdy298N224gz1tX11uiO7W8FxsOT1SDA</td>
+<td>http://www.staples.com/?cid=BNR:CORP:8421537:1503232:113795072:287799687:0</td>
+</tr>
+<tr class="passed">
+<td>https://www.google.com/url?q=http://ad.doubleclick.net/ddm/clk/287801029;113795072;h&sa=D&usg=ALhdy29br4QAyFhasC-KcfpjZNMtKEO0Kg</td>
+<td>http://storelocator.staples.com/?cid=BNR:CORP:8421537:1503232:113795072:287801029:0</td>
+</tr>
+<tr class="passed">
+<td>https://www.google.com/url?q=http://ad.doubleclick.net/ddm/clk/287595498;113795072;b&sa=D&usg=ALhdy2-QzNVVkI-nTxihNG8znQ6-AGvbXw</td>
+<td>http://www.staples.com/M-M-s-Milk-Chocolate-Candy-42-oz-Bag/product_689504?cid=BNR:CORP:8421537:1503232:113795072:287595498:0</td>
+</tr>
+<tr class="passed">
+<td>https://www.google.com/url?q=http://ad.doubleclick.net/ddm/clk/287597102;113795072;l&sa=D&usg=ALhdy28pTI4W2zbBbY4rRNxd8y0jf7kUcA</td>
+<td>http://www.staples.com/Swingline-747-Rio-Red-Stapler-20-Sheet-Capacity/product_562485?cid=BNR:CORP:8421537:1503232:113795072:287597102:0</td>
+</tr>
+<tr class="passed">
+<td>https://www.google.com/url?q=http://ad.doubleclick.net/ddm/clk/287597103;113795072;m&sa=D&usg=ALhdy28q0mDy_KF8LGOxDjUl67UjMjETuA</td>
+<td>http://www.staples.com/Staples-Copy-Paper-8-1-2-x-11-Case/product_135848?cid=BNR:CORP:8421537:1503232:113795072:287597103:0</td>
+</tr>
+<tr class="passed">
+<td>https://www.google.com/url?q=http://ad.doubleclick.net/ddm/clk/287597104;113795072;n&sa=D&usg=ALhdy29XL7QDd1pWxcF3ot6q_BI4uco-dQ</td>
+<td>http://www.staples.com/Bounty-Select-A-Size-Paper-Towel-Rolls-2-Ply-8-Rolls-Case/product_900103?cid=BNR:CORP:8421537:1503232:113795072:287597104:0</td>
+</tr>
+<tr class="passed">
+<td>https://www.google.com/url?q=http://ad.doubleclick.net/ddm/clk/287597106;113795072;p&sa=D&usg=ALhdy28Ejt-oVozRaCE33IfC2OezwDxjEw</td>
+<td>http://www.staples.com/Toshiba-Satellite-15-6-Inch-Laptop-C55-B5299-/product_1064944?cid=BNR:CORP:8421537:1503232:113795072:287597106:0</td>
+</tr>
+<tr class="passed">
+<td>https://www.google.com/url?q=http://ad.doubleclick.net/ddm/clk/287597108;113795072;r&sa=D&usg=ALhdy2_LDgwqa0942ETSc8lhK_bZWSsm5A</td>
+<td>http://www.staples.com/Epson-WorkForce-WF-2540-Color-Inkjet-All-in-One-Printer/product_954262?cid=BNR:CORP:8421537:1503232:113795072:287597108:0</td>
+</tr>
+<tr class="passed">
+<td>https://www.google.com/url?q=http://ad.doubleclick.net/ddm/clk/287801026;113795148;i&sa=D&usg=ALhdy2_v2ORiJlLZFWD5ktc4P_eW1Su3zw</td>
+<td>http://storelocator.staples.com/?cid=BNR:CORP:8421537:1503232:113795148:287801026:0</td>
+</tr>
+<tr class="passed">
+<td>https://www.google.com/url?q=http://ad.doubleclick.net/ddm/clk/287801029;113795208;i&sa=D&usg=ALhdy2-QRxNTkzk049-Tw0xpZmnToPwFqg</td>
+<td>http://storelocator.staples.com/?cid=BNR:CORP:8421537:1503232:113795208:287801029:0</td>
+</tr>
+<tr class="passed">
+<td>https://www.google.com/url?q=http://ad.doubleclick.net/ddm/clk/287595498;113795208;c&sa=D&usg=ALhdy29Mba684hjqPG2Qi44sMV1XUKXu5Q</td>
+<td>http://www.staples.com/M-M-s-Milk-Chocolate-Candy-42-oz-Bag/product_689504?cid=BNR:CORP:8421537:1503232:113795208:287595498:0</td>
+</tr>
+<tr class="passed">
+<td>https://www.google.com/url?q=http://ad.doubleclick.net/ddm/clk/287597102;113795208;m&sa=D&usg=ALhdy29DD--1F0nx1VRx1hRAUrTvmUSRZQ</td>
+<td>http://www.staples.com/Swingline-747-Rio-Red-Stapler-20-Sheet-Capacity/product_562485?cid=BNR:CORP:8421537:1503232:113795208:287597102:0</td>
+</tr>
+<tr class="passed">
+<td>https://www.google.com/url?q=http://ad.doubleclick.net/ddm/clk/287597103;113795208;n&sa=D&usg=ALhdy2_Mf_XYdFex1MpoA7XzEO3Z8YsUhw</td>
+<td>http://www.staples.com/Staples-Copy-Paper-8-1-2-x-11-Case/product_135848?cid=BNR:CORP:8421537:1503232:113795208:287597103:0</td>
+</tr>
+<tr class="passed">
+<td>https://www.google.com/url?q=http://ad.doubleclick.net/ddm/clk/287597104;113795208;o&sa=D&usg=ALhdy2-uqZKNYkLKtlUYPMyEznP_-17FMg</td>
+<td>http://www.staples.com/Bounty-Select-A-Size-Paper-Towel-Rolls-2-Ply-8-Rolls-Case/product_900103?cid=BNR:CORP:8421537:1503232:113795208:287597104:0</td>
+</tr>
+<tr class="passed">
+<td>https://www.google.com/url?q=http://ad.doubleclick.net/ddm/clk/287597106;113795208;q&sa=D&usg=ALhdy29ai4enz0MpLlzvA9zUPD8ska0hEA</td>
+<td>http://www.staples.com/Toshiba-Satellite-15-6-Inch-Laptop-C55-B5299-/product_1064944?cid=BNR:CORP:8421537:1503232:113795208:287597106:0</td>
+</tr>
+<tr class="passed">
+<td>https://www.google.com/url?q=http://ad.doubleclick.net/ddm/clk/287597108;113795208;s&sa=D&usg=ALhdy2-2Va_oTUhKNEd4tD-nCPPa21_ZZw</td>
+<td>http://www.staples.com/Epson-WorkForce-WF-2540-Color-Inkjet-All-in-One-Printer/product_954262?cid=BNR:CORP:8421537:1503232:113795208:287597108:0</td>
+</tr>
+<tr class="passed">
+<td>http://ad.doubleclick.net/ddm/clk/287801315;114603677;f</td>
+<td>http://www.staples.com/?cid=BNR:CORP:8421537:1503232:114603677:287801315:0</td>
+</tr>
+<tr class="passed">
+<td>http://ad.doubleclick.net/ddm/clk/287800659;114603677;p</td>
+<td>http://www.staples.com/?cid=BNR:CORP:8421537:1503232:114603677:287800659:0</td>
+</tr>
+<tr class="passed">
+<td>http://ad.doubleclick.net/ddm/clk/287597143;114603677;q</td>
+<td>http://www.staples.com/Toshiba-Satellite-15-6-Inch-Laptop-C55-B5299-/product_1064944?cid=BNR:CORP:8421537:1503232:114603677:287597143:0</td>
+</tr>
+<tr class="passed">
+<td>http://ad.doubleclick.net/ddm/clk/287597153;114603677;r</td>
+<td>http://www.staples.com/M-M-s-Milk-Chocolate-Candy-42-oz-Bag/product_689504?cid=BNR:CORP:8421537:1503232:114603677:287597153:0</td>
+</tr>
+<tr class="passed">
+<td>http://ad.doubleclick.net/ddm/clk/287597149;114603677;w</td>
+<td>http://www.staples.com/Bounty-Select-A-Size-Paper-Towel-Rolls-2-Ply-8-Rolls-Case/product_900103?cid=BNR:CORP:8421537:1503232:114603677:287597149:0</td>
+</tr>
+<tr class="passed">
+<td>http://ad.doubleclick.net/ddm/clk/287597151;114603677;p</td>
+<td>http://www.staples.com/Swingline-747-Rio-Red-Stapler-20-Sheet-Capacity/product_562485?cid=BNR:CORP:8421537:1503232:114603677:287597151:0</td>
+</tr>
+<tr class="passed">
+<td>http://ad.doubleclick.net/ddm/clk/287597144;114603677;r</td>
+<td>http://www.staples.com/Staples-Copy-Paper-8-1-2-x-11-Case/product_135848?cid=BNR:CORP:8421537:1503232:114603677:287597144:0</td>
+</tr>
+<tr class="passed">
+<td>http://ad.doubleclick.net/ddm/clk/287597142;114603677;p</td>
+<td>http://www.staples.com/Epson-WorkForce-WF-2540-Color-Inkjet-All-in-One-Printer/product_954262?cid=BNR:CORP:8421537:1503232:114603677:287597142:0</td>
+</tr>
+<tr class="passed">
+<td>http://ad.doubleclick.net/ddm/clk/287596886;114603677;d</td>
+<td>http://www.staples.com/Staples-reg-Space-Saver-10-Sheet-Cross-Cut-Shredder-Blue/product_89309?cid=BNR:CORP:8421537:1503232:114603677:287596886:0</td>
+</tr>
+<tr class="passed">
+<td>http://ad.doubleclick.net/ddm/clk/287596887;114603677;e</td>
+<td>http://www.staples.com/ZAGGKeys-Cover-Fit-for-Samsung-Galaxy-Note-12-Pro-Keyboard-Black/product_1114975?cid=BNR:CORP:8421537:1503232:114603677:287596887:0</td>
+</tr>
+<tr class="passed">
+<td>http://ad.doubleclick.net/ddm/clk/287596888;114603677;f</td>
+<td>http://www.staples.com/Keurig-K-Cup-Starbucks-Breakfast-Blend-Regular-16-Pack/product_375623?cid=BNR:CORP:8421537:1503232:114603677:287596888:0</td>
+</tr>
+<tr class="passed">
+<td>http://ad.doubleclick.net/ddm/clk/287596889;114603677;g</td>
+<td>http://www.staples.com/Twizzlers-Strawberry-Flavored-Twists-Candy-105-Pieces-Tub/product_621508?externalize=certona&cid=BNR:CORP:8421537:1503232:114603677:287596889:0</td>
+</tr>
+<tr class="passed">
+<td>http://ad.doubleclick.net/ddm/clk/287596890;114603677;y</td>
+<td>http://www.staples.com/Post-it-3-x-3-Jaipur-Colors-Notes-5-Pads-Pack/product_470369?cid=BNR:CORP:8421537:1503232:114603677:287596890:0</td>
+</tr>
+<tr class="passed">
+<td>http://ad.doubleclick.net/ddm/clk/287596891;114603677;z</td>
+<td>http://www.staples.com/Samsung-Gear-2-Neo-Watch-Black/product_1017404?cid=BNR:CORP:8421537:1503232:114603677:287596891:0</td>
+</tr>
+<tr class="passed">
+<td>http://ad.doubleclick.net/ddm/clk/287596892;114603677;a</td>
+<td>http://www.staples.com/Chef-Works-Chef-Hat-White/product_391455?cid=BNR:CORP:8421537:1503232:114603677:287596892:0</td>
+</tr>
+<tr class="passed">
+<td>http://ad.doubleclick.net/ddm/clk/287596893;114603677;b</td>
+<td>http://www.staples.com/StaplesProductDisplay?catalogIdentifier=2&langId=-1&productId=500175&storeId=10001&externalize=certona&cid=BNR:CORP:8421537:1503232:114603677:287596893:0</td>
+</tr>
+<tr class="passed">
+<td>http://ad.doubleclick.net/ddm/clk/287596894;114603677;c</td>
+<td>http://www.staples.com/Epson-200XL-200-High-Yield-Black-Standard-Color-C-M-Y-Ink-Cartridges-T200XL-BCS-Combo-4-Pack/product_189420?cid=BNR:CORP:8421537:1503232:114603677:287596894:0</td>
+</tr>
+<tr class="passed">
+<td>http://ad.doubleclick.net/ddm/clk/287596895;114603677;d</td>
+<td>http://www.staples.com/Toshiba-Canvio-Connect-1TB-Portable-Hard-Drive-Silver-/product_180279?cid=BNR:CORP:8421537:1503232:114603677:287596895:0</td>
+</tr>
+<tr class="passed">
+<td>http://ad.doubleclick.net/ddm/clk/287596896;114603677;e</td>
+<td>http://www.staples.com/Microsoft-Surface-Pro-3-12-Inch-Tablet-Intel-Core-i5-128GB-MQ2-00001-/product_1051214?cid=BNR:CORP:8421537:1503232:114603677:287596896:0</td>
+</tr>
+<tr class="passed">
+<td>http://ad.doubleclick.net/ddm/clk/287596897;114603677;f</td>
+<td>http://www.staples.com/HP-80A-Black-Toner-Cartridge-CF280A-/product_665699?cid=BNR:CORP:8421537:1503232:114603677:287596897:0</td>
+</tr>
+<tr class="passed">
+<td>http://ad.doubleclick.net/ddm/clk/287596898;114603677;g</td>
+<td>http://www.staples.com/Jawbone-UP24-Onyx-Fitness-Tracker-Medium/product_970135?cid=BNR:CORP:8421537:1503232:114603677:287596898:0</td>
+</tr>
+<tr class="passed">
+<td>http://ad.doubleclick.net/ddm/clk/287596899;114603677;h</td>
+<td>http://www.staples.com/Google-Chromecast-HDMI-Streaming-Media-Player/product_397061?cid=BNR:CORP:8421537:1503232:114603677:287596899:0</td>
+</tr>
+<tr class="passed">
+<td>http://ad.doubleclick.net/ddm/clk/287599100;114603677;l</td>
+<td>http://www.staples.com/Pilot-G-2-Retractable-Gel-Ink-Pens-Fine-Point-Black-Dozen/product_429174?cid=BNR:CORP:8421537:1503232:114603677:287599100:0</td>
+</tr>
+<tr class="passed">
+<td>http://ad.doubleclick.net/ddm/clk/287599101;114603677;m</td>
+<td>http://www.staples.com/Band-Aid-Sheer-Wet-Flex-Bandages-Variety-Pack/product_485107?cid=BNR:CORP:8421537:1503232:114603677:287599101:0</td>
+</tr>
+<tr class="passed">
+<td>http://ad.doubleclick.net/ddm/clk/287599102;114603677;n</td>
+<td>http://www.staples.com/Sharpie-Fine-Point-Permanent-Markers-Black-Dozen-Box/product_125328?cid=BNR:CORP:8421537:1503232:114603677:287599102:0</td>
+</tr>
+<tr class="passed">
+<td>http://ad.doubleclick.net/ddm/clk/287599103;114603677;o</td>
+<td>http://www.staples.com/StaplesProductDisplay?catalogIdentifier=2&langId=-1&productId=491432&storeId=10001&externalize=certona&cid=BNR:CORP:8421537:1503232:114603677:287599103:0</td>
+</tr>
+<tr class="passed">
+<td>http://ad.doubleclick.net/ddm/clk/287599104;114603677;p</td>
+<td>http://www.staples.com/StaplesProductDisplay?catalogIdentifier=2&langId=-1&productId=2163241&storeId=10001&externalize=certona&cid=BNR:CORP:8421537:1503232:114603677:287599104:0</td>
+</tr>
+<tr class="passed">
+<td>http://ad.doubleclick.net/ddm/clk/287599105;114603677;q</td>
+<td>http://www.staples.com/Staples-Hyken-Technical-Mesh-Task-Chair-Black/product_990119?cid=BNR:CORP:8421537:1503232:114603677:287599105:0</td>
+</tr>
+<tr class="passed">
+<td>http://ad.doubleclick.net/ddm/clk/287599106;114603677;r</td>
+<td>http://www.staples.com/Kindle-Fire-HDX-7-16GB-Tablet-Wifi/product_306702?cid=BNR:CORP:8421537:1503232:114603677:287599106:0</td>
+</tr>
+<tr class="passed">
+<td>http://ad.doubleclick.net/ddm/clk/287599107;114603677;s</td>
+<td>http://www.staples.com/Keurig-reg-OfficePRO-reg-Single-Cup-Commercial-Coffee-Brewer-Black-Silver/product_853653?cid=BNR:CORP:8421537:1503232:114603677:287599107:0</td>
+</tr>
+<tr class="passed">
+<td>http://ad.doubleclick.net/ddm/clk/287599108;114603677;t</td>
+<td>http://www.staples.com/M-by-Staples-Arc-Customizable-Leather-Notebook-System-Black-9-1-2-x-11-1-2-/product_886232?cid=BNR:CORP:8421537:1503232:114603677:287599108:0</td>
+</tr>
+<tr class="passed">
+<td>http://ad.doubleclick.net/ddm/clk/287599109;114603677;u</td>
+<td>http://www.staples.com/NETGEAR-N600-Dual-Band-WiFi-Router-WNDR3400/product_886778?cid=BNR:CORP:8421537:1503232:114603677:287599109:0</td>
+</tr>
+<tr class="passed">
+<td>http://ad.doubleclick.net/ddm/clk/287599110;114603677;m</td>
+<td>http://www.staples.com/Samsung-Galaxy-Tab-4-7-Inch-Tablet-8GB-Black-SM-T230NYKAXAR-/product_1000426?cid=BNR:CORP:8421537:1503232:114603677:287599110:0</td>
+</tr>
+<tr class="passed">
+<td>http://ad.doubleclick.net/ddm/clk/287801315;114603587;f</td>
+<td>http://www.staples.com/?cid=BNR:CORP:8421537:1503232:114603587:287801315:0</td>
+</tr>
+<tr class="passed">
+<td>http://ad.doubleclick.net/ddm/clk/287800659;114603587;p</td>
+<td>http://www.staples.com/?cid=BNR:CORP:8421537:1503232:114603587:287800659:0</td>
+</tr>
+<tr class="passed">
+<td>http://ad.doubleclick.net/ddm/clk/287597143;114603587;q</td>
+<td>http://www.staples.com/Toshiba-Satellite-15-6-Inch-Laptop-C55-B5299-/product_1064944?cid=BNR:CORP:8421537:1503232:114603587:287597143:0</td>
+</tr>
+<tr class="passed">
+<td>http://ad.doubleclick.net/ddm/clk/287597153;114603587;r</td>
+<td>http://www.staples.com/M-M-s-Milk-Chocolate-Candy-42-oz-Bag/product_689504?cid=BNR:CORP:8421537:1503232:114603587:287597153:0</td>
+</tr>
+<tr class="passed">
+<td>http://ad.doubleclick.net/ddm/clk/287597149;114603587;w</td>
+<td>http://www.staples.com/Bounty-Select-A-Size-Paper-Towel-Rolls-2-Ply-8-Rolls-Case/product_900103?cid=BNR:CORP:8421537:1503232:114603587:287597149:0</td>
+</tr>
+<tr class="passed">
+<td>http://ad.doubleclick.net/ddm/clk/287597151;114603587;p</td>
+<td>http://www.staples.com/Swingline-747-Rio-Red-Stapler-20-Sheet-Capacity/product_562485?cid=BNR:CORP:8421537:1503232:114603587:287597151:0</td>
+</tr>
+<tr class="passed">
+<td>http://ad.doubleclick.net/ddm/clk/287597144;114603587;r</td>
+<td>http://www.staples.com/Staples-Copy-Paper-8-1-2-x-11-Case/product_135848?cid=BNR:CORP:8421537:1503232:114603587:287597144:0</td>
+</tr>
+<tr class="passed">
+<td>http://ad.doubleclick.net/ddm/clk/287597142;114603587;p</td>
+<td>http://www.staples.com/Epson-WorkForce-WF-2540-Color-Inkjet-All-in-One-Printer/product_954262?cid=BNR:CORP:8421537:1503232:114603587:287597142:0</td>
+</tr>
+<tr class="passed">
+<td>http://ad.doubleclick.net/ddm/clk/287596886;114603587;d</td>
+<td>http://www.staples.com/Staples-reg-Space-Saver-10-Sheet-Cross-Cut-Shredder-Blue/product_89309?cid=BNR:CORP:8421537:1503232:114603587:287596886:0</td>
+</tr>
+<tr class="passed">
+<td>http://ad.doubleclick.net/ddm/clk/287596887;114603587;e</td>
+<td>http://www.staples.com/ZAGGKeys-Cover-Fit-for-Samsung-Galaxy-Note-12-Pro-Keyboard-Black/product_1114975?cid=BNR:CORP:8421537:1503232:114603587:287596887:0</td>
+</tr>
+<tr class="passed">
+<td>http://ad.doubleclick.net/ddm/clk/287596888;114603587;f</td>
+<td>http://www.staples.com/Keurig-K-Cup-Starbucks-Breakfast-Blend-Regular-16-Pack/product_375623?cid=BNR:CORP:8421537:1503232:114603587:287596888:0</td>
+</tr>
+<tr class="passed">
+<td>http://ad.doubleclick.net/ddm/clk/287596889;114603587;g</td>
+<td>http://www.staples.com/Twizzlers-Strawberry-Flavored-Twists-Candy-105-Pieces-Tub/product_621508?externalize=certona&cid=BNR:CORP:8421537:1503232:114603587:287596889:0</td>
+</tr>
+<tr class="passed">
+<td>http://ad.doubleclick.net/ddm/clk/287596890;114603587;y</td>
+<td>http://www.staples.com/Post-it-3-x-3-Jaipur-Colors-Notes-5-Pads-Pack/product_470369?cid=BNR:CORP:8421537:1503232:114603587:287596890:0</td>
+</tr>
+<tr class="passed">
+<td>http://ad.doubleclick.net/ddm/clk/287596891;114603587;z</td>
+<td>http://www.staples.com/Samsung-Gear-2-Neo-Watch-Black/product_1017404?cid=BNR:CORP:8421537:1503232:114603587:287596891:0</td>
+</tr>
+<tr class="passed">
+<td>http://ad.doubleclick.net/ddm/clk/287596892;114603587;a</td>
+<td>http://www.staples.com/Chef-Works-Chef-Hat-White/product_391455?cid=BNR:CORP:8421537:1503232:114603587:287596892:0</td>
+</tr>
+<tr class="passed">
+<td>http://ad.doubleclick.net/ddm/clk/287596893;114603587;b</td>
+<td>http://www.staples.com/StaplesProductDisplay?catalogIdentifier=2&langId=-1&productId=500175&storeId=10001&externalize=certona&cid=BNR:CORP:8421537:1503232:114603587:287596893:0</td>
+</tr>
+<tr class="passed">
+<td>http://ad.doubleclick.net/ddm/clk/287596894;114603587;c</td>
+<td>http://www.staples.com/Epson-200XL-200-High-Yield-Black-Standard-Color-C-M-Y-Ink-Cartridges-T200XL-BCS-Combo-4-Pack/product_189420?cid=BNR:CORP:8421537:1503232:114603587:287596894:0</td>
+</tr>
+<tr class="passed">
+<td>http://ad.doubleclick.net/ddm/clk/287596895;114603587;d</td>
+<td>http://www.staples.com/Toshiba-Canvio-Connect-1TB-Portable-Hard-Drive-Silver-/product_180279?cid=BNR:CORP:8421537:1503232:114603587:287596895:0</td>
+</tr>
+<tr class="passed">
+<td>http://ad.doubleclick.net/ddm/clk/287596896;114603587;e</td>
+<td>http://www.staples.com/Microsoft-Surface-Pro-3-12-Inch-Tablet-Intel-Core-i5-128GB-MQ2-00001-/product_1051214?cid=BNR:CORP:8421537:1503232:114603587:287596896:0</td>
+</tr>
+<tr class="passed">
+<td>http://ad.doubleclick.net/ddm/clk/287596897;114603587;f</td>
+<td>http://www.staples.com/HP-80A-Black-Toner-Cartridge-CF280A-/product_665699?cid=BNR:CORP:8421537:1503232:114603587:287596897:0</td>
+</tr>
+<tr class="passed">
+<td>http://ad.doubleclick.net/ddm/clk/287596898;114603587;g</td>
+<td>http://www.staples.com/Jawbone-UP24-Onyx-Fitness-Tracker-Medium/product_970135?cid=BNR:CORP:8421537:1503232:114603587:287596898:0</td>
+</tr>
+<tr class="passed">
+<td>http://ad.doubleclick.net/ddm/clk/287596899;114603587;h</td>
+<td>http://www.staples.com/Google-Chromecast-HDMI-Streaming-Media-Player/product_397061?cid=BNR:CORP:8421537:1503232:114603587:287596899:0</td>
+</tr>
+<tr class="passed">
+<td>http://ad.doubleclick.net/ddm/clk/287599100;114603587;l</td>
+<td>http://www.staples.com/Pilot-G-2-Retractable-Gel-Ink-Pens-Fine-Point-Black-Dozen/product_429174?cid=BNR:CORP:8421537:1503232:114603587:287599100:0</td>
+</tr>
+<tr class="passed">
+<td>http://ad.doubleclick.net/ddm/clk/287599101;114603587;m</td>
+<td>http://www.staples.com/Band-Aid-Sheer-Wet-Flex-Bandages-Variety-Pack/product_485107?cid=BNR:CORP:8421537:1503232:114603587:287599101:0</td>
+</tr>
+<tr class="passed">
+<td>http://ad.doubleclick.net/ddm/clk/287599102;114603587;n</td>
+<td>http://www.staples.com/Sharpie-Fine-Point-Permanent-Markers-Black-Dozen-Box/product_125328?cid=BNR:CORP:8421537:1503232:114603587:287599102:0</td>
+</tr>
+<tr class="passed">
+<td>http://ad.doubleclick.net/ddm/clk/287599103;114603587;o</td>
+<td>http://www.staples.com/StaplesProductDisplay?catalogIdentifier=2&langId=-1&productId=491432&storeId=10001&externalize=certona&cid=BNR:CORP:8421537:1503232:114603587:287599103:0</td>
+</tr>
+<tr class="passed">
+<td>http://ad.doubleclick.net/ddm/clk/287599104;114603587;p</td>
+<td>http://www.staples.com/StaplesProductDisplay?catalogIdentifier=2&langId=-1&productId=2163241&storeId=10001&externalize=certona&cid=BNR:CORP:8421537:1503232:114603587:287599104:0</td>
+</tr>
+<tr class="passed">
+<td>http://ad.doubleclick.net/ddm/clk/287599105;114603587;q</td>
+<td>http://www.staples.com/Staples-Hyken-Technical-Mesh-Task-Chair-Black/product_990119?cid=BNR:CORP:8421537:1503232:114603587:287599105:0</td>
+</tr>
+<tr class="passed">
+<td>http://ad.doubleclick.net/ddm/clk/287599106;114603587;r</td>
+<td>http://www.staples.com/Kindle-Fire-HDX-7-16GB-Tablet-Wifi/product_306702?cid=BNR:CORP:8421537:1503232:114603587:287599106:0</td>
+</tr>
+<tr class="passed">
+<td>http://ad.doubleclick.net/ddm/clk/287599107;114603587;s</td>
+<td>http://www.staples.com/Keurig-reg-OfficePRO-reg-Single-Cup-Commercial-Coffee-Brewer-Black-Silver/product_853653?cid=BNR:CORP:8421537:1503232:114603587:287599107:0</td>
+</tr>
+<tr class="passed">
+<td>http://ad.doubleclick.net/ddm/clk/287599108;114603587;t</td>
+<td>http://www.staples.com/M-by-Staples-Arc-Customizable-Leather-Notebook-System-Black-9-1-2-x-11-1-2-/product_886232?cid=BNR:CORP:8421537:1503232:114603587:287599108:0</td>
+</tr>
+<tr class="passed">
+<td>http://ad.doubleclick.net/ddm/clk/287599109;114603587;u</td>
+<td>http://www.staples.com/NETGEAR-N600-Dual-Band-WiFi-Router-WNDR3400/product_886778?cid=BNR:CORP:8421537:1503232:114603587:287599109:0</td>
+</tr>
+<tr class="failed">
+<td>http://ad.doubleclick.net/ddm/clk/287599110;114603587;m</td>
+<td>http://ad.doubleclick.net/ddm/clk/287599110;114603587;m</td>
+</tr>
+<tr class="failed exception">
+<td colspan="2">
+<pre class="backtrace">Current page is &quot;/Samsung-Galaxy-Tab-4-7-Inch-Tablet-8GB-Black-SM-T230NYKAXAR-/product_1000426&quot;, but &quot;/ddm/clk/287599110;114603587;m&quot; expected.</pre>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="scenario outline">
+<ul class="tags">
+<li>@javascript</li>
+<li>@regression</li>
+<li>@smoke</li>
+<li>@GETRequests</li>
+<li>@StaplesAccellerator</li>
+<li>@assets</li>
+</ul>
+<h3>
+<span class="keyword">Scenario Outline: </span>
+<span class="title">GET 200 Requests for assets in the Staples Campaign</span>
+<span class="path">features/clientAds/Staples.feature:395</span>
+</h3>
+<ol>
+<li class="skipped">
+<div class="step">
+<span class="keyword">Given </span>
+<span class="text">I am on "<strong class="skipped_param">&lt;requestURL&gt;</strong>"</span>
+<span class="path">FeatureContext::visit()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">Then </span>
+<span class="text">the response should contain "<strong class="skipped_param">&lt;expectedOutcome&gt;</strong>"</span>
+<span class="path">FeatureContext::assertResponseContains()</span>
+</div>
+</li>
+</ol>
+<div class="examples">
+<h4>Examples</h4>
+<table>
+<thead>
+<tr class="skipped">
+<td>requestURL</td>
+<td>expectedOutcome</td>
+</tr>
+</thead>
+<tbody>
+<tr class="passed">
+<td>http://ad-stage.adcade.com/2/event/imp/STPALF14CALDESK300250/pl/0/?v=60491407</td>
+<td>sessionId</td>
+</tr>
+<tr class="passed">
+<td>https://resource.adcade.com/ad_static/lib/2.5/adcadetiny.js</td>
+<td>var ADCADE=ADCADE</td>
+</tr>
+<tr class="passed">
+<td>http://ad-prod.adcade.com/2/ad/STPALF14CALMOB32050WEB/pl/0/</td>
+<td>function</td>
+</tr>
+<tr class="passed">
+<td>https://resource.adcade.com/ad-assets/STPALF14CALMOB32050WEB/main-built.js</td>
+<td>function</td>
+</tr>
+<tr class="passed">
+<td>http://resource.adcade.com/ad-assets/fonts/staple/stylesheet_server.css</td>
+<td>Generated by Font Squirrel</td>
+</tr>
+<tr class="passed">
+<td>http://resource.adcade.com/ad-assets/fonts/staple/fonts/ds-digi-webfont.woff2</td>
+<td>ds-digi-webfont.woff2</td>
+</tr>
+<tr class="passed">
+<td>http://resource.adcade.com/ad-assets/STPALF14CALMOB32050WEB/assets/img/c_panel_320x50_mobile.jpg</td>
+<td>c_panel_320x50_mobile.jpg</td>
+</tr>
+<tr class="passed">
+<td>http://resource.adcade.com/ad-assets/STPALF14CALMOB32050WEB/assets/img/logo_320x50_mobile.png</td>
+<td>logo_320x50_mobile.png</td>
+</tr>
+<tr class="passed">
+<td>http://resource.adcade.com/ad-assets/STPALF14CALMOB32050WEB/assets/img/word_320x50_mobile.png</td>
+<td>word_320x50_mobile.png</td>
+</tr>
+<tr class="passed">
+<td>http://resource.adcade.com/ad-assets/STPALF14CALMOB32050WEB/assets/img/back_320x50_mobile.png</td>
+<td>back_320x50_mobile.png</td>
+</tr>
+<tr class="passed">
+<td>http://resource.adcade.com/ad-assets/STPALF14CALMOB32050WEB/assets/img/equal_320x50_mobile.png</td>
+<td>equal_320x50_mobile.png</td>
+</tr>
+<tr class="passed">
+<td>http://ad-stage.adcade.com/2/event/imp/STPALF14CALTAB72890WEB/pl/0/?v=60491407</td>
+<td>sessionId</td>
+</tr>
+<tr class="passed">
+<td>http://ad-prod.adcade.com/2/ad/STPALF14CALTAB72890WEB/pl/0/</td>
+<td>function</td>
+</tr>
+<tr class="passed">
+<td>https://resource.adcade.com/ad-assets/STPALF14CALTAB72890WEB/main-built.js</td>
+<td>function</td>
+</tr>
+<tr class="passed">
+<td>http://resource.adcade.com/ad-assets/STPALF14CALTAB72890WEB/assets/img/c_panel_728x90_tablet.jpg</td>
+<td>c_panel_728x90_tablet.jpg</td>
+</tr>
+<tr class="passed">
+<td>http://resource.adcade.com/ad-assets/STPALF14CALTAB72890WEB/assets/img/logo_728x90_tablet.png</td>
+<td>logo_728x90_tablet.png</td>
+</tr>
+<tr class="passed">
+<td>http://resource.adcade.com/ad-assets/STPALF14CALTAB72890WEB/assets/img/word_728x90_tablet.png</td>
+<td>word_728x90_tablet.png</td>
+</tr>
+<tr class="passed">
+<td>http://resource.adcade.com/ad-assets/STPALF14CALTAB72890WEB/assets/img/back_728x90_tablet.png</td>
+<td>back_728x90_tablet.png</td>
+</tr>
+<tr class="passed">
+<td>http://resource.adcade.com/ad-assets/STPALF14CALTAB72890WEB/assets/img/equal_728x90_tablet.png</td>
+<td>equal_728x90_tablet.png</td>
+</tr>
+<tr class="passed">
+<td>http://ad-stage.adcade.com/2/event/imp/STPALF14CALTAB300250WEB/pl/0/?v=60491407</td>
+<td>sessionId</td>
+</tr>
+<tr class="passed">
+<td>http://ad-prod.adcade.com/2/ad/STPALF14CALTAB300250WEB/pl/0/</td>
+<td>function</td>
+</tr>
+<tr class="passed">
+<td>https://resource.adcade.com/ad-assets/STPALF14CALTAB300250WEB/main-built.js</td>
+<td>function</td>
+</tr>
+<tr class="passed">
+<td>http://resource.adcade.com/ad-assets/STPALF14CALTAB300250WEB/assets/img/c_panel_300x250_tablet.jpg</td>
+<td>c_panel_300x250_tablet.jpg</td>
+</tr>
+<tr class="passed">
+<td>http://resource.adcade.com/ad-assets/STPALF14CALTAB300250WEB/assets/img/logo_300x250_tablet.png</td>
+<td>logo_300x250_tablet.png</td>
+</tr>
+<tr class="passed">
+<td>http://resource.adcade.com/ad-assets/STPALF14CALTAB300250WEB/assets/img/word_300x250_tablet.png</td>
+<td>word_300x250_tablet.png</td>
+</tr>
+<tr class="passed">
+<td>http://resource.adcade.com/ad-assets/STPALF14CALTAB300250WEB/assets/img/back_300x250_tablet.png</td>
+<td>back_300x250_tablet.png</td>
+</tr>
+<tr class="passed">
+<td>http://resource.adcade.com/ad-assets/STPALF14CALTAB300250WEB/assets/img/equal_300x250_tablet.png</td>
+<td>equal_300x250_tablet.png</td>
+</tr>
+<tr class="passed">
+<td>http://ad-stage.adcade.com/2/event/imp/STPALF14CALTAB300250APP/pl/0/?v=60491407</td>
+<td>sessionId</td>
+</tr>
+<tr class="passed">
+<td>http://ad-prod.adcade.com/2/ad/STPALF14CALTAB300250APP/pl/0/</td>
+<td>function</td>
+</tr>
+<tr class="passed">
+<td>https://resource.adcade.com/ad-assets/STPALF14CALTAB300250APP/main-built.js</td>
+<td>function</td>
+</tr>
+<tr class="passed">
+<td>http://resource.adcade.com/ad-assets/STPALF14CALTAB300250APP/assets/img/c_panel_300x250_tablet.jpg</td>
+<td>c_panel_300x250_tablet.jpg</td>
+</tr>
+<tr class="passed">
+<td>http://resource.adcade.com/ad-assets/STPALF14CALTAB300250APP/assets/img/logo_300x250_tablet.png</td>
+<td>logo_300x250_tablet.png</td>
+</tr>
+<tr class="passed">
+<td>http://resource.adcade.com/ad-assets/STPALF14CALTAB300250APP/assets/img/word_300x250_tablet.png</td>
+<td>word_300x250_tablet.png</td>
+</tr>
+<tr class="passed">
+<td>http://resource.adcade.com/ad-assets/STPALF14CALTAB300250APP/assets/img/back_300x250_tablet.png</td>
+<td>back_300x250_tablet.png</td>
+</tr>
+<tr class="passed">
+<td>http://resource.adcade.com/ad-assets/STPALF14CALTAB300250APP/assets/img/equal_300x250_tablet.png</td>
+<td>equal_300x250_tablet.png</td>
+</tr>
+<tr class="passed">
+<td>http://ad-stage.adcade.com/2/event/imp/STPALF14CALDESK300600/pl/0/?v=60491407</td>
+<td>sessionId</td>
+</tr>
+<tr class="passed">
+<td>http://ad-prod.adcade.com/2/ad/STPALF14CALDESK300600/pl/0/</td>
+<td>function</td>
+</tr>
+<tr class="passed">
+<td>https://resource.adcade.com/ad-assets/STPALF14CALDESK300600/main-built.js</td>
+<td>function</td>
+</tr>
+<tr class="passed">
+<td>http://resource.adcade.com/ad-assets/STPALF14CALDESK300600/assets/img/c_panel_300x600_desktop.jpg</td>
+<td>c_panel_300x600_desktop.jpg</td>
+</tr>
+<tr class="passed">
+<td>http://resource.adcade.com/ad-assets/STPALF14CALDESK300600/assets/img/logo_300x600_desktop.png</td>
+<td>logo_300x600_desktop.png</td>
+</tr>
+<tr class="passed">
+<td>http://resource.adcade.com/ad-assets/STPALF14CALDESK300600/assets/img/word_300x600_desktop.png</td>
+<td>word_300x600_desktop.png</td>
+</tr>
+<tr class="passed">
+<td>http://resource.adcade.com/ad-assets/STPALF14CALDESK300600/assets/img/back_300x600_desktop.png</td>
+<td>back_300x600_desktop.png</td>
+</tr>
+<tr class="passed">
+<td>http://resource.adcade.com/ad-assets/STPALF14CALDESK300600/assets/img/equal_300x600_desktop.png</td>
+<td>equal_300x600_desktop.png</td>
+</tr>
+<tr class="passed">
+<td>http://ad-stage.adcade.com/2/event/imp/STPALF14CALDESK300250/pl/0/?v=60491407</td>
+<td>sessionId</td>
+</tr>
+<tr class="passed">
+<td>http://ad-prod.adcade.com/2/ad/STPALF14CALDESK300250/pl/0/</td>
+<td>function</td>
+</tr>
+<tr class="passed">
+<td>https://resource.adcade.com/ad-assets/STPALF14CALDESK300250/main-built.js</td>
+<td>function</td>
+</tr>
+<tr class="passed">
+<td>http://resource.adcade.com/ad-assets/STPALF14CALDESK300250/assets/img/c_panel_300x250_desktop.jpg</td>
+<td>c_panel_300x250_desktop.jpg</td>
+</tr>
+<tr class="passed">
+<td>http://resource.adcade.com/ad-assets/STPALF14CALDESK300250/assets/img/logo_300x250_desktop.png</td>
+<td>logo_300x250_desktop.png</td>
+</tr>
+<tr class="passed">
+<td>http://resource.adcade.com/ad-assets/STPALF14CALDESK300250/assets/img/word_300x250_desktop.png</td>
+<td>word_300x250_desktop.png</td>
+</tr>
+<tr class="passed">
+<td>http://resource.adcade.com/ad-assets/STPALF14CALDESK300250/assets/img/back_300x250_desktop.png</td>
+<td>back_300x250_desktop.png</td>
+</tr>
+<tr class="passed">
+<td>http://resource.adcade.com/ad-assets/STPALF14CALDESK300250/assets/img/equal_300x250_desktop.png</td>
+<td>equal_300x250_desktop.png</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="summary failed">
+<div class="counters">
+<p class="scenarios">
+397 scenarios (<strong class="passed">394 passed</strong>, <strong class="failed">3 failed</strong>)
+</p>
+<p class="steps">
+1468 steps (<strong class="passed">1462 passed</strong>, <strong class="skipped">3 skipped</strong>, <strong class="failed">3 failed</strong>)
+</p>
+<p class="time">
+19m19.505s
+</p>
+</div>
+<div class="switchers">
+    <a href="javascript:void(0)" id="behat_show_all">[+] all</a>
+    <a href="javascript:void(0)" id="behat_hide_all">[-] all</a>
+</div>
+</div>
+
+    </div>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.3/jquery.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $('#behat .feature h2').click(function(){
+                $(this).parent().toggleClass('jq-toggle-opened');
+            }).parent().addClass('jq-toggle');
+
+            $('#behat .scenario h3').click(function(){
+                $(this).parent().toggleClass('jq-toggle-opened');
+            }).parent().addClass('jq-toggle');
+
+            $('#behat_show_all').click(function(){
+                $('#behat .feature').addClass('jq-toggle-opened');
+                $('#behat .scenario').addClass('jq-toggle-opened');
+            });
+
+            $('#behat_hide_all').click(function(){
+                $('#behat .feature').removeClass('jq-toggle-opened');
+                $('#behat .scenario').removeClass('jq-toggle-opened');
+            });
+
+            $('#behat .summary .counters .scenarios .passed')
+                .addClass('switcher')
+                .click(function(){
+                    var $scenario = $('.feature .scenario:not(:has(.failed, .pending))');
+                    var $feature  = $scenario.parent();
+
+                    $('#behat_hide_all').click();
+
+                    $scenario.addClass('jq-toggle-opened');
+                    $feature.addClass('jq-toggle-opened');
+                });
+
+            $('#behat .summary .counters .steps .passed')
+                .addClass('switcher')
+                .click(function(){
+                    var $scenario = $('.feature .scenario:has(.passed)');
+                    var $feature  = $scenario.parent();
+
+                    $('#behat_hide_all').click();
+
+                    $scenario.addClass('jq-toggle-opened');
+                    $feature.addClass('jq-toggle-opened');
+                });
+
+            $('#behat .summary .counters .failed')
+                .addClass('switcher')
+                .click(function(){
+                    var $scenario = $('.feature .scenario:has(.failed)');
+                    var $feature = $scenario.parent();
+
+                    $('#behat_hide_all').click();
+
+                    $scenario.addClass('jq-toggle-opened');
+                    $feature.addClass('jq-toggle-opened');
+                });
+
+            $('#behat .summary .counters .skipped')
+                .addClass('switcher')
+                .click(function(){
+                    var $scenario = $('.feature .scenario:has(.skipped)');
+                    var $feature = $scenario.parent();
+
+                    $('#behat_hide_all').click();
+
+                    $scenario.addClass('jq-toggle-opened');
+                    $feature.addClass('jq-toggle-opened');
+                });
+
+            $('#behat .summary .counters .pending')
+                .addClass('switcher')
+                .click(function(){
+                    var $scenario = $('.feature .scenario:has(.pending)');
+                    var $feature = $scenario.parent();
+
+                    $('#behat_hide_all').click();
+
+                    $scenario.addClass('jq-toggle-opened');
+                    $feature.addClass('jq-toggle-opened');
+                });
+        });
+    </script>
+</body>
+</html>

@@ -60,7 +60,7 @@ LocalIE:
             selenium2:
               browser: ie
 
-SauceChromeMac:
+SauceMacChrome:
     context:
         class:  'FeatureContext'
 
@@ -72,7 +72,7 @@ SauceChromeMac:
             selenium2:
               browser: chrome
               wd_host: sajjadAdcade:f6bd677e-c92b-42ce-9564-e75f90d80cfb@ondemand.saucelabs.com/wd/hub
-              capabilities: {  "platform": "OS X 10.10", "version": "8", "name": "Mac OS X Chrome Regression Suite"}
+              capabilities: {  "platform": "OS X 10.8", "version": "38", "name": "Mac OS X Chrome Regression Suite"}
 
 SauceMacFirefox:
     context:
@@ -86,7 +86,7 @@ SauceMacFirefox:
             selenium2:
               browser: firefox
               wd_host: sajjadAdcade:f6bd677e-c92b-42ce-9564-e75f90d80cfb@ondemand.saucelabs.com/wd/hub
-              capabilities: {  "platform": "OS X 10.10", "version": "8", "name": "Mac OS X Firefox Regression Suite"}
+              capabilities: {"platform": "OS X 10.9", "version": "33", "name": "Mac OS X Firefox Regression Suite"}
 
 SauceMacSafari:
     context:
@@ -100,7 +100,7 @@ SauceMacSafari:
             selenium2:
               browser: safari
               wd_host: sajjadAdcade:f6bd677e-c92b-42ce-9564-e75f90d80cfb@ondemand.saucelabs.com/wd/hub
-              capabilities: {  "platform": "OS X 10.10", "version": "8", "name": "Mac OS X Safari Regression Suite"}
+              capabilities: {"platform": "OS X 10.8", "version": "6", "name": "Mac OS X Safari Regression Suite"}
 
 SauceWindowsFirefox:
     context:
@@ -114,7 +114,7 @@ SauceWindowsFirefox:
             selenium2:
               browser: firefox
               wd_host: sajjadAdcade:f6bd677e-c92b-42ce-9564-e75f90d80cfb@ondemand.saucelabs.com/wd/hub
-              capabilities: {  "platform": "Windows 7", "version": "8", "name": "Windows 7 Firefox Regression Suite"}
+              capabilities: {"platform": "Windows 7", "version": "33", "name": "Windows 7 Firefox Regression Suite"}
 
 SauceWindowsIE:
     context:
@@ -126,9 +126,9 @@ SauceWindowsIE:
             javascript_session:  'selenium2'
             goutte:              ~
             selenium2:
-              browser: ie
+              browser: internet explorer
               wd_host: sajjadAdcade:f6bd677e-c92b-42ce-9564-e75f90d80cfb@ondemand.saucelabs.com/wd/hub
-              capabilities: {  "platform": "Windows 7", "version": "9.0"}
+              capabilities: {"platform": "Windows 7", "version": "9.0", "name": "Windows 7 IE 9 Regression Suite"}
 
 SauceWindowsChrome:
     context:
@@ -142,10 +142,10 @@ SauceWindowsChrome:
             selenium2:
               browser: chrome
               wd_host: sajjadAdcade:f6bd677e-c92b-42ce-9564-e75f90d80cfb@ondemand.saucelabs.com/wd/hub
-              capabilities: {  "platform": "Windows 7", "version": "8", "name": "Windows 7 Chrome Regression Suite"}
+              capabilities: {"platform": "Windows 7", "version": "38", "name": "Windows 7 Chrome Regression Suite"}
 
 
-AndroidPhone:
+SauceAndroidPhone:
     context:
         class:  'FeatureContext'
 
@@ -157,9 +157,9 @@ AndroidPhone:
             selenium2:
               browser: android
               wd_host: sajjadAdcade:f6bd677e-c92b-42ce-9564-e75f90d80cfb@ondemand.saucelabs.com/wd/hub
-              capabilities: {  "platform": "Linux", "version": "4.4", "name": "Android Phone Regression Suite", "deviceType": "phone"}
+              capabilities: {"platform": "Linux", "version": "4.4", "name": "Android Phone Regression Suite", "deviceType": "phone"}
 
-AndroidTablet:
+SauceAndroidTablet:
     context:
         class:  'FeatureContext'
 
@@ -173,7 +173,7 @@ AndroidTablet:
               wd_host: sajjadAdcade:f6bd677e-c92b-42ce-9564-e75f90d80cfb@ondemand.saucelabs.com/wd/hub
               capabilities: {  "platform": "Linux", "version": "4.4", "name": "Android Tablet Regression Suite", "deviceType": "tablet"}
 
-AndroidTabletLandscape:
+SauceAndroidTabletLandscape:
     context:
         class:  'FeatureContext'
 
@@ -185,9 +185,9 @@ AndroidTabletLandscape:
             selenium2:
               browser: android
               wd_host: sajjadAdcade:f6bd677e-c92b-42ce-9564-e75f90d80cfb@ondemand.saucelabs.com/wd/hub
-              capabilities: {  "platform": "Linux", "version": "4.4", "name": "Android Tablet Regression Suite", "deviceOrientation": "landscape", "deviceType": "tablet"}
+              capabilities: {"platform": "Linux", "version": "4.4", "name": "Android Tablet Regression Suite", "deviceOrientation": "landscape", "deviceType": "tablet"}
 
-iPhone:
+SauceiOSPhone:
     context:
         class:  'FeatureContext'
 
@@ -199,10 +199,10 @@ iPhone:
             selenium2:
               browser: iphone
               wd_host: sajjadAdcade:f6bd677e-c92b-42ce-9564-e75f90d80cfb@ondemand.saucelabs.com/wd/hub
-              capabilities: {  "platform": "OS X 10.9", "version": "8.1", "name": "iPhone Regression Suite"}
+              capabilities: {"platform": "OS X 10.9", "version": "8.1", "name": "iPhone Regression Suite"}
 
 
-iPad:
+SauceiOSTablet:
     context:
         class:  'FeatureContext'
 
@@ -214,9 +214,9 @@ iPad:
             selenium2:
               browser: iPad
               wd_host: sajjadAdcade:f6bd677e-c92b-42ce-9564-e75f90d80cfb@ondemand.saucelabs.com/wd/hub
-              capabilities: {  "platform": "OS X 10.9", "version": "8.1", "name": "iPad Regression Suite"}
+              capabilities: {"platform": "OS X 10.9", "version": "8.1", "name": "iPad Regression Suite"}
 
-iPadLandscape:
+SauceiOSTabletLandscape:
     context:
         class:  'FeatureContext'
 
@@ -228,4 +228,4 @@ iPadLandscape:
             selenium2:
               browser: iPad
               wd_host: sajjadAdcade:f6bd677e-c92b-42ce-9564-e75f90d80cfb@ondemand.saucelabs.com/wd/hub
-              capabilities: {  "platform": "OS X 10.9", "version": "8.1", "name": "iPad Regression Suite", "deviceOrientation": "landscape"}
+              capabilities: {"platform": "OS X 10.9", "version": "8.1", "name": "iPad Regression Suite", "deviceOrientation": "landscape"}

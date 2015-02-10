@@ -23,19 +23,19 @@ Open Terminal, go to the project folder, and run:
 
 For Firefox:
 
-	java -jar selenium-server-standalone-2.43.1.jar
+	java -jar selenium-server-standalone-2.44.0.jar
 	
 For Chrome:
 
-	java -jar selenium-server-standalone-2.43.1.jar -Dwebdriver.chrome.driver=./Drivers/chromedriver
+	java -jar selenium-server-standalone-2.44.0.jar -Dwebdriver.chrome.driver=./Drivers/chromedriver
 
 For Safari:
 
-	java -jar selenium-server-standalone-2.43.1.jar -Dwebdriver.safari.noinstall=true
+	java -jar selenium-server-standalone-2.44.0.jar -Dwebdriver.safari.noinstall=true
 
 For IE, on Windows:
 
-	java -jar selenium-server-standalone-2.43.1.jar -Dwebdriver.ie.driver=Drivers\IEDriverServer.exe
+	java -jar selenium-server-standalone-2.44.0.jar -Dwebdriver.ie.driver=Drivers\IEDriverServer.exe
 
 Then `COMMAND + T` or open a new Terminal tab. Then:
 

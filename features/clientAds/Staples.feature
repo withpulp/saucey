@@ -34,8 +34,8 @@ Feature: I want to test tags and requests for the Staples Campaign
 
     @javascript @StaplesAccellerator @productsViaDesktop
     Scenario Outline: I want to test tags and requests for the Staples Campaign
-      Given I am on a new session
-      And I go to "<url>"
+      Given I am on "<url>"
+      And I wait for 2 seconds
       Then I should be on "<redirectURL>"
       And the response should contain "Staples"
 
@@ -94,7 +94,7 @@ Feature: I want to test tags and requests for the Staples Campaign
       | https://www.google.com/url?q=http://ad.doubleclick.net/ddm/clk/287800657;114603482;h&sa=D&usg=ALhdy2-BTCal75x3FbgCKTKQS6w_vb80dQ | http://www.staples.com/?cid=BNR:CORP:8421537:1503232:114603482:287800657:0 |
       | https://www.google.com/url?q=http://ad.doubleclick.net/ddm/clk/287597131;114603482;h&sa=D&usg=ALhdy28n8HUCVSQPKKRHmbS5LnGFT7-w-w | http://www.staples.com/Toshiba-Satellite-15-6-Inch-Laptop-C55-B5299-/product_1064944?cid=BNR:CORP:8421537:1503232:114603482:287597131:0 |
       | https://www.google.com/url?q=http://ad.doubleclick.net/ddm/clk/287597132;114603482;i&sa=D&usg=ALhdy2_kmQnigRSHr94t4eTeIScvYnCZUg | http://www.staples.com/M-M-s-Milk-Chocolate-Candy-42-oz-Bag/product_689504?cid=BNR:CORP:8421537:1503232:114603482:287597132:0 |
-      | https://www.google.com/url?q=http://ad.doubleclick.net/ddm/clk/287597133;114603482;j&sa=D&usg=ALhdy2_ZNUHgbv-M6DV4AlGo23eNfaBArg | https://www.google.com/url?q=http://ad.doubleclick.net/ddm/clk/287597133;114603482;j&sa=D&usg=ALhdy2_ZNUHgbv-M6DV4AlGo23eNfaBArg |
+      | https://www.google.com/url?q=http://ad.doubleclick.net/ddm/clk/287597133;114603482;j&sa=D&usg=ALhdy2_ZNUHgbv-M6DV4AlGo23eNfaBArg | http://www.staples.com/Bounty-Select-A-Size-Paper-Towel-Rolls-2-Ply-8-Rolls-Case/product_900103?cid=BNR:CORP:8421537:1503232:114603482:287597133:0 |
       | https://www.google.com/url?q=http://ad.doubleclick.net/ddm/clk/287597134;114603482;k&sa=D&usg=ALhdy2_46-AZApwVXcodGhoLpclYT69zaA | http://www.staples.com/Swingline-747-Rio-Red-Stapler-20-Sheet-Capacity/product_562485?cid=BNR:CORP:8421537:1503232:114603482:287597134:0 |
       | https://www.google.com/url?q=http://ad.doubleclick.net/ddm/clk/287597140;114603482;h&sa=D&usg=ALhdy2_gpHoq6Q-js4BhNfCckD0Ex_tsPw | http://www.staples.com/Staples-Copy-Paper-8-1-2-x-11-Case/product_135848?cid=BNR:CORP:8421537:1503232:114603482:287597140:0 |
       | https://www.google.com/url?q=http://ad.doubleclick.net/ddm/clk/287597146;114603482;n&sa=D&usg=ALhdy2_zSZQS6decyc85UTFLRhSsCk4U3A | http://www.staples.com/Epson-WorkForce-WF-2540-Color-Inkjet-All-in-One-Printer/product_954262?cid=BNR:CORP:8421537:1503232:114603482:287597146:0 |
@@ -127,8 +127,8 @@ Feature: I want to test tags and requests for the Staples Campaign
 
     @javascript @StaplesAccellerator @productsViaTablet @calculator
     Scenario Outline: I want to test tags and requests for the Staples Campaign
-      Given I am on a new session
-      And I go to "<url>"
+      Given I am on "<url>"
+      And I wait for 2 seconds
       Then I should be on "<redirectURL>"
       And the response should contain "Staples"
 
@@ -301,8 +301,8 @@ Feature: I want to test tags and requests for the Staples Campaign
 
     @javascript @StaplesAccellerator @productsViaMobile @calculator
     Scenario Outline: I want to test tags and requests for the Staples Campaign
-      Given I am on a new session
-      And I go to "<url>"
+      Given I am on "<url>"
+      And I wait for 2 seconds
       Then I should be on "<redirectURL>"
       And the response should contain "Staples"
 
