@@ -7,3 +7,544 @@
 2015-01-01 19:55:51,171 - sauce_connect:401 - INFO - Succesfully connected to local server 127.0.0.1:50715 in 9ms
 2015-01-01 19:55:57,239 - sauce_connect:265 - INFO - {"no_ssl_bump_domains":null,"squid_config":null,"use_caching_proxy":true,"metadata":{"PythonVersion":"2.5.1","OwnerHost":"127.0.0.1","Release":"3.1-r32","OwnerPorts":["50715"],"Ports":["80"],"Platform":"Java-1.7.0_21-Java_HotSpot-TM-_64-Bit_Server_VM,_23.21-b01,_Oracle_Corporation-on-Mac_OS_X-10.8.1-x86_64","Build":"50","ScriptRelease":50,"ScriptName":"sauce_connect"},"use_kgp":true,"tunnel_identifier":"","shared_tunnel":false,"fast_fail_regexps":null,"ssh_port":443,"direct_domains":null,"vm_version":"","domain_names":["sauce-connect.proxy"]}
 2015-01-01 19:56:00,983 - sauce_connect:0 - INFO - received SIGINT
+2015-02-11 15:33:06,329 - sauce_connect:601 - INFO - / Starting \
+2015-02-11 15:33:06,334 - sauce_connect:602 - INFO - Please wait for "You may start your tests" to start your tests.
+2015-02-11 15:33:06,338 - sauce_connect:614 - DEBUG - System is -4.0 hours off UTC
+2015-02-11 15:33:06,339 - sauce_connect:616 - DEBUG - options: {'proxy_tunnel': False, 'proxy_host': '', 'no_ssl_bump_domains': '', 'allow_unclean_exit': False, 'logfile': 'sauce_connect.log', 'squid_opts': '', 'user': 'sajjadAdcade', 'ports': ['51117'], 'domains': ['sauce-connect.proxy'], 'proxy_port': '', 'debug_ssh': False, 'tunnel_ports': ['80'], 'rest_url': 'https://saucelabs.com/rest/v1', 'proxy_user': '', 'logfilesize': '31457280', 'proxy_password': '', 'boost_mode': True, 'tunnel_identifier': '', 'fast_fail_regexps': '', 'vm_version': '', 'quiet': False, 'latency_log': 150, 'use_ssh_config': False, 'ssh': False, 'se_port': '4445', 'readyfile': None, 'shared_tunnel': False, 'ssh_port': 443, 'direct_domains': '', 'host': '127.0.0.1'}
+2015-02-11 15:33:06,341 - sauce_connect:617 - DEBUG - metadata: {'PythonVersion': '2.5.1', 'OwnerHost': '127.0.0.1', 'Release': '3.1-r32', 'OwnerPorts': ['51117'], 'Ports': ['80'], 'Platform': 'Java-1.7.0_80-ea-Java_HotSpot-TM-_64-Bit_Server_VM,_24.80-b07,_Oracle_Corporation-on-Mac_OS_X-10.10.2-x86_64', 'Build': '50', 'ScriptRelease': 50, 'ScriptName': 'sauce_connect'}
+2015-02-11 15:33:06,342 - sauce_connect:619 - INFO - Forwarding: ['sauce-connect.proxy']:['80'] -> 127.0.0.1:['51117']
+2015-02-11 15:33:06,354 - sauce_connect:401 - INFO - Succesfully connected to local server 127.0.0.1:51117 in 6ms
+2015-02-11 15:33:06,490 - sauce_connect:265 - INFO - {"no_ssl_bump_domains":null,"squid_config":null,"use_caching_proxy":true,"metadata":{"PythonVersion":"2.5.1","OwnerHost":"127.0.0.1","Release":"3.1-r32","OwnerPorts":["51117"],"Ports":["80"],"Platform":"Java-1.7.0_80-ea-Java_HotSpot-TM-_64-Bit_Server_VM,_24.80-b07,_Oracle_Corporation-on-Mac_OS_X-10.10.2-x86_64","Build":"50","ScriptRelease":50,"ScriptName":"sauce_connect"},"use_kgp":true,"tunnel_identifier":"","shared_tunnel":false,"fast_fail_regexps":null,"ssh_port":443,"direct_domains":null,"vm_version":"","domain_names":["sauce-connect.proxy"]}
+2015-02-11 15:33:12,263 - sauce_connect:276 - INFO - Tunnel remote VM is provisioned (018d84dbe28b4b16b2bf9b491b3bb40a)
+2015-02-11 15:33:12,368 - sauce_connect:294 - INFO - Tunnel remote VM is booting ..
+2015-02-11 15:33:21,684 - sauce_connect:298 - INFO - Tunnel remote VM is running at maki77040.miso.saucelabs.com
+2015-02-11 15:33:21,703 - sauce_connect:401 - INFO - Succesfully connected to local server 127.0.0.1:51117 in 1ms
+2015-02-11 15:33:21,707 - sauce_connect:696 - INFO - Starting connection to tunnel host...
+2015-02-11 15:33:21,709 - sauce_connect:696 - INFO - Connecting to tunnel host maki77040.miso.saucelabs.com as sajjadAdcade
+2015-02-11 15:33:21,855 - sauce_connect:696 - INFO - Forwarding Selenium with ephemeral port 51123
+2015-02-11 15:33:21,858 - sauce_connect:696 - INFO - Selenium HTTP proxy listening on port 4445
+2015-02-11 15:33:24,693 - sauce_connect:0 - INFO - Successful handshake with Sauce Connect server
+2015-02-11 15:33:24,700 - sauce_connect:0 - INFO - Tunnel host version: 0.1.0, remote endpoint ID: 28547b8d6e604d66aa179d5acfecfea7
+2015-02-11 15:33:24,701 - sauce_connect:696 - INFO - Connected! You may start your tests.
+2015-02-11 15:38:04,387 - sauce_connect:0 - INFO - Request started: GET http://localhost:3000/login?url=/
+2015-02-11 15:38:04,667 - sauce_connect:0 - INFO - GET http://localhost:3000/login?url=/ -> 200 (281ms, 1075 bytes)
+2015-02-11 15:38:04,845 - sauce_connect:0 - INFO - Request started: GET http://localhost:3000/images/adcade-logo.svg
+2015-02-11 15:38:04,845 - sauce_connect:0 - INFO - Request started: GET http://localhost:3000/styles/styles.css
+2015-02-11 15:38:04,855 - sauce_connect:0 - INFO - GET http://localhost:3000/images/adcade-logo.svg -> 200 (11ms, 537 bytes)
+2015-02-11 15:38:04,855 - sauce_connect:0 - INFO - GET http://localhost:3000/styles/styles.css -> 200 (12ms, 8003 bytes)
+2015-02-11 15:38:04,921 - sauce_connect:0 - INFO - Request started: GET http://localhost:3000/js/lib/highlight.pack.js
+2015-02-11 15:38:04,927 - sauce_connect:0 - INFO - GET http://localhost:3000/js/lib/highlight.pack.js -> 200 (7ms, 4587 bytes)
+2015-02-11 15:38:05,163 - sauce_connect:0 - INFO - Request started: GET http://www.google-analytics.com/analytics.js
+2015-02-11 15:38:05,196 - sauce_connect:0 - INFO - GET http://www.google-analytics.com/analytics.js -> 200 (33ms, 11479 bytes)
+2015-02-11 15:38:05,494 - sauce_connect:0 - INFO - Request started: GET http://www.google-analytics.com/plugins/ua/linkid.js
+2015-02-11 15:38:05,509 - sauce_connect:0 - INFO - GET http://www.google-analytics.com/plugins/ua/linkid.js -> 200 (14ms, 852 bytes)
+2015-02-11 15:38:05,598 - sauce_connect:0 - INFO - Request started: GET http://www.google-analytics.com/r/collect?v=1&_v=j32&a=607552070&t=pageview&_s=1&dl=http%3A%2F%2Flocalhost%2Flogin%3Furl%3D%2F&ul=en-us&de=UTF-8&dt=Adcade%20Help%20Center&sd=24-bit&sr=1024x768&vp=1024x673&je=1&fl=15.0%20r0&_u=OGAAAEQiI~&jid=208001816&cid=1199376214.1423687085&tid=UA-36759287-8&_r=1&z=1663286264
+2015-02-11 15:38:05,625 - sauce_connect:0 - INFO - GET http://www.google-analytics.com/r/collect?v=1&_v=j32&a=607552070&t=pageview&_s=1&dl=http%3A%2F%2Flocalhost%2Flogin%3Furl%3D%2F&ul=en-us&de=UTF-8&dt=Adcade%20Help%20Center&sd=24-bit&sr=1024x768&vp=1024x673&je=1&fl=15.0%20r0&_u=OGAAAEQiI~&jid=208001816&cid=1199376214.1423687085&tid=UA-36759287-8&_r=1&z=1663286264 -> 200 (28ms, 35 bytes)
+2015-02-11 15:38:06,841 - sauce_connect:0 - INFO - Request started: GET http://localhost:3000/favicon.ico
+2015-02-11 15:38:06,848 - sauce_connect:0 - INFO - GET http://localhost:3000/favicon.ico -> 200 (7ms, 15086 bytes)
+2015-02-11 15:38:08,839 - sauce_connect:0 - INFO - Request started: GET http://localhost:3000/
+2015-02-11 15:38:08,852 - sauce_connect:0 - INFO - GET http://localhost:3000/ -> 302 (13ms, 80 bytes)
+2015-02-11 15:38:08,959 - sauce_connect:0 - INFO - Request started: GET http://localhost:3000/login?url=/
+2015-02-11 15:38:09,005 - sauce_connect:0 - INFO - GET http://localhost:3000/login?url=/ -> 200 (47ms, 1134 bytes)
+2015-02-11 15:38:09,108 - sauce_connect:0 - INFO - Request started: GET http://localhost:3000/images/adcade-logo.svg
+2015-02-11 15:38:09,112 - sauce_connect:0 - INFO - GET http://localhost:3000/images/adcade-logo.svg -> 200 (4ms, 537 bytes)
+2015-02-11 15:38:09,187 - sauce_connect:0 - INFO - Request started: GET http://localhost:3000/styles/styles.css
+2015-02-11 15:38:09,187 - sauce_connect:0 - INFO - Request started: GET http://localhost:3000/js/lib/highlight.pack.js
+2015-02-11 15:38:09,191 - sauce_connect:0 - INFO - GET http://localhost:3000/js/lib/highlight.pack.js -> 200 (5ms, 4587 bytes)
+2015-02-11 15:38:09,193 - sauce_connect:0 - INFO - GET http://localhost:3000/styles/styles.css -> 200 (6ms, 8003 bytes)
+2015-02-11 15:38:09,592 - sauce_connect:0 - INFO - Request started: GET http://www.google-analytics.com/collect?v=1&_v=j32&a=878091522&t=pageview&_s=1&dl=http%3A%2F%2Flocalhost%2Flogin%3Furl%3D%2F&ul=en-us&de=UTF-8&dt=Adcade%20Help%20Center&sd=24-bit&sr=1024x768&vp=1024x673&je=1&fl=15.0%20r0&_u=OCCAAEQiI~&jid=&cid=1199376214.1423687085&tid=UA-36759287-8&z=1041593884
+2015-02-11 15:38:09,619 - sauce_connect:0 - INFO - GET http://www.google-analytics.com/collect?v=1&_v=j32&a=878091522&t=pageview&_s=1&dl=http%3A%2F%2Flocalhost%2Flogin%3Furl%3D%2F&ul=en-us&de=UTF-8&dt=Adcade%20Help%20Center&sd=24-bit&sr=1024x768&vp=1024x673&je=1&fl=15.0%20r0&_u=OCCAAEQiI~&jid=&cid=1199376214.1423687085&tid=UA-36759287-8&z=1041593884 -> 200 (26ms, 35 bytes)
+2015-02-11 15:38:10,839 - sauce_connect:0 - INFO - Request started: GET http://localhost:3000/editor
+2015-02-11 15:38:10,846 - sauce_connect:0 - INFO - GET http://localhost:3000/editor -> 302 (7ms, 92 bytes)
+2015-02-11 15:38:10,930 - sauce_connect:0 - INFO - Request started: GET http://localhost:3000/login?url=/editor
+2015-02-11 15:38:10,993 - sauce_connect:0 - INFO - GET http://localhost:3000/login?url=/editor -> 200 (62ms, 1134 bytes)
+2015-02-11 15:38:11,101 - sauce_connect:0 - INFO - Request started: GET http://localhost:3000/images/adcade-logo.svg
+2015-02-11 15:38:11,101 - sauce_connect:0 - INFO - Request started: GET http://localhost:3000/js/lib/highlight.pack.js
+2015-02-11 15:38:11,108 - sauce_connect:0 - INFO - GET http://localhost:3000/images/adcade-logo.svg -> 200 (6ms, 537 bytes)
+2015-02-11 15:38:11,108 - sauce_connect:0 - INFO - GET http://localhost:3000/js/lib/highlight.pack.js -> 200 (6ms, 4587 bytes)
+2015-02-11 15:38:11,178 - sauce_connect:0 - INFO - Request started: GET http://localhost:3000/styles/styles.css
+2015-02-11 15:38:11,184 - sauce_connect:0 - INFO - GET http://localhost:3000/styles/styles.css -> 200 (5ms, 8003 bytes)
+2015-02-11 15:38:11,436 - sauce_connect:0 - INFO - Request started: GET http://www.google-analytics.com/collect?v=1&_v=j32&a=1439402750&t=pageview&_s=1&dl=http%3A%2F%2Flocalhost%2Flogin%3Furl%3D%2Feditor&ul=en-us&de=UTF-8&dt=Adcade%20Help%20Center&sd=24-bit&sr=1024x768&vp=1024x673&je=1&fl=15.0%20r0&_u=OCCAAEQiI~&jid=&cid=1199376214.1423687085&tid=UA-36759287-8&z=803183615
+2015-02-11 15:38:11,450 - sauce_connect:0 - INFO - GET http://www.google-analytics.com/collect?v=1&_v=j32&a=1439402750&t=pageview&_s=1&dl=http%3A%2F%2Flocalhost%2Flogin%3Furl%3D%2Feditor&ul=en-us&de=UTF-8&dt=Adcade%20Help%20Center&sd=24-bit&sr=1024x768&vp=1024x673&je=1&fl=15.0%20r0&_u=OCCAAEQiI~&jid=&cid=1199376214.1423687085&tid=UA-36759287-8&z=803183615 -> 200 (14ms, 35 bytes)
+2015-02-11 15:38:12,721 - sauce_connect:0 - INFO - Request started: GET http://localhost:3000/dashboard
+2015-02-11 15:38:12,729 - sauce_connect:0 - INFO - GET http://localhost:3000/dashboard -> 302 (7ms, 98 bytes)
+2015-02-11 15:38:12,880 - sauce_connect:0 - INFO - Request started: GET http://localhost:3000/login?url=/dashboard
+2015-02-11 15:38:12,957 - sauce_connect:0 - INFO - GET http://localhost:3000/login?url=/dashboard -> 200 (78ms, 1134 bytes)
+2015-02-11 15:38:13,062 - sauce_connect:0 - INFO - Request started: GET http://localhost:3000/styles/styles.css
+2015-02-11 15:38:13,062 - sauce_connect:0 - INFO - Request started: GET http://localhost:3000/images/adcade-logo.svg
+2015-02-11 15:38:13,066 - sauce_connect:0 - INFO - GET http://localhost:3000/images/adcade-logo.svg -> 200 (4ms, 537 bytes)
+2015-02-11 15:38:13,068 - sauce_connect:0 - INFO - GET http://localhost:3000/styles/styles.css -> 200 (6ms, 8003 bytes)
+2015-02-11 15:38:13,141 - sauce_connect:0 - INFO - Request started: GET http://localhost:3000/js/lib/highlight.pack.js
+2015-02-11 15:38:13,145 - sauce_connect:0 - INFO - GET http://localhost:3000/js/lib/highlight.pack.js -> 200 (4ms, 4587 bytes)
+2015-02-11 15:38:13,453 - sauce_connect:0 - INFO - Request started: GET http://www.google-analytics.com/collect?v=1&_v=j32&a=1776116035&t=pageview&_s=1&dl=http%3A%2F%2Flocalhost%2Flogin%3Furl%3D%2Fdashboard&ul=en-us&de=UTF-8&dt=Adcade%20Help%20Center&sd=24-bit&sr=1024x768&vp=1024x673&je=1&fl=15.0%20r0&_u=OCCAAEQiI~&jid=&cid=1199376214.1423687085&tid=UA-36759287-8&z=1545875075
+2015-02-11 15:38:13,466 - sauce_connect:0 - INFO - GET http://www.google-analytics.com/collect?v=1&_v=j32&a=1776116035&t=pageview&_s=1&dl=http%3A%2F%2Flocalhost%2Flogin%3Furl%3D%2Fdashboard&ul=en-us&de=UTF-8&dt=Adcade%20Help%20Center&sd=24-bit&sr=1024x768&vp=1024x673&je=1&fl=15.0%20r0&_u=OCCAAEQiI~&jid=&cid=1199376214.1423687085&tid=UA-36759287-8&z=1545875075 -> 200 (12ms, 35 bytes)
+2015-02-11 15:38:14,565 - sauce_connect:0 - INFO - Request started: GET http://localhost:3000/adscript
+2015-02-11 15:38:14,573 - sauce_connect:0 - INFO - GET http://localhost:3000/adscript -> 302 (8ms, 96 bytes)
+2015-02-11 15:38:14,658 - sauce_connect:0 - INFO - Request started: GET http://localhost:3000/login?url=/adscript
+2015-02-11 15:38:14,707 - sauce_connect:0 - INFO - GET http://localhost:3000/login?url=/adscript -> 200 (50ms, 1134 bytes)
+2015-02-11 15:38:14,811 - sauce_connect:0 - INFO - Request started: GET http://localhost:3000/js/lib/highlight.pack.js
+2015-02-11 15:38:14,818 - sauce_connect:0 - INFO - GET http://localhost:3000/js/lib/highlight.pack.js -> 200 (6ms, 4587 bytes)
+2015-02-11 15:38:14,838 - sauce_connect:0 - INFO - Request started: GET http://localhost:3000/styles/styles.css
+2015-02-11 15:38:14,838 - sauce_connect:0 - INFO - Request started: GET http://localhost:3000/images/adcade-logo.svg
+2015-02-11 15:38:14,844 - sauce_connect:0 - INFO - GET http://localhost:3000/images/adcade-logo.svg -> 200 (5ms, 537 bytes)
+2015-02-11 15:38:14,845 - sauce_connect:0 - INFO - GET http://localhost:3000/styles/styles.css -> 200 (5ms, 8003 bytes)
+2015-02-11 15:38:15,029 - sauce_connect:0 - INFO - Request started: GET http://www.google-analytics.com/collect?v=1&_v=j32&a=1778403618&t=pageview&_s=1&dl=http%3A%2F%2Flocalhost%2Flogin%3Furl%3D%2Fadscript&ul=en-us&de=UTF-8&dt=Adcade%20Help%20Center&sd=24-bit&sr=1024x768&vp=1024x673&je=1&fl=15.0%20r0&_u=OCCAAEQiI~&jid=&cid=1199376214.1423687085&tid=UA-36759287-8&z=518050196
+2015-02-11 15:38:15,042 - sauce_connect:0 - INFO - GET http://www.google-analytics.com/collect?v=1&_v=j32&a=1778403618&t=pageview&_s=1&dl=http%3A%2F%2Flocalhost%2Flogin%3Furl%3D%2Fadscript&ul=en-us&de=UTF-8&dt=Adcade%20Help%20Center&sd=24-bit&sr=1024x768&vp=1024x673&je=1&fl=15.0%20r0&_u=OCCAAEQiI~&jid=&cid=1199376214.1423687085&tid=UA-36759287-8&z=518050196 -> 200 (13ms, 35 bytes)
+2015-02-11 15:38:16,233 - sauce_connect:0 - INFO - Request started: GET http://localhost:3000/downloads
+2015-02-11 15:38:16,240 - sauce_connect:0 - INFO - GET http://localhost:3000/downloads -> 302 (6ms, 98 bytes)
+2015-02-11 15:38:16,323 - sauce_connect:0 - INFO - Request started: GET http://localhost:3000/login?url=/downloads
+2015-02-11 15:38:16,371 - sauce_connect:0 - INFO - GET http://localhost:3000/login?url=/downloads -> 200 (48ms, 1134 bytes)
+2015-02-11 15:38:16,476 - sauce_connect:0 - INFO - Request started: GET http://localhost:3000/styles/styles.css
+2015-02-11 15:38:16,476 - sauce_connect:0 - INFO - Request started: GET http://localhost:3000/images/adcade-logo.svg
+2015-02-11 15:38:16,482 - sauce_connect:0 - INFO - GET http://localhost:3000/images/adcade-logo.svg -> 200 (5ms, 537 bytes)
+2015-02-11 15:38:16,482 - sauce_connect:0 - INFO - GET http://localhost:3000/styles/styles.css -> 200 (5ms, 8003 bytes)
+2015-02-11 15:38:16,553 - sauce_connect:0 - INFO - Request started: GET http://localhost:3000/js/lib/highlight.pack.js
+2015-02-11 15:38:16,558 - sauce_connect:0 - INFO - GET http://localhost:3000/js/lib/highlight.pack.js -> 200 (4ms, 4587 bytes)
+2015-02-11 15:38:16,661 - sauce_connect:0 - INFO - Request started: GET http://www.google-analytics.com/collect?v=1&_v=j32&a=2036274252&t=pageview&_s=1&dl=http%3A%2F%2Flocalhost%2Flogin%3Furl%3D%2Fdownloads&ul=en-us&de=UTF-8&dt=Adcade%20Help%20Center&sd=24-bit&sr=1024x768&vp=1024x673&je=1&fl=15.0%20r0&_u=OCCAAEQiI~&jid=&cid=1199376214.1423687085&tid=UA-36759287-8&z=620598536
+2015-02-11 15:38:16,674 - sauce_connect:0 - INFO - GET http://www.google-analytics.com/collect?v=1&_v=j32&a=2036274252&t=pageview&_s=1&dl=http%3A%2F%2Flocalhost%2Flogin%3Furl%3D%2Fdownloads&ul=en-us&de=UTF-8&dt=Adcade%20Help%20Center&sd=24-bit&sr=1024x768&vp=1024x673&je=1&fl=15.0%20r0&_u=OCCAAEQiI~&jid=&cid=1199376214.1423687085&tid=UA-36759287-8&z=620598536 -> 200 (13ms, 35 bytes)
+2015-02-11 15:38:17,655 - sauce_connect:0 - INFO - Request started: GET http://localhost:3000/login?url=/
+2015-02-11 15:38:17,703 - sauce_connect:0 - INFO - GET http://localhost:3000/login?url=/ -> 200 (47ms, 1075 bytes)
+2015-02-11 15:38:17,806 - sauce_connect:0 - INFO - Request started: GET http://localhost:3000/js/lib/highlight.pack.js
+2015-02-11 15:38:17,806 - sauce_connect:0 - INFO - Request started: GET http://localhost:3000/styles/styles.css
+2015-02-11 15:38:17,815 - sauce_connect:0 - INFO - GET http://localhost:3000/js/lib/highlight.pack.js -> 200 (9ms, 4587 bytes)
+2015-02-11 15:38:17,815 - sauce_connect:0 - INFO - GET http://localhost:3000/styles/styles.css -> 200 (9ms, 8003 bytes)
+2015-02-11 15:38:17,839 - sauce_connect:0 - INFO - Request started: GET http://localhost:3000/images/adcade-logo.svg
+2015-02-11 15:38:17,845 - sauce_connect:0 - INFO - GET http://localhost:3000/images/adcade-logo.svg -> 200 (4ms, 537 bytes)
+2015-02-11 15:38:17,940 - sauce_connect:0 - INFO - Request started: GET http://www.google-analytics.com/r/collect?v=1&_v=j32&a=2075591025&t=pageview&_s=1&dl=http%3A%2F%2Flocalhost%2Flogin%3Furl%3D%2F&ul=en-us&de=UTF-8&dt=Adcade%20Help%20Center&sd=24-bit&sr=1024x768&vp=1024x673&je=1&fl=15.0%20r0&_u=OGAAAEQiI~&jid=1707641968&cid=2050286874.1423687098&tid=UA-36759287-8&_r=1&z=1187128731
+2015-02-11 15:38:17,963 - sauce_connect:0 - INFO - GET http://www.google-analytics.com/r/collect?v=1&_v=j32&a=2075591025&t=pageview&_s=1&dl=http%3A%2F%2Flocalhost%2Flogin%3Furl%3D%2F&ul=en-us&de=UTF-8&dt=Adcade%20Help%20Center&sd=24-bit&sr=1024x768&vp=1024x673&je=1&fl=15.0%20r0&_u=OGAAAEQiI~&jid=1707641968&cid=2050286874.1423687098&tid=UA-36759287-8&_r=1&z=1187128731 -> 200 (24ms, 35 bytes)
+2015-02-11 15:38:18,394 - sauce_connect:0 - INFO - Request started: GET http://localhost:3000/login?url=/
+2015-02-11 15:38:18,461 - sauce_connect:0 - INFO - GET http://localhost:3000/login?url=/ -> 200 (67ms, 1075 bytes)
+2015-02-11 15:38:18,563 - sauce_connect:0 - INFO - Request started: GET http://localhost:3000/styles/styles.css
+2015-02-11 15:38:18,571 - sauce_connect:0 - INFO - GET http://localhost:3000/styles/styles.css -> 200 (6ms, 8003 bytes)
+2015-02-11 15:38:18,641 - sauce_connect:0 - INFO - Request started: GET http://localhost:3000/images/adcade-logo.svg
+2015-02-11 15:38:18,642 - sauce_connect:0 - INFO - Request started: GET http://localhost:3000/js/lib/highlight.pack.js
+2015-02-11 15:38:18,647 - sauce_connect:0 - INFO - GET http://localhost:3000/images/adcade-logo.svg -> 200 (5ms, 537 bytes)
+2015-02-11 15:38:18,648 - sauce_connect:0 - INFO - GET http://localhost:3000/js/lib/highlight.pack.js -> 200 (6ms, 4587 bytes)
+2015-02-11 15:38:18,753 - sauce_connect:0 - INFO - Request started: GET http://www.google-analytics.com/collect?v=1&_v=j32&a=735314273&t=pageview&_s=1&dl=http%3A%2F%2Flocalhost%2Flogin%3Furl%3D%2F&ul=en-us&de=UTF-8&dt=Adcade%20Help%20Center&sd=24-bit&sr=1024x768&vp=1024x673&je=1&fl=15.0%20r0&_u=OCCAAEQiI~&jid=&cid=2050286874.1423687098&tid=UA-36759287-8&z=2093682293
+2015-02-11 15:38:18,763 - sauce_connect:0 - INFO - GET http://www.google-analytics.com/collect?v=1&_v=j32&a=735314273&t=pageview&_s=1&dl=http%3A%2F%2Flocalhost%2Flogin%3Furl%3D%2F&ul=en-us&de=UTF-8&dt=Adcade%20Help%20Center&sd=24-bit&sr=1024x768&vp=1024x673&je=1&fl=15.0%20r0&_u=OCCAAEQiI~&jid=&cid=2050286874.1423687098&tid=UA-36759287-8&z=2093682293 -> 200 (11ms, 35 bytes)
+2015-02-11 15:38:22,561 - sauce_connect:0 - INFO - Request started: POST http://localhost:3000/login?url=/
+2015-02-11 15:38:22,946 - sauce_connect:0 - INFO - POST http://localhost:3000/login?url=/ -> 302 (385ms, 58 bytes)
+2015-02-11 15:38:23,029 - sauce_connect:0 - INFO - Request started: GET http://localhost:3000/
+2015-02-11 15:38:23,115 - sauce_connect:0 - INFO - GET http://localhost:3000/ -> 200 (85ms, 1381 bytes)
+2015-02-11 15:38:23,316 - sauce_connect:0 - INFO - Request started: GET http://localhost:3000/images/GetStarted-05.png
+2015-02-11 15:38:23,321 - sauce_connect:0 - INFO - GET http://localhost:3000/images/GetStarted-05.png -> 200 (4ms, 1010 bytes)
+2015-02-11 15:38:23,404 - sauce_connect:0 - INFO - Request started: GET http://localhost:3000/images/GetStarted-06.png
+2015-02-11 15:38:23,408 - sauce_connect:0 - INFO - GET http://localhost:3000/images/GetStarted-06.png -> 200 (4ms, 4460 bytes)
+2015-02-11 15:38:23,553 - sauce_connect:0 - INFO - Request started: GET http://localhost:3000/images/GetStarted-01.png
+2015-02-11 15:38:23,558 - sauce_connect:0 - INFO - GET http://localhost:3000/images/GetStarted-01.png -> 200 (4ms, 9346 bytes)
+2015-02-11 15:38:23,631 - sauce_connect:0 - INFO - Request started: GET http://localhost:3000/images/GetStarted-04.png
+2015-02-11 15:38:23,631 - sauce_connect:0 - INFO - Request started: GET http://localhost:3000/js/lib/highlight.pack.js
+2015-02-11 15:38:23,635 - sauce_connect:0 - INFO - GET http://localhost:3000/images/GetStarted-04.png -> 200 (5ms, 1608 bytes)
+2015-02-11 15:38:23,637 - sauce_connect:0 - INFO - GET http://localhost:3000/js/lib/highlight.pack.js -> 200 (5ms, 4587 bytes)
+2015-02-11 15:38:24,318 - sauce_connect:0 - INFO - Request started: GET http://localhost:3000/images/GetStarted-03.png
+2015-02-11 15:38:24,322 - sauce_connect:0 - INFO - GET http://localhost:3000/images/GetStarted-03.png -> 200 (5ms, 2485 bytes)
+2015-02-11 15:38:24,395 - sauce_connect:0 - INFO - Request started: GET http://localhost:3000/styles/styles.css
+2015-02-11 15:38:24,395 - sauce_connect:0 - INFO - Request started: GET http://localhost:3000/images/adcade-logo.svg
+2015-02-11 15:38:24,400 - sauce_connect:0 - INFO - GET http://localhost:3000/images/adcade-logo.svg -> 200 (4ms, 537 bytes)
+2015-02-11 15:38:24,401 - sauce_connect:0 - INFO - GET http://localhost:3000/styles/styles.css -> 200 (5ms, 8003 bytes)
+2015-02-11 15:38:24,528 - sauce_connect:0 - INFO - Request started: GET http://localhost:3000/images/sprites.svg
+2015-02-11 15:38:24,533 - sauce_connect:0 - INFO - GET http://localhost:3000/images/sprites.svg -> 200 (6ms, 1284 bytes)
+2015-02-11 15:38:24,605 - sauce_connect:0 - INFO - Request started: GET http://www.google-analytics.com/r/collect?v=1&_v=j32&a=1693143016&t=pageview&_s=1&dl=http%3A%2F%2Flocalhost%2F&ul=en-us&de=UTF-8&dt=Adcade%20Help%20Center&sd=24-bit&sr=1024x768&vp=1024x673&je=1&fl=15.0%20r0&_u=OGAAAEQiI~&jid=383614982&cid=3724235.1423687104&tid=UA-36759287-8&_r=1&z=1959141867
+2015-02-11 15:38:24,648 - sauce_connect:0 - INFO - GET http://www.google-analytics.com/r/collect?v=1&_v=j32&a=1693143016&t=pageview&_s=1&dl=http%3A%2F%2Flocalhost%2F&ul=en-us&de=UTF-8&dt=Adcade%20Help%20Center&sd=24-bit&sr=1024x768&vp=1024x673&je=1&fl=15.0%20r0&_u=OGAAAEQiI~&jid=383614982&cid=3724235.1423687104&tid=UA-36759287-8&_r=1&z=1959141867 -> 200 (42ms, 35 bytes)
+2015-02-11 15:38:24,877 - sauce_connect:0 - INFO - Request started: GET http://localhost:3000/
+2015-02-11 15:38:24,884 - sauce_connect:0 - INFO - GET http://localhost:3000/ -> 302 (7ms, 80 bytes)
+2015-02-11 15:38:24,967 - sauce_connect:0 - INFO - Request started: GET http://localhost:3000/login?url=/
+2015-02-11 15:38:25,009 - sauce_connect:0 - INFO - GET http://localhost:3000/login?url=/ -> 200 (41ms, 1134 bytes)
+2015-02-11 15:38:25,111 - sauce_connect:0 - INFO - Request started: GET http://localhost:3000/js/lib/highlight.pack.js
+2015-02-11 15:38:25,111 - sauce_connect:0 - INFO - Request started: GET http://localhost:3000/styles/styles.css
+2015-02-11 15:38:25,115 - sauce_connect:0 - INFO - GET http://localhost:3000/js/lib/highlight.pack.js -> 200 (3ms, 4587 bytes)
+2015-02-11 15:38:25,117 - sauce_connect:0 - INFO - GET http://localhost:3000/styles/styles.css -> 200 (5ms, 8003 bytes)
+2015-02-11 15:38:25,122 - sauce_connect:0 - INFO - Request started: GET http://localhost:3000/images/adcade-logo.svg
+2015-02-11 15:38:25,125 - sauce_connect:0 - INFO - GET http://localhost:3000/images/adcade-logo.svg -> 200 (3ms, 537 bytes)
+2015-02-11 15:38:25,262 - sauce_connect:0 - INFO - Request started: GET http://www.google-analytics.com/collect?v=1&_v=j32&a=1850799018&t=pageview&_s=1&dl=http%3A%2F%2Flocalhost%2Flogin%3Furl%3D%2F&ul=en-us&de=UTF-8&dt=Adcade%20Help%20Center&sd=24-bit&sr=1024x768&vp=1024x673&je=1&fl=15.0%20r0&_u=OCCAAEQiI~&jid=&cid=3724235.1423687104&tid=UA-36759287-8&z=688296574
+2015-02-11 15:38:25,275 - sauce_connect:0 - INFO - GET http://www.google-analytics.com/collect?v=1&_v=j32&a=1850799018&t=pageview&_s=1&dl=http%3A%2F%2Flocalhost%2Flogin%3Furl%3D%2F&ul=en-us&de=UTF-8&dt=Adcade%20Help%20Center&sd=24-bit&sr=1024x768&vp=1024x673&je=1&fl=15.0%20r0&_u=OCCAAEQiI~&jid=&cid=3724235.1423687104&tid=UA-36759287-8&z=688296574 -> 200 (13ms, 35 bytes)
+2015-02-11 15:38:25,709 - sauce_connect:0 - INFO - Request started: GET http://localhost:3000/login?url=/
+2015-02-11 15:38:25,753 - sauce_connect:0 - INFO - GET http://localhost:3000/login?url=/ -> 200 (46ms, 1075 bytes)
+2015-02-11 15:38:25,865 - sauce_connect:0 - INFO - Request started: GET http://localhost:3000/styles/styles.css
+2015-02-11 15:38:25,871 - sauce_connect:0 - INFO - GET http://localhost:3000/styles/styles.css -> 200 (6ms, 8003 bytes)
+2015-02-11 15:38:25,944 - sauce_connect:0 - INFO - Request started: GET http://localhost:3000/images/adcade-logo.svg
+2015-02-11 15:38:25,944 - sauce_connect:0 - INFO - Request started: GET http://localhost:3000/js/lib/highlight.pack.js
+2015-02-11 15:38:25,948 - sauce_connect:0 - INFO - GET http://localhost:3000/images/adcade-logo.svg -> 200 (6ms, 537 bytes)
+2015-02-11 15:38:25,950 - sauce_connect:0 - INFO - GET http://localhost:3000/js/lib/highlight.pack.js -> 200 (6ms, 4587 bytes)
+2015-02-11 15:38:26,056 - sauce_connect:0 - INFO - Request started: GET http://www.google-analytics.com/collect?v=1&_v=j32&a=1700530975&t=pageview&_s=1&dl=http%3A%2F%2Flocalhost%2Flogin%3Furl%3D%2F&ul=en-us&de=UTF-8&dt=Adcade%20Help%20Center&sd=24-bit&sr=1024x768&vp=1024x673&je=1&fl=15.0%20r0&_u=OCCAAEQiI~&jid=&cid=3724235.1423687104&tid=UA-36759287-8&z=1277208149
+2015-02-11 15:38:26,069 - sauce_connect:0 - INFO - GET http://www.google-analytics.com/collect?v=1&_v=j32&a=1700530975&t=pageview&_s=1&dl=http%3A%2F%2Flocalhost%2Flogin%3Furl%3D%2F&ul=en-us&de=UTF-8&dt=Adcade%20Help%20Center&sd=24-bit&sr=1024x768&vp=1024x673&je=1&fl=15.0%20r0&_u=OCCAAEQiI~&jid=&cid=3724235.1423687104&tid=UA-36759287-8&z=1277208149 -> 200 (13ms, 35 bytes)
+2015-02-11 15:38:29,621 - sauce_connect:0 - INFO - Request started: POST http://localhost:3000/login?url=/
+2015-02-11 15:38:29,963 - sauce_connect:0 - INFO - POST http://localhost:3000/login?url=/ -> 302 (342ms, 58 bytes)
+2015-02-11 15:38:30,049 - sauce_connect:0 - INFO - Request started: GET http://localhost:3000/
+2015-02-11 15:38:30,088 - sauce_connect:0 - INFO - GET http://localhost:3000/ -> 200 (39ms, 1381 bytes)
+2015-02-11 15:38:30,191 - sauce_connect:0 - INFO - Request started: GET http://localhost:3000/images/adcade-logo.svg
+2015-02-11 15:38:30,193 - sauce_connect:0 - INFO - Request started: GET http://localhost:3000/images/GetStarted-01.png
+2015-02-11 15:38:30,196 - sauce_connect:0 - INFO - Request started: GET http://localhost:3000/images/GetStarted-03.png
+2015-02-11 15:38:30,196 - sauce_connect:0 - INFO - Request started: GET http://localhost:3000/styles/styles.css
+2015-02-11 15:38:30,200 - sauce_connect:0 - INFO - GET http://localhost:3000/images/adcade-logo.svg -> 200 (8ms, 537 bytes)
+2015-02-11 15:38:30,200 - sauce_connect:0 - INFO - GET http://localhost:3000/images/GetStarted-01.png -> 200 (9ms, 9346 bytes)
+2015-02-11 15:38:30,201 - sauce_connect:0 - INFO - GET http://localhost:3000/images/GetStarted-03.png -> 200 (6ms, 2485 bytes)
+2015-02-11 15:38:30,203 - sauce_connect:0 - INFO - GET http://localhost:3000/styles/styles.css -> 200 (8ms, 8003 bytes)
+2015-02-11 15:38:30,252 - sauce_connect:0 - INFO - Request started: GET http://localhost:3000/images/GetStarted-04.png
+2015-02-11 15:38:30,253 - sauce_connect:0 - INFO - Request started: GET http://localhost:3000/images/GetStarted-05.png
+2015-02-11 15:38:30,256 - sauce_connect:0 - INFO - GET http://localhost:3000/images/GetStarted-04.png -> 200 (5ms, 1608 bytes)
+2015-02-11 15:38:30,257 - sauce_connect:0 - INFO - GET http://localhost:3000/images/GetStarted-05.png -> 200 (5ms, 1010 bytes)
+2015-02-11 15:38:30,331 - sauce_connect:0 - INFO - Request started: GET http://localhost:3000/images/GetStarted-06.png
+2015-02-11 15:38:30,331 - sauce_connect:0 - INFO - Request started: GET http://localhost:3000/js/lib/highlight.pack.js
+2015-02-11 15:38:30,336 - sauce_connect:0 - INFO - GET http://localhost:3000/images/GetStarted-06.png -> 200 (5ms, 4460 bytes)
+2015-02-11 15:38:30,338 - sauce_connect:0 - INFO - GET http://localhost:3000/js/lib/highlight.pack.js -> 200 (6ms, 4587 bytes)
+2015-02-11 15:38:30,410 - sauce_connect:0 - INFO - Request started: GET http://localhost:3000/images/sprites.svg
+2015-02-11 15:38:30,414 - sauce_connect:0 - INFO - GET http://localhost:3000/images/sprites.svg -> 200 (6ms, 1284 bytes)
+2015-02-11 15:38:30,513 - sauce_connect:0 - INFO - Request started: GET http://www.google-analytics.com/r/collect?v=1&_v=j32&a=400523056&t=pageview&_s=1&dl=http%3A%2F%2Flocalhost%2F&ul=en-us&de=UTF-8&dt=Adcade%20Help%20Center&sd=24-bit&sr=1024x768&vp=1024x673&je=1&fl=15.0%20r0&_u=OGAAAEQiI~&jid=1103603163&cid=1891677359.1423687110&tid=UA-36759287-8&_r=1&z=495113443
+2015-02-11 15:38:30,538 - sauce_connect:0 - INFO - GET http://www.google-analytics.com/r/collect?v=1&_v=j32&a=400523056&t=pageview&_s=1&dl=http%3A%2F%2Flocalhost%2F&ul=en-us&de=UTF-8&dt=Adcade%20Help%20Center&sd=24-bit&sr=1024x768&vp=1024x673&je=1&fl=15.0%20r0&_u=OGAAAEQiI~&jid=1103603163&cid=1891677359.1423687110&tid=UA-36759287-8&_r=1&z=495113443 -> 200 (25ms, 35 bytes)
+2015-02-11 15:38:30,806 - sauce_connect:0 - INFO - Request started: GET http://localhost:3000/
+2015-02-11 15:38:30,813 - sauce_connect:0 - INFO - GET http://localhost:3000/ -> 302 (7ms, 80 bytes)
+2015-02-11 15:38:30,967 - sauce_connect:0 - INFO - Request started: GET http://localhost:3000/login?url=/
+2015-02-11 15:38:31,009 - sauce_connect:0 - INFO - GET http://localhost:3000/login?url=/ -> 200 (43ms, 1134 bytes)
+2015-02-11 15:38:31,112 - sauce_connect:0 - INFO - Request started: GET http://localhost:3000/images/adcade-logo.svg
+2015-02-11 15:38:31,112 - sauce_connect:0 - INFO - Request started: GET http://localhost:3000/js/lib/highlight.pack.js
+2015-02-11 15:38:31,117 - sauce_connect:0 - INFO - GET http://localhost:3000/images/adcade-logo.svg -> 200 (5ms, 537 bytes)
+2015-02-11 15:38:31,117 - sauce_connect:0 - INFO - GET http://localhost:3000/js/lib/highlight.pack.js -> 200 (5ms, 4587 bytes)
+2015-02-11 15:38:31,190 - sauce_connect:0 - INFO - Request started: GET http://localhost:3000/styles/styles.css
+2015-02-11 15:38:31,194 - sauce_connect:0 - INFO - GET http://localhost:3000/styles/styles.css -> 200 (4ms, 8003 bytes)
+2015-02-11 15:38:31,381 - sauce_connect:0 - INFO - Request started: GET http://www.google-analytics.com/collect?v=1&_v=j32&a=1328889976&t=pageview&_s=1&dl=http%3A%2F%2Flocalhost%2Flogin%3Furl%3D%2F&ul=en-us&de=UTF-8&dt=Adcade%20Help%20Center&sd=24-bit&sr=1024x768&vp=1024x673&je=1&fl=15.0%20r0&_u=OCCAAEQiI~&jid=&cid=1891677359.1423687110&tid=UA-36759287-8&z=1593080810
+2015-02-11 15:38:31,394 - sauce_connect:0 - INFO - GET http://www.google-analytics.com/collect?v=1&_v=j32&a=1328889976&t=pageview&_s=1&dl=http%3A%2F%2Flocalhost%2Flogin%3Furl%3D%2F&ul=en-us&de=UTF-8&dt=Adcade%20Help%20Center&sd=24-bit&sr=1024x768&vp=1024x673&je=1&fl=15.0%20r0&_u=OCCAAEQiI~&jid=&cid=1891677359.1423687110&tid=UA-36759287-8&z=1593080810 -> 200 (12ms, 35 bytes)
+2015-02-11 15:38:31,841 - sauce_connect:0 - INFO - Request started: GET http://localhost:3000/login?url=/
+2015-02-11 15:38:31,882 - sauce_connect:0 - INFO - GET http://localhost:3000/login?url=/ -> 200 (42ms, 1075 bytes)
+2015-02-11 15:38:31,989 - sauce_connect:0 - INFO - Request started: GET http://localhost:3000/js/lib/highlight.pack.js
+2015-02-11 15:38:31,989 - sauce_connect:0 - INFO - Request started: GET http://localhost:3000/styles/styles.css
+2015-02-11 15:38:31,993 - sauce_connect:0 - INFO - GET http://localhost:3000/js/lib/highlight.pack.js -> 200 (6ms, 4587 bytes)
+2015-02-11 15:38:31,996 - sauce_connect:0 - INFO - GET http://localhost:3000/styles/styles.css -> 200 (6ms, 8003 bytes)
+2015-02-11 15:38:32,069 - sauce_connect:0 - INFO - Request started: GET http://localhost:3000/images/adcade-logo.svg
+2015-02-11 15:38:32,072 - sauce_connect:0 - INFO - GET http://localhost:3000/images/adcade-logo.svg -> 200 (5ms, 537 bytes)
+2015-02-11 15:38:32,168 - sauce_connect:0 - INFO - Request started: GET http://www.google-analytics.com/collect?v=1&_v=j32&a=578832894&t=pageview&_s=1&dl=http%3A%2F%2Flocalhost%2Flogin%3Furl%3D%2F&ul=en-us&de=UTF-8&dt=Adcade%20Help%20Center&sd=24-bit&sr=1024x768&vp=1024x673&je=1&fl=15.0%20r0&_u=OCCAAEQiI~&jid=&cid=1891677359.1423687110&tid=UA-36759287-8&z=2104405230
+2015-02-11 15:38:32,181 - sauce_connect:0 - INFO - GET http://www.google-analytics.com/collect?v=1&_v=j32&a=578832894&t=pageview&_s=1&dl=http%3A%2F%2Flocalhost%2Flogin%3Furl%3D%2F&ul=en-us&de=UTF-8&dt=Adcade%20Help%20Center&sd=24-bit&sr=1024x768&vp=1024x673&je=1&fl=15.0%20r0&_u=OCCAAEQiI~&jid=&cid=1891677359.1423687110&tid=UA-36759287-8&z=2104405230 -> 200 (13ms, 35 bytes)
+2015-02-11 15:38:35,980 - sauce_connect:0 - INFO - Request started: POST http://localhost:3000/login?url=/
+2015-02-11 15:38:36,319 - sauce_connect:0 - INFO - POST http://localhost:3000/login?url=/ -> 302 (339ms, 58 bytes)
+2015-02-11 15:38:36,404 - sauce_connect:0 - INFO - Request started: GET http://localhost:3000/
+2015-02-11 15:38:36,463 - sauce_connect:0 - INFO - GET http://localhost:3000/ -> 200 (60ms, 1381 bytes)
+2015-02-11 15:38:36,578 - sauce_connect:0 - INFO - Request started: GET http://localhost:3000/styles/styles.css
+2015-02-11 15:38:36,579 - sauce_connect:0 - INFO - Request started: GET http://localhost:3000/images/adcade-logo.svg
+2015-02-11 15:38:36,579 - sauce_connect:0 - INFO - Request started: GET http://localhost:3000/images/GetStarted-01.png
+2015-02-11 15:38:36,585 - sauce_connect:0 - INFO - GET http://localhost:3000/images/adcade-logo.svg -> 200 (7ms, 537 bytes)
+2015-02-11 15:38:36,585 - sauce_connect:0 - INFO - GET http://localhost:3000/styles/styles.css -> 200 (7ms, 8003 bytes)
+2015-02-11 15:38:36,585 - sauce_connect:0 - INFO - GET http://localhost:3000/images/GetStarted-01.png -> 200 (6ms, 9346 bytes)
+2015-02-11 15:38:36,660 - sauce_connect:0 - INFO - Request started: GET http://localhost:3000/images/GetStarted-04.png
+2015-02-11 15:38:36,660 - sauce_connect:0 - INFO - Request started: GET http://localhost:3000/images/GetStarted-03.png
+2015-02-11 15:38:36,664 - sauce_connect:0 - INFO - GET http://localhost:3000/images/GetStarted-04.png -> 200 (3ms, 1608 bytes)
+2015-02-11 15:38:36,664 - sauce_connect:0 - INFO - GET http://localhost:3000/images/GetStarted-03.png -> 200 (4ms, 2485 bytes)
+2015-02-11 15:38:36,762 - sauce_connect:0 - INFO - Request started: GET http://localhost:3000/images/GetStarted-05.png
+2015-02-11 15:38:36,766 - sauce_connect:0 - INFO - GET http://localhost:3000/images/GetStarted-05.png -> 200 (4ms, 1010 bytes)
+2015-02-11 15:38:36,936 - sauce_connect:0 - INFO - Request started: GET http://localhost:3000/js/lib/highlight.pack.js
+2015-02-11 15:38:36,940 - sauce_connect:0 - INFO - GET http://localhost:3000/js/lib/highlight.pack.js -> 200 (5ms, 4587 bytes)
+2015-02-11 15:38:37,015 - sauce_connect:0 - INFO - Request started: GET http://localhost:3000/images/GetStarted-06.png
+2015-02-11 15:38:37,019 - sauce_connect:0 - INFO - GET http://localhost:3000/images/GetStarted-06.png -> 200 (4ms, 4460 bytes)
+2015-02-11 15:38:37,273 - sauce_connect:0 - INFO - Request started: GET http://localhost:3000/images/sprites.svg
+2015-02-11 15:38:37,278 - sauce_connect:0 - INFO - GET http://localhost:3000/images/sprites.svg -> 200 (4ms, 1284 bytes)
+2015-02-11 15:38:37,354 - sauce_connect:0 - INFO - Request started: GET http://www.google-analytics.com/r/collect?v=1&_v=j32&a=93529995&t=pageview&_s=1&dl=http%3A%2F%2Flocalhost%2F&ul=en-us&de=UTF-8&dt=Adcade%20Help%20Center&sd=24-bit&sr=1024x768&vp=1024x673&je=1&fl=15.0%20r0&_u=OGAAAEQiI~&jid=1036814989&cid=1109911272.1423687117&tid=UA-36759287-8&_r=1&z=295850209
+2015-02-11 15:38:37,398 - sauce_connect:0 - INFO - GET http://www.google-analytics.com/r/collect?v=1&_v=j32&a=93529995&t=pageview&_s=1&dl=http%3A%2F%2Flocalhost%2F&ul=en-us&de=UTF-8&dt=Adcade%20Help%20Center&sd=24-bit&sr=1024x768&vp=1024x673&je=1&fl=15.0%20r0&_u=OGAAAEQiI~&jid=1036814989&cid=1109911272.1423687117&tid=UA-36759287-8&_r=1&z=295850209 -> 200 (45ms, 35 bytes)
+2015-02-11 15:38:37,621 - sauce_connect:0 - INFO - Request started: GET http://localhost:3000/
+2015-02-11 15:38:37,690 - sauce_connect:0 - INFO - GET http://localhost:3000/ -> 200 (70ms, 1381 bytes)
+2015-02-11 15:38:37,799 - sauce_connect:0 - INFO - Request started: GET http://localhost:3000/styles/styles.css
+2015-02-11 15:38:37,799 - sauce_connect:0 - INFO - Request started: GET http://localhost:3000/images/adcade-logo.svg
+2015-02-11 15:38:37,799 - sauce_connect:0 - INFO - Request started: GET http://localhost:3000/images/GetStarted-01.png
+2015-02-11 15:38:37,801 - sauce_connect:0 - INFO - Request started: GET http://localhost:3000/images/GetStarted-03.png
+2015-02-11 15:38:37,805 - sauce_connect:0 - INFO - GET http://localhost:3000/images/GetStarted-01.png -> 200 (5ms, 9346 bytes)
+2015-02-11 15:38:37,805 - sauce_connect:0 - INFO - GET http://localhost:3000/images/adcade-logo.svg -> 200 (5ms, 537 bytes)
+2015-02-11 15:38:37,805 - sauce_connect:0 - INFO - GET http://localhost:3000/styles/styles.css -> 200 (7ms, 8003 bytes)
+2015-02-11 15:38:37,805 - sauce_connect:0 - INFO - GET http://localhost:3000/images/GetStarted-03.png -> 200 (6ms, 2485 bytes)
+2015-02-11 15:38:37,838 - sauce_connect:0 - INFO - Request started: GET http://localhost:3000/images/GetStarted-04.png
+2015-02-11 15:38:37,838 - sauce_connect:0 - INFO - Request started: GET http://localhost:3000/images/GetStarted-05.png
+2015-02-11 15:38:37,842 - sauce_connect:0 - INFO - GET http://localhost:3000/images/GetStarted-04.png -> 200 (4ms, 1608 bytes)
+2015-02-11 15:38:37,844 - sauce_connect:0 - INFO - GET http://localhost:3000/images/GetStarted-05.png -> 200 (5ms, 1010 bytes)
+2015-02-11 15:38:38,058 - sauce_connect:0 - INFO - Request started: GET http://localhost:3000/images/GetStarted-06.png
+2015-02-11 15:38:38,058 - sauce_connect:0 - INFO - Request started: GET http://localhost:3000/js/lib/highlight.pack.js
+2015-02-11 15:38:38,062 - sauce_connect:0 - INFO - GET http://localhost:3000/images/GetStarted-06.png -> 200 (4ms, 4460 bytes)
+2015-02-11 15:38:38,062 - sauce_connect:0 - INFO - GET http://localhost:3000/js/lib/highlight.pack.js -> 200 (5ms, 4587 bytes)
+2015-02-11 15:38:38,266 - sauce_connect:0 - INFO - Request started: GET http://localhost:3000/images/sprites.svg
+2015-02-11 15:38:38,269 - sauce_connect:0 - INFO - GET http://localhost:3000/images/sprites.svg -> 200 (4ms, 1284 bytes)
+2015-02-11 15:38:38,457 - sauce_connect:0 - INFO - Request started: GET http://www.google-analytics.com/collect?v=1&_v=j32&a=1246629674&t=pageview&_s=1&dl=http%3A%2F%2Flocalhost%2F&ul=en-us&de=UTF-8&dt=Adcade%20Help%20Center&sd=24-bit&sr=1024x768&vp=1024x673&je=1&fl=15.0%20r0&_u=OCCAAEQiI~&jid=&cid=1109911272.1423687117&tid=UA-36759287-8&z=900859487
+2015-02-11 15:38:38,469 - sauce_connect:0 - INFO - GET http://www.google-analytics.com/collect?v=1&_v=j32&a=1246629674&t=pageview&_s=1&dl=http%3A%2F%2Flocalhost%2F&ul=en-us&de=UTF-8&dt=Adcade%20Help%20Center&sd=24-bit&sr=1024x768&vp=1024x673&je=1&fl=15.0%20r0&_u=OCCAAEQiI~&jid=&cid=1109911272.1423687117&tid=UA-36759287-8&z=900859487 -> 200 (12ms, 35 bytes)
+2015-02-11 15:38:38,839 - sauce_connect:0 - INFO - Request started: GET http://localhost:3000/login?url=/
+2015-02-11 15:38:38,907 - sauce_connect:0 - INFO - GET http://localhost:3000/login?url=/ -> 200 (68ms, 973 bytes)
+2015-02-11 15:38:39,019 - sauce_connect:0 - INFO - Request started: GET http://localhost:3000/js/lib/highlight.pack.js
+2015-02-11 15:38:39,023 - sauce_connect:0 - INFO - GET http://localhost:3000/js/lib/highlight.pack.js -> 200 (5ms, 4587 bytes)
+2015-02-11 15:38:39,096 - sauce_connect:0 - INFO - Request started: GET http://localhost:3000/images/adcade-logo.svg
+2015-02-11 15:38:39,098 - sauce_connect:0 - INFO - Request started: GET http://localhost:3000/styles/styles.css
+2015-02-11 15:38:39,101 - sauce_connect:0 - INFO - GET http://localhost:3000/images/adcade-logo.svg -> 200 (4ms, 537 bytes)
+2015-02-11 15:38:39,102 - sauce_connect:0 - INFO - GET http://localhost:3000/styles/styles.css -> 200 (6ms, 8003 bytes)
+2015-02-11 15:38:39,288 - sauce_connect:0 - INFO - Request started: GET http://www.google-analytics.com/collect?v=1&_v=j32&a=1535969472&t=pageview&_s=1&dl=http%3A%2F%2Flocalhost%2Flogin%3Furl%3D%2F&ul=en-us&de=UTF-8&dt=Adcade%20Help%20Center&sd=24-bit&sr=1024x768&vp=1024x673&je=1&fl=15.0%20r0&_u=OCCAAEQiI~&jid=&cid=1109911272.1423687117&tid=UA-36759287-8&z=1199912096
+2015-02-11 15:38:39,301 - sauce_connect:0 - INFO - GET http://www.google-analytics.com/collect?v=1&_v=j32&a=1535969472&t=pageview&_s=1&dl=http%3A%2F%2Flocalhost%2Flogin%3Furl%3D%2F&ul=en-us&de=UTF-8&dt=Adcade%20Help%20Center&sd=24-bit&sr=1024x768&vp=1024x673&je=1&fl=15.0%20r0&_u=OCCAAEQiI~&jid=&cid=1109911272.1423687117&tid=UA-36759287-8&z=1199912096 -> 200 (13ms, 35 bytes)
+2015-02-11 15:38:40,131 - sauce_connect:0 - INFO - Request started: GET http://localhost:3000/
+2015-02-11 15:38:40,137 - sauce_connect:0 - INFO - GET http://localhost:3000/ -> 302 (7ms, 80 bytes)
+2015-02-11 15:38:40,221 - sauce_connect:0 - INFO - Request started: GET http://localhost:3000/login?url=/
+2015-02-11 15:38:40,263 - sauce_connect:0 - INFO - GET http://localhost:3000/login?url=/ -> 200 (42ms, 1134 bytes)
+2015-02-11 15:38:40,367 - sauce_connect:0 - INFO - Request started: GET http://localhost:3000/js/lib/highlight.pack.js
+2015-02-11 15:38:40,371 - sauce_connect:0 - INFO - GET http://localhost:3000/js/lib/highlight.pack.js -> 200 (4ms, 4587 bytes)
+2015-02-11 15:38:40,446 - sauce_connect:0 - INFO - Request started: GET http://localhost:3000/styles/styles.css
+2015-02-11 15:38:40,446 - sauce_connect:0 - INFO - Request started: GET http://localhost:3000/images/adcade-logo.svg
+2015-02-11 15:38:40,450 - sauce_connect:0 - INFO - GET http://localhost:3000/images/adcade-logo.svg -> 200 (4ms, 537 bytes)
+2015-02-11 15:38:40,450 - sauce_connect:0 - INFO - GET http://localhost:3000/styles/styles.css -> 200 (6ms, 8003 bytes)
+2015-02-11 15:38:40,641 - sauce_connect:0 - INFO - Request started: GET http://www.google-analytics.com/r/collect?v=1&_v=j32&a=74217874&t=pageview&_s=1&dl=http%3A%2F%2Flocalhost%2Flogin%3Furl%3D%2F&ul=en-us&de=UTF-8&dt=Adcade%20Help%20Center&sd=24-bit&sr=1024x768&vp=1024x673&je=1&fl=15.0%20r0&_u=OGAAAEQiI~&jid=385477080&cid=224811642.1423687120&tid=UA-36759287-8&_r=1&z=1305014707
+2015-02-11 15:38:40,665 - sauce_connect:0 - INFO - GET http://www.google-analytics.com/r/collect?v=1&_v=j32&a=74217874&t=pageview&_s=1&dl=http%3A%2F%2Flocalhost%2Flogin%3Furl%3D%2F&ul=en-us&de=UTF-8&dt=Adcade%20Help%20Center&sd=24-bit&sr=1024x768&vp=1024x673&je=1&fl=15.0%20r0&_u=OGAAAEQiI~&jid=385477080&cid=224811642.1423687120&tid=UA-36759287-8&_r=1&z=1305014707 -> 200 (25ms, 35 bytes)
+2015-02-11 15:38:41,015 - sauce_connect:0 - INFO - Request started: GET http://localhost:3000/login?url=/
+2015-02-11 15:38:41,059 - sauce_connect:0 - INFO - GET http://localhost:3000/login?url=/ -> 200 (45ms, 1075 bytes)
+2015-02-11 15:38:41,168 - sauce_connect:0 - INFO - Request started: GET http://localhost:3000/styles/styles.css
+2015-02-11 15:38:41,168 - sauce_connect:0 - INFO - Request started: GET http://localhost:3000/images/adcade-logo.svg
+2015-02-11 15:38:41,170 - sauce_connect:0 - INFO - Request started: GET http://localhost:3000/js/lib/highlight.pack.js
+2015-02-11 15:38:41,173 - sauce_connect:0 - INFO - GET http://localhost:3000/images/adcade-logo.svg -> 200 (4ms, 537 bytes)
+2015-02-11 15:38:41,174 - sauce_connect:0 - INFO - GET http://localhost:3000/js/lib/highlight.pack.js -> 200 (4ms, 4587 bytes)
+2015-02-11 15:38:41,174 - sauce_connect:0 - INFO - GET http://localhost:3000/styles/styles.css -> 200 (5ms, 8003 bytes)
+2015-02-11 15:38:41,361 - sauce_connect:0 - INFO - Request started: GET http://www.google-analytics.com/collect?v=1&_v=j32&a=1882043692&t=pageview&_s=1&dl=http%3A%2F%2Flocalhost%2Flogin%3Furl%3D%2F&ul=en-us&de=UTF-8&dt=Adcade%20Help%20Center&sd=24-bit&sr=1024x768&vp=1024x673&je=1&fl=15.0%20r0&_u=OCCAAEQiI~&jid=&cid=224811642.1423687120&tid=UA-36759287-8&z=123915247
+2015-02-11 15:38:41,372 - sauce_connect:0 - INFO - GET http://www.google-analytics.com/collect?v=1&_v=j32&a=1882043692&t=pageview&_s=1&dl=http%3A%2F%2Flocalhost%2Flogin%3Furl%3D%2F&ul=en-us&de=UTF-8&dt=Adcade%20Help%20Center&sd=24-bit&sr=1024x768&vp=1024x673&je=1&fl=15.0%20r0&_u=OCCAAEQiI~&jid=&cid=224811642.1423687120&tid=UA-36759287-8&z=123915247 -> 200 (11ms, 35 bytes)
+2015-02-11 15:38:45,055 - sauce_connect:0 - INFO - Request started: POST http://localhost:3000/login?url=/
+2015-02-11 15:38:45,371 - sauce_connect:0 - INFO - POST http://localhost:3000/login?url=/ -> 302 (316ms, 58 bytes)
+2015-02-11 15:38:45,457 - sauce_connect:0 - INFO - Request started: GET http://localhost:3000/
+2015-02-11 15:38:45,500 - sauce_connect:0 - INFO - GET http://localhost:3000/ -> 200 (42ms, 1381 bytes)
+2015-02-11 15:38:45,605 - sauce_connect:0 - INFO - Request started: GET http://localhost:3000/images/GetStarted-04.png
+2015-02-11 15:38:45,605 - sauce_connect:0 - INFO - Request started: GET http://localhost:3000/images/GetStarted-05.png
+2015-02-11 15:38:45,608 - sauce_connect:0 - INFO - GET http://localhost:3000/images/GetStarted-04.png -> 200 (4ms, 1608 bytes)
+2015-02-11 15:38:45,609 - sauce_connect:0 - INFO - GET http://localhost:3000/images/GetStarted-05.png -> 200 (4ms, 1010 bytes)
+2015-02-11 15:38:45,611 - sauce_connect:0 - INFO - Request started: GET http://localhost:3000/images/adcade-logo.svg
+2015-02-11 15:38:45,611 - sauce_connect:0 - INFO - Request started: GET http://localhost:3000/styles/styles.css
+2015-02-11 15:38:45,615 - sauce_connect:0 - INFO - Request started: GET http://localhost:3000/images/GetStarted-01.png
+2015-02-11 15:38:45,615 - sauce_connect:0 - INFO - Request started: GET http://localhost:3000/images/GetStarted-03.png
+2015-02-11 15:38:45,615 - sauce_connect:0 - INFO - GET http://localhost:3000/images/adcade-logo.svg -> 200 (3ms, 537 bytes)
+2015-02-11 15:38:45,617 - sauce_connect:0 - INFO - GET http://localhost:3000/styles/styles.css -> 200 (5ms, 8003 bytes)
+2015-02-11 15:38:45,618 - sauce_connect:0 - INFO - GET http://localhost:3000/images/GetStarted-01.png -> 200 (3ms, 9346 bytes)
+2015-02-11 15:38:45,618 - sauce_connect:0 - INFO - GET http://localhost:3000/images/GetStarted-03.png -> 200 (3ms, 2485 bytes)
+2015-02-11 15:38:45,694 - sauce_connect:0 - INFO - Request started: GET http://localhost:3000/images/GetStarted-06.png
+2015-02-11 15:38:45,697 - sauce_connect:0 - INFO - GET http://localhost:3000/images/GetStarted-06.png -> 200 (4ms, 4460 bytes)
+2015-02-11 15:38:45,779 - sauce_connect:0 - INFO - Request started: GET http://localhost:3000/js/lib/highlight.pack.js
+2015-02-11 15:38:45,782 - sauce_connect:0 - INFO - GET http://localhost:3000/js/lib/highlight.pack.js -> 200 (4ms, 4587 bytes)
+2015-02-11 15:38:46,036 - sauce_connect:0 - INFO - Request started: GET http://localhost:3000/images/sprites.svg
+2015-02-11 15:38:46,039 - sauce_connect:0 - INFO - GET http://localhost:3000/images/sprites.svg -> 200 (4ms, 1284 bytes)
+2015-02-11 15:38:46,131 - sauce_connect:0 - INFO - Request started: GET http://www.google-analytics.com/r/collect?v=1&_v=j32&a=1909422322&t=pageview&_s=1&dl=http%3A%2F%2Flocalhost%2F&ul=en-us&de=UTF-8&dt=Adcade%20Help%20Center&sd=24-bit&sr=1024x768&vp=1024x673&je=1&fl=15.0%20r0&_u=OGAAAEQiI~&jid=477887028&cid=1642460699.1423687126&tid=UA-36759287-8&_r=1&z=533138496
+2015-02-11 15:38:46,157 - sauce_connect:0 - INFO - GET http://www.google-analytics.com/r/collect?v=1&_v=j32&a=1909422322&t=pageview&_s=1&dl=http%3A%2F%2Flocalhost%2F&ul=en-us&de=UTF-8&dt=Adcade%20Help%20Center&sd=24-bit&sr=1024x768&vp=1024x673&je=1&fl=15.0%20r0&_u=OGAAAEQiI~&jid=477887028&cid=1642460699.1423687126&tid=UA-36759287-8&_r=1&z=533138496 -> 200 (26ms, 35 bytes)
+2015-02-11 15:38:46,385 - sauce_connect:0 - INFO - Request started: GET http://localhost:3000/
+2015-02-11 15:38:46,424 - sauce_connect:0 - INFO - GET http://localhost:3000/ -> 200 (39ms, 1381 bytes)
+2015-02-11 15:38:46,526 - sauce_connect:0 - INFO - Request started: GET http://localhost:3000/images/adcade-logo.svg
+2015-02-11 15:38:46,526 - sauce_connect:0 - INFO - Request started: GET http://localhost:3000/images/GetStarted-04.png
+2015-02-11 15:38:46,528 - sauce_connect:0 - INFO - Request started: GET http://localhost:3000/images/GetStarted-05.png
+2015-02-11 15:38:46,528 - sauce_connect:0 - INFO - Request started: GET http://localhost:3000/images/GetStarted-01.png
+2015-02-11 15:38:46,530 - sauce_connect:0 - INFO - GET http://localhost:3000/images/GetStarted-04.png -> 200 (5ms, 1608 bytes)
+2015-02-11 15:38:46,532 - sauce_connect:0 - INFO - GET http://localhost:3000/images/adcade-logo.svg -> 200 (6ms, 537 bytes)
+2015-02-11 15:38:46,533 - sauce_connect:0 - INFO - GET http://localhost:3000/images/GetStarted-05.png -> 200 (6ms, 1010 bytes)
+2015-02-11 15:38:46,536 - sauce_connect:0 - INFO - GET http://localhost:3000/images/GetStarted-01.png -> 200 (7ms, 9346 bytes)
+2015-02-11 15:38:46,604 - sauce_connect:0 - INFO - Request started: GET http://localhost:3000/images/GetStarted-03.png
+2015-02-11 15:38:46,604 - sauce_connect:0 - INFO - Request started: GET http://localhost:3000/styles/styles.css
+2015-02-11 15:38:46,608 - sauce_connect:0 - INFO - GET http://localhost:3000/images/GetStarted-03.png -> 200 (5ms, 2485 bytes)
+2015-02-11 15:38:46,611 - sauce_connect:0 - INFO - GET http://localhost:3000/styles/styles.css -> 200 (6ms, 8003 bytes)
+2015-02-11 15:38:46,683 - sauce_connect:0 - INFO - Request started: GET http://localhost:3000/images/GetStarted-06.png
+2015-02-11 15:38:46,683 - sauce_connect:0 - INFO - Request started: GET http://localhost:3000/js/lib/highlight.pack.js
+2015-02-11 15:38:46,688 - sauce_connect:0 - INFO - GET http://localhost:3000/images/GetStarted-06.png -> 200 (6ms, 4460 bytes)
+2015-02-11 15:38:46,690 - sauce_connect:0 - INFO - GET http://localhost:3000/js/lib/highlight.pack.js -> 200 (7ms, 4587 bytes)
+2015-02-11 15:38:46,839 - sauce_connect:0 - INFO - Request started: GET http://localhost:3000/images/sprites.svg
+2015-02-11 15:38:46,844 - sauce_connect:0 - INFO - GET http://localhost:3000/images/sprites.svg -> 200 (4ms, 1284 bytes)
+2015-02-11 15:38:46,918 - sauce_connect:0 - INFO - Request started: GET http://www.google-analytics.com/collect?v=1&_v=j32&a=310329078&t=pageview&_s=1&dl=http%3A%2F%2Flocalhost%2F&ul=en-us&de=UTF-8&dt=Adcade%20Help%20Center&sd=24-bit&sr=1024x768&vp=1024x673&je=1&fl=15.0%20r0&_u=OCCAAEQiI~&jid=&cid=1642460699.1423687126&tid=UA-36759287-8&z=1485195350
+2015-02-11 15:38:46,930 - sauce_connect:0 - INFO - GET http://www.google-analytics.com/collect?v=1&_v=j32&a=310329078&t=pageview&_s=1&dl=http%3A%2F%2Flocalhost%2F&ul=en-us&de=UTF-8&dt=Adcade%20Help%20Center&sd=24-bit&sr=1024x768&vp=1024x673&je=1&fl=15.0%20r0&_u=OCCAAEQiI~&jid=&cid=1642460699.1423687126&tid=UA-36759287-8&z=1485195350 -> 200 (12ms, 35 bytes)
+2015-02-11 15:38:47,296 - sauce_connect:0 - INFO - Request started: GET http://localhost:3000/login?url=/
+2015-02-11 15:38:47,339 - sauce_connect:0 - INFO - GET http://localhost:3000/login?url=/ -> 200 (43ms, 973 bytes)
+2015-02-11 15:38:47,437 - sauce_connect:0 - INFO - Request started: GET http://localhost:3000/images/adcade-logo.svg
+2015-02-11 15:38:47,437 - sauce_connect:0 - INFO - Request started: GET http://localhost:3000/js/lib/highlight.pack.js
+2015-02-11 15:38:47,443 - sauce_connect:0 - INFO - GET http://localhost:3000/images/adcade-logo.svg -> 200 (5ms, 537 bytes)
+2015-02-11 15:38:47,443 - sauce_connect:0 - INFO - GET http://localhost:3000/js/lib/highlight.pack.js -> 200 (6ms, 4587 bytes)
+2015-02-11 15:38:47,515 - sauce_connect:0 - INFO - Request started: GET http://localhost:3000/styles/styles.css
+2015-02-11 15:38:47,519 - sauce_connect:0 - INFO - GET http://localhost:3000/styles/styles.css -> 200 (5ms, 8003 bytes)
+2015-02-11 15:38:47,635 - sauce_connect:0 - INFO - Request started: GET http://www.google-analytics.com/collect?v=1&_v=j32&a=803472918&t=pageview&_s=1&dl=http%3A%2F%2Flocalhost%2Flogin%3Furl%3D%2F&ul=en-us&de=UTF-8&dt=Adcade%20Help%20Center&sd=24-bit&sr=1024x768&vp=1024x673&je=1&fl=15.0%20r0&_u=OCCAAEQiI~&jid=&cid=1642460699.1423687126&tid=UA-36759287-8&z=79544441
+2015-02-11 15:38:47,648 - sauce_connect:0 - INFO - GET http://www.google-analytics.com/collect?v=1&_v=j32&a=803472918&t=pageview&_s=1&dl=http%3A%2F%2Flocalhost%2Flogin%3Furl%3D%2F&ul=en-us&de=UTF-8&dt=Adcade%20Help%20Center&sd=24-bit&sr=1024x768&vp=1024x673&je=1&fl=15.0%20r0&_u=OCCAAEQiI~&jid=&cid=1642460699.1423687126&tid=UA-36759287-8&z=79544441 -> 200 (12ms, 35 bytes)
+2015-02-11 15:38:48,457 - sauce_connect:0 - INFO - Request started: GET http://localhost:3000/
+2015-02-11 15:38:48,463 - sauce_connect:0 - INFO - GET http://localhost:3000/ -> 302 (6ms, 80 bytes)
+2015-02-11 15:38:48,971 - sauce_connect:0 - INFO - Request started: GET http://localhost:3000/login?url=/
+2015-02-11 15:38:49,036 - sauce_connect:0 - INFO - GET http://localhost:3000/login?url=/ -> 200 (64ms, 1134 bytes)
+2015-02-11 15:38:49,134 - sauce_connect:0 - INFO - Request started: GET http://localhost:3000/images/adcade-logo.svg
+2015-02-11 15:38:49,138 - sauce_connect:0 - INFO - GET http://localhost:3000/images/adcade-logo.svg -> 200 (4ms, 537 bytes)
+2015-02-11 15:38:49,227 - sauce_connect:0 - INFO - Request started: GET http://localhost:3000/styles/styles.css
+2015-02-11 15:38:49,227 - sauce_connect:0 - INFO - Request started: GET http://localhost:3000/js/lib/highlight.pack.js
+2015-02-11 15:38:49,232 - sauce_connect:0 - INFO - GET http://localhost:3000/js/lib/highlight.pack.js -> 200 (3ms, 4587 bytes)
+2015-02-11 15:38:49,232 - sauce_connect:0 - INFO - GET http://localhost:3000/styles/styles.css -> 200 (4ms, 8003 bytes)
+2015-02-11 15:38:49,505 - sauce_connect:0 - INFO - Request started: GET http://www.google-analytics.com/r/collect?v=1&_v=j32&a=863147919&t=pageview&_s=1&dl=http%3A%2F%2Flocalhost%2Flogin%3Furl%3D%2F&ul=en-us&de=UTF-8&dt=Adcade%20Help%20Center&sd=24-bit&sr=1024x768&vp=1024x673&je=1&fl=15.0%20r0&_u=OGAAAEQiI~&jid=867167832&cid=2124854874.1423687129&tid=UA-36759287-8&_r=1&z=109404535
+2015-02-11 15:38:49,530 - sauce_connect:0 - INFO - GET http://www.google-analytics.com/r/collect?v=1&_v=j32&a=863147919&t=pageview&_s=1&dl=http%3A%2F%2Flocalhost%2Flogin%3Furl%3D%2F&ul=en-us&de=UTF-8&dt=Adcade%20Help%20Center&sd=24-bit&sr=1024x768&vp=1024x673&je=1&fl=15.0%20r0&_u=OGAAAEQiI~&jid=867167832&cid=2124854874.1423687129&tid=UA-36759287-8&_r=1&z=109404535 -> 200 (25ms, 35 bytes)
+2015-02-11 15:38:49,901 - sauce_connect:0 - INFO - Request started: GET http://localhost:3000/login?url=/
+2015-02-11 15:38:49,970 - sauce_connect:0 - INFO - GET http://localhost:3000/login?url=/ -> 200 (69ms, 1075 bytes)
+2015-02-11 15:38:50,068 - sauce_connect:0 - INFO - Request started: GET http://localhost:3000/js/lib/highlight.pack.js
+2015-02-11 15:38:50,069 - sauce_connect:0 - INFO - Request started: GET http://localhost:3000/styles/styles.css
+2015-02-11 15:38:50,073 - sauce_connect:0 - INFO - GET http://localhost:3000/js/lib/highlight.pack.js -> 200 (6ms, 4587 bytes)
+2015-02-11 15:38:50,075 - sauce_connect:0 - INFO - GET http://localhost:3000/styles/styles.css -> 200 (7ms, 8003 bytes)
+2015-02-11 15:38:50,148 - sauce_connect:0 - INFO - Request started: GET http://localhost:3000/images/adcade-logo.svg
+2015-02-11 15:38:50,151 - sauce_connect:0 - INFO - GET http://localhost:3000/images/adcade-logo.svg -> 200 (4ms, 537 bytes)
+2015-02-11 15:38:50,678 - sauce_connect:0 - INFO - Request started: GET http://www.google-analytics.com/collect?v=1&_v=j32&a=865387576&t=pageview&_s=1&dl=http%3A%2F%2Flocalhost%2Flogin%3Furl%3D%2F&ul=en-us&de=UTF-8&dt=Adcade%20Help%20Center&sd=24-bit&sr=1024x768&vp=1024x673&je=1&fl=15.0%20r0&_u=OCCAAEQiI~&jid=&cid=2124854874.1423687129&tid=UA-36759287-8&z=1876073265
+2015-02-11 15:38:50,694 - sauce_connect:0 - INFO - GET http://www.google-analytics.com/collect?v=1&_v=j32&a=865387576&t=pageview&_s=1&dl=http%3A%2F%2Flocalhost%2Flogin%3Furl%3D%2F&ul=en-us&de=UTF-8&dt=Adcade%20Help%20Center&sd=24-bit&sr=1024x768&vp=1024x673&je=1&fl=15.0%20r0&_u=OCCAAEQiI~&jid=&cid=2124854874.1423687129&tid=UA-36759287-8&z=1876073265 -> 200 (16ms, 35 bytes)
+2015-02-11 15:38:54,267 - sauce_connect:0 - INFO - Request started: POST http://localhost:3000/login?url=/
+2015-02-11 15:38:54,516 - sauce_connect:0 - INFO - Request started: GET http://localhost:3000/feedback
+2015-02-11 15:38:54,523 - sauce_connect:0 - INFO - GET http://localhost:3000/feedback -> 302 (7ms, 96 bytes)
+2015-02-11 15:38:54,585 - sauce_connect:0 - INFO - POST http://localhost:3000/login?url=/ -> 302 (318ms, 58 bytes)
+2015-02-11 15:38:54,605 - sauce_connect:0 - INFO - Request started: GET http://localhost:3000/login?url=/feedback
+2015-02-11 15:38:54,655 - sauce_connect:0 - INFO - GET http://localhost:3000/login?url=/feedback -> 200 (50ms, 1077 bytes)
+2015-02-11 15:38:54,831 - sauce_connect:0 - INFO - Request started: GET http://localhost:3000/js/lib/highlight.pack.js
+2015-02-11 15:38:54,831 - sauce_connect:0 - INFO - Request started: GET http://localhost:3000/styles/styles.css
+2015-02-11 15:38:54,835 - sauce_connect:0 - INFO - GET http://localhost:3000/js/lib/highlight.pack.js -> 200 (4ms, 4587 bytes)
+2015-02-11 15:38:54,836 - sauce_connect:0 - INFO - GET http://localhost:3000/styles/styles.css -> 200 (6ms, 8003 bytes)
+2015-02-11 15:38:54,851 - sauce_connect:0 - INFO - Request started: GET http://localhost:3000/images/adcade-logo.svg
+2015-02-11 15:38:54,855 - sauce_connect:0 - INFO - GET http://localhost:3000/images/adcade-logo.svg -> 200 (4ms, 537 bytes)
+2015-02-11 15:38:55,292 - sauce_connect:0 - INFO - Request started: GET http://www.google-analytics.com/collect?v=1&_v=j32&a=1412669952&t=pageview&_s=1&dl=http%3A%2F%2Flocalhost%2Flogin%3Furl%3D%2Ffeedback&ul=en-us&de=UTF-8&dt=Adcade%20Help%20Center&sd=24-bit&sr=1024x768&vp=1024x673&je=1&fl=15.0%20r0&_u=eCCAAEQiI~&jid=&cid=2124854874.1423687129&tid=UA-36759287-8&linkid=login-submit&z=840441464
+2015-02-11 15:38:55,305 - sauce_connect:0 - INFO - GET http://www.google-analytics.com/collect?v=1&_v=j32&a=1412669952&t=pageview&_s=1&dl=http%3A%2F%2Flocalhost%2Flogin%3Furl%3D%2Ffeedback&ul=en-us&de=UTF-8&dt=Adcade%20Help%20Center&sd=24-bit&sr=1024x768&vp=1024x673&je=1&fl=15.0%20r0&_u=eCCAAEQiI~&jid=&cid=2124854874.1423687129&tid=UA-36759287-8&linkid=login-submit&z=840441464 -> 200 (13ms, 35 bytes)
+2015-02-11 15:38:56,121 - sauce_connect:0 - INFO - Request started: GET http://localhost:3000/
+2015-02-11 15:38:56,125 - sauce_connect:0 - INFO - GET http://localhost:3000/ -> 302 (6ms, 80 bytes)
+2015-02-11 15:38:56,233 - sauce_connect:0 - INFO - Request started: GET http://localhost:3000/login?url=/
+2015-02-11 15:38:56,269 - sauce_connect:0 - INFO - GET http://localhost:3000/login?url=/ -> 200 (37ms, 1134 bytes)
+2015-02-11 15:38:56,369 - sauce_connect:0 - INFO - Request started: GET http://localhost:3000/js/lib/highlight.pack.js
+2015-02-11 15:38:56,374 - sauce_connect:0 - INFO - GET http://localhost:3000/js/lib/highlight.pack.js -> 200 (4ms, 4587 bytes)
+2015-02-11 15:38:56,447 - sauce_connect:0 - INFO - Request started: GET http://localhost:3000/styles/styles.css
+2015-02-11 15:38:56,447 - sauce_connect:0 - INFO - Request started: GET http://localhost:3000/images/adcade-logo.svg
+2015-02-11 15:38:56,453 - sauce_connect:0 - INFO - GET http://localhost:3000/images/adcade-logo.svg -> 200 (4ms, 537 bytes)
+2015-02-11 15:38:56,453 - sauce_connect:0 - INFO - GET http://localhost:3000/styles/styles.css -> 200 (5ms, 8003 bytes)
+2015-02-11 15:38:56,650 - sauce_connect:0 - INFO - Request started: GET http://www.google-analytics.com/r/collect?v=1&_v=j32&a=441554640&t=pageview&_s=1&dl=http%3A%2F%2Flocalhost%2Flogin%3Furl%3D%2F&ul=en-us&de=UTF-8&dt=Adcade%20Help%20Center&sd=24-bit&sr=1024x768&vp=1024x673&je=1&fl=15.0%20r0&_u=OGAAAEQiI~&jid=736644119&cid=1899883024.1423687136&tid=UA-36759287-8&_r=1&z=1152105174
+2015-02-11 15:38:56,674 - sauce_connect:0 - INFO - GET http://www.google-analytics.com/r/collect?v=1&_v=j32&a=441554640&t=pageview&_s=1&dl=http%3A%2F%2Flocalhost%2Flogin%3Furl%3D%2F&ul=en-us&de=UTF-8&dt=Adcade%20Help%20Center&sd=24-bit&sr=1024x768&vp=1024x673&je=1&fl=15.0%20r0&_u=OGAAAEQiI~&jid=736644119&cid=1899883024.1423687136&tid=UA-36759287-8&_r=1&z=1152105174 -> 200 (25ms, 35 bytes)
+2015-02-11 15:38:57,046 - sauce_connect:0 - INFO - Request started: GET http://localhost:3000/login?url=/
+2015-02-11 15:38:57,086 - sauce_connect:0 - INFO - GET http://localhost:3000/login?url=/ -> 200 (41ms, 1075 bytes)
+2015-02-11 15:38:57,190 - sauce_connect:0 - INFO - Request started: GET http://localhost:3000/images/adcade-logo.svg
+2015-02-11 15:38:57,197 - sauce_connect:0 - INFO - GET http://localhost:3000/images/adcade-logo.svg -> 200 (5ms, 537 bytes)
+2015-02-11 15:38:57,269 - sauce_connect:0 - INFO - Request started: GET http://localhost:3000/js/lib/highlight.pack.js
+2015-02-11 15:38:57,269 - sauce_connect:0 - INFO - Request started: GET http://localhost:3000/styles/styles.css
+2015-02-11 15:38:57,273 - sauce_connect:0 - INFO - GET http://localhost:3000/js/lib/highlight.pack.js -> 200 (3ms, 4587 bytes)
+2015-02-11 15:38:57,273 - sauce_connect:0 - INFO - GET http://localhost:3000/styles/styles.css -> 200 (4ms, 8003 bytes)
+2015-02-11 15:38:57,457 - sauce_connect:0 - INFO - Request started: GET http://www.google-analytics.com/collect?v=1&_v=j32&a=1749434790&t=pageview&_s=1&dl=http%3A%2F%2Flocalhost%2Flogin%3Furl%3D%2F&ul=en-us&de=UTF-8&dt=Adcade%20Help%20Center&sd=24-bit&sr=1024x768&vp=1024x673&je=1&fl=15.0%20r0&_u=OCCAAEQiI~&jid=&cid=1899883024.1423687136&tid=UA-36759287-8&z=668645067
+2015-02-11 15:38:57,470 - sauce_connect:0 - INFO - GET http://www.google-analytics.com/collect?v=1&_v=j32&a=1749434790&t=pageview&_s=1&dl=http%3A%2F%2Flocalhost%2Flogin%3Furl%3D%2F&ul=en-us&de=UTF-8&dt=Adcade%20Help%20Center&sd=24-bit&sr=1024x768&vp=1024x673&je=1&fl=15.0%20r0&_u=OCCAAEQiI~&jid=&cid=1899883024.1423687136&tid=UA-36759287-8&z=668645067 -> 200 (12ms, 35 bytes)
+2015-02-11 15:39:01,288 - sauce_connect:0 - INFO - Request started: POST http://localhost:3000/login?url=/
+2015-02-11 15:39:01,487 - sauce_connect:0 - INFO - Request started: GET http://localhost:3000/feedback
+2015-02-11 15:39:01,494 - sauce_connect:0 - INFO - GET http://localhost:3000/feedback -> 302 (8ms, 96 bytes)
+2015-02-11 15:39:01,578 - sauce_connect:0 - INFO - Request started: GET http://localhost:3000/login?url=/feedback
+2015-02-11 15:39:01,621 - sauce_connect:0 - INFO - GET http://localhost:3000/login?url=/feedback -> 200 (42ms, 1135 bytes)
+2015-02-11 15:39:01,723 - sauce_connect:0 - INFO - Request started: GET http://localhost:3000/images/adcade-logo.svg
+2015-02-11 15:39:01,726 - sauce_connect:0 - INFO - GET http://localhost:3000/images/adcade-logo.svg -> 200 (4ms, 537 bytes)
+2015-02-11 15:39:01,746 - sauce_connect:0 - INFO - POST http://localhost:3000/login?url=/ -> 302 (458ms, 58 bytes)
+2015-02-11 15:39:01,801 - sauce_connect:0 - INFO - Request started: GET http://localhost:3000/js/lib/highlight.pack.js
+2015-02-11 15:39:01,801 - sauce_connect:0 - INFO - Request started: GET http://localhost:3000/styles/styles.css
+2015-02-11 15:39:01,805 - sauce_connect:0 - INFO - GET http://localhost:3000/js/lib/highlight.pack.js -> 200 (3ms, 4587 bytes)
+2015-02-11 15:39:01,805 - sauce_connect:0 - INFO - GET http://localhost:3000/styles/styles.css -> 200 (4ms, 8003 bytes)
+2015-02-11 15:39:02,059 - sauce_connect:0 - INFO - Request started: GET http://www.google-analytics.com/collect?v=1&_v=j32&a=390831470&t=pageview&_s=1&dl=http%3A%2F%2Flocalhost%2Flogin%3Furl%3D%2Ffeedback&ul=en-us&de=UTF-8&dt=Adcade%20Help%20Center&sd=24-bit&sr=1024x768&vp=1024x673&je=1&fl=15.0%20r0&_u=eCCAAEQiI~&jid=&cid=1899883024.1423687136&tid=UA-36759287-8&linkid=login-submit&z=1945328435
+2015-02-11 15:39:02,072 - sauce_connect:0 - INFO - GET http://www.google-analytics.com/collect?v=1&_v=j32&a=390831470&t=pageview&_s=1&dl=http%3A%2F%2Flocalhost%2Flogin%3Furl%3D%2Ffeedback&ul=en-us&de=UTF-8&dt=Adcade%20Help%20Center&sd=24-bit&sr=1024x768&vp=1024x673&je=1&fl=15.0%20r0&_u=eCCAAEQiI~&jid=&cid=1899883024.1423687136&tid=UA-36759287-8&linkid=login-submit&z=1945328435 -> 200 (13ms, 35 bytes)
+2015-02-11 15:39:02,457 - sauce_connect:0 - INFO - Request started: POST http://ocsp.apple.com/ocsp-wwdr02
+2015-02-11 15:39:02,513 - sauce_connect:0 - INFO - POST http://ocsp.apple.com/ocsp-wwdr02 -> 200 (55ms, 3486 bytes)
+2015-02-11 15:39:02,844 - sauce_connect:0 - INFO - Request started: GET http://localhost:3000/
+2015-02-11 15:39:02,852 - sauce_connect:0 - INFO - GET http://localhost:3000/ -> 302 (8ms, 80 bytes)
+2015-02-11 15:39:02,936 - sauce_connect:0 - INFO - Request started: GET http://localhost:3000/login?url=/
+2015-02-11 15:39:02,980 - sauce_connect:0 - INFO - GET http://localhost:3000/login?url=/ -> 200 (44ms, 1134 bytes)
+2015-02-11 15:39:03,082 - sauce_connect:0 - INFO - Request started: GET http://localhost:3000/js/lib/highlight.pack.js
+2015-02-11 15:39:03,082 - sauce_connect:0 - INFO - Request started: GET http://localhost:3000/styles/styles.css
+2015-02-11 15:39:03,086 - sauce_connect:0 - INFO - GET http://localhost:3000/js/lib/highlight.pack.js -> 200 (5ms, 4587 bytes)
+2015-02-11 15:39:03,088 - sauce_connect:0 - INFO - GET http://localhost:3000/styles/styles.css -> 200 (6ms, 8003 bytes)
+2015-02-11 15:39:03,098 - sauce_connect:0 - INFO - Request started: GET http://localhost:3000/images/adcade-logo.svg
+2015-02-11 15:39:03,102 - sauce_connect:0 - INFO - GET http://localhost:3000/images/adcade-logo.svg -> 200 (6ms, 537 bytes)
+2015-02-11 15:39:03,276 - sauce_connect:0 - INFO - Request started: GET http://www.google-analytics.com/r/collect?v=1&_v=j32&a=983074009&t=pageview&_s=1&dl=http%3A%2F%2Flocalhost%2Flogin%3Furl%3D%2F&ul=en-us&de=UTF-8&dt=Adcade%20Help%20Center&sd=24-bit&sr=1024x768&vp=1024x673&je=1&fl=15.0%20r0&_u=OGAAAEQiI~&jid=1702620460&cid=1503718070.1423687143&tid=UA-36759287-8&_r=1&z=1648815497
+2015-02-11 15:39:03,299 - sauce_connect:0 - INFO - GET http://www.google-analytics.com/r/collect?v=1&_v=j32&a=983074009&t=pageview&_s=1&dl=http%3A%2F%2Flocalhost%2Flogin%3Furl%3D%2F&ul=en-us&de=UTF-8&dt=Adcade%20Help%20Center&sd=24-bit&sr=1024x768&vp=1024x673&je=1&fl=15.0%20r0&_u=OGAAAEQiI~&jid=1702620460&cid=1503718070.1423687143&tid=UA-36759287-8&_r=1&z=1648815497 -> 200 (25ms, 35 bytes)
+2015-02-11 15:39:03,676 - sauce_connect:0 - INFO - Request started: GET http://localhost:3000/login?url=/
+2015-02-11 15:39:03,730 - sauce_connect:0 - INFO - GET http://localhost:3000/login?url=/ -> 200 (55ms, 1075 bytes)
+2015-02-11 15:39:03,839 - sauce_connect:0 - INFO - Request started: GET http://localhost:3000/styles/styles.css
+2015-02-11 15:39:03,839 - sauce_connect:0 - INFO - Request started: GET http://localhost:3000/images/adcade-logo.svg
+2015-02-11 15:39:03,844 - sauce_connect:0 - INFO - GET http://localhost:3000/images/adcade-logo.svg -> 200 (4ms, 537 bytes)
+2015-02-11 15:39:03,845 - sauce_connect:0 - INFO - GET http://localhost:3000/styles/styles.css -> 200 (5ms, 8003 bytes)
+2015-02-11 15:39:03,871 - sauce_connect:0 - INFO - Request started: GET http://localhost:3000/js/lib/highlight.pack.js
+2015-02-11 15:39:03,875 - sauce_connect:0 - INFO - GET http://localhost:3000/js/lib/highlight.pack.js -> 200 (4ms, 4587 bytes)
+2015-02-11 15:39:04,048 - sauce_connect:0 - INFO - Request started: GET http://www.google-analytics.com/collect?v=1&_v=j32&a=90321596&t=pageview&_s=1&dl=http%3A%2F%2Flocalhost%2Flogin%3Furl%3D%2F&ul=en-us&de=UTF-8&dt=Adcade%20Help%20Center&sd=24-bit&sr=1024x768&vp=1024x673&je=1&fl=15.0%20r0&_u=OCCAAEQiI~&jid=&cid=1503718070.1423687143&tid=UA-36759287-8&z=1402747713
+2015-02-11 15:39:04,061 - sauce_connect:0 - INFO - GET http://www.google-analytics.com/collect?v=1&_v=j32&a=90321596&t=pageview&_s=1&dl=http%3A%2F%2Flocalhost%2Flogin%3Furl%3D%2F&ul=en-us&de=UTF-8&dt=Adcade%20Help%20Center&sd=24-bit&sr=1024x768&vp=1024x673&je=1&fl=15.0%20r0&_u=OCCAAEQiI~&jid=&cid=1503718070.1423687143&tid=UA-36759287-8&z=1402747713 -> 200 (12ms, 35 bytes)
+2015-02-11 15:39:07,688 - sauce_connect:0 - INFO - Request started: POST http://localhost:3000/login?url=/
+2015-02-11 15:39:07,967 - sauce_connect:0 - INFO - Request started: GET http://localhost:3000/feedback
+2015-02-11 15:39:07,973 - sauce_connect:0 - INFO - GET http://localhost:3000/feedback -> 302 (7ms, 96 bytes)
+2015-02-11 15:39:08,042 - sauce_connect:0 - INFO - POST http://localhost:3000/login?url=/ -> 302 (354ms, 58 bytes)
+2015-02-11 15:39:08,056 - sauce_connect:0 - INFO - Request started: GET http://localhost:3000/login?url=/feedback
+2015-02-11 15:39:08,131 - sauce_connect:0 - INFO - GET http://localhost:3000/login?url=/feedback -> 200 (76ms, 1077 bytes)
+2015-02-11 15:39:08,270 - sauce_connect:0 - INFO - Request started: GET http://localhost:3000/js/lib/highlight.pack.js
+2015-02-11 15:39:08,272 - sauce_connect:0 - INFO - Request started: GET http://localhost:3000/images/adcade-logo.svg
+2015-02-11 15:39:08,276 - sauce_connect:0 - INFO - GET http://localhost:3000/images/adcade-logo.svg -> 200 (6ms, 537 bytes)
+2015-02-11 15:39:08,276 - sauce_connect:0 - INFO - GET http://localhost:3000/js/lib/highlight.pack.js -> 200 (6ms, 4587 bytes)
+2015-02-11 15:39:08,349 - sauce_connect:0 - INFO - Request started: GET http://localhost:3000/styles/styles.css
+2015-02-11 15:39:08,355 - sauce_connect:0 - INFO - GET http://localhost:3000/styles/styles.css -> 200 (6ms, 8003 bytes)
+2015-02-11 15:39:08,596 - sauce_connect:0 - INFO - Request started: GET http://www.google-analytics.com/collect?v=1&_v=j32&a=380945717&t=pageview&_s=1&dl=http%3A%2F%2Flocalhost%2Flogin%3Furl%3D%2Ffeedback&ul=en-us&de=UTF-8&dt=Adcade%20Help%20Center&sd=24-bit&sr=1024x768&vp=1024x673&je=1&fl=15.0%20r0&_u=eCCAAEQiI~&jid=&cid=1503718070.1423687143&tid=UA-36759287-8&linkid=login-submit&z=558801352
+2015-02-11 15:39:08,608 - sauce_connect:0 - INFO - GET http://www.google-analytics.com/collect?v=1&_v=j32&a=380945717&t=pageview&_s=1&dl=http%3A%2F%2Flocalhost%2Flogin%3Furl%3D%2Ffeedback&ul=en-us&de=UTF-8&dt=Adcade%20Help%20Center&sd=24-bit&sr=1024x768&vp=1024x673&je=1&fl=15.0%20r0&_u=eCCAAEQiI~&jid=&cid=1503718070.1423687143&tid=UA-36759287-8&linkid=login-submit&z=558801352 -> 200 (11ms, 35 bytes)
+2015-02-11 15:39:09,293 - sauce_connect:0 - INFO - Request started: GET http://configuration.apple.com/configurations/internetservices/safari/ConfigurationsMac-6.0.5.plist.signed
+2015-02-11 15:39:09,329 - sauce_connect:0 - INFO - GET http://configuration.apple.com/configurations/internetservices/safari/ConfigurationsMac-6.0.5.plist.signed -> 200 (35ms, 29794 bytes)
+2015-02-11 15:39:09,371 - sauce_connect:0 - INFO - Request started: GET http://localhost:3000/
+2015-02-11 15:39:09,377 - sauce_connect:0 - INFO - GET http://localhost:3000/ -> 302 (5ms, 80 bytes)
+2015-02-11 15:39:09,717 - sauce_connect:0 - INFO - Request started: GET http://localhost:3000/login?url=/
+2015-02-11 15:39:09,753 - sauce_connect:0 - INFO - GET http://localhost:3000/login?url=/ -> 200 (37ms, 1134 bytes)
+2015-02-11 15:39:09,855 - sauce_connect:0 - INFO - Request started: GET http://localhost:3000/styles/styles.css
+2015-02-11 15:39:09,855 - sauce_connect:0 - INFO - Request started: GET http://localhost:3000/js/lib/highlight.pack.js
+2015-02-11 15:39:09,862 - sauce_connect:0 - INFO - GET http://localhost:3000/styles/styles.css -> 200 (8ms, 8003 bytes)
+2015-02-11 15:39:09,864 - sauce_connect:0 - INFO - GET http://localhost:3000/js/lib/highlight.pack.js -> 200 (9ms, 4587 bytes)
+2015-02-11 15:39:09,914 - sauce_connect:0 - INFO - Request started: GET http://localhost:3000/images/adcade-logo.svg
+2015-02-11 15:39:09,920 - sauce_connect:0 - INFO - GET http://localhost:3000/images/adcade-logo.svg -> 200 (4ms, 537 bytes)
+2015-02-11 15:39:10,048 - sauce_connect:0 - INFO - Request started: GET http://www.google-analytics.com/r/collect?v=1&_v=j32&a=1581984948&t=pageview&_s=1&dl=http%3A%2F%2Flocalhost%2Flogin%3Furl%3D%2F&ul=en-us&de=UTF-8&dt=Adcade%20Help%20Center&sd=24-bit&sr=1024x768&vp=1024x673&je=1&fl=15.0%20r0&_u=OGAAAEQiI~&jid=1204640559&cid=1385764032.1423687150&tid=UA-36759287-8&_r=1&z=790621076
+2015-02-11 15:39:10,075 - sauce_connect:0 - INFO - GET http://www.google-analytics.com/r/collect?v=1&_v=j32&a=1581984948&t=pageview&_s=1&dl=http%3A%2F%2Flocalhost%2Flogin%3Furl%3D%2F&ul=en-us&de=UTF-8&dt=Adcade%20Help%20Center&sd=24-bit&sr=1024x768&vp=1024x673&je=1&fl=15.0%20r0&_u=OGAAAEQiI~&jid=1204640559&cid=1385764032.1423687150&tid=UA-36759287-8&_r=1&z=790621076 -> 200 (27ms, 35 bytes)
+2015-02-11 15:39:10,440 - sauce_connect:0 - INFO - Request started: GET http://localhost:3000/login?url=/
+2015-02-11 15:39:10,479 - sauce_connect:0 - INFO - GET http://localhost:3000/login?url=/ -> 200 (39ms, 1075 bytes)
+2015-02-11 15:39:10,581 - sauce_connect:0 - INFO - Request started: GET http://localhost:3000/js/lib/highlight.pack.js
+2015-02-11 15:39:10,581 - sauce_connect:0 - INFO - Request started: GET http://localhost:3000/images/adcade-logo.svg
+2015-02-11 15:39:10,585 - sauce_connect:0 - INFO - GET http://localhost:3000/images/adcade-logo.svg -> 200 (5ms, 537 bytes)
+2015-02-11 15:39:10,585 - sauce_connect:0 - INFO - GET http://localhost:3000/js/lib/highlight.pack.js -> 200 (5ms, 4587 bytes)
+2015-02-11 15:39:10,657 - sauce_connect:0 - INFO - Request started: GET http://localhost:3000/styles/styles.css
+2015-02-11 15:39:10,663 - sauce_connect:0 - INFO - GET http://localhost:3000/styles/styles.css -> 200 (5ms, 8003 bytes)
+2015-02-11 15:39:10,815 - sauce_connect:0 - INFO - Request started: GET http://www.google-analytics.com/collect?v=1&_v=j32&a=1175957859&t=pageview&_s=1&dl=http%3A%2F%2Flocalhost%2Flogin%3Furl%3D%2F&ul=en-us&de=UTF-8&dt=Adcade%20Help%20Center&sd=24-bit&sr=1024x768&vp=1024x673&je=1&fl=15.0%20r0&_u=OCCAAEQiI~&jid=&cid=1385764032.1423687150&tid=UA-36759287-8&z=1203544090
+2015-02-11 15:39:10,828 - sauce_connect:0 - INFO - GET http://www.google-analytics.com/collect?v=1&_v=j32&a=1175957859&t=pageview&_s=1&dl=http%3A%2F%2Flocalhost%2Flogin%3Furl%3D%2F&ul=en-us&de=UTF-8&dt=Adcade%20Help%20Center&sd=24-bit&sr=1024x768&vp=1024x673&je=1&fl=15.0%20r0&_u=OCCAAEQiI~&jid=&cid=1385764032.1423687150&tid=UA-36759287-8&z=1203544090 -> 200 (14ms, 35 bytes)
+2015-02-11 15:39:14,510 - sauce_connect:0 - INFO - Request started: POST http://localhost:3000/login?url=/
+2015-02-11 15:39:14,790 - sauce_connect:0 - INFO - Request started: GET http://localhost:3000/downloads
+2015-02-11 15:39:14,796 - sauce_connect:0 - INFO - GET http://localhost:3000/downloads -> 302 (5ms, 98 bytes)
+2015-02-11 15:39:14,875 - sauce_connect:0 - INFO - POST http://localhost:3000/login?url=/ -> 302 (366ms, 58 bytes)
+2015-02-11 15:39:14,953 - sauce_connect:0 - INFO - Request started: GET http://localhost:3000/login?url=/downloads
+2015-02-11 15:39:14,989 - sauce_connect:0 - INFO - GET http://localhost:3000/login?url=/downloads -> 200 (35ms, 1076 bytes)
+2015-02-11 15:39:15,095 - sauce_connect:0 - INFO - Request started: GET http://localhost:3000/images/adcade-logo.svg
+2015-02-11 15:39:15,095 - sauce_connect:0 - INFO - Request started: GET http://localhost:3000/js/lib/highlight.pack.js
+2015-02-11 15:39:15,101 - sauce_connect:0 - INFO - GET http://localhost:3000/images/adcade-logo.svg -> 200 (7ms, 537 bytes)
+2015-02-11 15:39:15,101 - sauce_connect:0 - INFO - GET http://localhost:3000/js/lib/highlight.pack.js -> 200 (6ms, 4587 bytes)
+2015-02-11 15:39:15,150 - sauce_connect:0 - INFO - Request started: GET http://localhost:3000/styles/styles.css
+2015-02-11 15:39:15,154 - sauce_connect:0 - INFO - GET http://localhost:3000/styles/styles.css -> 200 (5ms, 8003 bytes)
+2015-02-11 15:39:15,361 - sauce_connect:0 - INFO - Request started: GET http://www.google-analytics.com/collect?v=1&_v=j32&a=669012350&t=pageview&_s=1&dl=http%3A%2F%2Flocalhost%2Flogin%3Furl%3D%2Fdownloads&ul=en-us&de=UTF-8&dt=Adcade%20Help%20Center&sd=24-bit&sr=1024x768&vp=1024x673&je=1&fl=15.0%20r0&_u=eCCAAEQiI~&jid=&cid=1385764032.1423687150&tid=UA-36759287-8&linkid=login-submit&z=1326047411
+2015-02-11 15:39:15,374 - sauce_connect:0 - INFO - GET http://www.google-analytics.com/collect?v=1&_v=j32&a=669012350&t=pageview&_s=1&dl=http%3A%2F%2Flocalhost%2Flogin%3Furl%3D%2Fdownloads&ul=en-us&de=UTF-8&dt=Adcade%20Help%20Center&sd=24-bit&sr=1024x768&vp=1024x673&je=1&fl=15.0%20r0&_u=eCCAAEQiI~&jid=&cid=1385764032.1423687150&tid=UA-36759287-8&linkid=login-submit&z=1326047411 -> 200 (12ms, 35 bytes)
+2015-02-11 15:39:16,358 - sauce_connect:0 - INFO - Request started: GET http://localhost:3000/keystone
+2015-02-11 15:39:16,364 - sauce_connect:0 - INFO - GET http://localhost:3000/keystone -> 302 (6ms, 88 bytes)
+2015-02-11 15:39:16,447 - sauce_connect:0 - INFO - Request started: GET http://localhost:3000/keystone/signin
+2015-02-11 15:39:16,484 - sauce_connect:0 - INFO - GET http://localhost:3000/keystone/signin -> 200 (38ms, 829 bytes)
+2015-02-11 15:39:16,585 - sauce_connect:0 - INFO - Request started: GET http://localhost:3000/keystone/images/logo.png
+2015-02-11 15:39:16,585 - sauce_connect:0 - INFO - Request started: GET http://localhost:3000/keystone/styles/auth.min.css
+2015-02-11 15:39:16,589 - sauce_connect:0 - INFO - GET http://localhost:3000/keystone/images/logo.png -> 200 (4ms, 5268 bytes)
+2015-02-11 15:39:16,700 - sauce_connect:0 - INFO - GET http://localhost:3000/keystone/styles/auth.min.css -> 200 (114ms, 4374 bytes)
+2015-02-11 15:39:20,288 - sauce_connect:0 - INFO - Request started: POST http://localhost:3000/keystone/signin
+2015-02-11 15:39:20,553 - sauce_connect:0 - INFO - Request started: GET http://localhost:3000/keystone/types
+2015-02-11 15:39:20,559 - sauce_connect:0 - INFO - POST http://localhost:3000/keystone/signin -> 302 (272ms, 74 bytes)
+2015-02-11 15:39:20,561 - sauce_connect:0 - INFO - GET http://localhost:3000/keystone/types -> 302 (7ms, 130 bytes)
+2015-02-11 15:39:20,839 - sauce_connect:0 - INFO - Request started: GET http://localhost:3000/keystone/signin?from=/keystone/types
+2015-02-11 15:39:20,884 - sauce_connect:0 - INFO - GET http://localhost:3000/keystone/signin?from=/keystone/types -> 200 (45ms, 831 bytes)
+2015-02-11 15:39:20,993 - sauce_connect:0 - INFO - Request started: GET http://localhost:3000/keystone/styles/auth.min.css
+2015-02-11 15:39:20,996 - sauce_connect:0 - INFO - GET http://localhost:3000/keystone/styles/auth.min.css -> 200 (4ms, 4374 bytes)
+2015-02-11 15:39:21,072 - sauce_connect:0 - INFO - Request started: GET http://localhost:3000/keystone/images/logo.png
+2015-02-11 15:39:21,073 - sauce_connect:0 - INFO - GET http://localhost:3000/keystone/images/logo.png -> 200 (2ms, 5268 bytes)
+2015-02-11 15:39:24,115 - sauce_connect:0 - INFO - Request started: GET http://localhost:3000/keystone
+2015-02-11 15:39:24,121 - sauce_connect:0 - INFO - GET http://localhost:3000/keystone -> 302 (6ms, 88 bytes)
+2015-02-11 15:39:24,206 - sauce_connect:0 - INFO - Request started: GET http://localhost:3000/keystone/signin
+2015-02-11 15:39:24,256 - sauce_connect:0 - INFO - GET http://localhost:3000/keystone/signin -> 200 (50ms, 834 bytes)
+2015-02-11 15:39:24,361 - sauce_connect:0 - INFO - Request started: GET http://localhost:3000/keystone/styles/auth.min.css
+2015-02-11 15:39:24,367 - sauce_connect:0 - INFO - GET http://localhost:3000/keystone/styles/auth.min.css -> 200 (6ms, 4374 bytes)
+2015-02-11 15:39:24,437 - sauce_connect:0 - INFO - Request started: GET http://localhost:3000/keystone/images/logo.png
+2015-02-11 15:39:24,440 - sauce_connect:0 - INFO - GET http://localhost:3000/keystone/images/logo.png -> 200 (3ms, 5268 bytes)
+2015-02-11 15:39:28,062 - sauce_connect:0 - INFO - Request started: POST http://localhost:3000/keystone/signin
+2015-02-11 15:39:28,332 - sauce_connect:0 - INFO - POST http://localhost:3000/keystone/signin -> 302 (271ms, 74 bytes)
+2015-02-11 15:39:28,335 - sauce_connect:0 - INFO - Request started: GET http://localhost:3000/keystone/types
+2015-02-11 15:39:28,339 - sauce_connect:0 - INFO - GET http://localhost:3000/keystone/types -> 302 (4ms, 130 bytes)
+2015-02-11 15:39:28,497 - sauce_connect:0 - INFO - Request started: GET http://localhost:3000/keystone/signin?from=/keystone/types
+2015-02-11 15:39:28,551 - sauce_connect:0 - INFO - GET http://localhost:3000/keystone/signin?from=/keystone/types -> 200 (54ms, 830 bytes)
+2015-02-11 15:39:28,651 - sauce_connect:0 - INFO - Request started: GET http://localhost:3000/keystone/images/logo.png
+2015-02-11 15:39:28,655 - sauce_connect:0 - INFO - GET http://localhost:3000/keystone/images/logo.png -> 200 (4ms, 5268 bytes)
+2015-02-11 15:39:28,730 - sauce_connect:0 - INFO - Request started: GET http://localhost:3000/keystone/styles/auth.min.css
+2015-02-11 15:39:28,736 - sauce_connect:0 - INFO - GET http://localhost:3000/keystone/styles/auth.min.css -> 200 (5ms, 4374 bytes)
+2015-02-11 15:39:31,601 - sauce_connect:0 - INFO - Request started: GET http://localhost:3000/keystone
+2015-02-11 15:39:31,605 - sauce_connect:0 - INFO - GET http://localhost:3000/keystone -> 302 (4ms, 88 bytes)
+2015-02-11 15:39:31,696 - sauce_connect:0 - INFO - Request started: GET http://localhost:3000/keystone/signin
+2015-02-11 15:39:31,760 - sauce_connect:0 - INFO - GET http://localhost:3000/keystone/signin -> 200 (64ms, 829 bytes)
+2015-02-11 15:39:31,865 - sauce_connect:0 - INFO - Request started: GET http://localhost:3000/keystone/styles/auth.min.css
+2015-02-11 15:39:31,871 - sauce_connect:0 - INFO - GET http://localhost:3000/keystone/styles/auth.min.css -> 200 (6ms, 4374 bytes)
+2015-02-11 15:39:31,944 - sauce_connect:0 - INFO - Request started: GET http://localhost:3000/keystone/images/logo.png
+2015-02-11 15:39:31,947 - sauce_connect:0 - INFO - GET http://localhost:3000/keystone/images/logo.png -> 200 (4ms, 5268 bytes)
+2015-02-11 15:39:35,671 - sauce_connect:0 - INFO - Request started: POST http://localhost:3000/keystone/signin
+2015-02-11 15:39:35,917 - sauce_connect:0 - INFO - Request started: GET http://localhost:3000/keystone/types
+2015-02-11 15:39:35,928 - sauce_connect:0 - INFO - POST http://localhost:3000/keystone/signin -> 302 (256ms, 74 bytes)
+2015-02-11 15:39:35,930 - sauce_connect:0 - INFO - GET http://localhost:3000/keystone/types -> 302 (14ms, 130 bytes)
+2015-02-11 15:42:16,404 - sauce_connect:0 - INFO - Request started: POST http://localhost:3000/keystone/signin
+2015-02-11 15:42:16,677 - sauce_connect:0 - INFO - Request started: POST http://localhost:3000/keystone/signin
+2015-02-11 15:43:13,989 - sauce_connect:0 - INFO - Request started: GET http://localhost:3000/keystone/signin?from=/keystone/types
+2015-02-11 15:43:13,990 - sauce_connect:0 - INFO - received SIGINT

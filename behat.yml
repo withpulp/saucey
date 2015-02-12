@@ -2,11 +2,11 @@ default:
     context:
         parameters:
             base_url: http://adcade.com
+            help_center:  'http://localhost:3000/'
         class:  'FeatureContext'
 
     extensions:
         Behat\MinkExtension\Extension:
-            base_url:  'http://adcade.com/'
             javascript_session:  'selenium2'
             goutte:              ~
             selenium2:
@@ -18,7 +18,6 @@ LocalChrome:
 
     extensions:
         Behat\MinkExtension\Extension:
-            base_url:  'http://adcade.com/'
             javascript_session:  'selenium2'
             goutte:              ~
             selenium2:
@@ -30,7 +29,6 @@ LocalSafari:
 
     extensions:
         Behat\MinkExtension\Extension:
-            base_url:  'http://adcade.com/'
             javascript_session:  'selenium2'
             goutte:              ~
             selenium2:
@@ -42,19 +40,6 @@ LocalIE:
 
     extensions:
         Behat\MinkExtension\Extension:
-            base_url:  'http://adcade.com/'
-            javascript_session:  'selenium2'
-            goutte:              ~
-            selenium2:
-              browser: ie
-
-LocalIE:
-    context:
-        class:  'FeatureContext'
-
-    extensions:
-        Behat\MinkExtension\Extension:
-            base_url:  'http://adcade.com/'
             javascript_session:  'selenium2'
             goutte:              ~
             selenium2:

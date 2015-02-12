@@ -5,50 +5,48 @@ Feature: I want to test the help-center
   So all features and functionality behave as expected
 
     @regression @helpCenter @javascript @unauthorizedHC
-    Scenario: I want make requests as an unauthenticated user
-      Given I am on "http://localhost:3000/login?url=/"
-      Then I should see "Login"
-      And I should see "Help Center"
-      And I should see "Visual Editor"
-      And I should see "Dashboard"
-      And I should see "AdScript"
-      And I should see "Resource Center"
-      When I follow "Help Center"
-      Then I should be on "http://localhost:3000/login?url="
-      And I should see "Please login to access this page."
-      When I follow "Visual Editor"
-      Then I should be on "http://localhost:3000/login?url=/"
-      And I should see "Please login to access this page."
-      When I follow "Dashboard"
-      Then I should be on "http://localhost:3000/login?url=/"
-      And I should see "Please login to access this page."
-      When I follow "AdScript"
-      Then I should be on "http://localhost:3000/login?url=/"
-      And I should see "Please login to access this page."
-      When I follow "Resource Center"
-      Then I should be on "http://localhost:3000/login?url=/"
-      And I should see "Please login to access this page."
+    Scenario Outline: I want make requests as an unauthenticated user
+      Given I am on help center
+      And I wait for 2 seconds
+      Then I should see "<link>"
+      When I follow "<link>"
+      And I should be on "<expectedUrl>"
+      And the response should contain "<expectedText>"
+
+    Examples:
+    | link | expectedUrl | expectedText |
+    | Help Center | http://localhost:3000/login?url= | Please login to access this page. |
+    | Visual Editor | http://localhost:3000/login?url=/editor | Please login to access this page. |
+    | Dashboard | http://localhost:3000/login?url=/dashboard | Please login to access this page. |
+    | AdScript | http://localhost:3000/login?url=/adscript | Please login to access this page. |
+    | Resource Center | http://localhost:3000/login?url=/downloads | Please login to access this page. |
+
 
     @regression @helpCenter @javascript @HC
-    Scenario: I want to log in as an authenticated user
-      Given I am on "http://localhost:3000/login?url=/"
+    Scenario Outline: I want to log in as an authenticated user
+      Given I am on help center
       And I am authenticated as "sajjad@adcade.com" using "Knight22"
-      Then I should see "Get Started"
-      And I should see "Creating with the Visual Editor"
-      And I should see "Using the Dashboard"
-      And I should see "View AdScript Reference"
-      And I should see "Download Components"
-      And I should see "Download Templates"
-      And I should see "What are you waiting for?"
-      And I should see "Get Started with your tutorials by downloading the Visual Builder and logging into the Ad Manager."
+      Then I should see "<expectedText>"
       And I should see help center header and footer components
       When I follow "Sign out"
-      Then I should be on "http://localhost:3000/login"
+      Then I should be on help center
       And I should see "Login"
+
+    Examples:
+    | expectedText |
+    | Get Started |
+    | Creating with the Visual Editor |
+    | Using the Dashboard |
+    | View AdScript Reference |
+    | Download Components |
+    | Download Templates |
+    | What are you waiting for? |
+    | Get Started with your tutorials by downloading the Visual Builder and logging into the Ad Manager.|
+
 
     @regression @helpCenter @javascript @HCLinks
     Scenario: I want to follow links via the dashboard
-      Given I am on "http://localhost:3000/"
+      Given I am on help center
       And I am authenticated as "sajjad@adcade.com" using "Knight22"
       When I follow "editor-download"
       Then I should see "Visual Editor Download"

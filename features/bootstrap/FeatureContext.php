@@ -49,14 +49,27 @@ class FeatureContext extends Behat\MinkExtension\Context\MinkContext
     public function __construct(array $parameters)
     {
         $this->useContext('api',
-            new Behat\CommonContexts\WebApiContext($parameters['base_url'])
-        );
+            new Behat\CommonContexts\WebApiContext($parameters['base_url'])        );
 
         $this->getSubcontext('api')
-            ->setPlaceHolder('BASE_URL', rtrim($parameters['base_url'], '/')
-        );
+            ->setPlaceHolder('BASE_URL', rtrim($parameters['base_url'], '/')        );
     }
 
+    /**
+     * @Given /^I am on help center$/
+     */
+    public function iAmOnHelpCenter()
+    {
+      $this->visit('http://localhost:3000/');
+    }
+
+    /**
+     * @Then /^I should be on help center$/
+     */
+    public function iShouldBeOnHelpCenter()
+    {
+        throw new PendingException();
+    }
 
     /**
     * @Given /^I wait for (\d+) seconds$/
