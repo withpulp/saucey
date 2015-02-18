@@ -1,0 +1,4530 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns ="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+    <title>Behat Test Suite</title>
+    <style type="text/css">
+        body {
+            margin:0px;
+            padding:0px;
+            position:relative;
+            padding-top:75px;
+        }
+        #behat {
+            float:left;
+            font-family: Georgia, serif;
+            font-size:18px;
+            line-height:26px;
+            width:100%;
+        }
+        #behat .statistics {
+            float:left;
+            width:100%;
+            margin-bottom:15px;
+        }
+        #behat .statistics p {
+            text-align:right;
+            padding:5px 15px;
+            margin:0px;
+            border-right:10px solid #000;
+        }
+        #behat .statistics.failed p {
+            border-color:#C20000;
+        }
+        #behat .statistics.passed p {
+            border-color:#3D7700;
+        }
+        #behat .feature {
+            margin:15px;
+        }
+        #behat h2, #behat h3, #behat h4 {
+            margin:0px 0px 5px 0px;
+            padding:0px;
+            font-family:Georgia;
+        }
+        #behat h2 .title, #behat h3 .title, #behat h4 .title {
+            font-weight:normal;
+        }
+        #behat .path {
+            font-size:10px;
+            font-weight:normal;
+            font-family: 'Bitstream Vera Sans Mono', 'DejaVu Sans Mono', Monaco, Courier, monospace !important;
+            color:#999;
+            padding:0px 5px;
+            float:right;
+        }
+        #behat .path a:link,
+        #behat .path a:visited {
+            color:#999;
+        }
+        #behat .path a:hover,
+        #behat .path a:active {
+            background-color:#000;
+            color:#fff;
+        }
+        #behat h3 .path {
+            margin-right:4%;
+        }
+        #behat ul.tags {
+            font-size:14px;
+            font-weight:bold;
+            color:#246AC1;
+            list-style:none;
+            margin:0px;
+            padding:0px;
+        }
+        #behat ul.tags li {
+            display:inline;
+        }
+        #behat ul.tags li:after {
+            content:' ';
+        }
+        #behat ul.tags li:last-child:after {
+            content:'';
+        }
+        #behat .feature > p {
+            margin-top:0px;
+            margin-left:20px;
+        }
+        #behat .scenario {
+            margin-left:20px;
+            margin-bottom:20px;
+        }
+        #behat .scenario > ol,
+        #behat .scenario .examples > ol {
+            margin:0px;
+            list-style:none;
+            padding:0px;
+        }
+        #behat .scenario > ol {
+            margin-left:20px;
+        }
+        #behat .scenario > ol:after,
+        #behat .scenario .examples > ol:after {
+            content:'';
+            display:block;
+            clear:both;
+        }
+        #behat .scenario > ol li,
+        #behat .scenario .examples > ol li {
+            float:left;
+            width:95%;
+            padding-left:5px;
+            border-left:5px solid;
+            margin-bottom:4px;
+        }
+        #behat .scenario > ol li .argument,
+        #behat .scenario .examples > ol li .argument {
+            margin:10px 20px;
+            font-size:16px;
+            overflow:hidden;
+        }
+        #behat .scenario > ol li table.argument,
+        #behat .scenario .examples > ol li table.argument {
+            border:1px solid #d2d2d2;
+        }
+        #behat .scenario > ol li table.argument thead td,
+        #behat .scenario .examples > ol li table.argument thead td {
+            font-weight: bold;
+        }
+        #behat .scenario > ol li table.argument td,
+        #behat .scenario .examples > ol li table.argument td {
+            padding:5px 10px;
+            background:#f3f3f3;
+        }
+        #behat .scenario > ol li .keyword,
+        #behat .scenario .examples > ol li .keyword {
+            font-weight:bold;
+        }
+        #behat .scenario > ol li .path,
+        #behat .scenario .examples > ol li .path {
+            float:right;
+        }
+        #behat .scenario .examples {
+            margin-top:20px;
+            margin-left:40px;
+        }
+        #behat .scenario .examples h4 span {
+            font-weight:normal;
+            background:#f3f3f3;
+            color:#999;
+            padding:0 5px;
+            margin-left:10px;
+        }
+        #behat .scenario .examples table {
+            margin-left:20px;
+        }
+        #behat .scenario .examples table thead td {
+            font-weight:bold;
+            text-align:center;
+        }
+        #behat .scenario .examples table td {
+            padding:2px 10px;
+            font-size:16px;
+        }
+        #behat .scenario .examples table .failed.exception td {
+            border-left:5px solid #000;
+            border-color:#C20000 !important;
+            padding-left:0px;
+        }
+        pre {
+            font-family:monospace;
+        }
+        .snippet {
+            font-size:14px;
+            color:#000;
+            margin-left:20px;
+        }
+        .backtrace {
+            font-size:12px;
+            line-height:18px;
+            color:#000;
+            overflow:hidden;
+            margin-left:20px;
+            padding:15px;
+            border-left:2px solid #C20000;
+            background: #fff;
+            margin-right:15px;
+        }
+        #behat .passed {
+            background:#DBFFB4;
+            border-color:#65C400 !important;
+            color:#3D7700;
+        }
+        #behat .failed {
+            background:#FFFBD3;
+            border-color:#C20000 !important;
+            color:#C20000;
+        }
+        #behat .undefined, #behat .pending {
+            border-color:#FAF834 !important;
+            background:#FCFB98;
+            color:#000;
+        }
+        #behat .skipped {
+            background:lightCyan;
+            border-color:cyan !important;
+            color:#000;
+        }
+        #behat .summary {
+            position: absolute;
+            top: 0px;
+            left: 0px;
+            width:100%;
+            font-family: Arial, sans-serif;
+            font-size: 14px;
+            line-height: 18px;
+        }
+        #behat .summary .counters {
+            padding: 10px;
+            border-top: 0px;
+            border-bottom: 0px;
+            border-right: 0px;
+            border-left: 5px;
+            border-style: solid;
+            height: 52px;
+            overflow: hidden;
+        }
+        #behat .summary .switchers {
+            position: absolute;
+            right: 15px;
+            top: 25px;
+        }
+        #behat .summary .switcher {
+            text-decoration: underline;
+            cursor: pointer;
+        }
+        #behat .summary .switchers a {
+            margin-left: 10px;
+            color: #000;
+        }
+        #behat .summary .switchers a:hover {
+            text-decoration:none;
+        }
+        #behat .summary p {
+            margin:0px;
+        }
+        #behat .jq-toggle > .scenario,
+        #behat .jq-toggle > ol,
+        #behat .jq-toggle > .examples {
+            display:none;
+        }
+        #behat .jq-toggle-opened > .scenario,
+        #behat .jq-toggle-opened > ol,
+        #behat .jq-toggle-opened > .examples {
+            display:block;
+        }
+        #behat .jq-toggle > h2,
+        #behat .jq-toggle > h3 {
+            cursor:pointer;
+        }
+        #behat .jq-toggle > h2:after,
+        #behat .jq-toggle > h3:after {
+            content:' |+';
+            font-weight:bold;
+        }
+        #behat .jq-toggle-opened > h2:after,
+        #behat .jq-toggle-opened > h3:after {
+            content:' |-';
+            font-weight:bold;
+        }
+    </style>
+
+    <style type="text/css" media="print">
+        body {
+            padding:0px;
+        }
+
+        #behat {
+            font-size:11px;
+        }
+
+        #behat .jq-toggle > .scenario,
+        #behat .jq-toggle > .scenario .examples,
+        #behat .jq-toggle > ol {
+            display:block;
+        }
+
+        #behat .summary {
+            position:relative;
+        }
+
+        #behat .summary .counters {
+            border:none;
+        }
+
+        #behat .summary .switchers {
+            display:none;
+        }
+
+        #behat .step .path {
+            display:none;
+        }
+
+        #behat .jq-toggle > h2:after,
+        #behat .jq-toggle > h3:after {
+            content:'';
+            font-weight:bold;
+        }
+
+        #behat .jq-toggle-opened > h2:after,
+        #behat .jq-toggle-opened > h3:after {
+            content:'';
+            font-weight:bold;
+        }
+
+        #behat .scenario > ol li,
+        #behat .scenario .examples > ol li {
+            border-left:none;
+        }
+    </style>
+</head>
+<body>
+    <div id="behat">
+        
+<div class="feature">
+<h2>
+<span class="keyword">Feature: </span>
+<span class="title">I want to test the help-center</span>
+</h2>
+<p>
+<br />
+As a tester<br />
+I want to test the help-center<br />
+So all features and functionality behave as expected<br />
+</p>
+
+<div class="scenario outline">
+<ul class="tags">
+<li>@regression</li>
+<li>@helpCenter</li>
+<li>@javascript</li>
+<li>@unauthorizedHC</li>
+</ul>
+<h3>
+<span class="keyword">Scenario Outline: </span>
+<span class="title">I want make requests as an unauthenticated user</span>
+<span class="path">features/helpCenter/HCRegression.feature:8</span>
+</h3>
+<ol>
+<li class="skipped">
+<div class="step">
+<span class="keyword">Given </span>
+<span class="text">I am on help center</span>
+<span class="path">FeatureContext::iAmOnHelpCenter()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">I wait for <strong class="skipped_param">2</strong> seconds</span>
+<span class="path">FeatureContext::iWaitForSeconds()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">Then </span>
+<span class="text">I should see "<strong class="skipped_param">&lt;link&gt;</strong>"</span>
+<span class="path">FeatureContext::assertPageContainsText()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">When </span>
+<span class="text">I follow "<strong class="skipped_param">&lt;link&gt;</strong>"</span>
+<span class="path">FeatureContext::clickLink()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">I should be on "<strong class="skipped_param">&lt;expectedUrl&gt;</strong>"</span>
+<span class="path">FeatureContext::assertPageAddress()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">the response should contain "<strong class="skipped_param">&lt;expectedText&gt;</strong>"</span>
+<span class="path">FeatureContext::assertResponseContains()</span>
+</div>
+</li>
+</ol>
+<div class="examples">
+<h4>Examples</h4>
+<table>
+<thead>
+<tr class="skipped">
+<td>link</td>
+<td>expectedUrl</td>
+<td>expectedText</td>
+</tr>
+</thead>
+<tbody>
+<tr class="passed">
+<td>Help Center</td>
+<td>http://localhost:3000/login?url=</td>
+<td>Please login to access this page.</td>
+</tr>
+<tr class="passed">
+<td>Visual Editor</td>
+<td>http://localhost:3000/login?url=/editor</td>
+<td>Please login to access this page.</td>
+</tr>
+<tr class="passed">
+<td>Dashboard</td>
+<td>http://localhost:3000/login?url=/dashboard</td>
+<td>Please login to access this page.</td>
+</tr>
+<tr class="passed">
+<td>AdScript</td>
+<td>http://localhost:3000/login?url=/adscript</td>
+<td>Please login to access this page.</td>
+</tr>
+<tr class="passed">
+<td>Resource Center</td>
+<td>http://localhost:3000/login?url=/downloads</td>
+<td>Please login to access this page.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="scenario outline">
+<ul class="tags">
+<li>@regression</li>
+<li>@helpCenter</li>
+<li>@javascript</li>
+<li>@authorizedHC</li>
+</ul>
+<h3>
+<span class="keyword">Scenario Outline: </span>
+<span class="title">I want to log in as an authenticated user</span>
+<span class="path">features/helpCenter/HCRegression.feature:26</span>
+</h3>
+<ol>
+<li class="skipped">
+<div class="step">
+<span class="keyword">Given </span>
+<span class="text">I am authenticated on help center as "<strong class="skipped_param">sajjad@adcade.com</strong>" using "<strong class="skipped_param">Knight22</strong>"</span>
+<span class="path">FeatureContext::iAmAuthenticatedAs()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">Then </span>
+<span class="text">I should see "<strong class="skipped_param">&lt;expectedText&gt;</strong>"</span>
+<span class="path">FeatureContext::assertPageContainsText()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">I should see help center header and footer components</span>
+<span class="path">FeatureContext::iShouldSeeHelpCenterHeaderAndFooterComponents()</span>
+</div>
+</li>
+</ol>
+<div class="examples">
+<h4>Examples</h4>
+<table>
+<thead>
+<tr class="skipped">
+<td>expectedText</td>
+</tr>
+</thead>
+<tbody>
+<tr class="passed">
+<td>Get Started</td>
+</tr>
+<tr class="passed">
+<td>Creating with the Visual Editor</td>
+</tr>
+<tr class="passed">
+<td>Using the Dashboard</td>
+</tr>
+<tr class="passed">
+<td>View AdScript Reference</td>
+</tr>
+<tr class="passed">
+<td>Download Components</td>
+</tr>
+<tr class="passed">
+<td>Download Templates</td>
+</tr>
+<tr class="passed">
+<td>What are you waiting for?</td>
+</tr>
+<tr class="passed">
+<td>Get Started with your tutorials by downloading the Visual Builder and logging into the Ad Manager.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="scenario outline">
+<ul class="tags">
+<li>@regression</li>
+<li>@helpCenter</li>
+<li>@javascript</li>
+<li>@HCLinksTop</li>
+</ul>
+<h3>
+<span class="keyword">Scenario Outline: </span>
+<span class="title">I want to follow links via the dashboard</span>
+<span class="path">features/helpCenter/HCRegression.feature:43</span>
+</h3>
+<ol>
+<li class="skipped">
+<div class="step">
+<span class="keyword">Given </span>
+<span class="text">I am authenticated on help center as "<strong class="skipped_param">sajjad@adcade.com</strong>" using "<strong class="skipped_param">Knight22</strong>"</span>
+<span class="path">FeatureContext::iAmAuthenticatedAs()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">When </span>
+<span class="text">I follow "<strong class="skipped_param">&lt;link&gt;</strong>"</span>
+<span class="path">FeatureContext::clickLink()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">Then </span>
+<span class="text">I should see "<strong class="skipped_param">&lt;expectedText&gt;</strong>"</span>
+<span class="path">FeatureContext::assertPageContainsText()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">I should see help center header and footer components</span>
+<span class="path">FeatureContext::iShouldSeeHelpCenterHeaderAndFooterComponents()</span>
+</div>
+</li>
+</ol>
+<div class="examples">
+<h4>Examples</h4>
+<table>
+<thead>
+<tr class="skipped">
+<td>link</td>
+<td>expectedText</td>
+</tr>
+</thead>
+<tbody>
+<tr class="passed">
+<td>Creating with the Visual Editor</td>
+<td>Visual Editor</td>
+</tr>
+<tr class="passed">
+<td>Using the Dashboard</td>
+<td>Dashboard</td>
+</tr>
+<tr class="failed">
+<td>View AdScript Reference</td>
+<td>AdScript</td>
+</tr>
+<tr class="failed exception">
+<td colspan="2">
+<pre class="backtrace">The text &quot;AdScript&quot; was not found anywhere in the text of the current page.</pre>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="scenario outline">
+<ul class="tags">
+<li>@regression</li>
+<li>@helpCenter</li>
+<li>@javascript</li>
+<li>@HCLinksBottom</li>
+</ul>
+<h3>
+<span class="keyword">Scenario Outline: </span>
+<span class="title">I want to follow links via the dashboard</span>
+<span class="path">features/helpCenter/HCRegression.feature:56</span>
+</h3>
+<ol>
+<li class="skipped">
+<div class="step">
+<span class="keyword">Given </span>
+<span class="text">I am authenticated on help center as "<strong class="skipped_param">sajjad@adcade.com</strong>" using "<strong class="skipped_param">Knight22</strong>"</span>
+<span class="path">FeatureContext::iAmAuthenticatedAs()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">I scroll to the bottom</span>
+<span class="path">FeatureContext::iScrollToBottom()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">When </span>
+<span class="text">I follow "<strong class="skipped_param">&lt;link&gt;</strong>"</span>
+<span class="path">FeatureContext::clickLink()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">Then </span>
+<span class="text">I should see "<strong class="skipped_param">&lt;expectedText&gt;</strong>"</span>
+<span class="path">FeatureContext::assertPageContainsText()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">I should see help center header and footer components</span>
+<span class="path">FeatureContext::iShouldSeeHelpCenterHeaderAndFooterComponents()</span>
+</div>
+</li>
+</ol>
+<div class="examples">
+<h4>Examples</h4>
+<table>
+<thead>
+<tr class="skipped">
+<td>link</td>
+<td>expectedText</td>
+</tr>
+</thead>
+<tbody>
+<tr class="passed">
+<td>editor-download</td>
+<td>Visual Editor Download</td>
+</tr>
+<tr class="passed">
+<td>Download Components</td>
+<td>COMPONENTS</td>
+</tr>
+<tr class="passed">
+<td>Download Components</td>
+<td>TEMPLATES</td>
+</tr>
+<tr class="passed">
+<td>Feedback</td>
+<td>Provide Feedback</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="scenario outline">
+<ul class="tags">
+<li>@regression</li>
+<li>@helpCenter</li>
+<li>@javascript</li>
+<li>@HCSearch</li>
+</ul>
+<h3>
+<span class="keyword">Scenario Outline: </span>
+<span class="title">I want to search via help center</span>
+<span class="path">features/helpCenter/HCRegression.feature:71</span>
+</h3>
+<ol>
+<li class="skipped">
+<div class="step">
+<span class="keyword">Given </span>
+<span class="text">I am authenticated on help center as "<strong class="skipped_param">sajjad@adcade.com</strong>" using "<strong class="skipped_param">Knight22</strong>"</span>
+<span class="path">FeatureContext::iAmAuthenticatedAs()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">When </span>
+<span class="text">I fill in "<strong class="skipped_param">search</strong>" with "<strong class="skipped_param">&lt;searchValue&gt;</strong>"</span>
+<span class="path">FeatureContext::fillField()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">I press "<strong class="skipped_param">search-button</strong>"</span>
+<span class="path">FeatureContext::pressButton()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">Then </span>
+<span class="text">I should be on "<strong class="skipped_param">&lt;expectedURL&gt;</strong>"</span>
+<span class="path">FeatureContext::assertPageAddress()</span>
+</div>
+</li>
+</ol>
+<div class="examples">
+<h4>Examples</h4>
+<table>
+<thead>
+<tr class="skipped">
+<td>searchValue</td>
+<td>expectedURL</td>
+</tr>
+</thead>
+<tbody>
+<tr class="passed">
+<td>test</td>
+<td>http://localhost:3000/search?search=test</td>
+</tr>
+<tr class="passed">
+<td>adscript</td>
+<td>http://localhost:3000/search?search=adscript</td>
+</tr>
+<tr class="passed">
+<td>dashboard</td>
+<td>http://localhost:3000/search?search=dashboard</td>
+</tr>
+<tr class="passed">
+<td>tween</td>
+<td>http://localhost:3000/search?search=tween</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="scenario outline">
+<ul class="tags">
+<li>@regression</li>
+<li>@helpCenter</li>
+<li>@javascript</li>
+<li>@HCFeedback</li>
+</ul>
+<h3>
+<span class="keyword">Scenario Outline: </span>
+<span class="title">I want to send feedback from help center</span>
+<span class="path">features/helpCenter/HCRegression.feature:85</span>
+</h3>
+<ol>
+<li class="skipped">
+<div class="step">
+<span class="keyword">Given </span>
+<span class="text">I am authenticated on help center as "<strong class="skipped_param">sajjad@adcade.com</strong>" using "<strong class="skipped_param">Knight22</strong>"</span>
+<span class="path">FeatureContext::iAmAuthenticatedAs()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">I am on help center feedback</span>
+<span class="path">FeatureContext::iAmOnHelpCenterFeedback()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">I fill in "<strong class="skipped_param">email</strong>" with "<strong class="skipped_param">&lt;email&gt;</strong>"</span>
+<span class="path">FeatureContext::fillField()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">I fill in "<strong class="skipped_param">subject</strong>" with "<strong class="skipped_param">&lt;subject&gt;</strong>"</span>
+<span class="path">FeatureContext::fillField()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">I select "<strong class="skipped_param">&lt;option&gt;</strong>" from "<strong class="skipped_param">type</strong>"</span>
+<span class="path">FeatureContext::selectOption()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">I fill in "<strong class="skipped_param">desc</strong>" with "<strong class="skipped_param">&lt;description&gt;</strong>"</span>
+<span class="path">FeatureContext::fillField()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">I press "<strong class="skipped_param">Send</strong>"</span>
+<span class="path">FeatureContext::pressButton()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">I wait for <strong class="skipped_param">2</strong> seconds</span>
+<span class="path">FeatureContext::iWaitForSeconds()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">Then </span>
+<span class="text">I should see "<strong class="skipped_param">&lt;expectedOutcome&gt;</strong>"</span>
+<span class="path">FeatureContext::assertPageContainsText()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">I should see help center header and footer components</span>
+<span class="path">FeatureContext::iShouldSeeHelpCenterHeaderAndFooterComponents()</span>
+</div>
+</li>
+</ol>
+<div class="examples">
+<h4>Examples</h4>
+<table>
+<thead>
+<tr class="skipped">
+<td>email</td>
+<td>subject</td>
+<td>option</td>
+<td>description</td>
+<td>expectedOutcome</td>
+</tr>
+</thead>
+<tbody>
+<tr class="failed">
+<td>sajjad@adcade.com</td>
+<td>Some context for feedback !@#$%^&*()</td>
+<td>Bug</td>
+<td>Some context for description !@#$%^&*()</td>
+<td>Thanks for your feedback!</td>
+</tr>
+<tr class="failed exception">
+<td colspan="5">
+<pre class="backtrace">The text &quot;Thanks for your feedback!&quot; was not found anywhere in the text of the current page.</pre>
+</td>
+</tr>
+<tr class="failed">
+<td>marcus@adcade.com</td>
+<td>More context for feedback !@#$%^&*()</td>
+<td>Bug</td>
+<td>More context for description !@#$%^&*()</td>
+<td>Thanks for your feedback!</td>
+</tr>
+<tr class="failed exception">
+<td colspan="5">
+<pre class="backtrace">The text &quot;Thanks for your feedback!&quot; was not found anywhere in the text of the current page.</pre>
+</td>
+</tr>
+<tr class="failed">
+<td>sl@adcade.com</td>
+<td>MOAR context for feedback !@#$%^&*()</td>
+<td>Bug</td>
+<td>MOAR context for description !@#$%^&*()</td>
+<td>Thanks for your feedback!</td>
+</tr>
+<tr class="failed exception">
+<td colspan="5">
+<pre class="backtrace">The text &quot;Thanks for your feedback!&quot; was not found anywhere in the text of the current page.</pre>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="scenario">
+<ul class="tags">
+<li>@regression</li>
+<li>@helpCenter</li>
+<li>@javascript</li>
+<li>@HCDownloads</li>
+</ul>
+<h3>
+<span class="keyword">Scenario: </span>
+<span class="title">I want to view components and templates from help center</span>
+<span class="path">features/helpCenter/HCRegression.feature:104</span>
+</h3>
+<ol>
+<li class="passed">
+<div class="step">
+<span class="keyword">Given </span>
+<span class="text">I am authenticated on help center as "<strong class="passed_param">sajjad@adcade.com</strong>" using "<strong class="passed_param">Knight22</strong>"</span>
+<span class="path">FeatureContext::iAmAuthenticatedAs()</span>
+</div>
+</li>
+<li class="passed">
+<div class="step">
+<span class="keyword">When </span>
+<span class="text">I go to "<strong class="passed_param">http://localhost:3000/downloads</strong>"</span>
+<span class="path">FeatureContext::visit()</span>
+</div>
+</li>
+<li class="passed">
+<div class="step">
+<span class="keyword">Then </span>
+<span class="text">I should see "<strong class="passed_param">COMPONENTS</strong>"</span>
+<span class="path">FeatureContext::assertPageContainsText()</span>
+</div>
+</li>
+<li class="passed">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">I should see "<strong class="passed_param">TEMPLATES</strong>"</span>
+<span class="path">FeatureContext::assertPageContainsText()</span>
+</div>
+</li>
+<li class="passed">
+<div class="step">
+<span class="keyword">When </span>
+<span class="text">I follow "<strong class="passed_param">cmpt-btn</strong>"</span>
+<span class="path">FeatureContext::clickLink()</span>
+</div>
+</li>
+<li class="passed">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">I wait for <strong class="passed_param">2</strong> seconds</span>
+<span class="path">FeatureContext::iWaitForSeconds()</span>
+</div>
+</li>
+<li class="passed">
+<div class="step">
+<span class="keyword">Then </span>
+<span class="text">I should see "<strong class="passed_param">Component Instructions</strong>"</span>
+<span class="path">FeatureContext::assertPageContainsText()</span>
+</div>
+</li>
+<li class="passed">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">I should see "<strong class="passed_param">How to Use</strong>"</span>
+<span class="path">FeatureContext::assertPageContainsText()</span>
+</div>
+</li>
+<li class="passed">
+<div class="step">
+<span class="keyword">When </span>
+<span class="text">I follow "<strong class="passed_param">tmpl-btn</strong>"</span>
+<span class="path">FeatureContext::clickLink()</span>
+</div>
+</li>
+<li class="passed">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">I wait for <strong class="passed_param">2</strong> seconds</span>
+<span class="path">FeatureContext::iWaitForSeconds()</span>
+</div>
+</li>
+<li class="passed">
+<div class="step">
+<span class="keyword">Then </span>
+<span class="text">I should see "<strong class="passed_param">Template Instructions</strong>"</span>
+<span class="path">FeatureContext::assertPageContainsText()</span>
+</div>
+</li>
+<li class="passed">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">I should see "<strong class="passed_param">How to Use</strong>"</span>
+<span class="path">FeatureContext::assertPageContainsText()</span>
+</div>
+</li>
+</ol>
+</div>
+<div class="scenario outline">
+<ul class="tags">
+<li>@regression</li>
+<li>@helpCenter</li>
+<li>@helpCenterCMS</li>
+<li>@helpCenterCMSCRUD</li>
+<li>@javascript</li>
+<li>@HCCMSCRTypes</li>
+</ul>
+<h3>
+<span class="keyword">Scenario Outline: </span>
+<span class="title">I want to create type documentation</span>
+<span class="path">features/helpCenter/HCRegression.feature:139</span>
+</h3>
+<ol>
+<li class="skipped">
+<div class="step">
+<span class="keyword">Given </span>
+<span class="text">I authenticate as "<strong class="skipped_param">apappas@adcade.com</strong>" using "<strong class="skipped_param">adcade42</strong>"</span>
+<span class="path">FeatureContext::iAuthenticateAs()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">I am on "<strong class="skipped_param">http://localhost:3000/keystone/types</strong>"</span>
+<span class="path">FeatureContext::visit()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">I wait for <strong class="skipped_param">2</strong> seconds</span>
+<span class="path">FeatureContext::iWaitForSeconds()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">When </span>
+<span class="text">I press "<strong class="skipped_param">Create Type</strong>"</span>
+<span class="path">FeatureContext::pressButton()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">Then </span>
+<span class="text">I should see "<strong class="skipped_param">New Type</strong>"</span>
+<span class="path">FeatureContext::assertPageContainsText()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">I should see "<strong class="skipped_param">Create</strong>"</span>
+<span class="path">FeatureContext::assertPageContainsText()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">I should see "<strong class="skipped_param">cancel</strong>"</span>
+<span class="path">FeatureContext::assertPageContainsText()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">When </span>
+<span class="text">I press "<strong class="skipped_param">cancel</strong>"</span>
+<span class="path">FeatureContext::pressButton()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">Then </span>
+<span class="text">I should see "<strong class="skipped_param">Create Type</strong>"</span>
+<span class="path">FeatureContext::assertPageContainsText()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">When </span>
+<span class="text">I press "<strong class="skipped_param">Create Type</strong>"</span>
+<span class="path">FeatureContext::pressButton()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">I fill in "<strong class="skipped_param">name</strong>" with "<strong class="skipped_param">&lt;typeName&gt;</strong>"</span>
+<span class="path">FeatureContext::fillField()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">I press "<strong class="skipped_param">Create</strong>"</span>
+<span class="path">FeatureContext::pressButton()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">Then </span>
+<span class="text">I should see "New Type <strong class="skipped_param">&lt;typeName&gt;</strong> created."</span>
+<span class="path">FeatureContext::assertPageContainsText()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">I should see create type view elements</span>
+<span class="path">FeatureContext::iShouldSeeCreateTypeViewElements()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">When </span>
+<span class="text">I press "<strong class="skipped_param">Save</strong>"</span>
+<span class="path">FeatureContext::pressButton()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">Then </span>
+<span class="text">I should see "<strong class="skipped_param">Your changes have been saved.</strong>"</span>
+<span class="path">FeatureContext::assertPageContainsText()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">I should see help center CMS header and footer components</span>
+<span class="path">FeatureContext::iShouldSeeHelpCenterCMSHeaderAndFooterComponents()</span>
+</div>
+</li>
+</ol>
+<div class="examples">
+<h4>Examples</h4>
+<table>
+<thead>
+<tr class="skipped">
+<td>typeName</td>
+</tr>
+</thead>
+<tbody>
+<tr class="passed">
+<td>testType1</td>
+</tr>
+<tr class="passed">
+<td>testType2</td>
+</tr>
+<tr class="passed">
+<td>testType3</td>
+</tr>
+<tr class="passed">
+<td>testType4</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="scenario outline">
+<ul class="tags">
+<li>@regression</li>
+<li>@helpCenter</li>
+<li>@helpCenterCMS</li>
+<li>@helpCenterCMSCRUD</li>
+<li>@javascript</li>
+<li>@HCCMSDTypes</li>
+</ul>
+<h3>
+<span class="keyword">Scenario Outline: </span>
+<span class="title">I want to delete type documentation</span>
+<span class="path">features/helpCenter/HCRegression.feature:166</span>
+</h3>
+<ol>
+<li class="skipped">
+<div class="step">
+<span class="keyword">Given </span>
+<span class="text">I authenticate as "<strong class="skipped_param">apappas@adcade.com</strong>" using "<strong class="skipped_param">adcade42</strong>"</span>
+<span class="path">FeatureContext::iAuthenticateAs()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">I am on "<strong class="skipped_param">http://localhost:3000/keystone/types</strong>"</span>
+<span class="path">FeatureContext::visit()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">I wait for <strong class="skipped_param">2</strong> seconds</span>
+<span class="path">FeatureContext::iWaitForSeconds()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">Then </span>
+<span class="text">I should see "<strong class="skipped_param">&lt;typeName&gt;</strong>"</span>
+<span class="path">FeatureContext::assertPageContainsText()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">When </span>
+<span class="text">I follow "<strong class="skipped_param">&lt;typeName&gt;</strong>"</span>
+<span class="path">FeatureContext::clickLink()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">I follow "<strong class="skipped_param">delete type</strong>"</span>
+<span class="path">FeatureContext::clickLink()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">Then </span>
+<span class="text">I should see "<strong class="skipped_param">Are you sure you want to delete this type?</strong>" in popup</span>
+<span class="path">FeatureContext::assertPopupMessage()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">When </span>
+<span class="text">I confirm the popup</span>
+<span class="path">FeatureContext::confirmPopup()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">I go to "<strong class="skipped_param">http://localhost:3000/keystone/types</strong>"</span>
+<span class="path">FeatureContext::visit()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">Then </span>
+<span class="text">I should not see "<strong class="skipped_param">&lt;typeName&gt;</strong>"</span>
+<span class="path">FeatureContext::assertPageNotContainsText()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">I should see help center CMS header and footer components</span>
+<span class="path">FeatureContext::iShouldSeeHelpCenterCMSHeaderAndFooterComponents()</span>
+</div>
+</li>
+</ol>
+<div class="examples">
+<h4>Examples</h4>
+<table>
+<thead>
+<tr class="skipped">
+<td>typeName</td>
+</tr>
+</thead>
+<tbody>
+<tr class="failed">
+<td>testType1</td>
+</tr>
+<tr class="failed exception">
+<td colspan="1">
+<pre class="backtrace">The text &quot;testType1&quot; appears in the text of this page, but it should not.</pre>
+</td>
+</tr>
+<tr class="passed">
+<td>testType2</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="scenario outline">
+<ul class="tags">
+<li>@regression</li>
+<li>@helpCenter</li>
+<li>@helpCenterCMS</li>
+<li>@helpCenterCMSCRUD</li>
+<li>@javascript</li>
+<li>@HCCMSUTypes</li>
+</ul>
+<h3>
+<span class="keyword">Scenario Outline: </span>
+<span class="title">I want to update type documentation</span>
+<span class="path">features/helpCenter/HCRegression.feature:185</span>
+</h3>
+<ol>
+<li class="skipped">
+<div class="step">
+<span class="keyword">Given </span>
+<span class="text">I authenticate as "<strong class="skipped_param">apappas@adcade.com</strong>" using "<strong class="skipped_param">adcade42</strong>"</span>
+<span class="path">FeatureContext::iAuthenticateAs()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">I am on "<strong class="skipped_param">http://localhost:3000/keystone/types</strong>"</span>
+<span class="path">FeatureContext::visit()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">I wait for <strong class="skipped_param">2</strong> seconds</span>
+<span class="path">FeatureContext::iWaitForSeconds()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">Then </span>
+<span class="text">I should see "<strong class="skipped_param">&lt;typeName&gt;</strong>"</span>
+<span class="path">FeatureContext::assertPageContainsText()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">When </span>
+<span class="text">I follow "<strong class="skipped_param">&lt;typeName&gt;</strong>"</span>
+<span class="path">FeatureContext::clickLink()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">I fill in "<strong class="skipped_param">name</strong>" with "<strong class="skipped_param">&lt;typeNameUpdate&gt;</strong>"</span>
+<span class="path">FeatureContext::fillField()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">I press "<strong class="skipped_param">Save</strong>"</span>
+<span class="path">FeatureContext::pressButton()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">Then </span>
+<span class="text">I should see "<strong class="skipped_param">Your changes have been saved.</strong>"</span>
+<span class="path">FeatureContext::assertPageContainsText()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">When </span>
+<span class="text">I go to "<strong class="skipped_param">http://localhost:3000/keystone/types</strong>"</span>
+<span class="path">FeatureContext::visit()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">Then </span>
+<span class="text">I should see "<strong class="skipped_param">&lt;typeNameUpdate&gt;</strong>"</span>
+<span class="path">FeatureContext::assertPageContainsText()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">I should see help center CMS header and footer components</span>
+<span class="path">FeatureContext::iShouldSeeHelpCenterCMSHeaderAndFooterComponents()</span>
+</div>
+</li>
+</ol>
+<div class="examples">
+<h4>Examples</h4>
+<table>
+<thead>
+<tr class="skipped">
+<td>typeName</td>
+<td>typeNameUpdate</td>
+</tr>
+</thead>
+<tbody>
+<tr class="passed">
+<td>testType3</td>
+<td>testType3Update</td>
+</tr>
+<tr class="passed">
+<td>testType4</td>
+<td>testType4update</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="scenario outline">
+<ul class="tags">
+<li>@regression</li>
+<li>@helpCenter</li>
+<li>@helpCenterCMS</li>
+<li>@helpCenterCMSCRUD</li>
+<li>@javascript</li>
+<li>@HCCMSFilterTypes</li>
+</ul>
+<h3>
+<span class="keyword">Scenario Outline: </span>
+<span class="title">I want to filer type documentation</span>
+<span class="path">features/helpCenter/HCRegression.feature:204</span>
+</h3>
+<ol>
+<li class="skipped">
+<div class="step">
+<span class="keyword">Given </span>
+<span class="text">I authenticate as "<strong class="skipped_param">apappas@adcade.com</strong>" using "<strong class="skipped_param">adcade42</strong>"</span>
+<span class="path">FeatureContext::iAuthenticateAs()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">I am on "<strong class="skipped_param">http://localhost:3000/keystone/types</strong>"</span>
+<span class="path">FeatureContext::visit()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">I wait for <strong class="skipped_param">2</strong> seconds</span>
+<span class="path">FeatureContext::iWaitForSeconds()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">Then </span>
+<span class="text">I should see "<strong class="skipped_param">&lt;typeName&gt;</strong>"</span>
+<span class="path">FeatureContext::assertPageContainsText()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">When </span>
+<span class="text">I click on the element with xpath '<strong class="skipped_param">//*[@id="list-filters"]/div[1]/div[1]/div/div[3]/button</strong>'</span>
+<span class="path">FeatureContext::iClickOnTheElementWithXPath()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">Then </span>
+<span class="text">I should see "<strong class="skipped_param">Name</strong>"</span>
+<span class="path">FeatureContext::assertPageContainsText()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">When </span>
+<span class="text">I click on the element with xpath '<strong class="skipped_param">//*[@id="list-filters"]/div[1]/div[2]/div[2]/button</strong>'</span>
+<span class="path">FeatureContext::iClickOnTheElementWithXPath()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">Then </span>
+<span class="text">I should see "<strong class="skipped_param">Name</strong>"</span>
+<span class="path">FeatureContext::assertPageContainsText()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">When </span>
+<span class="text">I click on the element with xpath '<strong class="skipped_param">//*[@id="list-filters"]/div[1]/div[2]/div[1]/a</strong>'</span>
+<span class="path">FeatureContext::iClickOnTheElementWithXPath()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">I confirm the popup</span>
+<span class="path">FeatureContext::confirmPopup()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">Then </span>
+<span class="text">I should be on "<strong class="skipped_param">http://localhost:3000/keystone/types</strong>"</span>
+<span class="path">FeatureContext::assertPageAddress()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">I should see help center CMS header and footer components</span>
+<span class="path">FeatureContext::iShouldSeeHelpCenterCMSHeaderAndFooterComponents()</span>
+</div>
+</li>
+</ol>
+<div class="examples">
+<h4>Examples</h4>
+<table>
+<thead>
+<tr class="skipped">
+<td>typeName</td>
+</tr>
+</thead>
+<tbody>
+<tr class="passed">
+<td>testType3</td>
+</tr>
+<tr class="passed">
+<td>testType4</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="scenario outline">
+<ul class="tags">
+<li>@regression</li>
+<li>@helpCenter</li>
+<li>@helpCenterCMS</li>
+<li>@helpCenterCMSCRUD</li>
+<li>@javascript</li>
+<li>@HCCMSSearchTypes</li>
+</ul>
+<h3>
+<span class="keyword">Scenario Outline: </span>
+<span class="title">I want to search type documentation</span>
+<span class="path">features/helpCenter/HCRegression.feature:225</span>
+</h3>
+<ol>
+<li class="skipped">
+<div class="step">
+<span class="keyword">Given </span>
+<span class="text">I authenticate as "<strong class="skipped_param">apappas@adcade.com</strong>" using "<strong class="skipped_param">adcade42</strong>"</span>
+<span class="path">FeatureContext::iAuthenticateAs()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">I am on "<strong class="skipped_param">http://localhost:3000/keystone/types</strong>"</span>
+<span class="path">FeatureContext::visit()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">I wait for <strong class="skipped_param">2</strong> seconds</span>
+<span class="path">FeatureContext::iWaitForSeconds()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">Then </span>
+<span class="text">I should see "<strong class="skipped_param">&lt;typeName&gt;</strong>"</span>
+<span class="path">FeatureContext::assertPageContainsText()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">the response should contain "<strong class="skipped_param">search</strong>"</span>
+<span class="path">FeatureContext::assertResponseContains()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">When </span>
+<span class="text">I fill in "<strong class="skipped_param">search</strong>" with "<strong class="skipped_param">testType</strong>"</span>
+<span class="path">FeatureContext::fillField()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">I click on the element with xpath '<strong class="skipped_param">//*[@id="body"]/div/div[2]/h1/div/span[2]/a</strong>'</span>
+<span class="path">FeatureContext::iClickOnTheElementWithXPath()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">Then </span>
+<span class="text">I should see "<strong class="skipped_param">Display Order (inverted)</strong>"</span>
+<span class="path">FeatureContext::assertPageContainsText()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">I should see "<strong class="skipped_param">Name</strong>"</span>
+<span class="path">FeatureContext::assertPageContainsText()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">I should see "<strong class="skipped_param">&lt;typeName&gt;</strong>"</span>
+<span class="path">FeatureContext::assertPageContainsText()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">I should see help center CMS header and footer components</span>
+<span class="path">FeatureContext::iShouldSeeHelpCenterCMSHeaderAndFooterComponents()</span>
+</div>
+</li>
+</ol>
+<div class="examples">
+<h4>Examples</h4>
+<table>
+<thead>
+<tr class="skipped">
+<td>typeName</td>
+</tr>
+</thead>
+<tbody>
+<tr class="passed">
+<td>testType3Update</td>
+</tr>
+<tr class="passed">
+<td>testType4Update</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="scenario outline">
+<ul class="tags">
+<li>@regression</li>
+<li>@helpCenter</li>
+<li>@helpCenterCMS</li>
+<li>@helpCenterCMSCRUD</li>
+<li>@javascript</li>
+<li>@HCCMSCRShapes</li>
+</ul>
+<h3>
+<span class="keyword">Scenario Outline: </span>
+<span class="title">I want to create shapes documentation</span>
+<span class="path">features/helpCenter/HCRegression.feature:245</span>
+</h3>
+<ol>
+<li class="skipped">
+<div class="step">
+<span class="keyword">Given </span>
+<span class="text">I authenticate as "<strong class="skipped_param">apappas@adcade.com</strong>" using "<strong class="skipped_param">adcade42</strong>"</span>
+<span class="path">FeatureContext::iAuthenticateAs()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">I am on "<strong class="skipped_param">http://localhost:3000/keystone/shapes</strong>"</span>
+<span class="path">FeatureContext::visit()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">I wait for <strong class="skipped_param">2</strong> seconds</span>
+<span class="path">FeatureContext::iWaitForSeconds()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">When </span>
+<span class="text">I press "<strong class="skipped_param">Create Shape</strong>"</span>
+<span class="path">FeatureContext::pressButton()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">Then </span>
+<span class="text">I should see "<strong class="skipped_param">New Shape</strong>"</span>
+<span class="path">FeatureContext::assertPageContainsText()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">I should see "<strong class="skipped_param">Create</strong>"</span>
+<span class="path">FeatureContext::assertPageContainsText()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">I should see "<strong class="skipped_param">cancel</strong>"</span>
+<span class="path">FeatureContext::assertPageContainsText()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">When </span>
+<span class="text">I press "<strong class="skipped_param">cancel</strong>"</span>
+<span class="path">FeatureContext::pressButton()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">Then </span>
+<span class="text">I should see "<strong class="skipped_param">Create Shape</strong>"</span>
+<span class="path">FeatureContext::assertPageContainsText()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">When </span>
+<span class="text">I press "<strong class="skipped_param">Create Shape</strong>"</span>
+<span class="path">FeatureContext::pressButton()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">I fill in "<strong class="skipped_param">title</strong>" with "<strong class="skipped_param">&lt;shapeName&gt;</strong>"</span>
+<span class="path">FeatureContext::fillField()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">I press "<strong class="skipped_param">Create</strong>"</span>
+<span class="path">FeatureContext::pressButton()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">Then </span>
+<span class="text">I should see "New Shape <strong class="skipped_param">&lt;shapeName&gt;</strong> created."</span>
+<span class="path">FeatureContext::assertPageContainsText()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">I should see create shape view elements</span>
+<span class="path">FeatureContext::iShouldSeeCreateShapeViewElements()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">When </span>
+<span class="text">I click on the element with xpath '<strong class="skipped_param">//*[@id="s2id_autogen1"]/a</strong>'</span>
+<span class="path">FeatureContext::iClickOnTheElementWithXPath()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">I click on the element with xpath '<strong class="skipped_param">//*[@id="select2-drop"]/ul/li[2]/div</strong>'</span>
+<span class="path">FeatureContext::iClickOnTheElementWithXPath()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">I fill in "<strong class="skipped_param">content.description</strong>" with "<strong class="skipped_param">&lt;description&gt;</strong>"</span>
+<span class="path">FeatureContext::fillField()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">I press "<strong class="skipped_param">Save</strong>"</span>
+<span class="path">FeatureContext::pressButton()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">Then </span>
+<span class="text">I should see "<strong class="skipped_param">Your changes have been saved.</strong>"</span>
+<span class="path">FeatureContext::assertPageContainsText()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">I should see help center CMS header and footer components</span>
+<span class="path">FeatureContext::iShouldSeeHelpCenterCMSHeaderAndFooterComponents()</span>
+</div>
+</li>
+</ol>
+<div class="examples">
+<h4>Examples</h4>
+<table>
+<thead>
+<tr class="skipped">
+<td>shapeName</td>
+<td>description</td>
+</tr>
+</thead>
+<tbody>
+<tr class="passed">
+<td>testShape1</td>
+<td>#Testing md input *italic* **bold** ![Adcade Logo](http://sajjad.pw/files/adcade-logo.jpg) [Link to logo](http://sajjad.pw/files/adcade-logo.jpg) - list text here 1. list text here</td>
+</tr>
+<tr class="passed">
+<td>testShape2</td>
+<td>#Testing md input *italic* **bold** ![Adcade Logo](http://sajjad.pw/files/adcade-logo.jpg) [Link to logo](http://sajjad.pw/files/adcade-logo.jpg) - list text here 1. list text here</td>
+</tr>
+<tr class="passed">
+<td>testShape3</td>
+<td>#Testing md input *italic* **bold** ![Adcade Logo](http://sajjad.pw/files/adcade-logo.jpg) [Link to logo](http://sajjad.pw/files/adcade-logo.jpg) - list text here 1. list text here</td>
+</tr>
+<tr class="passed">
+<td>testShape4</td>
+<td>#Testing md input *italic* **bold** ![Adcade Logo](http://sajjad.pw/files/adcade-logo.jpg) [Link to logo](http://sajjad.pw/files/adcade-logo.jpg) - list text here 1. list text here</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="scenario outline">
+<ul class="tags">
+<li>@regression</li>
+<li>@helpCenter</li>
+<li>@helpCenterCMS</li>
+<li>@helpCenterCMSCRUD</li>
+<li>@javascript</li>
+<li>@HCCMSDShapes</li>
+</ul>
+<h3>
+<span class="keyword">Scenario Outline: </span>
+<span class="title">I want to delete type documentation</span>
+<span class="path">features/helpCenter/HCRegression.feature:275</span>
+</h3>
+<ol>
+<li class="skipped">
+<div class="step">
+<span class="keyword">Given </span>
+<span class="text">I authenticate as "<strong class="skipped_param">apappas@adcade.com</strong>" using "<strong class="skipped_param">adcade42</strong>"</span>
+<span class="path">FeatureContext::iAuthenticateAs()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">I am on "<strong class="skipped_param">http://localhost:3000/keystone/shapes</strong>"</span>
+<span class="path">FeatureContext::visit()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">I wait for <strong class="skipped_param">2</strong> seconds</span>
+<span class="path">FeatureContext::iWaitForSeconds()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">Then </span>
+<span class="text">I should see "<strong class="skipped_param">&lt;shapeName&gt;</strong>"</span>
+<span class="path">FeatureContext::assertPageContainsText()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">When </span>
+<span class="text">I follow "<strong class="skipped_param">&lt;shapeName&gt;</strong>"</span>
+<span class="path">FeatureContext::clickLink()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">I follow "<strong class="skipped_param">delete shape</strong>"</span>
+<span class="path">FeatureContext::clickLink()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">Then </span>
+<span class="text">I should see "<strong class="skipped_param">Are you sure you want to delete this shape?</strong>" in popup</span>
+<span class="path">FeatureContext::assertPopupMessage()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">When </span>
+<span class="text">I confirm the popup</span>
+<span class="path">FeatureContext::confirmPopup()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">I go to "<strong class="skipped_param">http://localhost:3000/keystone/shapes</strong>"</span>
+<span class="path">FeatureContext::visit()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">Then </span>
+<span class="text">I should not see "<strong class="skipped_param">&lt;shapeName&gt;</strong>"</span>
+<span class="path">FeatureContext::assertPageNotContainsText()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">I should see help center CMS header and footer components</span>
+<span class="path">FeatureContext::iShouldSeeHelpCenterCMSHeaderAndFooterComponents()</span>
+</div>
+</li>
+</ol>
+<div class="examples">
+<h4>Examples</h4>
+<table>
+<thead>
+<tr class="skipped">
+<td>shapeName</td>
+</tr>
+</thead>
+<tbody>
+<tr class="failed">
+<td>testShape1</td>
+</tr>
+<tr class="failed exception">
+<td colspan="1">
+<pre class="backtrace">The text &quot;testShape1&quot; appears in the text of this page, but it should not.</pre>
+</td>
+</tr>
+<tr class="passed">
+<td>testShape2</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="scenario outline">
+<ul class="tags">
+<li>@regression</li>
+<li>@helpCenter</li>
+<li>@helpCenterCMS</li>
+<li>@helpCenterCMSCRUD</li>
+<li>@javascript</li>
+<li>@HCCMSUShapes</li>
+</ul>
+<h3>
+<span class="keyword">Scenario Outline: </span>
+<span class="title">I want to update shapes documentation</span>
+<span class="path">features/helpCenter/HCRegression.feature:294</span>
+</h3>
+<ol>
+<li class="skipped">
+<div class="step">
+<span class="keyword">Given </span>
+<span class="text">I authenticate as "<strong class="skipped_param">apappas@adcade.com</strong>" using "<strong class="skipped_param">adcade42</strong>"</span>
+<span class="path">FeatureContext::iAuthenticateAs()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">I am on "<strong class="skipped_param">http://localhost:3000/keystone/shapes</strong>"</span>
+<span class="path">FeatureContext::visit()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">I wait for <strong class="skipped_param">2</strong> seconds</span>
+<span class="path">FeatureContext::iWaitForSeconds()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">Then </span>
+<span class="text">I should see "<strong class="skipped_param">&lt;shapeName&gt;</strong>"</span>
+<span class="path">FeatureContext::assertPageContainsText()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">When </span>
+<span class="text">I follow "<strong class="skipped_param">&lt;shapeName&gt;</strong>"</span>
+<span class="path">FeatureContext::clickLink()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">I fill in "<strong class="skipped_param">title</strong>" with "<strong class="skipped_param">&lt;shapeNameUpdate&gt;</strong>"</span>
+<span class="path">FeatureContext::fillField()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">I press "<strong class="skipped_param">Save</strong>"</span>
+<span class="path">FeatureContext::pressButton()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">Then </span>
+<span class="text">I should see "<strong class="skipped_param">Your changes have been saved.</strong>"</span>
+<span class="path">FeatureContext::assertPageContainsText()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">When </span>
+<span class="text">I go to "<strong class="skipped_param">http://localhost:3000/keystone/shapes</strong>"</span>
+<span class="path">FeatureContext::visit()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">Then </span>
+<span class="text">I should see "<strong class="skipped_param">&lt;shapeNameUpdate&gt;</strong>"</span>
+<span class="path">FeatureContext::assertPageContainsText()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">I should see help center CMS header and footer components</span>
+<span class="path">FeatureContext::iShouldSeeHelpCenterCMSHeaderAndFooterComponents()</span>
+</div>
+</li>
+</ol>
+<div class="examples">
+<h4>Examples</h4>
+<table>
+<thead>
+<tr class="skipped">
+<td>shapeName</td>
+<td>shapeNameUpdate</td>
+</tr>
+</thead>
+<tbody>
+<tr class="passed">
+<td>testShape3</td>
+<td>testShape3Update</td>
+</tr>
+<tr class="passed">
+<td>testShape4</td>
+<td>testShape4update</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="scenario outline">
+<ul class="tags">
+<li>@regression</li>
+<li>@helpCenter</li>
+<li>@helpCenterCMS</li>
+<li>@helpCenterCMSCRUD</li>
+<li>@javascript</li>
+<li>@HCCMSFilterShapes</li>
+</ul>
+<h3>
+<span class="keyword">Scenario Outline: </span>
+<span class="title">I want to filer shapes documentation</span>
+<span class="path">features/helpCenter/HCRegression.feature:313</span>
+</h3>
+<ol>
+<li class="skipped">
+<div class="step">
+<span class="keyword">Given </span>
+<span class="text">I authenticate as "<strong class="skipped_param">apappas@adcade.com</strong>" using "<strong class="skipped_param">adcade42</strong>"</span>
+<span class="path">FeatureContext::iAuthenticateAs()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">I am on "<strong class="skipped_param">http://localhost:3000/keystone/shapes</strong>"</span>
+<span class="path">FeatureContext::visit()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">I wait for <strong class="skipped_param">2</strong> seconds</span>
+<span class="path">FeatureContext::iWaitForSeconds()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">Then </span>
+<span class="text">I should see "<strong class="skipped_param">&lt;typeName&gt;</strong>"</span>
+<span class="path">FeatureContext::assertPageContainsText()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">the response should contain "<strong class="skipped_param">Search shapes</strong>"</span>
+<span class="path">FeatureContext::assertResponseContains()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">the response should contain "<strong class="skipped_param">Add Filter </strong>"</span>
+<span class="path">FeatureContext::assertResponseContains()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">the response should contain "<strong class="skipped_param">Columns </strong>"</span>
+<span class="path">FeatureContext::assertResponseContains()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">the response should contain "<strong class="skipped_param">Download</strong>"</span>
+<span class="path">FeatureContext::assertResponseContains()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">When </span>
+<span class="text">I click on the element with xpath '<strong class="skipped_param">//*[@id="list-filters"]/div[1]/div[1]/div/div[3]/button</strong>'</span>
+<span class="path">FeatureContext::iClickOnTheElementWithXPath()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">Then </span>
+<span class="text">I should see "<strong class="skipped_param">Title</strong>"</span>
+<span class="path">FeatureContext::assertPageContainsText()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">I should see "<strong class="skipped_param">State</strong>"</span>
+<span class="path">FeatureContext::assertPageContainsText()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">I should see "<strong class="skipped_param">Type</strong>"</span>
+<span class="path">FeatureContext::assertPageContainsText()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">When </span>
+<span class="text">I click on the element with xpath '<strong class="skipped_param">//*[@id="list-filters"]/div[1]/div[2]/div[2]/button</strong>'</span>
+<span class="path">FeatureContext::iClickOnTheElementWithXPath()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">Then </span>
+<span class="text">I should see "<strong class="skipped_param">Title</strong>"</span>
+<span class="path">FeatureContext::assertPageContainsText()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">I should see "<strong class="skipped_param">State</strong>"</span>
+<span class="path">FeatureContext::assertPageContainsText()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">I should see "<strong class="skipped_param">Type</strong>"</span>
+<span class="path">FeatureContext::assertPageContainsText()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">When </span>
+<span class="text">I click on the element with xpath '<strong class="skipped_param">//*[@id="list-filters"]/div[1]/div[2]/div[1]/a</strong>'</span>
+<span class="path">FeatureContext::iClickOnTheElementWithXPath()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">I confirm the popup</span>
+<span class="path">FeatureContext::confirmPopup()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">Then </span>
+<span class="text">I should be on "<strong class="skipped_param">http://localhost:3000/keystone/shapes</strong>"</span>
+<span class="path">FeatureContext::assertPageAddress()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">I should see help center CMS header and footer components</span>
+<span class="path">FeatureContext::iShouldSeeHelpCenterCMSHeaderAndFooterComponents()</span>
+</div>
+</li>
+</ol>
+<div class="examples">
+<h4>Examples</h4>
+<table>
+<thead>
+<tr class="skipped">
+<td>typeName</td>
+</tr>
+</thead>
+<tbody>
+<tr class="passed">
+<td>testShape3Update</td>
+</tr>
+<tr class="passed">
+<td>testShape4Update</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="scenario outline">
+<ul class="tags">
+<li>@regression</li>
+<li>@helpCenter</li>
+<li>@helpCenterCMS</li>
+<li>@helpCenterCMSCRUD</li>
+<li>@javascript</li>
+<li>@HCCMSSearchShapes</li>
+</ul>
+<h3>
+<span class="keyword">Scenario Outline: </span>
+<span class="title">I want to search shapes documentation</span>
+<span class="path">features/helpCenter/HCRegression.feature:342</span>
+</h3>
+<ol>
+<li class="skipped">
+<div class="step">
+<span class="keyword">Given </span>
+<span class="text">I authenticate as "<strong class="skipped_param">apappas@adcade.com</strong>" using "<strong class="skipped_param">adcade42</strong>"</span>
+<span class="path">FeatureContext::iAuthenticateAs()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">I am on "<strong class="skipped_param">http://localhost:3000/keystone/shapes</strong>"</span>
+<span class="path">FeatureContext::visit()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">I wait for <strong class="skipped_param">2</strong> seconds</span>
+<span class="path">FeatureContext::iWaitForSeconds()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">Then </span>
+<span class="text">I should see "<strong class="skipped_param">&lt;shapeName&gt;</strong>"</span>
+<span class="path">FeatureContext::assertPageContainsText()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">the response should contain "<strong class="skipped_param">search</strong>"</span>
+<span class="path">FeatureContext::assertResponseContains()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">When </span>
+<span class="text">I fill in "<strong class="skipped_param">search</strong>" with "<strong class="skipped_param">&lt;shapeName&gt;</strong>"</span>
+<span class="path">FeatureContext::fillField()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">I click on the element with xpath '<strong class="skipped_param">//*[@id="body"]/div/div[2]/h1/div/span[2]/a</strong>'</span>
+<span class="path">FeatureContext::iClickOnTheElementWithXPath()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">Then </span>
+<span class="text">I should see "<strong class="skipped_param">Title (descending)</strong>"</span>
+<span class="path">FeatureContext::assertPageContainsText()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">I should see "<strong class="skipped_param">State</strong>"</span>
+<span class="path">FeatureContext::assertPageContainsText()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">I should see "<strong class="skipped_param">Content Description</strong>"</span>
+<span class="path">FeatureContext::assertPageContainsText()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">I should see "<strong class="skipped_param">&lt;shapeName&gt;</strong>"</span>
+<span class="path">FeatureContext::assertPageContainsText()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">I should see help center CMS header and footer components</span>
+<span class="path">FeatureContext::iShouldSeeHelpCenterCMSHeaderAndFooterComponents()</span>
+</div>
+</li>
+</ol>
+<div class="examples">
+<h4>Examples</h4>
+<table>
+<thead>
+<tr class="skipped">
+<td>shapeName</td>
+</tr>
+</thead>
+<tbody>
+<tr class="passed">
+<td>testShape3Update</td>
+</tr>
+<tr class="passed">
+<td>testShape4Update</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="scenario outline">
+<ul class="tags">
+<li>@regression</li>
+<li>@helpCenter</li>
+<li>@helpCenterCMS</li>
+<li>@helpCenterCMSCRUD</li>
+<li>@javascript</li>
+<li>@HCCMSCRProperties</li>
+</ul>
+<h3>
+<span class="keyword">Scenario Outline: </span>
+<span class="title">I want to create properties documentation</span>
+<span class="path">features/helpCenter/HCRegression.feature:363</span>
+</h3>
+<ol>
+<li class="skipped">
+<div class="step">
+<span class="keyword">Given </span>
+<span class="text">I authenticate as "<strong class="skipped_param">apappas@adcade.com</strong>" using "<strong class="skipped_param">adcade42</strong>"</span>
+<span class="path">FeatureContext::iAuthenticateAs()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">I am on "<strong class="skipped_param">http://localhost:3000/keystone/properties</strong>"</span>
+<span class="path">FeatureContext::visit()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">I wait for <strong class="skipped_param">2</strong> seconds</span>
+<span class="path">FeatureContext::iWaitForSeconds()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">When </span>
+<span class="text">I press "<strong class="skipped_param">Create Property</strong>"</span>
+<span class="path">FeatureContext::pressButton()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">Then </span>
+<span class="text">I should see "<strong class="skipped_param">New Property</strong>"</span>
+<span class="path">FeatureContext::assertPageContainsText()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">I should see "<strong class="skipped_param">Create</strong>"</span>
+<span class="path">FeatureContext::assertPageContainsText()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">I should see "<strong class="skipped_param">cancel</strong>"</span>
+<span class="path">FeatureContext::assertPageContainsText()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">When </span>
+<span class="text">I press "<strong class="skipped_param">cancel</strong>"</span>
+<span class="path">FeatureContext::pressButton()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">Then </span>
+<span class="text">I should see "<strong class="skipped_param">Create Property</strong>"</span>
+<span class="path">FeatureContext::assertPageContainsText()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">When </span>
+<span class="text">I press "<strong class="skipped_param">Create Property</strong>"</span>
+<span class="path">FeatureContext::pressButton()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">I fill in "<strong class="skipped_param">title</strong>" with "<strong class="skipped_param">&lt;propName&gt;</strong>"</span>
+<span class="path">FeatureContext::fillField()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">I press "<strong class="skipped_param">Create</strong>"</span>
+<span class="path">FeatureContext::pressButton()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">Then </span>
+<span class="text">I should see "New Property <strong class="skipped_param">&lt;propName&gt;</strong> created."</span>
+<span class="path">FeatureContext::assertPageContainsText()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">I should see create property view elements</span>
+<span class="path">FeatureContext::iShouldSeeCreatePropertyViewElements()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">When </span>
+<span class="text">I click on the element with xpath '<strong class="skipped_param">//*[@id="s2id_autogen1"]/a</strong>'</span>
+<span class="path">FeatureContext::iClickOnTheElementWithXPath()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">I click on the element with xpath '<strong class="skipped_param">//*[@id="select2-drop"]/ul/li[2]/div</strong>'</span>
+<span class="path">FeatureContext::iClickOnTheElementWithXPath()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">I fill in "<strong class="skipped_param">content.description</strong>" with "<strong class="skipped_param">&lt;description&gt;</strong>"</span>
+<span class="path">FeatureContext::fillField()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">I press "<strong class="skipped_param">Save</strong>"</span>
+<span class="path">FeatureContext::pressButton()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">Then </span>
+<span class="text">I should see "<strong class="skipped_param">Your changes have been saved.</strong>"</span>
+<span class="path">FeatureContext::assertPageContainsText()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">I should see help center CMS header and footer components</span>
+<span class="path">FeatureContext::iShouldSeeHelpCenterCMSHeaderAndFooterComponents()</span>
+</div>
+</li>
+</ol>
+<div class="examples">
+<h4>Examples</h4>
+<table>
+<thead>
+<tr class="skipped">
+<td>propName</td>
+<td>description</td>
+</tr>
+</thead>
+<tbody>
+<tr class="passed">
+<td>testProp1</td>
+<td>#Testing md input *italic* **bold** ![Adcade Logo](http://sajjad.pw/files/adcade-logo.jpg) [Link to logo](http://sajjad.pw/files/adcade-logo.jpg) - list text here 1. list text here</td>
+</tr>
+<tr class="passed">
+<td>testProp2</td>
+<td>#Testing md input *italic* **bold** ![Adcade Logo](http://sajjad.pw/files/adcade-logo.jpg) [Link to logo](http://sajjad.pw/files/adcade-logo.jpg) - list text here 1. list text here</td>
+</tr>
+<tr class="passed">
+<td>testProp3</td>
+<td>#Testing md input *italic* **bold** ![Adcade Logo](http://sajjad.pw/files/adcade-logo.jpg) [Link to logo](http://sajjad.pw/files/adcade-logo.jpg) - list text here 1. list text here</td>
+</tr>
+<tr class="passed">
+<td>testProp4</td>
+<td>#Testing md input *italic* **bold** ![Adcade Logo](http://sajjad.pw/files/adcade-logo.jpg) [Link to logo](http://sajjad.pw/files/adcade-logo.jpg) - list text here 1. list text here</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="scenario outline">
+<ul class="tags">
+<li>@regression</li>
+<li>@helpCenter</li>
+<li>@helpCenterCMS</li>
+<li>@helpCenterCMSCRUD</li>
+<li>@javascript</li>
+<li>@HCCMSDProperties</li>
+</ul>
+<h3>
+<span class="keyword">Scenario Outline: </span>
+<span class="title">I want to delete properties documentation</span>
+<span class="path">features/helpCenter/HCRegression.feature:393</span>
+</h3>
+<ol>
+<li class="skipped">
+<div class="step">
+<span class="keyword">Given </span>
+<span class="text">I authenticate as "<strong class="skipped_param">apappas@adcade.com</strong>" using "<strong class="skipped_param">adcade42</strong>"</span>
+<span class="path">FeatureContext::iAuthenticateAs()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">I am on "<strong class="skipped_param">http://localhost:3000/keystone/properties</strong>"</span>
+<span class="path">FeatureContext::visit()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">I wait for <strong class="skipped_param">2</strong> seconds</span>
+<span class="path">FeatureContext::iWaitForSeconds()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">Then </span>
+<span class="text">I should see "<strong class="skipped_param">&lt;propName&gt;</strong>"</span>
+<span class="path">FeatureContext::assertPageContainsText()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">When </span>
+<span class="text">I follow "<strong class="skipped_param">&lt;propName&gt;</strong>"</span>
+<span class="path">FeatureContext::clickLink()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">I follow "<strong class="skipped_param">delete property</strong>"</span>
+<span class="path">FeatureContext::clickLink()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">Then </span>
+<span class="text">I should see "<strong class="skipped_param">Are you sure you want to delete this property?</strong>" in popup</span>
+<span class="path">FeatureContext::assertPopupMessage()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">When </span>
+<span class="text">I confirm the popup</span>
+<span class="path">FeatureContext::confirmPopup()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">I go to "<strong class="skipped_param">http://localhost:3000/keystone/properties</strong>"</span>
+<span class="path">FeatureContext::visit()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">Then </span>
+<span class="text">I should not see "<strong class="skipped_param">&lt;propName&gt;</strong>"</span>
+<span class="path">FeatureContext::assertPageNotContainsText()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">I should see help center CMS header and footer components</span>
+<span class="path">FeatureContext::iShouldSeeHelpCenterCMSHeaderAndFooterComponents()</span>
+</div>
+</li>
+</ol>
+<div class="examples">
+<h4>Examples</h4>
+<table>
+<thead>
+<tr class="skipped">
+<td>propName</td>
+</tr>
+</thead>
+<tbody>
+<tr class="passed">
+<td>testProp1</td>
+</tr>
+<tr class="failed">
+<td>testProp2</td>
+</tr>
+<tr class="failed exception">
+<td colspan="1">
+<pre class="backtrace">The text &quot;testProp2&quot; appears in the text of this page, but it should not.</pre>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="scenario outline">
+<ul class="tags">
+<li>@regression</li>
+<li>@helpCenter</li>
+<li>@helpCenterCMS</li>
+<li>@helpCenterCMSCRUD</li>
+<li>@javascript</li>
+<li>@HCCMSUProperties</li>
+</ul>
+<h3>
+<span class="keyword">Scenario Outline: </span>
+<span class="title">I want to update properties documentation</span>
+<span class="path">features/helpCenter/HCRegression.feature:412</span>
+</h3>
+<ol>
+<li class="skipped">
+<div class="step">
+<span class="keyword">Given </span>
+<span class="text">I authenticate as "<strong class="skipped_param">apappas@adcade.com</strong>" using "<strong class="skipped_param">adcade42</strong>"</span>
+<span class="path">FeatureContext::iAuthenticateAs()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">I am on "<strong class="skipped_param">http://localhost:3000/keystone/properties</strong>"</span>
+<span class="path">FeatureContext::visit()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">I wait for <strong class="skipped_param">2</strong> seconds</span>
+<span class="path">FeatureContext::iWaitForSeconds()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">Then </span>
+<span class="text">I should see "<strong class="skipped_param">&lt;propName&gt;</strong>"</span>
+<span class="path">FeatureContext::assertPageContainsText()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">When </span>
+<span class="text">I follow "<strong class="skipped_param">&lt;propName&gt;</strong>"</span>
+<span class="path">FeatureContext::clickLink()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">I fill in "<strong class="skipped_param">title</strong>" with "<strong class="skipped_param">&lt;propNameUpdate&gt;</strong>"</span>
+<span class="path">FeatureContext::fillField()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">I press "<strong class="skipped_param">Save</strong>"</span>
+<span class="path">FeatureContext::pressButton()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">Then </span>
+<span class="text">I should see "<strong class="skipped_param">Your changes have been saved.</strong>"</span>
+<span class="path">FeatureContext::assertPageContainsText()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">When </span>
+<span class="text">I go to "<strong class="skipped_param">http://localhost:3000/keystone/properties</strong>"</span>
+<span class="path">FeatureContext::visit()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">Then </span>
+<span class="text">I should see "<strong class="skipped_param">&lt;propNameUpdate&gt;</strong>"</span>
+<span class="path">FeatureContext::assertPageContainsText()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">I should see help center CMS header and footer components</span>
+<span class="path">FeatureContext::iShouldSeeHelpCenterCMSHeaderAndFooterComponents()</span>
+</div>
+</li>
+</ol>
+<div class="examples">
+<h4>Examples</h4>
+<table>
+<thead>
+<tr class="skipped">
+<td>propName</td>
+<td>propNameUpdate</td>
+</tr>
+</thead>
+<tbody>
+<tr class="passed">
+<td>testProp3</td>
+<td>testProp3Update</td>
+</tr>
+<tr class="passed">
+<td>testProp4</td>
+<td>testProp4update</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="scenario outline">
+<ul class="tags">
+<li>@regression</li>
+<li>@helpCenter</li>
+<li>@helpCenterCMS</li>
+<li>@helpCenterCMSCRUD</li>
+<li>@javascript</li>
+<li>@HCCMSFilterProperties</li>
+</ul>
+<h3>
+<span class="keyword">Scenario Outline: </span>
+<span class="title">I want to filer properties documentation</span>
+<span class="path">features/helpCenter/HCRegression.feature:431</span>
+</h3>
+<ol>
+<li class="skipped">
+<div class="step">
+<span class="keyword">Given </span>
+<span class="text">I authenticate as "<strong class="skipped_param">apappas@adcade.com</strong>" using "<strong class="skipped_param">adcade42</strong>"</span>
+<span class="path">FeatureContext::iAuthenticateAs()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">I am on "<strong class="skipped_param">http://localhost:3000/keystone/properties</strong>"</span>
+<span class="path">FeatureContext::visit()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">I wait for <strong class="skipped_param">2</strong> seconds</span>
+<span class="path">FeatureContext::iWaitForSeconds()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">Then </span>
+<span class="text">I should see "<strong class="skipped_param">&lt;propName&gt;</strong>"</span>
+<span class="path">FeatureContext::assertPageContainsText()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">the response should contain "<strong class="skipped_param">Search properties</strong>"</span>
+<span class="path">FeatureContext::assertResponseContains()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">the response should contain "<strong class="skipped_param">Add Filter </strong>"</span>
+<span class="path">FeatureContext::assertResponseContains()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">the response should contain "<strong class="skipped_param">Columns </strong>"</span>
+<span class="path">FeatureContext::assertResponseContains()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">the response should contain "<strong class="skipped_param">Download</strong>"</span>
+<span class="path">FeatureContext::assertResponseContains()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">When </span>
+<span class="text">I click on the element with xpath '<strong class="skipped_param">//*[@id="list-filters"]/div[1]/div[1]/div/div[3]/button</strong>'</span>
+<span class="path">FeatureContext::iClickOnTheElementWithXPath()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">Then </span>
+<span class="text">I should see "<strong class="skipped_param">Title</strong>"</span>
+<span class="path">FeatureContext::assertPageContainsText()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">I should see "<strong class="skipped_param">State</strong>"</span>
+<span class="path">FeatureContext::assertPageContainsText()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">I should see "<strong class="skipped_param">Type</strong>"</span>
+<span class="path">FeatureContext::assertPageContainsText()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">When </span>
+<span class="text">I click on the element with xpath '<strong class="skipped_param">//*[@id="list-filters"]/div[1]/div[2]/div[2]/button</strong>'</span>
+<span class="path">FeatureContext::iClickOnTheElementWithXPath()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">Then </span>
+<span class="text">I should see "<strong class="skipped_param">Title</strong>"</span>
+<span class="path">FeatureContext::assertPageContainsText()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">I should see "<strong class="skipped_param">State</strong>"</span>
+<span class="path">FeatureContext::assertPageContainsText()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">I should see "<strong class="skipped_param">Type</strong>"</span>
+<span class="path">FeatureContext::assertPageContainsText()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">When </span>
+<span class="text">I click on the element with xpath '<strong class="skipped_param">//*[@id="list-filters"]/div[1]/div[2]/div[1]/a</strong>'</span>
+<span class="path">FeatureContext::iClickOnTheElementWithXPath()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">I confirm the popup</span>
+<span class="path">FeatureContext::confirmPopup()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">Then </span>
+<span class="text">I should be on "<strong class="skipped_param">http://localhost:3000/keystone/properties</strong>"</span>
+<span class="path">FeatureContext::assertPageAddress()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">I should see help center CMS header and footer components</span>
+<span class="path">FeatureContext::iShouldSeeHelpCenterCMSHeaderAndFooterComponents()</span>
+</div>
+</li>
+</ol>
+<div class="examples">
+<h4>Examples</h4>
+<table>
+<thead>
+<tr class="skipped">
+<td>propName</td>
+</tr>
+</thead>
+<tbody>
+<tr class="passed">
+<td>testProp3Update</td>
+</tr>
+<tr class="passed">
+<td>testProp4Update</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="scenario outline">
+<ul class="tags">
+<li>@regression</li>
+<li>@helpCenter</li>
+<li>@helpCenterCMS</li>
+<li>@helpCenterCMSCRUD</li>
+<li>@javascript</li>
+<li>@HCCMSSearchProperties</li>
+</ul>
+<h3>
+<span class="keyword">Scenario Outline: </span>
+<span class="title">I want to search properties documentation</span>
+<span class="path">features/helpCenter/HCRegression.feature:460</span>
+</h3>
+<ol>
+<li class="skipped">
+<div class="step">
+<span class="keyword">Given </span>
+<span class="text">I authenticate as "<strong class="skipped_param">apappas@adcade.com</strong>" using "<strong class="skipped_param">adcade42</strong>"</span>
+<span class="path">FeatureContext::iAuthenticateAs()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">I am on "<strong class="skipped_param">http://localhost:3000/keystone/properties</strong>"</span>
+<span class="path">FeatureContext::visit()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">I wait for <strong class="skipped_param">2</strong> seconds</span>
+<span class="path">FeatureContext::iWaitForSeconds()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">Then </span>
+<span class="text">I should see "<strong class="skipped_param">&lt;propName&gt;</strong>"</span>
+<span class="path">FeatureContext::assertPageContainsText()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">the response should contain "<strong class="skipped_param">search</strong>"</span>
+<span class="path">FeatureContext::assertResponseContains()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">When </span>
+<span class="text">I fill in "<strong class="skipped_param">search</strong>" with "<strong class="skipped_param">&lt;propName&gt;</strong>"</span>
+<span class="path">FeatureContext::fillField()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">I click on the element with xpath '<strong class="skipped_param">//*[@id="body"]/div/div[2]/h1/div/span[2]/a</strong>'</span>
+<span class="path">FeatureContext::iClickOnTheElementWithXPath()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">Then </span>
+<span class="text">I should see "<strong class="skipped_param">Title (descending)</strong>"</span>
+<span class="path">FeatureContext::assertPageContainsText()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">I should see "<strong class="skipped_param">State</strong>"</span>
+<span class="path">FeatureContext::assertPageContainsText()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">I should see "<strong class="skipped_param">Content Description</strong>"</span>
+<span class="path">FeatureContext::assertPageContainsText()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">I should see "<strong class="skipped_param">&lt;propName&gt;</strong>"</span>
+<span class="path">FeatureContext::assertPageContainsText()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">I should see help center CMS header and footer components</span>
+<span class="path">FeatureContext::iShouldSeeHelpCenterCMSHeaderAndFooterComponents()</span>
+</div>
+</li>
+</ol>
+<div class="examples">
+<h4>Examples</h4>
+<table>
+<thead>
+<tr class="skipped">
+<td>propName</td>
+</tr>
+</thead>
+<tbody>
+<tr class="passed">
+<td>testProp3Update</td>
+</tr>
+<tr class="passed">
+<td>testProp4Update</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="scenario outline">
+<ul class="tags">
+<li>@regression</li>
+<li>@helpCenter</li>
+<li>@helpCenterCMS</li>
+<li>@helpCenterCMSCRUD</li>
+<li>@javascript</li>
+<li>@HCCMSCRMethods</li>
+</ul>
+<h3>
+<span class="keyword">Scenario Outline: </span>
+<span class="title">I want to create methods documentation</span>
+<span class="path">features/helpCenter/HCRegression.feature:481</span>
+</h3>
+<ol>
+<li class="skipped">
+<div class="step">
+<span class="keyword">Given </span>
+<span class="text">I authenticate as "<strong class="skipped_param">apappas@adcade.com</strong>" using "<strong class="skipped_param">adcade42</strong>"</span>
+<span class="path">FeatureContext::iAuthenticateAs()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">I am on "<strong class="skipped_param">http://localhost:3000/keystone/methods</strong>"</span>
+<span class="path">FeatureContext::visit()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">I wait for <strong class="skipped_param">2</strong> seconds</span>
+<span class="path">FeatureContext::iWaitForSeconds()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">When </span>
+<span class="text">I press "<strong class="skipped_param">Create Method</strong>"</span>
+<span class="path">FeatureContext::pressButton()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">Then </span>
+<span class="text">I should see "<strong class="skipped_param">New Method</strong>"</span>
+<span class="path">FeatureContext::assertPageContainsText()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">I should see "<strong class="skipped_param">Create</strong>"</span>
+<span class="path">FeatureContext::assertPageContainsText()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">I should see "<strong class="skipped_param">cancel</strong>"</span>
+<span class="path">FeatureContext::assertPageContainsText()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">When </span>
+<span class="text">I press "<strong class="skipped_param">cancel</strong>"</span>
+<span class="path">FeatureContext::pressButton()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">Then </span>
+<span class="text">I should see "<strong class="skipped_param">Create Method</strong>"</span>
+<span class="path">FeatureContext::assertPageContainsText()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">When </span>
+<span class="text">I press "<strong class="skipped_param">Create Method</strong>"</span>
+<span class="path">FeatureContext::pressButton()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">I fill in "<strong class="skipped_param">title</strong>" with "<strong class="skipped_param">&lt;methodName&gt;</strong>"</span>
+<span class="path">FeatureContext::fillField()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">I press "<strong class="skipped_param">Create</strong>"</span>
+<span class="path">FeatureContext::pressButton()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">Then </span>
+<span class="text">I should see "New Method <strong class="skipped_param">&lt;methodName&gt;</strong> created."</span>
+<span class="path">FeatureContext::assertPageContainsText()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">I should see create method view elements</span>
+<span class="path">FeatureContext::iShouldSeeCreateMethodViewElements()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">When </span>
+<span class="text">I click on the element with xpath '<strong class="skipped_param">//*[@id="s2id_autogen1"]/a</strong>'</span>
+<span class="path">FeatureContext::iClickOnTheElementWithXPath()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">I click on the element with xpath '<strong class="skipped_param">//*[@id="select2-drop"]/ul/li[2]/div</strong>'</span>
+<span class="path">FeatureContext::iClickOnTheElementWithXPath()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">I fill in "<strong class="skipped_param">content.description</strong>" with "<strong class="skipped_param">&lt;description&gt;</strong>"</span>
+<span class="path">FeatureContext::fillField()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">I press "<strong class="skipped_param">Save</strong>"</span>
+<span class="path">FeatureContext::pressButton()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">Then </span>
+<span class="text">I should see "<strong class="skipped_param">Your changes have been saved.</strong>"</span>
+<span class="path">FeatureContext::assertPageContainsText()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">I should see help center CMS header and footer components</span>
+<span class="path">FeatureContext::iShouldSeeHelpCenterCMSHeaderAndFooterComponents()</span>
+</div>
+</li>
+</ol>
+<div class="examples">
+<h4>Examples</h4>
+<table>
+<thead>
+<tr class="skipped">
+<td>methodName</td>
+<td>description</td>
+</tr>
+</thead>
+<tbody>
+<tr class="passed">
+<td>testMethod1</td>
+<td>#Testing md input *italic* **bold** ![Adcade Logo](http://sajjad.pw/files/adcade-logo.jpg) [Link to logo](http://sajjad.pw/files/adcade-logo.jpg) - list text here 1. list text here</td>
+</tr>
+<tr class="passed">
+<td>testMethod2</td>
+<td>#Testing md input *italic* **bold** ![Adcade Logo](http://sajjad.pw/files/adcade-logo.jpg) [Link to logo](http://sajjad.pw/files/adcade-logo.jpg) - list text here 1. list text here</td>
+</tr>
+<tr class="passed">
+<td>testMethod3</td>
+<td>#Testing md input *italic* **bold** ![Adcade Logo](http://sajjad.pw/files/adcade-logo.jpg) [Link to logo](http://sajjad.pw/files/adcade-logo.jpg) - list text here 1. list text here</td>
+</tr>
+<tr class="passed">
+<td>testMethod4</td>
+<td>#Testing md input *italic* **bold** ![Adcade Logo](http://sajjad.pw/files/adcade-logo.jpg) [Link to logo](http://sajjad.pw/files/adcade-logo.jpg) - list text here 1. list text here</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="scenario outline">
+<ul class="tags">
+<li>@regression</li>
+<li>@helpCenter</li>
+<li>@helpCenterCMS</li>
+<li>@helpCenterCMSCRUD</li>
+<li>@javascript</li>
+<li>@HCCMSDMethods</li>
+</ul>
+<h3>
+<span class="keyword">Scenario Outline: </span>
+<span class="title">I want to delete methods documentation</span>
+<span class="path">features/helpCenter/HCRegression.feature:511</span>
+</h3>
+<ol>
+<li class="skipped">
+<div class="step">
+<span class="keyword">Given </span>
+<span class="text">I authenticate as "<strong class="skipped_param">apappas@adcade.com</strong>" using "<strong class="skipped_param">adcade42</strong>"</span>
+<span class="path">FeatureContext::iAuthenticateAs()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">I am on "<strong class="skipped_param">http://localhost:3000/keystone/methods</strong>"</span>
+<span class="path">FeatureContext::visit()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">I wait for <strong class="skipped_param">2</strong> seconds</span>
+<span class="path">FeatureContext::iWaitForSeconds()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">Then </span>
+<span class="text">I should see "<strong class="skipped_param">&lt;methodName&gt;</strong>"</span>
+<span class="path">FeatureContext::assertPageContainsText()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">When </span>
+<span class="text">I follow "<strong class="skipped_param">&lt;methodName&gt;</strong>"</span>
+<span class="path">FeatureContext::clickLink()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">I follow "<strong class="skipped_param">delete method</strong>"</span>
+<span class="path">FeatureContext::clickLink()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">Then </span>
+<span class="text">I should see "<strong class="skipped_param">Are you sure you want to delete this method?</strong>" in popup</span>
+<span class="path">FeatureContext::assertPopupMessage()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">When </span>
+<span class="text">I confirm the popup</span>
+<span class="path">FeatureContext::confirmPopup()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">I go to "<strong class="skipped_param">http://localhost:3000/keystone/methods</strong>"</span>
+<span class="path">FeatureContext::visit()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">Then </span>
+<span class="text">I should not see "<strong class="skipped_param">&lt;methodName&gt;</strong>"</span>
+<span class="path">FeatureContext::assertPageNotContainsText()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">I should see help center CMS header and footer components</span>
+<span class="path">FeatureContext::iShouldSeeHelpCenterCMSHeaderAndFooterComponents()</span>
+</div>
+</li>
+</ol>
+<div class="examples">
+<h4>Examples</h4>
+<table>
+<thead>
+<tr class="skipped">
+<td>methodName</td>
+</tr>
+</thead>
+<tbody>
+<tr class="failed">
+<td>testMethod1</td>
+</tr>
+<tr class="failed exception">
+<td colspan="1">
+<pre class="backtrace">The text &quot;testMethod1&quot; appears in the text of this page, but it should not.</pre>
+</td>
+</tr>
+<tr class="passed">
+<td>testMethod2</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="scenario outline">
+<ul class="tags">
+<li>@regression</li>
+<li>@helpCenter</li>
+<li>@helpCenterCMS</li>
+<li>@helpCenterCMSCRUD</li>
+<li>@javascript</li>
+<li>@HCCMSUMethods</li>
+</ul>
+<h3>
+<span class="keyword">Scenario Outline: </span>
+<span class="title">I want to update methods documentation</span>
+<span class="path">features/helpCenter/HCRegression.feature:530</span>
+</h3>
+<ol>
+<li class="skipped">
+<div class="step">
+<span class="keyword">Given </span>
+<span class="text">I authenticate as "<strong class="skipped_param">apappas@adcade.com</strong>" using "<strong class="skipped_param">adcade42</strong>"</span>
+<span class="path">FeatureContext::iAuthenticateAs()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">I am on "<strong class="skipped_param">http://localhost:3000/keystone/methods</strong>"</span>
+<span class="path">FeatureContext::visit()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">I wait for <strong class="skipped_param">2</strong> seconds</span>
+<span class="path">FeatureContext::iWaitForSeconds()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">Then </span>
+<span class="text">I should see "<strong class="skipped_param">&lt;methodName&gt;</strong>"</span>
+<span class="path">FeatureContext::assertPageContainsText()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">When </span>
+<span class="text">I follow "<strong class="skipped_param">&lt;methodName&gt;</strong>"</span>
+<span class="path">FeatureContext::clickLink()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">I fill in "<strong class="skipped_param">title</strong>" with "<strong class="skipped_param">&lt;methodNameUpdate&gt;</strong>"</span>
+<span class="path">FeatureContext::fillField()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">I press "<strong class="skipped_param">Save</strong>"</span>
+<span class="path">FeatureContext::pressButton()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">Then </span>
+<span class="text">I should see "<strong class="skipped_param">Your changes have been saved.</strong>"</span>
+<span class="path">FeatureContext::assertPageContainsText()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">When </span>
+<span class="text">I go to "<strong class="skipped_param">http://localhost:3000/keystone/methods</strong>"</span>
+<span class="path">FeatureContext::visit()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">Then </span>
+<span class="text">I should see "<strong class="skipped_param">&lt;methodNameUpdate&gt;</strong>"</span>
+<span class="path">FeatureContext::assertPageContainsText()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">I should see help center CMS header and footer components</span>
+<span class="path">FeatureContext::iShouldSeeHelpCenterCMSHeaderAndFooterComponents()</span>
+</div>
+</li>
+</ol>
+<div class="examples">
+<h4>Examples</h4>
+<table>
+<thead>
+<tr class="skipped">
+<td>methodName</td>
+<td>methodNameUpdate</td>
+</tr>
+</thead>
+<tbody>
+<tr class="passed">
+<td>testMethod3</td>
+<td>testMethod3Update</td>
+</tr>
+<tr class="passed">
+<td>testMethod4</td>
+<td>testMethod4update</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="scenario outline">
+<ul class="tags">
+<li>@regression</li>
+<li>@helpCenter</li>
+<li>@helpCenterCMS</li>
+<li>@helpCenterCMSCRUD</li>
+<li>@javascript</li>
+<li>@HCCMSFilterMethods</li>
+</ul>
+<h3>
+<span class="keyword">Scenario Outline: </span>
+<span class="title">I want to filer methods documentation</span>
+<span class="path">features/helpCenter/HCRegression.feature:549</span>
+</h3>
+<ol>
+<li class="skipped">
+<div class="step">
+<span class="keyword">Given </span>
+<span class="text">I authenticate as "<strong class="skipped_param">apappas@adcade.com</strong>" using "<strong class="skipped_param">adcade42</strong>"</span>
+<span class="path">FeatureContext::iAuthenticateAs()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">I am on "<strong class="skipped_param">http://localhost:3000/keystone/methods</strong>"</span>
+<span class="path">FeatureContext::visit()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">I wait for <strong class="skipped_param">2</strong> seconds</span>
+<span class="path">FeatureContext::iWaitForSeconds()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">Then </span>
+<span class="text">I should see "<strong class="skipped_param">&lt;methodName&gt;</strong>"</span>
+<span class="path">FeatureContext::assertPageContainsText()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">the response should contain "<strong class="skipped_param">Search methods</strong>"</span>
+<span class="path">FeatureContext::assertResponseContains()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">the response should contain "<strong class="skipped_param">Add Filter </strong>"</span>
+<span class="path">FeatureContext::assertResponseContains()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">the response should contain "<strong class="skipped_param">Columns </strong>"</span>
+<span class="path">FeatureContext::assertResponseContains()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">the response should contain "<strong class="skipped_param">Download</strong>"</span>
+<span class="path">FeatureContext::assertResponseContains()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">When </span>
+<span class="text">I click on the element with xpath '<strong class="skipped_param">//*[@id="list-filters"]/div[1]/div[1]/div/div[3]/button</strong>'</span>
+<span class="path">FeatureContext::iClickOnTheElementWithXPath()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">Then </span>
+<span class="text">I should see "<strong class="skipped_param">Title</strong>"</span>
+<span class="path">FeatureContext::assertPageContainsText()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">I should see "<strong class="skipped_param">State</strong>"</span>
+<span class="path">FeatureContext::assertPageContainsText()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">I should see "<strong class="skipped_param">Type</strong>"</span>
+<span class="path">FeatureContext::assertPageContainsText()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">When </span>
+<span class="text">I click on the element with xpath '<strong class="skipped_param">//*[@id="list-filters"]/div[1]/div[2]/div[2]/button</strong>'</span>
+<span class="path">FeatureContext::iClickOnTheElementWithXPath()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">Then </span>
+<span class="text">I should see "<strong class="skipped_param">Title</strong>"</span>
+<span class="path">FeatureContext::assertPageContainsText()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">I should see "<strong class="skipped_param">State</strong>"</span>
+<span class="path">FeatureContext::assertPageContainsText()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">I should see "<strong class="skipped_param">Type</strong>"</span>
+<span class="path">FeatureContext::assertPageContainsText()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">When </span>
+<span class="text">I click on the element with xpath '<strong class="skipped_param">//*[@id="list-filters"]/div[1]/div[2]/div[1]/a</strong>'</span>
+<span class="path">FeatureContext::iClickOnTheElementWithXPath()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">I confirm the popup</span>
+<span class="path">FeatureContext::confirmPopup()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">Then </span>
+<span class="text">I should be on "<strong class="skipped_param">http://localhost:3000/keystone/methods</strong>"</span>
+<span class="path">FeatureContext::assertPageAddress()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">I should see help center CMS header and footer components</span>
+<span class="path">FeatureContext::iShouldSeeHelpCenterCMSHeaderAndFooterComponents()</span>
+</div>
+</li>
+</ol>
+<div class="examples">
+<h4>Examples</h4>
+<table>
+<thead>
+<tr class="skipped">
+<td>methodName</td>
+</tr>
+</thead>
+<tbody>
+<tr class="passed">
+<td>testMethod3Update</td>
+</tr>
+<tr class="passed">
+<td>testMethod4Update</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="scenario outline">
+<ul class="tags">
+<li>@regression</li>
+<li>@helpCenter</li>
+<li>@helpCenterCMS</li>
+<li>@helpCenterCMSCRUD</li>
+<li>@javascript</li>
+<li>@HCCMSSearchMethods</li>
+</ul>
+<h3>
+<span class="keyword">Scenario Outline: </span>
+<span class="title">I want to search methods documentation</span>
+<span class="path">features/helpCenter/HCRegression.feature:578</span>
+</h3>
+<ol>
+<li class="skipped">
+<div class="step">
+<span class="keyword">Given </span>
+<span class="text">I authenticate as "<strong class="skipped_param">apappas@adcade.com</strong>" using "<strong class="skipped_param">adcade42</strong>"</span>
+<span class="path">FeatureContext::iAuthenticateAs()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">I am on "<strong class="skipped_param">http://localhost:3000/keystone/methods</strong>"</span>
+<span class="path">FeatureContext::visit()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">I wait for <strong class="skipped_param">2</strong> seconds</span>
+<span class="path">FeatureContext::iWaitForSeconds()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">Then </span>
+<span class="text">I should see "<strong class="skipped_param">&lt;methodName&gt;</strong>"</span>
+<span class="path">FeatureContext::assertPageContainsText()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">the response should contain "<strong class="skipped_param">search</strong>"</span>
+<span class="path">FeatureContext::assertResponseContains()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">When </span>
+<span class="text">I fill in "<strong class="skipped_param">search</strong>" with "<strong class="skipped_param">&lt;methodName&gt;</strong>"</span>
+<span class="path">FeatureContext::fillField()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">I click on the element with xpath '<strong class="skipped_param">//*[@id="body"]/div/div[2]/h1/div/span[2]/a</strong>'</span>
+<span class="path">FeatureContext::iClickOnTheElementWithXPath()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">Then </span>
+<span class="text">I should see "<strong class="skipped_param">Title (descending)</strong>"</span>
+<span class="path">FeatureContext::assertPageContainsText()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">I should see "<strong class="skipped_param">State</strong>"</span>
+<span class="path">FeatureContext::assertPageContainsText()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">I should see "<strong class="skipped_param">Content Description</strong>"</span>
+<span class="path">FeatureContext::assertPageContainsText()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">I should see "<strong class="skipped_param">&lt;methodName&gt;</strong>"</span>
+<span class="path">FeatureContext::assertPageContainsText()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">I should see help center CMS header and footer components</span>
+<span class="path">FeatureContext::iShouldSeeHelpCenterCMSHeaderAndFooterComponents()</span>
+</div>
+</li>
+</ol>
+<div class="examples">
+<h4>Examples</h4>
+<table>
+<thead>
+<tr class="skipped">
+<td>methodName</td>
+</tr>
+</thead>
+<tbody>
+<tr class="passed">
+<td>testMethod3Update</td>
+</tr>
+<tr class="passed">
+<td>testMethod4Update</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="scenario outline">
+<ul class="tags">
+<li>@regression</li>
+<li>@helpCenter</li>
+<li>@helpCenterCMS</li>
+<li>@helpCenterCMSCRUD</li>
+<li>@javascript</li>
+<li>@HCCMSCRUtilities</li>
+</ul>
+<h3>
+<span class="keyword">Scenario Outline: </span>
+<span class="title">I want to create utilities documentation</span>
+<span class="path">features/helpCenter/HCRegression.feature:599</span>
+</h3>
+<ol>
+<li class="skipped">
+<div class="step">
+<span class="keyword">Given </span>
+<span class="text">I authenticate as "<strong class="skipped_param">apappas@adcade.com</strong>" using "<strong class="skipped_param">adcade42</strong>"</span>
+<span class="path">FeatureContext::iAuthenticateAs()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">I am on "<strong class="skipped_param">http://localhost:3000/keystone/utilities</strong>"</span>
+<span class="path">FeatureContext::visit()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">I wait for <strong class="skipped_param">2</strong> seconds</span>
+<span class="path">FeatureContext::iWaitForSeconds()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">When </span>
+<span class="text">I press "<strong class="skipped_param">Create Utility</strong>"</span>
+<span class="path">FeatureContext::pressButton()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">Then </span>
+<span class="text">I should see "<strong class="skipped_param">New Utility</strong>"</span>
+<span class="path">FeatureContext::assertPageContainsText()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">I should see "<strong class="skipped_param">Create</strong>"</span>
+<span class="path">FeatureContext::assertPageContainsText()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">I should see "<strong class="skipped_param">cancel</strong>"</span>
+<span class="path">FeatureContext::assertPageContainsText()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">When </span>
+<span class="text">I press "<strong class="skipped_param">cancel</strong>"</span>
+<span class="path">FeatureContext::pressButton()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">Then </span>
+<span class="text">I should see "<strong class="skipped_param">Create Utility</strong>"</span>
+<span class="path">FeatureContext::assertPageContainsText()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">When </span>
+<span class="text">I press "<strong class="skipped_param">Create Utility</strong>"</span>
+<span class="path">FeatureContext::pressButton()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">I fill in "<strong class="skipped_param">title</strong>" with "<strong class="skipped_param">&lt;utilityName&gt;</strong>"</span>
+<span class="path">FeatureContext::fillField()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">I press "<strong class="skipped_param">Create</strong>"</span>
+<span class="path">FeatureContext::pressButton()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">Then </span>
+<span class="text">I should see "New Utility <strong class="skipped_param">&lt;utilityName&gt;</strong> created."</span>
+<span class="path">FeatureContext::assertPageContainsText()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">I should see create utility view elements</span>
+<span class="path">FeatureContext::iShouldSeeCreateUtilityViewElements()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">When </span>
+<span class="text">I click on the element with xpath '<strong class="skipped_param">//*[@id="s2id_autogen1"]/a</strong>'</span>
+<span class="path">FeatureContext::iClickOnTheElementWithXPath()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">I click on the element with xpath '<strong class="skipped_param">//*[@id="select2-drop"]/ul/li[2]/div</strong>'</span>
+<span class="path">FeatureContext::iClickOnTheElementWithXPath()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">I fill in "<strong class="skipped_param">content.description</strong>" with "<strong class="skipped_param">&lt;description&gt;</strong>"</span>
+<span class="path">FeatureContext::fillField()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">I press "<strong class="skipped_param">Save</strong>"</span>
+<span class="path">FeatureContext::pressButton()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">Then </span>
+<span class="text">I should see "<strong class="skipped_param">Your changes have been saved.</strong>"</span>
+<span class="path">FeatureContext::assertPageContainsText()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">I should see help center CMS header and footer components</span>
+<span class="path">FeatureContext::iShouldSeeHelpCenterCMSHeaderAndFooterComponents()</span>
+</div>
+</li>
+</ol>
+<div class="examples">
+<h4>Examples</h4>
+<table>
+<thead>
+<tr class="skipped">
+<td>utilityName</td>
+<td>description</td>
+</tr>
+</thead>
+<tbody>
+<tr class="passed">
+<td>testUtil1</td>
+<td>#Testing md input *italic* **bold** ![Adcade Logo](http://sajjad.pw/files/adcade-logo.jpg) [Link to logo](http://sajjad.pw/files/adcade-logo.jpg) - list text here 1. list text here</td>
+</tr>
+<tr class="passed">
+<td>testUtil2</td>
+<td>#Testing md input *italic* **bold** ![Adcade Logo](http://sajjad.pw/files/adcade-logo.jpg) [Link to logo](http://sajjad.pw/files/adcade-logo.jpg) - list text here 1. list text here</td>
+</tr>
+<tr class="passed">
+<td>testUtil3</td>
+<td>#Testing md input *italic* **bold** ![Adcade Logo](http://sajjad.pw/files/adcade-logo.jpg) [Link to logo](http://sajjad.pw/files/adcade-logo.jpg) - list text here 1. list text here</td>
+</tr>
+<tr class="passed">
+<td>testUtil4</td>
+<td>#Testing md input *italic* **bold** ![Adcade Logo](http://sajjad.pw/files/adcade-logo.jpg) [Link to logo](http://sajjad.pw/files/adcade-logo.jpg) - list text here 1. list text here</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="scenario outline">
+<ul class="tags">
+<li>@regression</li>
+<li>@helpCenter</li>
+<li>@helpCenterCMS</li>
+<li>@helpCenterCMSCRUD</li>
+<li>@javascript</li>
+<li>@HCCMSDUtilities</li>
+</ul>
+<h3>
+<span class="keyword">Scenario Outline: </span>
+<span class="title">I want to delete utilities documentation</span>
+<span class="path">features/helpCenter/HCRegression.feature:629</span>
+</h3>
+<ol>
+<li class="skipped">
+<div class="step">
+<span class="keyword">Given </span>
+<span class="text">I authenticate as "<strong class="skipped_param">apappas@adcade.com</strong>" using "<strong class="skipped_param">adcade42</strong>"</span>
+<span class="path">FeatureContext::iAuthenticateAs()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">I am on "<strong class="skipped_param">http://localhost:3000/keystone/utilities</strong>"</span>
+<span class="path">FeatureContext::visit()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">I wait for <strong class="skipped_param">2</strong> seconds</span>
+<span class="path">FeatureContext::iWaitForSeconds()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">Then </span>
+<span class="text">I should see "<strong class="skipped_param">&lt;utilityName&gt;</strong>"</span>
+<span class="path">FeatureContext::assertPageContainsText()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">When </span>
+<span class="text">I follow "<strong class="skipped_param">&lt;utilityName&gt;</strong>"</span>
+<span class="path">FeatureContext::clickLink()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">I follow "<strong class="skipped_param">delete utility</strong>"</span>
+<span class="path">FeatureContext::clickLink()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">Then </span>
+<span class="text">I should see "<strong class="skipped_param">Are you sure you want to delete this utility?</strong>" in popup</span>
+<span class="path">FeatureContext::assertPopupMessage()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">When </span>
+<span class="text">I confirm the popup</span>
+<span class="path">FeatureContext::confirmPopup()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">I go to "<strong class="skipped_param">http://localhost:3000/keystone/utilities</strong>"</span>
+<span class="path">FeatureContext::visit()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">Then </span>
+<span class="text">I should not see "<strong class="skipped_param">&lt;utilityName&gt;</strong>"</span>
+<span class="path">FeatureContext::assertPageNotContainsText()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">I should see help center CMS header and footer components</span>
+<span class="path">FeatureContext::iShouldSeeHelpCenterCMSHeaderAndFooterComponents()</span>
+</div>
+</li>
+</ol>
+<div class="examples">
+<h4>Examples</h4>
+<table>
+<thead>
+<tr class="skipped">
+<td>utilityName</td>
+</tr>
+</thead>
+<tbody>
+<tr class="failed">
+<td>testUtil1</td>
+</tr>
+<tr class="failed exception">
+<td colspan="1">
+<pre class="backtrace">The text &quot;testUtil1&quot; appears in the text of this page, but it should not.</pre>
+</td>
+</tr>
+<tr class="failed">
+<td>testUtil2</td>
+</tr>
+<tr class="failed exception">
+<td colspan="1">
+<pre class="backtrace">The text &quot;testUtil2&quot; appears in the text of this page, but it should not.</pre>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="scenario outline">
+<ul class="tags">
+<li>@regression</li>
+<li>@helpCenter</li>
+<li>@helpCenterCMS</li>
+<li>@helpCenterCMSCRUD</li>
+<li>@javascript</li>
+<li>@HCCMSUUtilities</li>
+</ul>
+<h3>
+<span class="keyword">Scenario Outline: </span>
+<span class="title">I want to update utilities documentation</span>
+<span class="path">features/helpCenter/HCRegression.feature:648</span>
+</h3>
+<ol>
+<li class="skipped">
+<div class="step">
+<span class="keyword">Given </span>
+<span class="text">I authenticate as "<strong class="skipped_param">apappas@adcade.com</strong>" using "<strong class="skipped_param">adcade42</strong>"</span>
+<span class="path">FeatureContext::iAuthenticateAs()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">I am on "<strong class="skipped_param">http://localhost:3000/keystone/utilities</strong>"</span>
+<span class="path">FeatureContext::visit()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">I wait for <strong class="skipped_param">2</strong> seconds</span>
+<span class="path">FeatureContext::iWaitForSeconds()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">Then </span>
+<span class="text">I should see "<strong class="skipped_param">&lt;utilityName&gt;</strong>"</span>
+<span class="path">FeatureContext::assertPageContainsText()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">When </span>
+<span class="text">I follow "<strong class="skipped_param">&lt;utilityName&gt;</strong>"</span>
+<span class="path">FeatureContext::clickLink()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">I fill in "<strong class="skipped_param">title</strong>" with "<strong class="skipped_param">&lt;utilityNameUpdate&gt;</strong>"</span>
+<span class="path">FeatureContext::fillField()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">I press "<strong class="skipped_param">Save</strong>"</span>
+<span class="path">FeatureContext::pressButton()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">Then </span>
+<span class="text">I should see "<strong class="skipped_param">Your changes have been saved.</strong>"</span>
+<span class="path">FeatureContext::assertPageContainsText()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">When </span>
+<span class="text">I go to "<strong class="skipped_param">http://localhost:3000/keystone/utilities</strong>"</span>
+<span class="path">FeatureContext::visit()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">Then </span>
+<span class="text">I should see "<strong class="skipped_param">&lt;utilityNameUpdate&gt;</strong>"</span>
+<span class="path">FeatureContext::assertPageContainsText()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">I should see help center CMS header and footer components</span>
+<span class="path">FeatureContext::iShouldSeeHelpCenterCMSHeaderAndFooterComponents()</span>
+</div>
+</li>
+</ol>
+<div class="examples">
+<h4>Examples</h4>
+<table>
+<thead>
+<tr class="skipped">
+<td>utilityName</td>
+<td>utilityNameUpdate</td>
+</tr>
+</thead>
+<tbody>
+<tr class="passed">
+<td>testUtil3</td>
+<td>testUtil3Update</td>
+</tr>
+<tr class="passed">
+<td>testUtil4</td>
+<td>testUtil4update</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="scenario outline">
+<ul class="tags">
+<li>@regression</li>
+<li>@helpCenter</li>
+<li>@helpCenterCMS</li>
+<li>@helpCenterCMSCRUD</li>
+<li>@javascript</li>
+<li>@HCCMSFilterUtilities</li>
+</ul>
+<h3>
+<span class="keyword">Scenario Outline: </span>
+<span class="title">I want to filer utilities documentation</span>
+<span class="path">features/helpCenter/HCRegression.feature:667</span>
+</h3>
+<ol>
+<li class="skipped">
+<div class="step">
+<span class="keyword">Given </span>
+<span class="text">I authenticate as "<strong class="skipped_param">apappas@adcade.com</strong>" using "<strong class="skipped_param">adcade42</strong>"</span>
+<span class="path">FeatureContext::iAuthenticateAs()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">I am on "<strong class="skipped_param">http://localhost:3000/keystone/utilities</strong>"</span>
+<span class="path">FeatureContext::visit()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">I wait for <strong class="skipped_param">2</strong> seconds</span>
+<span class="path">FeatureContext::iWaitForSeconds()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">Then </span>
+<span class="text">I should see "<strong class="skipped_param">&lt;utilityName&gt;</strong>"</span>
+<span class="path">FeatureContext::assertPageContainsText()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">the response should contain "<strong class="skipped_param">Search utilities</strong>"</span>
+<span class="path">FeatureContext::assertResponseContains()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">the response should contain "<strong class="skipped_param">Add Filter </strong>"</span>
+<span class="path">FeatureContext::assertResponseContains()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">the response should contain "<strong class="skipped_param">Columns </strong>"</span>
+<span class="path">FeatureContext::assertResponseContains()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">the response should contain "<strong class="skipped_param">Download</strong>"</span>
+<span class="path">FeatureContext::assertResponseContains()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">When </span>
+<span class="text">I click on the element with xpath '<strong class="skipped_param">//*[@id="list-filters"]/div[1]/div[1]/div/div[3]/button</strong>'</span>
+<span class="path">FeatureContext::iClickOnTheElementWithXPath()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">Then </span>
+<span class="text">I should see "<strong class="skipped_param">Title</strong>"</span>
+<span class="path">FeatureContext::assertPageContainsText()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">I should see "<strong class="skipped_param">State</strong>"</span>
+<span class="path">FeatureContext::assertPageContainsText()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">When </span>
+<span class="text">I click on the element with xpath '<strong class="skipped_param">//*[@id="list-filters"]/div[1]/div[2]/div[2]/button</strong>'</span>
+<span class="path">FeatureContext::iClickOnTheElementWithXPath()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">Then </span>
+<span class="text">I should see "<strong class="skipped_param">Title</strong>"</span>
+<span class="path">FeatureContext::assertPageContainsText()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">I should see "<strong class="skipped_param">State</strong>"</span>
+<span class="path">FeatureContext::assertPageContainsText()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">When </span>
+<span class="text">I click on the element with xpath '<strong class="skipped_param">//*[@id="list-filters"]/div[1]/div[2]/div[1]/a</strong>'</span>
+<span class="path">FeatureContext::iClickOnTheElementWithXPath()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">I confirm the popup</span>
+<span class="path">FeatureContext::confirmPopup()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">Then </span>
+<span class="text">I should be on "<strong class="skipped_param">http://localhost:3000/keystone/utilities</strong>"</span>
+<span class="path">FeatureContext::assertPageAddress()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">I should see help center CMS header and footer components</span>
+<span class="path">FeatureContext::iShouldSeeHelpCenterCMSHeaderAndFooterComponents()</span>
+</div>
+</li>
+</ol>
+<div class="examples">
+<h4>Examples</h4>
+<table>
+<thead>
+<tr class="skipped">
+<td>utilityName</td>
+</tr>
+</thead>
+<tbody>
+<tr class="passed">
+<td>testUtil3Update</td>
+</tr>
+<tr class="passed">
+<td>testUtil4Update</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="scenario outline">
+<ul class="tags">
+<li>@regression</li>
+<li>@helpCenter</li>
+<li>@helpCenterCMS</li>
+<li>@helpCenterCMSCRUD</li>
+<li>@javascript</li>
+<li>@HCCMSSearchUtilities</li>
+</ul>
+<h3>
+<span class="keyword">Scenario Outline: </span>
+<span class="title">I want to search methods documentation</span>
+<span class="path">features/helpCenter/HCRegression.feature:694</span>
+</h3>
+<ol>
+<li class="skipped">
+<div class="step">
+<span class="keyword">Given </span>
+<span class="text">I authenticate as "<strong class="skipped_param">apappas@adcade.com</strong>" using "<strong class="skipped_param">adcade42</strong>"</span>
+<span class="path">FeatureContext::iAuthenticateAs()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">I am on "<strong class="skipped_param">http://localhost:3000/keystone/utilities</strong>"</span>
+<span class="path">FeatureContext::visit()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">I wait for <strong class="skipped_param">2</strong> seconds</span>
+<span class="path">FeatureContext::iWaitForSeconds()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">Then </span>
+<span class="text">I should see "<strong class="skipped_param">&lt;utilityName&gt;</strong>"</span>
+<span class="path">FeatureContext::assertPageContainsText()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">the response should contain "<strong class="skipped_param">search</strong>"</span>
+<span class="path">FeatureContext::assertResponseContains()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">When </span>
+<span class="text">I fill in "<strong class="skipped_param">search</strong>" with "<strong class="skipped_param">&lt;utilityName&gt;</strong>"</span>
+<span class="path">FeatureContext::fillField()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">I click on the element with xpath '<strong class="skipped_param">//*[@id="body"]/div/div[2]/h1/div/span[2]/a</strong>'</span>
+<span class="path">FeatureContext::iClickOnTheElementWithXPath()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">Then </span>
+<span class="text">I should see "<strong class="skipped_param">Title (descending)</strong>"</span>
+<span class="path">FeatureContext::assertPageContainsText()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">I should see "<strong class="skipped_param">State</strong>"</span>
+<span class="path">FeatureContext::assertPageContainsText()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">I should see "<strong class="skipped_param">Content Description</strong>"</span>
+<span class="path">FeatureContext::assertPageContainsText()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">I should see "<strong class="skipped_param">&lt;utilityName&gt;</strong>"</span>
+<span class="path">FeatureContext::assertPageContainsText()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">I should see help center CMS header and footer components</span>
+<span class="path">FeatureContext::iShouldSeeHelpCenterCMSHeaderAndFooterComponents()</span>
+</div>
+</li>
+</ol>
+<div class="examples">
+<h4>Examples</h4>
+<table>
+<thead>
+<tr class="skipped">
+<td>utilityName</td>
+</tr>
+</thead>
+<tbody>
+<tr class="passed">
+<td>testUtil3Update</td>
+</tr>
+<tr class="passed">
+<td>testUtil4Update</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="summary failed">
+<div class="counters">
+<p class="scenarios">
+88 scenarios (<strong class="passed">78 passed</strong>, <strong class="failed">10 failed</strong>)
+</p>
+<p class="steps">
+1050 steps (<strong class="passed">1030 passed</strong>, <strong class="skipped">10 skipped</strong>, <strong class="failed">10 failed</strong>)
+</p>
+<p class="time">
+7m3.065s
+</p>
+</div>
+<div class="switchers">
+    <a href="javascript:void(0)" id="behat_show_all">[+] all</a>
+    <a href="javascript:void(0)" id="behat_hide_all">[-] all</a>
+</div>
+</div>
+
+    </div>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.3/jquery.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $('#behat .feature h2').click(function(){
+                $(this).parent().toggleClass('jq-toggle-opened');
+            }).parent().addClass('jq-toggle');
+
+            $('#behat .scenario h3').click(function(){
+                $(this).parent().toggleClass('jq-toggle-opened');
+            }).parent().addClass('jq-toggle');
+
+            $('#behat_show_all').click(function(){
+                $('#behat .feature').addClass('jq-toggle-opened');
+                $('#behat .scenario').addClass('jq-toggle-opened');
+            });
+
+            $('#behat_hide_all').click(function(){
+                $('#behat .feature').removeClass('jq-toggle-opened');
+                $('#behat .scenario').removeClass('jq-toggle-opened');
+            });
+
+            $('#behat .summary .counters .scenarios .passed')
+                .addClass('switcher')
+                .click(function(){
+                    var $scenario = $('.feature .scenario:not(:has(.failed, .pending))');
+                    var $feature  = $scenario.parent();
+
+                    $('#behat_hide_all').click();
+
+                    $scenario.addClass('jq-toggle-opened');
+                    $feature.addClass('jq-toggle-opened');
+                });
+
+            $('#behat .summary .counters .steps .passed')
+                .addClass('switcher')
+                .click(function(){
+                    var $scenario = $('.feature .scenario:has(.passed)');
+                    var $feature  = $scenario.parent();
+
+                    $('#behat_hide_all').click();
+
+                    $scenario.addClass('jq-toggle-opened');
+                    $feature.addClass('jq-toggle-opened');
+                });
+
+            $('#behat .summary .counters .failed')
+                .addClass('switcher')
+                .click(function(){
+                    var $scenario = $('.feature .scenario:has(.failed)');
+                    var $feature = $scenario.parent();
+
+                    $('#behat_hide_all').click();
+
+                    $scenario.addClass('jq-toggle-opened');
+                    $feature.addClass('jq-toggle-opened');
+                });
+
+            $('#behat .summary .counters .skipped')
+                .addClass('switcher')
+                .click(function(){
+                    var $scenario = $('.feature .scenario:has(.skipped)');
+                    var $feature = $scenario.parent();
+
+                    $('#behat_hide_all').click();
+
+                    $scenario.addClass('jq-toggle-opened');
+                    $feature.addClass('jq-toggle-opened');
+                });
+
+            $('#behat .summary .counters .pending')
+                .addClass('switcher')
+                .click(function(){
+                    var $scenario = $('.feature .scenario:has(.pending)');
+                    var $feature = $scenario.parent();
+
+                    $('#behat_hide_all').click();
+
+                    $scenario.addClass('jq-toggle-opened');
+                    $feature.addClass('jq-toggle-opened');
+                });
+        });
+    </script>
+</body>
+</html>

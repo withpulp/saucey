@@ -117,20 +117,20 @@ For iOS:
 ##Reporting & More
 ###Run tests and save reports in /report
 
-	bin/behat --format html --out report/<name>.html
+	bin/behat --format html --out reports/<name>.html
 
 ###Run tests grouped by tags
 A good example of this is accomplished for the help-center. 
 
-	bin/behat --tags "@helpCenter"
+	bin/behat --tags "@check"
 
 These parameters can be combined, for say when you want reports generated for tests executed against scenarios grouped in a tag. 
 
-	bin/behat --tags "@helpCenter" --out report/<name>.html
+	bin/behat --tags "@check" --format html --out reports/check.html
 	
 	-or-
 	
-	bin/behat --tags "@helpCenter" --out report/<name>.html -p SauceWindowsChrome
+	bin/behat --tags "@check" --format html --out reports/check.html -p SauceWindowsChrome
 
 ###More
 
@@ -157,5 +157,7 @@ Or you may need to just update to install thhe dependancies listed in `composer.
 
 	pear channel-discover pear.phpunit.de
 	pear channel-discover components.ez.no
-	pear channel-discover pear.symfony-project.com	
+	pear channel-discover pear.symfony-project.com
 	pear install phpunit/PHPUnit
+	
+vendor/sauce/connect/bin/sauce_connect sajjadAdcade f6bd677e-c92b-42ce-9564-e75f90d80cfb

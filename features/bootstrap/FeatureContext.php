@@ -24,6 +24,9 @@ require_once 'vendor/autoload.php';
 
 class FeatureContext extends Behat\MinkExtension\Context\MinkContext
 {
+
+     /*GLOBAL CONTEXT*/
+
      /**
      * @BeforeFeature [@helpCenter]
      */
@@ -53,22 +56,6 @@ class FeatureContext extends Behat\MinkExtension\Context\MinkContext
 
         $this->getSubcontext('api')
             ->setPlaceHolder('BASE_URL', rtrim($parameters['base_url'], '/')        );
-    }
-
-    /**
-     * @Given /^I am on help center$/
-     */
-    public function iAmOnHelpCenter()
-    {
-      $this->visit('http://localhost:3000/');
-    }
-
-    /**
-     * @Then /^I should be on help center$/
-     */
-    public function iShouldBeOnHelpCenter()
-    {
-        throw new PendingException();
     }
 
     /**
@@ -104,14 +91,45 @@ class FeatureContext extends Behat\MinkExtension\Context\MinkContext
       $this->getSession()->click();
     }
 
+    /*HELP CENTER UNIQUE*/
+
     /**
-    * @Given /^I am authenticated as "([^"]*)" using "([^"]*)"$/
+     * @Given /^I am on help center$/
+     */
+    public function iAmOnHelpCenter()
+    {
+      $this->visit('http://localhost:3000/');
+    }
+
+    /**
+     * @Given /^I am on help center feedback$/
+     */
+    public function iAmOnHelpCenterFeedback()
+    {
+      $this->visit('http://localhost:3000/feedback');
+    }
+
+    /**
+     * @Then /^I should be on help center$/
+     */
+    public function iShouldBeOnHelpCenter($page)
+    {
+      $this->driver
+          ->expects($this->once())
+          ->method('getCurrentUrl')
+          ->will($this->returnValue($ret = 'http://localhost:3000/'));
+
+      $this->assertEquals($ret, $this->session->getCurrentUrl());
+    }
+
+    /**
+    * @Given /^I am authenticated on help center as "([^"]*)" using "([^"]*)"$/
     */
     public function iAmAuthenticatedAs($username, $password) {
-      $this->visit('http://localhost:3000/login?url=/');
+      $this->visit('http://localhost:3000/');
       $this->fillField('username', $username);
       $this->fillField('password', $password);
-      $this->pressButton('Login');
+      $this->pressButton('login-submit');
     }
 
 
@@ -132,12 +150,11 @@ class FeatureContext extends Behat\MinkExtension\Context\MinkContext
     public function iShouldSeeHelpCenterHeaderAndFooterComponents()
     {
       $this->assertSession()->pageTextContains('Help Center');
-      $this->assertSession()->pageTextContains('Sign out');
       $this->assertSession()->pageTextContains('Visual Editor');
       $this->assertSession()->pageTextContains('Dashboard');
       $this->assertSession()->pageTextContains('AdScript');
       $this->assertSession()->pageTextContains('Resource Center');
-      $this->assertSession()->pageTextContains('© 2014 Adcade Help Center |');
+      $this->assertSession()->pageTextContains('© 2015 Adcade Help Center');
       $this->assertSession()->pageTextContains(' Feedback');
       $this->assertSession()->pageTextContains('Powered by');
       $this->assertSession()->pageTextContains(' Adcade');
@@ -223,6 +240,9 @@ class FeatureContext extends Behat\MinkExtension\Context\MinkContext
       $this->assertSession()->pageTextContains('Users');
       $this->assertSession()->pageTextContains('New Utility');
     }
+
+
+
 
     /**
     * @When /^I confirm the popup$/

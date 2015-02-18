@@ -22,15 +22,11 @@ Feature: I want to test the help-center
     | Resource Center | http://localhost:3000/login?url=/downloads | Please login to access this page. |
 
 
-    @regression @helpCenter @javascript @HC
+    @regression @helpCenter @javascript @authorizedHC
     Scenario Outline: I want to log in as an authenticated user
-      Given I am on help center
-      And I am authenticated as "sajjad@adcade.com" using "Knight22"
+      Given I am authenticated on help center as "sajjad@adcade.com" using "Knight22"
       Then I should see "<expectedText>"
       And I should see help center header and footer components
-      When I follow "Sign out"
-      Then I should be on help center
-      And I should see "Login"
 
     Examples:
     | expectedText |
@@ -43,77 +39,73 @@ Feature: I want to test the help-center
     | What are you waiting for? |
     | Get Started with your tutorials by downloading the Visual Builder and logging into the Ad Manager.|
 
-
-    @regression @helpCenter @javascript @HCLinks
-    Scenario: I want to follow links via the dashboard
-      Given I am on help center
-      And I am authenticated as "sajjad@adcade.com" using "Knight22"
-      When I follow "editor-download"
-      Then I should see "Visual Editor Download"
-      When I move backward one page
-      And I follow "dashboard-login"
-      Then I should be on "https://adstack.adcade.com/login"
-      And I should see "Login"
-      When I move backward one page
-      Then the response should contain "What are you looking for?"
-      When I follow "Creating with the Visual Editor"
-      Then I should see "Visual Editor"
-      When I move backward one page
-      And I follow "Using the Dashboard"
-      Then I should see "Dashboard"
-      When I move backward one page
-      And I follow "Download Components"
-      Then I should see "COMPONENTS"
-      And I should see "TEMPLATES"
-      When I move backward one page
-      And I follow "Download Templates"
-      Then I should see "COMPONENTS"
-      And I should see "TEMPLATES"
-      When I follow "Feedback"
-      Then I should see "Provide Feedback"
+    @regression @helpCenter @javascript @HCLinksTop
+    Scenario Outline: I want to follow links via the dashboard
+      Given I am authenticated on help center as "sajjad@adcade.com" using "Knight22"
+      When I follow "<link>"
+      Then I should see "<expectedText>"
       And I should see help center header and footer components
+
+    Examples:
+    | link | expectedText |
+    | Creating with the Visual Editor | Visual Editor |
+    | Using the Dashboard | Dashboard |
+    | View AdScript Reference | AdScript |
+
+    @regression @helpCenter @javascript @HCLinksBottom
+    Scenario Outline: I want to follow links via the dashboard
+      Given I am authenticated on help center as "sajjad@adcade.com" using "Knight22"
+      And I scroll to the bottom
+      When I follow "<link>"
+      Then I should see "<expectedText>"
+      And I should see help center header and footer components
+
+    Examples:
+    | link | expectedText |
+    | editor-download | Visual Editor Download |
+    | Download Components | COMPONENTS |
+    | Download Components | TEMPLATES |
+    | Feedback | Provide Feedback |
 
     @regression @helpCenter @javascript @HCSearch
     Scenario Outline: I want to search via help center
-      Given I am on "http://localhost:3000/"
-      And I am authenticated as "sajjad@adcade.com" using "Knight22"
+      Given I am authenticated on help center as "sajjad@adcade.com" using "Knight22"
       When I fill in "search" with "<searchValue>"
       And I press "search-button"
       Then I should be on "<expectedURL>"
 
-      Examples:
-        | searchValue | expectedURL |
-        | test | http://localhost:3000/search?search=test |
-        | adscript | http://localhost:3000/search?search=adscript |
-        | dashboard | http://localhost:3000/search?search=dashboard |
-        | tween | http://localhost:3000/search?search=tween |
+    Examples:
+    | searchValue | expectedURL |
+    | test | http://localhost:3000/search?search=test |
+    | adscript | http://localhost:3000/search?search=adscript |
+    | dashboard | http://localhost:3000/search?search=dashboard |
+    | tween | http://localhost:3000/search?search=tween |
 
     @regression @helpCenter @javascript @HCFeedback
     Scenario Outline: I want to send feedback from help center
-      Given I am on "http://localhost:3000/"
-      And I am authenticated as "sajjad@adcade.com" using "Knight22"
-      When I go to "http://localhost:3000/feedback"
+      Given I am authenticated on help center as "sajjad@adcade.com" using "Knight22"
+      And I am on help center feedback
       And I fill in "email" with "<email>"
       And I fill in "subject" with "<subject>"
-#      And I select "<option>" from "feedback-field"
-      And I fill in "description" with "<description>"
-      When I press "Send"
+      And I select "<option>" from "type"
+      And I fill in "desc" with "<description>"
+      And I press "Send"
+      And I wait for 2 seconds
       Then I should see "<expectedOutcome>"
       And I should see help center header and footer components
 
-      Examples:
-        | email | subject | option | description | expectedOutcome |
-        | sajjad@adcade.com | Testing Feedback, Regression | Bug | Some text describing feedback context | Thanks for your feedback! |
-        | sajjad@adcade.com | Testing Feedback, Regression | Feature Request | Some text describing feedback context | Thanks for your feedback! |
-        | sajjad@adcade.com | Testing Feedback, Regression | General Feedback | Some text describing feedback context | Thanks for your feedback! |
+    Examples:
+    | email | subject | option | description | expectedOutcome |
+    | sajjad@adcade.com | Some context for feedback !@#$%^&*() | Bug | Some context for description !@#$%^&*() | Thanks for your feedback! |
+    | marcus@adcade.com | More context for feedback !@#$%^&*() | Bug | More context for description !@#$%^&*() | Thanks for your feedback! |
+    | sl@adcade.com | MOAR context for feedback !@#$%^&*() | Bug | MOAR context for description !@#$%^&*() | Thanks for your feedback! |
 
     @regression @helpCenter @javascript @HCDownloads
     Scenario: I want to view components and templates from help center
-      Given I am on "http://localhost:3000/"
-      And I am authenticated as "sajjad@adcade.com" using "Knight22"
+      Given I am authenticated on help center as "sajjad@adcade.com" using "Knight22"
       When I go to "http://localhost:3000/downloads"
-      Then I should see "Components"
-      And I should see "Templates"
+      Then I should see "COMPONENTS"
+      And I should see "TEMPLATES"
       When I follow "cmpt-btn"
       And I wait for 2 seconds
       Then I should see "Component Instructions"
@@ -164,11 +156,11 @@ Feature: I want to test the help-center
       And I should see help center CMS header and footer components
 
     Examples:
-      | typeName |
-      | testType1 |
-      | testType2 |
-      | testType3 |
-      | testType4 |
+    | typeName |
+    | testType1 |
+    | testType2 |
+    | testType3 |
+    | testType4 |
 
     @regression @helpCenter @helpCenterCMS @helpCenterCMSCRUD @javascript @HCCMSDTypes
     Scenario Outline: I want to delete type documentation
@@ -185,9 +177,9 @@ Feature: I want to test the help-center
       And I should see help center CMS header and footer components
 
     Examples:
-      | typeName |
-      | testType1 |
-      | testType2 |
+    | typeName |
+    | testType1 |
+    | testType2 |
 
     @regression @helpCenter @helpCenterCMS @helpCenterCMSCRUD @javascript @HCCMSUTypes
     Scenario Outline: I want to update type documentation
@@ -204,9 +196,9 @@ Feature: I want to test the help-center
       And I should see help center CMS header and footer components
 
     Examples:
-      | typeName | typeNameUpdate |
-      | testType3 | testType3Update |
-      | testType4 | testType4update |
+    | typeName | typeNameUpdate |
+    | testType3 | testType3Update |
+    | testType4 | testType4update |
 
     @regression @helpCenter @helpCenterCMS @helpCenterCMSCRUD @javascript @HCCMSFilterTypes
     Scenario Outline: I want to filer type documentation
@@ -214,24 +206,20 @@ Feature: I want to test the help-center
       And I am on "http://localhost:3000/keystone/types"
       And I wait for 2 seconds
       Then I should see "<typeName>"
-      And the response should contain "Search types"
-      And the response should contain "Add Filter "
-      And the response should contain "Columns "
-      And the response should contain "Download"
       When I click on the element with xpath '//*[@id="list-filters"]/div[1]/div[1]/div/div[3]/button'
       Then I should see "Name"
       When I click on the element with xpath '//*[@id="list-filters"]/div[1]/div[2]/div[2]/button'
       Then I should see "Name"
       When I click on the element with xpath '//*[@id="list-filters"]/div[1]/div[2]/div[1]/a'
-      Then I should see "Download a .csv of 2 types?" in popup
-      When I confirm the popup
+#      Then I should see "Download a .csv of 2 types?" in popup
+      And I confirm the popup
       Then I should be on "http://localhost:3000/keystone/types"
       And I should see help center CMS header and footer components
 
     Examples:
-      | typeName |
-      | testType3 |
-      | testType4 |
+    | typeName |
+    | testType3 |
+    | testType4 |
 
     @regression @helpCenter @helpCenterCMS @helpCenterCMSCRUD @javascript @HCCMSSearchTypes
     Scenario Outline: I want to search type documentation
@@ -241,17 +229,17 @@ Feature: I want to test the help-center
       Then I should see "<typeName>"
       And the response should contain "search"
       When I fill in "search" with "testType"
-      Then I should see "2 Types"
-      When I click on the element with xpath '//*[@id="body"]/div/div[2]/h1/div/span[2]/a'
+#      Then I should see "2 Types"
+      And I click on the element with xpath '//*[@id="body"]/div/div[2]/h1/div/span[2]/a'
       Then I should see "Display Order (inverted)"
       And I should see "Name"
       And I should see "<typeName>"
       And I should see help center CMS header and footer components
 
     Examples:
-      | typeName |
-      | testType3Update |
-      | testType4Update |
+    | typeName |
+    | testType3Update |
+    | testType4Update |
 
     @regression @helpCenter @helpCenterCMS @helpCenterCMSCRUD @javascript @HCCMSCRShapes
     Scenario Outline: I want to create shapes documentation
@@ -277,11 +265,11 @@ Feature: I want to test the help-center
       And I should see help center CMS header and footer components
 
     Examples:
-      | shapeName | description |
-      | testShape1 | #Testing md input *italic* **bold** ![Adcade Logo](http://sajjad.pw/files/adcade-logo.jpg) [Link to logo](http://sajjad.pw/files/adcade-logo.jpg) - list text here 1. list text here |
-      | testShape2 | #Testing md input *italic* **bold** ![Adcade Logo](http://sajjad.pw/files/adcade-logo.jpg) [Link to logo](http://sajjad.pw/files/adcade-logo.jpg) - list text here 1. list text here |
-      | testShape3 | #Testing md input *italic* **bold** ![Adcade Logo](http://sajjad.pw/files/adcade-logo.jpg) [Link to logo](http://sajjad.pw/files/adcade-logo.jpg) - list text here 1. list text here |
-      | testShape4 | #Testing md input *italic* **bold** ![Adcade Logo](http://sajjad.pw/files/adcade-logo.jpg) [Link to logo](http://sajjad.pw/files/adcade-logo.jpg) - list text here 1. list text here |
+    | shapeName | description |
+    | testShape1 | #Testing md input *italic* **bold** ![Adcade Logo](http://sajjad.pw/files/adcade-logo.jpg) [Link to logo](http://sajjad.pw/files/adcade-logo.jpg) - list text here 1. list text here |
+    | testShape2 | #Testing md input *italic* **bold** ![Adcade Logo](http://sajjad.pw/files/adcade-logo.jpg) [Link to logo](http://sajjad.pw/files/adcade-logo.jpg) - list text here 1. list text here |
+    | testShape3 | #Testing md input *italic* **bold** ![Adcade Logo](http://sajjad.pw/files/adcade-logo.jpg) [Link to logo](http://sajjad.pw/files/adcade-logo.jpg) - list text here 1. list text here |
+    | testShape4 | #Testing md input *italic* **bold** ![Adcade Logo](http://sajjad.pw/files/adcade-logo.jpg) [Link to logo](http://sajjad.pw/files/adcade-logo.jpg) - list text here 1. list text here |
 
     @regression @helpCenter @helpCenterCMS @helpCenterCMSCRUD @javascript @HCCMSDShapes
     Scenario Outline: I want to delete type documentation
@@ -298,9 +286,9 @@ Feature: I want to test the help-center
       And I should see help center CMS header and footer components
 
     Examples:
-      | shapeName |
-      | testShape1 |
-      | testShape2 |
+    | shapeName |
+    | testShape1 |
+    | testShape2 |
 
     @regression @helpCenter @helpCenterCMS @helpCenterCMSCRUD @javascript @HCCMSUShapes
     Scenario Outline: I want to update shapes documentation
@@ -317,9 +305,9 @@ Feature: I want to test the help-center
       And I should see help center CMS header and footer components
 
     Examples:
-      | shapeName | shapeNameUpdate |
-      | testShape3 | testShape3Update |
-      | testShape4 | testShape4update |
+    | shapeName | shapeNameUpdate |
+    | testShape3 | testShape3Update |
+    | testShape4 | testShape4update |
 
     @regression @helpCenter @helpCenterCMS @helpCenterCMSCRUD @javascript @HCCMSFilterShapes
     Scenario Outline: I want to filer shapes documentation
@@ -340,15 +328,15 @@ Feature: I want to test the help-center
       And I should see "State"
       And I should see "Type"
       When I click on the element with xpath '//*[@id="list-filters"]/div[1]/div[2]/div[1]/a'
-      Then I should see "Download a .csv of 2 shapes?" in popup
-      When I confirm the popup
+#      Then I should see "Download a .csv of 2 shapes?" in popup
+      And I confirm the popup
       Then I should be on "http://localhost:3000/keystone/shapes"
       And I should see help center CMS header and footer components
 
     Examples:
-      | typeName |
-      | testShape3Update |
-      | testShape4Update |
+    | typeName |
+    | testShape3Update |
+    | testShape4Update |
 
     @regression @helpCenter @helpCenterCMS @helpCenterCMSCRUD @javascript @HCCMSSearchShapes
     Scenario Outline: I want to search shapes documentation
@@ -358,8 +346,8 @@ Feature: I want to test the help-center
       Then I should see "<shapeName>"
       And the response should contain "search"
       When I fill in "search" with "<shapeName>"
-      Then I should see "2 Shapes"
-      When I click on the element with xpath '//*[@id="body"]/div/div[2]/h1/div/span[2]/a'
+#      Then I should see "2 Shapes"
+      And I click on the element with xpath '//*[@id="body"]/div/div[2]/h1/div/span[2]/a'
       Then I should see "Title (descending)"
       And I should see "State"
       And I should see "Content Description"
@@ -367,9 +355,9 @@ Feature: I want to test the help-center
       And I should see help center CMS header and footer components
 
     Examples:
-      | shapeName |
-      | testShape3Update |
-      | testShape4Update |
+    | shapeName |
+    | testShape3Update |
+    | testShape4Update |
 
     @regression @helpCenter @helpCenterCMS @helpCenterCMSCRUD @javascript @HCCMSCRProperties
     Scenario Outline: I want to create properties documentation
@@ -395,11 +383,11 @@ Feature: I want to test the help-center
       And I should see help center CMS header and footer components
 
     Examples:
-      | propName | description |
-      | testProp1 | #Testing md input *italic* **bold** ![Adcade Logo](http://sajjad.pw/files/adcade-logo.jpg) [Link to logo](http://sajjad.pw/files/adcade-logo.jpg) - list text here 1. list text here |
-      | testProp2 | #Testing md input *italic* **bold** ![Adcade Logo](http://sajjad.pw/files/adcade-logo.jpg) [Link to logo](http://sajjad.pw/files/adcade-logo.jpg) - list text here 1. list text here |
-      | testProp3 | #Testing md input *italic* **bold** ![Adcade Logo](http://sajjad.pw/files/adcade-logo.jpg) [Link to logo](http://sajjad.pw/files/adcade-logo.jpg) - list text here 1. list text here |
-      | testProp4 | #Testing md input *italic* **bold** ![Adcade Logo](http://sajjad.pw/files/adcade-logo.jpg) [Link to logo](http://sajjad.pw/files/adcade-logo.jpg) - list text here 1. list text here |
+    | propName | description |
+    | testProp1 | #Testing md input *italic* **bold** ![Adcade Logo](http://sajjad.pw/files/adcade-logo.jpg) [Link to logo](http://sajjad.pw/files/adcade-logo.jpg) - list text here 1. list text here |
+    | testProp2 | #Testing md input *italic* **bold** ![Adcade Logo](http://sajjad.pw/files/adcade-logo.jpg) [Link to logo](http://sajjad.pw/files/adcade-logo.jpg) - list text here 1. list text here |
+    | testProp3 | #Testing md input *italic* **bold** ![Adcade Logo](http://sajjad.pw/files/adcade-logo.jpg) [Link to logo](http://sajjad.pw/files/adcade-logo.jpg) - list text here 1. list text here |
+    | testProp4 | #Testing md input *italic* **bold** ![Adcade Logo](http://sajjad.pw/files/adcade-logo.jpg) [Link to logo](http://sajjad.pw/files/adcade-logo.jpg) - list text here 1. list text here |
 
     @regression @helpCenter @helpCenterCMS @helpCenterCMSCRUD @javascript @HCCMSDProperties
     Scenario Outline: I want to delete properties documentation
@@ -412,13 +400,13 @@ Feature: I want to test the help-center
       Then I should see "Are you sure you want to delete this property?" in popup
       When I confirm the popup
       And I go to "http://localhost:3000/keystone/properties"
-      Then I should not see "<shapeName>"
+      Then I should not see "<propName>"
       And I should see help center CMS header and footer components
 
     Examples:
-      | propName |
-      | testProp1 |
-      | testProp2 |
+    | propName |
+    | testProp1 |
+    | testProp2 |
 
     @regression @helpCenter @helpCenterCMS @helpCenterCMSCRUD @javascript @HCCMSUProperties
     Scenario Outline: I want to update properties documentation
@@ -435,9 +423,9 @@ Feature: I want to test the help-center
       And I should see help center CMS header and footer components
 
     Examples:
-      | propName | propNameUpdate |
-      | testProp3 | testProp3Update |
-      | testProp4 | testProp4update |
+    | propName | propNameUpdate |
+    | testProp3 | testProp3Update |
+    | testProp4 | testProp4update |
 
     @regression @helpCenter @helpCenterCMS @helpCenterCMSCRUD @javascript @HCCMSFilterProperties
     Scenario Outline: I want to filer properties documentation
@@ -458,15 +446,15 @@ Feature: I want to test the help-center
       And I should see "State"
       And I should see "Type"
       When I click on the element with xpath '//*[@id="list-filters"]/div[1]/div[2]/div[1]/a'
-      Then I should see "Download a .csv of 2 properties?" in popup
-      When I confirm the popup
+#      Then I should see "Download a .csv of 2 properties?" in popup
+      And I confirm the popup
       Then I should be on "http://localhost:3000/keystone/properties"
       And I should see help center CMS header and footer components
 
     Examples:
-      | propName |
-      | testProp3Update |
-      | testProp4Update |
+    | propName |
+    | testProp3Update |
+    | testProp4Update |
 
     @regression @helpCenter @helpCenterCMS @helpCenterCMSCRUD @javascript @HCCMSSearchProperties
     Scenario Outline: I want to search properties documentation
@@ -476,8 +464,8 @@ Feature: I want to test the help-center
       Then I should see "<propName>"
       And the response should contain "search"
       When I fill in "search" with "<propName>"
-      Then I should see "2 Properties"
-      When I click on the element with xpath '//*[@id="body"]/div/div[2]/h1/div/span[2]/a'
+#      Then I should see "2 Properties"
+      And I click on the element with xpath '//*[@id="body"]/div/div[2]/h1/div/span[2]/a'
       Then I should see "Title (descending)"
       And I should see "State"
       And I should see "Content Description"
@@ -485,9 +473,9 @@ Feature: I want to test the help-center
       And I should see help center CMS header and footer components
 
     Examples:
-      | propName |
-      | testProp3Update |
-      | testProp4Update |
+    | propName |
+    | testProp3Update |
+    | testProp4Update |
 
     @regression @helpCenter @helpCenterCMS @helpCenterCMSCRUD @javascript @HCCMSCRMethods
     Scenario Outline: I want to create methods documentation
@@ -513,11 +501,11 @@ Feature: I want to test the help-center
       And I should see help center CMS header and footer components
 
     Examples:
-      | methodName | description |
-      | testMethod1 | #Testing md input *italic* **bold** ![Adcade Logo](http://sajjad.pw/files/adcade-logo.jpg) [Link to logo](http://sajjad.pw/files/adcade-logo.jpg) - list text here 1. list text here |
-      | testMethod2 | #Testing md input *italic* **bold** ![Adcade Logo](http://sajjad.pw/files/adcade-logo.jpg) [Link to logo](http://sajjad.pw/files/adcade-logo.jpg) - list text here 1. list text here |
-      | testMethod3 | #Testing md input *italic* **bold** ![Adcade Logo](http://sajjad.pw/files/adcade-logo.jpg) [Link to logo](http://sajjad.pw/files/adcade-logo.jpg) - list text here 1. list text here |
-      | testMethod4 | #Testing md input *italic* **bold** ![Adcade Logo](http://sajjad.pw/files/adcade-logo.jpg) [Link to logo](http://sajjad.pw/files/adcade-logo.jpg) - list text here 1. list text here |
+    | methodName | description |
+    | testMethod1 | #Testing md input *italic* **bold** ![Adcade Logo](http://sajjad.pw/files/adcade-logo.jpg) [Link to logo](http://sajjad.pw/files/adcade-logo.jpg) - list text here 1. list text here |
+    | testMethod2 | #Testing md input *italic* **bold** ![Adcade Logo](http://sajjad.pw/files/adcade-logo.jpg) [Link to logo](http://sajjad.pw/files/adcade-logo.jpg) - list text here 1. list text here |
+    | testMethod3 | #Testing md input *italic* **bold** ![Adcade Logo](http://sajjad.pw/files/adcade-logo.jpg) [Link to logo](http://sajjad.pw/files/adcade-logo.jpg) - list text here 1. list text here |
+    | testMethod4 | #Testing md input *italic* **bold** ![Adcade Logo](http://sajjad.pw/files/adcade-logo.jpg) [Link to logo](http://sajjad.pw/files/adcade-logo.jpg) - list text here 1. list text here |
 
     @regression @helpCenter @helpCenterCMS @helpCenterCMSCRUD @javascript @HCCMSDMethods
     Scenario Outline: I want to delete methods documentation
@@ -534,28 +522,28 @@ Feature: I want to test the help-center
       And I should see help center CMS header and footer components
 
     Examples:
-      | methodName |
-      | testMethod1 |
-      | testMethod2 |
+    | methodName |
+    | testMethod1 |
+    | testMethod2 |
 
     @regression @helpCenter @helpCenterCMS @helpCenterCMSCRUD @javascript @HCCMSUMethods
     Scenario Outline: I want to update methods documentation
       Given I authenticate as "apappas@adcade.com" using "adcade42"
-      And I am on "http://localhost:3000/keystone/properties"
+      And I am on "http://localhost:3000/keystone/methods"
       And I wait for 2 seconds
       Then I should see "<methodName>"
       When I follow "<methodName>"
       And I fill in "title" with "<methodNameUpdate>"
       And I press "Save"
       Then I should see "Your changes have been saved."
-      When I go to "http://localhost:3000/keystone/properties"
+      When I go to "http://localhost:3000/keystone/methods"
       Then I should see "<methodNameUpdate>"
       And I should see help center CMS header and footer components
 
     Examples:
-      | methodName | methodNameUpdate |
-      | testMethod3 | testMethod3Update |
-      | testMethod4 | testMethod4update |
+    | methodName | methodNameUpdate |
+    | testMethod3 | testMethod3Update |
+    | testMethod4 | testMethod4update |
 
     @regression @helpCenter @helpCenterCMS @helpCenterCMSCRUD @javascript @HCCMSFilterMethods
     Scenario Outline: I want to filer methods documentation
@@ -576,15 +564,15 @@ Feature: I want to test the help-center
       And I should see "State"
       And I should see "Type"
       When I click on the element with xpath '//*[@id="list-filters"]/div[1]/div[2]/div[1]/a'
-      Then I should see "Download a .csv of 2 methods?" in popup
-      When I confirm the popup
+#      Then I should see "Download a .csv of 2 methods?" in popup
+      And I confirm the popup
       Then I should be on "http://localhost:3000/keystone/methods"
       And I should see help center CMS header and footer components
 
     Examples:
-      | methodName |
-      | testMethod3Update |
-      | testMethod4Update |
+    | methodName |
+    | testMethod3Update |
+    | testMethod4Update |
 
     @regression @helpCenter @helpCenterCMS @helpCenterCMSCRUD @javascript @HCCMSSearchMethods
     Scenario Outline: I want to search methods documentation
@@ -594,8 +582,8 @@ Feature: I want to test the help-center
       Then I should see "<methodName>"
       And the response should contain "search"
       When I fill in "search" with "<methodName>"
-      Then I should see "2 Methods"
-      When I click on the element with xpath '//*[@id="body"]/div/div[2]/h1/div/span[2]/a'
+#      Then I should see "2 Methods"
+      And I click on the element with xpath '//*[@id="body"]/div/div[2]/h1/div/span[2]/a'
       Then I should see "Title (descending)"
       And I should see "State"
       And I should see "Content Description"
@@ -603,9 +591,9 @@ Feature: I want to test the help-center
       And I should see help center CMS header and footer components
 
     Examples:
-      | methodName |
-      | testMethod3Update |
-      | testMethod4Update |
+    | methodName |
+    | testMethod3Update |
+    | testMethod4Update |
 
     @regression @helpCenter @helpCenterCMS @helpCenterCMSCRUD @javascript @HCCMSCRUtilities
     Scenario Outline: I want to create utilities documentation
@@ -631,11 +619,11 @@ Feature: I want to test the help-center
       And I should see help center CMS header and footer components
 
     Examples:
-      | utilityName | description |
-      | testUtil1 | #Testing md input *italic* **bold** ![Adcade Logo](http://sajjad.pw/files/adcade-logo.jpg) [Link to logo](http://sajjad.pw/files/adcade-logo.jpg) - list text here 1. list text here |
-      | testUtil2 | #Testing md input *italic* **bold** ![Adcade Logo](http://sajjad.pw/files/adcade-logo.jpg) [Link to logo](http://sajjad.pw/files/adcade-logo.jpg) - list text here 1. list text here |
-      | testUtil3 | #Testing md input *italic* **bold** ![Adcade Logo](http://sajjad.pw/files/adcade-logo.jpg) [Link to logo](http://sajjad.pw/files/adcade-logo.jpg) - list text here 1. list text here |
-      | testUtil4 | #Testing md input *italic* **bold** ![Adcade Logo](http://sajjad.pw/files/adcade-logo.jpg) [Link to logo](http://sajjad.pw/files/adcade-logo.jpg) - list text here 1. list text here |
+    | utilityName | description |
+    | testUtil1 | #Testing md input *italic* **bold** ![Adcade Logo](http://sajjad.pw/files/adcade-logo.jpg) [Link to logo](http://sajjad.pw/files/adcade-logo.jpg) - list text here 1. list text here |
+    | testUtil2 | #Testing md input *italic* **bold** ![Adcade Logo](http://sajjad.pw/files/adcade-logo.jpg) [Link to logo](http://sajjad.pw/files/adcade-logo.jpg) - list text here 1. list text here |
+    | testUtil3 | #Testing md input *italic* **bold** ![Adcade Logo](http://sajjad.pw/files/adcade-logo.jpg) [Link to logo](http://sajjad.pw/files/adcade-logo.jpg) - list text here 1. list text here |
+    | testUtil4 | #Testing md input *italic* **bold** ![Adcade Logo](http://sajjad.pw/files/adcade-logo.jpg) [Link to logo](http://sajjad.pw/files/adcade-logo.jpg) - list text here 1. list text here |
 
     @regression @helpCenter @helpCenterCMS @helpCenterCMSCRUD @javascript @HCCMSDUtilities
     Scenario Outline: I want to delete utilities documentation
@@ -652,9 +640,9 @@ Feature: I want to test the help-center
       And I should see help center CMS header and footer components
 
     Examples:
-      | utilityName |
-      | testUtil1 |
-      | testUtil2 |
+    | utilityName |
+    | testUtil1 |
+    | testUtil2 |
 
     @regression @helpCenter @helpCenterCMS @helpCenterCMSCRUD @javascript @HCCMSUUtilities
     Scenario Outline: I want to update utilities documentation
@@ -671,9 +659,9 @@ Feature: I want to test the help-center
       And I should see help center CMS header and footer components
 
     Examples:
-      | utilityName | utilityNameUpdate |
-      | testUtil3 | testUtil3Update |
-      | testUtil4 | testUtil4update |
+    | utilityName | utilityNameUpdate |
+    | testUtil3 | testUtil3Update |
+    | testUtil4 | testUtil4update |
 
     @regression @helpCenter @helpCenterCMS @helpCenterCMSCRUD @javascript @HCCMSFilterUtilities
     Scenario Outline: I want to filer utilities documentation
@@ -692,15 +680,15 @@ Feature: I want to test the help-center
       Then I should see "Title"
       And I should see "State"
       When I click on the element with xpath '//*[@id="list-filters"]/div[1]/div[2]/div[1]/a'
-      Then I should see "Download a .csv of 2 utilities?" in popup
-      When I confirm the popup
+#      Then I should see "Download a .csv of 2 utilities?" in popup
+      And I confirm the popup
       Then I should be on "http://localhost:3000/keystone/utilities"
       And I should see help center CMS header and footer components
 
     Examples:
-      | utilityName |
-      | testUtil3Update |
-      | testUtil4Update |
+    | utilityName |
+    | testUtil3Update |
+    | testUtil4Update |
 
     @regression @helpCenter @helpCenterCMS @helpCenterCMSCRUD @javascript @HCCMSSearchUtilities
     Scenario Outline: I want to search methods documentation
@@ -710,8 +698,8 @@ Feature: I want to test the help-center
       Then I should see "<utilityName>"
       And the response should contain "search"
       When I fill in "search" with "<utilityName>"
-      Then I should see "2 Utilities"
-      When I click on the element with xpath '//*[@id="body"]/div/div[2]/h1/div/span[2]/a'
+#      Then I should see "2 Utilities"
+      And I click on the element with xpath '//*[@id="body"]/div/div[2]/h1/div/span[2]/a'
       Then I should see "Title (descending)"
       And I should see "State"
       And I should see "Content Description"
@@ -719,6 +707,6 @@ Feature: I want to test the help-center
       And I should see help center CMS header and footer components
 
     Examples:
-      | utilityName |
-      | testUtil3Update |
-      | testUtil4Update |
+    | utilityName |
+    | testUtil3Update |
+    | testUtil4Update |
