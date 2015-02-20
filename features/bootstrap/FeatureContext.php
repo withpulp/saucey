@@ -400,14 +400,6 @@ class FeatureContext extends Behat\MinkExtension\Context\MinkContext
       $this->assertSession()->pageTextContains('contains', 'exact match', 'invert', 'Name');
     }
 
-    /**
-    * @Given /^the response should contain search type view elements$/
-    */
-    public function theResponseShouldContainSearchTypeViewElements()
-    {
-      $this->assertSession()->pageTextContains('Display Order', 'Name');
-    }
-
     //SHAPES SPECIFIC
 
     /**
