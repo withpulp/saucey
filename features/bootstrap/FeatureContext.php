@@ -83,166 +83,57 @@ class FeatureContext extends Behat\MinkExtension\Context\MinkContext
     }
 
     /**
+     * @Given /^I mouse over the element matching \'([^\']*)\'$/
+     */
+    public function iMouseOverTheElementMatching($selector)
+    {
+      $this->spin(function($context) use ($selector) {
+          $page = $context->getSession()->getPage();
+          $element = $page->find('css', $selector);
+          $xpath = $element->getXpath();
+          $wdSession = $context->getSession()->getDriver()->getWebDriverSession();
+          $elements = $wdSession->elements('xpath', $xpath);
+          $wdSession->moveto(array('element' => $elements[0]->getID()));
+          return true;
+      });
+    }
+
+    /**
+     * @When /^I hover over the element "([^"]*)"$/
+     */
+    public function iHoverOverTheElement($locator)
+    {
+            $session = $this->getSession(); // get the mink session
+            $element = $session->getPage()->find('css', $locator); // runs the actual query and returns the element
+
+            // errors must not pass silently
+            if (null === $element) {
+                throw new \InvalidArgumentException(sprintf('Could not evaluate CSS selector: "%s"', $locator));
+            }
+
+            // ok, let's hover it
+            $element->mouseOver();
+    }
+
+    /**
     * @When /^I click ad coordinates$/
     */
     public function iClickAdCoordinates()
     {
-      $session->moveto(array('xoffset' => 3, 'yoffset' => 300));
-      $this->getSession()->click();
+      //$session->moveto(array('xoffset' => 3, 'yoffset' => 300));
+      //$this->getSession()->click();
     }
-
-    /*HELP CENTER UNIQUE*/
-
-    /**
-     * @Given /^I am on help center$/
-     */
-    public function iAmOnHelpCenter()
-    {
-      $this->visit('http://localhost:3000/');
-    }
-
-    /**
-     * @Given /^I am on help center feedback$/
-     */
-    public function iAmOnHelpCenterFeedback()
-    {
-      $this->visit('http://localhost:3000/feedback');
-    }
-
-    /**
-     * @Then /^I should be on help center$/
-     */
-    public function iShouldBeOnHelpCenter($page)
-    {
-      $this->driver
-          ->expects($this->once())
-          ->method('getCurrentUrl')
-          ->will($this->returnValue($ret = 'http://localhost:3000/'));
-
-      $this->assertEquals($ret, $this->session->getCurrentUrl());
-    }
-
-    /**
-    * @Given /^I am authenticated on help center as "([^"]*)" using "([^"]*)"$/
-    */
-    public function iAmAuthenticatedAs($username, $password) {
-      $this->visit('http://localhost:3000/');
-      $this->fillField('username', $username);
-      $this->fillField('password', $password);
-      $this->pressButton('login-submit');
-    }
-
 
     /**
     * @When /^I authenticate as "([^"]*)" using "([^"]*)"$/
     */
     public function iAuthenticateAs($email, $password)
     {
-      $this->visit('http://localhost:3000/keystone');
-      $this->fillField('email', $email);
-      $this->fillField('password', $password);
-      $this->pressButton('Sign In');
+      //$this->visit('https://help-stage.adcade.com/');
+      //$this->fillField('email', $email);
+      //$this->fillField('password', $password);
+      //$this->pressButton('Sign In');
     }
-
-    /**
-    * @Given /^I should see help center header and footer components$/
-    */
-    public function iShouldSeeHelpCenterHeaderAndFooterComponents()
-    {
-      $this->assertSession()->pageTextContains('Help Center');
-      $this->assertSession()->pageTextContains('Visual Editor');
-      $this->assertSession()->pageTextContains('Dashboard');
-      $this->assertSession()->pageTextContains('AdScript');
-      $this->assertSession()->pageTextContains('Resource Center');
-      $this->assertSession()->pageTextContains('© 2015 Adcade Help Center');
-      $this->assertSession()->pageTextContains(' Feedback');
-      $this->assertSession()->pageTextContains('Powered by');
-      $this->assertSession()->pageTextContains(' Adcade');
-    }
-
-    /**
-    * @Given /^I should see help center CMS header and footer components$/
-    */
-    public function iShouldSeeHelpCenterCMSHeaderAndFooterComponents()
-    {
-      $this->assertSession()->pageTextContains('Keystone');
-      $this->assertSession()->pageTextContains('Adscript');
-      $this->assertSession()->pageTextContains('Tutorials');
-      $this->assertSession()->pageTextContains('Resources');
-      $this->assertSession()->pageTextContains('Users');
-      $this->assertSession()->pageTextContains('Sign Out');
-      $this->assertSession()->pageTextContains('Keystone Powered by');
-      $this->assertSession()->pageTextContains('version 0.2.40. Signed in as');
-      $this->assertSession()->pageTextContains('Admin User');
-    }
-
-    /**
-    * @Given /^I should see create type view elements$/
-    */
-    public function iShouldSeeCreateTypeViewElements()
-    {
-      $this->assertSession()->pageTextContains('Save');
-      $this->assertSession()->pageTextContains('reset changes');
-      $this->assertSession()->pageTextContains('delete type');
-      $this->assertSession()->pageTextContains('Types');
-      $this->assertSession()->pageTextContains('Users');
-      $this->assertSession()->pageTextContains('New Type');
-    }
-
-    /**
-    * @Given /^I should see create shape view elements$/
-    */
-    public function iShouldSeeCreateShapeViewElements()
-    {
-      $this->assertSession()->pageTextContains('Save');
-      $this->assertSession()->pageTextContains('reset changes');
-      $this->assertSession()->pageTextContains('delete shape');
-      $this->assertSession()->pageTextContains('Types');
-      $this->assertSession()->pageTextContains('Users');
-      $this->assertSession()->pageTextContains('New Shape');
-    }
-
-    /**
-    * @Given /^I should see create property view elements$/
-    */
-    public function iShouldSeeCreatePropertyViewElements()
-    {
-      $this->assertSession()->pageTextContains('Save');
-      $this->assertSession()->pageTextContains('reset changes');
-      $this->assertSession()->pageTextContains('delete property');
-      $this->assertSession()->pageTextContains('Types');
-      $this->assertSession()->pageTextContains('Users');
-      $this->assertSession()->pageTextContains('New Property');
-    }
-
-    /**
-    * @Given /^I should see create method view elements$/
-    */
-    public function iShouldSeeCreateMethodViewElements()
-    {
-      $this->assertSession()->pageTextContains('Save');
-      $this->assertSession()->pageTextContains('reset changes');
-      $this->assertSession()->pageTextContains('delete method');
-      $this->assertSession()->pageTextContains('Types');
-      $this->assertSession()->pageTextContains('Users');
-      $this->assertSession()->pageTextContains('New Method');
-    }
-
-    /**
-    * @Given /^I should see create utility view elements$/
-    */
-    public function iShouldSeeCreateUtilityViewElements()
-    {
-      $this->assertSession()->pageTextContains('Save');
-      $this->assertSession()->pageTextContains('reset changes');
-      $this->assertSession()->pageTextContains('delete utility');
-      $this->assertSession()->pageTextContains('Types');
-      $this->assertSession()->pageTextContains('Users');
-      $this->assertSession()->pageTextContains('New Utility');
-    }
-
-
-
 
     /**
     * @When /^I confirm the popup$/
@@ -283,6 +174,27 @@ class FeatureContext extends Behat\MinkExtension\Context\MinkContext
     }
 
     /**
+      * @Given /^I click on the element with xpath "([^"]*)"$/
+      */
+     public function iClickOnTheElementWithXpath2($xpath)
+     {
+       $session = $this->getSession(); // get the mink session
+       $element = $session->getPage()->find(
+         'xpath',
+         $session->getSelectorsHandler()->selectorToXpath('xpath', $xpath)
+       ); // runs the actual query and returns the element
+
+       // errors must not pass silently
+       if (null === $element) {
+         throw new \InvalidArgumentException(sprintf('Could not evaluate XPath: "%s"', $xpath));
+       }
+
+       // ok, let's click on it
+       $element->click();
+
+     }
+
+    /**
     * @When /^I click on the element with xpath \'([^\']*)\'$/
     *
     * @param string $xpath is an XPath for an object
@@ -304,6 +216,17 @@ class FeatureContext extends Behat\MinkExtension\Context\MinkContext
       $element->click();
 
     }
+
+    /**
+     * @Given /^I click "([^"]*)"/
+     */
+    public function iClick($css)
+    {
+      $session = $this->getSession();
+      $element = $session->getPage()->find('css', $css);
+      $element->click();
+    }
+
 
     /**
     * @Given /^I scroll to the bottom$/
@@ -365,6 +288,8 @@ class FeatureContext extends Behat\MinkExtension\Context\MinkContext
       $this->getSession()->restart();
     }
 
+    /*CAMPAIGN UNIQUE*/
+
     /**
     * @Given /^I have my POST header$/
     */
@@ -377,4 +302,229 @@ class FeatureContext extends Behat\MinkExtension\Context\MinkContext
       $this->getSession()->setRequestHeader('Content-Type', 'multipart/form-data');
       $this->getSession()->setRequestHeader('User-Agent', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.99 Safari/537.36');
     }
+
+    /*HELP CENTER UNIQUE*/
+
+    /**
+     * @Given /^I am on help center$/
+     */
+    public function iAmOnHelpCenter()
+    {
+      $this->visit('https://help-stage.adcade.com/');
+    }
+
+    /**
+     * @Given /^I am on help center feedback$/
+     */
+    public function iAmOnHelpCenterFeedback()
+    {
+      $this->visit('https://help-stage.adcade.com/feedback');
+    }
+
+    /**
+     * @Then /^I should be on help center$/
+     */
+    public function iShouldBeOnHelpCenter($page)
+    {
+      $this->driver
+          ->expects($this->once())
+          ->method('getCurrentUrl')
+          ->will($this->returnValue($ret = 'https://help-stage.adcade.com/'));
+
+      $this->assertEquals($ret, $this->session->getCurrentUrl());
+    }
+
+    /**
+    * @Given /^I am authenticated on help center as "([^"]*)" using "([^"]*)"$/
+    */
+    public function iAmAuthenticatedAs($username, $password) {
+      $this->visit('https://help-stage.adcade.com/');
+      $this->fillField('username', $username);
+      $this->fillField('password', $password);
+      $this->pressButton('login-submit');
+      $this->visit('https://help-stage.adcade.com/keystone/signin');
+      $this->fillField('email', $username);
+      $this->fillField('password', $password);
+      $this->pressButton('Sign In');
+    }
+
+    //HEADER AND FOOTER SPECIFIC
+
+    /**
+    * @Given /^I should see help center header and footer components$/
+    */
+    public function iShouldSeeHelpCenterHeaderAndFooterComponents()
+    {
+      $this->assertSession()->pageTextContains('Help Center', 'Visual Editor', 'Dashboard', 'AdScript', 'Resource Center', '© 2015 Adcade Help Center', ' Feedback', 'Powered by', 'Adcade');
+    }
+
+    /**
+    * @Given /^I should see Keystone header and footer components$/
+    */
+    public function iShouldSeeKeystoneHeaderAndFooterComponents()
+    {
+      $this->assertSession()->pageTextContains('Keystone', 'Adscript', 'Tutorials', 'Resources', 'Users', 'Sign Out', 'Keystone Powered by', 'Signed in as', 'Admin User');
+    }
+
+    //TYPES SPECIFIC
+
+    /**
+    * @Given /^I should see create type view elements$/
+    */
+    public function iShouldSeeCreateTypeViewElements()
+    {
+      $this->assertSession()->pageTextContains('New Type', 'cancel', 'Create');
+    }
+
+    /**
+    * @Given /^I should see edit type view elements$/
+    */
+    public function iShouldSeeEditTypeViewElements()
+    {
+      $this->assertSession()->pageTextContains('Save', 'reset changes', 'delete type', 'Types', 'Users', 'New Type');
+    }
+
+    /**
+    * @Given /^I should see filter type view elements$/
+    */
+    public function iShouldSeeFilterTypeViewElements()
+    {
+      $this->assertSession()->pageTextContains('Name');
+    }
+
+    /**
+    * @Given /^I should see add filter elements$/
+    */
+    public function iShouldSeeAddFilterElements()
+    {
+      $this->assertSession()->pageTextContains('contains', 'exact match', 'invert', 'Name');
+    }
+
+    /**
+    * @Given /^the response should contain search type view elements$/
+    */
+    public function theResponseShouldContainSearchTypeViewElements()
+    {
+      $this->assertSession()->pageTextContains('Display Order', 'Name');
+    }
+
+    //SHAPES SPECIFIC
+
+    /**
+    * @Given /^I should see create shape view elements$/
+    */
+    public function iShouldSeeCreateShapeViewElements()
+    {
+      $this->assertSession()->pageTextContains('Save','reset changes', 'delete shape', 'Types', 'Users', 'New Shape');
+    }
+
+    /**
+    * @Given /^I should see create property view elements$/
+    */
+    public function iShouldSeeCreatePropertyViewElements()
+    {
+      $this->assertSession()->pageTextContains('Save');
+      $this->assertSession()->pageTextContains('reset changes');
+      $this->assertSession()->pageTextContains('delete property');
+      $this->assertSession()->pageTextContains('Types');
+      $this->assertSession()->pageTextContains('Users');
+      $this->assertSession()->pageTextContains('New Property');
+    }
+
+    /**
+    * @Given /^I should see create method view elements$/
+    */
+    public function iShouldSeeCreateMethodViewElements()
+    {
+      $this->assertSession()->pageTextContains('Save');
+      $this->assertSession()->pageTextContains('reset changes');
+      $this->assertSession()->pageTextContains('delete method');
+      $this->assertSession()->pageTextContains('Types');
+      $this->assertSession()->pageTextContains('Users');
+      $this->assertSession()->pageTextContains('New Method');
+    }
+
+    /**
+    * @Given /^I should see create utility view elements$/
+    */
+    public function iShouldSeeCreateUtilityViewElements()
+    {
+      $this->assertSession()->pageTextContains('Save');
+      $this->assertSession()->pageTextContains('reset changes');
+      $this->assertSession()->pageTextContains('delete utility');
+      $this->assertSession()->pageTextContains('Types');
+      $this->assertSession()->pageTextContains('Users');
+      $this->assertSession()->pageTextContains('New Utility');
+    }
+
+    /**
+     * @Given /^I should see tutorial elements$/
+     */
+    public function iShouldSeeTutorialElements()
+    {
+      $this->assertSession()->pageTextContains('Sections');
+      $this->assertSession()->pageTextContains('Pages');
+    }
+
+    /**
+     * @Given /^I should see tutorial section editing elements$/
+     */
+    public function iShouldSeeTutorialSectionEditingElements()
+    {
+      $this->assertSession()->pageTextContains('About');
+      $this->assertSession()->pageTextContains('key:');
+      $this->assertSession()->pageTextContains('New Section');
+      $this->assertSession()->pageTextContains('Sections');
+      $this->assertSession()->pageTextContains('Save');
+      $this->assertSession()->pageTextContains('reset changes');
+      $this->assertSession()->pageTextContains('delete section');
+    }
+
+    /**
+     * @Given /^I should see tutorial page editing elements$/
+     */
+    public function iShouldSeeTutorialPageEditingElements()
+    {
+      $this->assertSession()->pageTextContains('State');
+      $this->assertSession()->pageTextContains('Author');
+      $this->assertSession()->pageTextContains('About');
+      $this->assertSession()->pageTextContains('Section');
+      $this->assertSession()->pageTextContains('Content Description');
+      $this->assertSession()->pageTextContains('slug:');
+      $this->assertSession()->pageTextContains('New Page');
+      $this->assertSession()->pageTextContains('Pages');
+      $this->assertSession()->pageTextContains('Save');
+      $this->assertSession()->pageTextContains('reset changes');
+      $this->assertSession()->pageTextContains('delete page');
+    }
+
+    /**
+     * @Given /^I should see download elements$/
+     */
+    public function iShouldSeeDownloadElements()
+    {
+      $this->assertSession()->pageTextContains('Downloads');
+      $this->assertSession()->pageTextContains('Download Filters');
+      $this->assertSession()->pageTextContains('Editor Downloads');
+
+    }
+
+    /**
+     * @Given /^I should see download page editing elements$/
+     */
+    public function iShouldSeeDownloadPageEditingElements()
+    {
+      $this->assertSession()->pageTextContains('Type');
+      $this->assertSession()->pageTextContains('Filter');
+      $this->assertSession()->pageTextContains('Image');
+      $this->assertSession()->pageTextContains('Downloadable');
+      $this->assertSession()->pageTextContains('slug:');
+      $this->assertSession()->pageTextContains('Downloads');
+      $this->assertSession()->pageTextContains('New Download');
+      $this->assertSession()->pageTextContains('Save');
+      $this->assertSession()->pageTextContains('reset changes');
+      $this->assertSession()->pageTextContains('delete download');
+    }
+
+
 }

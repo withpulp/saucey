@@ -1084,3 +1084,26 @@
 2015-02-17 17:29:25,638 - sauce_connect:0 - INFO - GET http://localhost:3000/images/GetStarted-03.png -> 200 (5ms, 2485 bytes)
 2015-02-17 17:29:25,770 - sauce_connect:0 - INFO - Request started: GET http://localhost:3000/images/GetStarted-05.png
 2015-02-17 17:29:25,776 - sauce_connect:0 - INFO - GET http://localhost:3000/images/GetStarted-05.png -> 200 (5ms, 1010 bytes)
+2015-02-17 17:29:25,940 - sauce_connect:0 - INFO - Request started: GET http://localhost:3000/images/GetStarted-06.png
+2015-02-17 17:29:25,940 - sauce_connect:0 - INFO - Request started: GET http://localhost:3000/images/sprites.svg
+2015-02-17 17:29:26,049 - sauce_connect:0 - INFO - Request started: GET http://www.google-analytics.com/collect?v=1&_v=j33&a=1613453030&t=pageview&_s=1&dl=http%3A%2F%2Flocalhost%2F&ul=en-us&de=UTF-8&dt=Adcade%20Help%20Center&sd=24-bit&sr=1024x768&vp=1024x670&je=1&fl=15.0%20r0&_u=SCCAAEQiI~&jid=&cid=1637061196.1424212161&tid=UA-36759287-8&linkid=login-submit&z=1319082828
+2015-02-17 17:30:24,209 - sauce_connect:0 - INFO - Request started: POST https://albert.apple.com/WebObjects/ALUnbrick.woa/wa/deviceActivation?device=MacOS
+2015-02-17 17:32:27,119 - sauce_connect:0 - INFO - Request started: GET http://crl.apple.com/timestamp.crl
+2015-02-17 17:32:31,219 - sauce_connect:0 - INFO - Request started: GET http://localhost:3000/
+2015-02-17 17:32:50,101 - sauce_connect:0 - INFO - Request started: POST https://albert.apple.com/WebObjects/ALUnbrick.woa/wa/deviceActivation?device=MacOS
+2015-02-17 17:36:00,977 - sauce_connect:0 - INFO - Request started: GET http://crl.apple.com/timestamp.crl
+2015-02-17 17:36:03,259 - sauce_connect:0 - INFO - Request started: POST https://albert.apple.com/WebObjects/ALUnbrick.woa/wa/deviceActivation?device=MacOS
+2015-02-17 17:36:04,713 - sauce_connect:0 - INFO - Request started: GET http://localhost:3000/
+2015-02-17 17:40:47,588 - sauce_connect:0 - INFO - Request started: GET http://crl.apple.com/timestamp.crl
+2015-02-17 17:40:51,434 - sauce_connect:0 - INFO - Request started: GET http://localhost:3000/
+2015-02-17 21:39:51,006 - sauce_connect:0 - INFO - Sauce Connect connection stalled! 5329/5331 acks, 10802745ms since last recv, 2161ms timeout exceeded, min ack: 79
+2015-02-17 21:39:52,447 - sauce_connect:0 - INFO - disconnected from Sauce Connect server
+2015-02-20 11:40:15,592 - sauce_connect:0 - INFO - Could not proxy http://localhost:3000/images/GetStarted-06.png, exception: java.net.ConnectException: Connection refused
+2015-02-20 11:40:15,592 - sauce_connect:0 - INFO - Could not proxy http://localhost:3000/images/sprites.svg, exception: java.net.ConnectException: Connection refused
+2015-02-20 11:40:15,592 - sauce_connect:0 - INFO - Could not proxy http://localhost:3000/, exception: java.net.ConnectException: Connection refused
+2015-02-20 11:40:15,592 - sauce_connect:0 - INFO - Could not proxy http://localhost:3000/, exception: java.net.ConnectException: Connection refused
+2015-02-20 11:40:15,598 - sauce_connect:0 - INFO - Could not proxy http://localhost:3000/, exception: java.net.ConnectException: Connection refused
+2015-02-20 11:40:15,607 - sauce_connect:0 - INFO - connection to Sauce Connect server closed
+2015-02-20 11:40:15,631 - sauce_connect:0 - INFO - IOException: java.io.IOException: Connection reset by peer
+2015-02-20 11:40:15,635 - sauce_connect:0 - INFO - GET http://www.google-analytics.com/collect?v=1&_v=j33&a=1613453030&t=pageview&_s=1&dl=http%3A%2F%2Flocalhost%2F&ul=en-us&de=UTF-8&dt=Adcade%20Help%20Center&sd=24-bit&sr=1024x768&vp=1024x670&je=1&fl=15.0%20r0&_u=SCCAAEQiI~&jid=&cid=1637061196.1424212161&tid=UA-36759287-8&linkid=login-submit&z=1319082828 -> 200 (238249587ms, 35 bytes)
+2015-02-20 11:40:15,641 - sauce_connect:0 - INFO - received SIGINT

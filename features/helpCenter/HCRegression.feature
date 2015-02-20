@@ -4,10 +4,11 @@ Feature: I want to test the help-center
   I want to test the help-center
   So all features and functionality behave as expected
 
-    @regression @helpCenter @javascript @unauthorizedHC
+#HELP CENTER FRONT END
+
+    @javascript @regression @helpCenter @unauthorizedHC
     Scenario Outline: I want make requests as an unauthenticated user
       Given I am on help center
-      And I wait for 2 seconds
       Then I should see "<link>"
       When I follow "<link>"
       And I should be on "<expectedUrl>"
@@ -15,16 +16,16 @@ Feature: I want to test the help-center
 
     Examples:
     | link | expectedUrl | expectedText |
-    | Help Center | http://localhost:3000/login?url= | Please login to access this page. |
-    | Visual Editor | http://localhost:3000/login?url=/editor | Please login to access this page. |
-    | Dashboard | http://localhost:3000/login?url=/dashboard | Please login to access this page. |
-    | AdScript | http://localhost:3000/login?url=/adscript | Please login to access this page. |
-    | Resource Center | http://localhost:3000/login?url=/downloads | Please login to access this page. |
+    | Help Center | https://help-stage.adcade.com/login?url= | Please login to access this page. |
+    | Visual Editor | https://help-stage.adcade.com/login?url=/editor | Please login to access this page. |
+    | Dashboard | https://help-stage.adcade.com/login?url=/dashboard | Please login to access this page. |
+    | AdScript | https://help-stage.adcade.com/login?url=/adscript | Please login to access this page. |
+    | Resource Center | https://help-stage.adcade.com/login?url=/downloads | Please login to access this page. |
 
 
-    @regression @helpCenter @javascript @authorizedHC
+    @javascript @regression @helpCenter @authorizedHC
     Scenario Outline: I want to log in as an authenticated user
-      Given I am authenticated on help center as "sajjad@adcade.com" using "Knight22"
+      Given I am authenticated on help center as "apappas@adcade.com" using "adcade42"
       Then I should see "<expectedText>"
       And I should see help center header and footer components
 
@@ -39,9 +40,9 @@ Feature: I want to test the help-center
     | What are you waiting for? |
     | Get Started with your tutorials by downloading the Visual Builder and logging into the Ad Manager.|
 
-    @regression @helpCenter @javascript @HCLinksTop
+    @javascript @regression @helpCenter @helpCenterLinksTop
     Scenario Outline: I want to follow links via the dashboard
-      Given I am authenticated on help center as "sajjad@adcade.com" using "Knight22"
+      Given I am authenticated on help center as "apappas@adcade.com" using "adcade42"
       When I follow "<link>"
       Then I should see "<expectedText>"
       And I should see help center header and footer components
@@ -52,9 +53,9 @@ Feature: I want to test the help-center
     | Using the Dashboard | Dashboard |
     | View AdScript Reference | AdScript |
 
-    @regression @helpCenter @javascript @HCLinksBottom
+    @javascript @regression @helpCenter @helpCenterLinksBottom
     Scenario Outline: I want to follow links via the dashboard
-      Given I am authenticated on help center as "sajjad@adcade.com" using "Knight22"
+      Given I am authenticated on help center as "apappas@adcade.com" using "adcade42"
       And I scroll to the bottom
       When I follow "<link>"
       Then I should see "<expectedText>"
@@ -67,93 +68,96 @@ Feature: I want to test the help-center
     | Download Components | TEMPLATES |
     | Feedback | Provide Feedback |
 
-    @regression @helpCenter @javascript @HCSearch
+    @javascript @regression @helpCenter @helpCenterSearch
     Scenario Outline: I want to search via help center
-      Given I am authenticated on help center as "sajjad@adcade.com" using "Knight22"
+      Given I am authenticated on help center as "apappas@adcade.com" using "adcade42"
       When I fill in "search" with "<searchValue>"
       And I press "search-button"
       Then I should be on "<expectedURL>"
 
     Examples:
     | searchValue | expectedURL |
-    | test | http://localhost:3000/search?search=test |
-    | adscript | http://localhost:3000/search?search=adscript |
-    | dashboard | http://localhost:3000/search?search=dashboard |
-    | tween | http://localhost:3000/search?search=tween |
+    | test | https://help-stage.adcade.com/search?search=test |
+    | adscript | https://help-stage.adcade.com/search?search=adscript |
+    | dashboard | https://help-stage.adcade.com/search?search=dashboard |
+    | tween | https://help-stage.adcade.com/search?search=tween |
 
-    @regression @helpCenter @javascript @HCFeedback
+    @javascript @regression @helpCenter @helpCenterFeedback
     Scenario Outline: I want to send feedback from help center
-      Given I am authenticated on help center as "sajjad@adcade.com" using "Knight22"
+      Given I am authenticated on help center as "apappas@adcade.com" using "adcade42"
       And I am on help center feedback
       And I fill in "email" with "<email>"
       And I fill in "subject" with "<subject>"
       And I select "<option>" from "type"
       And I fill in "desc" with "<description>"
       And I press "Send"
-      And I wait for 2 seconds
+      And I wait for 1 seconds
       Then I should see "<expectedOutcome>"
       And I should see help center header and footer components
 
     Examples:
     | email | subject | option | description | expectedOutcome |
-    | sajjad@adcade.com | Some context for feedback !@#$%^&*() | Bug | Some context for description !@#$%^&*() | Thanks for your feedback! |
+    | apappas@adcade.com | Some context for feedback !@#$%^&*() | Bug | Some context for description !@#$%^&*() | Thanks for your feedback! |
     | marcus@adcade.com | More context for feedback !@#$%^&*() | Bug | More context for description !@#$%^&*() | Thanks for your feedback! |
     | sl@adcade.com | MOAR context for feedback !@#$%^&*() | Bug | MOAR context for description !@#$%^&*() | Thanks for your feedback! |
 
-    @regression @helpCenter @javascript @HCDownloads
-    Scenario: I want to view components and templates from help center
-      Given I am authenticated on help center as "sajjad@adcade.com" using "Knight22"
-      When I go to "http://localhost:3000/downloads"
-      Then I should see "COMPONENTS"
-      And I should see "TEMPLATES"
-      When I follow "cmpt-btn"
-      And I wait for 2 seconds
-      Then I should see "Component Instructions"
-      And I should see "How to Use"
-      When I follow "tmpl-btn"
-      And I wait for 2 seconds
-      Then I should see "Template Instructions"
-      And I should see "How to Use"
+    @javascript @regression @helpCenter @helpCenterDownloads
+    Scenario Outline: I want to view components and templates from help center
+      Given I am authenticated on help center as "apappas@adcade.com" using "adcade42"
+      When I go to "https://help-stage.adcade.com/downloads"
+      And I follow "<link>"
+      Then I should see "<expectedText>"
+      And I should see "<expectedContent>"
+      And I should see "<expectedContent2>"
+      And I should see help center header and footer components
 
-    @regression @helpCenterCMS @javascript @HCCMSLogin
-    Scenario: I want to log in to help center CMS
-      Given I am on "http://localhost:3000/keystone"
-      Then I should see "Please login to access this page. "
-      When I authenticate as "apappas@adcade.com" using "adcade42"
-      And I wait for 2 seconds
-      Then I should see "Manage"
-      And I should see "Types"
-      And I should see "Shapes"
-      And I should see "Properties"
-      And I should see "Methods"
-      And I should see "Utilities"
-      And I should see "Sections"
-      And I should see "Pages"
-      And I should see "Downloads"
-      And I should see "Download Filters"
-      And I should see "Editor Downloads"
-      And I should see "Users"
-      And I should see help center CMS header and footer components
+    Examples:
+    | link | expectedText | expectedContent | expectedContent2 |
+    | cmpt-btn | COMPONENTS | Component Instructions | How to Use |
+    | tmpl-btn | TEMPLATES | Template Instructions | How to Use |
 
-    @regression @helpCenter @helpCenterCMS @helpCenterCMSCRUD @javascript @HCCMSCRTypes
+#HELP CENTER BACK END -- KEYSTONE
+
+    @javascript @regression @helpCenter @keystone @keystoneLogin
+    Scenario Outline: I want to log in to Keystone
+      Given I am authenticated on help center as "apappas@adcade.com" using "adcade42"
+      Then I should see "<expectedContent>"
+      And I should see Keystone header and footer components
+
+    Examples:
+    | expectedContent |
+    | manage |
+    | Types |
+    | Shapes |
+    | Properties |
+    | Methods |
+    | Utilities |
+    | Sections |
+    | Pages |
+    | Downloads |
+    | Download Filters |
+    | Editor Downloads |
+    | Users |
+
+  #KEYSTONE -- TYPES
+
+    @javascript @regression @helpCenter @keystone @keystoneCRUD @keystoneTypes
     Scenario Outline: I want to create type documentation
-      Given I authenticate as "apappas@adcade.com" using "adcade42"
-      And I am on "http://localhost:3000/keystone/types"
-      And I wait for 2 seconds
+      Given I am authenticated on help center as "apappas@adcade.com" using "adcade42"
+      And I am on "https://help-stage.adcade.com/keystone/types"
       When I press "Create Type"
-      Then I should see "New Type"
-      And I should see "Create"
-      And I should see "cancel"
+      Then I should see create type view elements
       When I press "cancel"
-      Then I should see "Create Type"
+      And I fill in "search" with "<typeName>"
+      Then I should not see "<typeName>"
       When I press "Create Type"
       And I fill in "name" with "<typeName>"
       And I press "Create"
       Then I should see "New Type <typeName> created."
-      And I should see create type view elements
+      And I should see edit type view elements
       When I press "Save"
       Then I should see "Your changes have been saved."
-      And I should see help center CMS header and footer components
+      And I should see Keystone header and footer components
 
     Examples:
     | typeName |
@@ -162,89 +166,97 @@ Feature: I want to test the help-center
     | testType3 |
     | testType4 |
 
-    @regression @helpCenter @helpCenterCMS @helpCenterCMSCRUD @javascript @HCCMSDTypes
+    @javascript @regression @helpCenter @keystone @keystoneCRUD @keystoneTypes
     Scenario Outline: I want to delete type documentation
-      Given I authenticate as "apappas@adcade.com" using "adcade42"
-      And I am on "http://localhost:3000/keystone/types"
-      And I wait for 2 seconds
+      Given I am authenticated on help center as "apappas@adcade.com" using "adcade42"
+      And I am on "https://help-stage.adcade.com/keystone/types"
+      When I fill in "search" with "<typeName>"
+      And I press "Search"
       Then I should see "<typeName>"
-      When I follow "<typeName>"
-      And I follow "delete type"
+      And I should see edit type view elements
+      When I follow "delete type"
       Then I should see "Are you sure you want to delete this type?" in popup
       When I confirm the popup
-      And I go to "http://localhost:3000/keystone/types"
-      Then I should not see "<typeName>"
-      And I should see help center CMS header and footer components
+      And I go to "https://help-stage.adcade.com/keystone/types"
+      And I fill in "search" with "<typeName>"
+      And I press "Search"
+      Then I should see "No types found"
+      And I should see Keystone header and footer components
 
     Examples:
     | typeName |
     | testType1 |
     | testType2 |
 
-    @regression @helpCenter @helpCenterCMS @helpCenterCMSCRUD @javascript @HCCMSUTypes
+    @javascript @regression @helpCenter @keystone @keystoneCRUD @keystoneTypes
     Scenario Outline: I want to update type documentation
-      Given I authenticate as "apappas@adcade.com" using "adcade42"
-      And I am on "http://localhost:3000/keystone/types"
-      And I wait for 2 seconds
+      Given I am authenticated on help center as "apappas@adcade.com" using "adcade42"
+      And I am on "https://help-stage.adcade.com/keystone/types"
+      When I fill in "search" with "<typeName>"
+      And I press "Search"
       Then I should see "<typeName>"
-      When I follow "<typeName>"
-      And I fill in "name" with "<typeNameUpdate>"
+      And I should see edit type view elements
+      When I fill in "name" with "<typeNameUpdate>"
       And I press "Save"
       Then I should see "Your changes have been saved."
-      When I go to "http://localhost:3000/keystone/types"
-      Then I should see "<typeNameUpdate>"
-      And I should see help center CMS header and footer components
+      When I go to "https://help-stage.adcade.com/keystone/types"
+      And I fill in "search" with "<typeName>"
+      And I press "Search"
+      Then I should see "No types found"
+      When I go to "https://help-stage.adcade.com/keystone/types"
+      And I fill in "search" with "<typeNameUpdate>"
+      And I press "Search"
+      And I should see "<typeNameUpdate>"
+      And I should see Keystone header and footer components
 
     Examples:
     | typeName | typeNameUpdate |
-    | testType3 | testType3Update |
-    | testType4 | testType4update |
+    | testType3 | testTypeUpdate3 |
+    | testType4 | testTypeupdate4 |
 
-    @regression @helpCenter @helpCenterCMS @helpCenterCMSCRUD @javascript @HCCMSFilterTypes
+    @javascript @regression @helpCenter @keystone @keystoneCRUD @keystoneTypes
     Scenario Outline: I want to filer type documentation
-      Given I authenticate as "apappas@adcade.com" using "adcade42"
-      And I am on "http://localhost:3000/keystone/types"
-      And I wait for 2 seconds
+      Given I am authenticated on help center as "apappas@adcade.com" using "adcade42"
+      And I am on "https://help-stage.adcade.com/keystone/types"
       Then I should see "<typeName>"
-      When I click on the element with xpath '//*[@id="list-filters"]/div[1]/div[1]/div/div[3]/button'
-      Then I should see "Name"
-      When I click on the element with xpath '//*[@id="list-filters"]/div[1]/div[2]/div[2]/button'
-      Then I should see "Name"
-      When I click on the element with xpath '//*[@id="list-filters"]/div[1]/div[2]/div[1]/a'
-#      Then I should see "Download a .csv of 2 types?" in popup
+      When I click on the element with xpath '<filter>'
+      Then I should see filter type view elements
+      When I click on the element with xpath '<name>'
+      Then I should see add filter elements
+      When I click on the element with xpath '<column>'
+      Then I should see filter type view elements
+      When I click on the element with xpath '<download>'
       And I confirm the popup
-      Then I should be on "http://localhost:3000/keystone/types"
-      And I should see help center CMS header and footer components
+      Then I should be on "https://help-stage.adcade.com/keystone/types"
+      And I should see Keystone header and footer components
 
     Examples:
-    | typeName |
-    | testType3 |
-    | testType4 |
+    | filter | name | column | download | typeName |
+    | //*[@id="list-filters"]/div[1]/div[1]/div/div[3]/button | //*[@id="list-filters"]/div[1]/div/div/div[3]/ul/li/a | //*[@id="list-filters"]/div[1]/div[1]/div/div[3]/button | //*[@id="list-filters"]/div[1]/div[2]/div[1]/a | testTypeUpdate3 |
+    | //*[@id="list-filters"]/div[1]/div[1]/div/div[3]/button | //*[@id="list-filters"]/div[1]/div/div/div[3]/ul/li/a | //*[@id="list-filters"]/div[1]/div[1]/div/div[3]/button | //*[@id="list-filters"]/div[1]/div[2]/div[1]/a | testTypeUpdate4 |
 
-    @regression @helpCenter @helpCenterCMS @helpCenterCMSCRUD @javascript @HCCMSSearchTypes
+    @javascript @regression @helpCenter @keystone @keystoneCRUD @keystoneTypesS
     Scenario Outline: I want to search type documentation
-      Given I authenticate as "apappas@adcade.com" using "adcade42"
-      And I am on "http://localhost:3000/keystone/types"
-      And I wait for 2 seconds
+      Given I am authenticated on help center as "apappas@adcade.com" using "adcade42"
+      And I am on "https://help-stage.adcade.com/keystone/types"
       Then I should see "<typeName>"
       And the response should contain "search"
-      When I fill in "search" with "testType"
-#      Then I should see "2 Types"
-      And I click on the element with xpath '//*[@id="body"]/div/div[2]/h1/div/span[2]/a'
-      Then I should see "Display Order (inverted)"
-      And I should see "Name"
-      And I should see "<typeName>"
-      And I should see help center CMS header and footer components
+      When I fill in "search" with "<typeName>"
+      And I press "Search"
+      Then I should see "<typeName>"
+      And I should see Keystone header and footer components
 
     Examples:
-    | typeName |
-    | testType3Update |
-    | testType4Update |
+    | sort | typeName |
+    | //*[@id="body"]/div/div[2]/h1/div/span[4]/a | testTypeUpdate3 |
+    | //*[@id="body"]/div/div[2]/h1/div/span[4]/a | testTypeUpdate4 |
 
-    @regression @helpCenter @helpCenterCMS @helpCenterCMSCRUD @javascript @HCCMSCRShapes
+  #KEYSTONE -- SHAPES
+
+    @javascript @regression @helpCenter @keystone @keystoneCRUD @keystoneShapes
     Scenario Outline: I want to create shapes documentation
-      Given I authenticate as "apappas@adcade.com" using "adcade42"
-      And I am on "http://localhost:3000/keystone/shapes"
+      Given I am authenticated on help center as "apappas@adcade.com" using "adcade42"
+      And I am on "https://help-stage.adcade.com/keystone/shapes"
       And I wait for 2 seconds
       When I press "Create Shape"
       Then I should see "New Shape"
@@ -262,7 +274,7 @@ Feature: I want to test the help-center
       And I fill in "content.description" with "<description>"
       And I press "Save"
       Then I should see "Your changes have been saved."
-      And I should see help center CMS header and footer components
+      And I should see Keystone header and footer components
 
     Examples:
     | shapeName | description |
@@ -273,17 +285,17 @@ Feature: I want to test the help-center
 
     @regression @helpCenter @helpCenterCMS @helpCenterCMSCRUD @javascript @HCCMSDShapes
     Scenario Outline: I want to delete type documentation
-      Given I authenticate as "apappas@adcade.com" using "adcade42"
-      And I am on "http://localhost:3000/keystone/shapes"
+      Given I am authenticated on help center as "apappas@adcade.com" using "adcade42"
+      And I am on "https://help-stage.adcade.com/keystone/shapes"
       And I wait for 2 seconds
       Then I should see "<shapeName>"
       When I follow "<shapeName>"
       And I follow "delete shape"
       Then I should see "Are you sure you want to delete this shape?" in popup
       When I confirm the popup
-      And I go to "http://localhost:3000/keystone/shapes"
+      And I go to "https://help-stage.adcade.com/keystone/shapes"
       Then I should not see "<shapeName>"
-      And I should see help center CMS header and footer components
+      And I should see Keystone header and footer components
 
     Examples:
     | shapeName |
@@ -292,17 +304,17 @@ Feature: I want to test the help-center
 
     @regression @helpCenter @helpCenterCMS @helpCenterCMSCRUD @javascript @HCCMSUShapes
     Scenario Outline: I want to update shapes documentation
-      Given I authenticate as "apappas@adcade.com" using "adcade42"
-      And I am on "http://localhost:3000/keystone/shapes"
+      Given I am authenticated on help center as "apappas@adcade.com" using "adcade42"
+      And I am on "https://help-stage.adcade.com/keystone/shapes"
       And I wait for 2 seconds
       Then I should see "<shapeName>"
       When I follow "<shapeName>"
       And I fill in "title" with "<shapeNameUpdate>"
       And I press "Save"
       Then I should see "Your changes have been saved."
-      When I go to "http://localhost:3000/keystone/shapes"
+      When I go to "https://help-stage.adcade.com/keystone/shapes"
       Then I should see "<shapeNameUpdate>"
-      And I should see help center CMS header and footer components
+      And I should see Keystone header and footer components
 
     Examples:
     | shapeName | shapeNameUpdate |
@@ -311,8 +323,8 @@ Feature: I want to test the help-center
 
     @regression @helpCenter @helpCenterCMS @helpCenterCMSCRUD @javascript @HCCMSFilterShapes
     Scenario Outline: I want to filer shapes documentation
-      Given I authenticate as "apappas@adcade.com" using "adcade42"
-      And I am on "http://localhost:3000/keystone/shapes"
+      Given I am authenticated on help center as "apappas@adcade.com" using "adcade42"
+      And I am on "https://help-stage.adcade.com/keystone/shapes"
       And I wait for 2 seconds
       Then I should see "<typeName>"
       And the response should contain "Search shapes"
@@ -330,8 +342,8 @@ Feature: I want to test the help-center
       When I click on the element with xpath '//*[@id="list-filters"]/div[1]/div[2]/div[1]/a'
 #      Then I should see "Download a .csv of 2 shapes?" in popup
       And I confirm the popup
-      Then I should be on "http://localhost:3000/keystone/shapes"
-      And I should see help center CMS header and footer components
+      Then I should be on "https://help-stage.adcade.com/keystone/shapes"
+      And I should see Keystone header and footer components
 
     Examples:
     | typeName |
@@ -340,8 +352,8 @@ Feature: I want to test the help-center
 
     @regression @helpCenter @helpCenterCMS @helpCenterCMSCRUD @javascript @HCCMSSearchShapes
     Scenario Outline: I want to search shapes documentation
-      Given I authenticate as "apappas@adcade.com" using "adcade42"
-      And I am on "http://localhost:3000/keystone/shapes"
+      Given I am authenticated on help center as "apappas@adcade.com" using "adcade42"
+      And I am on "https://help-stage.adcade.com/keystone/shapes"
       And I wait for 2 seconds
       Then I should see "<shapeName>"
       And the response should contain "search"
@@ -352,7 +364,7 @@ Feature: I want to test the help-center
       And I should see "State"
       And I should see "Content Description"
       And I should see "<shapeName>"
-      And I should see help center CMS header and footer components
+      And I should see Keystone header and footer components
 
     Examples:
     | shapeName |
@@ -361,8 +373,8 @@ Feature: I want to test the help-center
 
     @regression @helpCenter @helpCenterCMS @helpCenterCMSCRUD @javascript @HCCMSCRProperties
     Scenario Outline: I want to create properties documentation
-      Given I authenticate as "apappas@adcade.com" using "adcade42"
-      And I am on "http://localhost:3000/keystone/properties"
+      Given I am authenticated on help center as "apappas@adcade.com" using "adcade42"
+      And I am on "https://help-stage.adcade.com/keystone/properties"
       And I wait for 2 seconds
       When I press "Create Property"
       Then I should see "New Property"
@@ -380,7 +392,7 @@ Feature: I want to test the help-center
       And I fill in "content.description" with "<description>"
       And I press "Save"
       Then I should see "Your changes have been saved."
-      And I should see help center CMS header and footer components
+      And I should see Keystone header and footer components
 
     Examples:
     | propName | description |
@@ -391,17 +403,17 @@ Feature: I want to test the help-center
 
     @regression @helpCenter @helpCenterCMS @helpCenterCMSCRUD @javascript @HCCMSDProperties
     Scenario Outline: I want to delete properties documentation
-      Given I authenticate as "apappas@adcade.com" using "adcade42"
-      And I am on "http://localhost:3000/keystone/properties"
+      Given I am authenticated on help center as "apappas@adcade.com" using "adcade42"
+      And I am on "https://help-stage.adcade.com/keystone/properties"
       And I wait for 2 seconds
       Then I should see "<propName>"
       When I follow "<propName>"
       And I follow "delete property"
       Then I should see "Are you sure you want to delete this property?" in popup
       When I confirm the popup
-      And I go to "http://localhost:3000/keystone/properties"
+      And I go to "https://help-stage.adcade.com/keystone/properties"
       Then I should not see "<propName>"
-      And I should see help center CMS header and footer components
+      And I should see Keystone header and footer components
 
     Examples:
     | propName |
@@ -410,17 +422,17 @@ Feature: I want to test the help-center
 
     @regression @helpCenter @helpCenterCMS @helpCenterCMSCRUD @javascript @HCCMSUProperties
     Scenario Outline: I want to update properties documentation
-      Given I authenticate as "apappas@adcade.com" using "adcade42"
-      And I am on "http://localhost:3000/keystone/properties"
+      Given I am authenticated on help center as "apappas@adcade.com" using "adcade42"
+      And I am on "https://help-stage.adcade.com/keystone/properties"
       And I wait for 2 seconds
       Then I should see "<propName>"
       When I follow "<propName>"
       And I fill in "title" with "<propNameUpdate>"
       And I press "Save"
       Then I should see "Your changes have been saved."
-      When I go to "http://localhost:3000/keystone/properties"
+      When I go to "https://help-stage.adcade.com/keystone/properties"
       Then I should see "<propNameUpdate>"
-      And I should see help center CMS header and footer components
+      And I should see Keystone header and footer components
 
     Examples:
     | propName | propNameUpdate |
@@ -429,8 +441,8 @@ Feature: I want to test the help-center
 
     @regression @helpCenter @helpCenterCMS @helpCenterCMSCRUD @javascript @HCCMSFilterProperties
     Scenario Outline: I want to filer properties documentation
-      Given I authenticate as "apappas@adcade.com" using "adcade42"
-      And I am on "http://localhost:3000/keystone/properties"
+      Given I am authenticated on help center as "apappas@adcade.com" using "adcade42"
+      And I am on "https://help-stage.adcade.com/keystone/properties"
       And I wait for 2 seconds
       Then I should see "<propName>"
       And the response should contain "Search properties"
@@ -448,8 +460,8 @@ Feature: I want to test the help-center
       When I click on the element with xpath '//*[@id="list-filters"]/div[1]/div[2]/div[1]/a'
 #      Then I should see "Download a .csv of 2 properties?" in popup
       And I confirm the popup
-      Then I should be on "http://localhost:3000/keystone/properties"
-      And I should see help center CMS header and footer components
+      Then I should be on "https://help-stage.adcade.com/keystone/properties"
+      And I should see Keystone header and footer components
 
     Examples:
     | propName |
@@ -458,8 +470,8 @@ Feature: I want to test the help-center
 
     @regression @helpCenter @helpCenterCMS @helpCenterCMSCRUD @javascript @HCCMSSearchProperties
     Scenario Outline: I want to search properties documentation
-      Given I authenticate as "apappas@adcade.com" using "adcade42"
-      And I am on "http://localhost:3000/keystone/properties"
+      Given I am authenticated on help center as "apappas@adcade.com" using "adcade42"
+      And I am on "https://help-stage.adcade.com/keystone/properties"
       And I wait for 2 seconds
       Then I should see "<propName>"
       And the response should contain "search"
@@ -470,7 +482,7 @@ Feature: I want to test the help-center
       And I should see "State"
       And I should see "Content Description"
       And I should see "<propName>"
-      And I should see help center CMS header and footer components
+      And I should see Keystone header and footer components
 
     Examples:
     | propName |
@@ -479,8 +491,8 @@ Feature: I want to test the help-center
 
     @regression @helpCenter @helpCenterCMS @helpCenterCMSCRUD @javascript @HCCMSCRMethods
     Scenario Outline: I want to create methods documentation
-      Given I authenticate as "apappas@adcade.com" using "adcade42"
-      And I am on "http://localhost:3000/keystone/methods"
+      Given I am authenticated on help center as "apappas@adcade.com" using "adcade42"
+      And I am on "https://help-stage.adcade.com/keystone/methods"
       And I wait for 2 seconds
       When I press "Create Method"
       Then I should see "New Method"
@@ -498,7 +510,7 @@ Feature: I want to test the help-center
       And I fill in "content.description" with "<description>"
       And I press "Save"
       Then I should see "Your changes have been saved."
-      And I should see help center CMS header and footer components
+      And I should see Keystone header and footer components
 
     Examples:
     | methodName | description |
@@ -509,17 +521,17 @@ Feature: I want to test the help-center
 
     @regression @helpCenter @helpCenterCMS @helpCenterCMSCRUD @javascript @HCCMSDMethods
     Scenario Outline: I want to delete methods documentation
-      Given I authenticate as "apappas@adcade.com" using "adcade42"
-      And I am on "http://localhost:3000/keystone/methods"
+      Given I am authenticated on help center as "apappas@adcade.com" using "adcade42"
+      And I am on "https://help-stage.adcade.com/keystone/methods"
       And I wait for 2 seconds
       Then I should see "<methodName>"
       When I follow "<methodName>"
       And I follow "delete method"
       Then I should see "Are you sure you want to delete this method?" in popup
       When I confirm the popup
-      And I go to "http://localhost:3000/keystone/methods"
+      And I go to "https://help-stage.adcade.com/keystone/methods"
       Then I should not see "<methodName>"
-      And I should see help center CMS header and footer components
+      And I should see Keystone header and footer components
 
     Examples:
     | methodName |
@@ -528,17 +540,17 @@ Feature: I want to test the help-center
 
     @regression @helpCenter @helpCenterCMS @helpCenterCMSCRUD @javascript @HCCMSUMethods
     Scenario Outline: I want to update methods documentation
-      Given I authenticate as "apappas@adcade.com" using "adcade42"
-      And I am on "http://localhost:3000/keystone/methods"
+      Given I am authenticated on help center as "apappas@adcade.com" using "adcade42"
+      And I am on "https://help-stage.adcade.com/keystone/methods"
       And I wait for 2 seconds
       Then I should see "<methodName>"
       When I follow "<methodName>"
       And I fill in "title" with "<methodNameUpdate>"
       And I press "Save"
       Then I should see "Your changes have been saved."
-      When I go to "http://localhost:3000/keystone/methods"
+      When I go to "https://help-stage.adcade.com/keystone/methods"
       Then I should see "<methodNameUpdate>"
-      And I should see help center CMS header and footer components
+      And I should see Keystone header and footer components
 
     Examples:
     | methodName | methodNameUpdate |
@@ -547,8 +559,8 @@ Feature: I want to test the help-center
 
     @regression @helpCenter @helpCenterCMS @helpCenterCMSCRUD @javascript @HCCMSFilterMethods
     Scenario Outline: I want to filer methods documentation
-      Given I authenticate as "apappas@adcade.com" using "adcade42"
-      And I am on "http://localhost:3000/keystone/methods"
+      Given I am authenticated on help center as "apappas@adcade.com" using "adcade42"
+      And I am on "https://help-stage.adcade.com/keystone/methods"
       And I wait for 2 seconds
       Then I should see "<methodName>"
       And the response should contain "Search methods"
@@ -566,8 +578,8 @@ Feature: I want to test the help-center
       When I click on the element with xpath '//*[@id="list-filters"]/div[1]/div[2]/div[1]/a'
 #      Then I should see "Download a .csv of 2 methods?" in popup
       And I confirm the popup
-      Then I should be on "http://localhost:3000/keystone/methods"
-      And I should see help center CMS header and footer components
+      Then I should be on "https://help-stage.adcade.com/keystone/methods"
+      And I should see Keystone header and footer components
 
     Examples:
     | methodName |
@@ -576,8 +588,8 @@ Feature: I want to test the help-center
 
     @regression @helpCenter @helpCenterCMS @helpCenterCMSCRUD @javascript @HCCMSSearchMethods
     Scenario Outline: I want to search methods documentation
-      Given I authenticate as "apappas@adcade.com" using "adcade42"
-      And I am on "http://localhost:3000/keystone/methods"
+      Given I am authenticated on help center as "apappas@adcade.com" using "adcade42"
+      And I am on "https://help-stage.adcade.com/keystone/methods"
       And I wait for 2 seconds
       Then I should see "<methodName>"
       And the response should contain "search"
@@ -588,7 +600,7 @@ Feature: I want to test the help-center
       And I should see "State"
       And I should see "Content Description"
       And I should see "<methodName>"
-      And I should see help center CMS header and footer components
+      And I should see Keystone header and footer components
 
     Examples:
     | methodName |
@@ -597,8 +609,8 @@ Feature: I want to test the help-center
 
     @regression @helpCenter @helpCenterCMS @helpCenterCMSCRUD @javascript @HCCMSCRUtilities
     Scenario Outline: I want to create utilities documentation
-      Given I authenticate as "apappas@adcade.com" using "adcade42"
-      And I am on "http://localhost:3000/keystone/utilities"
+      Given I am authenticated on help center as "apappas@adcade.com" using "adcade42"
+      And I am on "https://help-stage.adcade.com/keystone/utilities"
       And I wait for 2 seconds
       When I press "Create Utility"
       Then I should see "New Utility"
@@ -616,7 +628,7 @@ Feature: I want to test the help-center
       And I fill in "content.description" with "<description>"
       And I press "Save"
       Then I should see "Your changes have been saved."
-      And I should see help center CMS header and footer components
+      And I should see Keystone header and footer components
 
     Examples:
     | utilityName | description |
@@ -627,17 +639,17 @@ Feature: I want to test the help-center
 
     @regression @helpCenter @helpCenterCMS @helpCenterCMSCRUD @javascript @HCCMSDUtilities
     Scenario Outline: I want to delete utilities documentation
-      Given I authenticate as "apappas@adcade.com" using "adcade42"
-      And I am on "http://localhost:3000/keystone/utilities"
+      Given I am authenticated on help center as "apappas@adcade.com" using "adcade42"
+      And I am on "https://help-stage.adcade.com/keystone/utilities"
       And I wait for 2 seconds
       Then I should see "<utilityName>"
       When I follow "<utilityName>"
       And I follow "delete utility"
       Then I should see "Are you sure you want to delete this utility?" in popup
       When I confirm the popup
-      And I go to "http://localhost:3000/keystone/utilities"
+      And I go to "https://help-stage.adcade.com/keystone/utilities"
       Then I should not see "<utilityName>"
-      And I should see help center CMS header and footer components
+      And I should see Keystone header and footer components
 
     Examples:
     | utilityName |
@@ -646,17 +658,17 @@ Feature: I want to test the help-center
 
     @regression @helpCenter @helpCenterCMS @helpCenterCMSCRUD @javascript @HCCMSUUtilities
     Scenario Outline: I want to update utilities documentation
-      Given I authenticate as "apappas@adcade.com" using "adcade42"
-      And I am on "http://localhost:3000/keystone/utilities"
+      Given I am authenticated on help center as "apappas@adcade.com" using "adcade42"
+      And I am on "https://help-stage.adcade.com/keystone/utilities"
       And I wait for 2 seconds
       Then I should see "<utilityName>"
       When I follow "<utilityName>"
       And I fill in "title" with "<utilityNameUpdate>"
       And I press "Save"
       Then I should see "Your changes have been saved."
-      When I go to "http://localhost:3000/keystone/utilities"
+      When I go to "https://help-stage.adcade.com/keystone/utilities"
       Then I should see "<utilityNameUpdate>"
-      And I should see help center CMS header and footer components
+      And I should see Keystone header and footer components
 
     Examples:
     | utilityName | utilityNameUpdate |
@@ -665,8 +677,8 @@ Feature: I want to test the help-center
 
     @regression @helpCenter @helpCenterCMS @helpCenterCMSCRUD @javascript @HCCMSFilterUtilities
     Scenario Outline: I want to filer utilities documentation
-      Given I authenticate as "apappas@adcade.com" using "adcade42"
-      And I am on "http://localhost:3000/keystone/utilities"
+      Given I am authenticated on help center as "apappas@adcade.com" using "adcade42"
+      And I am on "https://help-stage.adcade.com/keystone/utilities"
       And I wait for 2 seconds
       Then I should see "<utilityName>"
       And the response should contain "Search utilities"
@@ -682,8 +694,8 @@ Feature: I want to test the help-center
       When I click on the element with xpath '//*[@id="list-filters"]/div[1]/div[2]/div[1]/a'
 #      Then I should see "Download a .csv of 2 utilities?" in popup
       And I confirm the popup
-      Then I should be on "http://localhost:3000/keystone/utilities"
-      And I should see help center CMS header and footer components
+      Then I should be on "https://help-stage.adcade.com/keystone/utilities"
+      And I should see Keystone header and footer components
 
     Examples:
     | utilityName |
@@ -691,9 +703,9 @@ Feature: I want to test the help-center
     | testUtil4Update |
 
     @regression @helpCenter @helpCenterCMS @helpCenterCMSCRUD @javascript @HCCMSSearchUtilities
-    Scenario Outline: I want to search methods documentation
-      Given I authenticate as "apappas@adcade.com" using "adcade42"
-      And I am on "http://localhost:3000/keystone/utilities"
+    Scenario Outline: I want to search utilities documentation
+      Given I am authenticated on help center as "apappas@adcade.com" using "adcade42"
+      And I am on "https://help-stage.adcade.com/keystone/utilities"
       And I wait for 2 seconds
       Then I should see "<utilityName>"
       And the response should contain "search"
@@ -704,9 +716,277 @@ Feature: I want to test the help-center
       And I should see "State"
       And I should see "Content Description"
       And I should see "<utilityName>"
-      And I should see help center CMS header and footer components
+      And I should see Keystone header and footer components
 
     Examples:
     | utilityName |
     | testUtil3Update |
     | testUtil4Update |
+
+    @regression @helpCenter @helpCenterCMS @javascript @TutorialsCR @Tutorials
+    Scenario Outline: I want to create and read tutorials documentation
+      Given I am authenticated on help center as "apappas@adcade.com" using "adcade42"
+      And I am on "https://help-stage.adcade.com/keystone/sections"
+      And I should see tutorial elements
+      And I press "Create Section"
+      Then I should see "New Section"
+      When I fill in "name" with "<sectionName>"
+      And I press "cancel"
+      Then I should not see "<sectionName>"
+      When I press "Create Section"
+      And I fill in "name" with "<sectionName>"
+      And I press "Create"
+      Then I should see "New Section <sectionName> created."
+      Then I should see "<sectionName>"
+      And I should see Keystone header and footer components
+      When I go to "https://help-stage.adcade.com/keystone/sections"
+      And I follow "<sectionName>"
+      Then I should see tutorial section editing elements
+      And I should see Keystone header and footer components
+
+    Examples:
+    | sectionName |
+    | testSection1 |
+    | testSection2 |
+    | testSection3 |
+    | testSection4 |
+
+    @regression @helpCenter @helpCenterCMS @javascript @TutorialsU @Tutorials
+    Scenario Outline: I want to update tutorials documentation
+      Given I am authenticated on help center as "apappas@adcade.com" using "adcade42"
+      And I am on "https://help-stage.adcade.com/keystone/sections"
+      And I should see tutorial elements
+      Then I should see "<sectionName>"
+      When I follow "<sectionName>"
+      Then I should see tutorial section editing elements
+      And I should see Keystone header and footer components
+      When I fill in "name" with "<sectionNameUpdated>"
+      And I press "Save"
+      And I go to "https://help-stage.adcade.com/keystone/sections"
+      Then I should see "<sectionNameUpdated>"
+
+    Examples:
+    | sectionName | option | sectionNameUpdated |
+    | testSection3 | Editor | testSection3Update |
+    | testSection4 | Dashboard | testSection4Update |
+
+    @regression @helpCenter @helpCenterCMS @javascript @TutorialsD @Tutorials
+    Scenario Outline: I want to delete tutorials documentation
+      Given I am authenticated on help center as "apappas@adcade.com" using "adcade42"
+      And I am on "https://help-stage.adcade.com/keystone/sections"
+      And I should see tutorial elements
+      Then I should see "<sectionName>"
+      When I follow "<sectionName>"
+      Then I should see tutorial section editing elements
+      And I should see Keystone header and footer components
+      When I follow "delete section"
+      Then I should see "Are you sure you want to delete this section?" in popup
+      When I confirm the popup
+      And I go to "https://help-stage.adcade.com/keystone/sections"
+      Then I should not see "<sectionName>"
+
+    Examples:
+    | sectionName |
+    | testSection1 |
+    | testSection2 |
+
+    @regression @helpCenter @helpCenterCMS @javascript @TutorialsPagesCR @Tutorials
+    Scenario Outline: I want to create and read tutorials documentation
+      Given I am authenticated on help center as "apappas@adcade.com" using "adcade42"
+      And I am on "https://help-stage.adcade.com/keystone/pages"
+      And I should see tutorial elements
+      And I press "Create Page"
+      Then I should see "New Page"
+      When I fill in "title" with "<pageName>"
+      And I press "cancel"
+      Then I should not see "<pageName>"
+      When I press "Create Page"
+      And I fill in "title" with "<pageName>"
+      And I press "Create"
+      Then I should see "New Page <pageName> created."
+      And I should see Keystone header and footer components
+      When I go to "https://help-stage.adcade.com/keystone/pages"
+      And I follow "<pageName>"
+      And I fill in "content.description" with "<description>"
+      And I press "Save"
+      Then I should see "Your changes have been saved."
+      And I should see tutorial page editing elements
+      And I should see Keystone header and footer components
+
+    Examples:
+    | pageName | description |
+    | testPage1 | #Testing md input *italic* **bold** ![Adcade Logo](http://sajjad.pw/files/adcade-logo.jpg) [Link to logo](http://sajjad.pw/files/adcade-logo.jpg) - list text here 1. list text here |
+    | testPage2 | #Testing md input *italic* **bold** ![Adcade Logo](http://sajjad.pw/files/adcade-logo.jpg) [Link to logo](http://sajjad.pw/files/adcade-logo.jpg) - list text here 1. list text here |
+    | testPage3 | #Testing md input *italic* **bold** ![Adcade Logo](http://sajjad.pw/files/adcade-logo.jpg) [Link to logo](http://sajjad.pw/files/adcade-logo.jpg) - list text here 1. list text here |
+    | testPage4 | #Testing md input *italic* **bold** ![Adcade Logo](http://sajjad.pw/files/adcade-logo.jpg) [Link to logo](http://sajjad.pw/files/adcade-logo.jpg) - list text here 1. list text here |
+
+    @regression @helpCenter @helpCenterCMS @javascript @TutorialsPagesU @Tutorials
+    Scenario Outline: I want to update tutorials documentation
+      Given I am authenticated on help center as "apappas@adcade.com" using "adcade42"
+      And I am on "https://help-stage.adcade.com/keystone/pages"
+      And I should see tutorial elements
+      Then I should see "<pageName>"
+      When I follow "<pageName>"
+      Then I should see tutorial page editing elements
+      And I should see Keystone header and footer components
+      When I fill in "title" with "<pageNameUpdated>"
+      And I press "Save"
+      And I go to "https://help-stage.adcade.com/keystone/pages"
+      Then I should see "<pageNameUpdated>"
+
+    Examples:
+    | pageName | option | pageNameUpdated |
+    | testPage3 | Editor | testPage3Update |
+    | testPage4 | Dashboard | testPage4Update |
+
+    @regression @helpCenter @helpCenterCMS @javascript @TutorialsPagesD @Tutorials
+    Scenario Outline: I want to delete tutorials documentation
+      Given I am authenticated on help center as "apappas@adcade.com" using "adcade42"
+      And I am on "https://help-stage.adcade.com/keystone/pages"
+      And I should see tutorial elements
+      Then I should see "<pageName>"
+      When I follow "<pageName>"
+      Then I should see tutorial page editing elements
+      When I follow "delete page"
+      Then I should see "Are you sure you want to delete this page?" in popup
+      When I confirm the popup
+      And I go to "https://help-stage.adcade.com/keystone/pages"
+      Then I should not see "<pageName>"
+      And I should see Keystone header and footer components
+
+    Examples:
+    | pageName |
+    | testPage1 |
+    | testPage2 |
+
+    @regression @helpCenter @helpCenterCMS @javascript @DownloadsCR @Downloads
+    Scenario Outline: I want to create and read downloads documentation
+      Given I am authenticated on help center as "apappas@adcade.com" using "adcade42"
+      And I am on "https://help-stage.adcade.com/keystone/downloads"
+      And I should see download elements
+      When I press "Create Download"
+      Then I should see "New Download"
+      When I fill in "title" with "<downloadName>"
+      And I press "cancel"
+      Then I should not see "<downloadName>"
+      When I press "Create Download"
+      And I fill in "title" with "<downloadName>"
+      And I press "Create"
+      Then I should see "New Download <downloadName> created."
+      When I go to "https://help-stage.adcade.com/keystone/downloads"
+      And I follow "<downloadName>"
+      And I fill in "displayTitle" with "<title>"
+      And I press "Save"
+      Then I should see "Your changes have been saved."
+      And I should see download page editing elements
+      And I should see Keystone header and footer components
+
+    Examples:
+    | downloadName | title |
+    | testDownload1 | testDownload1Title |
+    | testDownload2 | testDownload2Title |
+    | testDownload3 | testDownload3Title |
+    | testDownload4 | testDownload4Title |
+
+    @regression @helpCenter @helpCenterCMS @javascript @DownloadsFiltersCR @Downloads
+    Scenario Outline: I want to create and read downloads filters documentation
+      Given I am authenticated on help center as "apappas@adcade.com" using "adcade42"
+      And I am on "https://help-stage.adcade.com/keystone/download-filters"
+      And I should see download elements
+      When I press "Create Download"
+      Then I should see "New Download"
+      When I fill in "name" with "<downloadFilterName>"
+      And I press "cancel"
+      Then I should not see "<downloadFilterName>"
+      When I press "Create Download"
+      And I fill in "name" with "<downloadFilterName>"
+      And I press "Create"
+      Then I should see "New Download Filter <downloadFilterName> created."
+      When I go to "https://help-stage.adcade.com/keystone/download-filters"
+      Then I should see "<downloadFilterName>"
+      And I should see Keystone header and footer components
+
+    Examples:
+    | downloadFilterName |
+    | testDownloadFilter1 |
+    | testDownloadFilter2 |
+    | testDownloadFilter3 |
+    | testDownloadFilter4 |
+
+    @regression @helpCenter @helpCenterCMS @javascript @DownloadsU @Downloads
+    Scenario Outline: I want to update downloads documentation
+      Given I am authenticated on help center as "apappas@adcade.com" using "adcade42"
+      And I am on "https://help-stage.adcade.com/keystone/downloads"
+      And I should see download elements
+      Then I should see "<downloadName>"
+      When I follow "<downloadName>"
+      And I fill in "title" with "<downloadNameUpdate>"
+      And I fill in "displayTitle" with "<title>"
+      And I press "Save"
+      Then I should see "Your changes have been saved."
+      When I go to "https://help-stage.adcade.com/keystone/downloads"
+      Then I should not see "<downloadName>"
+      And I should see "<downloadNameUpdate>"
+      And I should see download page editing elements
+      And I should see Keystone header and footer components
+
+    Examples:
+    | downloadName | downloadNameUpdate | title |
+    | testDownload3 | testDownloadUpdate3 | testDownload3TitleUpdate |
+    | testDownload4 | testDownloadUpdate4 | testDownload4TitleUpdate |
+
+    @regression @helpCenter @helpCenterCMS @javascript @DownloadsFiltersU @Downloads
+    Scenario Outline: I want to update downloads filter documentation
+      Given I am authenticated on help center as "apappas@adcade.com" using "adcade42"
+      And I am on "https://help-stage.adcade.com/keystone/download-filters"
+      And I should see download elements
+      When I follow "<downloadFilterName>"
+      Then I should see "<downloadFilterName>"
+      When I fill in "name" with "<downloadFilterNameUpdate>"
+      And I press "Save"
+      Then I should see "Your changes have been saved."
+      When I go to "https://help-stage.adcade.com/keystone/download-filters"
+      Then I should see "<downloadFilterNameUpdate>"
+      And I should see Keystone header and footer components
+
+    Examples:
+    | downloadFilterName | downloadFilterNameUpdate |
+    | testDownloadFilter3 | testDownloadFilter3Update |
+    | testDownloadFilter4 | testDownloadFilter4Update |
+
+    @regression @helpCenter @helpCenterCMS @javascript @DownloadsD @Downloads
+    Scenario Outline: I want to update downloads documentation
+      Given I am authenticated on help center as "apappas@adcade.com" using "adcade42"
+      And I am on "https://help-stage.adcade.com/keystone/downloads"
+      And I should see download elements
+      Then I should see "<downloadName>"
+      When I follow "<downloadName>"
+      And I follow "delete download"
+      Then I should see "Are you sure you want to delete this download?" in popup
+      When I confirm the popup
+      And I go to "https://help-stage.adcade.com/keystone/downloads"
+      Then I should not see "<downloadName>"
+      And I should see Keystone header and footer components
+
+    Examples:
+    | downloadName |
+    | testDownload1 |
+    | testDownload2 |
+
+    @regression @helpCenter @helpCenterCMS @javascript @DownloadsFiltersD @Downloads
+    Scenario Outline: I want to update downloads filter documentation
+      Given I am authenticated on help center as "apappas@adcade.com" using "adcade42"
+      And I am on "https://help-stage.adcade.com/keystone/download-filters"
+      And I should see download elements
+      When I follow "<downloadFilterName>"
+      And I follow "delete download filter"
+      Then I should see "Are you sure you want to delete this download filter?" in popup
+      When I confirm the popup
+      And I go to "https://help-stage.adcade.com/keystone/download-filters"
+      Then I should not see "<downloadFilterName>"
+      And I should see Keystone header and footer components
+
+    Examples:
+    | downloadFilterName |
+    | testDownloadFilter1 |
+    | testDownloadFilter2 |
