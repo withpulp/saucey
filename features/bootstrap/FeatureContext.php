@@ -348,6 +348,14 @@ class FeatureContext extends Behat\MinkExtension\Context\MinkContext
       $this->pressButton('Sign In');
     }
 
+    /**
+    * @Given /^I should see add filter elements$/
+    */
+    public function iShouldSeeAddFilterElements()
+    {
+      $this->assertSession()->pageTextContains('contains', 'exact match', 'invert', 'Name');
+    }
+
     //HEADER AND FOOTER SPECIFIC
 
     /**
@@ -392,14 +400,6 @@ class FeatureContext extends Behat\MinkExtension\Context\MinkContext
       $this->assertSession()->pageTextContains('Name');
     }
 
-    /**
-    * @Given /^I should see add filter elements$/
-    */
-    public function iShouldSeeAddFilterElements()
-    {
-      $this->assertSession()->pageTextContains('contains', 'exact match', 'invert', 'Name');
-    }
-
     //SHAPES SPECIFIC
 
     /**
@@ -411,16 +411,29 @@ class FeatureContext extends Behat\MinkExtension\Context\MinkContext
     }
 
     /**
+    * @Given /^I should see filter shape view elements$/
+    */
+    public function iShouldSeeFilterShapeViewElements()
+    {
+      $this->assertSession()->pageTextContains('Title', 'State', 'Content Description', 'Type');
+    }
+
+    //PROPERTY SPECIFIC
+
+    /**
     * @Given /^I should see create property view elements$/
     */
     public function iShouldSeeCreatePropertyViewElements()
     {
-      $this->assertSession()->pageTextContains('Save');
-      $this->assertSession()->pageTextContains('reset changes');
-      $this->assertSession()->pageTextContains('delete property');
-      $this->assertSession()->pageTextContains('Types');
-      $this->assertSession()->pageTextContains('Users');
-      $this->assertSession()->pageTextContains('New Property');
+      $this->assertSession()->pageTextContains('Save', 'reset changes', 'delete property', 'Types', 'Users', 'New Property');
+    }
+
+    /**
+    * @Given /^I should see filter property view elements$/
+    */
+    public function iShouldSeeFilterPropertyViewElements()
+    {
+      $this->assertSession()->pageTextContains('Title', 'State', 'Type');
     }
 
     /**

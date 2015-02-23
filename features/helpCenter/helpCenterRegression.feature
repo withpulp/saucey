@@ -204,8 +204,8 @@ Feature: I want to test the help-center
       And I press "Search"
       Then I should see "No types found"
       When I go to "https://help-stage.adcade.com/keystone/types"
-      And I fill in "search" with "<typeNameUpdate>"
-      And I press "Search"
+      And I fill in "search" with "test"
+      Then I should not see "<typeName>"
       And I should see "<typeNameUpdate>"
       And I should see Keystone header and footer components
 
@@ -215,7 +215,7 @@ Feature: I want to test the help-center
     | testType4 | testTypeupdate4 |
 
     @javascript @regression @helpCenter @keystone @keystoneCRUD @keystoneTypes
-    Scenario Outline: I want to filer type documentation
+    Scenario Outline: I want to filter type documentation
       Given I am authenticated on help center as "apappas@adcade.com" using "adcade42"
       And I am on "https://help-stage.adcade.com/keystone/types"
       Then I should see "<typeName>"
@@ -235,7 +235,7 @@ Feature: I want to test the help-center
     | //*[@id="list-filters"]/div[1]/div[1]/div/div[3]/button | //*[@id="list-filters"]/div[1]/div/div/div[3]/ul/li/a | //*[@id="list-filters"]/div[1]/div[1]/div/div[3]/button | //*[@id="list-filters"]/div[1]/div[2]/div[1]/a | testTypeUpdate3 |
     | //*[@id="list-filters"]/div[1]/div[1]/div/div[3]/button | //*[@id="list-filters"]/div[1]/div/div/div[3]/ul/li/a | //*[@id="list-filters"]/div[1]/div[1]/div/div[3]/button | //*[@id="list-filters"]/div[1]/div[2]/div[1]/a | testTypeUpdate4 |
 
-    @javascript @regression @helpCenter @keystone @keystoneCRUD @keystoneTypesS
+    @javascript @regression @helpCenter @keystone @keystoneCRUD @keystoneTypes
     Scenario Outline: I want to search type documentation
       Given I am authenticated on help center as "apappas@adcade.com" using "adcade42"
       And I am on "https://help-stage.adcade.com/keystone/types"
@@ -257,13 +257,11 @@ Feature: I want to test the help-center
     Scenario Outline: I want to create shapes documentation
       Given I am authenticated on help center as "apappas@adcade.com" using "adcade42"
       And I am on "https://help-stage.adcade.com/keystone/shapes"
-      And I wait for 2 seconds
       When I press "Create Shape"
       Then I should see "New Shape"
-      And I should see "Create"
-      And I should see "cancel"
       When I press "cancel"
-      Then I should see "Create Shape"
+      Then I should not see "<shapeName>"
+      And I should see "Create Shape"
       When I press "Create Shape"
       And I fill in "title" with "<shapeName>"
       And I press "Create"
@@ -283,13 +281,13 @@ Feature: I want to test the help-center
     | testShape3 | #Testing md input *italic* **bold** ![Adcade Logo](http://sajjad.pw/files/adcade-logo.jpg) [Link to logo](http://sajjad.pw/files/adcade-logo.jpg) - list text here 1. list text here |
     | testShape4 | #Testing md input *italic* **bold** ![Adcade Logo](http://sajjad.pw/files/adcade-logo.jpg) [Link to logo](http://sajjad.pw/files/adcade-logo.jpg) - list text here 1. list text here |
 
-    @regression @helpCenter @helpCenterCMS @helpCenterCMSCRUD @javascript @HCCMSDShapes
-    Scenario Outline: I want to delete type documentation
+    @javascript @regression @helpCenter @keystone @keystoneCRUD @keystoneShapes
+    Scenario Outline: I want to delete shape documentation
       Given I am authenticated on help center as "apappas@adcade.com" using "adcade42"
       And I am on "https://help-stage.adcade.com/keystone/shapes"
-      And I wait for 2 seconds
+      When I fill in "search" with "<shapeName>"
+      And I press "Search"
       Then I should see "<shapeName>"
-      When I follow "<shapeName>"
       And I follow "delete shape"
       Then I should see "Are you sure you want to delete this shape?" in popup
       When I confirm the popup
@@ -302,86 +300,76 @@ Feature: I want to test the help-center
     | testShape1 |
     | testShape2 |
 
-    @regression @helpCenter @helpCenterCMS @helpCenterCMSCRUD @javascript @HCCMSUShapes
+    @javascript @regression @helpCenter @keystone @keystoneCRUD @keystoneShapes
     Scenario Outline: I want to update shapes documentation
       Given I am authenticated on help center as "apappas@adcade.com" using "adcade42"
       And I am on "https://help-stage.adcade.com/keystone/shapes"
-      And I wait for 2 seconds
+      When I fill in "search" with "<shapeName>"
       Then I should see "<shapeName>"
-      When I follow "<shapeName>"
-      And I fill in "title" with "<shapeNameUpdate>"
+      When I fill in "title" with "<shapeNameUpdate>"
       And I press "Save"
       Then I should see "Your changes have been saved."
       When I go to "https://help-stage.adcade.com/keystone/shapes"
-      Then I should see "<shapeNameUpdate>"
+      And I fill in "search" with "test"
+      Then I should not see "<shapeName>"
+      And I should see "<shapeNameUpdate>"
       And I should see Keystone header and footer components
 
     Examples:
     | shapeName | shapeNameUpdate |
-    | testShape3 | testShape3Update |
-    | testShape4 | testShape4update |
+    | testShape3 | testShapeUpdate3 |
+    | testShape4 | testShapeUpdate4 |
 
-    @regression @helpCenter @helpCenterCMS @helpCenterCMSCRUD @javascript @HCCMSFilterShapes
-    Scenario Outline: I want to filer shapes documentation
+    @javascript @regression @helpCenter @keystone @keystoneCRUD @keystoneShapes
+    Scenario Outline: I want to filter shapes documentation
       Given I am authenticated on help center as "apappas@adcade.com" using "adcade42"
       And I am on "https://help-stage.adcade.com/keystone/shapes"
-      And I wait for 2 seconds
-      Then I should see "<typeName>"
-      And the response should contain "Search shapes"
-      And the response should contain "Add Filter "
-      And the response should contain "Columns "
-      And the response should contain "Download"
-      When I click on the element with xpath '//*[@id="list-filters"]/div[1]/div[1]/div/div[3]/button'
-      Then I should see "Title"
-      And I should see "State"
-      And I should see "Type"
-      When I click on the element with xpath '//*[@id="list-filters"]/div[1]/div[2]/div[2]/button'
-      Then I should see "Title"
-      And I should see "State"
-      And I should see "Type"
-      When I click on the element with xpath '//*[@id="list-filters"]/div[1]/div[2]/div[1]/a'
-#      Then I should see "Download a .csv of 2 shapes?" in popup
+      Then I should see "<shapeName>"
+      When I click on the element with xpath '<filter>'
+      Then I should see filter shape view elements
+      When I click on the element with xpath '<title>'
+      Then I should see add filter elements
+      When I click on the element with xpath '<column>'
+      Then I should see filter shape view elements
+      When I click on the element with xpath '<download>'
       And I confirm the popup
       Then I should be on "https://help-stage.adcade.com/keystone/shapes"
       And I should see Keystone header and footer components
 
     Examples:
-    | typeName |
-    | testShape3Update |
-    | testShape4Update |
+    | filter | title | column | download | shapeName |
+    | //*[@id="list-filters"]/div[1]/div[1]/div/div[3]/button | //*[@id="list-filters"]/div[1]/div[1]/div/div[3]/ul/li[1]/a | //*[@id="list-filters"]/div[1]/div[1]/div/div[3]/button | //*[@id="list-filters"]/div[1]/div[2]/div[1]/a | testShapeUpdate3 |
+    | //*[@id="list-filters"]/div[1]/div[1]/div/div[3]/button | //*[@id="list-filters"]/div[1]/div[1]/div/div[3]/ul/li[1]/a | //*[@id="list-filters"]/div[1]/div[1]/div/div[3]/button | //*[@id="list-filters"]/div[1]/div[2]/div[1]/a | testShapeUpdate4 |
 
-    @regression @helpCenter @helpCenterCMS @helpCenterCMSCRUD @javascript @HCCMSSearchShapes
+    @javascript @regression @helpCenter @keystone @keystoneCRUD @keystoneShapes
     Scenario Outline: I want to search shapes documentation
       Given I am authenticated on help center as "apappas@adcade.com" using "adcade42"
       And I am on "https://help-stage.adcade.com/keystone/shapes"
-      And I wait for 2 seconds
       Then I should see "<shapeName>"
       And the response should contain "search"
       When I fill in "search" with "<shapeName>"
-#      Then I should see "2 Shapes"
-      And I click on the element with xpath '//*[@id="body"]/div/div[2]/h1/div/span[2]/a'
-      Then I should see "Title (descending)"
-      And I should see "State"
-      And I should see "Content Description"
-      And I should see "<shapeName>"
+      And I press "Search"
+      Then I should see "<shapeName>"
       And I should see Keystone header and footer components
 
     Examples:
-    | shapeName |
-    | testShape3Update |
-    | testShape4Update |
+    | sort | shapeName |
+    | //*[@id="body"]/div/div[2]/h1/div/span[4]/a | testShapeUpdate3 |
+    | //*[@id="body"]/div/div[2]/h1/div/span[4]/a | testShapeUpdate4 |
 
-    @regression @helpCenter @helpCenterCMS @helpCenterCMSCRUD @javascript @HCCMSCRProperties
+  #KEYSTONE -- PROPERTIES
+
+    @javascript @regression @helpCenter @keystone @keystoneCRUD @keystoneProperties
     Scenario Outline: I want to create properties documentation
       Given I am authenticated on help center as "apappas@adcade.com" using "adcade42"
       And I am on "https://help-stage.adcade.com/keystone/properties"
-      And I wait for 2 seconds
       When I press "Create Property"
       Then I should see "New Property"
       And I should see "Create"
       And I should see "cancel"
       When I press "cancel"
-      Then I should see "Create Property"
+      Then I should not see "<propName>"
+      And I should see "Create Property"
       When I press "Create Property"
       And I fill in "title" with "<propName>"
       And I press "Create"
@@ -401,14 +389,14 @@ Feature: I want to test the help-center
     | testProp3 | #Testing md input *italic* **bold** ![Adcade Logo](http://sajjad.pw/files/adcade-logo.jpg) [Link to logo](http://sajjad.pw/files/adcade-logo.jpg) - list text here 1. list text here |
     | testProp4 | #Testing md input *italic* **bold** ![Adcade Logo](http://sajjad.pw/files/adcade-logo.jpg) [Link to logo](http://sajjad.pw/files/adcade-logo.jpg) - list text here 1. list text here |
 
-    @regression @helpCenter @helpCenterCMS @helpCenterCMSCRUD @javascript @HCCMSDProperties
+    @javascript @regression @helpCenter @keystone @keystoneCRUD @keystoneProperties
     Scenario Outline: I want to delete properties documentation
       Given I am authenticated on help center as "apappas@adcade.com" using "adcade42"
       And I am on "https://help-stage.adcade.com/keystone/properties"
-      And I wait for 2 seconds
+      When I fill in "search" with "<propName>"
+      And I press "Search"
       Then I should see "<propName>"
-      When I follow "<propName>"
-      And I follow "delete property"
+      When I follow "delete property"
       Then I should see "Are you sure you want to delete this property?" in popup
       When I confirm the popup
       And I go to "https://help-stage.adcade.com/keystone/properties"
@@ -420,74 +408,64 @@ Feature: I want to test the help-center
     | testProp1 |
     | testProp2 |
 
-    @regression @helpCenter @helpCenterCMS @helpCenterCMSCRUD @javascript @HCCMSUProperties
+    @javascript @regression @helpCenter @keystone @keystoneCRUD @keystoneProperties
     Scenario Outline: I want to update properties documentation
       Given I am authenticated on help center as "apappas@adcade.com" using "adcade42"
       And I am on "https://help-stage.adcade.com/keystone/properties"
-      And I wait for 2 seconds
+      When I fill in "search" with "<propName>"
+      And I press "Search"
       Then I should see "<propName>"
-      When I follow "<propName>"
-      And I fill in "title" with "<propNameUpdate>"
+      When I fill in "title" with "<propNameUpdate>"
       And I press "Save"
       Then I should see "Your changes have been saved."
       When I go to "https://help-stage.adcade.com/keystone/properties"
-      Then I should see "<propNameUpdate>"
+      And I fill in "search" with "test"
+      Then I should not see "<propName>"
+      And I should see "<propNameUpdate>"
       And I should see Keystone header and footer components
 
     Examples:
     | propName | propNameUpdate |
-    | testProp3 | testProp3Update |
-    | testProp4 | testProp4update |
+    | testProp3 | testPropUpdate3 |
+    | testProp4 | testPropUpdate4 |
 
-    @regression @helpCenter @helpCenterCMS @helpCenterCMSCRUD @javascript @HCCMSFilterProperties
-    Scenario Outline: I want to filer properties documentation
+    @javascript @regression @helpCenter @keystone @keystoneCRUD @keystoneProperties
+    Scenario Outline: I want to filter properties documentation
       Given I am authenticated on help center as "apappas@adcade.com" using "adcade42"
-      And I am on "https://help-stage.adcade.com/keystone/properties"
-      And I wait for 2 seconds
-      Then I should see "<propName>"
-      And the response should contain "Search properties"
-      And the response should contain "Add Filter "
-      And the response should contain "Columns "
-      And the response should contain "Download"
-      When I click on the element with xpath '//*[@id="list-filters"]/div[1]/div[1]/div/div[3]/button'
-      Then I should see "Title"
-      And I should see "State"
-      And I should see "Type"
-      When I click on the element with xpath '//*[@id="list-filters"]/div[1]/div[2]/div[2]/button'
-      Then I should see "Title"
-      And I should see "State"
-      And I should see "Type"
-      When I click on the element with xpath '//*[@id="list-filters"]/div[1]/div[2]/div[1]/a'
-#      Then I should see "Download a .csv of 2 properties?" in popup
+      And I am on "https://help-stage.adcade.com/keystone/shapes"
+      Then I should see "<shapeName>"
+      When I click on the element with xpath '<filter>'
+      Then I should see filter property view elements
+      When I click on the element with xpath '<title>'
+      Then I should see add filter elements
+      When I click on the element with xpath '<column>'
+      Then I should see filter property view elements
+      When I click on the element with xpath '<download>'
       And I confirm the popup
-      Then I should be on "https://help-stage.adcade.com/keystone/properties"
+      Then I should be on "https://help-stage.adcade.com/keystone/shapes"
       And I should see Keystone header and footer components
 
     Examples:
-    | propName |
-    | testProp3Update |
-    | testProp4Update |
+    | filter | title | column | download | shapeName |
+    | //*[@id="list-filters"]/div[1]/div[1]/div/div[3]/button | //*[@id="list-filters"]/div[1]/div[1]/div/div[3]/ul/li[1]/a | //*[@id="list-filters"]/div[1]/div[1]/div/div[3]/button | //*[@id="list-filters"]/div[1]/div[2]/div[1]/a | testPropUpdate3 |
+    | //*[@id="list-filters"]/div[1]/div[1]/div/div[3]/button | //*[@id="list-filters"]/div[1]/div[1]/div/div[3]/ul/li[1]/a | //*[@id="list-filters"]/div[1]/div[1]/div/div[3]/button | //*[@id="list-filters"]/div[1]/div[2]/div[1]/a | testPropUpdate4 |
 
-    @regression @helpCenter @helpCenterCMS @helpCenterCMSCRUD @javascript @HCCMSSearchProperties
+    @javascript @regression @helpCenter @keystone @keystoneCRUD @keystoneProperties
     Scenario Outline: I want to search properties documentation
       Given I am authenticated on help center as "apappas@adcade.com" using "adcade42"
       And I am on "https://help-stage.adcade.com/keystone/properties"
-      And I wait for 2 seconds
       Then I should see "<propName>"
       And the response should contain "search"
       When I fill in "search" with "<propName>"
-#      Then I should see "2 Properties"
-      And I click on the element with xpath '//*[@id="body"]/div/div[2]/h1/div/span[2]/a'
-      Then I should see "Title (descending)"
-      And I should see "State"
-      And I should see "Content Description"
-      And I should see "<propName>"
+      And I press "Search"
+      Then I should see "<propName>"
       And I should see Keystone header and footer components
 
     Examples:
-    | propName |
-    | testProp3Update |
-    | testProp4Update |
+    | sort | propName |
+    | //*[@id="body"]/div/div[2]/h1/div/span[4]/a | testPropUpdate3 |
+    | //*[@id="body"]/div/div[2]/h1/div/span[4]/a | testPropUpdate4 |
+
 
     @regression @helpCenter @helpCenterCMS @helpCenterCMSCRUD @javascript @HCCMSCRMethods
     Scenario Outline: I want to create methods documentation
@@ -558,7 +536,7 @@ Feature: I want to test the help-center
     | testMethod4 | testMethod4update |
 
     @regression @helpCenter @helpCenterCMS @helpCenterCMSCRUD @javascript @HCCMSFilterMethods
-    Scenario Outline: I want to filer methods documentation
+    Scenario Outline: I want to filter methods documentation
       Given I am authenticated on help center as "apappas@adcade.com" using "adcade42"
       And I am on "https://help-stage.adcade.com/keystone/methods"
       And I wait for 2 seconds
@@ -676,7 +654,7 @@ Feature: I want to test the help-center
     | testUtil4 | testUtil4update |
 
     @regression @helpCenter @helpCenterCMS @helpCenterCMSCRUD @javascript @HCCMSFilterUtilities
-    Scenario Outline: I want to filer utilities documentation
+    Scenario Outline: I want to filter utilities documentation
       Given I am authenticated on help center as "apappas@adcade.com" using "adcade42"
       And I am on "https://help-stage.adcade.com/keystone/utilities"
       And I wait for 2 seconds
