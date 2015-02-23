@@ -130,9 +130,9 @@ class FeatureContext extends Behat\MinkExtension\Context\MinkContext
     public function iAuthenticateAs($email, $password)
     {
       //$this->visit('https://help-stage.adcade.com/');
-      //$this->fillField('email', $email);
-      //$this->fillField('password', $password);
-      //$this->pressButton('Sign In');
+      $this->fillField('username', $email);
+      $this->fillField('password', $password);
+      $this->pressButton('Sign In');
     }
 
     /**
@@ -518,5 +518,110 @@ class FeatureContext extends Behat\MinkExtension\Context\MinkContext
       $this->assertSession()->pageTextContains('delete download');
     }
 
+
+    /*DASHBOARD UNIQUE*/
+
+    /**
+     * @Given /^I am on dashboard stage$/
+     */
+    public function iAmOnDashboardStage()
+    {
+      $this->visit('https://adstack-stage.adcade.com');
+    }
+
+    /**
+    * @Then /^I should see dashboard header and footer components with name "([^"]*)" and version "([^"]*)"$/
+    */
+    public function iShouldSeeDashboardHeaderAndFooterComponentsWithNameAndVersion($name, $version)
+    {
+      $this->assertSession()->pageTextContains('Dashboard');
+      $this->assertSession()->pageTextContains('Reporting');
+      $this->assertSession()->pageTextContains('Adcade');
+      $this->assertSession()->pageTextContains($name);
+      $this->assertSession()->pageTextContains('© 2015 Adcade. All Rights Reserved.');
+      $this->assertSession()->pageTextContains($version);
+      $this->assertSession()->pageTextContains('Help');
+      $this->assertSession()->pageTextContains('Feedback');
+    }
+
+    /**
+    * @Then /^I should see dashboard Account Settings Content with first name "([^"]*)" and last name "([^"]*)"$/
+    */
+    public function iShouldSeeDashboardAccountSettingsContentWithFirstAndLastName($fname, $lname)
+    {
+      $this->assertSession()->pageTextContains('Account Settings');
+      $this->assertSession()->pageTextContains('Edit User Info');
+      $this->assertSession()->pageTextContains('First Name');
+      $this->assertSession()->pageTextContains($fname);
+      $this->assertSession()->pageTextContains('Last Name');
+      $this->assertSession()->pageTextContains($lname);
+      $this->assertSession()->pageTextContains('Update User');
+      $this->assertSession()->pageTextContains('CHANGE PASSWORD');
+    }
+
+    /**
+    * @Then /^I should see dashboard Account Settings Change Password Content$/
+    */
+    public function iShouldSeeDashboardAccountSettingsChangePasswordContent()
+    {
+      $this->assertSession()->pageTextContains('Account Settings');
+      $this->assertSession()->pageTextContains('Change Password');
+      $this->assertSession()->pageTextContains('Please make sure your password is atleast 8 characters in length. Feel free to use as many letters, numbers, and special characters as you like. TIP: Its usually a good idea to use a mix of capital and lowercase letters as well as special characters (!@#$%&) to make your password more difficult to guess!');
+      $this->assertSession()->pageTextContains('Current Password');
+      $this->assertSession()->pageTextContains('New Password');
+      $this->assertSession()->pageTextContains('Confirm New Password');
+      $this->assertSession()->pageTextContains('Update User');
+    }
+
+    /**
+     * @Given /^I enter my current password "([^"]*)" and new password "([^"]*)"$/
+     */
+    public function iEnterMyCurrentPasswordAndNewPassword($currpw, $newpw)
+    {
+      $this->fillField('curr-pass', $currpw);
+      $this->fillField('new-pass', $newpw);
+      $this->fillField('confirm-pass', $newpw);
+      $this->pressButton('Change Password');
+    }
+
+    /**
+     * @When /^I visit drop down link of item "([^"]*)"$/
+     */
+    public function iVisitDropDownLinkOfItem($item)
+    {
+        $session = $this->getSession(); // get the mink session
+        $element = $session->getPage()->findLink($item);
+        $href = $element->getAttribute('href');
+echo sprintf(
+    "The URL is '%s'\n", $href
+);
+
+        // errors must not pass silently
+        if (null === $href) {
+          throw new \InvalidArgumentException(sprintf('Could not find URL of item: "%s"', $item));
+        }
+
+        $this->visit($href);
+    }
+
+    /**
+     * Click on the element with the provided CSS Selector
+     *
+     * @When /^I click on the element with css selector "([^"]*)"$/
+     */
+    public function iClickOnTheElementWithCSSSelector($cssSelector)
+    {
+        $session = $this->getSession();
+        $element = $session->getPage()->find(
+            'xpath',
+            $session->getSelectorsHandler()->selectorToXpath('css', $cssSelector) // just changed xpath to css
+        );
+        if (null === $element) {
+            throw new \InvalidArgumentException(sprintf('Could not evaluate CSS Selector: "%s"', $cssSelector));
+        }
+ 
+        $element->click();
+ 
+    }
 
 }
