@@ -15,7 +15,6 @@ class RestContext extends BehatContext
     private $_client            = null;
     private $_response          = null;
     private $_requestUrl        = null;
-
     private $_parameters			= array();
 
     /**

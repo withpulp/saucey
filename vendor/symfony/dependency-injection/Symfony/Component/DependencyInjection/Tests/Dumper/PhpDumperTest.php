@@ -70,13 +70,14 @@ class PhpDumperTest extends \PHPUnit_Framework_TestCase
         $definition = new Definition();
         $definition->setClass('stdClass');
         $definition->addArgument('%foo%');
-        $definition->addArgument(array('%foo%' => '%foo%'));
+        $definition->addArgument(array('%foo%' => '%buz%/'));
 
         $container = new ContainerBuilder();
         $container->setDefinition('test', $definition);
         $container->setParameter('foo', 'wiz'.dirname(dirname(__FILE__)));
         $container->setParameter('bar', dirname(__FILE__));
         $container->setParameter('baz', '%bar%/PhpDumperTest.php');
+        $container->setParameter('buz', dirname(dirname(__DIR__)));
         $container->compile();
 
         $dumper = new PhpDumper($container);
@@ -121,6 +122,15 @@ class PhpDumperTest extends \PHPUnit_Framework_TestCase
             $this->assertInstanceOf('\Symfony\Component\DependencyInjection\Exception\RuntimeException', $e, '->dump() throws a RuntimeException if the container to be dumped has reference to objects or resources');
             $this->assertEquals('Unable to dump a service container if a parameter is an object or a resource.', $e->getMessage(), '->dump() throws a RuntimeException if the container to be dumped has reference to objects or resources');
         }
+    }
+
+    public function testLegacySynchronizedServices()
+    {
+        $this->iniSet('error_reporting', -1 & ~E_USER_DEPRECATED);
+
+        $container = include self::$fixturesPath.'/containers/container20.php';
+        $dumper = new PhpDumper($container);
+        $this->assertEquals(str_replace('%path%', str_replace('\\', '\\\\', self::$fixturesPath.DIRECTORY_SEPARATOR.'includes'.DIRECTORY_SEPARATOR), file_get_contents(self::$fixturesPath.'/php/services20.php')), $dumper->dump(), '->dump() dumps services');
     }
 
     public function testServicesWithAnonymousFactories()

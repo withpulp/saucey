@@ -16,63 +16,78 @@ Feature: I want to test the help-center
 
     Examples:
     | link | expectedUrl | expectedText |
-    | Help Center | https://help-stage.adcade.com/login?url= | Please login to access this page. |
     | Visual Editor | https://help-stage.adcade.com/login?url=/editor | Please login to access this page. |
     | Dashboard | https://help-stage.adcade.com/login?url=/dashboard | Please login to access this page. |
     | AdScript | https://help-stage.adcade.com/login?url=/adscript | Please login to access this page. |
-    | Resource Center | https://help-stage.adcade.com/login?url=/downloads | Please login to access this page. |
-
 
     @javascript @regression @helpCenter @authorizedHC
     Scenario Outline: I want to log in as an authenticated user
       Given I am authenticated on help center as "apappas@adcade.com" using "adcade42"
+      And I am on help center
       Then I should see "<expectedText>"
       And I should see help center header and footer components
 
     Examples:
     | expectedText |
-    | Get Started |
-    | Creating with the Visual Editor |
-    | Using the Dashboard |
-    | View AdScript Reference |
-    | Download Components |
-    | Download Templates |
-    | What are you waiting for? |
-    | Get Started with your tutorials by downloading the Visual Builder and logging into the Ad Manager.|
+    | VISUAL EDITOR |
+    | DASHBOARD |
+    | ADSCRIPT |
+    | Download the Visual Editor |
+    | View the Visual Editor Guide |
+    | View the Dashboard Guide |
+    | Use the Dashboard |
+    | View the API Reference |
+    | Download Templates & Components |
 
     @javascript @regression @helpCenter @helpCenterLinksTop
     Scenario Outline: I want to follow links via the dashboard
       Given I am authenticated on help center as "apappas@adcade.com" using "adcade42"
+      And I am on help center
       When I follow "<link>"
       Then I should see "<expectedText>"
+      And I should be on "<expectedURL>"
       And I should see help center header and footer components
 
     Examples:
-    | link | expectedText |
-    | Creating with the Visual Editor | Visual Editor |
-    | Using the Dashboard | Dashboard |
-    | View AdScript Reference | AdScript |
+    | link | expectedText | expectedURL |
+    | Download | Visual Editor | https://help-stage.adcade.com/downloads |
 
     @javascript @regression @helpCenter @helpCenterLinksBottom
     Scenario Outline: I want to follow links via the dashboard
       Given I am authenticated on help center as "apappas@adcade.com" using "adcade42"
+      And I am on help center
       And I scroll to the bottom
       When I follow "<link>"
       Then I should see "<expectedText>"
+      And I should be on "<expectedURL>"
       And I should see help center header and footer components
 
     Examples:
-    | link | expectedText |
-    | editor-download | Visual Editor Download |
-    | Download Components | COMPONENTS |
-    | Download Components | TEMPLATES |
-    | Feedback | Provide Feedback |
+    | link | expectedText | expectedURL |
+    | Download the Visual Editor | VISUAL EDITOR | https://help-stage.adcade.com/downloads |
+    | View the Dashboard Guide | INTRODUCTION | https://help-stage.adcade.com/editor |
+    | View the API Reference | ADSCRIPT | https://help-stage.adcade.com/adscript |
+    | Download Templates & Components | DOWNLOAD | https://help-stage.adcade.com/downloads#templates |
+
+    @javascript @regression @helpCenter @helpCenterDashboard
+    Scenario Outline: I want to follow links via the dashboard
+      Given I am authenticated on help center as "apappas@adcade.com" using "adcade42"
+      And I am on help center
+      And I scroll to the bottom
+      When I follow "<link>"
+      And I should be on "<expectedURL>"
+      Then I should see "<expectedText>"
+
+    Examples:
+    | link | expectedText | expectedURL |
+    | Use the Dashboard | Powered By | https://adstack.adcade.com/login |
 
     @javascript @regression @helpCenter @helpCenterSearch
     Scenario Outline: I want to search via help center
       Given I am authenticated on help center as "apappas@adcade.com" using "adcade42"
+      And I am on help center
       When I fill in "search" with "<searchValue>"
-      And I press "search-button"
+      And I press "sidebar-search-button"
       Then I should be on "<expectedURL>"
 
     Examples:
@@ -113,8 +128,8 @@ Feature: I want to test the help-center
 
     Examples:
     | link | expectedText | expectedContent | expectedContent2 |
-    | cmpt-btn | COMPONENTS | Component Instructions | How to Use |
-    | tmpl-btn | TEMPLATES | Template Instructions | How to Use |
+    | Components | COMPONENTS | COMPONENTS | JavaScript files that extend AdScript, allowing easy use and reuse of custom functionality |
+    | Templates | TEMPLATES | VISUAL EDITOR | Powered by AdScript |
 
 #HELP CENTER BACK END -- KEYSTONE
 
@@ -466,12 +481,12 @@ Feature: I want to test the help-center
     | //*[@id="body"]/div/div[2]/h1/div/span[4]/a | testPropUpdate3 |
     | //*[@id="body"]/div/div[2]/h1/div/span[4]/a | testPropUpdate4 |
 
+  #KEYSTONE -- METHODS
 
-    @regression @helpCenter @helpCenterCMS @helpCenterCMSCRUD @javascript @HCCMSCRMethods
+    @javascript @regression @helpCenter @keystone @keystoneCRUD @keystoneMethods
     Scenario Outline: I want to create methods documentation
       Given I am authenticated on help center as "apappas@adcade.com" using "adcade42"
-      And I am on "https://help-stage.adcade.com/keystone/methods"
-      And I wait for 2 seconds
+      And I am on "/keystone/methods"
       When I press "Create Method"
       Then I should see "New Method"
       And I should see "Create"
@@ -501,7 +516,6 @@ Feature: I want to test the help-center
     Scenario Outline: I want to delete methods documentation
       Given I am authenticated on help center as "apappas@adcade.com" using "adcade42"
       And I am on "https://help-stage.adcade.com/keystone/methods"
-      And I wait for 2 seconds
       Then I should see "<methodName>"
       When I follow "<methodName>"
       And I follow "delete method"

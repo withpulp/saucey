@@ -175,7 +175,6 @@ class Selenium2Driver implements DriverInterface
         return $this;
     }
 
-
     /**
      * Creates some options for key events
      *

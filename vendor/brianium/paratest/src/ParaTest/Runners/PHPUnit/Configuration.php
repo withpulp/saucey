@@ -1,4 +1,5 @@
-<?php namespace ParaTest\Runners\PHPUnit;
+<?php
+namespace ParaTest\Runners\PHPUnit;
 
 /**
  * Class Configuration
@@ -22,6 +23,8 @@ class Configuration
      */
     protected $xml;
 
+    protected $availableNodes = array('file', 'directory', 'testsuite');
+
     /**
      * A collection of datastructures
      * build from the <testsuite> nodes inside of a
@@ -34,7 +37,7 @@ class Configuration
     public function __construct($path)
     {
         $this->path = $path;
-        if(file_exists($path)) {
+        if (file_exists($path)) {
             $before = libxml_disable_entity_loader(false);
             $this->xml = simplexml_load_file($path);
             libxml_disable_entity_loader($before);
@@ -48,10 +51,11 @@ class Configuration
      */
     public function getBootstrap()
     {
-        if($this->xml)
+        if ($this->xml) {
             return (string)$this->xml->attributes()->bootstrap;
-        else
+        } else {
             return '';
+        }
     }
 
     /**
@@ -73,16 +77,51 @@ class Configuration
      */
     public function getSuites()
     {
-        if(!$this->xml) return null;
+        if (!$this->xml) {
+            return null;
+        }
         $suites = array();
-        $nodes = $this->xml->xpath('//testsuite');
-        while(list(, $node) = each($nodes)) {
-            foreach ($node->directory as $dir) {
-                foreach ($this->getSuitePaths((string) $dir) as $path) {
-                    $suites[(string)$node['name']][] = new SuitePath($path, $dir->attributes()->suffix);
+        $nodes = $this->xml->xpath('//testsuites/testsuite');
+
+        while (list(, $node) = each($nodes)) {
+            $suites = array_merge_recursive($suites, $this->getSuiteByName((string)$node['name']));
+        }
+        return $suites;
+    }
+
+    /**
+     * Return the contents of the <testsuite> nodes
+     * contained in a PHPUnit configuration
+     *
+     * @param string $suiteName
+     *
+     * @return array
+     */
+    public function getSuiteByName($suiteName)
+    {
+        $nodes = $this->xml->xpath(sprintf('//testsuite[@name="%s"]', $suiteName));
+
+        $suites = array();
+        while (list(, $node) = each($nodes)) {
+            foreach ($this->availableNodes as $nodeName) {
+                foreach ($node->{$nodeName} as $nodeContent) {
+                    switch ($nodeName) {
+                        case 'testsuite':
+                            $suites = array_merge_recursive($suites, $this->getSuiteByName((string)$nodeContent));
+                            break;
+                        default:
+                            foreach ($this->getSuitePaths((string)$nodeContent) as $path) {
+                                $suites[(string)$node['name']][] = new SuitePath(
+                                    $path,
+                                    $nodeContent->attributes()->suffix
+                                );
+                            }
+                            break;
+                    }
                 }
             }
         }
+
         return $suites;
     }
 

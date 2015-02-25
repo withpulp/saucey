@@ -1,4 +1,5 @@
-<?php namespace ParaTest\Runners\PHPUnit;
+<?php
+namespace ParaTest\Runners\PHPUnit;
 
 use Symfony\Component\Process\Process;
 use Symfony\Component\Process\ProcessBuilder;
@@ -48,6 +49,14 @@ abstract class ExecutableTest
     }
 
     /**
+     * Get the expected count of tests or testmethods
+     * to be executed in this test
+     *
+     * @return int
+     */
+    abstract public function getTestMethodCount();
+
+    /**
      * Get the path to the test being executed
      *
      * @return string
@@ -66,8 +75,9 @@ abstract class ExecutableTest
      */
     public function getTempFile()
     {
-        if(is_null($this->temp))
+        if (is_null($this->temp)) {
             $this->temp = tempnam(sys_get_temp_dir(), "PT_");
+        }
 
         return $this->temp;
     }
@@ -88,8 +98,9 @@ abstract class ExecutableTest
      */
     public function getWarnings()
     {
-        if(!$this->process)
+        if (!$this->process) {
             return false;
+        }
 
         // PHPUnit has a bug where by it doesn't include warnings in the junit
         // output, but still fails. This is a hacky, imperfect method for extracting them
@@ -201,7 +212,7 @@ abstract class ExecutableTest
     {
         $builder = new ProcessBuilder();
         $builder->setPrefix($binary);
-        foreach($options as $key => $value) {
+        foreach ($options as $key => $value) {
             $builder->add("--$key");
             if ($value !== null) {
                 $builder->add($value);
@@ -224,7 +235,9 @@ abstract class ExecutableTest
      */
     protected function handleEnvironmentVariables($environmentVariables)
     {
-        if (isset($environmentVariables['TEST_TOKEN'])) $this->token = $environmentVariables['TEST_TOKEN'];
+        if (isset($environmentVariables['TEST_TOKEN'])) {
+            $this->token = $environmentVariables['TEST_TOKEN'];
+        }
     }
 
     /**
@@ -261,5 +274,10 @@ abstract class ExecutableTest
     public function getStdout()
     {
         return $this->process->getOutput();
+    }
+
+    public function setTempFile($temp)
+    {
+        $this->temp = $temp;
     }
 }
