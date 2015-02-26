@@ -1,12 +1,16 @@
 <?php
-use Behat\MinkExtension\Context\MinkContext;
+use Behat\Behat\Context\ClosuredContextInterface,
+    Behat\Behat\Context\TranslatedContextInterface,
+    Behat\Behat\Context\BehatContext,
+    Behat\Behat\Exception\PendingException;
+use Behat\Gherkin\Node\PyStringNode,
+    Behat\Gherkin\Node\TableNode;
+use GuzzleHttp\Client;
 
-/**
- * Features context.
- */
-class HelpCenterContext extends MinkContext
+use Behat\Behat\Context\Step;
+
+class HelpCenterContext extends BehatContext
 {
-
     /*HELP CENTER UNIQUE*/
 
     /**
@@ -14,7 +18,7 @@ class HelpCenterContext extends MinkContext
     */
     public static function prepare(BeforeFeatureScope $scope)
     {
-       exec('mongo keystone --eval "db.dropDatabase();"');
+       //exec('mongo keystone --eval "db.dropDatabase();"');
     }
 
     /**
@@ -22,7 +26,7 @@ class HelpCenterContext extends MinkContext
      */
     public function cleanDB(AfterScenarioScope $scope)
     {
-      exec('mongo keystone --eval "db.dropDatabase();"');
+      //exec('mongo keystone --eval "db.dropDatabase();"');
     }
 
     /**
@@ -30,7 +34,7 @@ class HelpCenterContext extends MinkContext
      */
     public function iAmOnHelpCenter()
     {
-      $this->visit('https://help-stage.adcade.com');
+      $this->getMainContext()->getMainContext()->visit('https://help-stage.adcade.com');
     }
 
     /**
@@ -38,7 +42,7 @@ class HelpCenterContext extends MinkContext
      */
     public function iAmOnHelpCenterFeedback()
     {
-      $this->visit('https://help-stage.adcade.com/feedback');
+      $this->getMainContext()->visit('https://help-stage.adcade.com/feedback');
     }
 
     /**
@@ -46,7 +50,7 @@ class HelpCenterContext extends MinkContext
      */
     public function iAmOnHelpCenterKeystone()
     {
-      $this->visit('https://help-stage.adcade.com/keystone');
+      $this->getMainContext()->visit('https://help-stage.adcade.com/keystone');
     }
 
 
@@ -55,26 +59,29 @@ class HelpCenterContext extends MinkContext
      */
     public function iShouldBeOnHelpCenter($page)
     {
-      $this->driver
-          ->expects($this->once())
+      $this->getMainContext()->driver
+          ->expects($this->getMainContext()->once())
           ->method('getCurrentUrl')
-          ->will($this->returnValue($ret = 'https://help-stage.adcade.com'));
+          ->will($this->getMainContext()->returnValue($ret = 'https://help-stage.adcade.com'));
 
-      $this->assertEquals($ret, $this->session->getCurrentUrl());
+      $this->getMainContext()->assertEquals($ret, $this->getMainContext()->session->getCurrentUrl());
     }
 
     /**
     * @Given /^I am authenticated on help center as "([^"]*)" using "([^"]*)"$/
     */
-    public function iAmAuthenticatedAs($username, $password) {
-      $this->visit('https://help-stage.adcade.com');
-      $this->fillField('username', $username);
-      $this->fillField('password', $password);
-      $this->pressButton('login-submit');
-      $this->visit('https://help-stage.adcade.com/keystone');
-      $this->fillField('email', $username);
-      $this->fillField('password', $password);
-      $this->pressButton('Sign In');
+    public function iAmAuthenticatedOnHelpCenterAs($username, $password) {
+      $this->getMainContext()->visit('https://help-stage.adcade.com');
+      $this->getMainContext()->fillField('username', $username);
+      $this->getMainContext()->fillField('password', $password);
+      $this->getMainContext()->pressButton('login-submit');
+    }
+
+    public function iAmAuthenticatedOnKeystoneAs($username, $password) {
+      $this->getMainContext()->visit('https://help-stage.adcade.com/keystone');
+      $this->getMainContext()->fillField('email', $username);
+      $this->getMainContext()->fillField('password', $password);
+      $this->getMainContext()->pressButton('Sign In');
     }
 
     /**
@@ -82,7 +89,7 @@ class HelpCenterContext extends MinkContext
     */
     public function iShouldSeeAddFilterElements()
     {
-      $this->assertSession()->pageTextContains('contains', 'exact match', 'invert', 'Name');
+      $this->getMainContext()->assertSession()->pageTextContains('contains', 'exact match', 'invert', 'Name');
     }
 
     //HEADER AND FOOTER SPECIFIC
@@ -92,7 +99,7 @@ class HelpCenterContext extends MinkContext
     */
     public function iShouldSeeHelpCenterHeaderAndFooterComponents()
     {
-      $this->assertSession()->pageTextContains('Help Center', 'Visual Editor', 'Dashboard', 'AdScript', 'Resource Center', '© 2015 Adcade Help Center', ' Feedback', 'Powered by', 'Adcade');
+      $this->getMainContext()->assertSession()->pageTextContains('Visual Editor', 'Dashboard', 'AdScript', 'Downloads', '© 2015 Adcade. All Rights Reserved.', ' Feedback');
     }
 
     /**
@@ -100,7 +107,7 @@ class HelpCenterContext extends MinkContext
     */
     public function iShouldSeeKeystoneHeaderAndFooterComponents()
     {
-      $this->assertSession()->pageTextContains('Keystone', 'Adscript', 'Tutorials', 'Resources', 'Users', 'Sign Out', 'Keystone Powered by', 'Signed in as', 'Admin User');
+      $this->getMainContext()->assertSession()->pageTextContains('Keystone', 'Adscript', 'Tutorials', 'Resources', 'Users', 'Sign Out', 'Keystone Powered by', 'Signed in as', 'Admin User');
     }
 
     //TYPES SPECIFIC
@@ -110,7 +117,7 @@ class HelpCenterContext extends MinkContext
     */
     public function iShouldSeeCreateTypeViewElements()
     {
-      $this->assertSession()->pageTextContains('New Type', 'cancel', 'Create');
+      $this->getMainContext()->assertSession()->pageTextContains('New Type', 'cancel', 'Create');
     }
 
     /**
@@ -118,7 +125,7 @@ class HelpCenterContext extends MinkContext
     */
     public function iShouldSeeEditTypeViewElements()
     {
-      $this->assertSession()->pageTextContains('Save', 'reset changes', 'delete type', 'Types', 'Users', 'New Type');
+      $this->getMainContext()->assertSession()->pageTextContains('Save', 'reset changes', 'delete type', 'Types', 'Users', 'New Type');
     }
 
     /**
@@ -126,7 +133,7 @@ class HelpCenterContext extends MinkContext
     */
     public function iShouldSeeFilterTypeViewElements()
     {
-      $this->assertSession()->pageTextContains('Name');
+      $this->getMainContext()->assertSession()->pageTextContains('Name');
     }
 
     //SHAPES SPECIFIC
@@ -136,7 +143,7 @@ class HelpCenterContext extends MinkContext
     */
     public function iShouldSeeCreateShapeViewElements()
     {
-      $this->assertSession()->pageTextContains('Save','reset changes', 'delete shape', 'Types', 'Users', 'New Shape');
+      $this->getMainContext()->assertSession()->pageTextContains('Save','reset changes', 'delete shape', 'Types', 'Users', 'New Shape');
     }
 
     /**
@@ -144,7 +151,7 @@ class HelpCenterContext extends MinkContext
     */
     public function iShouldSeeFilterShapeViewElements()
     {
-      $this->assertSession()->pageTextContains('Title', 'State', 'Content Description', 'Type');
+      $this->getMainContext()->assertSession()->pageTextContains('Title', 'State', 'Content Description', 'Type');
     }
 
     //PROPERTY SPECIFIC
@@ -154,7 +161,7 @@ class HelpCenterContext extends MinkContext
     */
     public function iShouldSeeCreatePropertyViewElements()
     {
-      $this->assertSession()->pageTextContains('Save', 'reset changes', 'delete property', 'Types', 'Users', 'New Property');
+      $this->getMainContext()->assertSession()->pageTextContains('Save', 'reset changes', 'delete property', 'Types', 'Users', 'New Property');
     }
 
     /**
@@ -162,7 +169,7 @@ class HelpCenterContext extends MinkContext
     */
     public function iShouldSeeFilterPropertyViewElements()
     {
-      $this->assertSession()->pageTextContains('Title', 'State', 'Type');
+      $this->getMainContext()->assertSession()->pageTextContains('Title', 'State', 'Type');
     }
 
     //METHOD SPECIFIC
@@ -172,7 +179,7 @@ class HelpCenterContext extends MinkContext
     */
     public function iShouldSeeCreateMethodViewElements()
     {
-      $this->assertSession()->pageTextContains('Save', 'reset changes', 'delete method', 'Types', 'Users', 'New Method');
+      $this->getMainContext()->assertSession()->pageTextContains('Save', 'reset changes', 'delete method', 'Types', 'Users', 'New Method');
     }
 
     /**
@@ -180,7 +187,7 @@ class HelpCenterContext extends MinkContext
     */
     public function iShouldSeeFilterMethodViewElements()
     {
-      $this->assertSession()->pageTextContains('Title', 'State', 'Type');
+      $this->getMainContext()->assertSession()->pageTextContains('Title', 'State', 'Type');
     }
 
     /**
@@ -188,12 +195,12 @@ class HelpCenterContext extends MinkContext
     */
     public function iShouldSeeCreateUtilityViewElements()
     {
-      $this->assertSession()->pageTextContains('Save');
-      $this->assertSession()->pageTextContains('reset changes');
-      $this->assertSession()->pageTextContains('delete utility');
-      $this->assertSession()->pageTextContains('Types');
-      $this->assertSession()->pageTextContains('Users');
-      $this->assertSession()->pageTextContains('New Utility');
+      $this->getMainContext()->assertSession()->pageTextContains('Save');
+      $this->getMainContext()->assertSession()->pageTextContains('reset changes');
+      $this->getMainContext()->assertSession()->pageTextContains('delete utility');
+      $this->getMainContext()->assertSession()->pageTextContains('Types');
+      $this->getMainContext()->assertSession()->pageTextContains('Users');
+      $this->getMainContext()->assertSession()->pageTextContains('New Utility');
     }
 
     /**
@@ -201,8 +208,8 @@ class HelpCenterContext extends MinkContext
      */
     public function iShouldSeeTutorialElements()
     {
-      $this->assertSession()->pageTextContains('Sections');
-      $this->assertSession()->pageTextContains('Pages');
+      $this->getMainContext()->assertSession()->pageTextContains('Sections');
+      $this->getMainContext()->assertSession()->pageTextContains('Pages');
     }
 
     /**
@@ -210,13 +217,13 @@ class HelpCenterContext extends MinkContext
      */
     public function iShouldSeeTutorialSectionEditingElements()
     {
-      $this->assertSession()->pageTextContains('About');
-      $this->assertSession()->pageTextContains('key:');
-      $this->assertSession()->pageTextContains('New Section');
-      $this->assertSession()->pageTextContains('Sections');
-      $this->assertSession()->pageTextContains('Save');
-      $this->assertSession()->pageTextContains('reset changes');
-      $this->assertSession()->pageTextContains('delete section');
+      $this->getMainContext()->assertSession()->pageTextContains('About');
+      $this->getMainContext()->assertSession()->pageTextContains('key:');
+      $this->getMainContext()->assertSession()->pageTextContains('New Section');
+      $this->getMainContext()->assertSession()->pageTextContains('Sections');
+      $this->getMainContext()->assertSession()->pageTextContains('Save');
+      $this->getMainContext()->assertSession()->pageTextContains('reset changes');
+      $this->getMainContext()->assertSession()->pageTextContains('delete section');
     }
 
     /**
@@ -224,17 +231,17 @@ class HelpCenterContext extends MinkContext
      */
     public function iShouldSeeTutorialPageEditingElements()
     {
-      $this->assertSession()->pageTextContains('State');
-      $this->assertSession()->pageTextContains('Author');
-      $this->assertSession()->pageTextContains('About');
-      $this->assertSession()->pageTextContains('Section');
-      $this->assertSession()->pageTextContains('Content Description');
-      $this->assertSession()->pageTextContains('slug:');
-      $this->assertSession()->pageTextContains('New Page');
-      $this->assertSession()->pageTextContains('Pages');
-      $this->assertSession()->pageTextContains('Save');
-      $this->assertSession()->pageTextContains('reset changes');
-      $this->assertSession()->pageTextContains('delete page');
+      $this->getMainContext()->assertSession()->pageTextContains('State');
+      $this->getMainContext()->assertSession()->pageTextContains('Author');
+      $this->getMainContext()->assertSession()->pageTextContains('About');
+      $this->getMainContext()->assertSession()->pageTextContains('Section');
+      $this->getMainContext()->assertSession()->pageTextContains('Content Description');
+      $this->getMainContext()->assertSession()->pageTextContains('slug:');
+      $this->getMainContext()->assertSession()->pageTextContains('New Page');
+      $this->getMainContext()->assertSession()->pageTextContains('Pages');
+      $this->getMainContext()->assertSession()->pageTextContains('Save');
+      $this->getMainContext()->assertSession()->pageTextContains('reset changes');
+      $this->getMainContext()->assertSession()->pageTextContains('delete page');
     }
 
     /**
@@ -242,9 +249,9 @@ class HelpCenterContext extends MinkContext
      */
     public function iShouldSeeDownloadElements()
     {
-      $this->assertSession()->pageTextContains('Downloads');
-      $this->assertSession()->pageTextContains('Download Filters');
-      $this->assertSession()->pageTextContains('Editor Downloads');
+      $this->getMainContext()->assertSession()->pageTextContains('Downloads');
+      $this->getMainContext()->assertSession()->pageTextContains('Download Filters');
+      $this->getMainContext()->assertSession()->pageTextContains('Editor Downloads');
 
     }
 
@@ -253,16 +260,16 @@ class HelpCenterContext extends MinkContext
      */
     public function iShouldSeeDownloadPageEditingElements()
     {
-      $this->assertSession()->pageTextContains('Type');
-      $this->assertSession()->pageTextContains('Filter');
-      $this->assertSession()->pageTextContains('Image');
-      $this->assertSession()->pageTextContains('Downloadable');
-      $this->assertSession()->pageTextContains('slug:');
-      $this->assertSession()->pageTextContains('Downloads');
-      $this->assertSession()->pageTextContains('New Download');
-      $this->assertSession()->pageTextContains('Save');
-      $this->assertSession()->pageTextContains('reset changes');
-      $this->assertSession()->pageTextContains('delete download');
+      $this->getMainContext()->assertSession()->pageTextContains('Type');
+      $this->getMainContext()->assertSession()->pageTextContains('Filter');
+      $this->getMainContext()->assertSession()->pageTextContains('Image');
+      $this->getMainContext()->assertSession()->pageTextContains('Downloadable');
+      $this->getMainContext()->assertSession()->pageTextContains('slug:');
+      $this->getMainContext()->assertSession()->pageTextContains('Downloads');
+      $this->getMainContext()->assertSession()->pageTextContains('New Download');
+      $this->getMainContext()->assertSession()->pageTextContains('Save');
+      $this->getMainContext()->assertSession()->pageTextContains('reset changes');
+      $this->getMainContext()->assertSession()->pageTextContains('delete download');
     }
 
 

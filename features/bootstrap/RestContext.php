@@ -3,9 +3,6 @@
 use Behat\Behat\Context\BehatContext;
 use Symfony\Component\Yaml\Yaml;
 
-/**
- * Rest context.
- */
 class RestContext extends BehatContext
 {
 
@@ -25,20 +22,20 @@ class RestContext extends BehatContext
     {
         // Initialize your context here
 
-        $this->_restObject  = new stdClass();
-        $this->_client      = new Guzzle\Service\Client();
-      $this->_parameters = $parameters;
+        $this->getMainContext()->_restObject  = new stdClass();
+        $this->getMainContext()->_client      = new Guzzle\Service\Client();
+        $this->getMainContext()->_parameters = $parameters;
     }
 
     public function getParameter($name)
     {
-      if (count($this->_parameters) === 0) {
+      if (count($this->getMainContext()->_parameters) === 0) {
 
 
             throw new \Exception('Parameters not loaded!');
       } else {
 
-            $parameters = $this->_parameters;
+            $parameters = $this->getMainContext()->_parameters;
             return (isset($parameters[$name])) ? $parameters[$name] : null;
       }
     }
@@ -48,8 +45,8 @@ class RestContext extends BehatContext
      */
     public function thatIWantToMakeANew($objectType)
     {
-        $this->_restObjectType   = ucwords(strtolower($objectType));
-        $this->_restObjectMethod = 'post';
+        $this->getMainContext()->_restObjectType   = ucwords(strtolower($objectType));
+        $this->getMainContext()->_restObjectMethod = 'post';
     }
 
      /**
@@ -57,8 +54,8 @@ class RestContext extends BehatContext
      */
     public function thatIWantToFindA($objectType)
     {
-        $this->_restObjectType   = ucwords(strtolower($objectType));
-        $this->_restObjectMethod = 'get';
+        $this->getMainContext()->_restObjectType   = ucwords(strtolower($objectType));
+        $this->getMainContext()->_restObjectMethod = 'get';
     }
 
     /**
@@ -66,8 +63,8 @@ class RestContext extends BehatContext
      */
     public function thatIWantToDeleteA($objectType)
     {
-        $this->_restObjectType   = ucwords(strtolower($objectType));
-        $this->_restObjectMethod = 'delete';
+        $this->getMainContext()->_restObjectType   = ucwords(strtolower($objectType));
+        $this->getMainContext()->_restObjectMethod = 'delete';
     }
 
     /**
@@ -75,7 +72,7 @@ class RestContext extends BehatContext
      */
     public function thatTheItsIs($propertyName, $propertyValue)
     {
-        $this->_restObject->$propertyName = $propertyValue;
+        $this->getMainContext()->_restObject->$propertyName = $propertyValue;
     }
 
     /**
@@ -83,28 +80,28 @@ class RestContext extends BehatContext
      */
     public function iRequest($pageUrl)
     {
-        $baseUrl 			= $this->getParameter('base_url');
-        $this->_requestUrl 	= $baseUrl.$pageUrl;
+        $baseUrl 			= $this->getMainContext()->getParameter('base_url');
+        $this->getMainContext()->_requestUrl 	= $baseUrl.$pageUrl;
 
-        switch (strtoupper($this->_restObjectMethod)) {
+        switch (strtoupper($this->getMainContext()->_restObjectMethod)) {
             case 'GET':
-                $response = $this->_client
-                    ->get($this->_requestUrl.'?'.http_build_query((array)$this->_restObject))
+                $response = $this->getMainContext()->_client
+                    ->get($this->getMainContext()->_requestUrl.'?'.http_build_query((array)$this->getMainContext()->_restObject))
                     ->send();
                 break;
             case 'POST':
-                $postFields = (array)$this->_restObject;
-                $response = $this->_client
-                    ->post($this->_requestUrl,null,$postFields)
+                $postFields = (array)$this->getMainContext()->_restObject;
+                $response = $this->getMainContext()->_client
+                    ->post($this->getMainContext()->_requestUrl,null,$postFields)
                     ->send();
                 break;
             case 'DELETE':
-              $response = $this->_client
-                    ->delete($this->_requestUrl.'?'.http_build_query((array)$this->_restObject))
+              $response = $this->getMainContext()->_client
+                    ->delete($this->getMainContext()->_requestUrl.'?'.http_build_query((array)$this->getMainContext()->_restObject))
                     ->send();
               break;
         }
-        $this->_response = $response;
+        $this->getMainContext()->_response = $response;
     }
 
     /**
@@ -112,10 +109,10 @@ class RestContext extends BehatContext
      */
     public function theResponseIsJson()
     {
-        $data = json_decode($this->_response->getBody(true));
+        $data = json_decode($this->getMainContext()->_response->getBody(true));
 
         if (empty($data)) {
-            throw new Exception("Response was not JSON\n" . $this->_response);
+            throw new Exception("Response was not JSON\n" . $this->getMainContext()->_response);
         }
     }
 
@@ -124,14 +121,14 @@ class RestContext extends BehatContext
      */
     public function theResponseHasAProperty($propertyName)
     {
-        $data = json_decode($this->_response->getBody(true));
+        $data = json_decode($this->getMainContext()->_response->getBody(true));
 
         if (!empty($data)) {
             if (!isset($data->$propertyName)) {
                 throw new Exception("Property '".$propertyName."' is not set!\n");
             }
         } else {
-            throw new Exception("Response was not JSON\n" . $this->_response->getBody(true));
+            throw new Exception("Response was not JSON\n" . $this->getMainContext()->_response->getBody(true));
         }
     }
 
@@ -140,7 +137,7 @@ class RestContext extends BehatContext
      */
     public function thePropertyEquals($propertyName, $propertyValue)
     {
-        $data = json_decode($this->_response->getBody(true));
+        $data = json_decode($this->getMainContext()->_response->getBody(true));
 
         if (!empty($data)) {
           if (!isset($data->$propertyName)) {
@@ -150,7 +147,7 @@ class RestContext extends BehatContext
               throw new \Exception('Property value mismatch! (given: '.$propertyValue.', match: '.$data->$propertyName.')');
             }
         } else {
-            throw new Exception("Response was not JSON\n" . $this->_response->getBody(true));
+            throw new Exception("Response was not JSON\n" . $this->getMainContext()->_response->getBody(true));
         }
     }
 
@@ -159,7 +156,7 @@ class RestContext extends BehatContext
      */
     public function theTypeOfThePropertyIsNumeric($propertyName,$typeString)
     {
-        $data = json_decode($this->_response->getBody(true));
+        $data = json_decode($this->getMainContext()->_response->getBody(true));
 
         if (!empty($data)) {
             if (!isset($data->$propertyName)) {
@@ -175,18 +172,18 @@ class RestContext extends BehatContext
             }
 
         } else {
-            throw new Exception("Response was not JSON\n" . $this->_response->getBody(true));
+            throw new Exception("Response was not JSON\n" . $this->getMainContext()->_response->getBody(true));
         }
     }
 
     /**
-     * @Then /^the response status code should be "([^"]*)"$/
+     * @Then /^the response status code should be (\d+)$/
      */
     public function theResponseStatusCodeShouldBe($httpStatus)
     {
-      if ((string)$this->_response->getStatusCode() !== $httpStatus) {
+      if ((string)$this->getMainContext()->getStatusCode() !== $httpStatus) {
         throw new \Exception('HTTP code does not match '.$httpStatus.
-          ' (actual: '.$this->_response->getStatusCode().')');
+          ' (actual: '.$this->getMainContext()->getStatusCode().')');
       }
     }
 
@@ -196,9 +193,9 @@ class RestContext extends BehatContext
      */
     public function echoLastResponse()
     {
-        $this->printDebug(
-            $this->_requestUrl."\n\n".
-            $this->_response
+        $this->getMainContext()->printDebug(
+            $this->getMainContext()->_requestUrl."\n\n".
+            $this->getMainContext()->_response
         );
     }
 }

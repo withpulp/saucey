@@ -7,22 +7,26 @@ use Behat\Gherkin\Node\PyStringNode,
     Behat\Gherkin\Node\TableNode;
 use GuzzleHttp\Client;
 
-require_once 'RestContext.php';
-require_once 'helpCenterContext.php';
+use Behat\MinkExtension\Context\MinkContext;
+use Behat\Behat\Context\Step;
+
 require_once 'vendor/autoload.php';
+require_once 'RestContext.php';
 
 /**
 * Fetaures context.
 */
-class FeatureContext extends Behat\MinkExtension\Context\MinkContext
+class FeatureContext extends MinkContext
 {
+
     /*GLOBAL CONTEXT*/
 
-    public function __construct(array $parameters) {
-        $this->parameters = $parameters;
-
-        // Load Context Class
-        $this->useContext('HelpCenterContext', new HelpCenterContext());
+    public function __construct(array $parameters)
+    {
+        // Initialize your context here
+        // ...
+        $this->useContext('HelpCenterContext', new HelpCenterContext($parameters));
+        //$this->useContext('RestContext', new RestContext($parameters));
     }
 
     /**

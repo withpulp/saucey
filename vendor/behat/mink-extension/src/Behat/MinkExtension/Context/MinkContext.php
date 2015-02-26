@@ -208,23 +208,23 @@ class MinkContext extends RawMinkContext implements TranslatedContextInterface
     }
 
     /**
-     * Checks, that current page response status is equal to specified.
-     *
-     * @Then /^the response status code should be (?P<code>\d+)$/
-     */
+    * Checks, that current page response status is equal to specified.
+    *
+    * @Then /^the response status code should be (?P<code>\d+)$/
+    */
     public function assertResponseStatus($code)
     {
-        $this->assertSession()->statusCodeEquals($code);
+       $this->assertSession()->statusCodeEquals($code);
     }
 
     /**
-     * Checks, that current page response status is not equal to specified.
-     *
-     * @Then /^the response status code should not be (?P<code>\d+)$/
-     */
+    * Checks, that current page response status is not equal to specified.
+    *
+    * @Then /^the response status code should not be (?P<code>\d+)$/
+    */
     public function assertResponseStatusIsNot($code)
     {
-        $this->assertSession()->statusCodeNotEquals($code);
+       $this->assertSession()->statusCodeNotEquals($code);
     }
 
     /**

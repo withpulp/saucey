@@ -6,38 +6,73 @@ Feature: I want to test the help-center
 
 #HELP CENTER FRONT END
 
-    @javascript @regression @helpCenter @unauthorizedHC
-    Scenario Outline: I want make requests as an unauthenticated user
+    @javascript @regression @helpCenters @loginView
+    Scenario Outline: I want to make requests as an unauthenticated user
       Given I am on help center
-      Then I should see "<link>"
-      When I follow "<link>"
-      And I should be on "<expectedUrl>"
-      And the response should contain "<expectedText>"
+      Then the response should contain "<expectedObject>"
 
     Examples:
-    | link | expectedUrl | expectedText |
-    | Visual Editor | https://help-stage.adcade.com/login?url=/editor | Please login to access this page. |
-    | Dashboard | https://help-stage.adcade.com/login?url=/dashboard | Please login to access this page. |
-    | AdScript | https://help-stage.adcade.com/login?url=/adscript | Please login to access this page. |
+    | expectedObject |
+    | Adcade Help Center |
+    | /favicon.ico |
+    | /styles/styles.min.css |
+    | image |
+    | username |
+    | password |
+    | submit |
+    | Please login to access this page. |
+    | Sign in |
 
-    @javascript @regression @helpCenter @authorizedHC
+    @javascript @regression @helpCenters @
+    Scenario Outline: I want to make requests as an unauthenticated user
+      Given I am on help center
+      Then the response should contain "<expectedObject>"
+
+    Examples:
+    | expectedObject |
+    | Adcade Help Center |
+    | /favicon.ico |
+    | /styles/styles.min.css |
+    | image |
+    | username |
+    | password |
+    | submit |
+    | Please login to access this page. |
+    | Sign in |
+
+
+    @javascript @regression @helpCenters @invalidLogin
+    Scenario Outline: I want to log in as an unauthenticated user
+      Given I am on help center
+      And I am authenticated on help center as "<un>" using "<pw>"
+      Then I should see "<expectedResult>"
+
+    Examples:
+    | un | pw | expectedResult |
+    | slappass@adcade.com | adcade42 | Sorry, the email or password is incorrect. |
+    | slappass | adcade42 | Sorry, the email or password is incorrect. |
+    | apappas@adcade.com | adcade4@ | Sorry, the email or password is incorrect. |
+
+    @javascript @regression @helpCenter @home
     Scenario Outline: I want to log in as an authenticated user
       Given I am authenticated on help center as "apappas@adcade.com" using "adcade42"
       And I am on help center
-      Then I should see "<expectedText>"
+      Then the response should contain "<expectedObject>"
       And I should see help center header and footer components
 
     Examples:
-    | expectedText |
-    | VISUAL EDITOR |
-    | DASHBOARD |
-    | ADSCRIPT |
-    | Download the Visual Editor |
-    | View the Visual Editor Guide |
-    | View the Dashboard Guide |
-    | Use the Dashboard |
-    | View the API Reference |
-    | Download Templates & Components |
+    | expectedObject |
+    | Visual Editor |
+    | Dashboard |
+    | AdScript |
+    | Downloads |
+    | /images/visual-editor-icon.png |
+    | /images/adcade-logo.svg |
+    | Download |
+    | https://www.google-analytics.com/plugins/ua/linkid.js |
+    | www.google-analytics.com/analytics.js |
+    | /js/lib/highlight.pack.js |
+    | /js/lib/smooth-scroll.min.js |
 
     @javascript @regression @helpCenter @helpCenterLinksTop
     Scenario Outline: I want to follow links via the dashboard
@@ -51,6 +86,7 @@ Feature: I want to test the help-center
     Examples:
     | link | expectedText | expectedURL |
     | Download | Visual Editor | https://help-stage.adcade.com/downloads |
+    | editor-download | Visual Editor | https://help-stage.adcade.com/downloads |
 
     @javascript @regression @helpCenter @helpCenterLinksBottom
     Scenario Outline: I want to follow links via the dashboard
@@ -64,10 +100,11 @@ Feature: I want to test the help-center
 
     Examples:
     | link | expectedText | expectedURL |
-    | Download the Visual Editor | VISUAL EDITOR | https://help-stage.adcade.com/downloads |
-    | View the Dashboard Guide | INTRODUCTION | https://help-stage.adcade.com/editor |
-    | View the API Reference | ADSCRIPT | https://help-stage.adcade.com/adscript |
-    | Download Templates & Components | DOWNLOAD | https://help-stage.adcade.com/downloads#templates |
+    | Download the Visual Editor | Visual Editor | https://help-stage.adcade.com/downloads |
+    | View the Dashboard Guide | Introduction to the Dashboard | https://help-stage.adcade.com/editor |
+    | View the Visual Editor Guide | Introduction to the Visual Editor | https://help-stage.adcade.com/editor |
+    | View the API Reference | AdScript API | https://help-stage.adcade.com/adscript |
+    | Download Templates & Components | Visual Editor | https://help-stage.adcade.com/downloads#templates |
 
     @javascript @regression @helpCenter @helpCenterDashboard
     Scenario Outline: I want to follow links via the dashboard
@@ -89,13 +126,16 @@ Feature: I want to test the help-center
       When I fill in "search" with "<searchValue>"
       And I press "sidebar-search-button"
       Then I should be on "<expectedURL>"
+      And I should see "<expectedResult>"
 
     Examples:
-    | searchValue | expectedURL |
-    | test | https://help-stage.adcade.com/search?search=test |
-    | adscript | https://help-stage.adcade.com/search?search=adscript |
-    | dashboard | https://help-stage.adcade.com/search?search=dashboard |
-    | tween | https://help-stage.adcade.com/search?search=tween |
+    | searchValue | expectedURL | expectedResult |
+    | test | https://help-stage.adcade.com/search?search=test | Search Results for: test |
+    | adscript | https://help-stage.adcade.com/search?search=adscript | Search Results for: adscript |
+    | dashboard | https://help-stage.adcade.com/search?search=dashboard | Search Results for: dashboard |
+    | tween | https://help-stage.adcade.com/search?search=tween | Search Results for: tween |
+    | nothingShouldExistForthisLongAssQuery | https://help-stage.adcade.com/search?search=nothingShouldExistForthisLongAssQuery | NO RESULTS FOUND. |
+    | !!@@##$$%%^^é | https://help-stage.adcade.com/search?search=%21%21%40%40%23%23%24%24%25%25%5E%5Eé | NO RESULTS FOUND. |
 
     @javascript @regression @helpCenter @helpCenterFeedback
     Scenario Outline: I want to send feedback from help center
@@ -115,6 +155,11 @@ Feature: I want to test the help-center
     | apappas@adcade.com | Some context for feedback !@#$%^&*() | Bug | Some context for description !@#$%^&*() | Thanks for your feedback! |
     | marcus@adcade.com | More context for feedback !@#$%^&*() | Bug | More context for description !@#$%^&*() | Thanks for your feedback! |
     | sl@adcade.com | MOAR context for feedback !@#$%^&*() | Bug | MOAR context for description !@#$%^&*() | Thanks for your feedback! |
+    | a | MOAR context for feedback !@#$%^&*() | Bug | MOAR context for description !@#$%^&*() | Provide Feedback |
+    | @s. | MOARER context for feedback !@#$%^&*() | Bug | MOARER context for description !@#$%^&*() | Provide Feedback |
+    | apappas@adcade.com |  | Bug | MOAREST context for description !@#$%^&*() | Please complete feedback form before submitting. |
+    | s@s.a | MOAREST context for feedback !@#$%^&*() | Bug |  | Please complete feedback form before submitting. |
+    | s@s.a | MOAREREST context for feedback !@#$%^&*() |  | MOAREREST context for description !@#$%^&*() | Provide Feedback |
 
     @javascript @regression @helpCenter @helpCenterDownloads
     Scenario Outline: I want to view components and templates from help center
@@ -122,14 +167,27 @@ Feature: I want to test the help-center
       When I go to "https://help-stage.adcade.com/downloads"
       And I follow "<link>"
       Then I should see "<expectedText>"
-      And I should see "<expectedContent>"
-      And I should see "<expectedContent2>"
       And I should see help center header and footer components
 
     Examples:
-    | link | expectedText | expectedContent | expectedContent2 |
-    | Components | COMPONENTS | COMPONENTS | JavaScript files that extend AdScript, allowing easy use and reuse of custom functionality |
-    | Templates | TEMPLATES | VISUAL EDITOR | Powered by AdScript |
+    | link | expectedText |
+    | Components | Components |
+    | Templates | Ad Templates |
+
+
+++++
+    @javascript @regression @helpCenter @helpCenterDownloading
+    Scenario Outline: I want to view components and templates from help center
+      Given I am authenticated on help center as "apappas@adcade.com" using "adcade42"
+      When I go to "https://help-stage.adcade.com/downloads"
+      And I follow "<link>"
+      Then I should see "<expectedText>"
+      And I should see help center header and footer components
+
+    Examples:
+    | link | expectedText |
+    | Components | Components |
+    | Templates | Ad Templates |
 
 #HELP CENTER BACK END -- KEYSTONE
 
@@ -486,7 +544,7 @@ Feature: I want to test the help-center
     @javascript @regression @helpCenter @keystone @keystoneCRUD @keystoneMethods
     Scenario Outline: I want to create methods documentation
       Given I am authenticated on help center as "apappas@adcade.com" using "adcade42"
-      And I am on "/keystone/methods"
+      And I am on "https://help-stage.adcade.com/keystone/methods"
       When I press "Create Method"
       Then I should see "New Method"
       And I should see "Create"
