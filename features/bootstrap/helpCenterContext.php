@@ -77,6 +77,9 @@ class HelpCenterContext extends BehatContext
       $this->getMainContext()->pressButton('login-submit');
     }
 
+    /**
+     * @Given /^I am authenticated on keystone as "([^"]*)" using "([^"]*)"$/
+     */
     public function iAmAuthenticatedOnKeystoneAs($username, $password) {
       $this->getMainContext()->visit('https://help-stage.adcade.com/keystone');
       $this->getMainContext()->fillField('email', $username);
@@ -89,7 +92,10 @@ class HelpCenterContext extends BehatContext
     */
     public function iShouldSeeAddFilterElements()
     {
-      $this->getMainContext()->assertSession()->pageTextContains('contains', 'exact match', 'invert', 'Name');
+      $this->getMainContext()->assertSession()->pageTextContains('contains');
+      $this->getMainContext()->assertSession()->pageTextContains('exact match');
+      $this->getMainContext()->assertSession()->pageTextContains('invert');
+      $this->getMainContext()->assertSession()->pageTextContains('Name');
     }
 
     //HEADER AND FOOTER SPECIFIC
@@ -99,7 +105,12 @@ class HelpCenterContext extends BehatContext
     */
     public function iShouldSeeHelpCenterHeaderAndFooterComponents()
     {
-      $this->getMainContext()->assertSession()->pageTextContains('Visual Editor', 'Dashboard', 'AdScript', 'Downloads', '© 2015 Adcade. All Rights Reserved.', ' Feedback');
+      $this->getMainContext()->assertSession()->pageTextContains('Visual Editor');
+      $this->getMainContext()->assertSession()->pageTextContains('Dashboard');
+      $this->getMainContext()->assertSession()->pageTextContains('AdScript');
+      $this->getMainContext()->assertSession()->pageTextContains('Downloads');
+      $this->getMainContext()->assertSession()->pageTextContains('© 2015 Adcade. All Rights Reserved.');
+      $this->getMainContext()->assertSession()->pageTextContains('Feedback');
     }
 
     /**
@@ -107,7 +118,15 @@ class HelpCenterContext extends BehatContext
     */
     public function iShouldSeeKeystoneHeaderAndFooterComponents()
     {
-      $this->getMainContext()->assertSession()->pageTextContains('Keystone', 'Adscript', 'Tutorials', 'Resources', 'Users', 'Sign Out', 'Keystone Powered by', 'Signed in as', 'Admin User');
+      $this->getMainContext()->assertSession()->pageTextContains('Keystone');
+      $this->getMainContext()->assertSession()->pageTextContains('Adscript');
+      $this->getMainContext()->assertSession()->pageTextContains('Tutorials');
+      $this->getMainContext()->assertSession()->pageTextContains('Resources');
+      $this->getMainContext()->assertSession()->pageTextContains('Users');
+      $this->getMainContext()->assertSession()->pageTextContains('Sign Out');
+      $this->getMainContext()->assertSession()->pageTextContains('Keystone Powered by');
+      $this->getMainContext()->assertSession()->pageTextContains('Signed in as');
+      $this->getMainContext()->assertSession()->pageTextContains('Admin User');
     }
 
     //TYPES SPECIFIC
@@ -117,7 +136,8 @@ class HelpCenterContext extends BehatContext
     */
     public function iShouldSeeCreateTypeViewElements()
     {
-      $this->getMainContext()->assertSession()->pageTextContains('New Type', 'cancel', 'Create');
+      $this->getMainContext()->assertSession()->pageTextContains('cancel');
+      $this->getMainContext()->assertSession()->pageTextContains('Create');
     }
 
     /**
@@ -125,7 +145,11 @@ class HelpCenterContext extends BehatContext
     */
     public function iShouldSeeEditTypeViewElements()
     {
-      $this->getMainContext()->assertSession()->pageTextContains('Save', 'reset changes', 'delete type', 'Types', 'Users', 'New Type');
+      $this->getMainContext()->assertSession()->pageTextContains('Save');
+      $this->getMainContext()->assertSession()->pageTextContains('reset changes');
+      $this->getMainContext()->assertSession()->pageTextContains('delete type');
+      $this->getMainContext()->assertSession()->pageTextContains('Types');
+      $this->getMainContext()->assertSession()->pageTextContains('New Type');
     }
 
     /**
@@ -143,7 +167,23 @@ class HelpCenterContext extends BehatContext
     */
     public function iShouldSeeCreateShapeViewElements()
     {
-      $this->getMainContext()->assertSession()->pageTextContains('Save','reset changes', 'delete shape', 'Types', 'Users', 'New Shape');
+      $this->getMainContext()->assertSession()->pageTextContains('Save');
+      $this->getMainContext()->assertSession()->pageTextContains('reset changes');
+      $this->getMainContext()->assertSession()->pageTextContains('delete shape');
+      $this->getMainContext()->assertSession()->pageTextContains('Shapes');
+      $this->getMainContext()->assertSession()->pageTextContains('New Shape');
+    }
+
+    /**
+    * @Given /^I should see edit shape view elements$/
+    */
+    public function iShouldSeeEditShapeViewElements()
+    {
+      $this->getMainContext()->assertSession()->pageTextContains('Save');
+      $this->getMainContext()->assertSession()->pageTextContains('reset changes');
+      $this->getMainContext()->assertSession()->pageTextContains('delete shape');
+      $this->getMainContext()->assertSession()->pageTextContains('Shapes');
+      $this->getMainContext()->assertSession()->pageTextContains('New Shape');
     }
 
     /**
@@ -151,7 +191,9 @@ class HelpCenterContext extends BehatContext
     */
     public function iShouldSeeFilterShapeViewElements()
     {
-      $this->getMainContext()->assertSession()->pageTextContains('Title', 'State', 'Content Description', 'Type');
+      $this->getMainContext()->assertSession()->pageTextContains('Title');
+      $this->getMainContext()->assertSession()->pageTextContains('State');
+      $this->getMainContext()->assertSession()->pageTextContains('Shape');
     }
 
     //PROPERTY SPECIFIC
@@ -161,15 +203,12 @@ class HelpCenterContext extends BehatContext
     */
     public function iShouldSeeCreatePropertyViewElements()
     {
-      $this->getMainContext()->assertSession()->pageTextContains('Save', 'reset changes', 'delete property', 'Types', 'Users', 'New Property');
-    }
-
-    /**
-    * @Given /^I should see filter property view elements$/
-    */
-    public function iShouldSeeFilterPropertyViewElements()
-    {
-      $this->getMainContext()->assertSession()->pageTextContains('Title', 'State', 'Type');
+      $this->getMainContext()->assertSession()->pageTextContains('Save');
+      $this->getMainContext()->assertSession()->pageTextContains('reset changes');
+      $this->getMainContext()->assertSession()->pageTextContains('delete property');
+      $this->getMainContext()->assertSession()->pageTextContains('Users');
+      $this->getMainContext()->assertSession()->pageTextContains('Types');
+      $this->getMainContext()->assertSession()->pageTextContains('New Property');
     }
 
     //METHOD SPECIFIC
@@ -179,7 +218,12 @@ class HelpCenterContext extends BehatContext
     */
     public function iShouldSeeCreateMethodViewElements()
     {
-      $this->getMainContext()->assertSession()->pageTextContains('Save', 'reset changes', 'delete method', 'Types', 'Users', 'New Method');
+      $this->getMainContext()->assertSession()->pageTextContains('Save');
+      $this->getMainContext()->assertSession()->pageTextContains('reset changes');
+      $this->getMainContext()->assertSession()->pageTextContains('delete method');
+      $this->getMainContext()->assertSession()->pageTextContains('Types');
+      $this->getMainContext()->assertSession()->pageTextContains('Users');
+      $this->getMainContext()->assertSession()->pageTextContains('New Method');
     }
 
     /**
@@ -187,8 +231,12 @@ class HelpCenterContext extends BehatContext
     */
     public function iShouldSeeFilterMethodViewElements()
     {
-      $this->getMainContext()->assertSession()->pageTextContains('Title', 'State', 'Type');
+      $this->getMainContext()->assertSession()->pageTextContains('Title');
+      $this->getMainContext()->assertSession()->pageTextContains('State');
+      $this->getMainContext()->assertSession()->pageTextContains('Type');
     }
+
+    //UTILITY SPECIFIC
 
     /**
     * @Given /^I should see create utility view elements$/
@@ -198,10 +246,41 @@ class HelpCenterContext extends BehatContext
       $this->getMainContext()->assertSession()->pageTextContains('Save');
       $this->getMainContext()->assertSession()->pageTextContains('reset changes');
       $this->getMainContext()->assertSession()->pageTextContains('delete utility');
-      $this->getMainContext()->assertSession()->pageTextContains('Types');
       $this->getMainContext()->assertSession()->pageTextContains('Users');
       $this->getMainContext()->assertSession()->pageTextContains('New Utility');
     }
+
+    //CHANGELOG SPECIFIC
+
+    /**
+    * @Given /^I should see create changelog view elements$/
+    */
+    public function iShouldSeeCreateChangelogViewElements()
+    {
+      $this->getMainContext()->assertSession()->pageTextContains('Save');
+      $this->getMainContext()->assertSession()->pageTextContains('reset changes');
+      $this->getMainContext()->assertSession()->pageTextContains('delete changelog item');
+      $this->getMainContext()->assertSession()->pageTextContains('State');
+      $this->getMainContext()->assertSession()->pageTextContains('Versions');
+      $this->getMainContext()->assertSession()->pageTextContains('Details');
+    }
+
+    //VERSIONS SPECIFIC
+
+    /**
+    * @Given /^I should see create version view elements$/
+    */
+    public function iShouldSeeCreateVersionViewElements()
+    {
+      $this->getMainContext()->assertSession()->pageTextContains('Save');
+      $this->getMainContext()->assertSession()->pageTextContains('reset changes');
+      $this->getMainContext()->assertSession()->pageTextContains('delete version');
+      $this->getMainContext()->assertSession()->pageTextContains('State');
+      $this->getMainContext()->assertSession()->pageTextContains('key');
+      $this->getMainContext()->assertSession()->pageTextContains('New Version');
+    }
+
+    //TUTORIAL SPECIFIC
 
     /**
      * @Given /^I should see tutorial elements$/
@@ -218,7 +297,6 @@ class HelpCenterContext extends BehatContext
     public function iShouldSeeTutorialSectionEditingElements()
     {
       $this->getMainContext()->assertSession()->pageTextContains('About');
-      $this->getMainContext()->assertSession()->pageTextContains('key:');
       $this->getMainContext()->assertSession()->pageTextContains('New Section');
       $this->getMainContext()->assertSession()->pageTextContains('Sections');
       $this->getMainContext()->assertSession()->pageTextContains('Save');
@@ -236,13 +314,12 @@ class HelpCenterContext extends BehatContext
       $this->getMainContext()->assertSession()->pageTextContains('About');
       $this->getMainContext()->assertSession()->pageTextContains('Section');
       $this->getMainContext()->assertSession()->pageTextContains('Content Description');
-      $this->getMainContext()->assertSession()->pageTextContains('slug:');
       $this->getMainContext()->assertSession()->pageTextContains('New Page');
       $this->getMainContext()->assertSession()->pageTextContains('Pages');
       $this->getMainContext()->assertSession()->pageTextContains('Save');
-      $this->getMainContext()->assertSession()->pageTextContains('reset changes');
-      $this->getMainContext()->assertSession()->pageTextContains('delete page');
     }
+
+    //DOWNLOAD SPECIFIC
 
     /**
      * @Given /^I should see download elements$/
@@ -252,7 +329,6 @@ class HelpCenterContext extends BehatContext
       $this->getMainContext()->assertSession()->pageTextContains('Downloads');
       $this->getMainContext()->assertSession()->pageTextContains('Download Filters');
       $this->getMainContext()->assertSession()->pageTextContains('Editor Downloads');
-
     }
 
     /**
@@ -264,7 +340,6 @@ class HelpCenterContext extends BehatContext
       $this->getMainContext()->assertSession()->pageTextContains('Filter');
       $this->getMainContext()->assertSession()->pageTextContains('Image');
       $this->getMainContext()->assertSession()->pageTextContains('Downloadable');
-      $this->getMainContext()->assertSession()->pageTextContains('slug:');
       $this->getMainContext()->assertSession()->pageTextContains('Downloads');
       $this->getMainContext()->assertSession()->pageTextContains('New Download');
       $this->getMainContext()->assertSession()->pageTextContains('Save');
@@ -272,5 +347,17 @@ class HelpCenterContext extends BehatContext
       $this->getMainContext()->assertSession()->pageTextContains('delete download');
     }
 
+    //USERS SPECIFIC
 
+    /**
+     * @Given /^I should see create user elements$/
+     */
+    public function iShouldSeeCreateUserElements()
+    {
+      $this->getMainContext()->assertSession()->pageTextContains('Name');
+      $this->getMainContext()->assertSession()->pageTextContains('Email');
+      $this->getMainContext()->assertSession()->pageTextContains('Password');
+      $this->getMainContext()->assertSession()->pageTextContains('Create');
+      $this->getMainContext()->assertSession()->pageTextContains('Cancel');
+    }
 }
