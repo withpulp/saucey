@@ -1466,7 +1466,7 @@ Feature: I want to test the help-center
 
   #KEYSTONE -- USERS
 
-    @javascript @regression @helpCenter @keystone @keystoneCRUD @keystoneEditorDownloads
+    @javascript @regression @helpCenter @keystone @keystoneCRUD @keystoneUsers1
     Scenario Outline: I want to create and read editor downloads documentation
       Given I am authenticated on keystone as "apappas@adcade.com" using "adcade42"
       And I am on "https://help-stage.adcade.com/keystone/users"
@@ -1477,26 +1477,38 @@ Feature: I want to test the help-center
       And I fill in "name.first" with "<firstName>"
       And I fill in "name.last" with "<lastName>"
       And I fill in "email" with "<email>"
+      When I fill in "password" with "<password>"
+      And I fill in "password_confirm" with "<confirmPassword>"
       And I click on the element with xpath '//*[@id="list-view"]/div/div[2]/div[1]/div/form/div[3]/button[1]'
-      Then I should see "New User <user> created."
+      Then I should see "<expectedResult1>"
       When I go to "https://help-stage.adcade.com/keystone/users"
-      And I fill in "search" with "<editorDownloadName>"
+      And I fill in "search" with "<username>"
       And I press "Search"
-      Then I should see "<editorDownloadName>"
+      Then I should see "<expectedResult2>"
       And I should see Keystone header and footer components
 
     Examples:
-    | editorDownloadName |
-    | testEditorDownload1 |
-    | testEditorDownload2 |
-    | testEditorDownload3 |
-    | testEditorDownload4 |
+    | firstName | lastName | email | password | confirmPassword | username | expectedResult1 |expectedResult2 |
+    | sam | wise | samwise@lotr.com | gandalf | gandalf | sam wise | New User sam wise created. | sam wise |
+    | jon | snow | jonsnow@got.com | stark | stark | jon snow | New User jon snow created. | jon snow |
+    | goku | kakarot | gokukakarot@dbz-thisEmailShouldFail | vageta | vageta | goku | Please enter a valid email address in the Email field | No users found matching goku |
+    | ron | swanson | ronswanson@p&c.com |  |  | ron swanson | Password is required | No users found matching ron swanson |
+    |  |  | walterwhite@methlab.com | meth | meth | walter white | Name is required. | No users found matching walter white |
+    | dead |  | zombie@deadmail.com | bodies | bodies | dead zombie | New User dead created. | dead |
+    |  | zombie | ronswanson@p&c.com |  |  | ron swanson | Password is required | No users found matching ron swanson |
+    |  |  | walterwhite@methlab.com | meth | meth | walter white | Name is required. | No users found matching walter white |
+
 
     @javascript @regression @helpCenter @keystone @keystoneCRUD @keystoneEditorDownloads
     Scenario Outline: I want to update editor downloads documentation
       Given I am authenticated on keystone as "apappas@adcade.com" using "adcade42"
       And I am on "https://help-stage.adcade.com/keystone/editor-downloads"
       And I should see download elements
+            And I press "Change Password"
+            Then the response should contain "New Password"
+      And I "<checkStatus>"
+
+
       And I fill in "search" with "<editorDownloadName>"
       And I press "Search"
       And I fill in "title" with "<editorDownloadNameUpdate>"
