@@ -21,12 +21,10 @@ class FeatureContext extends MinkContext
 
     /*GLOBAL CONTEXT*/
 
-    public function __construct(array $parameters)
+    public function __construct()
     {
-        // Initialize your context here
-        // ...
         $this->useContext('HelpCenterContext', new HelpCenterContext($parameters));
-        //$this->useContext('RestContext', new RestContext($parameters));
+        // $this->useContext('DashboardContext', new DashboardContext($parameters));
     }
 
     /**
@@ -44,7 +42,6 @@ class FeatureContext extends MinkContext
     {
     // TO DO
     }
-
 
     /**
     * @Given /^I wait for (\d+) seconds$/
@@ -110,17 +107,6 @@ class FeatureContext extends MinkContext
     {
       //$session->moveto(array('xoffset' => 3, 'yoffset' => 300));
       //$this->getSession()->click();
-    }
-
-    /**
-    * @When /^I authenticate as "([^"]*)" using "([^"]*)"$/
-    */
-    public function iAuthenticateAs($email, $password)
-    {
-      //$this->visit('https://help-stage.adcade.com/');
-      //$this->fillField('email', $email);
-      //$this->fillField('password', $password);
-      //$this->pressButton('Sign In');
     }
 
     /**

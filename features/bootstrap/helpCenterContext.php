@@ -357,7 +357,20 @@ class HelpCenterContext extends BehatContext
       $this->getMainContext()->assertSession()->pageTextContains('Name');
       $this->getMainContext()->assertSession()->pageTextContains('Email');
       $this->getMainContext()->assertSession()->pageTextContains('Password');
-      $this->getMainContext()->assertSession()->pageTextContains('Create');
-      $this->getMainContext()->assertSession()->pageTextContains('Cancel');
     }
+
+    /**
+     * @Given /^I should see edit user elements$/
+     */
+    public function iShouldSeeEditUserElements()
+    {
+      $this->getMainContext()->assertSession()->pageTextContains('Name');
+      $this->getMainContext()->assertSession()->pageTextContains('Email');
+      $this->getMainContext()->assertSession()->pageTextContains('Password');
+      $this->getMainContext()->assertSession()->pageTextContains('Save');
+      $this->getMainContext()->assertSession()->pageTextContains('Can access Keystone');
+      $this->getMainContext()->assertSession()->pageTextContains('reset changes');
+      $this->getMainContext()->assertSession()->pageTextContains('delete user');
+    }
+
 }

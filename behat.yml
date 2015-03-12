@@ -3,7 +3,6 @@ default:
     context:
         class: 'FeatureContext'
         parameters:
-            base_url: 'https://help-stage.adcade.com'
 
     extensions:
         Behat\MinkExtension\Extension:
@@ -15,7 +14,6 @@ default:
 LocalChrome:
     context:
         parameters:
-            base_url: 'https://help-stage.adcade.com'
     extensions:
         Behat\MinkExtension\Extension:
             javascript_session:  'selenium2'
@@ -26,7 +24,6 @@ LocalChrome:
 LocalSafari:
     context:
         parameters:
-            base_url: 'https://help-stage.adcade.com'
 
     extensions:
         Behat\MinkExtension\Extension:
@@ -50,7 +47,6 @@ LocalIE:
 SauceMacChrome:
     context:
         parameters:
-            base_url: 'https://help-stage.adcade.com'
 
     extensions:
         Behat\MinkExtension\Extension:
@@ -64,7 +60,6 @@ SauceMacChrome:
 SauceMacFirefox:
     context:
         parameters:
-            base_url: 'https://help-stage.adcade.com'
 
     extensions:
         Behat\MinkExtension\Extension:
@@ -78,7 +73,6 @@ SauceMacFirefox:
 SauceMacSafari:
     context:
         parameters:
-            base_url: 'https://help-stage.adcade.com'
 
     extensions:
         Behat\MinkExtension\Extension:
@@ -92,7 +86,6 @@ SauceMacSafari:
 SauceWindowsFirefox:
     context:
         parameters:
-            base_url: 'https://help-stage.adcade.com'
 
     extensions:
         Behat\MinkExtension\Extension:
@@ -106,7 +99,6 @@ SauceWindowsFirefox:
 SauceWindowsIE:
     context:
         parameters:
-            base_url: 'https://help-stage.adcade.com'
 
     extensions:
         Behat\MinkExtension\Extension:
@@ -120,7 +112,6 @@ SauceWindowsIE:
 SauceWindowsChrome:
     context:
         parameters:
-            base_url: 'https://help-stage.adcade.com'
 
     extensions:
         Behat\MinkExtension\Extension:
@@ -135,7 +126,6 @@ SauceWindowsChrome:
 SauceAndroidPhone:
     context:
         parameters:
-            base_url: 'https://help-stage.adcade.com'
 
     extensions:
         Behat\MinkExtension\Extension:
@@ -149,7 +139,6 @@ SauceAndroidPhone:
 SauceAndroidTablet:
     context:
         parameters:
-            base_url: 'https://help-stage.adcade.com'
 
     extensions:
         Behat\MinkExtension\Extension:
@@ -163,7 +152,6 @@ SauceAndroidTablet:
 SauceAndroidTabletLandscape:
     context:
         parameters:
-            base_url: 'https://help-stage.adcade.com'
 
     extensions:
         Behat\MinkExtension\Extension:
@@ -177,7 +165,6 @@ SauceAndroidTabletLandscape:
 SauceiOSPhone:
     context:
         parameters:
-            base_url: 'https://help-stage.adcade.com'
 
     extensions:
         Behat\MinkExtension\Extension:
@@ -193,7 +180,6 @@ SauceiOSPhone:
 SauceiOSTablet:
     context:
         parameters:
-            base_url: 'https://help-stage.adcade.com'
 
     extensions:
         Behat\MinkExtension\Extension:
@@ -207,7 +193,6 @@ SauceiOSTablet:
 SauceiOSTabletLandscape:
     context:
         parameters:
-            base_url: 'https://help-stage.adcade.com'
 
     extensions:
         Behat\MinkExtension\Extension:

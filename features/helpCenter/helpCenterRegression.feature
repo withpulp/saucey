@@ -151,21 +151,21 @@ Feature: I want to test the help-center
 
     Examples:
     | email | subject | option | description | expectedOutcome |
-    | apappas@adcade.com | Some context for feedback !@#$%^&*() | Bug | Some context for description !@#$%^&*() | Thanks for your feedback! |
-    | marcus@adcade.com | More context for feedback !@#$%^&*() | Bug | More context for description !@#$%^&*() | Thanks for your feedback! |
-    | sl@adcade.com | MOAR context for feedback !@#$%^&*() | Bug | MOAR context for description !@#$%^&*() | Thanks for your feedback! |
-    | a | MOAR context for feedback !@#$%^&*() | Bug | MOAR context for description !@#$%^&*() | Provide Feedback |
-    | @s. | MOARER context for feedback !@#$%^&*() | Bug | MOARER context for description !@#$%^&*() | Provide Feedback |
-    | apappas@adcade.com |  | Bug | MOAREST context for description !@#$%^&*() | Please complete feedback form before submitting. |
-    | s@s.a | MOAREST context for feedback !@#$%^&*() | Bug |  | Please complete feedback form before submitting. |
-    | s@s.a | MOAREREST context for feedback !@#$%^&*() |  | MOAREREST context for description !@#$%^&*() | Provide Feedback |
+#    | apappas@adcade.com | Some context for feedback !@#$%^&*() | Bug | Some context for description !@#$%^&*() | Thanks for your feedback! |
+#    | marcus@adcade.com | More context for feedback !@#$%^&*() | Bug | More context for description !@#$%^&*() | Thanks for your feedback! |
+#    | sl@adcade.com | MOAR context for feedback !@#$%^&*() | Bug | MOAR context for description !@#$%^&*() | Thanks for your feedback! |
+#    | a | MOAR context for feedback !@#$%^&*() | Bug | MOAR context for description !@#$%^&*() | Provide Feedback |
+#    | @s. | MOARER context for feedback !@#$%^&*() | Bug | MOARER context for description !@#$%^&*() | Provide Feedback |
+#    | apappas@adcade.com |  | Bug | MOAREST context for description !@#$%^&*() | Please complete feedback form before submitting. |
+#    | s@s.a | MOAREST context for feedback !@#$%^&*() | Bug |  | Please complete feedback form before submitting. |
+#    | s@s.a | MOAREREST context for feedback !@#$%^&*() |  | MOAREREST context for description !@#$%^&*() | Provide Feedback |
 
     @javascript @regression @helpCenter @helpCenterDownloads @wip
     Scenario Outline: I want to view components and templates from help center
       Given I am authenticated on help center as "apappas@adcade.com" using "adcade42"
       When I go to "https://help-stage.adcade.com/downloads"
       And I go to "<link>"
-      Then the response should contain "<expectedResult>"
+      # Then the response should contain "<expectedResult>"
       Then I should see help center header and footer components
 
     Examples:
@@ -199,7 +199,7 @@ Feature: I want to test the help-center
 
     @javascript @regression @helpCenter @keystone @keystoneLogin
     Scenario Outline: I want to log in to Keystone
-      Given I am authenticated on help center as "apappas@adcade.com" using "adcade42"
+      Given I am authenticated on keystone as "apappas@adcade.com" using "adcade42"
       And I am on help center keystone
       Then I should see "<expectedContent>"
       And I should see Keystone header and footer components
@@ -1466,8 +1466,8 @@ Feature: I want to test the help-center
 
   #KEYSTONE -- USERS
 
-    @javascript @regression @helpCenter @keystone @keystoneCRUD @keystoneUsers1
-    Scenario Outline: I want to create and read editor downloads documentation
+    @javascript @regression @helpCenter @keystone @keystoneCRUD @keystoneUsers
+    Scenario Outline: I want to create and read users
       Given I am authenticated on keystone as "apappas@adcade.com" using "adcade42"
       And I am on "https://help-stage.adcade.com/keystone/users"
       When I press "Create User"
@@ -1495,64 +1495,63 @@ Feature: I want to test the help-center
     | ron | swanson | ronswanson@p&c.com |  |  | ron swanson | Password is required | No users found matching ron swanson |
     |  |  | walterwhite@methlab.com | meth | meth | walter white | Name is required. | No users found matching walter white |
     | dead |  | zombie@deadmail.com | bodies | bodies | dead zombie | New User dead created. | dead |
-    |  | zombie | ronswanson@p&c.com |  |  | ron swanson | Password is required | No users found matching ron swanson |
-    |  |  | walterwhite@methlab.com | meth | meth | walter white | Name is required. | No users found matching walter white |
+    |  | zombie | zombie@deadmail.com | bodies | bodies | dead zombie | New User zombie created. | zombie |
+    | ender | wiggin | ewiggin@battleschool.net | hoEnder | theenemysgateisdown | ender wiggin | Passwords must match | Buzz Wiggin |
+    | ender | wiggin |  | hoEnder | hoEnder | ender wiggin | Email is required | Buzz Wiggin |
 
-
-    @javascript @regression @helpCenter @keystone @keystoneCRUD @keystoneEditorDownloads
-    Scenario Outline: I want to update editor downloads documentation
+    @javascript @regression @helpCenter @keystone @keystoneCRUD @keystoneUsers
+    Scenario Outline: I want to update users
       Given I am authenticated on keystone as "apappas@adcade.com" using "adcade42"
-      And I am on "https://help-stage.adcade.com/keystone/editor-downloads"
-      And I should see download elements
-            And I press "Change Password"
-            Then the response should contain "New Password"
-      And I "<checkStatus>"
-
-
-      And I fill in "search" with "<editorDownloadName>"
+      And I am on "https://help-stage.adcade.com/keystone/users"
+      And I fill in "search" with "<username>"
       And I press "Search"
-      And I fill in "title" with "<editorDownloadNameUpdate>"
-      And I press "Save"
+      And I should see edit user elements
+      When I press "Change Password"
+      Then the response should contain "New password"
+      And the response should contain "Confirm new password"
+      When I check "isAdmin"
+      And I fill in "name.first" with "<updateFName>"
+      And I fill in "name.last" with "<updateLName>"
+      And I fill in "email" with "<updateEmail>"
+      And I fill in "password" with "<updatePassword>"
+      And I fill in "password_confirm" with "<confirmUpdatePassword>"
+      And I click on the element with xpath '//*[@id="item-view"]/div/form/div[6]/div/button'
       Then I should see "Your changes have been saved."
-      When I go to "https://help-stage.adcade.com/keystone/editor-downloads"
-      And I fill in "search" with "<editorDownloadName>"
-      And I press "Search"
-      Then I should see "No editor downloads found"
-      And I should see Keystone header and footer components
 
     Examples:
-    | editorDownloadName | editorDownloadNameUpdate |
-    | testEditorDownload3 | testEditorDownloadUpdate3 |
-    | testEditorDownload4 | testEditorDownloadUpdate4 |
+    | username | updateFName | updateLName | updateEmail | updatePassword | confirmUpdatePassword |
+    | sam wise | frodo | baggins | frodobaggins@lotr.com | ring | ring |
+    | jon snow | khal | drogo | khaldrogo@got.com | khaleesi | khaleesi |
+    | dead | rick | grimes | cantkillme@wd.com | lauri | lauri |
+    | zombie | spongebob | squarepants | spongebob@krustykrabs.com | pinapple | pinapple |
 
-    @javascript @regression @helpCenter @keystone @keystoneCRUD @keystoneEditorDownloads
-    Scenario: I want to filter download filters documentation
+    @javascript @regression @helpCenter @keystone @keystoneCRUD @keystoneUsers
+    Scenario: I want to filter download users
       Given I am authenticated on keystone as "apappas@adcade.com" using "adcade42"
-      And I am on "https://help-stage.adcade.com/keystone/editor-downloads"
+      And I am on "https://help-stage.adcade.com/keystone/users"
       When I click on the element with xpath '//*[@id="list-filters"]/div[1]/div[2]/div[1]/a'
       And I confirm the popup
-      Then I should be on "https://help-stage.adcade.com/keystone/editor-downloads"
+      Then I should be on "https://help-stage.adcade.com/keystone/users"
       And I should see Keystone header and footer components
 
-    @javascript @regression @helpCenter @keystone @keystoneCRUD @keystoneEditorDownloads1
-    Scenario Outline: I want to delete editor downloads documentation
+    @javascript @regression @helpCenter @keystone @keystoneCRUD @keystoneUsers1
+    Scenario Outline: I want to delete all new users
       Given I am authenticated on keystone as "apappas@adcade.com" using "adcade42"
-      And I am on "https://help-stage.adcade.com/keystone/editor-downloads"
-      And I should see download elements
-      And I fill in "search" with "<editorDownloadName>"
+      And I am on "https://help-stage.adcade.com/keystone/users"
+      And I fill in "search" with "<username>"
       And I press "Search"
-      And I click on the element with xpath '//*[@id="item-view"]/div/form/div[8]/div/a[2]'
-      Then I should see "Are you sure you want to delete this editor download" in popup
+      And I click on the element with xpath '//*[@id="item-view"]/div/form/div[6]/div/a[2]'
+      Then I should see "Are you sure you want to delete this user" in popup
       When I confirm the popup
-      And I go to "https://help-stage.adcade.com/keystone/editor-downloads"
-      And I fill in "search" with "<editorDownloadName>"
+      And I go to "https://help-stage.adcade.com/keystone/users"
+      And I fill in "search" with "<username>"
       And I press "Search"
-      Then I should see "No editor downloads found"
+      Then I should see "No users found"
       And I should see Keystone header and footer components
 
     Examples:
-    | editorDownloadName |
-    | testEditorDownload1 |
-    | testEditorDownload2 |
-    | testEditorDownloadUpdate3 |
-    | testEditorDownloadUpdate4 |
+    | username |
+    | frodo baggins |
+    | rick grimes |
+    | khal drogo |
+    | spongebob squarepants |
