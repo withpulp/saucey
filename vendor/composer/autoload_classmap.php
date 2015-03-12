@@ -440,8 +440,9 @@ return array(
     'SebastianBergmann\\Diff\\LCS\\TimeEfficientImplementation' => $vendorDir . '/sebastian/diff/src/LCS/TimeEfficientLongestCommonSubsequenceImplementation.php',
     'SebastianBergmann\\Diff\\Line' => $vendorDir . '/sebastian/diff/src/Line.php',
     'SebastianBergmann\\Diff\\Parser' => $vendorDir . '/sebastian/diff/src/Parser.php',
-    'SebastianBergmann\\Exporter\\Context' => $vendorDir . '/sebastian/exporter/src/Context.php',
-    'SebastianBergmann\\Exporter\\Exception' => $vendorDir . '/sebastian/exporter/src/Exception.php',
     'SebastianBergmann\\Exporter\\Exporter' => $vendorDir . '/sebastian/exporter/src/Exporter.php',
+    'SebastianBergmann\\RecursionContext\\Context' => $vendorDir . '/sebastian/recursion-context/src/Context.php',
+    'SebastianBergmann\\RecursionContext\\Exception' => $vendorDir . '/sebastian/recursion-context/src/Exception.php',
+    'SebastianBergmann\\RecursionContext\\InvalidArgumentException' => $vendorDir . '/sebastian/recursion-context/src/InvalidArgumentException.php',
     'Text_Template' => $vendorDir . '/phpunit/php-text-template/Text/Template.php',
 );

@@ -3,6 +3,7 @@ use Behat\Behat\Context\BehatContext;
 use Behat\Behat\Exception\PendingException;
 use Behat\Mink\Mink;
 use Behat\MinkExtension\Context\MinkAwareInterface;
+
 class DragAndDropContext extends BehatContext implements MinkAwareInterface
 {
     /**

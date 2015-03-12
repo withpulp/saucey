@@ -5,6 +5,7 @@ checks:
   php:
     parameter_doc_comments: false
 tools:
+  external_code_coverage: true
   php_cpd: true
   php_changetracking: true
   php_mess_detector:
@@ -29,6 +30,3 @@ tools:
       standard: "PSR2"
   
   php_code_coverage: true
-  
-build_failure_conditions:
-  - 'issues.new.exists'

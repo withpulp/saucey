@@ -1,5 +1,8 @@
-<?php namespace ParaTest\Runners\PHPUnit;
+<?php
+namespace ParaTest\Runners\PHPUnit;
 
+use ParaTest\Parser\NoClassInFileException;
+use ParaTest\Parser\ParsedClass;
 use ParaTest\Parser\Parser;
 
 class SuiteLoader
@@ -65,8 +68,9 @@ class SuiteLoader
     public function getTestMethods()
     {
         $methods = array();
-        foreach($this->loadedSuites as $suite)
+        foreach ($this->loadedSuites as $suite) {
             $methods = array_merge($methods, $suite->getFunctions());
+        }
 
         return $methods;
     }
@@ -88,6 +92,12 @@ class SuiteLoader
 
         if ($path) {
             $this->loadPath($path);
+        } elseif (isset($this->options->testsuite) && $this->options->testsuite) {
+            foreach ($configuration->getSuiteByName($this->options->testsuite) as $suite) {
+                foreach ($suite as $suitePath) {
+                    $this->loadPath($suitePath);
+                }
+            }
         } elseif ($suites = $configuration->getSuites()) {
             foreach ($suites as $suite) {
                 foreach ($suite as $suitePath) {
@@ -99,6 +109,8 @@ class SuiteLoader
         if (!$this->files) {
             throw new \RuntimeException("No path or configuration provided (tests must end with Test.php)");
         }
+
+        $this->files = array_unique($this->files); // remove duplicates
 
         $this->initSuites();
     }
@@ -119,12 +131,14 @@ class SuiteLoader
         } else {
             $pattern = self::TEST_PATTERN;
         }
-        if (!file_exists($path))
+        if (!file_exists($path)) {
             throw new \InvalidArgumentException("$path is not a valid directory or file");
-        if (is_dir($path))
+        }
+        if (is_dir($path)) {
             $this->loadDir($path, $pattern);
-        else if (file_exists($path))
+        } elseif (file_exists($path)) {
             $this->loadFile($path);
+        }
     }
 
     /**
@@ -136,8 +150,9 @@ class SuiteLoader
     private function loadDir($path, $pattern = self::TEST_PATTERN)
     {
         $files = scandir($path);
-        foreach($files as $file)
+        foreach ($files as $file) {
             $this->tryLoadTests($path . DIRECTORY_SEPARATOR . $file, $pattern);
+        }
     }
 
     /**
@@ -158,11 +173,13 @@ class SuiteLoader
      */
     private function tryLoadTests($path, $pattern = self::TEST_PATTERN)
     {
-        if(preg_match($pattern, $path))
+        if (preg_match($pattern, $path)) {
             $this->files[] = $path;
+        }
 
-        if(!preg_match(self::$dotPattern, $path) && is_dir($path))
+        if (!preg_match(self::$dotPattern, $path) && is_dir($path)) {
             $this->loadDir($path, $pattern);
+        }
     }
 
     /**
@@ -172,16 +189,13 @@ class SuiteLoader
     private function initSuites()
     {
         foreach ($this->files as $path) {
-            $parser = new Parser($path);
-            if ($class = $parser->getClass()) {
-                $this->loadedSuites[$path] = new Suite(
-                    $path,
-                    $this->executableTests(
-                        $path,
-                        $class->getMethods($this->options ? $this->options->annotations : array())
-                    ),
-                    $class->getName()
-                );
+            try {
+                $parser = new Parser($path);
+                if ($class = $parser->getClass()) {
+                    $this->loadedSuites[$path] = $this->createSuite($path, $class);
+                }
+            } catch (NoClassInFileException $e) {
+                continue;
             }
         }
     }
@@ -229,5 +243,17 @@ class SuiteLoader
             return $matches[1];
         }
         return null;
+    }
+
+    private function createSuite($path, ParsedClass $class)
+    {
+        return new Suite(
+            $path,
+            $this->executableTests(
+                $path,
+                $class->getMethods($this->options ? $this->options->annotations : array())
+            ),
+            $class->getName()
+        );
     }
 }

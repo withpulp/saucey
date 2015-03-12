@@ -126,7 +126,7 @@ abstract class AbstractProcessTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * tests results from sub processes
+     * tests results from sub processes.
      *
      * @dataProvider responsesCodeProvider
      */
@@ -139,7 +139,7 @@ abstract class AbstractProcessTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * tests results from sub processes
+     * tests results from sub processes.
      *
      * @dataProvider pipesCodeProvider
      */
@@ -213,7 +213,7 @@ abstract class AbstractProcessTest extends \PHPUnit_Framework_TestCase
 
     public function chainedCommandsOutputProvider()
     {
-        if (defined('PHP_WINDOWS_VERSION_BUILD')) {
+        if ('\\' === DIRECTORY_SEPARATOR) {
             return array(
                 array("2 \r\n2\r\n", '&&', '2'),
             );
@@ -226,7 +226,6 @@ abstract class AbstractProcessTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     *
      * @dataProvider chainedCommandsOutputProvider
      */
     public function testChainedCommandsOutput($expected, $operator, $input)
@@ -277,6 +276,37 @@ abstract class AbstractProcessTest extends \PHPUnit_Framework_TestCase
         unlink($lock);
     }
 
+    public function testGetEmptyIncrementalErrorOutput()
+    {
+        // use a lock file to toggle between writing ("W") and reading ("R") the
+        // output stream
+        $lock = tempnam(sys_get_temp_dir(), get_class($this).'Lock');
+        file_put_contents($lock, 'W');
+
+        $p = $this->getProcess(sprintf('php -r %s', escapeshellarg('$n = 0; while ($n < 3) { if (\'W\' === file_get_contents('.var_export($lock, true).')) { file_put_contents(\'php://stderr\', \'ERROR\'); $n++; file_put_contents('.var_export($lock, true).', \'R\'); } usleep(100); }')));
+
+        $p->start();
+
+        $shouldWrite = false;
+
+        while ($p->isRunning()) {
+            if ('R' === file_get_contents($lock)) {
+                if (!$shouldWrite) {
+                    $this->assertLessThanOrEqual(1, preg_match_all('/ERROR/', $p->getIncrementalOutput(), $matches));
+                    $shouldWrite = true;
+                } else {
+                    $this->assertSame('', $p->getIncrementalOutput());
+
+                    file_put_contents($lock, 'W');
+                    $shouldWrite = false;
+                }
+            }
+            usleep(100);
+        }
+
+        unlink($lock);
+    }
+
     public function testGetOutput()
     {
         $p = $this->getProcess(sprintf('php -r %s', escapeshellarg('$n = 0; while ($n < 3) { echo \' foo \'; $n++; }')));
@@ -306,9 +336,40 @@ abstract class AbstractProcessTest extends \PHPUnit_Framework_TestCase
         unlink($lock);
     }
 
+    public function testGetEmptyIncrementalOutput()
+    {
+        // use a lock file to toggle between writing ("W") and reading ("R") the
+        // output stream
+        $lock = tempnam(sys_get_temp_dir(), get_class($this).'Lock');
+        file_put_contents($lock, 'W');
+
+        $p = $this->getProcess(sprintf('php -r %s', escapeshellarg('$n = 0; while ($n < 3) { if (\'W\' === file_get_contents('.var_export($lock, true).')) { echo \' foo \'; $n++; file_put_contents('.var_export($lock, true).', \'R\'); } usleep(100); }')));
+
+        $p->start();
+
+        $shouldWrite = false;
+
+        while ($p->isRunning()) {
+            if ('R' === file_get_contents($lock)) {
+                if (!$shouldWrite) {
+                    $this->assertLessThanOrEqual(1, preg_match_all('/foo/', $p->getIncrementalOutput(), $matches));
+                    $shouldWrite = true;
+                } else {
+                    $this->assertSame('', $p->getIncrementalOutput());
+
+                    file_put_contents($lock, 'W');
+                    $shouldWrite = false;
+                }
+            }
+            usleep(100);
+        }
+
+        unlink($lock);
+    }
+
     public function testZeroAsOutput()
     {
-        if (defined('PHP_WINDOWS_VERSION_BUILD')) {
+        if ('\\' === DIRECTORY_SEPARATOR) {
             // see http://stackoverflow.com/questions/7105433/windows-batch-echo-without-new-line
             $p = $this->getProcess('echo | set /p dummyName=0');
         } else {
@@ -321,7 +382,7 @@ abstract class AbstractProcessTest extends \PHPUnit_Framework_TestCase
 
     public function testExitCodeCommandFailed()
     {
-        if (defined('PHP_WINDOWS_VERSION_BUILD')) {
+        if ('\\' === DIRECTORY_SEPARATOR) {
             $this->markTestSkipped('Windows does not support POSIX exit code');
         }
 
@@ -334,7 +395,7 @@ abstract class AbstractProcessTest extends \PHPUnit_Framework_TestCase
 
     public function testTTYCommand()
     {
-        if (defined('PHP_WINDOWS_VERSION_BUILD')) {
+        if ('\\' === DIRECTORY_SEPARATOR) {
             $this->markTestSkipped('Windows does have /dev/tty support');
         }
 
@@ -349,7 +410,7 @@ abstract class AbstractProcessTest extends \PHPUnit_Framework_TestCase
 
     public function testTTYCommandExitCode()
     {
-        if (defined('PHP_WINDOWS_VERSION_BUILD')) {
+        if ('\\' === DIRECTORY_SEPARATOR) {
             $this->markTestSkipped('Windows does have /dev/tty support');
         }
 
@@ -362,7 +423,7 @@ abstract class AbstractProcessTest extends \PHPUnit_Framework_TestCase
 
     public function testTTYInWindowsEnvironment()
     {
-        if (!defined('PHP_WINDOWS_VERSION_BUILD')) {
+        if ('\\' !== DIRECTORY_SEPARATOR) {
             $this->markTestSkipped('This test is for Windows platform only');
         }
 
@@ -492,7 +553,7 @@ abstract class AbstractProcessTest extends \PHPUnit_Framework_TestCase
 
     public function testProcessIsNotSignaled()
     {
-        if (defined('PHP_WINDOWS_VERSION_BUILD')) {
+        if ('\\' === DIRECTORY_SEPARATOR) {
             $this->markTestSkipped('Windows does not support POSIX signals');
         }
 
@@ -503,7 +564,7 @@ abstract class AbstractProcessTest extends \PHPUnit_Framework_TestCase
 
     public function testProcessWithoutTermSignalIsNotSignaled()
     {
-        if (defined('PHP_WINDOWS_VERSION_BUILD')) {
+        if ('\\' === DIRECTORY_SEPARATOR) {
             $this->markTestSkipped('Windows does not support POSIX signals');
         }
 
@@ -514,7 +575,7 @@ abstract class AbstractProcessTest extends \PHPUnit_Framework_TestCase
 
     public function testProcessWithoutTermSignal()
     {
-        if (defined('PHP_WINDOWS_VERSION_BUILD')) {
+        if ('\\' === DIRECTORY_SEPARATOR) {
             $this->markTestSkipped('Windows does not support POSIX signals');
         }
 
@@ -525,7 +586,7 @@ abstract class AbstractProcessTest extends \PHPUnit_Framework_TestCase
 
     public function testProcessIsSignaledIfStopped()
     {
-        if (defined('PHP_WINDOWS_VERSION_BUILD')) {
+        if ('\\' === DIRECTORY_SEPARATOR) {
             $this->markTestSkipped('Windows does not support POSIX signals');
         }
 
@@ -537,7 +598,7 @@ abstract class AbstractProcessTest extends \PHPUnit_Framework_TestCase
 
     public function testProcessWithTermSignal()
     {
-        if (defined('PHP_WINDOWS_VERSION_BUILD')) {
+        if ('\\' === DIRECTORY_SEPARATOR) {
             $this->markTestSkipped('Windows does not support POSIX signals');
         }
 
@@ -553,7 +614,7 @@ abstract class AbstractProcessTest extends \PHPUnit_Framework_TestCase
 
     public function testProcessThrowsExceptionWhenExternallySignaled()
     {
-        if (defined('PHP_WINDOWS_VERSION_BUILD')) {
+        if ('\\' === DIRECTORY_SEPARATOR) {
             $this->markTestSkipped('Windows does not support POSIX signals');
         }
 
@@ -614,7 +675,7 @@ abstract class AbstractProcessTest extends \PHPUnit_Framework_TestCase
         }
         $duration = microtime(true) - $start;
 
-        if (defined('PHP_WINDOWS_VERSION_BUILD')) {
+        if ('\\' === DIRECTORY_SEPARATOR) {
             // Windows is a bit slower as it read file handles, then allow twice the precision
             $maxDuration = $timeout + 2 * Process::TIMEOUT_PRECISION;
         } else {
@@ -663,12 +724,12 @@ abstract class AbstractProcessTest extends \PHPUnit_Framework_TestCase
 
     public function testStartAfterATimeout()
     {
-        $process = $this->getProcess('php -r "$n = 1000; while ($n--) {echo \'\'; usleep(1000); }"');
+        $process = $this->getProcess(sprintf('php -r %s', escapeshellarg('$n = 1000; while ($n--) {echo \'\'; usleep(1000); }')));
         $process->setTimeout(0.1);
         try {
             $process->run();
-            $this->fail('An exception should have been raised.');
-        } catch (\Exception $e) {
+            $this->fail('A RuntimeException should have been raised.');
+        } catch (RuntimeException $e) {
         }
         $process->start();
         usleep(10000);
@@ -747,7 +808,7 @@ abstract class AbstractProcessTest extends \PHPUnit_Framework_TestCase
     {
         $process = $this->getProcess('php -m');
         $this->setExpectedException('Symfony\Component\Process\Exception\LogicException', sprintf('Process must be started before calling %s.', $method));
-        call_user_func(array($process, $method));
+        $process->{$method}();
     }
 
     public function provideMethodsThatNeedARunningProcess()
@@ -769,7 +830,7 @@ abstract class AbstractProcessTest extends \PHPUnit_Framework_TestCase
         $process = $this->getProcess('php -r "sleep(1);"');
         $process->start();
         try {
-            call_user_func(array($process, $method));
+            $process->{$method}();
             $process->stop(0);
             $this->fail('A LogicException must have been thrown');
         } catch (\Exception $e) {
@@ -791,7 +852,7 @@ abstract class AbstractProcessTest extends \PHPUnit_Framework_TestCase
 
     private function verifyPosixIsEnabled()
     {
-        if (defined('PHP_WINDOWS_VERSION_BUILD')) {
+        if ('\\' === DIRECTORY_SEPARATOR) {
             $this->markTestSkipped('POSIX signals do not work on Windows');
         }
         if (!defined('SIGUSR1')) {
@@ -804,7 +865,7 @@ abstract class AbstractProcessTest extends \PHPUnit_Framework_TestCase
      */
     public function testSignalWithWrongIntSignal()
     {
-        if (defined('PHP_WINDOWS_VERSION_BUILD')) {
+        if ('\\' === DIRECTORY_SEPARATOR) {
             $this->markTestSkipped('POSIX signals do not work on Windows');
         }
 
@@ -818,7 +879,7 @@ abstract class AbstractProcessTest extends \PHPUnit_Framework_TestCase
      */
     public function testSignalWithWrongNonIntSignal()
     {
-        if (defined('PHP_WINDOWS_VERSION_BUILD')) {
+        if ('\\' === DIRECTORY_SEPARATOR) {
             $this->markTestSkipped('POSIX signals do not work on Windows');
         }
 
@@ -844,7 +905,7 @@ abstract class AbstractProcessTest extends \PHPUnit_Framework_TestCase
             'include \''.__DIR__.'/PipeStdinInStdoutStdErrStreamSelect.php\';',
         );
 
-        if (defined('PHP_WINDOWS_VERSION_BUILD')) {
+        if ('\\' === DIRECTORY_SEPARATOR) {
             // Avoid XL buffers on Windows because of https://bugs.php.net/bug.php?id=65650
             $sizes = array(1, 2, 4, 8);
         } else {
@@ -862,7 +923,7 @@ abstract class AbstractProcessTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * provides default method names for simple getter/setter
+     * provides default method names for simple getter/setter.
      */
     public function methodProvider()
     {
