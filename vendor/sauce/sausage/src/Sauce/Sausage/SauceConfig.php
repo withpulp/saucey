@@ -37,12 +37,6 @@ EOF;
                 $username = $access_key = NULL;
             }
 
-            if(getenv('SAUCE_DONT_VERIFY_CERTS')) {
-                $env_sauce_dont_verify_certify = getenv('SAUCE_DONT_VERIFY_CERTS');
-                define('SAUCE_VERIFY_CERTS', empty($env_sauce_dont_verify_certify));
-            } else {
-                define('SAUCE_VERIFY_CERTS', true);
-            }
             define('SAUCE_USERNAME', $username);
             define('SAUCE_ACCESS_KEY', $access_key);
         }

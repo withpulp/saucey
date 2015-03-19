@@ -412,7 +412,7 @@ class ContainerBuilder extends Container implements TaggedContainerInterface
 
         parent::set($id, $service, $scope);
 
-        if (isset($this->obsoleteDefinitions[$id]) && $this->obsoleteDefinitions[$id]->isSynchronized(false)) {
+        if (isset($this->obsoleteDefinitions[$id]) && $this->obsoleteDefinitions[$id]->isSynchronized()) {
             $this->synchronize($id);
         }
     }
@@ -948,16 +948,16 @@ class ContainerBuilder extends Container implements TaggedContainerInterface
             }
 
             $service = call_user_func_array($factory, $arguments);
-        } elseif (null !== $definition->getFactoryMethod(false)) {
-            if (null !== $definition->getFactoryClass(false)) {
-                $factory = $parameterBag->resolveValue($definition->getFactoryClass(false));
-            } elseif (null !== $definition->getFactoryService(false)) {
-                $factory = $this->get($parameterBag->resolveValue($definition->getFactoryService(false)));
+        } elseif (null !== $definition->getFactoryMethod()) {
+            if (null !== $definition->getFactoryClass()) {
+                $factory = $parameterBag->resolveValue($definition->getFactoryClass());
+            } elseif (null !== $definition->getFactoryService()) {
+                $factory = $this->get($parameterBag->resolveValue($definition->getFactoryService()));
             } else {
                 throw new RuntimeException(sprintf('Cannot create service "%s" from factory method without a factory service or factory class.', $id));
             }
 
-            $service = call_user_func_array(array($factory, $definition->getFactoryMethod(false)), $arguments);
+            $service = call_user_func_array(array($factory, $definition->getFactoryMethod()), $arguments);
         } else {
             $r = new \ReflectionClass($parameterBag->resolveValue($definition->getClass()));
 
@@ -1004,9 +1004,7 @@ class ContainerBuilder extends Container implements TaggedContainerInterface
     public function resolveServices($value)
     {
         if (is_array($value)) {
-            foreach ($value as &$v) {
-                $v = $this->resolveServices($v);
-            }
+            $value = array_map(array($this, 'resolveServices'), $value);
         } elseif ($value instanceof Reference) {
             $value = $this->get((string) $value, $value->getInvalidBehavior());
         } elseif ($value instanceof Definition) {
@@ -1121,15 +1119,9 @@ class ContainerBuilder extends Container implements TaggedContainerInterface
      * service by calling all methods referencing it.
      *
      * @param string $id A service id
-     *
-     * @deprecated since version 2.7, will be removed in 3.0.
      */
     private function synchronize($id)
     {
-        if ('request' !== $id) {
-            trigger_error('The '.__METHOD__.' method is deprecated in version 2.7 and will be removed in version 3.0.', E_USER_DEPRECATED);
-        }
-
         foreach ($this->definitions as $definitionId => $definition) {
             // only check initialized services
             if (!$this->initialized($definitionId)) {

@@ -117,14 +117,14 @@ class XmlDumper extends Dumper
         if ($definition->getClass()) {
             $service->setAttribute('class', $definition->getClass());
         }
-        if ($definition->getFactoryMethod(false)) {
-            $service->setAttribute('factory-method', $definition->getFactoryMethod(false));
+        if ($definition->getFactoryMethod()) {
+            $service->setAttribute('factory-method', $definition->getFactoryMethod());
         }
-        if ($definition->getFactoryClass(false)) {
-            $service->setAttribute('factory-class', $definition->getFactoryClass(false));
+        if ($definition->getFactoryClass()) {
+            $service->setAttribute('factory-class', $definition->getFactoryClass());
         }
-        if ($definition->getFactoryService(false)) {
-            $service->setAttribute('factory-service', $definition->getFactoryService(false));
+        if ($definition->getFactoryService()) {
+            $service->setAttribute('factory-service', $definition->getFactoryService());
         }
         if (ContainerInterface::SCOPE_CONTAINER !== $scope = $definition->getScope()) {
             $service->setAttribute('scope', $scope);
@@ -135,7 +135,7 @@ class XmlDumper extends Dumper
         if ($definition->isSynthetic()) {
             $service->setAttribute('synthetic', 'true');
         }
-        if ($definition->isSynchronized(false)) {
+        if ($definition->isSynchronized()) {
             $service->setAttribute('synchronized', 'true');
         }
         if ($definition->isLazy()) {

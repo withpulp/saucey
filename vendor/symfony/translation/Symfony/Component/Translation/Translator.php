@@ -154,14 +154,12 @@ class Translator implements TranslatorInterface, TranslatorBagInterface
      *
      * @throws \InvalidArgumentException If a locale contains invalid characters
      *
-     * @deprecated since version 2.3, to be removed in 3.0. Use setFallbackLocales() instead.
+     * @deprecated since 2.3, to be removed in 3.0. Use setFallbackLocales() instead.
      *
      * @api
      */
     public function setFallbackLocale($locales)
     {
-        trigger_error('The '.__METHOD__.' method is deprecated since version 2.3 and will be removed in 3.0. Use the setFallbackLocales() method instead.', E_USER_DEPRECATED);
-
         $this->setFallbackLocales(is_array($locales) ? $locales : array($locales));
     }
 
@@ -346,23 +344,16 @@ class Translator implements TranslatorInterface, TranslatorBagInterface
 
     /**
      * @param string $locale
-     * @param bool $forceRefresh
      */
-    private function initializeCacheCatalogue($locale, $forceRefresh = false)
+    private function initializeCacheCatalogue($locale)
     {
         if (isset($this->catalogues[$locale])) {
             return;
         }
 
-        if (null === $this->cacheDir) {
-            $this->initialize();
-
-            return $this->loadCatalogue($locale);
-        }
-
         $this->assertValidLocale($locale);
         $cache = new ConfigCache($this->cacheDir.'/catalogue.'.$locale.'.php', $this->debug);
-        if ($forceRefresh || !$cache->isFresh()) {
+        if (!$cache->isFresh()) {
             $this->initializeCatalogue($locale);
 
             $fallbackContent = '';
@@ -393,15 +384,13 @@ EOF
 
 use Symfony\Component\Translation\MessageCatalogue;
 
-\$resourcesHash = '%s';
 \$catalogue = new MessageCatalogue('%s', %s);
 
 %s
-return array(\$catalogue, \$resourcesHash);
+return \$catalogue;
 
 EOF
                 ,
-                $this->getResourcesHash($locale),
                 $locale,
                 var_export($this->catalogues[$locale]->all(), true),
                 $fallbackContent
@@ -412,30 +401,7 @@ EOF
             return;
         }
 
-        $catalogue = include $cache;
-
-        /**
-         * Old cache returns only the catalogue, without resourcesHash
-         */
-        $resourcesHash = null;
-        if (is_array($catalogue)) {
-            list($catalogue, $resourcesHash) = $catalogue;
-        }
-
-        if ($this->debug && $resourcesHash !== $this->getResourcesHash($locale)) {
-            return $this->initializeCacheCatalogue($locale, true);
-        }
-
-        $this->catalogues[$locale] = $catalogue;
-    }
-
-    private function getResourcesHash($locale)
-    {
-        if (!isset($this->resources[$locale])) {
-            return '';
-        }
-
-        return sha1(serialize($this->resources[$locale]));
+        $this->catalogues[$locale] = include $cache;
     }
 
     private function doLoadCatalogue($locale)

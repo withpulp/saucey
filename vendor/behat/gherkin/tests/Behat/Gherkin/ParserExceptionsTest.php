@@ -2,14 +2,15 @@
 
 namespace Tests\Behat\Gherkin;
 
-use Symfony\Component\Finder\Finder;
-
-use Behat\Gherkin\Lexer,
-    Behat\Gherkin\Parser,
-    Behat\Gherkin\Keywords\ArrayKeywords;
+use Behat\Gherkin\Lexer;
+use Behat\Gherkin\Parser;
+use Behat\Gherkin\Keywords\ArrayKeywords;
 
 class ParserExceptionsTest extends \PHPUnit_Framework_TestCase
 {
+    /**
+     * @var Parser
+     */
     private $gherkin;
 
     protected function setUp()
@@ -112,7 +113,7 @@ GHERKIN;
         $feature = $this->gherkin->parse($feature);
 
         $this->assertCount(2, $scenarios = $feature->getScenarios());
-        $this->assertEquals(<<<TEXT
+        $firstTitle = <<<TEXT
 remove X to cause bug
 Step is red form is not valid
 asd
@@ -123,9 +124,9 @@ sd
 as
 das
 d
-TEXT
-        , $scenarios[0]->getTitle());
-        $this->assertEquals(<<<TEXT
+TEXT;
+        $this->assertEquals($firstTitle, $scenarios[0]->getTitle());
+        $secondTitle = <<<TEXT
 bug user edit date
 Step is red form is not valid
 asd
@@ -136,12 +137,12 @@ sd
 as
 das
 d
-TEXT
-        , $scenarios[1]->getTitle());
+TEXT;
+        $this->assertEquals($secondTitle, $scenarios[1]->getTitle());
     }
 
     /**
-     * @expectedException Behat\Gherkin\Exception\ParserException
+     * @expectedException \Behat\Gherkin\Exception\ParserException
      */
     public function testAmbigiousLanguage()
     {
@@ -159,7 +160,7 @@ GHERKIN;
     }
 
     /**
-     * @expectedException Behat\Gherkin\Exception\ParserException
+     * @expectedException \Behat\Gherkin\Exception\ParserException
      */
     public function testEmptyOutline()
     {
@@ -173,7 +174,7 @@ GHERKIN;
     }
 
     /**
-     * @expectedException Behat\Gherkin\Exception\ParserException
+     * @expectedException \Behat\Gherkin\Exception\ParserException
      */
     public function testWrongTagPlacement()
     {
@@ -190,7 +191,7 @@ GHERKIN;
     }
 
     /**
-     * @expectedException Behat\Gherkin\Exception\ParserException
+     * @expectedException \Behat\Gherkin\Exception\ParserException
      */
     public function testBackgroundWithTag()
     {
@@ -206,7 +207,7 @@ GHERKIN;
     }
 
     /**
-     * @expectedException Behat\Gherkin\Exception\ParserException
+     * @expectedException \Behat\Gherkin\Exception\ParserException
      */
     public function testEndlessPyString()
     {
@@ -223,7 +224,7 @@ GHERKIN;
     }
 
     /**
-     * @expectedException Behat\Gherkin\Exception\ParserException
+     * @expectedException \Behat\Gherkin\Exception\ParserException
      */
     public function testWrongStepType()
     {
@@ -236,11 +237,11 @@ Feature:
         Aaand some step
 GHERKIN;
 
-        $parsed = $this->gherkin->parse($feature);
+        $this->gherkin->parse($feature);
     }
 
     /**
-     * @expectedException Behat\Gherkin\Exception\ParserException
+     * @expectedException \Behat\Gherkin\Exception\ParserException
      */
     public function testMultipleBackgrounds()
     {
@@ -254,11 +255,11 @@ Feature:
         Aaand some step
 GHERKIN;
 
-        $parsed = $this->gherkin->parse($feature);
+        $this->gherkin->parse($feature);
     }
 
     /**
-     * @expectedException Behat\Gherkin\Exception\ParserException
+     * @expectedException \Behat\Gherkin\Exception\ParserException
      */
     public function testMultipleFeatures()
     {
@@ -268,6 +269,6 @@ Feature:
 Feature:
 GHERKIN;
 
-        $parsed = $this->gherkin->parse($feature);
+        $this->gherkin->parse($feature);
     }
 }

@@ -2,87 +2,76 @@
 
 namespace Tests\Behat\Gherkin\Filter;
 
-use Behat\Gherkin\Node,
-    Behat\Gherkin\Filter\NameFilter;
+use Behat\Gherkin\Filter\NameFilter;
+use Behat\Gherkin\Node\FeatureNode;
+use Behat\Gherkin\Node\ScenarioNode;
 
 class NameFilterTest extends \PHPUnit_Framework_TestCase
 {
+    public function testFilterFeature()
+    {
+        $feature = new FeatureNode('feature1', null, array(), null, array(), null, null, null, 1);
+        $filter = new NameFilter('feature1');
+        $this->assertSame($feature, $filter->filterFeature($feature));
+
+        $scenarios = array(
+            new ScenarioNode('scenario1', array(), array(), null, 2),
+            $matchedScenario = new ScenarioNode('scenario2', array(), array(), null, 4)
+        );
+        $feature = new FeatureNode('feature1', null, array(), null, $scenarios, null, null, null, 1);
+        $filter = new NameFilter('scenario2');
+        $filteredFeature = $filter->filterFeature($feature);
+
+        $this->assertSame(array($matchedScenario), $filteredFeature->getScenarios());
+    }
+
     public function testIsFeatureMatchFilter()
     {
-        $feature = new Node\FeatureNode();
-
-        $feature->setTitle('random feature title');
+        $feature = new FeatureNode('random feature title', null, array(), null, array(), null, null, null, 1);
 
         $filter = new NameFilter('feature1');
         $this->assertFalse($filter->isFeatureMatch($feature));
 
-        $feature->setTitle('feature1');
+        $feature = new FeatureNode('feature1', null, array(), null, array(), null, null, null, 1);
         $this->assertTrue($filter->isFeatureMatch($feature));
 
-        $feature->setTitle('feature1 title');
+        $feature = new FeatureNode('feature1 title', null, array(), null, array(), null, null, null, 1);
         $this->assertTrue($filter->isFeatureMatch($feature));
 
-        $feature->setTitle('some feature1 title');
+        $feature = new FeatureNode('some feature1 title', null, array(), null, array(), null, null, null, 1);
         $this->assertTrue($filter->isFeatureMatch($feature));
 
-        $feature->setTitle('some feature title');
+        $feature = new FeatureNode('some feature title', null, array(), null, array(), null, null, null, 1);
         $this->assertFalse($filter->isFeatureMatch($feature));
 
         $filter = new NameFilter('/fea.ure/');
         $this->assertTrue($filter->isFeatureMatch($feature));
 
-        $feature->setTitle('some feaSure title');
+        $feature = new FeatureNode('some feaSure title', null, array(), null, array(), null, null, null, 1);
         $this->assertTrue($filter->isFeatureMatch($feature));
 
-        $feature->setTitle('some feture title');
+        $feature = new FeatureNode('some feture title', null, array(), null, array(), null, null, null, 1);
         $this->assertFalse($filter->isFeatureMatch($feature));
     }
 
     public function testIsScenarioMatchFilter()
     {
-        $feature  = new Node\FeatureNode();
-        $scenario = new Node\ScenarioNode();
-        $feature->addScenario($scenario);
+        $filter = new NameFilter('scenario1');
 
-        $feature->setTitle('random feature title');
-        $scenario->setTitle('UNKNOWN');
-
-        $filter = new NameFilter('feature1');
+        $scenario = new ScenarioNode('UNKNOWN', array(), array(), null, 2);
         $this->assertFalse($filter->isScenarioMatch($scenario));
 
-        $feature->setTitle('feature1');
+        $scenario = new ScenarioNode('scenario1', array(), array(), null, 2);
         $this->assertTrue($filter->isScenarioMatch($scenario));
 
-        $feature->setTitle('feature1 title');
+        $scenario = new ScenarioNode('scenario1 title', array(), array(), null, 2);
         $this->assertTrue($filter->isScenarioMatch($scenario));
 
-        $feature->setTitle('some feature1 title');
-        $this->assertTrue($filter->isScenarioMatch($scenario));
-
-        $feature->setTitle('some feature title');
+        $scenario = new ScenarioNode('some scenario title', array(), array(), null, 2);
         $this->assertFalse($filter->isScenarioMatch($scenario));
 
-        $filter = new NameFilter('/fea.ure/');
+        $filter = new NameFilter('/sce.ario/');
         $this->assertTrue($filter->isScenarioMatch($scenario));
-
-        $feature->setTitle('some feaSure title');
-        $scenario->setTitle('some feature title');
-        $this->assertTrue($filter->isScenarioMatch($scenario));
-
-        $feature->setTitle('some feture title');
-        $scenario->setTitle('unk');
-        $this->assertFalse($filter->isScenarioMatch($scenario));
-
-        $feature->setTitle('unknown');
-        $scenario->setTitle('simple scenario title');
-        $filter = new NameFilter('scenario');
-        $this->assertTrue($filter->isScenarioMatch($scenario));
-
-        $scenario->setTitle('simple feature title');
-        $this->assertFalse($filter->isScenarioMatch($scenario));
-
-        $scenario->setTitle('simple scenerio title');
-        $this->assertFalse($filter->isScenarioMatch($scenario));
 
         $filter = new NameFilter('/scen.rio/');
         $this->assertTrue($filter->isScenarioMatch($scenario));

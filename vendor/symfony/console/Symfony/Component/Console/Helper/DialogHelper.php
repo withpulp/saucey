@@ -19,21 +19,14 @@ use Symfony\Component\Console\Formatter\OutputFormatterStyle;
  *
  * @author Fabien Potencier <fabien@symfony.com>
  *
- * @deprecated since version 2.5, to be removed in 3.0.
- *             Use {@link \Symfony\Component\Console\Helper\QuestionHelper} instead.
+ * @deprecated Deprecated since version 2.5, to be removed in 3.0.
+ *             Use the question helper instead.
  */
 class DialogHelper extends InputAwareHelper
 {
     private $inputStream;
     private static $shell;
     private static $stty;
-
-    public function __construct($triggerDeprecationError = true)
-    {
-        if ($triggerDeprecationError) {
-            trigger_error('"Symfony\Component\Console\Helper\DialogHelper" is deprecated since version 2.5 and will be removed in 3.0. Use "Symfony\Component\Console\Helper\QuestionHelper" instead.', E_USER_DEPRECATED);
-        }
-    }
 
     /**
      * Asks the user to select a value.

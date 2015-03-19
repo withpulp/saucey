@@ -7,11 +7,11 @@ $_SERVER['argv'][1] = '--no-configuration';
 $_SERVER['argv'][2] = 'Issue503Test';
 $_SERVER['argv'][3] = dirname(__FILE__).'/503/Issue503Test.php';
 
-require_once dirname(dirname(dirname(dirname(__FILE__)))) . '/PHPUnit/Autoload.php';
+require __DIR__ . '/../../bootstrap.php';
 PHPUnit_TextUI_Command::main();
 ?>
 --EXPECTF--
-PHPUnit %s by Sebastian Bergmann.
+PHPUnit %s by Sebastian Bergmann and contributors.
 
 F
 
@@ -31,4 +31,3 @@ Failed asserting that two strings are identical.
 
 FAILURES!
 Tests: 1, Assertions: 1, Failures: 1.
-

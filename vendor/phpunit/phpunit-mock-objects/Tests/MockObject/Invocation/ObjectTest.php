@@ -79,4 +79,3 @@ class Framework_MockObject_Invocation_ObjectTest extends PHPUnit_Framework_TestC
         $this->assertNotSame($parameters, $invocation->parameters);
     }
 }
-

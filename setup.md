@@ -1,19 +1,43 @@
-#Local Automated Setup 
+#Components
+The below components make this tool functional. This repository is powered by:
+#### Composer
+
+	curl http://getcomposer.org/installer | php
+	php composer.phar install
+
+Or you may need to just update to install thhe dependancies listed in `composer.json` via:
+
+	php composer.phar update
+	
+
+#### Pear
+
+	wget http://pear.php.net/go-pear.phar
+	php go-pear.phar
+
+#### PHPUnit 3.x & Up
+
+	pear channel-discover pear.phpunit.de
+	pear channel-discover components.ez.no
+	pear channel-discover pear.symfony-project.com
+	pear install phpunit/PHPUnit
+	
+#Setup - Tipsy/Local
 ## Mac OS X
 Make sure you have `Internet Explorer`, `Chrome` & `Firefox` downloaded on your machine or virtual machine.
 
 Open Terminal, then navigate to the project directory:
 
-	cd ~/path/saucy-php/
+	cd ~/path/to/saucey/
 
 ### Firefox
-Start Selenium with default:
+By default Selenium starts with default:
 
 	java -jar selenium-server-standalone-2.44.0.jar
 	
 Open a new window/tab, then:
 
-	bin/behat
+	vendor/bin/behat
 	
 ### Chrome
 In Terminal or Finder open `behat.yml` in the root of the project directory.
@@ -30,15 +54,11 @@ To:
 
 Start Selenium with the chromeDriver as a parameter:
 
-	java -jar selenium-server-standalone-2.44.0.jar -Dwebdriver.chrome.driver=./Drivers/chromedriver
+	java -jar selenium-server-standalone-2.44.0.jar -Dwebdriver.chrome.driver=vendor/saucey/drivers/chromedriver
 
-Wait 1-3 minutes, open a new window/tab, then: 
+Open a new window/tab, then: 
 
-	bin/behat
-	
-	or
-	
-	bin/behat features/AdcadeRegression.feature
+	vendor/bin/behat
 	
 ### Safari
 In Terminal or Finder open `behat.yml` in the root of the project directory.
@@ -65,13 +85,10 @@ Start Selenium with the safariDriver as a parameter:
 
 	java -jar selenium-server-standalone-2.44.0.jar -Dwebdriver.safari.noinstall=true
 	
-Wait 1-3 minutes, open a new window/tab, then: 
+Open a new window/tab, then: 
 
-	bin/behat
-	
-	or
-	
-	bin/behat features/AdcadeRegression.feature
+	vendor/bin/behat
+
 	
 ## Windows
 ### Requirements
@@ -86,7 +103,7 @@ If you're on a Virtual Machine, there are a couple of things needed to get behat
 
 Open Command Prompt, then navigate to the project directory:
 
-	cd path\saucy-php
+	cd path\to\saucey
 	
 ### Internet Explorer
 Start Selenium with the ieDriver as a parameter:
@@ -95,11 +112,8 @@ Start Selenium with the ieDriver as a parameter:
 
 Open a new window/tab, then: 
 
-	bin\behat
-	
-	or
-	
-	bin/behat features/AdcadeRegression.feature	
+	vendor/bin/behat
+		
 ### Firefox 
 In Terminal or Finder open `behat.yml` in the root of the project directory.
 
@@ -113,17 +127,13 @@ To:
     selenium2:
       browser: firefox
  
-Start Selenium with the firefoxDriver (default) as a parameter:
+Start Selenium:
 
 	java -jar selenium-server-standalone-2.44.0.jar
   
 Open a new window/tab, then: 
 
-	bin\behat
-	
-	or
-	
-	bin/behat  -c sauce.yml features/AdcadeRegression.feature
+	vendor/bin/behat
 	
 ###Chrome
 In Terminal or Finder open `behat.yml` in the root of the project directory.
@@ -144,268 +154,236 @@ Start Selenium with the firefoxDriver (default) as a parameter:
   
 Open a new window/tab, then: 
 
-	bin\behat
-	
-	or
-	
-	bin/behat features/AdcadeRegression.feature	
-#Cloud Automated Testing
+	vendor/bin/behat
+		
+#Setup - Drunk/SauceLabs
 You can see the syntax [here](https://saucelabs.com/platforms/webdriver) for web driver manipulation.
+
+Point SauceLabs to your user_name and access_key. Log in to [SauceLabs](https://saucelabs.com/account) and copy your access_key to you clip board. Replace all instances below with your username and access key.
+
+Then run:
+
+	vendor/sauce/connect/bin/sauce_connect user_name access_key
+	vendor/sauce_config user_name access_key
 
 ## Mac OS X Simulating
 ### Firefox
-In Terminal or Finder open `sauce.yml` in the root of the project directory.
+In Terminal or Finder open `behat.yml` in the root of the project directory.
 
 Then change:
 
 	selenium2:
 	  browser: firefox
-	  wd_host: sajjadAdcade:f6bd677e-c92b-42ce-9564-e75f90d80cfb@ondemand.saucelabs.com/wd/hub
+	  wd_host: user_name:access_key@ondemand.saucelabs.com/wd/hub
 	  capabilities: {  "platform": "Windows 2012", "version": "10", "name": "Regression Suite"}
 
 To: 
 
 	selenium2:
 	  browser: firefox
-	  wd_host: sajjadAdcade:f6bd677e-c92b-42ce-9564-e75f90d80cfb@ondemand.saucelabs.com/wd/hub
+	  wd_host: user_name:access_key@ondemand.saucelabs.com/wd/hub
 	  capabilities: {  "platform": "OS X 10.8", "version": "8", "name": "NAME THIS SUITE"}
 
 Make sure you've changed the `name`.
 
 Then: 
 
-	bin/behat  -c sauce.yml
-	
-	or
-	
-	bin/behat  -c sauce.yml features/AdcadeRegression.feature
+	vendor/bin/behat
 	
 ### Chrome
-In Terminal or Finder open `sauce.yml` in the root of the project directory.
+In Terminal or Finder open `behat.yml` in the root of the project directory.
 
 Then change:
 
 	selenium2:
 	  browser: firefox
-	  wd_host: sajjadAdcade:f6bd677e-c92b-42ce-9564-e75f90d80cfb@ondemand.saucelabs.com/wd/hub
+	  wd_host: user_name:access_key@ondemand.saucelabs.com/wd/hub
 	  capabilities: {  "platform": "Windows 2012", "version": "10", "name": "Regression Suite"}
 
 To: 
 
 	selenium2:
 	  browser: chrome
-	  wd_host: sajjadAdcade:f6bd677e-c92b-42ce-9564-e75f90d80cfb@ondemand.saucelabs.com/wd/hub
+	  wd_host: user_name:access_key@ondemand.saucelabs.com/wd/hub
 	  capabilities: {  "platform": "OS X 10.8", "version": "8", "name": "NAME THIS SUITE"}
 
 Make sure you've changed the `name`.
 
 Then: 
 
-	bin/behat  -c sauce.yml
-	
-	or
-	
-	bin/behat  -c sauce.yml features/AdcadeRegression.feature
+	vendor/bin/behat
 	
 ### Safari
-In Terminal or Finder open `sauce.yml` in the root of the project directory.
+In Terminal or Finder open `behat.yml` in the root of the project directory.
 
 Then change:
 
 	selenium2:
 	  browser: firefox
-	  wd_host: sajjadAdcade:f6bd677e-c92b-42ce-9564-e75f90d80cfb@ondemand.saucelabs.com/wd/hub
+	  wd_host: user_name:access_key@ondemand.saucelabs.com/wd/hub
 	  capabilities: {  "platform": "Windows 2012", "version": "10", "name": "Regression Suite"}
 
 To: 
 
 	selenium2:
 	  browser: safari
-	  wd_host: sajjadAdcade:f6bd677e-c92b-42ce-9564-e75f90d80cfb@ondemand.saucelabs.com/wd/hub
+	  wd_host: user_name:access_key@ondemand.saucelabs.com/wd/hub
 	  capabilities: {  "platform": "OS X 10.8", "version": "8", "name": "NAME THIS SUITE"}
 
 Make sure you've changed the `name`.
 
 Then: 
 
-	bin/behat  -c sauce.yml
-	
-	or
-	
-	bin/behat  -c sauce.yml features/AdcadeRegression.feature
+	vendor/bin/behat
 	
 ##Windows Simulating
 ### Internet Explorer
-In Terminal or Finder open `sauce.yml` in the root of the project directory.
+In Terminal or Finder open `behat.yml` in the root of the project directory.
 
 Then change:
 
 	selenium2:
 	  browser: firefox
-	  wd_host: sajjadAdcade:f6bd677e-c92b-42ce-9564-e75f90d80cfb@ondemand.saucelabs.com/wd/hub
+	  wd_host: user_name:access_key@ondemand.saucelabs.com/wd/hub
 	  capabilities: {  "platform": "Windows 2012", "version": "10", "name": "Regression Suite"}
 	  
 To:
 
 	selenium2:
 	  browser: ie
-	  wd_host: sajjadAdcade:f6bd677e-c92b-42ce-9564-e75f90d80cfb@ondemand.saucelabs.com/wd/hub
+	  wd_host: user_name:access_key@ondemand.saucelabs.com/wd/hub
 	  capabilities: {  "platform": "Windows 7", "version": "8", "name": "NAME THIS SUITE"}
 	  
 Make sure you've changed the `name`.
 
 Then: 
 
-	bin/behat  -c sauce.yml
-	
-	or
-	
-	bin/behat  -c sauce.yml features/AdcadeRegression.feature
+	vendor/bin/behat
 	
 ### Firefox
-In Terminal or Finder open `sauce.yml` in the root of the project directory.
+In Terminal or Finder open `behat.yml` in the root of the project directory.
 
 Make sure the `selenium2` instance is called as:
 
 	selenium2:
 	  browser: firefox
-	  wd_host: sajjadAdcade:f6bd677e-c92b-42ce-9564-e75f90d80cfb@ondemand.saucelabs.com/wd/hub
+	  wd_host: user_name:access_key@ondemand.saucelabs.com/wd/hub
 	  capabilities: {  "platform": "Windows 2012", "version": "10", "name": "Regression Suite"}
 	  
 Make sure you've changed the `name`.
 
 Then: 
 
-	bin/behat  -c sauce.yml
-	
-	or
-	
-	bin/behat  -c sauce.yml features/AdcadeRegression.feature
+	vendor/bin/behat
 
 ### Chrome
-In Terminal or Finder open `sauce.yml` in the root of the project directory.
+In Terminal or Finder open `behat.yml` in the root of the project directory.
 
 Then change:
 
 	selenium2:
 	  browser: firefox
-	  wd_host: sajjadAdcade:f6bd677e-c92b-42ce-9564-e75f90d80cfb@ondemand.saucelabs.com/wd/hub
+	  wd_host: user_name:access_key@ondemand.saucelabs.com/wd/hub
 	  capabilities: {  "platform": "Windows 2012", "version": "10", "name": "Regression Suite"}
 	  
 To:
 
 	selenium2:
 	  browser: chrome
-	  wd_host: sajjadAdcade:f6bd677e-c92b-42ce-9564-e75f90d80cfb@ondemand.saucelabs.com/wd/hub
+	  wd_host: user_name:access_key@ondemand.saucelabs.com/wd/hub
 	  capabilities: {  "platform": "Windows 7", "version": "39", "name": "NAME THIS SUITE"}
 	  
 Make sure you've changed the `name`.
 
 Then: 
 
-	bin/behat  -c sauce.yml
-	
-	or
-	
-	bin/behat  -c sauce.yml features/AdcadeRegression.feature
+	vendor/bin/behat
 
 ## Cloud Mobile Automated Testing
 ## iPad
-In Terminal or Finder open `sauce.yml` in the root of the project directory.
+In Terminal or Finder open `behat.yml` in the root of the project directory.
 
 Then change:
 
 	selenium2:
 	  browser: firefox
-	  wd_host: sajjadAdcade:f6bd677e-c92b-42ce-9564-e75f90d80cfb@ondemand.saucelabs.com/wd/hub
+	  wd_host: user_name:access_key@ondemand.saucelabs.com/wd/hub
 	  capabilities: {  "platform": "Windows 2012", "version": "10", "name": "Regression Suite"}
 	  
 To:
 
       selenium2:
         browser: iPad
-        wd_host: sajjadAdcade:f6bd677e-c92b-42ce-9564-e75f90d80cfb@ondemand.saucelabs.com/wd/hub
+	    wd_host: user_name:access_key@ondemand.saucelabs.com/wd/hub
         capabilities: {  "platform": "OS X 10.9", "version": "8.1", "name": "NAME THIS SUITE"}
 	  
 Make sure you've changed the `name`. Additionally, you can add `"deviceOrientation": "landscape",` or `portrait` to test orientation. 
 
 Then: 
 
-	bin/behat  -c sauce.yml
-	
-	or
-	
-	bin/behat  -c sauce.yml features/AdcadeRegression.feature
+	vendor/bin/behat
 
 ## iPhone
-In Terminal or Finder open `sauce.yml` in the root of the project directory.
+In Terminal or Finder open `behat.yml` in the root of the project directory.
 
 Then change:
 
 	selenium2:
 	  browser: firefox
-	  wd_host: sajjadAdcade:f6bd677e-c92b-42ce-9564-e75f90d80cfb@ondemand.saucelabs.com/wd/hub
+	    wd_host: user_name:access_key@ondemand.saucelabs.com/wd/hub
 	  capabilities: {  "platform": "Windows 2012", "version": "10", "name": "Regression Suite"}
 	  
 To:
 
       selenium2:
         browser: iPhone
-        wd_host: sajjadAdcade:f6bd677e-c92b-42ce-9564-e75f90d80cfb@ondemand.saucelabs.com/wd/hub
+	    wd_host: user_name:access_key@ondemand.saucelabs.com/wd/hub
         capabilities: {  "platform": "OS X 10.9", "version": "8.1", "name": "NAME THIS SUITE"}
 	  
 Make sure you've changed the `name`.
 
 Then: 
 
-	bin/behat  -c sauce.yml
-	
-	or
-	
-	bin/behat  -c sauce.yml features/AdcadeRegression.feature
+	vendor/bin/behat
 
 ## Android Phone
-In Terminal or Finder open `sauce.yml` in the root of the project directory.
+In Terminal or Finder open `behat.yml` in the root of the project directory.
 
 Then change:
 
 	selenium2:
 	  browser: firefox
-	  wd_host: sajjadAdcade:f6bd677e-c92b-42ce-9564-e75f90d80cfb@ondemand.saucelabs.com/wd/hub
+	    wd_host: user_name:access_key@ondemand.saucelabs.com/wd/hub
 	  capabilities: {  "platform": "Windows 2012", "version": "10", "name": "Regression Suite"}
 	  
 To:
 
       selenium2:
         browser: android
-        wd_host: sajjadAdcade:f6bd677e-c92b-42ce-9564-e75f90d80cfb@ondemand.saucelabs.com/wd/hub
+	    wd_host: user_name:access_key@ondemand.saucelabs.com/wd/hub
         capabilities: {  "platform": "Linux", "version": "4.4", "name": "NAME THIS SUITE", "deviceType": "phone"}
 	  
 Make sure you've changed the `name`.
 
 Then: 
 
-	bin/behat  -c sauce.yml
-	
-	or
-	
-	bin/behat  -c sauce.yml features/AdcadeRegression.feature
+	vendor/bin/behat
 
 ## Android Tablet
-In Terminal or Finder open `sauce.yml` in the root of the project directory.
+In Terminal or Finder open `behat.yml` in the root of the project directory.
 
 Then change:
 
 	selenium2:
 	  browser: firefox
-	  wd_host: sajjadAdcade:f6bd677e-c92b-42ce-9564-e75f90d80cfb@ondemand.saucelabs.com/wd/hub
+	  wd_host: user_name:access_key@ondemand.saucelabs.com/wd/hub
 	  capabilities: {  "platform": "Windows 2012", "version": "10", "name": "Regression Suite"}
 	  
 To:
 
       selenium2:
         browser: android
-        wd_host: sajjadAdcade:f6bd677e-c92b-42ce-9564-e75f90d80cfb@ondemand.saucelabs.com/wd/hub
+	    wd_host: user_name:access_key@ondemand.saucelabs.com/wd/hub
         capabilities: {  "platform": "Linux", "version": "4.4", "name": "NAME THIS SUITE", "deviceType": "tablet"}
 	  
 Make sure you've changed the `name`. Additionally, you can add `"deviceOrientation": "landscape",` or `portrait` to test orientation. 
@@ -413,8 +391,4 @@ Make sure you've changed the `name`. Additionally, you can add `"deviceOrientati
 
 Then: 
 
-	bin/behat  -c sauce.yml
-	
-	or
-	
-	bin/behat  -c sauce.yml features/AdcadeRegression.feature
+	vendor/bin/behat

@@ -1,55 +1,67 @@
 # behat.yml
 default:
-    context:
-        class: 'FeatureContext'
-        parameters:
-
+    suites:
+        help_center:
+            paths:    [ %paths.base%/features ]
+            contexts: [ HelpCenterContext ]
+            filters:
+                tags: @helpCenter
+        dashboard:
+            paths:    [ %paths.base%/features ]
+            contexts: [ DashboardContext ]
+            filters:
+                tags: @dashboard
+        check:
+            paths:    [ %paths.base%/features ]
+            filters:
+                tags: @check
+    formatters:
+        html:
+            output_path: %paths.base%/reports
     extensions:
-        Behat\MinkExtension\Extension:
+        emuse\BehatHTMLFormatter\BehatHTMLFormatterExtension:
+            name: html
+        Behat\MinkExtension:
             javascript_session:  'selenium2'
             goutte:              ~
             selenium2:
               browser: firefox
 
-LocalChrome:
-    context:
-        parameters:
+localfirefox:
     extensions:
-        Behat\MinkExtension\Extension:
+        Behat\MinkExtension:
+            javascript_session:  'selenium2'
+            goutte:              ~
+            selenium2:
+              browser: firefox
+
+local_chrome:
+    extensions:
+        Behat\MinkExtension:
             javascript_session:  'selenium2'
             goutte:              ~
             selenium2:
               browser: chrome
 
-LocalSafari:
-    context:
-        parameters:
-
+local_safari:
     extensions:
-        Behat\MinkExtension\Extension:
+        Behat\MinkExtension:
             javascript_session:  'selenium2'
             goutte:              ~
             selenium2:
               browser: safari
 
-LocalIE:
-    context:
-        parameters:
-            base_url: 'https://help-stage.adcade.com'
-
+local_ie:
     extensions:
-        Behat\MinkExtension\Extension:
+        Behat\MinkExtension:
             javascript_session:  'selenium2'
             goutte:              ~
             selenium2:
               browser: ie
 
-SauceMacChrome:
-    context:
-        parameters:
-
+sauce_mac_chrome:
     extensions:
-        Behat\MinkExtension\Extension:
+        Behat\MinkExtension:
             javascript_session:  'selenium2'
             goutte:              ~
             selenium2:
@@ -57,12 +69,9 @@ SauceMacChrome:
               wd_host: adcadeQA:d3daa8f1-147e-4655-aa25-49606f633afa@ondemand.saucelabs.com/wd/hub
               capabilities: {  "platform": "OS X 10.8", "version": "38", "name": "Mac OS X Chrome Regression Suite"}
 
-SauceMacFirefox:
-    context:
-        parameters:
-
+sauce_mac_firefox:
     extensions:
-        Behat\MinkExtension\Extension:
+        Behat\MinkExtension:
             javascript_session:  'selenium2'
             goutte:              ~
             selenium2:
@@ -70,12 +79,9 @@ SauceMacFirefox:
               wd_host: adcadeQA:d3daa8f1-147e-4655-aa25-49606f633afa@ondemand.saucelabs.com/wd/hub
               capabilities: {"platform": "OS X 10.9", "version": "33", "name": "Mac OS X Firefox Regression Suite"}
 
-SauceMacSafari:
-    context:
-        parameters:
-
+sauce_mac_safari:
     extensions:
-        Behat\MinkExtension\Extension:
+        Behat\MinkExtension:
             javascript_session:  'selenium2'
             goutte:              ~
             selenium2:
@@ -83,12 +89,9 @@ SauceMacSafari:
               wd_host: adcadeQA:d3daa8f1-147e-4655-aa25-49606f633afa@ondemand.saucelabs.com/wd/hub
               capabilities: {"platform": "OS X 10.8", "version": "6", "name": "Mac OS X Safari Regression Suite"}
 
-SauceWindowsFirefox:
-    context:
-        parameters:
-
+sauce_windows_firefox:
     extensions:
-        Behat\MinkExtension\Extension:
+        Behat\MinkExtension:
             javascript_session:  'selenium2'
             goutte:              ~
             selenium2:
@@ -96,12 +99,9 @@ SauceWindowsFirefox:
               wd_host: adcadeQA:d3daa8f1-147e-4655-aa25-49606f633afa@ondemand.saucelabs.com/wd/hub
               capabilities: {"platform": "Windows 7", "version": "33", "name": "Windows 7 Firefox Regression Suite"}
 
-SauceWindowsIE:
-    context:
-        parameters:
-
+sauce_windows_ie:
     extensions:
-        Behat\MinkExtension\Extension:
+        Behat\MinkExtension:
             javascript_session:  'selenium2'
             goutte:              ~
             selenium2:
@@ -109,12 +109,9 @@ SauceWindowsIE:
               wd_host: adcadeQA:d3daa8f1-147e-4655-aa25-49606f633afa@ondemand.saucelabs.com/wd/hub
               capabilities: {"platform": "Windows 7", "version": "9.0", "name": "Windows 7 IE 9 Regression Suite"}
 
-SauceWindowsChrome:
-    context:
-        parameters:
-
+sauce_windows_chrome:
     extensions:
-        Behat\MinkExtension\Extension:
+        Behat\MinkExtension:
             javascript_session:  'selenium2'
             goutte:              ~
             selenium2:
@@ -123,12 +120,9 @@ SauceWindowsChrome:
               capabilities: {"platform": "Windows 7", "version": "38", "name": "Windows 7 Chrome Regression Suite"}
 
 
-SauceAndroidPhone:
-    context:
-        parameters:
-
+sauce_android_phone:
     extensions:
-        Behat\MinkExtension\Extension:
+        Behat\MinkExtension:
             javascript_session:  'selenium2'
             goutte:              ~
             selenium2:
@@ -136,12 +130,9 @@ SauceAndroidPhone:
               wd_host: adcadeQA:d3daa8f1-147e-4655-aa25-49606f633afa@ondemand.saucelabs.com/wd/hub
               capabilities: {"platform": "Linux", "version": "4.4", "name": "Android Phone Regression Suite", "deviceType": "phone"}
 
-SauceAndroidTablet:
-    context:
-        parameters:
-
+sauce_android_tablet:
     extensions:
-        Behat\MinkExtension\Extension:
+        Behat\MinkExtension:
             javascript_session:  'selenium2'
             goutte:              ~
             selenium2:
@@ -149,12 +140,9 @@ SauceAndroidTablet:
               wd_host: adcadeQA:d3daa8f1-147e-4655-aa25-49606f633afa@ondemand.saucelabs.com/wd/hub
               capabilities: {  "platform": "Linux", "version": "4.4", "name": "Android Tablet Regression Suite", "deviceType": "tablet"}
 
-SauceAndroidTabletLandscape:
-    context:
-        parameters:
-
+sauce_android_tablet_landscape:
     extensions:
-        Behat\MinkExtension\Extension:
+        Behat\MinkExtension:
             javascript_session:  'selenium2'
             goutte:              ~
             selenium2:
@@ -162,13 +150,9 @@ SauceAndroidTabletLandscape:
               wd_host: adcadeQA:d3daa8f1-147e-4655-aa25-49606f633afa@ondemand.saucelabs.com/wd/hub
               capabilities: {"platform": "Linux", "version": "4.4", "name": "Android Tablet Regression Suite", "deviceOrientation": "landscape", "deviceType": "tablet"}
 
-SauceiOSPhone:
-    context:
-        parameters:
-
+sauce_ios_phone:
     extensions:
-        Behat\MinkExtension\Extension:
-            base_url:  'http://adcade.com/'
+        Behat\MinkExtension:
             javascript_session:  'selenium2'
             goutte:              ~
             selenium2:
@@ -176,13 +160,9 @@ SauceiOSPhone:
               wd_host: adcadeQA:d3daa8f1-147e-4655-aa25-49606f633afa@ondemand.saucelabs.com/wd/hub
               capabilities: {"platform": "OS X 10.9", "version": "8.1", "name": "iPhone Regression Suite"}
 
-
-SauceiOSTablet:
-    context:
-        parameters:
-
+sauce_ios_tablet:
     extensions:
-        Behat\MinkExtension\Extension:
+        Behat\MinkExtension:
             javascript_session:  'selenium2'
             goutte:              ~
             selenium2:
@@ -190,12 +170,9 @@ SauceiOSTablet:
               wd_host: adcadeQA:d3daa8f1-147e-4655-aa25-49606f633afa@ondemand.saucelabs.com/wd/hub
               capabilities: {"platform": "OS X 10.9", "version": "8.1", "name": "iPad Regression Suite"}
 
-SauceiOSTabletLandscape:
-    context:
-        parameters:
-
+sauce_ios_tablet_landscape:
     extensions:
-        Behat\MinkExtension\Extension:
+        Behat\MinkExtension:
             javascript_session:  'selenium2'
             goutte:              ~
             selenium2:

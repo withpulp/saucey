@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright 2004-2013 Facebook. All Rights Reserved.
+ * Copyright 2004-2014 Facebook. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -45,37 +45,38 @@ final class WebDriver extends AbstractWebDriver
      * New Session: /session (POST)
      * Get session object for chaining
      *
-     * @param mixed $requiredCapabilities Required capabilities (or browser name)
-     * @param array $desiredCapabilities  Desired capabilities
+     * @param array|string $requiredCapabilities Required capabilities (or browser name)
+     * @param array        $desiredCapabilities  Desired capabilities
      *
      * @return \WebDriver\Session
      */
     public function session($requiredCapabilities = Browser::FIREFOX, $desiredCapabilities = array())
     {
-        if (!is_array($desiredCapabilities)) {
-            $desiredCapabilities = array();
-        }
-
-        if (!is_array($requiredCapabilities)) {
-            $desiredCapabilities = array_merge(
-                $desiredCapabilities,
-                array(Capability::BROWSER_NAME => $requiredCapabilities)
-            );
+        // for backwards compatibility when the only required capability was browser name
+        if (! is_array($requiredCapabilities)) {
+            $desiredCapabilities[Capability::BROWSER_NAME] = $requiredCapabilities ?: Browser::FIREFOX;
 
             $requiredCapabilities = array();
         }
 
-        $results = $this->curl(
+        // required
+        $parameters = array(
+            'desiredCapabilities' => array_merge($desiredCapabilities, $requiredCapabilities)
+        );
+
+        // optional
+        if ( ! empty($requiredCapabilities)) {
+            $parameters['requiredCapabilities'] = $requiredCapabilities;
+        }
+
+        $result = $this->curl(
             'POST',
             '/session',
-            array(
-                'desiredCapabilities' => $desiredCapabilities,
-                'requiredCapabilities' => $requiredCapabilities,
-            ),
+            $parameters,
             array(CURLOPT_FOLLOWLOCATION => true)
         );
 
-        return new Session($results['sessionUrl']);
+        return new Session($result['sessionUrl']);
     }
 
     /**

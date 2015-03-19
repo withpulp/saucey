@@ -1,20 +1,18 @@
 <?php
 
-namespace Behat\MinkExtension\Context;
-
-use Behat\Behat\Context\BehatContext;
-
-use Behat\Mink\Mink,
-    Behat\Mink\WebAssert,
-    Behat\Mink\Session;
-
 /*
- * This file is part of the Behat\MinkExtension.
+ * This file is part of the Behat MinkExtension.
  * (c) Konstantin Kudryashov <ever.zet@gmail.com>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
+
+namespace Behat\MinkExtension\Context;
+
+use Behat\Mink\Mink;
+use Behat\Mink\WebAssert;
+use Behat\Mink\Session;
 
 /**
  * Raw Mink context for Behat BDD tool.
@@ -22,7 +20,7 @@ use Behat\Mink\Mink,
  *
  * @author Konstantin Kudryashov <ever.zet@gmail.com>
  */
-class RawMinkContext extends BehatContext implements MinkAwareInterface
+class RawMinkContext implements MinkAwareContext
 {
     private $mink;
     private $minkParameters;
@@ -48,6 +46,16 @@ class RawMinkContext extends BehatContext implements MinkAwareInterface
     }
 
     /**
+     * Returns the parameters provided for Mink.
+     *
+     * @return array
+     */
+    public function getMinkParameters()
+    {
+        return $this->minkParameters;
+    }
+
+    /**
      * Sets parameters provided for Mink.
      *
      * @param array $parameters
@@ -67,6 +75,18 @@ class RawMinkContext extends BehatContext implements MinkAwareInterface
     public function getMinkParameter($name)
     {
         return isset($this->minkParameters[$name]) ? $this->minkParameters[$name] : null;
+    }
+
+    /**
+     * Applies the given parameter to the Mink configuration. Consider that all parameters get reset for each
+     * feature context.
+     *
+     * @param string $name  The key of the parameter
+     * @param string $value The value of the parameter
+     */
+    public function setMinkParameter($name, $value)
+    {
+        $this->minkParameters[$name] = $value;
     }
 
     /**
@@ -94,6 +114,17 @@ class RawMinkContext extends BehatContext implements MinkAwareInterface
     }
 
     /**
+     * Visits provided relative path using provided or default session.
+     *
+     * @param string      $path
+     * @param string|null $sessionName
+     */
+    public function visitPath($path, $sessionName = null)
+    {
+        $this->getSession($sessionName)->visit($this->locatePath($path));
+    }
+
+    /**
      * Locates url, based on provided path.
      * Override to provide custom routing mechanism.
      *
@@ -111,14 +142,14 @@ class RawMinkContext extends BehatContext implements MinkAwareInterface
     /**
      * Save a screenshot of the current window to the file system.
      *
-     * @param  string  $filename Desired filename, defaults to 
-     *   <browser_name>_<ISO 8601 date>_<randomId>.png
-     * @param  string  $filepath Desired filepath, defaults to 
-     *   upload_tmp_dir, falls back to sys_get_temp_dir()
+     * @param string $filename Desired filename, defaults to
+     *                         <browser_name>_<ISO 8601 date>_<randomId>.png
+     * @param string $filepath Desired filepath, defaults to
+     *                         upload_tmp_dir, falls back to sys_get_temp_dir()
      */
     public function saveScreenshot($filename = null, $filepath = null)
     {
-        // Under Cygwin, uniqid with more_entropy must be set to true. 
+        // Under Cygwin, uniqid with more_entropy must be set to true.
         // No effect in other environments.
         $filename = $filename ?: sprintf('%s_%s_%s.%s', $this->getMinkParameter('browser_name'), date('c'), uniqid('', true), 'png');
         $filepath = $filepath ? $filepath : (ini_get('upload_tmp_dir') ? ini_get('upload_tmp_dir') : sys_get_temp_dir());

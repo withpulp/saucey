@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright 2004-2013 Facebook. All Rights Reserved.
+ * Copyright 2004-2014 Facebook. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -54,6 +54,7 @@ class CurlService implements CurlServiceInterface
                     curl_setopt($curl, CURLOPT_POSTFIELDS, json_encode($parameters));
                 } else {
                     $customHeaders[] = 'Content-Length: 0';
+                    $customHeaders[] = 'Expect:';
                 }
 
                 curl_setopt($curl, CURLOPT_POST, true);
@@ -68,6 +69,7 @@ class CurlService implements CurlServiceInterface
                     curl_setopt($curl, CURLOPT_POSTFIELDS, json_encode($parameters));
                 } else {
                     $customHeaders[] = 'Content-Length: 0';
+                    $customHeaders[] = 'Expect:';
                 }
 
                 curl_setopt($curl, CURLOPT_CUSTOMREQUEST, 'PUT');
@@ -80,7 +82,7 @@ class CurlService implements CurlServiceInterface
 
         curl_setopt($curl, CURLOPT_HTTPHEADER, $customHeaders);
 
-        $rawResults = trim(curl_exec($curl));
+        $rawResult = trim(curl_exec($curl));
         $info = curl_getinfo($curl);
 
         if (CURLE_GOT_NOTHING !== curl_errno($curl) && $error = curl_error($curl)) {
@@ -97,6 +99,6 @@ class CurlService implements CurlServiceInterface
 
         curl_close($curl);
 
-        return array($rawResults, $info);
+        return array($rawResult, $info);
     }
 }

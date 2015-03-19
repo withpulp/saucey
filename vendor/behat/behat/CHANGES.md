@@ -1,3 +1,253 @@
+3.0.15 / 2015-02-22
+===================
+
+  * Fix broken null-transformations (Issue #669)
+  * Improve exception messages (thanks @dantleech)
+
+3.0.14 / 2014-09-23
+===================
+
+  * Improve generated context class
+
+3.0.13 / 2014-08-28
+===================
+
+  * Add support for typehinted parameters
+  * Allow any whitespace characters at the end of context class
+  * Fix scenario with decimal number following string in Turnip pattern
+  * Fix scenario with empty string in step with Turnip pattern
+  * Fix scenario where step has slashes in Turnip pattern
+
+3.0.12 / 2014-07-17
+===================
+
+  * Fix remaining issues with the definition arguments parsing
+  * Introduce `Testwork\Argument` component
+
+3.0.11 / 2014-07-09
+===================
+
+  * Fix argument resolution for functions with default values (thanks @alesblaznik)
+  * Fix step colouring of internationalised definitions
+  * Refactor `ContextFactory` and `RepositorySearchEngine` arguments resolution into the new
+    Testwork component - `ArgumentResolver`
+
+3.0.10 / 2014-06-29
+===================
+
+  * Fix argument resolution when named arguments used and method has defaults (thanks @WouterJ)
+  * Fix support for decimal numbers in turnip placeholders
+
+3.0.9 / 2014-06-20
+==================
+
+  * Fix definition translations reading bug with multi-suite configurations (thanks @WouterJ for reporting)
+  * Fix pretty printer bug with failing background and 2 scenarios (thanks @andytson for reporting)
+  * Fix memory footprint calculation (thanks @dready for reporting)
+
+3.0.8 / 2014-06-06
+==================
+
+  * Profile level Gherkin filters are now overridable by CLI filter options
+  * Rerun cache path is now configurable
+  * Fix turnip-based step definitions starting from token
+  * Fix token-based transformations interfering with regex-based ones
+  * Rerun cache dump have been optimised
+
+3.0.7 / 2014-05-27
+==================
+
+  * Properly generate keywords in snippets for non-english and `And`, `But` steps (thanks @kibao)
+  * Fix regex check bug with transformations that return objects (thanks @vaidasm)
+  * Return ability to use custom formatters by specifiying their class names
+
+3.0.6 / 2014-05-06
+==================
+
+  * Fix a small extension registration shortcut issue introduced in previous release (thanks @FrenkyNet)
+
+3.0.5 / 2014-05-06
+==================
+
+  * Fix a suite initialization bug when suite contexts have arguments
+  * Fix wrong handling of an empty `behat.yml`
+  * Explicitly fail when provided context argument is not supported by constructor
+  * Fix extension registration shortcut for 3rd-part plugins
+
+3.0.4 / 2014-04-29
+==================
+
+  * Make sure that `Before*Tested` is always executed before `Before*` hooks
+  * Introduce additional `After*Setup` and `Before*Teardown` events
+  * Improved the error reporting for invalid regexes in step definitions (thanks @stof)
+
+3.0.3 / 2014-04-27
+==================
+
+  * Support definition transformations without capture groups
+  * Override gherkin filters in custom profiles instead of merging them
+  * Refactored the handling of colors to set them earlier
+    ([#513](https://github.com/Behat/Behat/pull/513) thanks to @stof)
+
+3.0.2 / 2014-04-26
+==================
+
+  * Fix warning on empty scenarios
+
+3.0.1 / 2014-04-26
+==================
+
+  * Make sure that `AfterStep` hook is running even if step is failed
+    ([504](https://github.com/Behat/Behat/issues/504))
+  * Optimised the way service wrappers are registered (thanks @stof)
+
+3.0.0 / 2014-04-20
+==================
+
+  * Brand new highly extendable and clear architecture
+  * Support for multiple suites per profile
+  * Support for multiple contexts per suite
+  * Support for multiple feature paths per suite
+  * Support for filtered suites
+  * Support for unique context constructor parameters
+  * Hooks are first class citizens and thus have their own error and output buffering
+  * Turnip syntax in definitions
+  * Reworked formatters with improved error and output buffering
+  * Rerun does not require precache run
+  * New gherkin role filter
+  * Improved error handling with 3 levels of error reporting (-v, -vv, -vvv)
+  * Dropped subcontexts
+  * Dropped chained steps
+  * Dropped closured definitions
+
+3.0.0rc3 / 2014-03-16
+=======================
+
+  * Multiline step description support ([082da36b7db2525700287616babe982e485330d1](https://github.com/Behat/Behat/commit/082da36b7db2525700287616babe982e485330d1))
+  * Added ability to choose all 3 verbosity levels and moved stack traces to the 2nd one ([d550f72d6aa49f0f87a6ce0e50721356a5d04c45](https://github.com/Behat/Behat/commit/d550f72d6aa49f0f87a6ce0e50721356a5d04c45))
+  * Renamed Subject to Specification ([#447](https://github.com/Behat/Behat/pull/447))
+  * Refactored ContextSnippetGenerator ([#445](https://github.com/Behat/Behat/pull/445))
+  * Refactored context arguments handling ([#446](https://github.com/Behat/Behat/pull/446))
+  * Refactored testers to use composition over inheritance and added setUp/tearDown phase to them ([#457](https://github.com/Behat/Behat/pull/457))
+  * Refactored output formatters to be chain of event listeners
+  * Refactored hooks to use [scopes](https://github.com/Behat/Behat/tree/3.0/src/Behat/Behat/Hook/Scope) instead of events
+  * Fixed the GroupedSubjectIterator when dealing with an empty iterator ([2c1312780d610f01116ac42fb958c0c09a64c041](https://github.com/Behat/Behat/commit/2c1312780d610f01116ac42fb958c0c09a64c041))
+  * Forced the paths.base to use a real path all the time ([b4477d7cf3f9550874c609d4edc5a4f55390672c](https://github.com/Behat/Behat/commit/b4477d7cf3f9550874c609d4edc5a4f55390672c))
+
+3.0.0rc2 / 2014-01-10
+=======================
+
+  * Fixed progress formatter hooks support
+  * Reintroduced suite hooks (with an additional functionality of name filtering)
+  * Behat tells about steps that it couldn't generate snippets for
+  * Memory consumption optimizations
+  * Fixed contexts inheritance
+  * New formatter translations
+
+  * Added constructor arguments and class resolving extension points to context creation routine
+  * Simplified and cleaned `Context` package of the Behat
+  * Minor public API changes across the board (simplification)
+  * Optimized subject finding routine and cleaned extension points (`SubjectLocator`)
+  * Both `ExampleTested` and `ScenarioTested` now use same method name - `getScenario()`
+  * Added exception accessors to `StepTestResult`
+  * Renamed `ExerciseTester` to `Exercise`
+  * Added `HookableEvent` to Testwork, which extends `LifecycleEvent`
+  * Made `priority` attribute of a tag optional
+  * Changed all occurrences of `classname` to `class` across public API
+  * Renamed `GherkinSuite` to `GenericSuite` and moved it into the Testwork
+  * Added `initialize` call to extension lifecycle and Extension interface
+  * Renamed some extensions config keys to be more intuitive
+
+3.0.0rc1 / 2014-01-01
+=======================
+
+  * New layered and highly extendable architecture
+  * Standard output buffering of definitions and hooks
+  * Hooks as first class citizens
+  * New pretty and progress formatters
+  * Huge speed and memory footprint improvements
+  * Moved 40% of non-Behat related codebase into a shared foundation called Testwork
+
+3.0.0beta8 / 2013-10-01
+=======================
+
+  * Add `*SnippetsFriendlyInterface`(s) that are now required to generate snippets
+  * Add support for turnip-style definitions
+  * Use turnip-style definitions by default from `--init`
+  * Rename `SuitesLoader` to `SuitesRegistry` to clarify purpose
+  * Extract snippet generators into extendable component
+  * Extract context generators into extendable component
+
+3.0.0beta7 / 2013-09-29
+=======================
+
+  * Multivalue options are now array options (format, output, name and tags)
+  * Added back junit formatter (should support all junit formats from 4 to 7)
+  * Added back html formatter
+  * Small optimizations and refactorings
+  * Proper handling of hook failures
+
+3.0.0beta6 / 2013-09-25
+=======================
+
+  * Skip step execution and `AfterStep` hook if its `BeforeStep` hook failed
+  * Fix failure-initiated skips of hooks in Scenario and Example testers
+  * Refactor Suite routines
+  * Cleanup Context Pools
+  * Enhance `--definitions` option with suites output and regex search
+  * Add `toString()` methods to `DefinitionInterface` and `TransformationInterface`
+  * Add `SnippetlessContextInterface` to `Snippet` namespace - to prevent snippet generation for
+    custom contexts
+
+3.0.0beta5 / 2013-09-15
+=======================
+
+  * Switch to Gherkin 3.0 parser
+  * Complete rewrite of pretty formatter (much better outline handling)
+  * Automatically add `use` for `PendingException` to contexts during `--append-snippets`
+  * Lots of optimizations
+
+3.0.0beta4 / 2013-08-17
+=======================
+
+  * Cleanup suite configuration sub-system
+  * New ability to turn off specific suites through `behat.yml`
+  * Support for danish language
+
+3.0.0beta3 / 2013-08-13
+=======================
+
+  * Refactor extension sub-system. Update `ExtensionInterface`
+  * Avoid trying to create folders for non-fs suites
+
+3.0.0beta2 / 2013-08-13
+=======================
+
+  * Remove support for Symfony 2.0 components
+
+3.0.0beta1 / 2013-08-13
+=======================
+
+  * New suite-centric architecture
+  * New context pools sub-system with multi-context support
+  * New dynamic event-driven testing core
+  * Refactored console processors sub-system
+  * Refactored formatters management sub-system
+  * 8 new process extension points and 36 generic execution extension points
+  * Gherkin caching is enabled by default
+  * Rerun is enabled by default (use `--rerun` to rerun failed scenarios)
+  * New Gherkin Role filter
+  * Subcontexts removed in favor of context pools
+  * Chained steps extracted into [separate extension](https://github.com/Behat/ChainedStepsExtension)
+  * Closured step definitions removed
+
+2.5.0 / 2013-08-11
+==================
+
+  * First Behat LTS release
+  * Update Junit formatter to reflect latest junit format (thanks @alistairstead)
+  * Fix some container options
+
 2.4.6 / 2013-06-06
 ==================
 

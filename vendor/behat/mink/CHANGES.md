@@ -1,3 +1,83 @@
+1.6.1 / 2015-02-04
+==================
+
+Bug fixes:
+
+* Added a check for empty path in `WebAssert::cleanUrl()`
+
+Driver testsuite:
+
+* Added an extra test to ensure the right behavior for traversal
+
+Misc:
+
+* Changed the description in the composer.json
+* Switched the repository structure to use PSR-4
+* Updated URLs for the move to the new Github organization
+
+1.6.0 / 2014-09-26
+==================
+
+  * [BC break] Changed the named selector to prefer exact matches over partial matches
+  * [BC break] Changed `NodeElement::getValue` for checkboxes to return the value rather than the checked state (use `isChecked` for that)
+  * Fixed the XPath prefixing when searching inside an existing element
+  * Refactored the driver testsuite entirely and expand it to cover drivers entirely (covering many more cases for consistency)
+  * Changed `NodeElement::setValue` to support any fields rather than only input elements
+  * Removed the wrapping of any driver-level exception in a MinkException on invalid usage as it was making the code too complex
+  * Fixed the matching of the input type in the named selector to be case insensitive according to the HTML spec
+  * Introduced `Behat\Mink\Selector\Xpath\Escaper` to allow reusing the XPath escaping
+  * Deprecated `Element::getSession`. Code needing the session should get it from outside rather than the element
+  * Changed ElementNotFoundException to extend from ExpectationException
+  * Added `Element::getOuterHtml` to get the HTML code of the element including itself
+  * Fixed the name selectors to match on the `placeholder` only for textual inputs
+  * Enforced consistent behavior for drivers on 4xx and 5xx response to return the response rather than throwing an exception
+  * Added `Element::waitFor` to allow retrying some code until it succeeds or the timeout is reached
+  * Added `Element::isValid` to check whether an element still exists in the page
+  * Made `Session::executeScript` compatible across drivers by ensuring they all support the same syntaxes for the JS expression
+  * Made `Session::evaluateScript` compatible across drivers by ensuring they all support the same syntaxes for the JS expression
+  * Removed `hasClass` from `DocumentElement` (instead of triggering a fatal error)
+  * Added testing on HHVM to ensure consistency
+  * Fixed `NodeElement::getTagName` to ensure that the tag name is lowercase for all drivers
+  * Fixed `Element::hasAttribute` to ensure it supports attributes with an empty value
+  * Fixed the `field` selector to avoid matching inputs with the type `submit` or `reset`
+  * Changed the button XPath selection to accept `reset` buttons as well
+  * Changed `Session::wait` to return the condition value rather than nothing
+  * Added `Session::getWindowName` and `Session::getWindowNames` to get the name of the current and of all windows
+  * Added `Session::maximizeWindow` to maximize the window
+  * Added `NodeElement::isSelected` to check whether an `<option>` is selected
+  * Added `NodeElement::submitForm` to allow submitting a form without using a button
+  * Added assertions about the value of an attribute
+  * Added the anchor in the assertion on the URL in `WebAssert`
+
+1.5.0 / 2013-04-14
+==================
+
+  * Add `CoreDriver` to simplify future drivers improvements
+  * Add `Mink::isSessionStarted()` method
+  * Fix multibite string `preg_replace` bugs
+  * Fix handling of whitespaces in `WebAssert::pageText...()` methods
+
+1.4.3 / 2013-03-02
+==================
+
+  * Bump dependencies constraints
+
+1.4.2 / 2013-02-13
+==================
+
+  * Fix wrong test case to ensure that core drivers work as expected
+
+1.4.1 / 2013-02-10
+==================
+
+  * Update dependencies
+  * Add ElementException to element actions
+  * Rel attribute support for named selectors
+  * Add hasClass() helper to traversable elements
+  * Add getScreenshot() method to session
+  * Name attr support in named selector for button
+  * Fix for bunch of bugs
+
 1.4.0 / 2012-05-40
 ==================
 

@@ -1,27 +1,25 @@
 {
+  "name": "saucey",
+  "type": "behat-mink-selenium-guzzle",
+  "description": "Automation of HTTP, HTTPS, API and UI using PHPUnit, Behat, Mink, Guzzle and Selenium 2.",
+  "keywords": ["automation", "bdd", "testing", "selenium"],
+  "homepage": "http://saucey.io",
+  "authors": [
+      {
+          "name": "Sajjad Hossain",
+          "email": "me@sajjad.pw"
+      }
+    ],
+
     "require": {
-        "behat/behat": "2.4.*@stable",
-        "behat/mink": "1.4@stable",
+        "behat/behat": "~3.0.6",
+        "behat/mink": "~1.6",
+        "behat/mink-extension": "@stable",
         "behat/mink-goutte-driver": "*",
-        "behat/mink-selenium-driver": "*",
-        "behat/mink-selenium2-driver": "*",
-        "behat/mink-extension": "*",
-        "behat/mink-sahi-driver": "*",
-        "guzzle/guzzle": "2.4.*",
-        "guzzlehttp/guzzle": "4.*",
-        "laravel/installer": "1.1",
-        "behat/common-contexts": "*",
-        "kriswallsmith/buzz":    ">=0.5",
-        "phpunit/phpunit": "3.7.*",
-        "phpunit/phpunit-selenium": ">=1.2",
-        "behat/mink-browserkit-driver": "*",
+        "behat/mink-selenium2-driver": "~1.2",
+        "emuse/behat-html-formatter": "dev-master",
         "sauce/sausage": ">=0.5",
         "sauce/connect": ">=3.0",
-        "sebastian/comparator": "~1.0"
-      },
-
-      "minimum-stability": "dev",
-      "config": {
-        "bin-dir": "bin/"
-      }
+        "saucey/drivers": "dev-master"
     }
+}

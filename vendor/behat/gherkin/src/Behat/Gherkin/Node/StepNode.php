@@ -1,98 +1,113 @@
 <?php
 
-namespace Behat\Gherkin\Node;
-
 /*
  * This file is part of the Behat Gherkin.
- * (c) 2011 Konstantin Kudryashov <ever.zet@gmail.com>
+ * (c) Konstantin Kudryashov <ever.zet@gmail.com>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
 
+namespace Behat\Gherkin\Node;
+
+use Behat\Gherkin\Exception\NodeException;
+
 /**
- * Step Gherkin AST node.
+ * Represents Gherkin Step.
  *
  * @author Konstantin Kudryashov <ever.zet@gmail.com>
  */
-class StepNode extends AbstractNode
+class StepNode implements NodeInterface
 {
-    private $type;
+    /**
+     * @var string
+     */
+    private $keyword;
+    /**
+     * @var string
+     */
+    private $keywordType;
+    /**
+     * @var string
+     */
     private $text;
-    private $parent;
+    /**
+     * @var ArgumentInterface[]
+     */
     private $arguments = array();
+    /**
+     * @var integer
+     */
+    private $line;
 
     /**
-     * Initizalizes step.
+     * Initializes step.
      *
-     * @param string  $type Step type
-     * @param string  $text Step text
-     * @param integer $line Definition line
+     * @param string              $keyword
+     * @param string              $text
+     * @param ArgumentInterface[] $arguments
+     * @param integer             $line
+     * @param string              $keywordType
      */
-    public function __construct($type, $text = null, $line = 0)
+    public function __construct($keyword, $text, array $arguments, $line, $keywordType = null)
     {
-        parent::__construct($line);
+        if (count($arguments) > 1) {
+            throw new NodeException(sprintf(
+                'Steps could have only one argument, but `%s %s` have %d.',
+                $keyword,
+                $text,
+                count($arguments)
+            ));
+        }
 
-        $this->type = $type;
+        $this->keyword = $keyword;
         $this->text = $text;
+        $this->arguments = $arguments;
+        $this->line = $line;
+        $this->keywordType = $keywordType ?: 'Given';
     }
 
     /**
-     * Returns new example step, initialized with values from specific row.
-     *
-     * @return ExampleStepNode
-     *
-     * @throws \LogicException if feature is frozen
-     */
-    public function createExampleRowStep(array $tokens)
-    {
-        if (!$this->isFrozen()) {
-            throw new \LogicException('Impossible to get example step from non-frozen one.');
-        }
-
-        return new ExampleStepNode($this, $tokens);
-    }
-
-    /**
-     * Sets step type.
-     *
-     * @param string $type Step type (Given|When|Then|And etc)
-     *
-     * @throws \LogicException if feature is frozen
-     */
-    public function setType($type)
-    {
-        if ($this->isFrozen()) {
-            throw new \LogicException('Impossible to change step type in frozen feature.');
-        }
-
-        $this->type = $type;
-    }
-
-    /**
-     * Returns step type.
+     * Returns node type string
      *
      * @return string
      */
-    public function getType()
+    public function getNodeType()
     {
-        return $this->type;
+        return 'Step';
     }
 
     /**
-     * Sets step text.
+     * Returns step keyword in provided language (Given, When, Then, etc.).
      *
-     * @param string $text Step text
+     * @return string
      *
-     * @throws \LogicException if feature is frozen
+     * @deprecated use getKeyword() instead
      */
-    public function setText($text)
+    public function getType()
     {
-        if ($this->isFrozen()) {
-            throw new \LogicException('Impossible to change step text in frozen feature.');
-        }
+        return $this->getKeyword();
+    }
 
-        $this->text = $text;
+    /**
+     * Returns step keyword in provided language (Given, When, Then, etc.).
+     *
+     * @return string
+     *
+     */
+    public function getKeyword()
+    {
+        return $this->keyword;
+    }
+
+    /**
+     * Returns step type keyword (Given, When, Then, etc.).
+     *
+     * @return string
+     */
+    public function getKeywordType()
+    {
+        return $this->keywordType;
     }
 
     /**
@@ -106,53 +121,19 @@ class StepNode extends AbstractNode
     }
 
     /**
-     * Adds argument to step.
-     *
-     * @param StepArgumentNodeInterface $argument Step argument
-     *
-     * @throws \LogicException if feature is frozen
-     */
-    public function addArgument(StepArgumentNodeInterface $argument)
-    {
-        if ($this->isFrozen()) {
-            throw new \LogicException('Impossible to change step arguments in frozen feature.');
-        }
-
-        $this->arguments[] = $argument;
-    }
-
-    /**
-     * Sets step arguments.
-     *
-     * @param array $arguments Array of arguments
-     *
-     * @throws \LogicException if feature is frozen
-     */
-    public function setArguments(array $arguments)
-    {
-        if ($this->isFrozen()) {
-            throw new \LogicException('Impossible to change step arguments in frozen feature.');
-        }
-
-        foreach ($arguments as $argument) {
-            $this->addArgument($argument);
-        }
-    }
-
-    /**
      * Checks if step has arguments.
      *
      * @return Boolean
      */
     public function hasArguments()
     {
-        return count($this->arguments) > 0;
+        return 0 < count($this->arguments);
     }
 
     /**
      * Returns step arguments.
      *
-     * @return array
+     * @return ArgumentInterface[]
      */
     public function getArguments()
     {
@@ -160,64 +141,12 @@ class StepNode extends AbstractNode
     }
 
     /**
-     * Sets parent node of the step.
+     * Returns step declaration line number.
      *
-     * @param AbstractScenarioNode $node Parent scenario
-     *
-     * @throws \LogicException if feature is frozen
+     * @return integer
      */
-    public function setParent(AbstractScenarioNode $node)
+    public function getLine()
     {
-        if ($this->isFrozen()) {
-            throw new \LogicException('Impossible to reassign step from frozen feature.');
-        }
-
-        $this->parent = $node;
-    }
-
-    /**
-     * Returns parent node of the step.
-     *
-     * @return AbstractScenarioNode
-     */
-    public function getParent()
-    {
-        return $this->parent;
-    }
-
-    /**
-     * Returns definition file.
-     *
-     * @return string
-     */
-    public function getFile()
-    {
-        return null !== $this->parent
-             ? $this->parent->getFile()
-             : null;
-    }
-
-    /**
-     * Returns language of the feature.
-     *
-     * @return string
-     */
-    public function getLanguage()
-    {
-        return null !== $this->parent
-             ? $this->parent->getLanguage()
-             : null;
-    }
-
-    /**
-     * Checks whether step has been frozen.
-     *
-     * @return Boolean
-     */
-    public function isFrozen()
-    {
-        return null !== $this->parent
-             ? $this->parent->isFrozen()
-             : false;
+        return $this->line;
     }
 }

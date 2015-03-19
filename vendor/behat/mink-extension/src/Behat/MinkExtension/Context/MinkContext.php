@@ -1,19 +1,17 @@
 <?php
 
-namespace Behat\MinkExtension\Context;
-
-use Behat\Gherkin\Node\TableNode;
-
-use Behat\Behat\Context\TranslatedContextInterface,
-    Behat\Behat\Event\ScenarioEvent;
-
 /*
- * This file is part of the Behat\MinkExtension.
+ * This file is part of the Behat MinkExtension.
  * (c) Konstantin Kudryashov <ever.zet@gmail.com>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
+
+namespace Behat\MinkExtension\Context;
+
+use Behat\Behat\Context\TranslatableContext;
+use Behat\Gherkin\Node\TableNode;
 
 /**
  * Mink context for Behat BDD tool.
@@ -21,7 +19,7 @@ use Behat\Behat\Context\TranslatedContextInterface,
  *
  * @author Konstantin Kudryashov <ever.zet@gmail.com>
  */
-class MinkContext extends RawMinkContext implements TranslatedContextInterface
+class MinkContext extends RawMinkContext implements TranslatableContext
 {
     /**
      * Opens homepage.
@@ -31,7 +29,7 @@ class MinkContext extends RawMinkContext implements TranslatedContextInterface
      */
     public function iAmOnHomepage()
     {
-        $this->getSession()->visit($this->locatePath('/'));
+        $this->visitPath('/');
     }
 
     /**
@@ -42,7 +40,7 @@ class MinkContext extends RawMinkContext implements TranslatedContextInterface
      */
     public function visit($page)
     {
-        $this->getSession()->visit($this->locatePath($page));
+        $this->visitPath($page);
     }
 
     /**
@@ -101,6 +99,7 @@ class MinkContext extends RawMinkContext implements TranslatedContextInterface
      * Fills in form field with specified id|name|label|value.
      *
      * @When /^(?:|I )fill in "(?P<field>(?:[^"]|\\")*)" with "(?P<value>(?:[^"]|\\")*)"$/
+     * @When /^(?:|I )fill in "(?P<field>(?:[^"]|\\")*)" with:$/
      * @When /^(?:|I )fill in "(?P<value>(?:[^"]|\\")*)" for "(?P<field>(?:[^"]|\\")*)"$/
      */
     public function fillField($field, $value)
@@ -198,33 +197,43 @@ class MinkContext extends RawMinkContext implements TranslatedContextInterface
     }
 
     /**
+     * Checks, that current page is the homepage.
+     *
+     * @Then /^(?:|I )should be on (?:|the )homepage$/
+     */
+    public function assertHomepage()
+    {
+        $this->assertSession()->addressEquals($this->locatePath('/'));
+    }
+
+    /**
      * Checks, that current page PATH matches regular expression.
      *
-     * @Then /^the (?i)url(?-i) should match (?P<pattern>"([^"]|\\")*")$/
+     * @Then /^the (?i)url(?-i) should match (?P<pattern>"(?:[^"]|\\")*")$/
      */
     public function assertUrlRegExp($pattern)
     {
-        $this->assertSession()->addressMatches($pattern);
+        $this->assertSession()->addressMatches($this->fixStepArgument($pattern));
     }
 
     /**
-    * Checks, that current page response status is equal to specified.
-    *
-    * @Then /^the response status code should be (?P<code>\d+)$/
-    */
+     * Checks, that current page response status is equal to specified.
+     *
+     * @Then /^the response status code should be (?P<code>\d+)$/
+     */
     public function assertResponseStatus($code)
     {
-       $this->assertSession()->statusCodeEquals($code);
+        $this->assertSession()->statusCodeEquals($code);
     }
 
     /**
-    * Checks, that current page response status is not equal to specified.
-    *
-    * @Then /^the response status code should not be (?P<code>\d+)$/
-    */
+     * Checks, that current page response status is not equal to specified.
+     *
+     * @Then /^the response status code should not be (?P<code>\d+)$/
+     */
     public function assertResponseStatusIsNot($code)
     {
-       $this->assertSession()->statusCodeNotEquals($code);
+        $this->assertSession()->statusCodeNotEquals($code);
     }
 
     /**
@@ -354,6 +363,8 @@ class MinkContext extends RawMinkContext implements TranslatedContextInterface
      */
     public function assertFieldContains($field, $value)
     {
+        $field = $this->fixStepArgument($field);
+        $value = $this->fixStepArgument($value);
         $this->assertSession()->fieldValueEquals($field, $value);
     }
 
@@ -364,6 +375,8 @@ class MinkContext extends RawMinkContext implements TranslatedContextInterface
      */
     public function assertFieldNotContains($field, $value)
     {
+        $field = $this->fixStepArgument($field);
+        $value = $this->fixStepArgument($value);
         $this->assertSession()->fieldValueNotEquals($field, $value);
     }
 
@@ -371,20 +384,23 @@ class MinkContext extends RawMinkContext implements TranslatedContextInterface
      * Checks, that checkbox with specified in|name|label|value is checked.
      *
      * @Then /^the "(?P<checkbox>(?:[^"]|\\")*)" checkbox should be checked$/
+     * @Then /^the checkbox "(?P<checkbox>(?:[^"]|\\")*)" (?:is|should be) checked$/
      */
     public function assertCheckboxChecked($checkbox)
     {
-        $this->assertSession()->checkboxChecked($checkbox);
+        $this->assertSession()->checkboxChecked($this->fixStepArgument($checkbox));
     }
 
     /**
      * Checks, that checkbox with specified in|name|label|value is unchecked.
      *
      * @Then /^the "(?P<checkbox>(?:[^"]|\\")*)" checkbox should not be checked$/
+     * @Then /^the checkbox "(?P<checkbox>(?:[^"]|\\")*)" should (?:be unchecked|not be checked)$/
+     * @Then /^the checkbox "(?P<checkbox>(?:[^"]|\\")*)" is (?:unchecked|not checked)$/
      */
     public function assertCheckboxNotChecked($checkbox)
     {
-        $this->assertSession()->checkboxNotChecked($checkbox);
+        $this->assertSession()->checkboxNotChecked($this->fixStepArgument($checkbox));
     }
 
     /**
@@ -398,13 +414,23 @@ class MinkContext extends RawMinkContext implements TranslatedContextInterface
     }
 
     /**
+     * Prints current URL to console.
+     *
+     * @Then /^print current URL$/
+     */
+    public function printCurrentUrl()
+    {
+        echo $this->getSession()->getCurrentUrl();
+    }
+
+    /**
      * Prints last response to console.
      *
      * @Then /^print last response$/
      */
     public function printLastResponse()
     {
-        $this->printDebug(
+        echo (
             $this->getSession()->getCurrentUrl()."\n\n".
             $this->getSession()->getPage()->getContent()
         );
@@ -431,9 +457,9 @@ class MinkContext extends RawMinkContext implements TranslatedContextInterface
      *
      * @return array
      */
-    public function getTranslationResources()
+    public static function getTranslationResources()
     {
-        return $this->getMinkTranslationResources();
+        return self::getMinkTranslationResources();
     }
 
     /**
@@ -441,7 +467,7 @@ class MinkContext extends RawMinkContext implements TranslatedContextInterface
      *
      * @return array
      */
-    public function getMinkTranslationResources()
+    public static function getMinkTranslationResources()
     {
         return glob(__DIR__.'/../../../../i18n/*.xliff');
     }

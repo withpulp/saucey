@@ -103,24 +103,24 @@ class YamlDumper extends Dumper
             $code .= sprintf("        synthetic: true\n");
         }
 
-        if ($definition->isSynchronized(false)) {
+        if ($definition->isSynchronized()) {
             $code .= sprintf("        synchronized: true\n");
         }
 
-        if ($definition->getFactoryClass(false)) {
-            $code .= sprintf("        factory_class: %s\n", $definition->getFactoryClass(false));
+        if ($definition->getFactoryClass()) {
+            $code .= sprintf("        factory_class: %s\n", $definition->getFactoryClass());
         }
 
         if ($definition->isLazy()) {
             $code .= sprintf("        lazy: true\n");
         }
 
-        if ($definition->getFactoryMethod(false)) {
-            $code .= sprintf("        factory_method: %s\n", $definition->getFactoryMethod(false));
+        if ($definition->getFactoryMethod()) {
+            $code .= sprintf("        factory_method: %s\n", $definition->getFactoryMethod());
         }
 
-        if ($definition->getFactoryService(false)) {
-            $code .= sprintf("        factory_service: %s\n", $definition->getFactoryService(false));
+        if ($definition->getFactoryService()) {
+            $code .= sprintf("        factory_service: %s\n", $definition->getFactoryService());
         }
 
         if ($definition->getArguments()) {

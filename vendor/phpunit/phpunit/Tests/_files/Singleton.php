@@ -1,19 +1,19 @@
 <?php
 class Singleton
 {
-    private static $uniqueInstance = NULL;
+    private static $uniqueInstance = null;
 
     protected function __construct()
     {
     }
 
-    private final function __clone()
+    final private function __clone()
     {
     }
 
     public static function getInstance()
     {
-        if (self::$uniqueInstance === NULL) {
+        if (self::$uniqueInstance === null) {
             self::$uniqueInstance = new Singleton;
         }
 

@@ -81,15 +81,9 @@ class ResolveDefinitionTemplatesPass implements CompilerPassInterface
         $def->setArguments($parentDef->getArguments());
         $def->setMethodCalls($parentDef->getMethodCalls());
         $def->setProperties($parentDef->getProperties());
-        if ($parentDef->getFactoryClass(false)) {
-            $def->setFactoryClass($parentDef->getFactoryClass(false));
-        }
-        if ($parentDef->getFactoryMethod(false)) {
-            $def->setFactoryMethod($parentDef->getFactoryMethod(false));
-        }
-        if ($parentDef->getFactoryService(false)) {
-            $def->setFactoryService($parentDef->getFactoryService(false));
-        }
+        $def->setFactoryClass($parentDef->getFactoryClass());
+        $def->setFactoryMethod($parentDef->getFactoryMethod());
+        $def->setFactoryService($parentDef->getFactoryService());
         $def->setFactory($parentDef->getFactory());
         $def->setConfigurator($parentDef->getConfigurator());
         $def->setFile($parentDef->getFile());
@@ -102,13 +96,13 @@ class ResolveDefinitionTemplatesPass implements CompilerPassInterface
             $def->setClass($definition->getClass());
         }
         if (isset($changes['factory_class'])) {
-            $def->setFactoryClass($definition->getFactoryClass(false));
+            $def->setFactoryClass($definition->getFactoryClass());
         }
         if (isset($changes['factory_method'])) {
-            $def->setFactoryMethod($definition->getFactoryMethod(false));
+            $def->setFactoryMethod($definition->getFactoryMethod());
         }
         if (isset($changes['factory_service'])) {
-            $def->setFactoryService($definition->getFactoryService(false));
+            $def->setFactoryService($definition->getFactoryService());
         }
         if (isset($changes['factory'])) {
             $def->setFactory($definition->getFactory());

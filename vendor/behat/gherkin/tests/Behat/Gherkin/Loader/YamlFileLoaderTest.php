@@ -32,12 +32,12 @@ class YamlFileLoaderTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('Addition', $features[0]->getTitle());
         $this->assertEquals(2, $features[0]->getLine());
         $this->assertEquals('en', $features[0]->getLanguage());
-        $this->assertEquals(<<<EOS
+        $expectedDescription = <<<EOS
 In order to avoid silly mistakes
 As a math idiot
 I want to be told the sum of two numbers
-EOS
-        , $features[0]->getDescription());
+EOS;
+        $this->assertEquals($expectedDescription, $features[0]->getDescription());
 
         $scenarios = $features[0]->getScenarios();
 
@@ -49,6 +49,8 @@ EOS
         $this->assertEquals(4, count($steps));
         $this->assertEquals(9, $steps[1]->getLine());
         $this->assertEquals('And', $steps[1]->getType());
+        $this->assertEquals('And', $steps[1]->getKeyword());
+        $this->assertEquals('Given', $steps[1]->getKeywordType());
         $this->assertEquals('I have entered 12 into the calculator', $steps[1]->getText());
 
         $this->assertInstanceOf('Behat\Gherkin\Node\ScenarioNode', $scenarios[1]);
@@ -58,6 +60,8 @@ EOS
         $this->assertEquals(4, count($steps));
         $this->assertEquals(16, $steps[2]->getLine());
         $this->assertEquals('When', $steps[2]->getType());
+        $this->assertEquals('When', $steps[2]->getKeyword());
+        $this->assertEquals('When', $steps[2]->getKeywordType());
         $this->assertEquals('I press div', $steps[2]->getText());
     }
 }

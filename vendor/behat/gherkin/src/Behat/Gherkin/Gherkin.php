@@ -1,19 +1,20 @@
 <?php
 
-namespace Behat\Gherkin;
-
-use Behat\Gherkin\Loader\LoaderInterface,
-    Behat\Gherkin\Filter\FilterInterface,
-    Behat\Gherkin\Filter\LineFilter,
-    Behat\Gherkin\Filter\LineRangeFilter;
-
 /*
  * This file is part of the Behat Gherkin.
- * (c) 2011 Konstantin Kudryashov <ever.zet@gmail.com>
+ * (c) Konstantin Kudryashov <ever.zet@gmail.com>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
+
+namespace Behat\Gherkin;
+
+use Behat\Gherkin\Filter\FeatureFilterInterface;
+use Behat\Gherkin\Filter\LineFilter;
+use Behat\Gherkin\Filter\LineRangeFilter;
+use Behat\Gherkin\Loader\FileLoaderInterface;
+use Behat\Gherkin\Loader\LoaderInterface;
 
 /**
  * Gherkin manager.
@@ -22,19 +23,14 @@ use Behat\Gherkin\Loader\LoaderInterface,
  */
 class Gherkin
 {
-    protected $freeze  = true;
-    protected $loaders = array();
-    protected $filters = array();
-
     /**
-     * Either to freeze features after loading or not.
-     *
-     * @param Boolean $freeze To freeze?
+     * @var LoaderInterface[]
      */
-    public function setFreeze($freeze = true)
-    {
-        $this->freeze = (bool) $freeze;
-    }
+    protected $loaders = array();
+    /**
+     * @var FeatureFilterInterface[]
+     */
+    protected $filters = array();
 
     /**
      * Adds loader to manager.
@@ -49,11 +45,22 @@ class Gherkin
     /**
      * Adds filter to manager.
      *
-     * @param FilterInterface $filter Feature/Scenario filter
+     * @param FeatureFilterInterface $filter Feature filter
      */
-    public function addFilter(FilterInterface $filter)
+    public function addFilter(FeatureFilterInterface $filter)
     {
         $this->filters[] = $filter;
+    }
+
+    /**
+     * Sets filters to the parser.
+     *
+     * @param FeatureFilterInterface[] $filters
+     */
+    public function setFilters(array $filters)
+    {
+        $this->filters = array();
+        array_map(array($this, 'addFilter'), $filters);
     }
 
     /**
@@ -64,19 +71,19 @@ class Gherkin
     public function setBasePath($path)
     {
         foreach ($this->loaders as $loader) {
-            $loader->setBasePath($path);
+            if ($loader instanceof FileLoaderInterface) {
+                $loader->setBasePath($path);
+            }
         }
     }
 
     /**
      * Loads & filters resource with added loaders.
      *
-     * @param mixed $resource Resource to load
-     * @param array $filters  Additional filters
+     * @param mixed                    $resource Resource to load
+     * @param FeatureFilterInterface[] $filters  Additional filters
      *
      * @return array
-     *
-     * @throws \InvalidArgumentException
      */
     public function load($resource, array $filters = array())
     {
@@ -94,41 +101,29 @@ class Gherkin
         $loader = $this->resolveLoader($resource);
 
         if (null === $loader) {
-            if ($resource) {
-                $message = sprintf('Can\'t find applicable feature loader for: "%s"', $resource);
-            } else {
-                $message = sprintf('Can\'t find applicable feature loader');
-            }
-
-            throw new \InvalidArgumentException(
-                $message."\n".
-                'Maybe you\'ve forgot to create `features/` folder?'
-            );
+            return array();
         }
 
-        $features = $loader->load($resource);
-        foreach ($features as $i => $feature) {
+        $features = array();
+        foreach ($loader->load($resource) as $feature) {
             foreach ($filters as $filter) {
-                $filter->filterFeature($feature);
+                $feature = $filter->filterFeature($feature);
 
                 if (!$feature->hasScenarios() && !$filter->isFeatureMatch($feature)) {
-                    unset($features[$i]);
-                    continue;
+                    continue 2;
                 }
             }
 
-            if ($this->freeze) {
-                $feature->freeze();
-            }
+            $features[] = $feature;
         }
 
-        return array_values($features);
+        return $features;
     }
 
     /**
      * Resolves loader by resource.
      *
-     * @param mixed $resoruce Resource to load
+     * @param mixed $resource Resource to load
      *
      * @return LoaderInterface
      */

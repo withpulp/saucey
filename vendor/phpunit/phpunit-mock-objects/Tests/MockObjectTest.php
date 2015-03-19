@@ -2,7 +2,7 @@
 /**
  * PHPUnit
  *
- * Copyright (c) 2010-2013, Sebastian Bergmann <sb@sebastian-bergmann.de>.
+ * Copyright (c) 2010-2014, Sebastian Bergmann <sebastian@phpunit.de>.
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -35,30 +35,21 @@
  * POSSIBILITY OF SUCH DAMAGE.
  *
  * @package    PHPUnit_MockObject
- * @author     Sebastian Bergmann <sb@sebastian-bergmann.de>
- * @copyright  2010-2013 Sebastian Bergmann <sb@sebastian-bergmann.de>
+ * @author     Sebastian Bergmann <sebastian@phpunit.de>
+ * @copyright  2010-2014 Sebastian Bergmann <sebastian@phpunit.de>
  * @license    http://www.opensource.org/licenses/BSD-3-Clause  The BSD 3-Clause License
  * @link       http://www.phpunit.de/
  * @since      File available since Release 3.0.0
  */
 
-require_once dirname(__FILE__) . DIRECTORY_SEPARATOR . '_files' . DIRECTORY_SEPARATOR . 'AbstractMockTestClass.php';
-require_once dirname(__FILE__) . DIRECTORY_SEPARATOR . '_files' . DIRECTORY_SEPARATOR . 'AnInterface.php';
-require_once dirname(__FILE__) . DIRECTORY_SEPARATOR . '_files' . DIRECTORY_SEPARATOR . 'FunctionCallback.php';
-require_once dirname(__FILE__) . DIRECTORY_SEPARATOR . '_files' . DIRECTORY_SEPARATOR . 'MethodCallback.php';
-require_once dirname(__FILE__) . DIRECTORY_SEPARATOR . '_files' . DIRECTORY_SEPARATOR . 'MethodCallbackByReference.php';
-require_once dirname(__FILE__) . DIRECTORY_SEPARATOR . '_files' . DIRECTORY_SEPARATOR . 'PartialMockTestClass.php';
-require_once dirname(__FILE__) . DIRECTORY_SEPARATOR . '_files' . DIRECTORY_SEPARATOR . 'SomeClass.php';
-require_once dirname(__FILE__) . DIRECTORY_SEPARATOR . '_files' . DIRECTORY_SEPARATOR . 'StaticMockTestClass.php';
-
 /**
  *
  *
  * @package    PHPUnit_MockObject
- * @author     Sebastian Bergmann <sb@sebastian-bergmann.de>
+ * @author     Sebastian Bergmann <sebastian@phpunit.de>
  * @author     Patrick Mueller <elias0@gmx.net>
  * @author     Frank Kleine <mikey@stubbles.net>
- * @copyright  2010-2013 Sebastian Bergmann <sb@sebastian-bergmann.de>
+ * @copyright  2010-2014 Sebastian Bergmann <sebastian@phpunit.de>
  * @license    http://www.opensource.org/licenses/BSD-3-Clause  The BSD 3-Clause License
  * @version    Release: @package_version@
  * @link       http://www.phpunit.de/
@@ -73,12 +64,27 @@ class Framework_MockObjectTest extends PHPUnit_Framework_TestCase
              ->method('doSomething');
     }
 
+    public function testMockedMethodIsNeverCalledWithParameter()
+    {
+        $mock = $this->getMock('SomeClass');
+        $mock->expects($this->never())
+            ->method('doSomething')
+            ->with('someArg');
+    }
+
     public function testMockedMethodIsNotCalledWhenExpectsAnyWithParameter()
     {
         $mock = $this->getMock('SomeClass');
         $mock->expects($this->any())
              ->method('doSomethingElse')
              ->with('someArg');
+    }
+
+    public function testMockedMethodIsNotCalledWhenMethodSpecifiedDirectlyWithParameter()
+    {
+        $mock = $this->getMock('SomeClass');
+        $mock->method('doSomethingElse')
+            ->with('someArg');
     }
 
     public function testMockedMethodIsCalledAtLeastOnce()
@@ -97,6 +103,46 @@ class Framework_MockObjectTest extends PHPUnit_Framework_TestCase
              ->method('doSomething');
 
         $mock->doSomething();
+        $mock->doSomething();
+    }
+
+    public function testMockedMethodIsCalledAtLeastTwice()
+    {
+        $mock = $this->getMock('AnInterface');
+        $mock->expects($this->atLeast(2))
+             ->method('doSomething');
+
+        $mock->doSomething();
+        $mock->doSomething();
+    }
+
+    public function testMockedMethodIsCalledAtLeastTwice2()
+    {
+        $mock = $this->getMock('AnInterface');
+        $mock->expects($this->atLeast(2))
+             ->method('doSomething');
+
+        $mock->doSomething();
+        $mock->doSomething();
+        $mock->doSomething();
+    }
+
+    public function testMockedMethodIsCalledAtMostTwice()
+    {
+        $mock = $this->getMock('AnInterface');
+        $mock->expects($this->atMost(2))
+             ->method('doSomething');
+
+        $mock->doSomething();
+        $mock->doSomething();
+    }
+
+    public function testMockedMethodIsCalledAtMosttTwice2()
+    {
+        $mock = $this->getMock('AnInterface');
+        $mock->expects($this->atMost(2))
+             ->method('doSomething');
+
         $mock->doSomething();
     }
 
@@ -138,9 +184,23 @@ class Framework_MockObjectTest extends PHPUnit_Framework_TestCase
 
         try {
             $mock->doSomething();
+        } catch (Exception $e) {
+            return;
         }
 
-        catch (Exception $e) {
+        $this->fail();
+    }
+
+    public function testStubbedWillThrowException()
+    {
+        $mock = $this->getMock('AnInterface');
+        $mock->expects($this->any())
+             ->method('doSomething')
+             ->willThrowException(new Exception);
+
+        try {
+            $mock->doSomething();
+        } catch (Exception $e) {
             return;
         }
 
@@ -153,6 +213,13 @@ class Framework_MockObjectTest extends PHPUnit_Framework_TestCase
         $mock->expects($this->any())
              ->method('doSomething')
              ->will($this->returnValue('something'));
+
+        $this->assertEquals('something', $mock->doSomething());
+
+        $mock = $this->getMock('AnInterface');
+        $mock->expects($this->any())
+             ->method('doSomething')
+             ->willReturn('something');
 
         $this->assertEquals('something', $mock->doSomething());
     }
@@ -172,6 +239,32 @@ class Framework_MockObjectTest extends PHPUnit_Framework_TestCase
         $this->assertEquals('d', $mock->doSomething('a', 'b', 'c'));
         $this->assertEquals('h', $mock->doSomething('e', 'f', 'g'));
         $this->assertEquals(NULL, $mock->doSomething('foo', 'bar'));
+
+        $mock = $this->getMock('AnInterface');
+        $mock->expects($this->any())
+             ->method('doSomething')
+             ->willReturnMap($map);
+
+        $this->assertEquals('d', $mock->doSomething('a', 'b', 'c'));
+        $this->assertEquals('h', $mock->doSomething('e', 'f', 'g'));
+        $this->assertEquals(NULL, $mock->doSomething('foo', 'bar'));
+    }
+
+    public function testStubbedReturnArgument()
+    {
+        $mock = $this->getMock('AnInterface');
+        $mock->expects($this->any())
+             ->method('doSomething')
+             ->will($this->returnArgument(1));
+
+        $this->assertEquals('b', $mock->doSomething('a', 'b'));
+
+        $mock = $this->getMock('AnInterface');
+        $mock->expects($this->any())
+             ->method('doSomething')
+             ->willReturnArgument(1);
+
+        $this->assertEquals('b', $mock->doSomething('a', 'b'));
     }
 
     public function testFunctionCallback()
@@ -182,6 +275,51 @@ class Framework_MockObjectTest extends PHPUnit_Framework_TestCase
              ->will($this->returnCallback('functionCallback'));
 
         $this->assertEquals('pass', $mock->doSomething('foo', 'bar'));
+
+        $mock = $this->getMock('SomeClass', array('doSomething'), array(), '', FALSE);
+        $mock->expects($this->once())
+             ->method('doSomething')
+             ->willReturnCallback('functionCallback');
+
+        $this->assertEquals('pass', $mock->doSomething('foo', 'bar'));
+    }
+
+    public function testStubbedReturnSelf()
+    {
+        $mock = $this->getMock('AnInterface');
+        $mock->expects($this->any())
+             ->method('doSomething')
+             ->will($this->returnSelf());
+
+        $this->assertEquals($mock, $mock->doSomething());
+
+        $mock = $this->getMock('AnInterface');
+        $mock->expects($this->any())
+             ->method('doSomething')
+             ->willReturnSelf();
+
+        $this->assertEquals($mock, $mock->doSomething());
+    }
+
+    public function testStubbedReturnOnConsecutiveCalls()
+    {
+        $mock = $this->getMock('AnInterface');
+        $mock->expects($this->any())
+             ->method('doSomething')
+             ->will($this->onConsecutiveCalls('a', 'b', 'c'));
+
+        $this->assertEquals('a', $mock->doSomething());
+        $this->assertEquals('b', $mock->doSomething());
+        $this->assertEquals('c', $mock->doSomething());
+
+        $mock = $this->getMock('AnInterface');
+        $mock->expects($this->any())
+             ->method('doSomething')
+             ->willReturnOnConsecutiveCalls('a', 'b', 'c');
+
+        $this->assertEquals('a', $mock->doSomething());
+        $this->assertEquals('b', $mock->doSomething());
+        $this->assertEquals('c', $mock->doSomething());
     }
 
     public function testStaticMethodCallback()
@@ -276,47 +414,53 @@ class Framework_MockObjectTest extends PHPUnit_Framework_TestCase
         $this->assertNotEquals(get_class($mock1), get_class($mock2));
     }
 
-    public function testStubbedReturnValueForStaticMethod()
-    {
-        $this->getMockClass(
-          'StaticMockTestClass',
-          array('doSomething'),
-          array(),
-          'StaticMockTestClassMock'
-        );
-
-        StaticMockTestClassMock::staticExpects($this->any())
-          ->method('doSomething')
-          ->will($this->returnValue('something'));
-
-        $this->assertEquals(
-          'something', StaticMockTestClassMock::doSomething()
-        );
-    }
-
-    public function testStubbedReturnValueForStaticMethod2()
-    {
-        $this->getMockClass(
-          'StaticMockTestClass',
-          array('doSomething'),
-          array(),
-          'StaticMockTestClassMock2'
-        );
-
-        StaticMockTestClassMock2::staticExpects($this->any())
-          ->method('doSomething')
-          ->will($this->returnValue('something'));
-
-        $this->assertEquals(
-          'something', StaticMockTestClassMock2::doSomethingElse()
-        );
-    }
-
     public function testGetMockForAbstractClass()
     {
         $mock = $this->getMock('AbstractMockTestClass');
         $mock->expects($this->never())
              ->method('doSomething');
+    }
+
+    public function traversableProvider()
+    {
+        return array(
+          array('Traversable'),
+          array('\Traversable'),
+          array('TraversableMockTestInterface'),
+          array(array('Traversable')),
+          array(array('Iterator','Traversable')),
+          array(array('\Iterator','\Traversable'))
+        );
+    }
+
+    /**
+     * @dataProvider traversableProvider
+     */
+    public function testGetMockForTraversable($type)
+    {
+        $mock = $this->getMock($type);
+        $this->assertInstanceOf('Traversable', $mock);
+    }
+
+    public function testMultipleInterfacesCanBeMockedInSingleObject()
+    {
+        $mock = $this->getMock(array('AnInterface', 'AnotherInterface'));
+        $this->assertInstanceOf('AnInterface', $mock);
+        $this->assertInstanceOf('AnotherInterface', $mock);
+    }
+
+    /**
+     * @requires PHP 5.4.0
+     */
+    public function testGetMockForTrait()
+    {
+        $mock = $this->getMockForTrait('AbstractTrait');
+        $mock->expects($this->never())->method('doSomething');
+
+        $parent = get_parent_class($mock);
+        $traits = class_uses($parent, FALSE);
+
+        $this->assertContains('AbstractTrait', $traits);
     }
 
     public function testClonedMockObjectShouldStillEqualTheOriginal()
@@ -360,65 +504,6 @@ class Framework_MockObjectTest extends PHPUnit_Framework_TestCase
         $mock->foo($y);
     }
 
-    public function testStaticMethodCallWithArgumentCloningEnabled()
-    {
-        $expectedObject = new StdClass;
-
-        $this->getMockClass(
-          'StaticMockTestClass',
-          array('doSomething'),
-          array(),
-          'StaticMockTestClassMock3',
-          FALSE,
-          TRUE,
-          TRUE,
-          TRUE
-        );
-
-        $actualArguments = array();
-
-        StaticMockTestClassMock3::staticExpects($this->any())
-        ->method('doSomething')
-        ->will($this->returnCallback(function() use (&$actualArguments) {
-            $actualArguments = func_get_args();
-        }));
-
-        StaticMockTestClassMock3::doSomething($expectedObject);
-
-        $this->assertEquals(1, count($actualArguments));
-        $this->assertNotSame($expectedObject, $actualArguments[0]);
-    }
-
-    public function testStaticMethodCallWithArgumentCloningDisabled()
-    {
-        $expectedObject = new StdClass;
-
-        $this->getMockClass(
-          'StaticMockTestClass',
-          array('doSomething'),
-          array(),
-          'StaticMockTestClassMock4',
-          FALSE,
-          TRUE,
-          TRUE,
-          FALSE
-        );
-
-        $actualArguments = array();
-
-        StaticMockTestClassMock4::staticExpects($this->any())
-        ->method('doSomething')
-        ->will($this->returnCallback(function() use (&$actualArguments) {
-            $actualArguments = func_get_args();
-        }));
-
-        StaticMockTestClassMock4::doSomething($expectedObject);
-
-        $this->assertEquals(1, count($actualArguments));
-        $this->assertEquals($expectedObject, $actualArguments[0]);
-        $this->assertSame($expectedObject, $actualArguments[0]);
-    }
-
     public function testObjectMethodCallWithArgumentCloningEnabled()
     {
         $expectedObject = new StdClass;
@@ -432,7 +517,7 @@ class Framework_MockObjectTest extends PHPUnit_Framework_TestCase
 
         $mock->expects($this->any())
         ->method('doSomethingElse')
-        ->will($this->returnCallback(function() use (&$actualArguments) {
+        ->will($this->returnCallback(function () use (&$actualArguments) {
             $actualArguments = func_get_args();
         }));
 
@@ -456,7 +541,7 @@ class Framework_MockObjectTest extends PHPUnit_Framework_TestCase
 
         $mock->expects($this->any())
         ->method('doSomethingElse')
-        ->will($this->returnCallback(function() use (&$actualArguments) {
+        ->will($this->returnCallback(function () use (&$actualArguments) {
             $actualArguments = func_get_args();
         }));
 
@@ -494,7 +579,7 @@ class Framework_MockObjectTest extends PHPUnit_Framework_TestCase
         } catch (PHPUnit_Framework_ExpectationFailedException $e) {
             $this->assertSame(
                 "Expectation failed for method name is equal to <string:right> when invoked 1 time(s).\n"
-                . 'Method was expected to be called 1 times, actually called 0 times.',
+                . "Method was expected to be called 1 times, actually called 0 times.\n",
                 $e->getMessage()
             );
         }
@@ -515,7 +600,48 @@ class Framework_MockObjectTest extends PHPUnit_Framework_TestCase
         } catch (PHPUnit_Framework_ExpectationFailedException $e) {
             $this->assertSame(
                 "Expectation failed for method name is equal to <string:right> when invoked 1 time(s).\n"
-                . 'Method was expected to be called 1 times, actually called 0 times.',
+                . "Method was expected to be called 1 times, actually called 0 times.\n",
+                $e->getMessage()
+            );
+        }
+
+        $this->resetMockObjects();
+    }
+
+    public function testVerificationOfMethodNameFailsWithWrongParameters()
+    {
+        $mock = $this->getMock('SomeClass', array('right', 'wrong'), array(), '', TRUE, TRUE, TRUE);
+        $mock->expects($this->once())
+             ->method('right')
+             ->with(array('first', 'second'));
+
+        try {
+            $mock->right(array('second'));
+        } catch (PHPUnit_Framework_ExpectationFailedException $e) {
+            $this->assertSame(
+                "Expectation failed for method name is equal to <string:right> when invoked 1 time(s)\n"
+                . "Parameter 0 for invocation SomeClass::right(Array (...)) does not match expected value.\n"
+                . "Failed asserting that two arrays are equal.",
+                $e->getMessage()
+            );
+        }
+
+        try {
+            $mock->__phpunit_verify();
+            $this->fail('Expected exception');
+        } catch (PHPUnit_Framework_ExpectationFailedException $e) {
+            $this->assertSame(
+                "Expectation failed for method name is equal to <string:right> when invoked 1 time(s).\n"
+                . "Parameter 0 for invocation SomeClass::right(Array (...)) does not match expected value.\n"
+                . "Failed asserting that two arrays are equal.\n"
+                . "--- Expected\n"
+                . "+++ Actual\n"
+                . "@@ @@\n"
+                . " Array (\n"
+                . "-    0 => 'first'\n"
+                . "-    1 => 'second'\n"
+                . "+    0 => 'second'\n"
+                . " )\n",
                 $e->getMessage()
             );
         }
@@ -564,9 +690,35 @@ class Framework_MockObjectTest extends PHPUnit_Framework_TestCase
     }
 
     /**
+     * @ticket 199
+     */
+    public function testWithAnythingInsteadOfWithAnyParameters()
+    {
+        $mock = $this->getMock('SomeClass', array('right'), array(), '', TRUE, TRUE, TRUE);
+        $mock->expects($this->once())
+             ->method('right')
+             ->with($this->anything());
+
+        try {
+            $mock->right();
+            $this->fail('Expected exception');
+        } catch (PHPUnit_Framework_ExpectationFailedException $e) {
+            $this->assertSame(
+                "Expectation failed for method name is equal to <string:right> when invoked 1 time(s)\n" .
+                "Parameter count for invocation SomeClass::right() is too low.\n" .
+                "To allow 0 or more parameters with any value, omit ->with() or use ->withAnyParameters() instead.",
+                $e->getMessage()
+            );
+        }
+
+        $this->resetMockObjects();
+    }
+
+    /**
      * See https://github.com/sebastianbergmann/phpunit-mock-objects/issues/81
      */
-    public function testMockArgumentsPassedByReference() {
+    public function testMockArgumentsPassedByReference()
+    {
         $foo = $this->getMockBuilder('MethodCallbackByReference')
                     ->setMethods(array('bar'))
                     ->disableOriginalConstructor()
@@ -587,7 +739,8 @@ class Framework_MockObjectTest extends PHPUnit_Framework_TestCase
     /**
      * See https://github.com/sebastianbergmann/phpunit-mock-objects/issues/81
      */
-    public function testMockArgumentsPassedByReference2() {
+    public function testMockArgumentsPassedByReference2()
+    {
         $foo = $this->getMockBuilder('MethodCallbackByReference')
                     ->disableOriginalConstructor()
                     ->disableArgumentCloning()
@@ -611,7 +764,8 @@ class Framework_MockObjectTest extends PHPUnit_Framework_TestCase
     /**
      * https://github.com/sebastianbergmann/phpunit-mock-objects/issues/116
      */
-    public function testMockArgumentsPassedByReference3() {
+    public function testMockArgumentsPassedByReference3()
+    {
         $foo = $this->getMockBuilder('MethodCallbackByReference')
                     ->setMethods(array('bar'))
                     ->disableOriginalConstructor()
@@ -632,7 +786,8 @@ class Framework_MockObjectTest extends PHPUnit_Framework_TestCase
     /**
      * https://github.com/sebastianbergmann/phpunit/issues/796
      */
-    public function testMockArgumentsPassedByReference4() {
+    public function testMockArgumentsPassedByReference4()
+    {
         $foo = $this->getMockBuilder('MethodCallbackByReference')
                     ->setMethods(array('bar'))
                     ->disableOriginalConstructor()
@@ -655,7 +810,7 @@ class Framework_MockObjectTest extends PHPUnit_Framework_TestCase
      */
     public function testCreateMockFromWsdl()
     {
-        $mock = $this->getMockFromWsdl(__DIR__ . '/_files/GoogleSearch.wsdl', 'WsdlMock');
+        $mock = $this->getMockFromWsdl(__DIR__ . '/_fixture/GoogleSearch.wsdl', 'WsdlMock');
         $this->assertStringStartsWith(
             'Mock_WsdlMock_',
             get_class($mock)
@@ -667,7 +822,7 @@ class Framework_MockObjectTest extends PHPUnit_Framework_TestCase
      */
     public function testCreateNamespacedMockFromWsdl()
     {
-        $mock = $this->getMockFromWsdl(__DIR__ . '/_files/GoogleSearch.wsdl', 'My\\Space\\WsdlMock');
+        $mock = $this->getMockFromWsdl(__DIR__ . '/_fixture/GoogleSearch.wsdl', 'My\\Space\\WsdlMock');
         $this->assertStringStartsWith(
             'Mock_WsdlMock_',
             get_class($mock)
@@ -679,8 +834,43 @@ class Framework_MockObjectTest extends PHPUnit_Framework_TestCase
      */
     public function testCreateTwoMocksOfOneWsdlFile()
     {
-        $mock = $this->getMockFromWsdl(__DIR__ . '/_files/GoogleSearch.wsdl');
-        $mock = $this->getMockFromWsdl(__DIR__ . '/_files/GoogleSearch.wsdl');
+        $mock = $this->getMockFromWsdl(__DIR__ . '/_fixture/GoogleSearch.wsdl');
+        $mock = $this->getMockFromWsdl(__DIR__ . '/_fixture/GoogleSearch.wsdl');
+    }
+
+    /**
+     * @see    https://github.com/sebastianbergmann/phpunit-mock-objects/issues/156
+     * @ticket 156
+     */
+    public function testInterfaceWithStaticMethodCanBeStubbed()
+    {
+        $this->assertInstanceOf(
+            'InterfaceWithStaticMethod',
+            $this->getMock('InterfaceWithStaticMethod')
+        );
+    }
+
+    /**
+     * @expectedException PHPUnit_Framework_MockObject_BadMethodCallException
+     */
+    public function testInvokingStubbedStaticMethodRaisesException()
+    {
+        $mock = $this->getMock('ClassWithStaticMethod');
+        $mock->staticMethod();
+    }
+
+    /**
+     * @see    https://github.com/sebastianbergmann/phpunit-mock-objects/issues/171
+     * @ticket 171
+     */
+    public function testStubForClassThatImplementsSerializableCanBeCreatedWithoutInvokingTheConstructor()
+    {
+        $this->assertInstanceOf(
+            'ClassThatImplementsSerializable',
+            $this->getMockBuilder('ClassThatImplementsSerializable')
+                 ->disableOriginalConstructor()
+                 ->getMock()
+        );
     }
 
     private function resetMockObjects()

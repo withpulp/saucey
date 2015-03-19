@@ -7,11 +7,11 @@ $_SERVER['argv'][1] = '--no-configuration';
 $_SERVER['argv'][2] = 'Issue765Test';
 $_SERVER['argv'][3] = dirname(__FILE__).'/765/Issue765Test.php';
 
-require_once dirname(dirname(dirname(dirname(__FILE__)))) . '/PHPUnit/Autoload.php';
+require __DIR__ . '/../../bootstrap.php';
 PHPUnit_TextUI_Command::main();
 ?>
 --EXPECTF--
-PHPUnit %s by Sebastian Bergmann.
+PHPUnit %s by Sebastian Bergmann and contributors.
 
 .F
 
@@ -22,7 +22,5 @@ There was 1 failure:
 1) Warning
 The data provider specified for Issue765Test::testDependent is invalid.
 
-
 FAILURES!
 Tests: 2, Assertions: 1, Failures: 1.
-

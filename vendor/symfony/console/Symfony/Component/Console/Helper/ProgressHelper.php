@@ -20,8 +20,7 @@ use Symfony\Component\Console\Output\OutputInterface;
  * @author Chris Jones <leeked@gmail.com>
  * @author Fabien Potencier <fabien@symfony.com>
  *
- * @deprecated since version 2.5, to be removed in 3.0
- *             Use {@link ProgressBar} instead.
+ * @deprecated Deprecated since 2.5, to be removed in 3.0; use ProgressBar instead.
  */
 class ProgressHelper extends Helper
 {
@@ -117,13 +116,6 @@ class ProgressHelper extends Helper
         array(129600, '1 day'),
         array(604800, 'days', 86400),
     );
-
-    public function __construct($triggerDeprecationError = true)
-    {
-        if ($triggerDeprecationError) {
-            trigger_error('The '.__CLASS__.' class is deprecated since version 2.5 and will be removed in 3.0. Use the Symfony\Component\Console\Helper\ProgressBar class instead.', E_USER_DEPRECATED);
-        }
-    }
 
     /**
      * Sets the progress bar width.
@@ -267,11 +259,11 @@ class ProgressHelper extends Helper
             $redraw = true;
         }
 
-        $prevPeriod = intval($this->current / $this->redrawFreq);
+        $prevPeriod = (int) ($this->current / $this->redrawFreq);
 
         $this->current = $current;
 
-        $currPeriod = intval($this->current / $this->redrawFreq);
+        $currPeriod = (int) ($this->current / $this->redrawFreq);
         if ($redraw || $prevPeriod !== $currPeriod || $this->max === $this->current) {
             $this->display();
         }

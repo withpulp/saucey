@@ -1,16 +1,16 @@
 <?php
 
-namespace Behat\Gherkin\Keywords;
-
-use Symfony\Component\Yaml\Yaml;
-
 /*
  * This file is part of the Behat Gherkin.
- * (c) 2011 Konstantin Kudryashov <ever.zet@gmail.com>
+ * (c) Konstantin Kudryashov <ever.zet@gmail.com>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
+
+namespace Behat\Gherkin\Keywords;
+
+use Symfony\Component\Yaml\Yaml;
 
 /**
  * Cucumber-translations reader.
@@ -90,8 +90,8 @@ class CucumberKeywords extends ArrayKeywords
      */
     private function prepareStepString($keywordsString)
     {
-        if (0 === mb_strpos($keywordsString, '*|')) {
-            $keywordsString = mb_substr($keywordsString, 2);
+        if (0 === mb_strpos($keywordsString, '*|', 0, 'UTF-8')) {
+            $keywordsString = mb_substr($keywordsString, 2, mb_strlen($keywordsString, 'utf8') - 2, 'utf8');
         }
 
         return $keywordsString;

@@ -1,12 +1,5 @@
 <?php
 
-use Behat\Gherkin\Node\PyStringNode,
-    Behat\Gherkin\Node\TableNode;
-
-// order of autoloading is undefined, so we should
-// require parent class explicitly here
-require_once 'BaseFeaturesContext.php';
-
 /*
  * This file is part of the Behat.
  * (c) Konstantin Kudryashov <ever.zet@gmail.com>
@@ -15,67 +8,89 @@ require_once 'BaseFeaturesContext.php';
  * file that was distributed with this source code.
  */
 
+use Behat\Behat\Context\Context;
+use Behat\Gherkin\Node\PyStringNode;
+use Symfony\Component\Process\PhpExecutableFinder;
+use Symfony\Component\Process\Process;
+
 /**
  * Behat test suite context.
  *
- * @author      Konstantin Kudryashov <ever.zet@gmail.com>
+ * @author Konstantin Kudryashov <ever.zet@gmail.com>
  */
-class FeatureContext extends BaseFeaturesContext
+class FeatureContext implements Context
 {
     /**
-     * Environment variable
-     *
-     * @var     string
+     * @var string
      */
-    private $env;
+    private $phpBin;
     /**
-     * Last runned command name.
-     *
-     * @var     string
+     * @var Process
      */
-    private $command;
+    private $process;
     /**
-     * Last runned command output.
-     *
-     * @var     string
+     * @var string
      */
-    private $output;
-    /**
-     * Last runned command return code.
-     *
-     * @var     integer
-     */
-    private $return;
+    private $workingDir;
 
     /**
-     * Initializes context.
+     * Cleans test folders in the temporary directory.
      *
-     * @param   array   $parameters
+     * @BeforeSuite
+     * @AfterSuite
      */
-    public function __construct(array $parameters = array())
+    public static function cleanTestFolders()
     {
-        $this->useContext('hooks', new Hooks());
-        $this->useContext('support', new Support());
+        if (is_dir($dir = sys_get_temp_dir() . DIRECTORY_SEPARATOR . 'behat')) {
+            self::clearDirectory($dir);
+        }
     }
 
     /**
-     * {@inheritdoc}
+     * Prepares test folders in the temporary directory.
+     *
+     * @BeforeScenario
+     */
+    public function prepareTestFolders()
+    {
+        $dir = sys_get_temp_dir() . DIRECTORY_SEPARATOR . 'behat' . DIRECTORY_SEPARATOR .
+            md5(microtime() * rand(0, 10000));
+
+        mkdir($dir . '/features/bootstrap/i18n', 0777, true);
+
+        $phpFinder = new PhpExecutableFinder();
+        if (false === $php = $phpFinder->find()) {
+            throw new \RuntimeException('Unable to find the PHP executable.');
+        }
+        $this->workingDir = $dir;
+        $this->phpBin = $php;
+        $this->process = new Process(null);
+    }
+
+    /**
+     * Creates a file with specified name and context in current workdir.
+     *
+     * @Given /^(?:there is )?a file named "([^"]*)" with:$/
+     *
+     * @param   string       $filename name of the file (relative path)
+     * @param   PyStringNode $content  PyString string instance
      */
     public function aFileNamedWith($filename, PyStringNode $content)
     {
         $content = strtr((string) $content, array("'''" => '"""'));
-
-        // call method of one of subcontexts
-        $this->getSubcontext('support')->createFile($filename, $content);
+        $this->createFile($this->workingDir . '/' . $filename, $content);
     }
 
     /**
-     * {@inheritdoc}
+     * Moves user to the specified path.
+     *
+     * @Given /^I am in the "([^"]*)" path$/
+     *
+     * @param   string $path
      */
     public function iAmInThePath($path)
     {
-        // call method of one of subcontexts
-        $this->getSubcontext('support')->moveToNewPath($path);
+        $this->moveToNewPath($path);
     }
 
     /**
@@ -83,11 +98,11 @@ class FeatureContext extends BaseFeaturesContext
      *
      * @Given /^file "([^"]*)" should exist$/
      *
-     * @param   string  $path
+     * @param   string $path
      */
     public function fileShouldExist($path)
     {
-        \PHPUnit_Framework_Assert::assertFileExists(getcwd() . DIRECTORY_SEPARATOR . $path);
+        PHPUnit_Framework_Assert::assertFileExists($this->workingDir . DIRECTORY_SEPARATOR . $path);
     }
 
     /**
@@ -95,107 +110,80 @@ class FeatureContext extends BaseFeaturesContext
      *
      * @When /^"BEHAT_PARAMS" environment variable is set to:$/
      *
-     * @param   PyStringNode  $value
+     * @param PyStringNode $value
      */
     public function iSetEnvironmentVariable(PyStringNode $value)
     {
-        $this->env = (string) $value;
+        $this->process->setEnv(array('BEHAT_PARAMS' => (string) $value));
     }
 
     /**
      * Runs behat command with provided parameters
      *
-     * @When /^I run "behat(?: ([^"]*))?"$/
+     * @When /^I run "behat(?: ((?:\"|[^"])*))?"$/
      *
-     * @param   string  $argumentsString
+     * @param   string $argumentsString
      */
     public function iRunBehat($argumentsString = '')
     {
         $argumentsString = strtr($argumentsString, array('\'' => '"'));
 
-        if ('/' === DIRECTORY_SEPARATOR) {
-            $argumentsString .= ' 2>&1';
+        $this->process->setWorkingDirectory($this->workingDir);
+        $this->process->setCommandLine(
+            sprintf(
+                '%s %s %s %s',
+                $this->phpBin,
+                escapeshellarg(BEHAT_BIN_PATH),
+                $argumentsString,
+                strtr('--format-settings=\'{"timer": false}\'', array('\'' => '"', '"' => '\"'))
+            )
+        );
+
+        // Don't reset the LANG variable on HHVM, because it breaks HHVM itself
+        if (!defined('HHVM_VERSION')) {
+            $env = $this->process->getEnv();
+            $env['LANG'] = 'en'; // Ensures that the default language is en, whatever the OS locale is.
+            $this->process->setEnv($env);
         }
 
-        if ($this->env) {
-            exec($command = sprintf('BEHAT_PARAMS=\'%s\' %s %s %s',
-                $this->env, BEHAT_PHP_BIN_PATH, escapeshellarg(BEHAT_BIN_PATH), $argumentsString
-            ), $output, $return);
-        } else {
-            exec($command = sprintf('%s %s %s --no-time',
-                BEHAT_PHP_BIN_PATH, escapeshellarg(BEHAT_BIN_PATH), $argumentsString
-            ), $output, $return);
-        }
-
-        $this->command = 'behat ' . $argumentsString;
-        $this->output  = trim(implode("\n", $output));
-        $this->return  = $return;
+        $this->process->start();
+        $this->process->wait();
     }
 
     /**
-     * @When I escape ansi characters in the output
-     */
-    public function iEscapeAnsiCharactersInTheOutput()
-    {
-        $this->output = addcslashes($this->output, "\033");
-    }
-
-    /**
-     * Checks whether previously runned command passes|failes with provided output.
+     * Checks whether previously ran command passes|fails with provided output.
      *
      * @Then /^it should (fail|pass) with:$/
      *
-     * @param   string       $success    "fail" or "pass"
-     * @param   PyStringNode $text       PyString text instance
+     * @param   string       $success "fail" or "pass"
+     * @param   PyStringNode $text    PyString text instance
      */
     public function itShouldPassWith($success, PyStringNode $text)
     {
-        if ('fail' === $success) {
-            \PHPUnit_Framework_Assert::assertNotEquals(0, $this->return);
-        } else {
-            \PHPUnit_Framework_Assert::assertEquals(0, $this->return);
-        }
-
-        $text = strtr($text, array('\'\'\'' => '"""', '%PATH%' => realpath(getcwd())));
-
-        // windows path fix
-        if ('/' !== DIRECTORY_SEPARATOR) {
-            $text = preg_replace_callback('/ features\/[^\n ]+/', function($matches) {
-                return str_replace('/', DIRECTORY_SEPARATOR, $matches[0]);
-            }, (string) $text);
-            $text = preg_replace_callback('/\<span class\="path"\>features\/[^\<]+/', function($matches) {
-                return str_replace('/', DIRECTORY_SEPARATOR, $matches[0]);
-            }, (string) $text);
-            $text = preg_replace_callback('/\+[fd] [^ ]+/', function($matches) {
-                return str_replace('/', DIRECTORY_SEPARATOR, $matches[0]);
-            }, (string) $text);
-        }
-
-        \PHPUnit_Framework_Assert::assertEquals((string) $text, $this->output);
+        $this->itShouldFail($success);
+        $this->theOutputShouldContain($text);
     }
 
     /**
      * Checks whether specified file exists and contains specified string.
      *
-     * @Given /^"([^"]*)" file should contain:$/
+     * @Then /^"([^"]*)" file should contain:$/
      *
-     * @param   string       $path   file path
-     * @param   PyStringNode $text   file content
+     * @param   string       $path file path
+     * @param   PyStringNode $text file content
      */
     public function fileShouldContain($path, PyStringNode $text)
     {
-        \PHPUnit_Framework_Assert::assertFileExists($path);
-        \PHPUnit_Framework_Assert::assertEquals((string) $text, trim(file_get_contents($path)));
-    }
+        $path = $this->workingDir . '/' . $path;
+        PHPUnit_Framework_Assert::assertFileExists($path);
 
-    /**
-     * Prints last command output string.
-     *
-     * @Then display last command output
-     */
-    public function displayLastCommandOutput()
-    {
-        $this->printDebug("`" . $this->command . "`:\n" . $this->output);
+        $fileContent = trim(file_get_contents($path));
+        // Normalize the line endings in the output
+        if ("\n" !== PHP_EOL) {
+            $fileContent = str_replace(PHP_EOL, "\n", $fileContent);
+        }
+
+        PHPUnit_Framework_Assert::assertEquals($this->getExpectedOutput($text), $fileContent);
     }
 
     /**
@@ -203,41 +191,118 @@ class FeatureContext extends BaseFeaturesContext
      *
      * @Then the output should contain:
      *
-     * @param   PyStringNode $text   PyString text instance
+     * @param   PyStringNode $text PyString text instance
      */
     public function theOutputShouldContain(PyStringNode $text)
     {
-        $text = strtr($text, array('\'\'\'' => '"""', '%PATH%' => realpath(getcwd())));
+        PHPUnit_Framework_Assert::assertContains($this->getExpectedOutput($text), $this->getOutput());
+    }
+
+    private function getExpectedOutput(PyStringNode $expectedText)
+    {
+        $text = strtr($expectedText, array('\'\'\'' => '"""', '%%TMP_DIR%%' => sys_get_temp_dir() . DIRECTORY_SEPARATOR));
 
         // windows path fix
         if ('/' !== DIRECTORY_SEPARATOR) {
-            $text = preg_replace_callback('/ features\/[^\n ]+/', function($matches) {
-                return str_replace('/', DIRECTORY_SEPARATOR, $matches[0]);
-            }, (string) $text);
-            $text = preg_replace_callback('/\<span class\="path"\>features\/[^\<]+/', function($matches) {
-                return str_replace('/', DIRECTORY_SEPARATOR, $matches[0]);
-            }, (string) $text);
-            $text = preg_replace_callback('/\+[fd] [^ ]+/', function($matches) {
-                return str_replace('/', DIRECTORY_SEPARATOR, $matches[0]);
-            }, (string) $text);
+            $text = preg_replace_callback(
+                '/ features\/[^\n ]+/', function ($matches) {
+                    return str_replace('/', DIRECTORY_SEPARATOR, $matches[0]);
+                }, $text
+            );
+            $text = preg_replace_callback(
+                '/\<span class\="path"\>features\/[^\<]+/', function ($matches) {
+                    return str_replace('/', DIRECTORY_SEPARATOR, $matches[0]);
+                }, $text
+            );
+            $text = preg_replace_callback(
+                '/\+[fd] [^ ]+/', function ($matches) {
+                    return str_replace('/', DIRECTORY_SEPARATOR, $matches[0]);
+                }, $text
+            );
         }
 
-        \PHPUnit_Framework_Assert::assertContains((string) $text, $this->output);
+        return $text;
     }
 
     /**
-     * Checks whether previously runned command failed|passed.
+     * Checks whether previously ran command failed|passed.
      *
      * @Then /^it should (fail|pass)$/
      *
-     * @param   string  $success    "fail" or "pass"
+     * @param   string $success "fail" or "pass"
      */
     public function itShouldFail($success)
     {
         if ('fail' === $success) {
-            \PHPUnit_Framework_Assert::assertNotEquals(0, $this->return);
+            if (0 === $this->getExitCode()) {
+                echo 'Actual output:' . PHP_EOL . PHP_EOL . $this->getOutput();
+            }
+
+            PHPUnit_Framework_Assert::assertNotEquals(0, $this->getExitCode());
         } else {
-            \PHPUnit_Framework_Assert::assertEquals(0, $this->return);
+            if (0 !== $this->getExitCode()) {
+                echo 'Actual output:' . PHP_EOL . PHP_EOL . $this->getOutput();
+            }
+
+            PHPUnit_Framework_Assert::assertEquals(0, $this->getExitCode());
         }
+    }
+
+    private function getExitCode()
+    {
+        return $this->process->getExitCode();
+    }
+
+    private function getOutput()
+    {
+        $output = $this->process->getErrorOutput() . $this->process->getOutput();
+
+        // Normalize the line endings in the output
+        if ("\n" !== PHP_EOL) {
+            $output = str_replace(PHP_EOL, "\n", $output);
+        }
+
+        // Replace wrong warning message of HHVM
+        $output = str_replace('Notice: Undefined index: ', 'Notice: Undefined offset: ', $output);
+
+        return trim(preg_replace("/ +$/m", '', $output));
+    }
+
+    private function createFile($filename, $content)
+    {
+        $path = dirname($filename);
+        if (!is_dir($path)) {
+            mkdir($path, 0777, true);
+        }
+
+        file_put_contents($filename, $content);
+    }
+
+    private function moveToNewPath($path)
+    {
+        $newWorkingDir = $this->workingDir .'/' . $path;
+        if (!file_exists($newWorkingDir)) {
+            mkdir($newWorkingDir, 0777, true);
+        }
+
+        $this->workingDir = $newWorkingDir;
+    }
+
+    private static function clearDirectory($path)
+    {
+        $files = scandir($path);
+        array_shift($files);
+        array_shift($files);
+
+        foreach ($files as $file) {
+            $file = $path . DIRECTORY_SEPARATOR . $file;
+            if (is_dir($file)) {
+                self::clearDirectory($file);
+            } else {
+                unlink($file);
+            }
+        }
+
+        rmdir($path);
     }
 }

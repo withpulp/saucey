@@ -2,12 +2,11 @@
 
 namespace Tests\Behat\Gherkin;
 
-use Symfony\Component\Finder\Finder;
-
-use Behat\Gherkin\Lexer,
-    Behat\Gherkin\Parser,
-    Behat\Gherkin\Keywords\ArrayKeywords,
-    Behat\Gherkin\Loader\YamlFileLoader;
+use Behat\Gherkin\Node\FeatureNode;
+use Behat\Gherkin\Lexer;
+use Behat\Gherkin\Parser;
+use Behat\Gherkin\Keywords\ArrayKeywords;
+use Behat\Gherkin\Loader\YamlFileLoader;
 
 class ParserTest extends \PHPUnit_Framework_TestCase
 {
@@ -18,16 +17,10 @@ class ParserTest extends \PHPUnit_Framework_TestCase
     {
         $data = array();
 
-        $finder = new Finder();
-        $files  = $finder->files()->name('*.yml')->in(__DIR__ . '/Fixtures/etalons');
-
-        foreach ($files as $file) {
+        foreach (glob(__DIR__ . '/Fixtures/etalons/*.yml') as $file) {
             $testname = basename($file, '.yml');
 
-            $etalonFeature      = $this->parseEtalon($testname . '.yml');
-            $fixtureFeatures    = $this->parseFixture($testname . '.feature');
-
-            $data[] = array($testname, $etalonFeature, $fixtureFeatures);
+            $data[] = array($testname);
         }
 
         return $data;
@@ -36,12 +29,13 @@ class ParserTest extends \PHPUnit_Framework_TestCase
     /**
      * @dataProvider parserTestDataProvider
      *
-     * @param   string                          $fixtureName    name of the fixture
-     * @param   Behat\Gherkin\Node\FeatureNode  $etalon         etalon feature (to test against)
-     * @param   array                           $features       array of parsed feature(s)
+     * @param string $fixtureName name of the fixture
      */
-    public function testParser($fixtureName, $etalon, array $features)
+    public function testParser($fixtureName)
     {
+        $etalon = $this->parseEtalon($fixtureName . '.yml');
+        $features = $this->parseFixture($fixtureName . '.feature');
+
         $this->assertInternalType('array', $features);
         $this->assertEquals(1, count($features));
         $fixture = $features[0];
@@ -108,6 +102,7 @@ class ParserTest extends \PHPUnit_Framework_TestCase
     protected function parseFixture($fixture)
     {
         $file = __DIR__ . '/Fixtures/features/' . $fixture;
+
         return array($this->getGherkinParser()->parse(file_get_contents($file), $file));
     }
 
@@ -115,8 +110,17 @@ class ParserTest extends \PHPUnit_Framework_TestCase
     {
         $features = $this->getYamlParser()->load(__DIR__ . '/Fixtures/etalons/' . $etalon);
         $feature  = $features[0];
-        $feature->setFile(__DIR__ . '/Fixtures/features/' . basename($etalon, '.yml') . '.feature');
 
-        return $feature;
+        return new FeatureNode(
+            $feature->getTitle(),
+            $feature->getDescription(),
+            $feature->getTags(),
+            $feature->getBackground(),
+            $feature->getScenarios(),
+            $feature->getKeyword(),
+            $feature->getLanguage(),
+            __DIR__ . '/Fixtures/features/' . basename($etalon, '.yml') . '.feature',
+            $feature->getLine()
+        );
     }
 }

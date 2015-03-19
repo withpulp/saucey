@@ -1,0 +1,110 @@
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+::                                                                ::
+::                                                                ::
+::                                                                ::
+::            SAUCEY                                              ::
+::            ------                                              ::
+::            intoxicated, drunk, or under the influence          ::
+::                                                                ::
+::                                                                ::
+::            Last night we went out to celebrate and             ::
+::            got saucey at the bar off henessy.                  ::
+::                                                                ::
+::                                                                ::
+::                                                                ::
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+Saucey is an Automation framework written in mainly PHP. This framework allows testers to:
+
+* Control headless and headed drivers with Gherkin
+* Test API endpoints with business-logic driven code
+* Test UI element with user-driven logic
+* Test arrangement of directories and availability of assets
+* Set server-side and front-end assertions
+* Report coverage and pass-fail status of suites
+* Connect test suite to a continuous integration system of choice
+
+Find out more @ http://saucey.io
+Fork the repo @ https://github.com/sajjadhossain/saucey.git
+
+MMMMMMMMMMMMMMM
+MMMMMMMMMMMMMMMMMM
+MMMMMMMMMMMMNMMMMMMMO
+NDNMMMMMMMMNNNNNNMMMMMMO
+MMMDNMMMMMMMNMNDNNNNNMMMMMMO
+MMMMMNDDMMMMNNNDDDDNMMMMMMMMMM7
+MMMMMMMMNDDNNNNDDDMNNMMMMMMMMMMM
+.?DMMMMMMMND88NNDMNNNNMMNMMMMMMMM7
+   .7NMMMMMMNDO8DNNNNMMNNMMM8DD8MM
+      ,$MMMMMMMZDD8DNMNNMMMOZOO88M
+         ~7MMMMMMMDOMDNMMMOOZZMZOM
+            +8MMMMMNMNMMM8OOOO$ZD.
+              .?NMMMMMNMMM88MZZMM
+               .O7DMMMMMMMMMODMM+,
+                   ,MDMMMMMMMDM:,M,.
+                      .8NMMZMMM,::M.
+                            .MMDI,Z:,
+                              DMM?,:8,
+                               .NNM~,O:
+                                  $MM~::. ~..~I,.,,,,,,,:O
+                                   DDMMM+...........,,,,,I=
+                             ?.?.....M8M7~:...........,,:::+
+                        ..=...........~OI+~:=........Z~,:,::~
+                    ..7.................ND?~:Z....O~,,,,:~,::~
+                 D.,.....................7I?~:7=~.,,,,,.,,::.:~
+              ..,.........................=$II~:,:,,,.,:.,,,:.:~
+             ?......................=,:~...Z~?:+~,+...,,:,,,,$.:~
+            :,...............=:.=~..........++==~?,=D...,,,,,,?.:~
+            .~~..,.. ..:I:....................$=I7+:,,D..,+=,::8.:~
+            ,,,................................O~=I~::,?,..,,,,:~.:=
+            ,,......  ..........................~=~?I::8D7..,,,,,~,:+
+            ,,....... ............................$=~?+:,?ZI,,,,:::,:=
+            ,,.......  .............................Z??=:::=$$.,,:,:.~.
+            ,,......    .............................I=I~=N7DZ.?.,:.7?=
+            ,,......     ........................,.....$=I7O=NN7?,:,,+,~
+            ,,......     ........................,......Z=+$NINDI.,:::,~
+            ,,......     ........................:.......7I+8=~~ZZI,,:$,+
+            ,.......     .........................,..II77O.~DD?=,=?,:=,$=
+            ,.......      ........................+..,I$=:,+,NM$~,=,:I=O:.
+            ........      .......................?$::ZZ~~:~,,ZNM:77=,D$OO=
+            ........      .................~:,~==$D8~Z?7+$I=:,MM~~$+?,M,M~
+            ........           .........+8IDI+++=$$7I7$7Z7$+~:MI~~++OMMNZ?
+           .........             .,,Z=++++++I77$$Z$$$$+$ZI++=,D7+=?+?M:D=~
+            ......           ..=++??++7$$$$ZZZ$ZZ$ZZZO$Z???+==DO:?+?ZN:D=+
+            ......         +D+???I$$$$ZZOOZOZZZZ8O77ZZIII???+?Z+D?O?O~=~D7
+            ......    ..,::I?7$$$ZZOZZZOOOOOZ8N77$7DZZ$77II??=7?MND+N$MOD.
+             .....   .=7:=I$OOOOOOOOOOZ88OOO$$$777$$$777II?II+=NO=NM8NIDD
+             ..... 8O8Z$$$I7ONM888888OZO88OOZ$MN7$7$$77$7IIII?OM8M8DDN$DI
+              ...MNNDDOZZZOODNMNN888O$Z8888OZ$M8$$8OOZ77$IIIIIN+MMD8NNND
+              ..8MMMMNDOOOO88DNN88DN88O8ZD8$$$8OOO8D8DO7$II$IDNNNNNNNND.
+               .$NMMMN8D888DN88OZDO7O8ZZOOOZ8OZZODO77D$8NI7D8NNNNN8NNN8
+                ,$NMMMMN88DZ8DN8O$$8OOOZOZ8DZN8OOZ8OOOO$ONNNMMMNMNNNNO
+                 ,$NMMMMMN8Z8OZDDDNDNNNNDDNOOOO88DOODDZMDNDMMMMMMDNN8
+                  ~ODMMMMNMNM88DD88D8888OOOOZOOZZ$NNNMNDMNNMNMMMMNN:
+                   =IDMMMMNDNMMNMMMMDNNMNND8DNNNODM8N8DNNNNMNMNMND
+                    .8NNMDDNNNNMNN8NDDNMNMMMNNNNNNNNNNDDNNDNMMMN~
+                      :O8NDMMMMDMMMMMNMMMMMMNNNNMDNDDDNNNDNMNM8
+                        ~OD8NMMNNNNNNNNNNNDNNN8NNNNNNNMMNNO$D
+                          .$ONZNMMMNNNNNNNNNN8NNNNNNNNMNZ$O
+                             :7Z7$OMMMMMMMMNNNNNNNNNOZO?
+                                 ,?I7Z7$ZZ8DD$7$$N7.:N
+                                       ........$8N?:.?
+                                                D?,. :
+                                                 N=. .
+                                                  $:  D
+                                                  N+. =
+                                                  .8:..?
+                                                   N=..Z
+
+==========================================================================================
+
+Getting started is as easy as:
+1) For testing against the cloud:
+1.1) saucey drunk @<tag> <environment> <browser>
+2) For testing locally:
+2.1) start_selnium <environment>
+2.2) saucey tipsy @<tag> <browser>
+
+==========================================================================================

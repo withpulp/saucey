@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright 2012-2013 Anthon Pang. All Rights Reserved.
+ * Copyright 2012-2014 Anthon Pang. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -73,9 +73,9 @@ class SauceRest
 
         $url = 'https://saucelabs.com/rest/v1/' . $url;
 
-        list($rawResults, $info) = ServiceFactory::getInstance()->getService('service.curl')->execute($requestMethod, $url, $parameters, $extraOptions);
+        list($rawResult, $info) = ServiceFactory::getInstance()->getService('service.curl')->execute($requestMethod, $url, $parameters, $extraOptions);
 
-        return json_decode($rawResults, true);
+        return json_decode($rawResult, true);
     }
 
     /**
@@ -267,10 +267,16 @@ class SauceRest
     /**
      * Get currently supported browsers: /rest/v1/info/browsers (GET)
      *
+     * @param string $termination Optional termination (one of "all", "selenium-rc", or "webdriver')
+     *
      * @return array
      */
-    public function getBrowsers()
+    public function getBrowsers($termination = false)
     {
+        if ($termination) {
+            return $this->execute('GET', 'info/browsers/' . $termination);
+        }
+
         return $this->execute('GET', 'info/browsers');
     }
 

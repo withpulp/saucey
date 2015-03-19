@@ -1,68 +1,83 @@
 <?php
 
-namespace Behat\Gherkin\Node;
-
 /*
  * This file is part of the Behat Gherkin.
- * (c) 2011 Konstantin Kudryashov <ever.zet@gmail.com>
+ * (c) Konstantin Kudryashov <ever.zet@gmail.com>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
 
+namespace Behat\Gherkin\Node;
+
 /**
- * Scenario Gherkin AST node.
+ * Represents Gherkin Scenario.
  *
  * @author Konstantin Kudryashov <ever.zet@gmail.com>
  */
-class ScenarioNode extends AbstractScenarioNode
+class ScenarioNode implements ScenarioInterface
 {
+    /**
+     * @var string
+     */
+    private $title;
+    /**
+     * @var array
+     */
     private $tags = array();
+    /**
+     * @var StepNode[]
+     */
+    private $steps = array();
+    /**
+     * @var string
+     */
+    private $keyword;
+    /**
+     * @var integer
+     */
+    private $line;
 
     /**
-     * Sets scenario tags.
+     * Initializes scenario.
      *
-     * @param array $tags Array of tag names
-     *
-     * @throws \LogicException if feature is frozen
+     * @param null|string $title
+     * @param array       $tags
+     * @param StepNode[]  $steps
+     * @param string      $keyword
+     * @param integer     $line
      */
-    public function setTags(array $tags)
+    public function __construct($title, array $tags, array $steps, $keyword, $line)
     {
-        if ($this->isFrozen()) {
-            throw new \LogicException('Impossible to change scenario tags in frozen feature.');
-        }
-
+        $this->title = $title;
         $this->tags = $tags;
+        $this->steps = $steps;
+        $this->keyword = $keyword;
+        $this->line = $line;
     }
 
     /**
-     * Adds tag to scenario.
+     * Returns node type string
      *
-     * @param string $tag Tag name
-     *
-     * @throws \LogicException if feature is frozen
+     * @return string
      */
-    public function addTag($tag)
+    public function getNodeType()
     {
-        if ($this->isFrozen()) {
-            throw new \LogicException('Impossible to change scenario tags in frozen feature.');
-        }
-
-        $this->tags[] = $tag;
+        return 'Scenario';
     }
 
     /**
-     * Checks if scenario has tags.
+     * Returns scenario title.
      *
-     * @return Boolean
+     * @return null|string
      */
-    public function hasTags()
+    public function getTitle()
     {
-        return count($this->getTags()) > 0;
+        return $this->title;
     }
 
     /**
-     * Checks if scenario has tag.
+     * Checks if scenario is tagged with tag.
      *
      * @param string $tag
      *
@@ -74,28 +89,62 @@ class ScenarioNode extends AbstractScenarioNode
     }
 
     /**
-     * Returns scenario tags.
+     * Checks if scenario has tags (both inherited from feature and own).
+     *
+     * @return Boolean
+     */
+    public function hasTags()
+    {
+        return 0 < count($this->getTags());
+    }
+
+    /**
+     * Returns scenario tags (including inherited from feature).
      *
      * @return array
      */
     public function getTags()
     {
-        $tags = $this->tags;
-
-        if ($feature = $this->getFeature()) {
-            $tags = array_merge($tags, $feature->getTags());
-        }
-
-        return $tags;
+        return $this->tags;
     }
 
     /**
-     * Returns only own tags (without inherited ones).
+     * Checks if scenario has steps.
      *
-     * @return array
+     * @return Boolean
      */
-    public function getOwnTags()
+    public function hasSteps()
     {
-        return $this->tags;
+        return 0 < count($this->steps);
+    }
+
+    /**
+     * Returns scenario steps.
+     *
+     * @return StepNode[]
+     */
+    public function getSteps()
+    {
+        return $this->steps;
+    }
+
+    /**
+     * Returns scenario keyword.
+     *
+     * @return string
+     */
+    public function getKeyword()
+    {
+        return $this->keyword;
+    }
+
+    /**
+     * Returns scenario declaration line number.
+     *
+     * @return integer
+     */
+    public function getLine()
+    {
+        return $this->line;
     }
 }
