@@ -130,9 +130,7 @@ By default, reports are saved to the `reports/` directory. If you ran a suite vi
 
 	reports/<tag>_suite/
 
-So for our example above the report would be available by opening `reports/check_suite/report.html` and should look:
-
-![Behat Report](http://testweb.pw/behatReport.png =600x)
+So for our example above the report would be available by opening `reports/check_suite/report.html`.
 
 ###More
 
