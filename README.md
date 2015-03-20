@@ -35,6 +35,9 @@ From the root of the project, run:
 
 	php composer.phar install
 
+-or-
+
+	php composer.phar update
 
 Running your first suite as easy as:  
 
