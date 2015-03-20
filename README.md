@@ -40,15 +40,15 @@ Running your first suite as easy as:
 
 1. For testing against the `cloud`: 
 	
-		saucey drunk @<tag> <environment> <browser>
+		./saucey drunk @<tag> <environment> <browser>
 	
 2. For testing `locally`: 
 		
-		start_selnium <environment>
+		./start_selnium <environment>
 		
 	*then*
 
-		saucey sober @<tag> <browser>
+		./saucey sober @<tag> <browser>
 
 
 #Examples
@@ -56,7 +56,7 @@ Running your first suite as easy as:
 
 1. View saucy intro:
 
-		./saucy
+		./saucey
 
 2. Start selenium via:
 	
@@ -65,7 +65,7 @@ Running your first suite as easy as:
 3. Open a new tab with `CMD` + `T`
 4. Run a sanity suite via:
 	
-		./saucy tipsy check chrome 
+		./saucey tipsy check chrome 
 
 5. Open a new finder window, then open `reports/check_suite/report.html`
 6. Press "Feature: I want to make sure this test suite is up and running" to open detail view for that test suite. You should see:
@@ -95,11 +95,11 @@ Running your first suite as easy as:
 
 1. View saucy intro:
 
-		./saucy
+		./saucey
 		
 2. Run a sanity suite via:
 	
-		./saucy drunk check mac chrome
+		./saucey drunk check mac chrome
 		
 3. Open a new finder window, then open `reports/check_suite/report.html`
 6. Press "Feature: I want to make sure this test suite is up and running" to open detail view for that test suite. You should see the same out put as above. 
@@ -110,19 +110,19 @@ Open Terminal, go to the project folder, and run:
 
 For iOS:
 
-	./saucy drunk check ios_phone
+	./saucey drunk check ios_phone
 	
-	./saucy drunk check ios_tablet
+	./saucey drunk check ios_tablet
 	
-	./saucy drunk check ios_tablet_landscape
+	./saucey drunk check ios_tablet_landscape
 
 For Android:
 
-	./saucy drunk check android_phone
+	./saucey drunk check android_phone
 	
-	./saucy drunk check android_tablet
+	./saucey drunk check android_tablet
 	
-	./saucy drunk check android_tablet_landscape
+	./saucey drunk check android_tablet_landscape
 		
 
 ##Reporting & More
