@@ -126,7 +126,7 @@ For Android:
 		
 
 ##Reporting & More
-By default, reports are saved to the `reports/` directory. If you ran a suite via `./saucy drunk` or `./saucy tipsy`, you can see the report in:
+By default, reports are saved to the `reports/` directory. If you ran a suite via `./saucey drunk` or `./saucey tipsy`, you can see the report in:
 
 	reports/<tag>_suite/
 
