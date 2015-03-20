@@ -7,7 +7,7 @@ Saucey is an Automation framework written in mainly PHP, using Behat and Mink. T
 * Control selenium & headless drivers with [Gherkin](http://blog.sajjad.pw/technology/2014/07/15/Behavior-Driven-Development-And-Gherkin.html)
 * Evaluate API endpoints with business-logic driven code
 * Test UI element with user-driven logic
-* Verify arrangement of files and directories;s availability of assets
+* Verify arrangement of files and directories; availability of assets
 * Set server-side, front-end and functional assertions
 * Report coverage and pass-fail status of suites
 * Connect test suite(s) to a continuous integration system of choice
@@ -137,4 +137,8 @@ So for our example above the report would be available by opening `reports/check
 
 ###More
 
-See `./setup.md` for more on how this framework was set up.
+See `./setup.md` for more on how this framework was set up.  
+
+* More on Behat [here](http://docs.behat.org/en/v3.0/)  
+* More on Mink [here](http://mink.behat.org/en/latest/)  
+* More on Pear [here](http://pear.php.net/)  
