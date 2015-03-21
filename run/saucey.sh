@@ -15,7 +15,7 @@ then
   echo -e "${nc}Go to ${yellow}/reports/$2_suite/report.html${nc}"
   echo -e "${nc}See your test @${yellow} https://saucelabs.com/account${nc}"
 
-elif [ "$1" = "sober" ]
+elif [ "$1" = "tipsy" ]
 then
   # tipsy.sh : Use $FUNCNAME
   tipsy(){
@@ -37,6 +37,6 @@ then
 
 else
   echo -e "${red}ERROR: ${red}Check your statement. You can only use drunk [cloud] or sober [local]${nc}"
-  echo -e "${yellow}EXAMPLE: tipsy @check mac safari -or- drunk @check safari -or- drunk @check ios tablet_landscape${nc}"
+  echo -e "${yellow}EXAMPLE: ./saucey drunk @check mac safari -or- ./saucey tipsy @check safari -or- ./saucey drunk @check ios tablet_landscape${nc}"
 
 fi
