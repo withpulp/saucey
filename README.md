@@ -39,6 +39,8 @@ From the root of the project, run:
 
 	php composer.phar update
 
+To obtain the REQUIRED the `behat.yml` file, go to [http://testweb.pw/adcade/HelpCenter/behat.yml](http://testweb.pw/adcade/Default/behat.yml). Copy and paste the contents of that file in to a file named `behat.yml`. Then save.
+
 Running your first suite as easy as:  
 
 1. For testing against the `cloud`: 
