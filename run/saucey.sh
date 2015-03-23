@@ -12,7 +12,7 @@ then
   }
   drunk $1 $2 $3 $4 $5
   echo -e "${green}$1 @$2 $3 $4 $5${nc}"
-  echo -e "${nc}Go to ${yellow}/reports/$2_suite/report.html${nc}"
+  echo -e "${nc}Go to ${yellow}reports/$2_suite/report.html${nc}"
   echo -e "${nc}See your test @${yellow} https://saucelabs.com/account${nc}"
 
 elif [ "$1" = "tipsy" ]
@@ -24,7 +24,7 @@ then
 
   tipsy $1 $2 $3
   echo -e "${green}$1 @$2 $3"
-  echo -e "${nc}Go to ${yellow}/reports/$2_suite/report.html${nc}"
+  echo -e "${nc}Go to ${yellow}reports/$2_suite/report.html${nc}"
 
 elif [ "$1" = "" ]
 then
