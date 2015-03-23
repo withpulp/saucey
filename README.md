@@ -6,7 +6,7 @@ Saucey is an Automation framework written in mainly PHP, using Behat and Mink. T
 
 * Control selenium & headless drivers with [Gherkin](http://blog.sajjad.pw/technology/2014/07/15/Behavior-Driven-Development-And-Gherkin.html)
 * Evaluate API endpoints with business-logic driven code
-* Test UI element with user-driven logic
+* Test UI elements with user-driven logic
 * Verify arrangement of files and directories; availability of assets
 * Set server-side, front-end and functional assertions
 * Report coverage and pass-fail status of suites
@@ -144,3 +144,16 @@ See `./setup.md` for more on how this framework was set up.
 * More on Behat [here](http://docs.behat.org/en/v3.0/)  
 * More on Mink [here](http://mink.behat.org/en/latest/)  
 * More on Pear [here](http://pear.php.net/)  
+
+#Caveats
+##Issues
+1. API functionality is not implemented currently because of  aug blocking functionality.
+2. Using the current HTML output generator, there is no shell  when running `./saucey` 
+
+##TODO
+
+1. Contextualize shell functionality for reusability
+2. Make context for clicking XY coordinates
+3. Make context for dragging and dropping with XY coordinates
+4. Connect to its own Jenkins CI instance
+5. Dockerize!!!
