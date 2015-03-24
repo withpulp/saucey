@@ -4,6 +4,7 @@ green='\033[0;32m'
 yellow='\033[1;33m'
 nc='\033[0m' # No Color
 
+
 if [ "$1" = "drunk" ]
 then
   # drunk.sh : Use $FUNCNAME
@@ -21,7 +22,6 @@ then
   tipsy(){
     vendor/bin/behat --tags "$2" -p "local_$3" --format html --out "reports/$2_suite"
   }
-
   tipsy $1 $2 $3
   echo -e "${green}$1 @$2 $3"
   echo -e "${nc}Go to ${yellow}reports/$2_suite/report.html${nc}"
@@ -38,5 +38,4 @@ then
 else
   echo -e "${red}ERROR: ${red}Check your statement. You can only use drunk [cloud] or sober [local]${nc}"
   echo -e "${yellow}EXAMPLE: ./saucey drunk @check mac safari -or- ./saucey tipsy @check safari -or- ./saucey drunk @check ios tablet_landscape${nc}"
-
 fi

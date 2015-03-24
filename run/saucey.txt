@@ -18,16 +18,16 @@
 
 Saucey is an Automation framework written in mainly PHP. This framework allows testers to:
 
-* Control headless and headed drivers with Gherkin
-* Test API endpoints with business-logic driven code
-* Test UI element with user-driven logic
-* Test arrangement of directories and availability of assets
-* Set server-side and front-end assertions
+* Control selenium & headless drivers with Gherkin
+* Evaluate API endpoints with business-logic driven code
+* Test UI elements with user-driven logic
+* Verify arrangement of files and directories; availability of assets
+* Set server-side, front-end and functional assertions
 * Report coverage and pass-fail status of suites
-* Connect test suite to a continuous integration system of choice
+* Connect test suite(s) to a continuous integration system of choice
 
 Find out more @ http://saucey.io
-Fork the repo @ https://github.com/sajjadhossain/saucey.git
+Fork the repo @ https://github.com/saucey-io/saucey.git
 
 MMMMMMMMMMMMMMM
 MMMMMMMMMMMMMMMMMM
