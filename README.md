@@ -1,19 +1,19 @@
 # [saucey](http://www.urbandictionary.com/define.php?term=saucey)
 *intoxicated, drunk, or under the influence*
-> Last night we went out to celebrate and got saucey at the bar off henessy. 
+> Last night we went out to celebrate and got saucey at the bar off henessy.
 
 Saucey is an Automation framework written in mainly PHP, using Behat and Mink. This framework allows testers to:
 
 * Control selenium & headless drivers with [Gherkin](http://blog.sajjad.pw/technology/2014/07/15/Behavior-Driven-Development-And-Gherkin.html)
 * Evaluate API endpoints with business-logic driven code
-* Test UI element with user-driven logic
+* Test UI elements with user-driven logic
 * Verify arrangement of files and directories; availability of assets
 * Set server-side, front-end and functional assertions
 * Report coverage and pass-fail status of suites
 * Connect test suite(s) to a continuous integration system of choice
 
 Find out more @ [http://saucey.io](http://saucey.io)  
-Fork the repo @ [https://github.com/sajjadhossain/saucey.git](https://github.com/sajjadhossain/saucey.git)  
+Fork the repo @ [https://github.com/saucey-io/saucey.git](https://github.com/sajjadhossain/saucey.git)  
 
 
 
@@ -23,9 +23,9 @@ On Mac OS X, (with the exception of LAMP for Windows) this requires:
 
 1. [XCode](https://developer.apple.com/xcode/downloads/) & [Developer Tools](http://stackoverflow.com/questions/9329243/xcode-4-4-and-later-install-command-line-tools)
 2. [PHP](http://php-osx.liip.ch/)
-3. [Java JDK](http://www.oracle.com/technetwork/java/javase/downloads/jdk7-downloads-1880260.html), see [documentation](http://docs.oracle.com/javase/7/docs/webnotes/install/mac/mac-jdk.html) 
+3. [Java JDK](http://www.oracle.com/technetwork/java/javase/downloads/jdk7-downloads-1880260.html), see [documentation](http://docs.oracle.com/javase/7/docs/webnotes/install/mac/mac-jdk.html)
 4. [cURL](http://curl.haxx.se/download.html)
-5. [WAMP](http://www.wampserver.com/en/) `Windows Only` 
+5. [WAMP](http://www.wampserver.com/en/) `Windows Only`
 
 
 ##Get Started
@@ -43,14 +43,14 @@ To obtain the REQUIRED the `behat.yml` file, go to [http://testweb.pw/adcade/Hel
 
 Running your first suite as easy as:  
 
-1. For testing against the `cloud`: 
-	
+1. For testing against the `cloud`:
+
 		./saucey drunk @<tag> <environment> <browser>
-	
-2. For testing `locally`: 
-		
+
+2. For testing `locally`:
+
 		./start_selnium <environment>
-		
+
 	*then*
 
 		./saucey sober @<tag> <browser>
@@ -64,25 +64,25 @@ Running your first suite as easy as:
 		./saucey
 
 2. Start selenium via:
-	
+
 		./start_selenium mac
-	
+
 3. Open a new tab with `CMD` + `T`
 4. Run a sanity suite via:
-	
-		./saucey tipsy check chrome 
+
+		./saucey tipsy check chrome
 
 5. Open a new finder window, then open `reports/check_suite/report.html`
 6. Press "Feature: I want to make sure this test suite is up and running" to open detail view for that test suite. You should see:
-		
+
 ```gherkin
 
 	Feature: I want to make sure this test suite is up and running
-	  
+
 	  As a tester
 	  I want to make sure this test suite is up and running
 	  So that I can automate continuous integration and regression tests
-	
+
 	@javascript @check
 	  Scenario: Check against google.com and search # features/check.feature:8
 	    Given I am on "http://google.com"           # FeatureContext::visit()
@@ -101,34 +101,34 @@ Running your first suite as easy as:
 1. View saucy intro:
 
 		./saucey
-		
-2. Run a sanity suite via:
-	
-		./saucey drunk check mac chrome
-		
-3. Open a new finder window, then open `reports/check_suite/report.html`
-6. Press "Feature: I want to make sure this test suite is up and running" to open detail view for that test suite. You should see the same out put as above. 
 
-		
+2. Run a sanity suite via:
+
+		./saucey drunk check mac chrome
+
+3. Open a new finder window, then open `reports/check_suite/report.html`
+6. Press "Feature: I want to make sure this test suite is up and running" to open detail view for that test suite. You should see the same out put as above.
+
+
 ###Mobile & Tablet
 Open Terminal, go to the project folder, and run:
 
 For iOS:
 
 	./saucey drunk check ios_phone
-	
+
 	./saucey drunk check ios_tablet
-	
+
 	./saucey drunk check ios_tablet_landscape
 
 For Android:
 
 	./saucey drunk check android_phone
-	
+
 	./saucey drunk check android_tablet
-	
+
 	./saucey drunk check android_tablet_landscape
-		
+
 
 ##Reporting & More
 By default, reports are saved to the `reports/` directory. If you ran a suite via `./saucey drunk` or `./saucey tipsy`, you can see the report in:
@@ -144,3 +144,16 @@ See `./setup.md` for more on how this framework was set up.
 * More on Behat [here](http://docs.behat.org/en/v3.0/)  
 * More on Mink [here](http://mink.behat.org/en/latest/)  
 * More on Pear [here](http://pear.php.net/)  
+
+#Caveats
+##Issues
+1. API functionality is not implemented currently because of  aug blocking functionality.
+2. Using the current HTML output generator, there is no shell  when running `./saucey`
+
+##TODO
+
+1. Contextualize shell functionality for reusability
+2. Make context for clicking XY coordinates
+3. Make context for dragging and dropping with XY coordinates
+4. Connect to its own Jenkins CI instance
+5. Dockerize!!!
