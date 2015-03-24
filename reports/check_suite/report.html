@@ -54,21 +54,21 @@
             <div class="canvas-holder">
                 <canvas id="chart-features" width="300" height="300"/>
             </div>
-            0 features failed of 1
+            1 features failed of 1
             features
         </div>
         <div class="col-sm-4">
             <div class="canvas-holder">
                 <canvas id="chart-scenarios" width="300" height="300"/>
             </div>
-            0 scenarios failed of 1
+            5 scenarios failed of 5
             scenarios
         </div>
         <div class="col-sm-4">
             <div class="canvas-holder">
                 <canvas id="chart-steps" width="300" height="300"/>
             </div>
-            0 steps failed of 6
+            0 steps failed of 0
         </div>
     </div>
     <hr>
@@ -81,29 +81,11 @@
     <div id="feature-overview">
                     <div class="row">
                 <div class="col-sm-12">
-                    <h2>Suite: help_center</h2>
-
-                    <div class="row">
-                                            </div>
-                </div>
-            </div>
-            <hr>
-                    <div class="row">
-                <div class="col-sm-12">
-                    <h2>Suite: dashboard</h2>
-
-                    <div class="row">
-                                            </div>
-                </div>
-            </div>
-            <hr>
-                    <div class="row">
-                <div class="col-sm-12">
                     <h2>Suite: check</h2>
 
                     <div class="row">
                                                     <div class="col-sm-4 feature" data-id="feature-1">
-                                <div class="card passed">
+                                <div class="card failed">
                                     <div class="header">
                                         <h2>Feature: I want to make sure this test suite is up and running</h2>
                                     </div>
@@ -119,11 +101,11 @@ So that I can automate continuous integration and regression tests</p>
                                                                                     <div class="progress">
 
                                                 <div class="progress-bar progress-bar-green" role="progressbar"
-                                                     style="width: 100%">
+                                                     style="width: 0%">
                                                     <span class="sr-only">40% Complete (success)</span>
                                                 </div>
                                                 <div class="progress-bar progress-bar-red" role="progressbar"
-                                                     style="width: 0%">
+                                                     style="width: 100%">
                                                     <span class="sr-only">40% Complete (success)</span>
                                                 </div>
                                             </div>
@@ -136,9 +118,9 @@ So that I can automate continuous integration and regression tests</p>
             <hr>
             </div>
     <div id="scenario-overview" class="row">
-                                                                            <div class="feature" data-id="feature-1">
+                                    <div class="feature" data-id="feature-1">
                     <div class="col-sm-4">
-                        <div class="card passed">
+                        <div class="card failed">
                             <div class="header">
                                 <h2>Feature: I want to make sure this test suite is up and running</h2>
                             </div>
@@ -154,11 +136,11 @@ So that I can automate continuous integration and regression tests</p>
                                                                     <div class="progress">
 
                                         <div class="progress-bar progress-bar-green" role="progressbar"
-                                             style="width: 100%">
+                                             style="width: 0%">
                                             <span class="sr-only">40% Complete (success)</span>
                                         </div>
                                         <div class="progress-bar progress-bar-red" role="progressbar"
-                                             style="width: 0%">
+                                             style="width: 100%">
                                             <span class="sr-only">40% Complete (success)</span>
                                         </div>
                                     </div>
@@ -166,19 +148,20 @@ So that I can automate continuous integration and regression tests</p>
                         </div>
                     </div>
                     <div class="col-sm-8 details panel-group" role="tablist" aria-multiselectable="true">
-                                                    <div class="panel panel-default passed">
+                                                    <div class="panel panel-default failed">
                                 <div class="panel-heading" role="tab">
                                     <h4 class="panel-title">
                                         <a data-toggle="collapse" data-parent="#accordion"
                                            href="#scenario-1-1"
                                            aria-expanded="true"
                                            aria-controls="scenario-1-1">
-                                            Scenario: Check against google.com and search
+                                            Scenario: Query against google.com and search
                                         </a>
 
                                         <div class="tags pull-right">
                                                                                             <span class="badge">javascript</span>
                                                                                             <span class="badge">check</span>
+                                                                                            <span class="badge">googleQuery</span>
                                                                                     </div>
                                     </h4>
                                 </div>
@@ -186,23 +169,279 @@ So that I can automate continuous integration and regression tests</p>
                                      role="tabpanel"
                                      aria-labelledby="headingOne">
                                     <ul class="list-group">
-                                                                                    <li class="list-group-item alert alert-success">
+                                                                                    <li class="list-group-item alert alert-danger">
                                                 <b>Given</b> I am on &quot;http://google.com&quot;
                                                                                             </li>
-                                                                                                                                                                                                                        <li class="list-group-item alert alert-success">
-                                                <b>Then</b> the response should contain &quot;Google&quot;
+                                                                                                                                                                                                                        <li class="list-group-item alert alert-danger">
+                                                <b>Then</b> I should see &quot;Gmail&quot;
                                                                                             </li>
-                                                                                                                                                                                                                        <li class="list-group-item alert alert-success">
+                                                                                                                                                                                                                        <li class="list-group-item alert alert-danger">
                                                 <b>And</b> the response should contain &quot;Google Search&quot;
                                                                                             </li>
-                                                                                                                                                                                                                        <li class="list-group-item alert alert-success">
-                                                <b>When</b> I fill in &quot;q&quot; with &quot;Adcade&quot;
+                                                                                                                                                                                                                        <li class="list-group-item alert alert-danger">
+                                                <b>When</b> I fill in &quot;q&quot; with &quot;Batman&quot;
                                                                                             </li>
-                                                                                                                                                                                                                        <li class="list-group-item alert alert-success">
-                                                <b>And</b> I wait for 5 seconds
+                                                                                                                                                                                                                        <li class="list-group-item alert alert-danger">
+                                                <b>And</b> I wait for 2 seconds
                                                                                             </li>
-                                                                                                                                                                                                                        <li class="list-group-item alert alert-success">
-                                                <b>Then</b> I should see &quot;Adcade&quot;
+                                                                                                                                                                                                                        <li class="list-group-item alert alert-danger">
+                                                <b>Then</b> I should see &quot;Batman&quot;
+                                                                                            </li>
+                                                                                                                                                                                                                </ul>
+                                </div>
+                            </div>
+                                                    <div class="panel panel-default failed">
+                                <div class="panel-heading" role="tab">
+                                    <h4 class="panel-title">
+                                        <a data-toggle="collapse" data-parent="#accordion"
+                                           href="#scenario-1-2"
+                                           aria-expanded="true"
+                                           aria-controls="scenario-1-2">
+                                            Scenario: Multiple queries against google.com and search
+                                        </a>
+
+                                        <div class="tags pull-right">
+                                                                                            <span class="badge">javascript</span>
+                                                                                            <span class="badge">check</span>
+                                                                                            <span class="badge">googleQueries</span>
+                                                                                    </div>
+                                    </h4>
+                                </div>
+                                <div id="scenario-1-2" class="panel-collapse collapse in"
+                                     role="tabpanel"
+                                     aria-labelledby="headingOne">
+                                    <ul class="list-group">
+                                                                                    <li class="list-group-item alert alert-danger">
+                                                <b>Given</b> I am on &quot;http://google.com&quot;
+                                                                                            </li>
+                                                                                                                                                                                                                        <li class="list-group-item alert alert-danger">
+                                                <b>Then</b> I should see &quot;Gmail&quot;
+                                                                                            </li>
+                                                                                                                                                                                                                        <li class="list-group-item alert alert-danger">
+                                                <b>And</b> the response should contain &quot;Google Search&quot;
+                                                                                            </li>
+                                                                                                                                                                                                                        <li class="list-group-item alert alert-danger">
+                                                <b>When</b> I fill in &quot;q&quot; with &quot;Batman&quot;
+                                                                                            </li>
+                                                                                                                                                                                                                        <li class="list-group-item alert alert-danger">
+                                                <b>And</b> I wait for 2 seconds
+                                                                                            </li>
+                                                                                                                                                                                                                        <li class="list-group-item alert alert-danger">
+                                                <b>Then</b> I should see &quot;Batman&quot;
+                                                                                            </li>
+                                                                                                                                                                                                                        <li class="list-group-item alert alert-danger">
+                                                <b>Given</b> I am on &quot;http://google.com&quot;
+                                                                                            </li>
+                                                                                                                                                                                                                        <li class="list-group-item alert alert-danger">
+                                                <b>Then</b> I should see &quot;Gmail&quot;
+                                                                                            </li>
+                                                                                                                                                                                                                        <li class="list-group-item alert alert-danger">
+                                                <b>And</b> the response should contain &quot;Google Search&quot;
+                                                                                            </li>
+                                                                                                                                                                                                                        <li class="list-group-item alert alert-danger">
+                                                <b>When</b> I fill in &quot;q&quot; with &quot;Superman&quot;
+                                                                                            </li>
+                                                                                                                                                                                                                        <li class="list-group-item alert alert-danger">
+                                                <b>And</b> I wait for 2 seconds
+                                                                                            </li>
+                                                                                                                                                                                                                        <li class="list-group-item alert alert-danger">
+                                                <b>Then</b> I should see &quot;Superman&quot;
+                                                                                            </li>
+                                                                                                                                                                                                                        <li class="list-group-item alert alert-danger">
+                                                <b>Given</b> I am on &quot;http://google.com&quot;
+                                                                                            </li>
+                                                                                                                                                                                                                        <li class="list-group-item alert alert-danger">
+                                                <b>Then</b> I should see &quot;Gmail&quot;
+                                                                                            </li>
+                                                                                                                                                                                                                        <li class="list-group-item alert alert-danger">
+                                                <b>And</b> the response should contain &quot;Google Search&quot;
+                                                                                            </li>
+                                                                                                                                                                                                                        <li class="list-group-item alert alert-danger">
+                                                <b>When</b> I fill in &quot;q&quot; with &quot;Wonder Woman&quot;
+                                                                                            </li>
+                                                                                                                                                                                                                        <li class="list-group-item alert alert-danger">
+                                                <b>And</b> I wait for 2 seconds
+                                                                                            </li>
+                                                                                                                                                                                                                        <li class="list-group-item alert alert-danger">
+                                                <b>Then</b> I should see &quot;Diana Prince&quot;
+                                                                                            </li>
+                                                                                                                                                                                                                        <li class="list-group-item alert alert-danger">
+                                                <b>Given</b> I am on &quot;http://google.com&quot;
+                                                                                            </li>
+                                                                                                                                                                                                                        <li class="list-group-item alert alert-danger">
+                                                <b>Then</b> I should see &quot;Gmail&quot;
+                                                                                            </li>
+                                                                                                                                                                                                                        <li class="list-group-item alert alert-danger">
+                                                <b>And</b> the response should contain &quot;Google Search&quot;
+                                                                                            </li>
+                                                                                                                                                                                                                        <li class="list-group-item alert alert-danger">
+                                                <b>When</b> I fill in &quot;q&quot; with &quot;Captain Marvel&quot;
+                                                                                            </li>
+                                                                                                                                                                                                                        <li class="list-group-item alert alert-danger">
+                                                <b>And</b> I wait for 2 seconds
+                                                                                            </li>
+                                                                                                                                                                                                                        <li class="list-group-item alert alert-danger">
+                                                <b>Then</b> I should see &quot;Shazam&quot;
+                                                                                            </li>
+                                                                                                                                                                                                                </ul>
+                                </div>
+                            </div>
+                                                    <div class="panel panel-default failed">
+                                <div class="panel-heading" role="tab">
+                                    <h4 class="panel-title">
+                                        <a data-toggle="collapse" data-parent="#accordion"
+                                           href="#scenario-1-3"
+                                           aria-expanded="true"
+                                           aria-controls="scenario-1-3">
+                                            Scenario: Expect redirect from request to URL and function by XPath
+                                        </a>
+
+                                        <div class="tags pull-right">
+                                                                                            <span class="badge">javascript</span>
+                                                                                            <span class="badge">check</span>
+                                                                                            <span class="badge">elementPress</span>
+                                                                                            <span class="badge">redirect</span>
+                                                                                    </div>
+                                    </h4>
+                                </div>
+                                <div id="scenario-1-3" class="panel-collapse collapse in"
+                                     role="tabpanel"
+                                     aria-labelledby="headingOne">
+                                    <ul class="list-group">
+                                                                                    <li class="list-group-item alert alert-danger">
+                                                <b>Given</b> I am on &quot;http://batman.com&quot;
+                                                                                            </li>
+                                                                                                                                                                                                                        <li class="list-group-item alert alert-danger">
+                                                <b>And</b> I wait for 3 seconds
+                                                                                            </li>
+                                                                                                                                                                                                                        <li class="list-group-item alert alert-danger">
+                                                <b>And</b> I set browser window to &quot;1200&quot; x &quot;800&quot;
+                                                                                            </li>
+                                                                                                                                                                                                                        <li class="list-group-item alert alert-danger">
+                                                <b>Then</b> I should be on &quot;http://www.dccomics.com/characters/batman&quot;
+                                                                                            </li>
+                                                                                                                                                                                                                        <li class="list-group-item alert alert-danger">
+                                                <b>And</b> I should see &quot;Dark Knight&quot;
+                                                                                            </li>
+                                                                                                                                                                                                                        <li class="list-group-item alert alert-danger">
+                                                <b>When</b> I click on the element with xpath &#039;//*[@id=&quot;main&quot;]/div/div[2]/div/div[1]/img&#039;
+                                                                                            </li>
+                                                                                                                                                                                                                        <li class="list-group-item alert alert-danger">
+                                                <b>And</b> I wait for 2 seconds
+                                                                                            </li>
+                                                                                                                                                                                                                        <li class="list-group-item alert alert-danger">
+                                                <b>And</b> I press &quot;nextslide&quot;
+                                                                                            </li>
+                                                                                                                                                                                                                        <li class="list-group-item alert alert-danger">
+                                                <b>Then</b> I should see &quot;CLOSE GALLERY&quot;
+                                                                                            </li>
+                                                                                                                                                                                                                        <li class="list-group-item alert alert-danger">
+                                                <b>Given</b> I am on &quot;http://superman.com&quot;
+                                                                                            </li>
+                                                                                                                                                                                                                        <li class="list-group-item alert alert-danger">
+                                                <b>And</b> I wait for 3 seconds
+                                                                                            </li>
+                                                                                                                                                                                                                        <li class="list-group-item alert alert-danger">
+                                                <b>And</b> I set browser window to &quot;1200&quot; x &quot;800&quot;
+                                                                                            </li>
+                                                                                                                                                                                                                        <li class="list-group-item alert alert-danger">
+                                                <b>Then</b> I should be on &quot;http://www.dccomics.com/characters/superman&quot;
+                                                                                            </li>
+                                                                                                                                                                                                                        <li class="list-group-item alert alert-danger">
+                                                <b>And</b> I should see &quot;Look! Up in the sky!&quot;
+                                                                                            </li>
+                                                                                                                                                                                                                        <li class="list-group-item alert alert-danger">
+                                                <b>When</b> I click on the element with xpath &#039;//*[@id=&quot;main&quot;]/div/div[2]/div/div[1]/img&#039;
+                                                                                            </li>
+                                                                                                                                                                                                                        <li class="list-group-item alert alert-danger">
+                                                <b>And</b> I wait for 2 seconds
+                                                                                            </li>
+                                                                                                                                                                                                                        <li class="list-group-item alert alert-danger">
+                                                <b>And</b> I press &quot;nextslide&quot;
+                                                                                            </li>
+                                                                                                                                                                                                                        <li class="list-group-item alert alert-danger">
+                                                <b>Then</b> I should see &quot;CLOSE GALLERY&quot;
+                                                                                            </li>
+                                                                                                                                                                                                                </ul>
+                                </div>
+                            </div>
+                                                    <div class="panel panel-default failed">
+                                <div class="panel-heading" role="tab">
+                                    <h4 class="panel-title">
+                                        <a data-toggle="collapse" data-parent="#accordion"
+                                           href="#scenario-1-4"
+                                           aria-expanded="true"
+                                           aria-controls="scenario-1-4">
+                                            Scenario: Popup and JS Alerts
+                                        </a>
+
+                                        <div class="tags pull-right">
+                                                                                            <span class="badge">javascript</span>
+                                                                                            <span class="badge">check</span>
+                                                                                            <span class="badge">alert</span>
+                                                                                    </div>
+                                    </h4>
+                                </div>
+                                <div id="scenario-1-4" class="panel-collapse collapse in"
+                                     role="tabpanel"
+                                     aria-labelledby="headingOne">
+                                    <ul class="list-group">
+                                                                                    <li class="list-group-item alert alert-danger">
+                                                <b>Given</b> I am on &quot;http://www.w3schools.com/js/tryit.asp?filename=tryjs_alert&quot;
+                                                                                            </li>
+                                                                                                                                                                                                                        <li class="list-group-item alert alert-danger">
+                                                <b>Then</b> I should see &quot;Try it Yourself&quot;
+                                                                                            </li>
+                                                                                                                                                                                                                        <li class="list-group-item alert alert-danger">
+                                                <b>When</b> I click on the element with xpath &#039;/html/body/button&#039;
+                                                                                            </li>
+                                                                                                                                                                                                                        <li class="list-group-item alert alert-danger">
+                                                <b>Then</b> I should see &quot;I am an alert box!&quot; in popup
+                                                                                            </li>
+                                                                                                                                                                                                                        <li class="list-group-item alert alert-danger">
+                                                <b>When</b> I confirm the popup
+                                                                                            </li>
+                                                                                                                                                                                                                        <li class="list-group-item alert alert-danger">
+                                                <b>Then</b> I should be on &quot;http://www.w3schools.com/js/tryit.asp?filename=tryjs_alert&quot;
+                                                                                            </li>
+                                                                                                                                                                                                                </ul>
+                                </div>
+                            </div>
+                                                    <div class="panel panel-default failed">
+                                <div class="panel-heading" role="tab">
+                                    <h4 class="panel-title">
+                                        <a data-toggle="collapse" data-parent="#accordion"
+                                           href="#scenario-1-5"
+                                           aria-expanded="true"
+                                           aria-controls="scenario-1-5">
+                                            Scenario: Scroll down a parallax driven website
+                                        </a>
+
+                                        <div class="tags pull-right">
+                                                                                            <span class="badge">javascript</span>
+                                                                                            <span class="badge">check</span>
+                                                                                            <span class="badge">scroll</span>
+                                                                                    </div>
+                                    </h4>
+                                </div>
+                                <div id="scenario-1-5" class="panel-collapse collapse in"
+                                     role="tabpanel"
+                                     aria-labelledby="headingOne">
+                                    <ul class="list-group">
+                                                                                    <li class="list-group-item alert alert-danger">
+                                                <b>Given</b> I am on &quot;http://journey.lifeofpimovie.com/&quot;
+                                                                                            </li>
+                                                                                                                                                                                                                        <li class="list-group-item alert alert-danger">
+                                                <b>And</b> I wait 10 seconds
+                                                                                            </li>
+                                                                                                                                                                                                                        <li class="list-group-item alert alert-danger">
+                                                <b>Then</b> I should see &quot;Scroll down to discover more...&quot;
+                                                                                            </li>
+                                                                                                                                                                                                                        <li class="list-group-item alert alert-danger">
+                                                <b>When</b> I scroll to the bottom
+                                                                                            </li>
+                                                                                                                                                                                                                        <li class="list-group-item alert alert-danger">
+                                                <b>Then</b> I should see &quot;OWN IT ON BLU-RAY 3D&quot;
                                                                                             </li>
                                                                                                                                                                                                                 </ul>
                                 </div>
@@ -220,13 +459,13 @@ So that I can automate continuous integration and regression tests</p>
 <script type="text/javascript">
     var featureData = [
         {
-            value: 0,
+            value: 1,
             color: "#F7464A",
             highlight: "#FF5A5E",
             label: "Failed"
         },
         {
-            value: 1,
+            value: 0,
             color: "#00a65a",
             highlight: "#5AD3D1",
             label: "Passed"
@@ -235,13 +474,13 @@ So that I can automate continuous integration and regression tests</p>
 
     var scenarioData = [
         {
-            value: 0,
+            value: 5,
             color: "#F7464A",
             highlight: "#FF5A5E",
             label: "Failed"
         },
         {
-            value: 1,
+            value: 0,
             color: "#00a65a",
             highlight: "#5AD3D1",
             label: "Passed"
@@ -256,7 +495,7 @@ So that I can automate continuous integration and regression tests</p>
             label: "Failed"
         },
         {
-            value: 6,
+            value: 0,
             color: "#00a65a",
             highlight: "#5AD3D1",
             label: "Passed"
