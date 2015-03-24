@@ -17,6 +17,7 @@ use Behat\Behat\Context\Step;
   /*GLOBAL CONTEXT*/
   public function __construct()
   {
+      // DEPRECATED
       // $this->useContext('MinkContext', new MinkContext());
       // $this->useContext('HelpCenterContext', new HelpCenterContext($kernel));
       // $this->useContext('DashboardContext', new DashboardContext($parameters));
@@ -31,35 +32,10 @@ use Behat\Behat\Context\Step;
   }
 
   /**
-  * @When /^I mouse over the element matching "([^"]*)"$/
-  */
-  public function iMouseOverElementMatching($selector)
-  {
-      $this->spin(function($context) use ($selector) {
-          $page = $context->getSession()->getPage();
-          $element = $page->find('css', $selector);
-          $xpath = $element->getXpath();
-          $wdSession = $context->getSession()->getDriver()->getWebDriverSession();
-          $elements = $wdSession->elements('xpath', $xpath);
-          $wdSession->moveto(array('element' => $elements[0]->getID()));
-          return true;
-      });
-  }
-
-  /**
-  * @Given /^I mouse over the element matching \'([^\']*)\'$/
-  */
-  public function iMouseOverTheElementMatching($selector)
-  {
-      $this->spin(function($context) use ($selector) {
-          $page = $context->getSession()->getPage();
-          $element = $page->find('css', $selector);
-          $xpath = $element->getXpath();
-          $wdSession = $context->getSession()->getDriver()->getWebDriverSession();
-          $elements = $wdSession->elements('xpath', $xpath);
-          $wdSession->moveto(array('element' => $elements[0]->getID()));
-          return true;
-      });
+   * @Given /^I set browser window size to "([^"]*)" x "([^"]*)"$/
+   */
+  public function iSetBrowserWindowSizeToX($width, $height) {
+    $this->getSession()->getDriver()->resizeWindow((int)$width, (int)$height, 'current');
   }
 
   /**
@@ -80,16 +56,6 @@ use Behat\Behat\Context\Step;
   }
 
   /**
-  * @When /^I click ad coordinates$/
-  */
-  public function iClickAdCoordinates()
-  {
-    //$session->moveto(array('xoffset' => 3, 'yoffset' => 300));
-    //$this->getSession()->click();
-  }
-
-  /**
-
   * @When /^I confirm the popup$/
   */
   public function confirmPopup()
@@ -242,6 +208,23 @@ use Behat\Behat\Context\Step;
       $this->getSession()->restart();
   }
 
+  #
+  # WORK IN PROGRESS
+  # TO DO:
+  // 1. Contextualize shell functionality for reusability
+  // 2. Make context for clicking XY coordinates
+  // 3. Make context for dragging and dropping with XY coordinates
+  // 4. Connect to its own Jenkins CI instance
+  // 5. Dockerize!!!
+
+  /**
+  * @When /^I click ad coordinates$/
+  */
+  public function iClickAdCoordinates()
+  {
+    //$session->moveto(array('xoffset' => 3, 'yoffset' => 300));
+    //$this->getSession()->click();
+  }
 
   /**
   * @Given /^I have my POST header$/
