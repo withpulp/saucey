@@ -28,7 +28,7 @@ use Behat\Behat\Context\Step;
   */
   public function iWaitForSeconds($seconds)
   {
-      $this->getSession()->wait($seconds*1000);
+    $this->getSession()->wait($seconds*1000);
   }
 
   /**
@@ -43,16 +43,16 @@ use Behat\Behat\Context\Step;
   */
   public function iHoverOverTheElement($locator)
   {
-      $session = $this->getSession(); // get the mink session
-      $element = $session->getPage()->find('css', $locator); // runs the actual query and returns the element
+    $session = $this->getSession(); // get the mink session
+    $element = $session->getPage()->find('css', $locator); // runs the actual query and returns the element
 
-      // errors must not pass silently
-      if (null === $element) {
-          throw new \InvalidArgumentException(sprintf('Could not evaluate CSS selector: "%s"', $locator));
-      }
+    // errors must not pass silently
+    if (null === $element) {
+      throw new \InvalidArgumentException(sprintf('Could not evaluate CSS selector: "%s"', $locator));
+    }
 
-      // ok, let's hover it
-      $element->mouseOver();
+    // ok, let's hover it
+    $element->mouseOver();
   }
 
   /**
@@ -60,14 +60,14 @@ use Behat\Behat\Context\Step;
   */
   public function confirmPopup()
   {
-      $this->getSession()->getDriver()->getWebDriverSession()->accept_alert();
+    $this->getSession()->getDriver()->getWebDriverSession()->accept_alert();
   }
   /**
   * @when /^(?:|I )cancel the popup$/
   */
   public function cancelPopup()
   {
-      $this->getSession()->getDriver()->getWebDriverSession()->dismiss_alert();
+    $this->getSession()->getDriver()->getWebDriverSession()->dismiss_alert();
   }
 
   /**
@@ -77,10 +77,10 @@ use Behat\Behat\Context\Step;
   */
   public function assertPopupMessage($message)
   {
-      $alertText = $this->getSession()->getDriver()->getWebDriverSession()->getAlert_text();
-      if ($alertText !== $message){
-        throw new Exception("Modal dialog present: $alertText, when expected was $message");
-      }
+    $alertText = $this->getSession()->getDriver()->getWebDriverSession()->getAlert_text();
+    if ($alertText !== $message){
+      throw new Exception("Modal dialog present: $alertText, when expected was $message");
+    }
   }
 
   /**
@@ -90,7 +90,7 @@ use Behat\Behat\Context\Step;
   */
   public function setPopupText($message)
   {
-      $this->getSession()->getDriver()->getWebDriverSession()->postAlert_text($message);
+    $this->getSession()->getDriver()->getWebDriverSession()->postAlert_text($message);
   }
 
   /**
@@ -98,19 +98,19 @@ use Behat\Behat\Context\Step;
   */
   public function iClickOnTheElementWithXpath2($xpath)
   {
-      $session = $this->getSession(); // get the mink session
-      $element = $session->getPage()->find(
-        'xpath',
-        $session->getSelectorsHandler()->selectorToXpath('xpath', $xpath)
-      ); // runs the actual query and returns the element
+    $session = $this->getSession(); // get the mink session
+    $element = $session->getPage()->find(
+      'xpath',
+    $session->getSelectorsHandler()->selectorToXpath('xpath', $xpath)
+    ); // runs the actual query and returns the element
 
-      // errors must not pass silently
-      if (null === $element) {
-        throw new \InvalidArgumentException(sprintf('Could not evaluate XPath: "%s"', $xpath));
-      }
+    // errors must not pass silently
+    if (null === $element) {
+      throw new \InvalidArgumentException(sprintf('Could not evaluate XPath: "%s"', $xpath));
+    }
 
-      // ok, let's click on it
-      $element->click();
+    // ok, let's click on it
+    $element->click();
   }
 
   /**
@@ -120,44 +120,44 @@ use Behat\Behat\Context\Step;
   */
   public function iClickOnTheElementWithXPath($xpath)
   {
-      $session = $this->getSession(); // get the mink session
-      $element = $session->getPage()->find(
-        'xpath',
-        $session->getSelectorsHandler()->selectorToXpath('xpath', $xpath)
-      ); // runs the actual query and returns the element
+    $session = $this->getSession(); // get the mink session
+    $element = $session->getPage()->find(
+      'xpath',
+    $session->getSelectorsHandler()->selectorToXpath('xpath', $xpath)
+    ); // runs the actual query and returns the element
 
-      // errors must not pass silently
-      if (null === $element) {
-        throw new \InvalidArgumentException(sprintf('Could not evaluate XPath: "%s"', $xpath));
-      }
+    // errors must not pass silently
+    if (null === $element) {
+      throw new \InvalidArgumentException(sprintf('Could not evaluate XPath: "%s"', $xpath));
+    }
 
-      // ok, let's click on it
-      $element->click();
-
+    // ok, let's click on it
+    $element->click();
   }
 
   /**
-   * @Given /^I click "([^"]*)"/
-   */
+  * @Given /^I click "([^"]*)"/
+  */
   public function iClick($css)
   {
-      $session = $this->getSession();
-      $element = $session->getPage()->find('css', $css);
-      $element->click();
+    $session = $this->getSession();
+    $element = $session->getPage()->find('css', $css);
+    $element->click();
   }
 
   /**
   * @Given /^I scroll to the bottom$/
   */
   public function iScrollToBottom() {
-      $javascript = 'window.scrollTo(0, Math.max(document.documentElement.scrollHeight, document.body.scrollHeight, document.documentElement.clientHeight));';
-      $this->getSession()->executeScript($javascript);
+    $javascript = 'window.scrollTo(0, Math.max(document.documentElement.scrollHeight, document.body.scrollHeight, document.documentElement.clientHeight));';
+    $this->getSession()->executeScript($javascript);
   }
+
   /**
   * @Given /^I scroll to the top$/
   */
   public function iScrollToTop() {
-      $this->getSession()->executeScript('window.scrollTo(0,0);');
+    $this->getSession()->executeScript('window.scrollTo(0,0);');
   }
 
   /**
@@ -170,15 +170,15 @@ use Behat\Behat\Context\Step;
   * @Given /^I scroll to the "([^"]*)" (field|link|button)$/
   */
   public function iScrollToField($locator, $type) {
-      $page = $this->getSession()->getPage();
-      $el = $page->find('named', array($type, "'$locator'"));
-      assertNotNull($el, sprintf('%s element not found', $locator));
-      $id = $el->getAttribute('id');
-      if(empty($id)) {
-        throw new \InvalidArgumentException('Element requires an "id" attribute');
-      }
-      $js = sprintf("document.getElementById('%s').scrollIntoView(true);", $id);
-      $this->getSession()->executeScript($js);
+    $page = $this->getSession()->getPage();
+    $el = $page->find('named', array($type, "'$locator'"));
+    assertNotNull($el, sprintf('%s element not found', $locator));
+    $id = $el->getAttribute('id');
+    if(empty($id)) {
+      throw new \InvalidArgumentException('Element requires an "id" attribute');
+    }
+    $js = sprintf("document.getElementById('%s').scrollIntoView(true);", $id);
+    $this->getSession()->executeScript($js);
   }
 
   /**
@@ -190,14 +190,14 @@ use Behat\Behat\Context\Step;
   * @Given /^I scroll to the "(?P<locator>(?:[^"]|\\")*)" element$/
   */
   public function iScrollToElement($locator) {
-      $el = $this->getSession()->getPage()->find('css', $locator);
-      assertNotNull($el, sprintf('The element "%s" is not found', $locator));
-      $id = $el->getAttribute('id');
-      if(empty($id)) {
-        throw new \InvalidArgumentException('Element requires an "id" attribute');
-      }
-      $js = sprintf("document.getElementById('%s').scrollIntoView(true);", $id);
-      $this->getSession()->executeScript($js);
+    $el = $this->getSession()->getPage()->find('css', $locator);
+    assertNotNull($el, sprintf('The element "%s" is not found', $locator));
+    $id = $el->getAttribute('id');
+    if(empty($id)) {
+      throw new \InvalidArgumentException('Element requires an "id" attribute');
+    }
+    $js = sprintf("document.getElementById('%s').scrollIntoView(true);", $id);
+    $this->getSession()->executeScript($js);
   }
 
   /**
@@ -205,7 +205,7 @@ use Behat\Behat\Context\Step;
   */
   public function iAmOnANewSession()
   {
-      $this->getSession()->restart();
+    $this->getSession()->restart();
   }
 
   #
