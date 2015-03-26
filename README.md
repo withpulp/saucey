@@ -39,7 +39,7 @@ From the root of the project, run:
 
 	php composer.phar update
 
-To obtain the REQUIRED the `behat.yml` file, go to [http://testweb.pw/adcade/HelpCenter/behat.yml](http://testweb.pw/adcade/Default/behat.yml). Copy and paste the contents of that file in to a file named `behat.yml`. Then save.
+To obtain the REQUIRED the `behat.yml` file, go to [http://testweb.pw/adcade/Default/behat.yml](http://testweb.pw/adcade/Default/behat.yml). Copy and paste the contents of that file in to a file named `behat.yml`. Then save.
 
 Running your first suite as easy as:  
 
@@ -59,7 +59,7 @@ Running your first suite as easy as:
 #Examples
 ##Local - Tipsy
 
-1. View saucy intro:
+1. View saucy intro by running:
 
 		./saucey
 
@@ -97,22 +97,23 @@ Running your first suite as easy as:
 
 
 ##Cloud w/ [SauceLabs](saucelabs.com) - Drunk
-
-1. View saucy intro:
+1. Sign up and register for a FREE [SauceLabs](https://saucelabs.com/) account.
+2. Get your username and api-key. *Should be available via /account.* Copy the info into your clipboard.
+3. Download the REQUIRED behat.yml from [source](http://testweb.pw/adcade/Default/behat.yml)
+4. Open the file with your favorite IDE and replace username:api-key with your real user name and api-key. Save.
+5. View saucy intro by running:
 
 		./saucey
 
-2. Run a sanity suite via:
+6. Run a sanity suite via:
 
 		./saucey drunk check mac chrome
 
-3. Open a new finder window, then open `reports/check_suite/report.html`
-6. Press "Feature: I want to make sure this test suite is up and running" to open detail view for that test suite. You should see the same out put as above.
+7. Open a new finder window, then open `reports/check_suite/report.html`
+8. Press "Feature: I want to make sure this test suite is up and running" to open detail view for that test suite. You should see the same out put as above.
 
 
 ###Mobile & Tablet
-Open Terminal, go to the project folder, and run:
-
 For iOS:
 
 	./saucey drunk check ios_phone
