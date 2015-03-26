@@ -156,5 +156,6 @@ See `./setup.md` for more on how this framework was set up.
 1. Contextualize shell functionality for reusability
 2. Make context for clicking XY coordinates
 3. Make context for dragging and dropping with XY coordinates
-4. Connect to its own Jenkins CI instance
-5. Dockerize!!!
+4. Load test automation with JMeter API
+5. Connect to its own Jenkins CI instance
+6. Dockerize!!!
