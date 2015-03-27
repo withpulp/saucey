@@ -20,9 +20,19 @@
         "behat/mink-goutte-driver": "*",
         "behat/mink-selenium2-driver": "~1.2",
         "twig/twig":"~1.0",
+        "emuse/behat-html-formatter": "dev-master",
         "sauce/sausage": ">=0.5",
         "sauce/connect": ">=3.0",
         "saucey/drivers": "dev-master",
         "guzzlehttp/guzzle": "~5.0"
+    },
+
+    "require-dev": {
+    },
+
+    "autoload": {
+      "psr-4": {
+        "emuse\\BehatHTMLFormatter\\": "src/"
+      }
     }
 }
