@@ -4,7 +4,7 @@ green='\033[0;32m'
 yellow='\033[1;33m'
 nc='\033[0m' # No Color
 
-
+# If saucelabs cloud
 if [ "$1" = "drunk" ]
 then
   # drunk.sh : Use $FUNCNAME
@@ -16,6 +16,7 @@ then
   echo -e "${nc}Go to ${yellow}reports/$2_suite/report.html${nc}"
   echo -e "${nc}See your test @${yellow} https://saucelabs.com/account${nc}"
 
+# If selenium local
 elif [ "$1" = "tipsy" ]
 then
   # tipsy.sh : Use $FUNCNAME
@@ -26,11 +27,16 @@ then
   echo -e "${green}$1 @$2 $3"
   echo -e "${nc}Go to ${yellow}reports/$2_suite/report.html${nc}"
 
+# If init
 elif [ "$1" = "" ]
 then
   # init.sh : Use $FUNCNAME
   init(){
     cat run/saucey.txt
+    #    git remote add sajjad https://github.com/sajjadhossain/saucey.git
+    #    git remote add saucey https://github.com/saucey-io/saucey.git
+    #    git remote add withpulp https://github.com/withpulp/saucey.git
+    #    git remote add adcade https://github.com/adcade/saucey.git
   }
 
   init
