@@ -54,21 +54,21 @@
             <div class="canvas-holder">
                 <canvas id="chart-features" width="300" height="300"/>
             </div>
-            1 features failed of 1
+            0 features failed of 1
             features
         </div>
         <div class="col-sm-4">
             <div class="canvas-holder">
                 <canvas id="chart-scenarios" width="300" height="300"/>
             </div>
-            1 scenarios failed of 1
+            0 scenarios failed of 1
             scenarios
         </div>
         <div class="col-sm-4">
             <div class="canvas-holder">
                 <canvas id="chart-steps" width="300" height="300"/>
             </div>
-            0 steps failed of 0
+            0 steps failed of 18
         </div>
     </div>
     <hr>
@@ -85,7 +85,7 @@
 
                     <div class="row">
                                                     <div class="col-sm-4 feature" data-id="feature-1">
-                                <div class="card failed">
+                                <div class="card passed">
                                     <div class="header">
                                         <h2>Feature: I want to make sure this test suite is up and running</h2>
                                     </div>
@@ -101,11 +101,11 @@ So that I can automate continuous integration and regression tests</p>
                                                                                     <div class="progress">
 
                                                 <div class="progress-bar progress-bar-green" role="progressbar"
-                                                     style="width: 0%">
+                                                     style="width: 100%">
                                                     <span class="sr-only">40% Complete (success)</span>
                                                 </div>
                                                 <div class="progress-bar progress-bar-red" role="progressbar"
-                                                     style="width: 100%">
+                                                     style="width: 0%">
                                                     <span class="sr-only">40% Complete (success)</span>
                                                 </div>
                                             </div>
@@ -120,7 +120,7 @@ So that I can automate continuous integration and regression tests</p>
     <div id="scenario-overview" class="row">
                                     <div class="feature" data-id="feature-1">
                     <div class="col-sm-4">
-                        <div class="card failed">
+                        <div class="card passed">
                             <div class="header">
                                 <h2>Feature: I want to make sure this test suite is up and running</h2>
                             </div>
@@ -136,11 +136,11 @@ So that I can automate continuous integration and regression tests</p>
                                                                     <div class="progress">
 
                                         <div class="progress-bar progress-bar-green" role="progressbar"
-                                             style="width: 0%">
+                                             style="width: 100%">
                                             <span class="sr-only">40% Complete (success)</span>
                                         </div>
                                         <div class="progress-bar progress-bar-red" role="progressbar"
-                                             style="width: 100%">
+                                             style="width: 0%">
                                             <span class="sr-only">40% Complete (success)</span>
                                         </div>
                                     </div>
@@ -148,7 +148,7 @@ So that I can automate continuous integration and regression tests</p>
                         </div>
                     </div>
                     <div class="col-sm-8 details panel-group" role="tablist" aria-multiselectable="true">
-                                                    <div class="panel panel-default failed">
+                                                    <div class="panel panel-default passed">
                                 <div class="panel-heading" role="tab">
                                     <h4 class="panel-title">
                                         <a data-toggle="collapse" data-parent="#accordion"
@@ -170,58 +170,58 @@ So that I can automate continuous integration and regression tests</p>
                                      role="tabpanel"
                                      aria-labelledby="headingOne">
                                     <ul class="list-group">
-                                                                                    <li class="list-group-item alert alert-danger">
+                                                                                    <li class="list-group-item alert alert-success">
                                                 <b>Given</b> I am on &quot;http://batman.com&quot;
                                                                                             </li>
-                                                                                                                                                                                                                        <li class="list-group-item alert alert-danger">
+                                                                                                                                                                                                                        <li class="list-group-item alert alert-success">
                                                 <b>And</b> I wait for 3 seconds
                                                                                             </li>
-                                                                                                                                                                                                                        <li class="list-group-item alert alert-danger">
-                                                <b>And</b> I set browser window to &quot;1200&quot; x &quot;800&quot;
+                                                                                                                                                                                                                        <li class="list-group-item alert alert-success">
+                                                <b>And</b> I set browser window size to &quot;2000&quot; x &quot;1200&quot;
                                                                                             </li>
-                                                                                                                                                                                                                        <li class="list-group-item alert alert-danger">
+                                                                                                                                                                                                                        <li class="list-group-item alert alert-success">
                                                 <b>Then</b> I should be on &quot;http://www.dccomics.com/characters/batman&quot;
                                                                                             </li>
-                                                                                                                                                                                                                        <li class="list-group-item alert alert-danger">
+                                                                                                                                                                                                                        <li class="list-group-item alert alert-success">
                                                 <b>And</b> I should see &quot;Dark Knight&quot;
                                                                                             </li>
-                                                                                                                                                                                                                        <li class="list-group-item alert alert-danger">
+                                                                                                                                                                                                                        <li class="list-group-item alert alert-success">
                                                 <b>When</b> I click on the element with xpath &#039;//*[@id=&quot;main&quot;]/div/div[2]/div/div[1]/img&#039;
                                                                                             </li>
-                                                                                                                                                                                                                        <li class="list-group-item alert alert-danger">
+                                                                                                                                                                                                                        <li class="list-group-item alert alert-success">
                                                 <b>And</b> I wait for 2 seconds
                                                                                             </li>
-                                                                                                                                                                                                                        <li class="list-group-item alert alert-danger">
-                                                <b>And</b> I press &quot;nextslide&quot;
+                                                                                                                                                                                                                        <li class="list-group-item alert alert-success">
+                                                <b>And</b> I click on the element with xpath &#039;//*[@id=&quot;nextslide&quot;]&#039;
                                                                                             </li>
-                                                                                                                                                                                                                        <li class="list-group-item alert alert-danger">
+                                                                                                                                                                                                                        <li class="list-group-item alert alert-success">
                                                 <b>Then</b> I should see &quot;CLOSE GALLERY&quot;
                                                                                             </li>
-                                                                                                                                                                                                                        <li class="list-group-item alert alert-danger">
+                                                                                                                                                                                                                        <li class="list-group-item alert alert-success">
                                                 <b>Given</b> I am on &quot;http://superman.com&quot;
                                                                                             </li>
-                                                                                                                                                                                                                        <li class="list-group-item alert alert-danger">
+                                                                                                                                                                                                                        <li class="list-group-item alert alert-success">
                                                 <b>And</b> I wait for 3 seconds
                                                                                             </li>
-                                                                                                                                                                                                                        <li class="list-group-item alert alert-danger">
-                                                <b>And</b> I set browser window to &quot;1200&quot; x &quot;800&quot;
+                                                                                                                                                                                                                        <li class="list-group-item alert alert-success">
+                                                <b>And</b> I set browser window size to &quot;2000&quot; x &quot;1200&quot;
                                                                                             </li>
-                                                                                                                                                                                                                        <li class="list-group-item alert alert-danger">
+                                                                                                                                                                                                                        <li class="list-group-item alert alert-success">
                                                 <b>Then</b> I should be on &quot;http://www.dccomics.com/characters/superman&quot;
                                                                                             </li>
-                                                                                                                                                                                                                        <li class="list-group-item alert alert-danger">
+                                                                                                                                                                                                                        <li class="list-group-item alert alert-success">
                                                 <b>And</b> I should see &quot;Look! Up in the sky!&quot;
                                                                                             </li>
-                                                                                                                                                                                                                        <li class="list-group-item alert alert-danger">
+                                                                                                                                                                                                                        <li class="list-group-item alert alert-success">
                                                 <b>When</b> I click on the element with xpath &#039;//*[@id=&quot;main&quot;]/div/div[2]/div/div[1]/img&#039;
                                                                                             </li>
-                                                                                                                                                                                                                        <li class="list-group-item alert alert-danger">
+                                                                                                                                                                                                                        <li class="list-group-item alert alert-success">
                                                 <b>And</b> I wait for 2 seconds
                                                                                             </li>
-                                                                                                                                                                                                                        <li class="list-group-item alert alert-danger">
-                                                <b>And</b> I press &quot;nextslide&quot;
+                                                                                                                                                                                                                        <li class="list-group-item alert alert-success">
+                                                <b>And</b> I click on the element with xpath &#039;//*[@id=&quot;nextslide&quot;]&#039;
                                                                                             </li>
-                                                                                                                                                                                                                        <li class="list-group-item alert alert-danger">
+                                                                                                                                                                                                                        <li class="list-group-item alert alert-success">
                                                 <b>Then</b> I should see &quot;CLOSE GALLERY&quot;
                                                                                             </li>
                                                                                                                                                                                                                 </ul>
@@ -240,13 +240,13 @@ So that I can automate continuous integration and regression tests</p>
 <script type="text/javascript">
     var featureData = [
         {
-            value: 1,
+            value: 0,
             color: "#F7464A",
             highlight: "#FF5A5E",
             label: "Failed"
         },
         {
-            value: 0,
+            value: 1,
             color: "#00a65a",
             highlight: "#5AD3D1",
             label: "Passed"
@@ -255,13 +255,13 @@ So that I can automate continuous integration and regression tests</p>
 
     var scenarioData = [
         {
-            value: 1,
+            value: 0,
             color: "#F7464A",
             highlight: "#FF5A5E",
             label: "Failed"
         },
         {
-            value: 0,
+            value: 1,
             color: "#00a65a",
             highlight: "#5AD3D1",
             label: "Passed"
@@ -276,7 +276,7 @@ So that I can automate continuous integration and regression tests</p>
             label: "Failed"
         },
         {
-            value: 0,
+            value: 18,
             color: "#00a65a",
             highlight: "#5AD3D1",
             label: "Passed"

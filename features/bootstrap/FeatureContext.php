@@ -18,9 +18,7 @@ use Behat\Behat\Context\Step;
   public function __construct()
   {
       // DEPRECATED
-      // $this->useContext('MinkContext', new MinkContext());
-      // $this->useContext('HelpCenterContext', new HelpCenterContext($kernel));
-      // $this->useContext('DashboardContext', new DashboardContext($parameters));
+      // $this->useContext('SomeSubContext', new SomeSubContext());
   }
 
   /**
@@ -172,26 +170,7 @@ use Behat\Behat\Context\Step;
   public function iScrollToField($locator, $type) {
     $page = $this->getSession()->getPage();
     $el = $page->find('named', array($type, "'$locator'"));
-    assertNotNull($el, sprintf('%s element not found', $locator));
-    $id = $el->getAttribute('id');
-    if(empty($id)) {
-      throw new \InvalidArgumentException('Element requires an "id" attribute');
-    }
-    $js = sprintf("document.getElementById('%s').scrollIntoView(true);", $id);
-    $this->getSession()->executeScript($js);
-  }
-
-  /**
-  * Scroll to a certain element by CSS selector.
-  * Requires an "id" attribute to uniquely identify the element in the document.
-  *
-  * Example: Given I scroll to the ".css_element" element
-  *
-  * @Given /^I scroll to the "(?P<locator>(?:[^"]|\\")*)" element$/
-  */
-  public function iScrollToElement($locator) {
-    $el = $this->getSession()->getPage()->find('css', $locator);
-    assertNotNull($el, sprintf('The element "%s" is not found', $locator));
+    # assertNotNull($el, sprintf('%s element not found', $locator));
     $id = $el->getAttribute('id');
     if(empty($id)) {
       throw new \InvalidArgumentException('Element requires an "id" attribute');
