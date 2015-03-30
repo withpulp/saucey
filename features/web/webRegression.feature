@@ -4,7 +4,7 @@ Feature: I want to make sure this test suite is up and running
   I want to make sure this test suite is up and running
   So that I can automate continuous integration and regression tests using it
 
-    @javascript @check @googleQuery
+    @javascript @web @googleQuery
     Scenario: Query against google.com and search
       Given I am on "http://google.com"
       Then I should see "Gmail"
@@ -13,7 +13,7 @@ Feature: I want to make sure this test suite is up and running
       And I wait for 2 seconds
       Then I should see "Batman"
 
-    @javascript @check @googleQueries
+    @javascript @web @googleQueries
     Scenario Outline: Multiple queries against google.com and search
       Given I am on "http://google.com"
       Then I should see "Gmail"
@@ -29,7 +29,7 @@ Feature: I want to make sure this test suite is up and running
     | Wonder Woman | Diana Prince |
     | Captain Marvel | Shazam |
 
-    @javascript @check @elementPress @redirect
+    @javascript @web @elementPress @redirect
     Scenario Outline: Expect redirect from request to URL and function by XPath
       Given I am on "<request>"
       And I wait for 3 seconds
@@ -46,7 +46,7 @@ Feature: I want to make sure this test suite is up and running
     | http://batman.com | http://www.dccomics.com/characters/batman | Dark Knight | //*[@id="main"]/div/div[2]/div/div[1]/img |
     | http://superman.com | http://www.dccomics.com/characters/superman | Look! Up in the sky! | //*[@id="main"]/div/div[2]/div/div[1]/img |
 
-    @javascript @check @alert
+    @javascript @web @alert
     Scenario: Popup and JS Alerts
       Given I am on "http://www.javascripter.net/faq/alert.htm"
       Then I should see "How do I display an alert message from JavaScript?"
@@ -56,7 +56,7 @@ Feature: I want to make sure this test suite is up and running
       Then I should be on "http://www.javascripter.net/faq/alert.htm"
       And I should see "The alert() method does not return a value (that is, it returns undefined)."
 
-    @javascript @check @scroll
+    @javascript @web @scroll
     Scenario: Scroll up and down a site
       Given I am on "http://blackestate.co.nz/"
       And I wait for 2 seconds
@@ -67,7 +67,7 @@ Feature: I want to make sure this test suite is up and running
       When I scroll to the top
       Then I should see "Tasting Room & Eatery"
 
-    @javascript @check @scrollToElement
+    @javascript @web @scrollToElement
     Scenario: Scroll to an element
       Given I am on "http://stackoverflow.com/questions/11067186/is-using-footer-inside-form-semantically-fine"
       And I wait for 2 seconds

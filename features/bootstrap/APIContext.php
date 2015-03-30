@@ -7,15 +7,14 @@ use Behat\Gherkin\Node\TableNode;
 use Behat\MinkExtension\Context\MinkContext;
 use Behat\Behat\Context\Step;
 
-use Behat\GuzzleExtension\Context\GuzzleAwareContext;
 use GuzzleHttp\Client;
-use GuzzleHttp\Message\ResponseInterface;
+use GuzzleHttp\Ring\Client\MockHandler;
 
 /**
  * Defines application features from the API context.
  */
 
-class APIContext implements Behat\Behat\Context\Context
+class APIContext implements Behat\Behat\Context\SnippetAcceptingContext
 {
   public function __construct()
   {
@@ -43,14 +42,17 @@ class APIContext implements Behat\Behat\Context\Context
   }
 
   /**
-   * @Then the response code should be :code
+   * @Then the response status code should be :code
    */
-  public function theResponseCodeShouldBe($code)
+  public function theResponseStatusCodeShouldBe($code)
   {
     $client = new Client();
-    $client->createRequest('GET', 'http://testweb.pw')
-
+    $request = $client->createRequest('GET', 'http://testweb.pw');
+    $response = $client->send($request);
+    $code = $response->getStatusCode();
+    // 200
   }
+
 //  public function iExample($user, $password)
 //  {
 //      $userName = $this->params['user'];
