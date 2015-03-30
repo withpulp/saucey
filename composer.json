@@ -1,6 +1,7 @@
 {
   "name": "saucey",
   "type": "behat-mink-selenium-guzzle",
+  "license": "MIT",
   "description": "Automation of HTTP, HTTPS, API and UI using PHPUnit, Behat, Mink, Guzzle and Selenium 2.",
   "keywords": ["automation", "bdd", "testing", "selenium"],
   "homepage": "http://saucey.io",
@@ -12,14 +13,26 @@
     ],
 
     "require": {
+        "php": ">=5.3.0",
         "behat/behat": "~3.0.6",
         "behat/mink": "~1.6",
         "behat/mink-extension": "@stable",
         "behat/mink-goutte-driver": "*",
         "behat/mink-selenium2-driver": "~1.2",
+        "twig/twig":"~1.0",
         "emuse/behat-html-formatter": "dev-master",
         "sauce/sausage": ">=0.5",
         "sauce/connect": ">=3.0",
-        "saucey/drivers": "dev-master"
+        "saucey/drivers": "dev-master",
+        "guzzlehttp/guzzle": "~5.0"
+    },
+
+    "require-dev": {
+    },
+
+    "autoload": {
+      "psr-4": {
+        "emuse\\BehatHTMLFormatter\\": "src/"
+      }
     }
 }
