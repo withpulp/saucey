@@ -1,21 +1,9 @@
 # [saucey](http://www.urbandictionary.com/define.php?term=saucey)
-*intoxicated, drunk, or under the influence*
-> Last night we went out to celebrate and got saucey at the bar off henessy.
 
-Saucey is an Automation framework written in mainly PHP, using Behat and Mink. This framework allows testers to:
-
-* Control selenium & headless drivers with [Gherkin](http://blog.sajjad.pw/technology/2014/07/15/Behavior-Driven-Development-And-Gherkin.html)
-* Evaluate API endpoints with business-logic driven code
-* Test UI elements with user-driven logic
-* Verify arrangement of files and directories; availability of assets
-* Set server-side, front-end and functional assertions
-* Report coverage and pass-fail status of suites
-* Connect test suite(s) to a continuous integration system of choice
+![wireframes, coming to http://saucey.io soon](img/saucey-io-wires.png "Wires")
 
 Find out more @ [http://saucey.io](http://saucey.io)  
 Fork the repo @ [https://github.com/saucey-io/saucey.git](https://github.com/sajjadhossain/saucey.git)  
-
-
 
 ## Dependancies
 On Mac OS X, (with the exception of LAMP for Windows) this requires:
