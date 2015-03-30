@@ -1,10 +1,9 @@
 <?php
-
 use Behat\Behat\Context\Context;
 use Behat\Behat\Context\SnippetAcceptingContext;
+
 use Behat\Gherkin\Node\PyStringNode;
 use Behat\Gherkin\Node\TableNode;
-
 use Behat\MinkExtension\Context\MinkContext;
 use Behat\Behat\Context\Step;
 
@@ -12,15 +11,18 @@ use Behat\Behat\Context\Step;
  * Defines application features from the specific context.
  */
 
- class FeatureContext extends MinkContext
+ class FeatureContext extends MinkContext implements Behat\Behat\Context\SnippetAcceptingContext
 {
   /*GLOBAL CONTEXT*/
-  public function __construct()
+  /**
+   * Initializes context.
+   * Every scenario gets it's own context object.
+   *
+   */
+  public function __construct($baseUrl = 'http://localhost', $tempPath = '/var/tmp')
   {
-      // DEPRECATED
-      // $this->useContext('MinkContext', new MinkContext());
-      // $this->useContext('HelpCenterContext', new HelpCenterContext($kernel));
-      // $this->useContext('DashboardContext', new DashboardContext($parameters));
+    $this->baseUrl = $baseUrl;
+    $this->tempPath = $tempPath;
   }
 
   /**
@@ -33,14 +35,16 @@ use Behat\Behat\Context\Step;
 
   /**
    * @Given /^I set browser window size to "([^"]*)" x "([^"]*)"$/
+   *
+   * @param string $width, $height The message.
    */
   public function iSetBrowserWindowSizeToX($width, $height) {
     $this->getSession()->getDriver()->resizeWindow((int)$width, (int)$height, 'current');
   }
 
   /**
-  * @When /^I hover over the element "([^"]*)"$/
-  */
+   * @When /^I hover over the element "([^"]*)"$/
+   */
   public function iHoverOverTheElement($locator)
   {
     $session = $this->getSession(); // get the mink session
@@ -172,26 +176,7 @@ use Behat\Behat\Context\Step;
   public function iScrollToField($locator, $type) {
     $page = $this->getSession()->getPage();
     $el = $page->find('named', array($type, "'$locator'"));
-    assertNotNull($el, sprintf('%s element not found', $locator));
-    $id = $el->getAttribute('id');
-    if(empty($id)) {
-      throw new \InvalidArgumentException('Element requires an "id" attribute');
-    }
-    $js = sprintf("document.getElementById('%s').scrollIntoView(true);", $id);
-    $this->getSession()->executeScript($js);
-  }
-
-  /**
-  * Scroll to a certain element by CSS selector.
-  * Requires an "id" attribute to uniquely identify the element in the document.
-  *
-  * Example: Given I scroll to the ".css_element" element
-  *
-  * @Given /^I scroll to the "(?P<locator>(?:[^"]|\\")*)" element$/
-  */
-  public function iScrollToElement($locator) {
-    $el = $this->getSession()->getPage()->find('css', $locator);
-    assertNotNull($el, sprintf('The element "%s" is not found', $locator));
+    # assertNotNull($el, sprintf('%s element not found', $locator));
     $id = $el->getAttribute('id');
     if(empty($id)) {
       throw new \InvalidArgumentException('Element requires an "id" attribute');
@@ -226,16 +211,4 @@ use Behat\Behat\Context\Step;
     //$this->getSession()->click();
   }
 
-  /**
-  * @Given /^I have my POST header$/
-  */
-  public function iHaveMyPostHeader()
-  {
-  //    $this->getSession()->setRequestHeader('Referer', 'http://adcade.com/demo/cara/staple/calculator/300x600_inpage/index.html');
-  //    $this->getSession()->setRequestHeader('Content-Type', 'application/json');
-  //    $this->getSession()->setRequestHeader('Origin', 'http://adcade.com');
-  //    $this->getSession()->setRequestHeader('Host', 'ad-stage.adcade.com');
-  //    $this->getSession()->setRequestHeader('Content-Type', 'multipart/form-data');
-  //    $this->getSession()->setRequestHeader('User-Agent', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.99 Safari/537.36');
-  }
 }

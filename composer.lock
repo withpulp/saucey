@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "4ba9e78f99ac63d0bd9c59bb60a4444c",
+    "hash": "1df2f61020c19380738d404c69d9436b",
     "packages": [
         {
             "name": "appium/php-client",
@@ -675,12 +675,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dutchiexl/BehatHtmlFormatterPlugin.git",
-                "reference": "801cc56ef937096c5ba2a7d12eba2d03e1a499ea"
+                "reference": "f3bcf07bf38e895cfa7e301ee1e61d4e86ca9aa0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dutchiexl/BehatHtmlFormatterPlugin/zipball/801cc56ef937096c5ba2a7d12eba2d03e1a499ea",
-                "reference": "801cc56ef937096c5ba2a7d12eba2d03e1a499ea",
+                "url": "https://api.github.com/repos/dutchiexl/BehatHtmlFormatterPlugin/zipball/f3bcf07bf38e895cfa7e301ee1e61d4e86ca9aa0",
+                "reference": "f3bcf07bf38e895cfa7e301ee1e61d4e86ca9aa0",
                 "shasum": ""
             },
             "require": {
@@ -702,7 +702,7 @@
                 }
             ],
             "description": "This will create a html formatter for Behat.",
-            "time": "2015-03-03 13:32:46"
+            "time": "2015-03-20 13:20:21"
         },
         {
             "name": "fabpot/goutte",
@@ -1602,16 +1602,16 @@
         },
         {
             "name": "sauce/sausage",
-            "version": "0.15.4",
+            "version": "0.16.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/jlipps/sausage.git",
-                "reference": "8f356b1d9573bc9f4f7bc17d6281e0dbe6e4da03"
+                "reference": "3ec9f0f2a61a93b9de86e34bf86d65cf80a2b960"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/jlipps/sausage/zipball/8f356b1d9573bc9f4f7bc17d6281e0dbe6e4da03",
-                "reference": "8f356b1d9573bc9f4f7bc17d6281e0dbe6e4da03",
+                "url": "https://api.github.com/repos/jlipps/sausage/zipball/3ec9f0f2a61a93b9de86e34bf86d65cf80a2b960",
+                "reference": "3ec9f0f2a61a93b9de86e34bf86d65cf80a2b960",
                 "shasum": ""
             },
             "require": {
@@ -1620,6 +1620,9 @@
                 "php": ">=5.4.0",
                 "phpunit/phpunit-selenium": ">=1.4.1",
                 "sauce/sausage-installer": ">=0.1.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "4.3.*"
             },
             "suggest": {
                 "sauce/connect": ">=3.1"
@@ -1656,7 +1659,7 @@
                 "selenium",
                 "testing"
             ],
-            "time": "2014-11-06 14:00:21"
+            "time": "2015-03-26 21:22:45"
         },
         {
             "name": "sauce/sausage-installer",
@@ -1701,13 +1704,13 @@
             "version": "dev-master",
             "source": {
                 "type": "git",
-                "url": "https://github.com/sajjadhossain/saucey-drivers.git",
-                "reference": "4bee7fe6d7c40fa488109fc790a36e9d2d03d867"
+                "url": "https://github.com/saucey-io/saucey-drivers.git",
+                "reference": "74029cc4ff575d137cf7364a7d8c1f9d662c2a19"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sajjadhossain/saucey-drivers/zipball/4bee7fe6d7c40fa488109fc790a36e9d2d03d867",
-                "reference": "4bee7fe6d7c40fa488109fc790a36e9d2d03d867",
+                "url": "https://api.github.com/repos/saucey-io/saucey-drivers/zipball/74029cc4ff575d137cf7364a7d8c1f9d662c2a19",
+                "reference": "74029cc4ff575d137cf7364a7d8c1f9d662c2a19",
                 "shasum": ""
             },
             "type": "package",
@@ -1727,7 +1730,7 @@
                 "php",
                 "selenium"
             ],
-            "time": "2015-03-17 20:22:08"
+            "time": "2015-03-20 16:42:19"
         },
         {
             "name": "sebastian/comparator",
@@ -2821,6 +2824,8 @@
     },
     "prefer-stable": false,
     "prefer-lowest": false,
-    "platform": [],
+    "platform": {
+        "php": ">=5.3.0"
+    },
     "platform-dev": []
 }
