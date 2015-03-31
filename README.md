@@ -1,6 +1,6 @@
 # [saucey](http://www.urbandictionary.com/define.php?term=saucey)
 
-![wireframes, coming to http://saucey.io soon](img/saucey-io-wires.png "Wires")
+![wireframes, coming to http://saucey.io soon](images/saucey-io-wires.png "Wires")
 
 Find out more @ [http://saucey.io](http://saucey.io)  
 Fork the repo @ [https://github.com/saucey-io/saucey.git](https://github.com/sajjadhossain/saucey.git)  
