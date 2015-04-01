@@ -12,7 +12,7 @@ use Behat\Behat\Context\Step;
  * Defines application features from the specific context.
  */
 
- class FeatureContext extends MinkContext implements Behat\Behat\Context\SnippetAcceptingContext
+ class FeatureContext extends MinkContext implements Context, SnippetAcceptingContext
 {
   /*GLOBAL CONTEXT*/
   /**
@@ -20,10 +20,9 @@ use Behat\Behat\Context\Step;
    * Every scenario gets it's own context object.
    *
    */
-  public function __construct($baseUrl = 'http://localhost', $tempPath = '/var/tmp')
+  public function __construct()
   {
-    $this->baseUrl = $baseUrl;
-    $this->tempPath = $tempPath;
+
   }
 
   /**
@@ -176,7 +175,7 @@ use Behat\Behat\Context\Step;
   */
   public function iScrollToField($locator, $type) {
     $page = $this->getSession()->getPage();
-    $el = $page->find('named', array($type, "'$locator'"));
+    $el = $page->find('named', array($type, $locator));
     # assertNotNull($el, sprintf('%s element not found', $locator));
     $id = $el->getAttribute('id');
     if(empty($id)) {

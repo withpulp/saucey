@@ -1,0 +1,78 @@
+web | Given /^I wait for (\d+) seconds$/
+web | Given /^I set browser window size to "([^"]*)" x "([^"]*)"$/
+web |  When /^I hover over the element "([^"]*)"$/
+web |  When /^I confirm the popup$/
+web |  When /^(?:|I )cancel the popup$/
+web |  When /^I should see "([^"]*)" in popup$/
+web |  When /^(?:|I )fill "([^"]*)" in popup$/
+web | Given /^I click on the element with xpath "([^"]*)"$/
+web |  When /^I click on the element with xpath \'([^\']*)\'$/
+web | Given /^I click "([^"]*)"/
+web | Given /^I scroll to the bottom$/
+web | Given /^I scroll to the top$/
+web | Given /^I scroll to the "([^"]*)" (field|link|button)$/
+web | Given /^I am on a new session$/
+web |  When /^I click ad coordinates$/
+web | Given /^(?:|I )am on (?:|the )homepage$/
+web |  When /^(?:|I )go to (?:|the )homepage$/
+web | Given /^(?:|I )am on "(?P<page>[^"]+)"$/
+web |  When /^(?:|I )go to "(?P<page>[^"]+)"$/
+web |  When /^(?:|I )reload the page$/
+web |  When /^(?:|I )move backward one page$/
+web |  When /^(?:|I )move forward one page$/
+web |  When /^(?:|I )press "(?P<button>(?:[^"]|\\")*)"$/
+web |  When /^(?:|I )follow "(?P<link>(?:[^"]|\\")*)"$/
+web |  When /^(?:|I )fill in "(?P<field>(?:[^"]|\\")*)" with "(?P<value>(?:[^"]|\\")*)"$/
+web |  When /^(?:|I )fill in "(?P<field>(?:[^"]|\\")*)" with:$/
+web |  When /^(?:|I )fill in "(?P<value>(?:[^"]|\\")*)" for "(?P<field>(?:[^"]|\\")*)"$/
+web |  When /^(?:|I )fill in the following:$/
+web |  When /^(?:|I )select "(?P<option>(?:[^"]|\\")*)" from "(?P<select>(?:[^"]|\\")*)"$/
+web |  When /^(?:|I )additionally select "(?P<option>(?:[^"]|\\")*)" from "(?P<select>(?:[^"]|\\")*)"$/
+web |  When /^(?:|I )check "(?P<option>(?:[^"]|\\")*)"$/
+web |  When /^(?:|I )uncheck "(?P<option>(?:[^"]|\\")*)"$/
+web |  When /^(?:|I )attach the file "(?P<path>[^"]*)" to "(?P<field>(?:[^"]|\\")*)"$/
+web |  Then /^(?:|I )should be on "(?P<page>[^"]+)"$/
+web |  Then /^(?:|I )should be on (?:|the )homepage$/
+web |  Then /^the (?i)url(?-i) should match (?P<pattern>"(?:[^"]|\\")*")$/
+web |  Then /^the response status code should be (?P<code>\d+)$/
+web |  Then /^the response status code should not be (?P<code>\d+)$/
+web |  Then /^(?:|I )should see "(?P<text>(?:[^"]|\\")*)"$/
+web |  Then /^(?:|I )should not see "(?P<text>(?:[^"]|\\")*)"$/
+web |  Then /^(?:|I )should see text matching (?P<pattern>"(?:[^"]|\\")*")$/
+web |  Then /^(?:|I )should not see text matching (?P<pattern>"(?:[^"]|\\")*")$/
+web |  Then /^the response should contain "(?P<text>(?:[^"]|\\")*)"$/
+web |  Then /^the response should not contain "(?P<text>(?:[^"]|\\")*)"$/
+web |  Then /^(?:|I )should see "(?P<text>(?:[^"]|\\")*)" in the "(?P<element>[^"]*)" element$/
+web |  Then /^(?:|I )should not see "(?P<text>(?:[^"]|\\")*)" in the "(?P<element>[^"]*)" element$/
+web |  Then /^the "(?P<element>[^"]*)" element should contain "(?P<value>(?:[^"]|\\")*)"$/
+web |  Then /^the "(?P<element>[^"]*)" element should not contain "(?P<value>(?:[^"]|\\")*)"$/
+web |  Then /^(?:|I )should see an? "(?P<element>[^"]*)" element$/
+web |  Then /^(?:|I )should not see an? "(?P<element>[^"]*)" element$/
+web |  Then /^the "(?P<field>(?:[^"]|\\")*)" field should contain "(?P<value>(?:[^"]|\\")*)"$/
+web |  Then /^the "(?P<field>(?:[^"]|\\")*)" field should not contain "(?P<value>(?:[^"]|\\")*)"$/
+web |  Then /^the "(?P<checkbox>(?:[^"]|\\")*)" checkbox should be checked$/
+web |  Then /^the checkbox "(?P<checkbox>(?:[^"]|\\")*)" (?:is|should be) checked$/
+web |  Then /^the "(?P<checkbox>(?:[^"]|\\")*)" checkbox should not be checked$/
+web |  Then /^the checkbox "(?P<checkbox>(?:[^"]|\\")*)" should (?:be unchecked|not be checked)$/
+web |  Then /^the checkbox "(?P<checkbox>(?:[^"]|\\")*)" is (?:unchecked|not checked)$/
+web |  Then /^(?:|I )should see (?P<num>\d+) "(?P<element>[^"]*)" elements?$/
+web |  Then /^print current URL$/
+web |  Then /^print last response$/
+web |  Then /^show last response$/
+
+api | Given /^I authenticated as "(\S+)"$/
+api |  When /^I authenticate as "(\S+)"$/
+api | Given /^I called "(\S+)"$/
+api |  When /^I call "(\S+)"$/
+api | Given /^I called "(\S+)" with the following body text:$/
+api |  When /^I call "(\S+)" with the following body text:$/
+api | Given /^I called "(\S+)" with the following value(s?):$/
+api |  When /^I call "(\S+)" with the following value(s?):$/
+api | Given /^I called "(\S+)" with the following value(s?) from JSON:$/
+api |  When /^I call "(\S+)" with the following value(s?) from JSON:$/
+api |  Then I get a response with a status code of :code
+api |  Then I get a successful response
+api |  Then I get an unsuccessful response with a status code of :code
+api |  Then the response contains the following value(s):
+api |  Then the response contains :count resource(s) with the following data:
+api |  Then /^the response is stored as "(\S+)"$/

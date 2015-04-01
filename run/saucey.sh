@@ -9,7 +9,7 @@ if [ "$1" = "drunk" ]
 then
   # drunk.sh : Use $FUNCNAME
   drunk(){
-    vendor/bin/behat --tags "$2" -p "sauce_$3_$4" --format html --out "reports/$2_suite"
+    vendor/bin/behat --tags "$2" -p "sauce_$3_$4" --out "reports/$2_suite"
   }
   drunk $1 $2 $3 $4 $5
   echo -e "${green}$1 @$2 $3 $4 $5${nc}"
@@ -21,7 +21,7 @@ elif [ "$1" = "tipsy" ]
 then
   # tipsy.sh : Use $FUNCNAME
   tipsy(){
-    vendor/bin/behat --tags "$2" -p "local_$3" --format html --out "reports/$2_suite"
+    vendor/bin/behat --tags "$2" -p "local_$3" --out "reports/$2_suite"
   }
   tipsy $1 $2 $3
   echo -e "${green}$1 @$2 $3"

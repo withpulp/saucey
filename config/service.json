@@ -1,0 +1,14 @@
+{
+  "name": "posts",
+  "operations": {
+    "posts": {
+      "httpMethod": "GET",
+      "uri": "/posts"
+    },
+
+    "jsontest": {
+      "httpMethod": "GET",
+      "uri": "/hero/batman/id/dc_comics_1"
+    }
+  }
+}
