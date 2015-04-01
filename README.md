@@ -138,8 +138,9 @@ See `./setup.md` for more on how this framework was set up.
 
 #Caveats
 ##Issues
-1. API functionality is not implemented currently because of  aug blocking functionality.
-2. Using the current HTML output generator, there is no shell  when running `./saucey`
+1. ~~API functionality is not implemented currently because of  aug blocking functionality.~~
+2. ~~Using the current HTML output generator, there is no shell  when running `./saucey`~~
+3. Dynamic reporting of error types. Steps that failed are shown, but the output is generic.
 
 ##TODO
 
