@@ -1,0 +1,282 @@
+<html>
+<head>
+  <title>Behat Twig Output</title>
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="http://yandex.st/highlightjs/8.0/styles/default.min.css">
+  <script src="http://yandex.st/highlightjs/8.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  <style type="text/css">
+   .table-condensed
+   {
+     font-size: 14px;
+     margin-bottom: 0px;
+   }
+   .stepargument
+   {
+     margin-top: 10px;
+     margin-bottom: 10px;
+   }
+  </style>
+</head>
+<body>
+<div class="container">
+<h1 class="page-header">Features</h1>
+  <div class="panel           panel-success
+    ">
+    <div class="panel-heading" data-toggle="collapse" data-target="#feature1">
+      <span class="badge pull-right">4</span>
+        <span class="glyphicon
+      glyphicon-ok-circle
+    "></span>
+I want to make sure api features are up and running
+    </div>
+        <div class="panel-collapse collapse" id="feature1">
+      <div class="panel-body">
+        <div class="row">
+        <div class="col-md-2">
+        <ul class="nav nav-pills nav-stacked" role="tablist">
+          <li class="active"><a href="#description-tab-1" role="tab" data-toggle="tab">Description</a></li>                    <li ><a href="#scenario-tab-1" role="tab" data-toggle="tab">Scenarios</a></li>
+        </ul>
+        </div>
+        <div class="col-md-10">
+        <div class="tab-content">
+                    <div class="tab-pane active" id="description-tab-1">
+            <p><br />
+As a tester<br />
+I want to make sure api features are up and running<br />
+So that I can automate continuous integration and regression tests using it</p>
+          </div>
+                              <div class="tab-pane " id="scenario-tab-1">
+                                    <div class="panel           panel-success
+    ">
+              <div class="panel-heading" data-toggle="collapse" data-target="#scenario-1-1">
+                  <span class="glyphicon
+      glyphicon-ok-circle
+    "></span>
+
+                <b>Scenario:</b> Make and validate a GET request
+                <span class="badge pull-right">3</span>
+              </div>
+              <div class="panel-collapse collapse" id="scenario-1-1">
+                <div class="panel-body">
+                  <ul class="list-group">
+                                       <li class="list-group-item list-group-item-success">
+                         <span class="glyphicon
+      glyphicon-ok-circle
+    "></span>
+
+                       Given send a GET request to &quot;/comments?postId=1&amp;id=1&quot;
+                                            </li>
+                                       <li class="list-group-item list-group-item-success">
+                         <span class="glyphicon
+      glyphicon-ok-circle
+    "></span>
+
+                       Then the response code should be 200
+                                            </li>
+                                       <li class="list-group-item list-group-item-success">
+                         <span class="glyphicon
+      glyphicon-ok-circle
+    "></span>
+
+                       And the response should contain json:
+                                               <pre class="stepargument"><code>  [
+    {
+      &quot;postId&quot;: 1,
+      &quot;id&quot;: 1,
+      &quot;name&quot;: &quot;id labore ex et quam laborum&quot;,
+      &quot;email&quot;: &quot;Eliseo@gardner.biz&quot;,
+      &quot;body&quot;: &quot;laudantium enim quasi est quidem magnam voluptate ipsam eos\ntempora quo necessitatibus\ndolor quam autem quasi\nreiciendis et nam sapiente accusantium&quot;
+    }
+  ]</code></pre>                                                                  </li>
+                                    </ul>
+                                  </div>
+              </div>
+            </div>
+                        <div class="panel           panel-success
+    ">
+              <div class="panel-heading" data-toggle="collapse" data-target="#scenario-2-1">
+                  <span class="glyphicon
+      glyphicon-ok-circle
+    "></span>
+
+                <b>Scenario:</b> Make and validate a PUT request
+                <span class="badge pull-right">3</span>
+              </div>
+              <div class="panel-collapse collapse" id="scenario-2-1">
+                <div class="panel-body">
+                  <ul class="list-group">
+                                       <li class="list-group-item list-group-item-success">
+                         <span class="glyphicon
+      glyphicon-ok-circle
+    "></span>
+
+                       Given send a PUT request to &quot;/posts/1&quot;
+                                            </li>
+                                       <li class="list-group-item list-group-item-success">
+                         <span class="glyphicon
+      glyphicon-ok-circle
+    "></span>
+
+                       Then the response code should be 200
+                                            </li>
+                                       <li class="list-group-item list-group-item-success">
+                         <span class="glyphicon
+      glyphicon-ok-circle
+    "></span>
+
+                       And the response should contain json:
+                                               <pre class="stepargument"><code>  {
+    &quot;userId&quot;: 1,
+    &quot;id&quot;: 1,
+    &quot;title&quot;: &quot;sunt aut facere repellat provident occaecati excepturi optio reprehenderit&quot;,
+    &quot;body&quot;: &quot;quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto&quot;
+  }</code></pre>                                                                  </li>
+                                    </ul>
+                                  </div>
+              </div>
+            </div>
+                        <div class="panel           panel-success
+    ">
+              <div class="panel-heading" data-toggle="collapse" data-target="#scenario-3-1">
+                  <span class="glyphicon
+      glyphicon-ok-circle
+    "></span>
+
+                <b>Scenario:</b> Make and validate a DELETE request
+                <span class="badge pull-right">3</span>
+              </div>
+              <div class="panel-collapse collapse" id="scenario-3-1">
+                <div class="panel-body">
+                  <ul class="list-group">
+                                       <li class="list-group-item list-group-item-success">
+                         <span class="glyphicon
+      glyphicon-ok-circle
+    "></span>
+
+                       Given send a DELETE request to &quot;/posts/1&quot;
+                                            </li>
+                                       <li class="list-group-item list-group-item-success">
+                         <span class="glyphicon
+      glyphicon-ok-circle
+    "></span>
+
+                       Then the response code should be 204
+                                            </li>
+                                       <li class="list-group-item list-group-item-success">
+                         <span class="glyphicon
+      glyphicon-ok-circle
+    "></span>
+
+                       And the response should not contain &quot;id&quot;
+                                            </li>
+                                    </ul>
+                                  </div>
+              </div>
+            </div>
+                        <div class="panel           panel-success
+    ">
+              <div class="panel-heading" data-toggle="collapse" data-target="#scenario-4-1">
+                  <span class="glyphicon
+      glyphicon-ok-circle
+    "></span>
+
+                <b>Scenario:</b> Make and validate a GET request with a header
+                <span class="badge pull-right">3</span>
+              </div>
+              <div class="panel-collapse collapse" id="scenario-4-1">
+                <div class="panel-body">
+                  <ul class="list-group">
+                                       <li class="list-group-item list-group-item-success">
+                         <span class="glyphicon
+      glyphicon-ok-circle
+    "></span>
+
+                       Given send a GET request to &quot;/posts/1&quot; with values:
+                                                                                               <div class="panel panel-default stepargument"><div class="panel-body">
+                        <table class="table table-condensed">
+                                                    <tr>
+                                                          <th>                              User-Agent
+                              </th>                                                          <th>                              Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2272.104 Safari/537.36
+                              </th>                                                      </tr>
+                                                    <tr>
+                                                          <td>                              Origin
+                              </td>                                                          <td>                              chrome-extension://hgmloofddffdnphfgcellkdfbfbjeloo
+                              </td>                                                      </tr>
+                                                    <tr>
+                                                          <td>                              Content-Type
+                              </td>                                                          <td>                              multipart/form-data; boundary=ARCFormBoundaryritq1vvj7s6ecdi
+                              </td>                                                      </tr>
+                                                    <tr>
+                                                          <td>                              Accept
+                              </td>                                                          <td>                              */*
+                              </td>                                                      </tr>
+                                                    <tr>
+                                                          <td>                              Accept-Encoding
+                              </td>                                                          <td>                              gzip, deflate, sdch
+                              </td>                                                      </tr>
+                                                    <tr>
+                                                          <td>                              Accept-Language
+                              </td>                                                          <td>                              en-US,en;q=0.8
+                              </td>                                                      </tr>
+                                                    <tr>
+                                                          <td>                              Cookie
+                              </td>                                                          <td>                              _ga=GA1.2.703163342.1427828201
+                              </td>                                                      </tr>
+                                                 </table>
+                       </div></div>
+                                                                 </li>
+                                       <li class="list-group-item list-group-item-success">
+                         <span class="glyphicon
+      glyphicon-ok-circle
+    "></span>
+
+                       Then the response code should be 200
+                                            </li>
+                                       <li class="list-group-item list-group-item-success">
+                         <span class="glyphicon
+      glyphicon-ok-circle
+    "></span>
+
+                       And the response should contain json:
+                                               <pre class="stepargument"><code>  {
+    &quot;userId&quot;: 1,
+    &quot;id&quot;: 1,
+    &quot;title&quot;: &quot;sunt aut facere repellat provident occaecati excepturi optio reprehenderit&quot;,
+    &quot;body&quot;: &quot;quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto&quot;
+  }</code></pre>                                                                  </li>
+                                    </ul>
+                                  </div>
+              </div>
+            </div>
+                                  </div>
+        </div>
+        </div>
+        </div>
+
+        
+      </div>
+    </div>
+      </div>
+<h1 class="page-header">Statistics</h1>
+
+<h3 class="page-header">Scenarios</h3>
+<div class="progress">
+  <div class="progress-bar progress-bar-success" style="width: 100%">4 passed</div>
+  <div class="progress-bar progress-bar-warning" style="width: 0%">0 pending</div>
+  <div class="progress-bar progress-bar-danger" style="width: 0%">0 failed</div>
+  <div class="progress-bar progress-bar-info" style="width: 0%">0 skipped</div>
+</div>
+<h3 class="page-header">Steps</h3>
+<div class="progress">
+  <div class="progress-bar progress-bar-success" style="width: 100%">12 passed</div>
+  <div class="progress-bar progress-bar-warning" style="width: 0%">0 pending</div>
+  <div class="progress-bar progress-bar-danger" style="width: 0%">0 failed</div>
+  <div class="progress-bar progress-bar-info" style="width: 0%">0 skipped</div>
+</div>
+</div>
+</body>
+</html>
