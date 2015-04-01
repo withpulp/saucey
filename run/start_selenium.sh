@@ -8,7 +8,7 @@ if [ "$1" = "windows" ]
 then
   # start_selenium.sh : Use $FUNCNAME
   start_selenium(){
-    java -jar vendor/saucey/drivers/selenium-server-standalone-2.44.0.jar -Dwebdriver.ie.driver=vendor\saucey\drivers\IEDriverServer.exe
+    java -jar vendor\saucey\drivers\selenium-server-standalone-2.45.0.jar -Dwebdriver.ie.driver=vendor\saucey\drivers\IEDriverServer.exe
   }
 
   start_selenium $1
@@ -17,7 +17,7 @@ elif [ "$1" = "mac" ]
 then
   # start_selenium.sh : Use $FUNCNAME
   start_selenium(){
-    java -jar vendor/saucey/drivers/selenium-server-standalone-2.44.0.jar -Dwebdriver.chrome.driver=vendor/saucey/drivers/chromedriver
+    java -jar vendor/saucey/drivers/selenium-server-standalone-2.45.0.jar -Dwebdriver.chrome.driver=vendor/saucey/drivers/chromedriver
   }
 
   start_selenium $1

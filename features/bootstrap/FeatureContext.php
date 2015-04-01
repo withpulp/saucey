@@ -20,10 +20,10 @@ use Behat\Behat\Context\Step;
    * Every scenario gets it's own context object.
    *
    */
-  public function __construct()
-  {
-
-  }
+   public function __construct($baseUrl)
+   {
+     $this->baseUrl = $baseUrl;
+   }
 
   /**
   * @Given /^I wait for (\d+) seconds$/

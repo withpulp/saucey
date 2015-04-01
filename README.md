@@ -124,7 +124,9 @@ By default, reports are saved to the `reports/` directory. If you ran a suite vi
 
 	reports/<tag>_suite/
 
-So for our example above the report would be available by opening `reports/check_suite/report.html`.
+So for our example above the report would be available by opening `reports/check_suite/report.html`. Should look something like the below:
+
+![wireframes, coming to http://saucey.io/app soon](images/saucey-io-report.png "App Wires")
 
 ###More
 
@@ -149,5 +151,7 @@ See `./setup.md` for more on how this framework was set up.
 6. Dockerize!!!
 
 ##Wires from the future!
+
+In a later release of the application, sauce will have a front-end. Ideally something that is also usable by business-minded folks and the like. Below are v0.0.1 wireframes. Everything is still being tested for UX and integration. Keep your ears to the ground!
 
 ![wireframes, coming to http://saucey.io/app soon](images/saucey-io-app-wires.png "App Wires")

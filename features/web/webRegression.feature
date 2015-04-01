@@ -4,36 +4,42 @@ Feature: I want to make sure this test suite is up and running
   I want to make sure this test suite is up and running
   So that I can automate continuous integration and regression tests using it
 
-    @javascript @web @googleQuery
-    Scenario: Query against google.com and search
-      Given I am on "http://google.com"
-      Then I should see "Gmail"
-      And the response should contain "Google Search"
-      When I fill in "q" with "Batman"
-      And I wait for 2 seconds
-      Then I should see "Batman"
+    @javascript @web @search @button @link
+    Scenario: Perform a search query against html5doctor.com
+      Given I am on "/"
+      Then I should see "HTML5 Doctor"
+      And the response should contain "banner"
+      When I fill in "q" with "header"
+      And I press "search-button"
+      And I wait for 1 seconds
+      Then I should see "header | HTML5 Doctor"
+      And I should be on "/search/?q=header"
+      When I follow "About"
+      Then I should be on "/about/"
 
-    @javascript @web @googleQueries
-    Scenario Outline: Multiple queries against google.com and search
-      Given I am on "http://google.com"
-      Then I should see "Gmail"
-      And the response should contain "Google Search"
-      When I fill in "q" with "<hero>"
-      And I wait for 2 seconds
-      Then I should see "<expectedText>"
+    @javascript @web @table @multipleQueries
+    Scenario Outline: Perform multiple search queries against html5doctor.com
+      Given I am on "/"
+      Then I should see "HTML5 Doctor"
+      And the response should contain "banner"
+      When I fill in "q" with "<query>"
+      And I press "search-button"
+      And I wait for 1 seconds
+      Then I should see "<expectedResult>"
 
     Examples:
-    | hero | expectedText |
-    | Batman | Batman |
-    | Superman | Superman |
-    | Wonder Woman | Diana Prince |
-    | Captain Marvel | Shazam |
+    | query | expectedResult |
+    | head | Element Index |
+    | link | Element Index |
+    | meta | Element Index |
+    | span | Element Index |
+    | batman | No results for batman. |
 
-    @javascript @web @elementPress @redirect
-    Scenario Outline: Expect redirect from request to URL and function by XPath
+    @javascript @web @xpathPress @redirect @browserWindowSize
+    Scenario Outline: Capture a redirect, change window size, and press an element by XPath
       Given I am on "<request>"
       And I wait for 3 seconds
-      And I set browser window size to "2000" x "1200"
+      And I set browser window size to "1800" x "1200"
       Then I should be on "<URL>"
       And I should see "<expectedText>"
       When I click on the element with xpath '<heroIcon>'
@@ -47,7 +53,7 @@ Feature: I want to make sure this test suite is up and running
     | http://superman.com | http://www.dccomics.com/characters/superman | Look! Up in the sky! | //*[@id="main"]/div/div[2]/div/div[1]/img |
 
     @javascript @web @alert
-    Scenario: Popup and JS Alerts
+    Scenario: Verify javascript pop up alerts
       Given I am on "http://www.javascripter.net/faq/alert.htm"
       Then I should see "How do I display an alert message from JavaScript?"
       When I press "Try it now"
@@ -58,20 +64,47 @@ Feature: I want to make sure this test suite is up and running
 
     @javascript @web @scroll
     Scenario: Scroll up and down a site
-      Given I am on "http://blackestate.co.nz/"
-      And I wait for 2 seconds
-      Then I should see "Black Estate is a remarkable place for wine."
+      Given I am on "/"
+      Then I should see "HTML5 Doctor"
+      And the response should contain "banner"
       When I scroll to the bottom
-      And I wait for 3 seconds
-      Then I should see "2014 Season Report"
+      Then I should see " All rights reserved. "
       When I scroll to the top
-      Then I should see "Tasting Room & Eatery"
+      Then I should see "RECENT COMMENTS"
 
     @javascript @web @scrollToElement
-    Scenario: Scroll to an element
+    Scenario: Scroll to an element by XPath or ID
       Given I am on "http://stackoverflow.com/questions/11067186/is-using-footer-inside-form-semantically-fine"
-      And I wait for 2 seconds
+      And I wait for 1 seconds
       Then I should see "Is using <footer> inside <form> semantically fine?"
       When I scroll to the "wmd-input" field
       And I wait for 1 seconds
       Then I should see "Your Answer"
+
+    @javascript @web @browserFunctionality
+    Scenario: Test some other browser functionality
+      Given I am on a new session
+      And I am on "/"
+      Then I should see "HTML5 Doctor"
+      And the response should contain "banner"
+      When I reload the page
+      Then I should be on "/"
+
+#    @javascript @web @form
+#    Scenario: Perform multiple search queries against html5doctor.com
+#      Given I am on "http://www.html5rocks.com/en/tutorials/forms/html5forms/input-types.html"
+#      Then I should see "Before you may cross the bridge, you must answer these questions!"
+#      When I fill in the following:
+#        | first_last | Bruce Wayne |
+#        | email_addr | bruce@wayneenterprises.com |
+#        | email_addr_confirm | bruce@wayneenterprises.com |
+#        | fav_website | http://whoisbatman.com |
+#        | fav_pizza | 555-111-1234 |
+#        | dob | 02191915 |
+#        | age | 51 |
+#        | chocolate | Dark Chocolate with Almonds |
+#        | part_number | XXX9999XX |
+#        | airspeed_velocity | 25 |
+#      And I wait for 3 seconds
+#      Then I should be on "http://www.html5rocks.com/en/tutorials/forms/html5forms/input-types.html"
+#      And I should see "Before you may cross the bridge, you must answer these questions!"
