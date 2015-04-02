@@ -1,4 +1,4 @@
-Feature: I want to make sure this test suite is up and running
+Feature: Web API Functionality
 
   As a tester
   I want to make sure this test suite is up and running
@@ -91,7 +91,7 @@ Feature: I want to make sure this test suite is up and running
       Then I should be on "/"
 
 #    @javascript @web @form
-#    Scenario: Perform multiple search queries against html5doctor.com
+#    Scenario: Fill out a form
 #      Given I am on "http://www.html5rocks.com/en/tutorials/forms/html5forms/input-types.html"
 #      Then I should see "Before you may cross the bridge, you must answer these questions!"
 #      When I fill in the following:
@@ -108,3 +108,47 @@ Feature: I want to make sure this test suite is up and running
 #      And I wait for 3 seconds
 #      Then I should be on "http://www.html5rocks.com/en/tutorials/forms/html5forms/input-types.html"
 #      And I should see "Before you may cross the bridge, you must answer these questions!"
+
+    @javascript @web @form
+    Scenario: Fill out a form
+      Given I am on "http://www.html5rocks.com/en/tutorials/forms/html5forms/input-types.html"
+      Then I should see "Before you may cross the bridge, you must answer these questions!"
+      When I fill in "first_last" with "Bruce Wayne"
+      And I fill in "email_addr" with "bruce@wayneenterprises.com"
+      And I fill in "email_addr_confirm" with "bruce@wayneenterprises.com"
+      And I fill in "fav_website" with "http://whoisbatman.com"
+      And I fill in "fav_pizza" with "555-111-1234"
+      And I fill in "dob" with "02191915"
+      And I fill in "age" with "51"
+      And I fill in "chocolate" with "Dark Chocolate with Almonds"
+      And I fill in "part_number" with "XXX9999XX"
+      And I wait for 2 seconds
+      Then I should be on "http://www.html5rocks.com/en/tutorials/forms/html5forms/input-types.html"
+      And I should see "Before you may cross the bridge, you must answer these questions!"
+
+    @javascript @web @failure
+    Scenario: Generate some failures for our report
+      Given I am on "/"
+      Then I should see "HTML5 Doctor"
+      And the response should contain "banner"
+      When I follow "Article Archive"
+      Then I should be on "/farticle-farchive/"
+      And I should see "Some failures in my report"
+
+    @javascript @web @failure
+    Scenario: Generate some MOAR failures for our report
+      Given I am on "/"
+      Then I should see "HTML5 Doctor"
+      And the response should contain "banner"
+      When I follow "Element Index"
+      Then I should be on "/felement-findex/"
+      And I should see "Some failures in my report"
+
+    @javascript @web @skipped @snippets
+    Scenario: Generate some snippets and skipped steps for our report
+      Given I am on "/"
+      Then I should see "HTML5 Doctor"
+      And the response should contain "banner"
+      When I do some fancy ass shit
+      Then the rest of this test should be skipped
+      And I should see "Some skipped steps` in my report"

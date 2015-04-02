@@ -27,6 +27,12 @@ then
   echo -e "${green}$1 @$2 $3"
   echo -e "${nc}Go to ${yellow}reports/saucey_report_$2.html${nc}"
 
+# If selenium local
+elif [ "$1" = "test" ]
+then
+
+  echo -e "Yo, you try'na get saucey?"
+
 # If init
 elif [ "$1" = "" ]
 then
