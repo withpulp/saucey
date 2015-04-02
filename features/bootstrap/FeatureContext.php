@@ -203,36 +203,14 @@ use Behat\Behat\Context\Step;
       //}
       chdir($dir);
   }
-
-  /**
-   * @When /^I run "([^"]*)"$/
-   */
-  public function iRun($command)
-  {
-      exec($command, $output);
-      $this->output = trim(implode("\n", $output));
-  }
-
-  /**
-   * @Then I should see:
-   */
-  public function iShouldSee(PyStringNode $string)
-  {
-      if ($string->getRaw() !== $this->output) {
-          throw new \Exception(
-              "Actual output is:\n" . $this->output
-          );
-      }
-  }
-
+  
   #
   # WORK IN PROGRESS
   # TO DO:
-  // 1. Contextualize shell functionality for reusability
-  // 2. Make context for clicking XY coordinates
-  // 3. Make context for dragging and dropping with XY coordinates
-  // 4. Connect to its own Jenkins CI instance
-  // 5. Dockerize!!!
+  // 1. Make context for clicking XY coordinates
+  // 2. Make context for dragging and dropping with XY coordinates
+  // 3. Connect to its own Jenkins CI instance
+  // 4. Dockerize!!!
 
   /**
   * @When /^I click ad coordinates$/

@@ -27,11 +27,11 @@
   <div class="panel           panel-success
     ">
     <div class="panel-heading" data-toggle="collapse" data-target="#feature1">
-      <span class="badge pull-right">4</span>
+      <span class="badge pull-right">3</span>
         <span class="glyphicon
       glyphicon-ok-circle
     "></span>
-SOAP &amp; REST API Funtionality
+Shell Functionality
     </div>
         <div class="panel-collapse collapse" id="feature1">
       <div class="panel-body">
@@ -46,7 +46,7 @@ SOAP &amp; REST API Funtionality
                     <div class="tab-pane active" id="description-tab-1">
             <p><br />
 As a tester<br />
-I want to make sure api features are up and running<br />
+I want to make sure shell features are up and running<br />
 So that I can automate continuous integration and regression tests using it</p>
           </div>
                               <div class="tab-pane " id="scenario-tab-1">
@@ -57,7 +57,7 @@ So that I can automate continuous integration and regression tests using it</p>
       glyphicon-ok-circle
     "></span>
 
-                <b>Scenario:</b> Make and validate a GET request
+                <b>Scenario:</b> Run &#039;ls -a&#039; and verify output
                 <span class="badge pull-right">3</span>
               </div>
               <div class="panel-collapse collapse" id="scenario-1-1">
@@ -68,30 +68,41 @@ So that I can automate continuous integration and regression tests using it</p>
       glyphicon-ok-circle
     "></span>
 
-                       Given send a GET request to &quot;/comments?postId=1&amp;id=1&quot;
+                       Given I am in a directory &quot;/Users/EnderWiggin/Sites/saucey&quot;
                                             </li>
                                        <li class="list-group-item list-group-item-success">
                          <span class="glyphicon
       glyphicon-ok-circle
     "></span>
 
-                       Then the response code should be 200
+                       When I run &quot;ls -a&quot;
                                             </li>
                                        <li class="list-group-item list-group-item-success">
                          <span class="glyphicon
       glyphicon-ok-circle
     "></span>
 
-                       And the response should contain json:
-                                               <pre class="stepargument"><code>  [
-    {
-      &quot;postId&quot;: 1,
-      &quot;id&quot;: 1,
-      &quot;name&quot;: &quot;id labore ex et quam laborum&quot;,
-      &quot;email&quot;: &quot;Eliseo@gardner.biz&quot;,
-      &quot;body&quot;: &quot;laudantium enim quasi est quidem magnam voluptate ipsam eos\ntempora quo necessitatibus\ndolor quam autem quasi\nreiciendis et nam sapiente accusantium&quot;
-    }
-  ]</code></pre>                                                                  </li>
+                       Then I should see:
+                                               <pre class="stepargument"><code>.
+..
+.DS_Store
+.git
+.gitignore
+README.md
+behat.yml
+bin
+composer.json
+composer.lock
+composer.phar
+config
+features
+gitty
+images
+reports
+run
+saucey
+start_selenium
+vendor</code></pre>                                                                  </li>
                                     </ul>
                                   </div>
               </div>
@@ -103,7 +114,7 @@ So that I can automate continuous integration and regression tests using it</p>
       glyphicon-ok-circle
     "></span>
 
-                <b>Scenario:</b> Make and validate a PUT request
+                <b>Scenario:</b> Run &#039;./saucey test&#039; and verify output
                 <span class="badge pull-right">3</span>
               </div>
               <div class="panel-collapse collapse" id="scenario-2-1">
@@ -114,27 +125,22 @@ So that I can automate continuous integration and regression tests using it</p>
       glyphicon-ok-circle
     "></span>
 
-                       Given send a PUT request to &quot;/posts/1&quot;
+                       Given I am in a directory &quot;/Users/EnderWiggin/Sites/saucey&quot;
                                             </li>
                                        <li class="list-group-item list-group-item-success">
                          <span class="glyphicon
       glyphicon-ok-circle
     "></span>
 
-                       Then the response code should be 200
+                       When I run &quot;./saucey test&quot;
                                             </li>
                                        <li class="list-group-item list-group-item-success">
                          <span class="glyphicon
       glyphicon-ok-circle
     "></span>
 
-                       And the response should contain json:
-                                               <pre class="stepargument"><code>  {
-    &quot;userId&quot;: 1,
-    &quot;id&quot;: 1,
-    &quot;title&quot;: &quot;sunt aut facere repellat provident occaecati excepturi optio reprehenderit&quot;,
-    &quot;body&quot;: &quot;quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto&quot;
-  }</code></pre>                                                                  </li>
+                       Then I should see:
+                                               <pre class="stepargument"><code>Yo, you try&#039;na get saucey?</code></pre>                                                                  </li>
                                     </ul>
                                   </div>
               </div>
@@ -146,7 +152,7 @@ So that I can automate continuous integration and regression tests using it</p>
       glyphicon-ok-circle
     "></span>
 
-                <b>Scenario:</b> Make and validate a DELETE request
+                <b>Scenario:</b> Run &#039;git remote&#039; and verify output
                 <span class="badge pull-right">3</span>
               </div>
               <div class="panel-collapse collapse" id="scenario-3-1">
@@ -157,97 +163,25 @@ So that I can automate continuous integration and regression tests using it</p>
       glyphicon-ok-circle
     "></span>
 
-                       Given send a DELETE request to &quot;/posts/1&quot;
+                       Given I am in a directory &quot;/Users/EnderWiggin/Sites/saucey&quot;
                                             </li>
                                        <li class="list-group-item list-group-item-success">
                          <span class="glyphicon
       glyphicon-ok-circle
     "></span>
 
-                       Then the response code should be 204
+                       When I run &quot;git remote&quot;
                                             </li>
                                        <li class="list-group-item list-group-item-success">
                          <span class="glyphicon
       glyphicon-ok-circle
     "></span>
 
-                       And the response should not contain &quot;id&quot;
-                                            </li>
-                                    </ul>
-                                  </div>
-              </div>
-            </div>
-                        <div class="panel           panel-success
-    ">
-              <div class="panel-heading" data-toggle="collapse" data-target="#scenario-4-1">
-                  <span class="glyphicon
-      glyphicon-ok-circle
-    "></span>
-
-                <b>Scenario:</b> Make and validate a GET request with a header
-                <span class="badge pull-right">3</span>
-              </div>
-              <div class="panel-collapse collapse" id="scenario-4-1">
-                <div class="panel-body">
-                  <ul class="list-group">
-                                       <li class="list-group-item list-group-item-success">
-                         <span class="glyphicon
-      glyphicon-ok-circle
-    "></span>
-
-                       Given send a GET request to &quot;/posts/1&quot; with values:
-                                                                                               <div class="panel panel-default stepargument"><div class="panel-body">
-                        <table class="table table-condensed">
-                                                    <tr>
-                                                          <th>                              User-Agent
-                              </th>                                                          <th>                              Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2272.104 Safari/537.36
-                              </th>                                                      </tr>
-                                                    <tr>
-                                                          <td>                              Origin
-                              </td>                                                          <td>                              chrome-extension://hgmloofddffdnphfgcellkdfbfbjeloo
-                              </td>                                                      </tr>
-                                                    <tr>
-                                                          <td>                              Content-Type
-                              </td>                                                          <td>                              multipart/form-data; boundary=ARCFormBoundaryritq1vvj7s6ecdi
-                              </td>                                                      </tr>
-                                                    <tr>
-                                                          <td>                              Accept
-                              </td>                                                          <td>                              */*
-                              </td>                                                      </tr>
-                                                    <tr>
-                                                          <td>                              Accept-Encoding
-                              </td>                                                          <td>                              gzip, deflate, sdch
-                              </td>                                                      </tr>
-                                                    <tr>
-                                                          <td>                              Accept-Language
-                              </td>                                                          <td>                              en-US,en;q=0.8
-                              </td>                                                      </tr>
-                                                    <tr>
-                                                          <td>                              Cookie
-                              </td>                                                          <td>                              _ga=GA1.2.703163342.1427828201
-                              </td>                                                      </tr>
-                                                 </table>
-                       </div></div>
-                                                                 </li>
-                                       <li class="list-group-item list-group-item-success">
-                         <span class="glyphicon
-      glyphicon-ok-circle
-    "></span>
-
-                       Then the response code should be 200
-                                            </li>
-                                       <li class="list-group-item list-group-item-success">
-                         <span class="glyphicon
-      glyphicon-ok-circle
-    "></span>
-
-                       And the response should contain json:
-                                               <pre class="stepargument"><code>  {
-    &quot;userId&quot;: 1,
-    &quot;id&quot;: 1,
-    &quot;title&quot;: &quot;sunt aut facere repellat provident occaecati excepturi optio reprehenderit&quot;,
-    &quot;body&quot;: &quot;quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto&quot;
-  }</code></pre>                                                                  </li>
+                       Then I should see:
+                                               <pre class="stepargument"><code>origin
+sajjad
+saucey
+withpulp</code></pre>                                                                  </li>
                                     </ul>
                                   </div>
               </div>
@@ -265,14 +199,14 @@ So that I can automate continuous integration and regression tests using it</p>
 
 <h3 class="page-header">Scenarios</h3>
 <div class="progress">
-  <div class="progress-bar progress-bar-success" style="width: 100%">4 passed</div>
+  <div class="progress-bar progress-bar-success" style="width: 100%">3 passed</div>
   <div class="progress-bar progress-bar-warning" style="width: 0%">0 pending</div>
   <div class="progress-bar progress-bar-danger" style="width: 0%">0 failed</div>
   <div class="progress-bar progress-bar-info" style="width: 0%">0 skipped</div>
 </div>
 <h3 class="page-header">Steps</h3>
 <div class="progress">
-  <div class="progress-bar progress-bar-success" style="width: 100%">12 passed</div>
+  <div class="progress-bar progress-bar-success" style="width: 100%">9 passed</div>
   <div class="progress-bar progress-bar-warning" style="width: 0%">0 pending</div>
   <div class="progress-bar progress-bar-danger" style="width: 0%">0 failed</div>
   <div class="progress-bar progress-bar-info" style="width: 0%">0 skipped</div>
