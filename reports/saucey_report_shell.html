@@ -1,0 +1,216 @@
+<html>
+<head>
+  <title>Behat Twig Output</title>
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="http://yandex.st/highlightjs/8.0/styles/default.min.css">
+  <script src="http://yandex.st/highlightjs/8.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  <style type="text/css">
+   .table-condensed
+   {
+     font-size: 14px;
+     margin-bottom: 0px;
+   }
+   .stepargument
+   {
+     margin-top: 10px;
+     margin-bottom: 10px;
+   }
+  </style>
+</head>
+<body>
+<div class="container">
+<h1 class="page-header">Features</h1>
+  <div class="panel           panel-success
+    ">
+    <div class="panel-heading" data-toggle="collapse" data-target="#feature1">
+      <span class="badge pull-right">3</span>
+        <span class="glyphicon
+      glyphicon-ok-circle
+    "></span>
+Shell Functionality
+    </div>
+        <div class="panel-collapse collapse" id="feature1">
+      <div class="panel-body">
+        <div class="row">
+        <div class="col-md-2">
+        <ul class="nav nav-pills nav-stacked" role="tablist">
+          <li class="active"><a href="#description-tab-1" role="tab" data-toggle="tab">Description</a></li>                    <li ><a href="#scenario-tab-1" role="tab" data-toggle="tab">Scenarios</a></li>
+        </ul>
+        </div>
+        <div class="col-md-10">
+        <div class="tab-content">
+                    <div class="tab-pane active" id="description-tab-1">
+            <p><br />
+As a tester<br />
+I want to make sure shell features are up and running<br />
+So that I can automate continuous integration and regression tests using it</p>
+          </div>
+                              <div class="tab-pane " id="scenario-tab-1">
+                                    <div class="panel           panel-success
+    ">
+              <div class="panel-heading" data-toggle="collapse" data-target="#scenario-1-1">
+                  <span class="glyphicon
+      glyphicon-ok-circle
+    "></span>
+
+                <b>Scenario:</b> Run &#039;ls -a&#039; and verify output
+                <span class="badge pull-right">3</span>
+              </div>
+              <div class="panel-collapse collapse" id="scenario-1-1">
+                <div class="panel-body">
+                  <ul class="list-group">
+                                       <li class="list-group-item list-group-item-success">
+                         <span class="glyphicon
+      glyphicon-ok-circle
+    "></span>
+
+                       Given I am in a directory &quot;/Users/EnderWiggin/Sites/saucey&quot;
+                                            </li>
+                                       <li class="list-group-item list-group-item-success">
+                         <span class="glyphicon
+      glyphicon-ok-circle
+    "></span>
+
+                       When I run &quot;ls -a&quot;
+                                            </li>
+                                       <li class="list-group-item list-group-item-success">
+                         <span class="glyphicon
+      glyphicon-ok-circle
+    "></span>
+
+                       Then I should see:
+                                               <pre class="stepargument"><code>.
+..
+.DS_Store
+.git
+.gitignore
+README.md
+behat.yml
+bin
+composer.json
+composer.lock
+composer.phar
+config
+features
+gitty
+images
+reports
+run
+saucey
+start_selenium
+vendor</code></pre>                                                                  </li>
+                                    </ul>
+                                  </div>
+              </div>
+            </div>
+                        <div class="panel           panel-success
+    ">
+              <div class="panel-heading" data-toggle="collapse" data-target="#scenario-2-1">
+                  <span class="glyphicon
+      glyphicon-ok-circle
+    "></span>
+
+                <b>Scenario:</b> Run &#039;./saucey test&#039; and verify output
+                <span class="badge pull-right">3</span>
+              </div>
+              <div class="panel-collapse collapse" id="scenario-2-1">
+                <div class="panel-body">
+                  <ul class="list-group">
+                                       <li class="list-group-item list-group-item-success">
+                         <span class="glyphicon
+      glyphicon-ok-circle
+    "></span>
+
+                       Given I am in a directory &quot;/Users/EnderWiggin/Sites/saucey&quot;
+                                            </li>
+                                       <li class="list-group-item list-group-item-success">
+                         <span class="glyphicon
+      glyphicon-ok-circle
+    "></span>
+
+                       When I run &quot;./saucey test&quot;
+                                            </li>
+                                       <li class="list-group-item list-group-item-success">
+                         <span class="glyphicon
+      glyphicon-ok-circle
+    "></span>
+
+                       Then I should see:
+                                               <pre class="stepargument"><code>Yo, you try&#039;na get saucey?</code></pre>                                                                  </li>
+                                    </ul>
+                                  </div>
+              </div>
+            </div>
+                        <div class="panel           panel-success
+    ">
+              <div class="panel-heading" data-toggle="collapse" data-target="#scenario-3-1">
+                  <span class="glyphicon
+      glyphicon-ok-circle
+    "></span>
+
+                <b>Scenario:</b> Run &#039;git remote&#039; and verify output
+                <span class="badge pull-right">3</span>
+              </div>
+              <div class="panel-collapse collapse" id="scenario-3-1">
+                <div class="panel-body">
+                  <ul class="list-group">
+                                       <li class="list-group-item list-group-item-success">
+                         <span class="glyphicon
+      glyphicon-ok-circle
+    "></span>
+
+                       Given I am in a directory &quot;/Users/EnderWiggin/Sites/saucey&quot;
+                                            </li>
+                                       <li class="list-group-item list-group-item-success">
+                         <span class="glyphicon
+      glyphicon-ok-circle
+    "></span>
+
+                       When I run &quot;git remote&quot;
+                                            </li>
+                                       <li class="list-group-item list-group-item-success">
+                         <span class="glyphicon
+      glyphicon-ok-circle
+    "></span>
+
+                       Then I should see:
+                                               <pre class="stepargument"><code>origin
+sajjad
+saucey
+withpulp</code></pre>                                                                  </li>
+                                    </ul>
+                                  </div>
+              </div>
+            </div>
+                                  </div>
+        </div>
+        </div>
+        </div>
+
+        
+      </div>
+    </div>
+      </div>
+<h1 class="page-header">Statistics</h1>
+
+<h3 class="page-header">Scenarios</h3>
+<div class="progress">
+  <div class="progress-bar progress-bar-success" style="width: 100%">3 passed</div>
+  <div class="progress-bar progress-bar-warning" style="width: 0%">0 pending</div>
+  <div class="progress-bar progress-bar-danger" style="width: 0%">0 failed</div>
+  <div class="progress-bar progress-bar-info" style="width: 0%">0 skipped</div>
+</div>
+<h3 class="page-header">Steps</h3>
+<div class="progress">
+  <div class="progress-bar progress-bar-success" style="width: 100%">9 passed</div>
+  <div class="progress-bar progress-bar-warning" style="width: 0%">0 pending</div>
+  <div class="progress-bar progress-bar-danger" style="width: 0%">0 failed</div>
+  <div class="progress-bar progress-bar-info" style="width: 0%">0 skipped</div>
+</div>
+</div>
+</body>
+</html>
