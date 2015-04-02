@@ -1,4 +1,4 @@
-Feature: I want to make sure api features are up and running
+Feature: SOAP & REST API Funtionality
 
   As a tester
   I want to make sure api features are up and running

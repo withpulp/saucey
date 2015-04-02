@@ -193,6 +193,38 @@ use Behat\Behat\Context\Step;
     $this->getSession()->restart();
   }
 
+  /**
+   * @Given /^I am in a directory "([^"]*)"$/
+   */
+  public function iAmInADirectory($dir)
+  {
+      //if (!file_exists($dir)) {
+      //    mkdir($dir);
+      //}
+      chdir($dir);
+  }
+
+  /**
+   * @When /^I run "([^"]*)"$/
+   */
+  public function iRun($command)
+  {
+      exec($command, $output);
+      $this->output = trim(implode("\n", $output));
+  }
+
+  /**
+   * @Then I should see:
+   */
+  public function iShouldSee(PyStringNode $string)
+  {
+      if ($string->getRaw() !== $this->output) {
+          throw new \Exception(
+              "Actual output is:\n" . $this->output
+          );
+      }
+  }
+
   #
   # WORK IN PROGRESS
   # TO DO:

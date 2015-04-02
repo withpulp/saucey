@@ -136,17 +136,24 @@ See `./setup.md` for more on how this framework was set up.
 * More on Mink [here](http://mink.behat.org/en/latest/)  
 * More on Pear [here](http://pear.php.net/)  
 
-#Caveats
-##Issues
+#Caveats & Issues
+##Driver Issues
+The issues listed below are some known issues with the Selenium WebDriver.
+
+1. Firefox ≤36.0.3 does not render ANY web driver functions from selenium, fixed in v36.0.4 with selenium 
+2. Most of the major web driver functionality, i.e. Pressing Buttons, etc are completely non-functional for the Safari Web Driver.
+3. 
+
+##Saucey Issues
 1. ~~API functionality is not implemented currently because of  aug blocking functionality.~~
-2. ~~Using the current HTML output generator, there is no shell  when running `./saucey`~~
+2. ~~Using the current HTML output generator, there is no shell output when running `./saucey`~~
 3. Dynamic reporting of error types. Steps that failed are shown, but the output is generic.
 
 ##TODO
 
-1. Contextualize shell functionality for reusability
-2. Make context for clicking XY coordinates
-3. Make context for dragging and dropping with XY coordinates
+1. ~~Contextualize shell functionality for reusability~~
+2. Make context for clicking XY coordinates -- **In Progress**
+3. Make context for dragging and dropping with XY coordinates -- **In Progress**
 4. Load test automation with JMeter API
 5. Connect to its own Jenkins CI instance
 6. Dockerize!!!
