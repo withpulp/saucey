@@ -173,9 +173,21 @@ The issues listed below are some known issues with the Selenium WebDriver.
 
 ##TODO
 
+###Code tasks
 1. ~~Contextualize shell functionality for reusability~~
 2. Make context for clicking XY coordinates -- **In Progress**
 3. Make context for dragging and dropping with XY coordinates -- **In Progress**
 4. Load test automation with JMeter API
 5. Connect to its own Jenkins CI instance
 6. Dockerize!!!
+
+###Documentation tasks
+1. How to write functional Gherkin tests
+2. How to write custom step definitions
+3. How to add saucey to a project
+4. How to add/modify yaml and composer dependancies
+
+###Front-end tasks
+1. saucey.io -- **In Progress**
+2. saucey app, finish UI/UX and app skeleton
+
