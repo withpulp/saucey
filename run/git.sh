@@ -23,7 +23,7 @@ elif [ "$1" = "shove" ]
 then
   # shove : Use $FUNCNAME
   shove(){
-    git push adcade
+    git push origin
     git push saucey
     git push withpulp
     git push sajjad
