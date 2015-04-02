@@ -28,7 +28,7 @@ Temporary Items
 # Behat files
 composer.lock
 behat.yml
-reports/*.html
+reports/html
 
 # Behat directories
 vendor/
