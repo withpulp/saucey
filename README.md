@@ -162,14 +162,13 @@ View real output reports below:
 * [http://testweb.pw/adcade/Default/reports/saucey_report_shell.html](http://testweb.pw/adcade/Default/reports/saucey_report_shell.html)
 
 ##MOAR
-Find out more @ [http://saucey.io](http://saucey.io)  
-Fork the repo @ [https://github.com/saucey-io/saucey.git](https://github.com/sajjadhossain/saucey.git)  
-
-See `config/setup.md` for more on how this framework was set up.  
-
+* Find out more @ [http://saucey.io](http://saucey.io)  
+* Fork the repo @ [https://github.com/saucey-io/saucey.git](https://github.com/saucey-io/saucey.git) 
+* See [wiki](https://github.com/getsaucey/saucey/wiki/)
+* See the [winery-setup](https://github.com/getsaucey/saucey/wiki/The-Winery) for more on how this framework was set up.  
 * More on Behat [here](http://docs.behat.org/en/v3.0/)  
-* More on Mink [here](http://mink.behat.org/en/latest/)  
-* More on Pear [here](http://pear.php.net/)  
+* .. Mink [here](http://mink.behat.org/en/latest/)  
+* .. Pear [here](http://pear.php.net/)
 
 #Caveats & Issues
 ##Caveats

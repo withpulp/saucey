@@ -32,3 +32,6 @@ reports/*.html
 
 # Behat directories
 vendor/
+
+#wiki, etc
+saucey.wiki/*
