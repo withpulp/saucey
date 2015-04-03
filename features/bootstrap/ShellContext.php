@@ -14,9 +14,12 @@ use Behat\Behat\Context\Step;
 
  class ShellContext implements Context, SnippetAcceptingContext
 {
-    /**
-   * @Given /^I am in a directory "([^"]*)"$/
-   */
+
+  /**
+  * Changes directory to :directory requested.
+  *
+  * @Given /^I am in a directory "([^"]*)"$/
+  */
   public function iAmInADirectory($dir)
   {
       //if (!file_exists($dir)) {
@@ -26,8 +29,10 @@ use Behat\Behat\Context\Step;
   }
 
   /**
-   * @When /^I run "([^"]*)"$/
-   */
+  * Runs a command line argument.
+  *
+  * @When /^I run "([^"]*)"$/
+  */
   public function iRun($command)
   {
       exec($command, $output);
@@ -35,8 +40,10 @@ use Behat\Behat\Context\Step;
   }
 
   /**
-   * @Then I should see:
-   */
+  * Asserts against previously run command line argument.
+  *
+  * @Then I should see:
+  */
   public function iShouldSee(PyStringNode $string)
   {
       if ($string->getRaw() !== $this->output) {
