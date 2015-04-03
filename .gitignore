@@ -30,3 +30,6 @@ behat.yml
 
 # Behat directories
 vendor/
+
+#wiki, etc
+saucey.wiki/
