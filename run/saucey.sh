@@ -9,7 +9,7 @@ if [ "$1" = "drunk" ]
 then
   # drunk.sh : Use $FUNCNAME
   drunk(){
-    vendor/bin/behat --tags "$2" -p "sauce_$3_$4" --format html --out "reports/$2_suite"
+    vendor/bin/behat --tags "$2" -p "sauce_$3_$4"
   }
   drunk $1 $2 $3 $4 $5
   echo -e "${green}$1 @$2 $3 $4 $5${nc}"
@@ -21,18 +21,25 @@ elif [ "$1" = "tipsy" ]
 then
   # tipsy.sh : Use $FUNCNAME
   tipsy(){
-    vendor/bin/behat --tags "$2" -p "local_$3" --format html --out "reports/$2_suite"
+    vendor/bin/behat --tags "$2" -p "local_$3"
   }
   tipsy $1 $2 $3
   echo -e "${green}$1 @$2 $3"
-  echo -e "${nc}Go to ${yellow}reports/$2_suite/report.html${nc}"
+  echo -e "${nc}Go to ${yellow}reports/saucey_report_$2.html${nc}"
+
+# If selenium local
+elif [ "$1" = "test" ]
+then
+
+  echo -e "Yo, you try'na get saucey?"
 
 # If init
-elif [ "$1" = "" ]
+elif [ "$1" = "init" ]
 then
   # init.sh : Use $FUNCNAME
   init(){
     cat run/saucey.txt
+    cp -R vendor/saucey/drivers/ymls/behat.yml.master.dist ./behat.yml
     #    git remote add sajjad https://github.com/sajjadhossain/saucey.git
     #    git remote add saucey https://github.com/saucey-io/saucey.git
     #    git remote add withpulp https://github.com/withpulp/saucey.git
@@ -40,6 +47,21 @@ then
   }
 
   init
+
+  # If init
+elif [ "$1" = "init_help" ]
+  then
+    # init.sh : Use $FUNCNAME
+    init(){
+      cat run/saucey.txt
+      cp -r vendor/saucey/ymls/behat.yml.helpcenter.dist ./behat.yml
+      #    git remote add sajjad https://github.com/sajjadhossain/saucey.git
+      #    git remote add saucey https://github.com/saucey-io/saucey.git
+      #    git remote add withpulp https://github.com/withpulp/saucey.git
+      #    git remote add adcade https://github.com/adcade/saucey.git
+    }
+
+    init
 
 else
   echo -e "${red}ERROR: ${red}Check your statement. You can only use drunk [cloud] or sober [local]${nc}"
