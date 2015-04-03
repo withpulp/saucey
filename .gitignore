@@ -34,4 +34,4 @@ reports/*.html
 vendor/
 
 #wiki, etc
-saucey.wiki/
+saucey.wiki/*
