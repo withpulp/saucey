@@ -9,7 +9,7 @@ nc='\033[0m' # No Color
 if [ "$1" = "init" ]
 then
   # init : Use $FUNCNAME
-  drunk(){
+  init(){
     git remote add $2
     git remote add $3
     git remote add $4

@@ -193,17 +193,8 @@ use Behat\Behat\Context\Step;
     $this->getSession()->restart();
   }
 
-  /**
-   * @Given /^I am in a directory "([^"]*)"$/
-   */
-  public function iAmInADirectory($dir)
-  {
-      //if (!file_exists($dir)) {
-      //    mkdir($dir);
-      //}
-      chdir($dir);
-  }
-  
+
+
   #
   # WORK IN PROGRESS
   # TO DO:

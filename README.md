@@ -1,5 +1,5 @@
-# [saucey](http://www.urbandictionary.com/define.php?term=saucey)
-*intoxicated, drunk, or under the influence*
+#sauc·ey[*](http://www.urbandictionary.com/define.php?term=saucey)
+[ /ˈsɑː-/ ] *intoxicated, drunk, or under the influence*
 >Last night we went out to celebrate and got saucey at the bar off henessy.
 
 ##What this is?
@@ -16,17 +16,10 @@ This framework allows testers to:
 * Report coverage and pass-fail status of suites
 * Connect test suite(s) to a continuous integration system of choice
 
-##MOAR
-Find out more @ http://saucey.io  
-Fork the repo @ https://github.com/adcade/saucey.git  
 
----
-
-Find out more @ [http://saucey.io](http://saucey.io)  
-Fork the repo @ [https://github.com/saucey-io/saucey.git](https://github.com/sajjadhossain/saucey.git)  
-
-#Pour a glass
-Instead of downloading dependancies one by one, install all dependancies with composer.
+#Get Started
+##Pour a glass
+Install all dependancies through composer, if you run in to any issues please see `Dependancies` below examples.
 
 1. From the root of the project, run:
 
@@ -43,6 +36,14 @@ Instead of downloading dependancies one by one, install all dependancies with co
 
 3. For testing against the `cloud`:
 
+		vendor/sauce/connect/bin/sauce_connect user_name access_key
+		
+	then:
+		
+		vendor/sauce_config user_name access_key
+	
+	then:
+
 		./saucey drunk @<tag> <environment> <browser>
 
 4. For testing `locally`:
@@ -53,7 +54,7 @@ Instead of downloading dependancies one by one, install all dependancies with co
 
 		./saucey sober @<tag> <browser>
 
-##Examples
+##Shots! (examples)
 ###Local w/ [Selenium](http://docs.seleniumhq.org/) - Tipsy
 
 1. Initialize saucey by running:
@@ -101,23 +102,24 @@ Feature: SOAP & REST API Funtionality
 
 		./saucey init
 
-2. Sign up and register for a **free** [SauceLabs](https://saucelabs.com/) account.
+2. To point **saucey** to SauceLabs, you'd need your `user_name` and `access_key`. Sign up and register for a **free** [SauceLabs](https://saucelabs.com/) account.
 3. Get your username and api-key. *Should be available via /account.* Copy the info into your clipboard.
-4. Open the `behat.yml` file with your favorite IDE and replace username:api-key with your real user name and api-key. Save.
-5. Run a sanity suite via:
+4. Open the `behat.yml` file with your favorite IDE and replace all instances of `username:api-key` with your username (used to log in) and api-key. Save.
+5. Run a sanity suite via:5. 
 
 		./saucey drunk web mac chrome
 
-6. Then, go to [https://saucelabs.com/account](https://saucelabs.com/) and view your running/completed tests. There are meta-data, screenshots and video recordings of the entire suite available.
+6. Then, go to [https://saucelabs.com/account](https://saucelabs.com/) and view your running/completed tests. Navigate through and download meta-data, screenshots and video recordings of the entire suite.
+		
+####localhost testing on the cloud
+To test something on a localhost in the cloud, you can open a tunnel with sauce connect. With your username and api-key/access_key from the steps above, run:
 
-# Dependancies
-On Mac OS X, (with the exception of LAMP for Windows) saucey requires the below dependancies. For now, the `Pour a glass` section above should cover all dependancies. However, if there are errors thrown upon running `php composer.phar install` or `php composer.phar update` in terminal you can reference the sources below.
+		vendor/bin/sauce_config user_name access_key
 
-1. [XCode](https://developer.apple.com/xcode/downloads/) & [Developer Tools](http://stackoverflow.com/questions/9329243/xcode-4-4-and-later-install-command-line-tools)
-2. [PHP](http://php-osx.liip.ch/)
-3. [Java JDK](http://www.oracle.com/technetwork/java/javase/downloads/jdk7-downloads-1880260.html), see [documentation](http://docs.oracle.com/javase/7/docs/webnotes/install/mac/mac-jdk.html)
-4. [cURL](http://curl.haxx.se/download.html)
-5. [WAMP](http://www.wampserver.com/en/) `Windows Only`
+	To start the connect tunnel:
+
+		vendor/sauce/connect/bin/sauce_connect 
+
 
 ###Mobile & Tablet
 For iOS:
@@ -136,14 +138,29 @@ For Android:
 
 	./saucey drunk check android_tablet_landscape
 
+## Dependancies
+On Mac OS X, (with the exception of LAMP for Windows) saucey requires the below dependancies. For now, the `Pour a glass` section above should cover all dependancies. However, if there are errors thrown upon running `php composer.phar install` or `php composer.phar update` in terminal you can reference the sources below. They should also be maintained. 
+
+
+1. [XCode](https://developer.apple.com/xcode/downloads/) & [Developer Tools](http://stackoverflow.com/questions/9329243/xcode-4-4-and-later-install-command-line-tools)
+2. [Java JDK](http://www.oracle.com/technetwork/java/javase/downloads/jdk7-downloads-1880260.html), see [documentation](http://docs.oracle.com/javase/7/docs/webnotes/install/mac/mac-jdk.html)
+3. [cURL](http://curl.haxx.se/download.html)
+4. [WAMP](http://www.wampserver.com/en/) `Windows Only`
+5. [PHP](http://php-osx.liip.ch/) *just incase, should be covered by composer.*
 
 #Reporting & MOAR
+
+##Reporting
 By default, reports are saved to the `reports/` directory. If you ran a suite via `./saucey drunk` or `./saucey tipsy`, you can see the report in:
 
 	reports/
 
-##More
 
+##MOAR
+Find out more @ [http://saucey.io](http://saucey.io)  
+Fork the repo @ [https://github.com/saucey-io/saucey.git](https://github.com/sajjadhossain/saucey.git)  
+
+---
 See `config/setup.md` for more on how this framework was set up.  
 
 * More on Behat [here](http://docs.behat.org/en/v3.0/)  
@@ -157,7 +174,7 @@ See `config/setup.md` for more on how this framework was set up.
 	vendor/saucey/drivers/
 	
 2. And install the `safari_extension.cer`
-3. Go preferences and make sure it is enabled.
+3. Go `Safari`>`Preferences` and make sure it is enabled.
 
 ##Selenium Issues
 The issues listed below are some known issues with the Selenium WebDriver.
@@ -170,24 +187,28 @@ The issues listed below are some known issues with the Selenium WebDriver.
 1. ~~API functionality is not implemented currently because of  aug blocking functionality.~~
 2. ~~Using the current HTML output generator, there is no shell output when running `./saucey`~~
 3. Dynamic reporting of error types. Steps that failed are shown, but the output is generic.
+4. *Duplicate context and usage of FeatureContext* -- **High Priority !!!**
 
 ##TODO
 
-###Code tasks
+[ ~~Done~~ / *In Progress* ]
+
+###base tasks
 1. ~~Contextualize shell functionality for reusability~~
-2. Make context for clicking XY coordinates -- **In Progress**
-3. Make context for dragging and dropping with XY coordinates -- **In Progress**
+2. *Make context for clicking XY coordinates*
+3. *Make context for dragging and dropping with XY coordinates*
 4. Load test automation with JMeter API
 5. Connect to its own Jenkins CI instance
 6. Dockerize!!!
 
-###Documentation tasks
-1. How to write functional Gherkin tests
+###readme tasks
+1. *How to write functional Gherkin tests*
 2. How to write custom step definitions
 3. How to add saucey to a project
 4. How to add/modify yaml and composer dependancies
+5. *Refactor and add comments to all step definitions*
+6. *Change FeatureContext to WebContext of its' own.*
 
-###Front-end tasks
-1. saucey.io -- **In Progress**
+###frontend tasks
+1. *saucey.io*
 2. saucey app, finish UI/UX and app skeleton
-
