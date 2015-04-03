@@ -1,4 +1,5 @@
 <?php
+use Behat\Behat\Tester\Exception\PendingException;
 use Behat\Behat\Context\Context;
 use Behat\Behat\Context\SnippetAcceptingContext;
 
@@ -11,7 +12,7 @@ use Behat\Behat\Context\Step;
  * Defines application features from the specific context.
  */
 
- class FeatureContext extends MinkContext implements Behat\Behat\Context\SnippetAcceptingContext
+ class FeatureContext extends MinkContext implements Context, SnippetAcceptingContext
 {
   /*GLOBAL CONTEXT*/
   /**
@@ -19,11 +20,10 @@ use Behat\Behat\Context\Step;
    * Every scenario gets it's own context object.
    *
    */
-  public function __construct($baseUrl = 'http://localhost', $tempPath = '/var/tmp')
-  {
-    $this->baseUrl = $baseUrl;
-    $this->tempPath = $tempPath;
-  }
+   public function __construct($baseUrl)
+   {
+     $this->baseUrl = $baseUrl;
+   }
 
   /**
   * @Given /^I wait for (\d+) seconds$/
@@ -175,7 +175,7 @@ use Behat\Behat\Context\Step;
   */
   public function iScrollToField($locator, $type) {
     $page = $this->getSession()->getPage();
-    $el = $page->find('named', array($type, "'$locator'"));
+    $el = $page->find('named', array($type, $locator));
     # assertNotNull($el, sprintf('%s element not found', $locator));
     $id = $el->getAttribute('id');
     if(empty($id)) {
@@ -193,14 +193,15 @@ use Behat\Behat\Context\Step;
     $this->getSession()->restart();
   }
 
+
+
   #
   # WORK IN PROGRESS
   # TO DO:
-  // 1. Contextualize shell functionality for reusability
-  // 2. Make context for clicking XY coordinates
-  // 3. Make context for dragging and dropping with XY coordinates
-  // 4. Connect to its own Jenkins CI instance
-  // 5. Dockerize!!!
+  // 1. Make context for clicking XY coordinates
+  // 2. Make context for dragging and dropping with XY coordinates
+  // 3. Connect to its own Jenkins CI instance
+  // 4. Dockerize!!!
 
   /**
   * @When /^I click ad coordinates$/

@@ -1,0 +1,9 @@
+{
+  "name": "posts",
+  "operations": {
+    "posts": {
+      "httpMethod": "GET",
+      "uri": "/comments?postId=1&id=1"
+    }
+  }
+}
