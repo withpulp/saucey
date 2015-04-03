@@ -164,10 +164,11 @@ View real output reports below:
 ##MOAR
 * Find out more @ [http://saucey.io](http://saucey.io)  
 * Fork the repo @ [https://github.com/saucey-io/saucey.git](https://github.com/saucey-io/saucey.git) 
-* See [winery-setup](https://github.com/getsaucey/saucey/wiki/The-Winery) for more on how this framework was set up.  
+* See [wiki](https://github.com/getsaucey/saucey/wiki/)
+* See the [winery-setup](https://github.com/getsaucey/saucey/wiki/The-Winery) for more on how this framework was set up.  
 * More on Behat [here](http://docs.behat.org/en/v3.0/)  
 * .. Mink [here](http://mink.behat.org/en/latest/)  
-* .. Pear [here](http://pear.php.net/)  
+* .. Pear [here](http://pear.php.net/)
 
 #Caveats & Issues
 ##Caveats
