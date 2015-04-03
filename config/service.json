@@ -3,12 +3,7 @@
   "operations": {
     "posts": {
       "httpMethod": "GET",
-      "uri": "/posts"
-    },
-
-    "jsontest": {
-      "httpMethod": "GET",
-      "uri": "/hero/batman/id/dc_comics_1"
+      "uri": "/comments?postId=1&id=1"
     }
   }
 }
