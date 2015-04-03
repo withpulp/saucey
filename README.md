@@ -155,12 +155,16 @@ By default, reports are saved to the `reports/` directory. If you ran a suite vi
 
 	reports/
 
+View real output reports below:  
+
+* [http://testweb.pw/adcade/Default/reports/saucey_report_web.html](http://testweb.pw/adcade/Default/reports/saucey_report_web.html)
+* [http://testweb.pw/adcade/Default/reports/saucey_report_api.html](http://testweb.pw/adcade/Default/reports/saucey_report_api.html)
+* [http://testweb.pw/adcade/Default/reports/saucey_report_shell.html](http://testweb.pw/adcade/Default/reports/saucey_report_shell.html)
 
 ##MOAR
 Find out more @ [http://saucey.io](http://saucey.io)  
 Fork the repo @ [https://github.com/saucey-io/saucey.git](https://github.com/sajjadhossain/saucey.git)  
 
----
 See `config/setup.md` for more on how this framework was set up.  
 
 * More on Behat [here](http://docs.behat.org/en/v3.0/)  
