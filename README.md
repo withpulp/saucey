@@ -198,11 +198,12 @@ The issues listed below are some known issues with the Selenium WebDriver.
 
 ###base tasks
 1. ~~Contextualize shell functionality for reusability~~
-2. *Make context for clicking XY coordinates*
-3. *Make context for dragging and dropping with XY coordinates*
-4. Load test automation with JMeter API
-5. Connect to its own Jenkins CI instance
-6. Dockerize!!!
+2. ~~Change FeatureContext to WebContext of its' own.~~
+3. *Make context for clicking XY coordinates*
+4. *Make context for dragging and dropping with XY coordinates*
+5. Load test automation with JMeter API
+6. Connect to its own Jenkins CI instance
+7. Dockerize!!!
 
 ###readme tasks
 1. *How to write functional Gherkin tests*
@@ -210,7 +211,6 @@ The issues listed below are some known issues with the Selenium WebDriver.
 3. How to add saucey to a project
 4. How to add/modify yaml and composer dependancies
 5. *Refactor and add comments to all step definitions*
-6. *Change FeatureContext to WebContext of its' own.*
 
 ###frontend tasks
 1. *saucey.io*
