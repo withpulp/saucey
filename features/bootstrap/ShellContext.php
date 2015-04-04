@@ -9,7 +9,7 @@ use Behat\MinkExtension\Context\MinkContext;
 use Behat\Behat\Context\Step;
 
 /**
- * Defines application features from the specific context.
+ * Defines application features from the SHELL context.
  */
 
  class ShellContext implements Context, SnippetAcceptingContext

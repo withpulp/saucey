@@ -17,22 +17,22 @@ use Buzz\Browser;
  * Defines application features from the API context.
  */
 
- /**
-  * Features context.
-  */
- class APIContext implements Context, SnippetAcceptingContext
+ class APIContext extends GuzzleContext implements Context, SnippetAcceptingContext
  {
      private $browser;
      private $baseUrl;
      private $authorization;
      private $placeHolders = array();
      private $headers = array();
+
+     /*API CONTEXT*/
      /**
-      * Initializes context.
-      *
-      * @param string  $baseUrl base API url
-      * @param Browser $browser browser instance (optional)
-      */
+     * Initializes context.
+     * Every scenario gets it's own context object.
+     *
+     * @param string  $baseUrl base API url
+     * @param Browser $browser browser instance (optional)
+     */
      public function __construct($baseUrl, Browser $browser = null)
      {
          $this->baseUrl = rtrim($baseUrl, '/');
@@ -42,8 +42,11 @@ use Buzz\Browser;
              $this->browser = $browser;
          }
      }
+
      /**
       * Adds Basic Authentication header to next request.
+      * Example: And I am authenticating as "bruceWayne" with "iLoveBats123"
+      * Example: Given I am authenticating as "bruceWayne" with "iLoveBats123"
       *
       * @param string $username
       * @param string $password
@@ -58,6 +61,8 @@ use Buzz\Browser;
      }
      /**
       * Sets a HTTP Header.
+      * Example: And I set header "username" with "notBatman"
+      * Example: Given I set header "username" with "notBatman"
       *
       * @param string $name  header name
       * @param string $value header value
@@ -71,6 +76,9 @@ use Buzz\Browser;
      /**
       * Sends HTTP request to specific relative URL.
       *
+      * Example: And I send a GET request to "/heroes/list"
+      * Example: Given I send a GET request to "/heroes/list"
+      *
       * @param string $method request method
       * @param string $url    relative url
       *
@@ -83,6 +91,14 @@ use Buzz\Browser;
      }
      /**
       * Sends HTTP request to specific URL with field values from Table.
+      * Example: And I send a GET request to "/heroes/list" with values:
+      *              | userId | 27 |
+      *              | username | bruceWayne |
+      *              | password | iLoveBats123 |
+      * Example: When I send a GET request to "/heroes/list" with values:
+      *              | userId | 27 |
+      *              | username | bruceWayne |
+      *              | password | iLoveBats123 |
       *
       * @param string    $method request method
       * @param string    $url    relative url
@@ -101,7 +117,24 @@ use Buzz\Browser;
      }
      /**
       * Sends HTTP request to specific URL with raw body from PyString.
-      *
+      * Example: And I send a GET request to "/heroes/list" with body:
+      *          """
+      *          [
+      *             {
+      *               "body": "I am not batman I take serious offense to any claims suggesting such outlandish remarks.",
+      *                "id" : 1
+      *             }
+      *          ]
+      *          """
+      * Example: When I send a GET request to "/heroes/list" with body:
+      *          """
+      *          [
+      *             {
+      *               "body": "I am not batman I take serious offense to any claims suggesting such outlandish remarks.",
+      *                "id" : 1
+      *             }
+      *          ]
+      *          """
       * @param string       $method request method
       * @param string       $url    relative url
       * @param PyStringNode $string request body
@@ -117,6 +150,28 @@ use Buzz\Browser;
      /**
       * Sends HTTP request to specific URL with form data from PyString.
       *
+      * Example: And I send a GET request to "/heroes/list" with form data:
+      *          """
+      *          [
+      *             {
+      *               "postId": 1,
+      *               "id": 1,
+      *               "name": "I know who Batman is",
+      *               "email": "Eliseo@gardner.biz",
+      *             }
+      *          ]
+      *          """
+      * Example: When I send a GET request to "/heroes/list" with form data:
+      *          """
+      *          [
+      *             {
+      *               "postId": 1,
+      *               "id": 1,
+      *               "name": "I know who Batman is",
+      *               "email": "Eliseo@gardner.biz",
+      *             }
+      *          ]
+      *          """
       * @param string       $method request method
       * @param string       $url    relative url
       * @param PyStringNode $string request body
@@ -132,6 +187,8 @@ use Buzz\Browser;
      }
      /**
       * Checks that response has specific status code.
+      * Example: And the response code should be 503
+      * Example: Then the response code should be 200
       *
       * @param string $code status code
       *
@@ -143,6 +200,8 @@ use Buzz\Browser;
      }
      /**
       * Checks that response body contains specific text.
+      * Example: And the response should contain "Bruce Wayne cannot be Batman."
+      * Example: Then the response should contain "Bruce Wayne cannot be Batman."
       *
       * @param string $text
       *
@@ -154,6 +213,8 @@ use Buzz\Browser;
      }
      /**
       * Checks that response body doesn't contains specific text.
+      * Example: And the response should not contain "Bruce Wayne is Batman."
+      * Example: Then the response should not contain "Bruce Wayne is Batman."
       *
       * @param string $text
       *
@@ -165,7 +226,28 @@ use Buzz\Browser;
      }
      /**
       * Checks that response body contains JSON from PyString.
-      *
+      * Example: And the response should contain json:
+      *          """
+      *          [
+      *             {
+      *               "postId": 1,
+      *               "id": 1,
+      *               "name": "I know who Batman is",
+      *               "email": "Eliseo@gardner.biz",
+      *             }
+      *          ]
+      *          """
+      * Example: Then the response should contain json:
+      *          """
+      *          [
+      *             {
+      *               "postId": 1,
+      *               "id": 1,
+      *               "name": "I know who Batman is",
+      *               "email": "Eliseo@gardner.biz",
+      *             }
+      *          ]
+      *          """
       * @param PyStringNode $jsonString
       *
       * @Then /^(?:the )?response should contain json:$/
@@ -187,7 +269,7 @@ use Buzz\Browser;
      }
      /**
       * Prints last response body.
-      *
+      * Example: Then print response
       * @Then print response
       */
      public function printResponse()
