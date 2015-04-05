@@ -9,21 +9,23 @@ use Behat\MinkExtension\Context\MinkContext;
 use Behat\Behat\Context\Step;
 
 /**
- * Defines application features from the WEB context.
- */
+* Defines application features from the WEB context.
+*/
 
- class WebContext extends MinkContext implements Context, SnippetAcceptingContext
+class WebContext extends MinkContext implements Context, SnippetAcceptingContext
 {
+  private $webUrl;
+
   /*WEB CONTEXT*/
   /**
-   * Initializes context.
-   * Every scenario gets it's own context object.
-   *
-   */
-   public function __construct($baseUrl)
-   {
-     $this->baseUrl = $baseUrl;
-   }
+  * Initializes context.
+  * Every scenario gets it's own context object.
+  *
+  */
+  public function __construct($webUrl)
+  {
+    $this->webUrl = $webUrl;
+  }
 
   /**
   * @Given /^I wait for (\d+) seconds$/
@@ -34,17 +36,17 @@ use Behat\Behat\Context\Step;
   }
 
   /**
-   * @Given /^I set browser window size to "([^"]*)" x "([^"]*)"$/
-   *
-   * @param string $width, $height The message.
-   */
+  * @Given /^I set browser window size to "([^"]*)" x "([^"]*)"$/
+  *
+  * @param string $width, $height The message.
+  */
   public function iSetBrowserWindowSizeToX($width, $height) {
     $this->getSession()->getDriver()->resizeWindow((int)$width, (int)$height, 'current');
   }
 
   /**
-   * @When /^I hover over the element "([^"]*)"$/
-   */
+  * @When /^I hover over the element "([^"]*)"$/
+  */
   public function iHoverOverTheElement($locator)
   {
     $session = $this->getSession(); // get the mink session

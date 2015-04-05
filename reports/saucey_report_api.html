@@ -24,14 +24,14 @@
 <body>
 <div class="container">
 <h1 class="page-header">Features</h1>
-  <div class="panel           panel-danger
+  <div class="panel           panel-success
     ">
     <div class="panel-heading" data-toggle="collapse" data-target="#feature1">
-      <span class="badge pull-right">11</span>
+      <span class="badge pull-right">3</span>
         <span class="glyphicon
-      glyphicon-remove-circle
+      glyphicon-ok-circle
     "></span>
-Web API Functionality
+Shell Functionality
     </div>
         <div class="panel-collapse collapse" id="feature1">
       <div class="panel-body">
@@ -46,7 +46,7 @@ Web API Functionality
                     <div class="tab-pane active" id="description-tab-1">
             <p><br />
 As a tester<br />
-I want to make sure this test suite is up and running<br />
+I want to make sure shell features are up and running<br />
 So that I can automate continuous integration and regression tests using it</p>
           </div>
                               <div class="tab-pane " id="scenario-tab-1">
@@ -57,8 +57,8 @@ So that I can automate continuous integration and regression tests using it</p>
       glyphicon-ok-circle
     "></span>
 
-                <b>Scenario:</b> Perform a search query against html5doctor.com
-                <span class="badge pull-right">10</span>
+                <b>Scenario:</b> Run &#039;ls -a&#039; and verify output
+                <span class="badge pull-right">3</span>
               </div>
               <div class="panel-collapse collapse" id="scenario-1-1">
                 <div class="panel-body">
@@ -68,71 +68,27 @@ So that I can automate continuous integration and regression tests using it</p>
       glyphicon-ok-circle
     "></span>
 
-                       Given I am on &quot;/&quot;
+                       Given I am in &quot;/Users/EnderWiggin/Sites/saucey/run&quot; directory
                                             </li>
                                        <li class="list-group-item list-group-item-success">
                          <span class="glyphicon
       glyphicon-ok-circle
     "></span>
 
-                       Then I should see &quot;HTML5 Doctor&quot;
+                       When I run &quot;ls -a&quot;
                                             </li>
                                        <li class="list-group-item list-group-item-success">
                          <span class="glyphicon
       glyphicon-ok-circle
     "></span>
 
-                       And the response should contain &quot;banner&quot;
-                                            </li>
-                                       <li class="list-group-item list-group-item-success">
-                         <span class="glyphicon
-      glyphicon-ok-circle
-    "></span>
-
-                       When I fill in &quot;q&quot; with &quot;header&quot;
-                                            </li>
-                                       <li class="list-group-item list-group-item-success">
-                         <span class="glyphicon
-      glyphicon-ok-circle
-    "></span>
-
-                       And I press &quot;search-button&quot;
-                                            </li>
-                                       <li class="list-group-item list-group-item-success">
-                         <span class="glyphicon
-      glyphicon-ok-circle
-    "></span>
-
-                       And I wait for 1 seconds
-                                            </li>
-                                       <li class="list-group-item list-group-item-success">
-                         <span class="glyphicon
-      glyphicon-ok-circle
-    "></span>
-
-                       Then I should see &quot;header | HTML5 Doctor&quot;
-                                            </li>
-                                       <li class="list-group-item list-group-item-success">
-                         <span class="glyphicon
-      glyphicon-ok-circle
-    "></span>
-
-                       And I should be on &quot;/search/?q=header&quot;
-                                            </li>
-                                       <li class="list-group-item list-group-item-success">
-                         <span class="glyphicon
-      glyphicon-ok-circle
-    "></span>
-
-                       When I follow &quot;About&quot;
-                                            </li>
-                                       <li class="list-group-item list-group-item-success">
-                         <span class="glyphicon
-      glyphicon-ok-circle
-    "></span>
-
-                       Then I should be on &quot;/about/&quot;
-                                            </li>
+                       Then I should see:
+                                               <pre class="stepargument"><code>.
+..
+git.sh
+saucey.sh
+saucey.txt
+start_selenium.sh</code></pre>                                                                  </li>
                                     </ul>
                                   </div>
               </div>
@@ -144,92 +100,34 @@ So that I can automate continuous integration and regression tests using it</p>
       glyphicon-ok-circle
     "></span>
 
-                <b>Scenario:</b> Perform multiple search queries against html5doctor.com
-                <span class="badge pull-right">7</span>
+                <b>Scenario:</b> Run &#039;./saucey test&#039; and verify output
+                <span class="badge pull-right">3</span>
               </div>
               <div class="panel-collapse collapse" id="scenario-2-1">
                 <div class="panel-body">
                   <ul class="list-group">
                                        <li class="list-group-item list-group-item-success">
                          <span class="glyphicon
-      glyphicon-ban-circle
+      glyphicon-ok-circle
     "></span>
 
-                       Given I am on &quot;/&quot;
+                       Given I am in &quot;/Users/EnderWiggin/Sites/saucey&quot; directory
                                             </li>
                                        <li class="list-group-item list-group-item-success">
                          <span class="glyphicon
-      glyphicon-ban-circle
+      glyphicon-ok-circle
     "></span>
 
-                       Then I should see &quot;HTML5 Doctor&quot;
+                       When I run &quot;./saucey test&quot;
                                             </li>
                                        <li class="list-group-item list-group-item-success">
                          <span class="glyphicon
-      glyphicon-ban-circle
+      glyphicon-ok-circle
     "></span>
 
-                       And the response should contain &quot;banner&quot;
-                                            </li>
-                                       <li class="list-group-item list-group-item-success">
-                         <span class="glyphicon
-      glyphicon-ban-circle
-    "></span>
-
-                       When I fill in &quot;q&quot; with &quot;&lt;query&gt;&quot;
-                                            </li>
-                                       <li class="list-group-item list-group-item-success">
-                         <span class="glyphicon
-      glyphicon-ban-circle
-    "></span>
-
-                       And I press &quot;search-button&quot;
-                                            </li>
-                                       <li class="list-group-item list-group-item-success">
-                         <span class="glyphicon
-      glyphicon-ban-circle
-    "></span>
-
-                       And I wait for 1 seconds
-                                            </li>
-                                       <li class="list-group-item list-group-item-success">
-                         <span class="glyphicon
-      glyphicon-ban-circle
-    "></span>
-
-                       Then I should see &quot;&lt;expectedResult&gt;&quot;
-                                            </li>
+                       Then I should see:
+                                               <pre class="stepargument"><code>Yo, you try&#039;na get saucey?</code></pre>                                                                  </li>
                                     </ul>
-                                    <div class="panel panel-default stepargument"><div class="panel-body">
-                    <table class="table table-condensed">
-                      <tr><th>query</th><th>expectedResult</th></tr>
-                                            <tr class="          success
-    ">
-                                                  <td>head</td>
-                                                  <td>Element Index</td>
-                                              </tr>
-                                            <tr class="          success
-    ">
-                                                  <td>link</td>
-                                                  <td>Element Index</td>
-                                              </tr>
-                                            <tr class="          success
-    ">
-                                                  <td>meta</td>
-                                                  <td>Element Index</td>
-                                              </tr>
-                                            <tr class="          success
-    ">
-                                                  <td>span</td>
-                                                  <td>Element Index</td>
-                                              </tr>
-                                            <tr class="          success
-    ">
-                                                  <td>batman</td>
-                                                  <td>No results for batman.</td>
-                                              </tr>
-                                         </table>
-                   </div></div>
                                   </div>
               </div>
             </div>
@@ -240,636 +138,36 @@ So that I can automate continuous integration and regression tests using it</p>
       glyphicon-ok-circle
     "></span>
 
-                <b>Scenario:</b> Capture a redirect, change window size, and press an element by XPath
-                <span class="badge pull-right">9</span>
+                <b>Scenario:</b> Run &#039;git remote&#039; and verify output
+                <span class="badge pull-right">3</span>
               </div>
               <div class="panel-collapse collapse" id="scenario-3-1">
                 <div class="panel-body">
                   <ul class="list-group">
                                        <li class="list-group-item list-group-item-success">
                          <span class="glyphicon
-      glyphicon-ban-circle
-    "></span>
-
-                       Given I am on &quot;&lt;request&gt;&quot;
-                                            </li>
-                                       <li class="list-group-item list-group-item-success">
-                         <span class="glyphicon
-      glyphicon-ban-circle
-    "></span>
-
-                       And I wait for 3 seconds
-                                            </li>
-                                       <li class="list-group-item list-group-item-success">
-                         <span class="glyphicon
-      glyphicon-ban-circle
-    "></span>
-
-                       And I set browser window size to &quot;1800&quot; x &quot;1200&quot;
-                                            </li>
-                                       <li class="list-group-item list-group-item-success">
-                         <span class="glyphicon
-      glyphicon-ban-circle
-    "></span>
-
-                       Then I should be on &quot;&lt;URL&gt;&quot;
-                                            </li>
-                                       <li class="list-group-item list-group-item-success">
-                         <span class="glyphicon
-      glyphicon-ban-circle
-    "></span>
-
-                       And I should see &quot;&lt;expectedText&gt;&quot;
-                                            </li>
-                                       <li class="list-group-item list-group-item-success">
-                         <span class="glyphicon
-      glyphicon-ban-circle
-    "></span>
-
-                       When I click on the element with xpath &#039;&lt;heroIcon&gt;&#039;
-                                            </li>
-                                       <li class="list-group-item list-group-item-success">
-                         <span class="glyphicon
-      glyphicon-ban-circle
-    "></span>
-
-                       And I wait for 2 seconds
-                                            </li>
-                                       <li class="list-group-item list-group-item-success">
-                         <span class="glyphicon
-      glyphicon-ban-circle
-    "></span>
-
-                       And I click on the element with xpath &#039;//*[@id=&quot;nextslide&quot;]&#039;
-                                            </li>
-                                       <li class="list-group-item list-group-item-success">
-                         <span class="glyphicon
-      glyphicon-ban-circle
-    "></span>
-
-                       Then I should see &quot;CLOSE GALLERY&quot;
-                                            </li>
-                                    </ul>
-                                    <div class="panel panel-default stepargument"><div class="panel-body">
-                    <table class="table table-condensed">
-                      <tr><th>request</th><th>URL</th><th>expectedText</th><th>heroIcon</th></tr>
-                                            <tr class="          success
-    ">
-                                                  <td>http://batman.com</td>
-                                                  <td>http://www.dccomics.com/characters/batman</td>
-                                                  <td>Dark Knight</td>
-                                                  <td>//*[@id=&quot;main&quot;]/div/div[2]/div/div[1]/img</td>
-                                              </tr>
-                                            <tr class="          success
-    ">
-                                                  <td>http://superman.com</td>
-                                                  <td>http://www.dccomics.com/characters/superman</td>
-                                                  <td>Look! Up in the sky!</td>
-                                                  <td>//*[@id=&quot;main&quot;]/div/div[2]/div/div[1]/img</td>
-                                              </tr>
-                                         </table>
-                   </div></div>
-                                  </div>
-              </div>
-            </div>
-                        <div class="panel           panel-success
-    ">
-              <div class="panel-heading" data-toggle="collapse" data-target="#scenario-4-1">
-                  <span class="glyphicon
       glyphicon-ok-circle
     "></span>
 
-                <b>Scenario:</b> Verify javascript pop up alerts
-                <span class="badge pull-right">7</span>
-              </div>
-              <div class="panel-collapse collapse" id="scenario-4-1">
-                <div class="panel-body">
-                  <ul class="list-group">
-                                       <li class="list-group-item list-group-item-success">
-                         <span class="glyphicon
-      glyphicon-ok-circle
-    "></span>
-
-                       Given I am on &quot;http://www.javascripter.net/faq/alert.htm&quot;
+                       Given I am in &quot;/Users/EnderWiggin/Sites/saucey&quot; directory
                                             </li>
                                        <li class="list-group-item list-group-item-success">
                          <span class="glyphicon
       glyphicon-ok-circle
     "></span>
 
-                       Then I should see &quot;How do I display an alert message from JavaScript?&quot;
+                       When I run &quot;git remote&quot;
                                             </li>
                                        <li class="list-group-item list-group-item-success">
                          <span class="glyphicon
       glyphicon-ok-circle
     "></span>
 
-                       When I press &quot;Try it now&quot;
-                                            </li>
-                                       <li class="list-group-item list-group-item-success">
-                         <span class="glyphicon
-      glyphicon-ok-circle
-    "></span>
-
-                       Then I should see &quot;Hello from JavaScript!&quot; in popup
-                                            </li>
-                                       <li class="list-group-item list-group-item-success">
-                         <span class="glyphicon
-      glyphicon-ok-circle
-    "></span>
-
-                       When I confirm the popup
-                                            </li>
-                                       <li class="list-group-item list-group-item-success">
-                         <span class="glyphicon
-      glyphicon-ok-circle
-    "></span>
-
-                       Then I should be on &quot;http://www.javascripter.net/faq/alert.htm&quot;
-                                            </li>
-                                       <li class="list-group-item list-group-item-success">
-                         <span class="glyphicon
-      glyphicon-ok-circle
-    "></span>
-
-                       And I should see &quot;The alert() method does not return a value (that is, it returns undefined).&quot;
-                                            </li>
-                                    </ul>
-                                  </div>
-              </div>
-            </div>
-                        <div class="panel           panel-success
-    ">
-              <div class="panel-heading" data-toggle="collapse" data-target="#scenario-5-1">
-                  <span class="glyphicon
-      glyphicon-ok-circle
-    "></span>
-
-                <b>Scenario:</b> Scroll up and down a site
-                <span class="badge pull-right">7</span>
-              </div>
-              <div class="panel-collapse collapse" id="scenario-5-1">
-                <div class="panel-body">
-                  <ul class="list-group">
-                                       <li class="list-group-item list-group-item-success">
-                         <span class="glyphicon
-      glyphicon-ok-circle
-    "></span>
-
-                       Given I am on &quot;/&quot;
-                                            </li>
-                                       <li class="list-group-item list-group-item-success">
-                         <span class="glyphicon
-      glyphicon-ok-circle
-    "></span>
-
-                       Then I should see &quot;HTML5 Doctor&quot;
-                                            </li>
-                                       <li class="list-group-item list-group-item-success">
-                         <span class="glyphicon
-      glyphicon-ok-circle
-    "></span>
-
-                       And the response should contain &quot;banner&quot;
-                                            </li>
-                                       <li class="list-group-item list-group-item-success">
-                         <span class="glyphicon
-      glyphicon-ok-circle
-    "></span>
-
-                       When I scroll to the bottom
-                                            </li>
-                                       <li class="list-group-item list-group-item-success">
-                         <span class="glyphicon
-      glyphicon-ok-circle
-    "></span>
-
-                       Then I should see &quot; All rights reserved. &quot;
-                                            </li>
-                                       <li class="list-group-item list-group-item-success">
-                         <span class="glyphicon
-      glyphicon-ok-circle
-    "></span>
-
-                       When I scroll to the top
-                                            </li>
-                                       <li class="list-group-item list-group-item-success">
-                         <span class="glyphicon
-      glyphicon-ok-circle
-    "></span>
-
-                       Then I should see &quot;RECENT COMMENTS&quot;
-                                            </li>
-                                    </ul>
-                                  </div>
-              </div>
-            </div>
-                        <div class="panel           panel-success
-    ">
-              <div class="panel-heading" data-toggle="collapse" data-target="#scenario-6-1">
-                  <span class="glyphicon
-      glyphicon-ok-circle
-    "></span>
-
-                <b>Scenario:</b> Scroll to an element by XPath or ID
-                <span class="badge pull-right">6</span>
-              </div>
-              <div class="panel-collapse collapse" id="scenario-6-1">
-                <div class="panel-body">
-                  <ul class="list-group">
-                                       <li class="list-group-item list-group-item-success">
-                         <span class="glyphicon
-      glyphicon-ok-circle
-    "></span>
-
-                       Given I am on &quot;http://stackoverflow.com/questions/11067186/is-using-footer-inside-form-semantically-fine&quot;
-                                            </li>
-                                       <li class="list-group-item list-group-item-success">
-                         <span class="glyphicon
-      glyphicon-ok-circle
-    "></span>
-
-                       And I wait for 1 seconds
-                                            </li>
-                                       <li class="list-group-item list-group-item-success">
-                         <span class="glyphicon
-      glyphicon-ok-circle
-    "></span>
-
-                       Then I should see &quot;Is using &lt;footer&gt; inside &lt;form&gt; semantically fine?&quot;
-                                            </li>
-                                       <li class="list-group-item list-group-item-success">
-                         <span class="glyphicon
-      glyphicon-ok-circle
-    "></span>
-
-                       When I scroll to the &quot;wmd-input&quot; field
-                                            </li>
-                                       <li class="list-group-item list-group-item-success">
-                         <span class="glyphicon
-      glyphicon-ok-circle
-    "></span>
-
-                       And I wait for 1 seconds
-                                            </li>
-                                       <li class="list-group-item list-group-item-success">
-                         <span class="glyphicon
-      glyphicon-ok-circle
-    "></span>
-
-                       Then I should see &quot;Your Answer&quot;
-                                            </li>
-                                    </ul>
-                                  </div>
-              </div>
-            </div>
-                        <div class="panel           panel-success
-    ">
-              <div class="panel-heading" data-toggle="collapse" data-target="#scenario-7-1">
-                  <span class="glyphicon
-      glyphicon-ok-circle
-    "></span>
-
-                <b>Scenario:</b> Test some other browser functionality
-                <span class="badge pull-right">6</span>
-              </div>
-              <div class="panel-collapse collapse" id="scenario-7-1">
-                <div class="panel-body">
-                  <ul class="list-group">
-                                       <li class="list-group-item list-group-item-success">
-                         <span class="glyphicon
-      glyphicon-ok-circle
-    "></span>
-
-                       Given I am on a new session
-                                            </li>
-                                       <li class="list-group-item list-group-item-success">
-                         <span class="glyphicon
-      glyphicon-ok-circle
-    "></span>
-
-                       And I am on &quot;/&quot;
-                                            </li>
-                                       <li class="list-group-item list-group-item-success">
-                         <span class="glyphicon
-      glyphicon-ok-circle
-    "></span>
-
-                       Then I should see &quot;HTML5 Doctor&quot;
-                                            </li>
-                                       <li class="list-group-item list-group-item-success">
-                         <span class="glyphicon
-      glyphicon-ok-circle
-    "></span>
-
-                       And the response should contain &quot;banner&quot;
-                                            </li>
-                                       <li class="list-group-item list-group-item-success">
-                         <span class="glyphicon
-      glyphicon-ok-circle
-    "></span>
-
-                       When I reload the page
-                                            </li>
-                                       <li class="list-group-item list-group-item-success">
-                         <span class="glyphicon
-      glyphicon-ok-circle
-    "></span>
-
-                       Then I should be on &quot;/&quot;
-                                            </li>
-                                    </ul>
-                                  </div>
-              </div>
-            </div>
-                        <div class="panel           panel-success
-    ">
-              <div class="panel-heading" data-toggle="collapse" data-target="#scenario-8-1">
-                  <span class="glyphicon
-      glyphicon-ok-circle
-    "></span>
-
-                <b>Scenario:</b> Fill out a form
-                <span class="badge pull-right">14</span>
-              </div>
-              <div class="panel-collapse collapse" id="scenario-8-1">
-                <div class="panel-body">
-                  <ul class="list-group">
-                                       <li class="list-group-item list-group-item-success">
-                         <span class="glyphicon
-      glyphicon-ok-circle
-    "></span>
-
-                       Given I am on &quot;http://www.html5rocks.com/en/tutorials/forms/html5forms/input-types.html&quot;
-                                            </li>
-                                       <li class="list-group-item list-group-item-success">
-                         <span class="glyphicon
-      glyphicon-ok-circle
-    "></span>
-
-                       Then I should see &quot;Before you may cross the bridge, you must answer these questions!&quot;
-                                            </li>
-                                       <li class="list-group-item list-group-item-success">
-                         <span class="glyphicon
-      glyphicon-ok-circle
-    "></span>
-
-                       When I fill in &quot;first_last&quot; with &quot;Bruce Wayne&quot;
-                                            </li>
-                                       <li class="list-group-item list-group-item-success">
-                         <span class="glyphicon
-      glyphicon-ok-circle
-    "></span>
-
-                       And I fill in &quot;email_addr&quot; with &quot;bruce@wayneenterprises.com&quot;
-                                            </li>
-                                       <li class="list-group-item list-group-item-success">
-                         <span class="glyphicon
-      glyphicon-ok-circle
-    "></span>
-
-                       And I fill in &quot;email_addr_confirm&quot; with &quot;bruce@wayneenterprises.com&quot;
-                                            </li>
-                                       <li class="list-group-item list-group-item-success">
-                         <span class="glyphicon
-      glyphicon-ok-circle
-    "></span>
-
-                       And I fill in &quot;fav_website&quot; with &quot;http://whoisbatman.com&quot;
-                                            </li>
-                                       <li class="list-group-item list-group-item-success">
-                         <span class="glyphicon
-      glyphicon-ok-circle
-    "></span>
-
-                       And I fill in &quot;fav_pizza&quot; with &quot;555-111-1234&quot;
-                                            </li>
-                                       <li class="list-group-item list-group-item-success">
-                         <span class="glyphicon
-      glyphicon-ok-circle
-    "></span>
-
-                       And I fill in &quot;dob&quot; with &quot;02191915&quot;
-                                            </li>
-                                       <li class="list-group-item list-group-item-success">
-                         <span class="glyphicon
-      glyphicon-ok-circle
-    "></span>
-
-                       And I fill in &quot;age&quot; with &quot;51&quot;
-                                            </li>
-                                       <li class="list-group-item list-group-item-success">
-                         <span class="glyphicon
-      glyphicon-ok-circle
-    "></span>
-
-                       And I fill in &quot;chocolate&quot; with &quot;Dark Chocolate with Almonds&quot;
-                                            </li>
-                                       <li class="list-group-item list-group-item-success">
-                         <span class="glyphicon
-      glyphicon-ok-circle
-    "></span>
-
-                       And I fill in &quot;part_number&quot; with &quot;XXX9999XX&quot;
-                                            </li>
-                                       <li class="list-group-item list-group-item-success">
-                         <span class="glyphicon
-      glyphicon-ok-circle
-    "></span>
-
-                       And I wait for 2 seconds
-                                            </li>
-                                       <li class="list-group-item list-group-item-success">
-                         <span class="glyphicon
-      glyphicon-ok-circle
-    "></span>
-
-                       Then I should be on &quot;http://www.html5rocks.com/en/tutorials/forms/html5forms/input-types.html&quot;
-                                            </li>
-                                       <li class="list-group-item list-group-item-success">
-                         <span class="glyphicon
-      glyphicon-ok-circle
-    "></span>
-
-                       And I should see &quot;Before you may cross the bridge, you must answer these questions!&quot;
-                                            </li>
-                                    </ul>
-                                  </div>
-              </div>
-            </div>
-                        <div class="panel           panel-danger
-    ">
-              <div class="panel-heading" data-toggle="collapse" data-target="#scenario-9-1">
-                  <span class="glyphicon
-      glyphicon-remove-circle
-    "></span>
-
-                <b>Scenario:</b> Generate some failures for our report
-                <span class="badge pull-right">6</span>
-              </div>
-              <div class="panel-collapse collapse" id="scenario-9-1">
-                <div class="panel-body">
-                  <ul class="list-group">
-                                       <li class="list-group-item list-group-item-success">
-                         <span class="glyphicon
-      glyphicon-ok-circle
-    "></span>
-
-                       Given I am on &quot;/&quot;
-                                            </li>
-                                       <li class="list-group-item list-group-item-success">
-                         <span class="glyphicon
-      glyphicon-ok-circle
-    "></span>
-
-                       Then I should see &quot;HTML5 Doctor&quot;
-                                            </li>
-                                       <li class="list-group-item list-group-item-success">
-                         <span class="glyphicon
-      glyphicon-ok-circle
-    "></span>
-
-                       And the response should contain &quot;banner&quot;
-                                            </li>
-                                       <li class="list-group-item list-group-item-success">
-                         <span class="glyphicon
-      glyphicon-ok-circle
-    "></span>
-
-                       When I follow &quot;Article Archive&quot;
-                                            </li>
-                                       <li class="list-group-item list-group-item-danger">
-                         <span class="glyphicon
-      glyphicon-remove-circle
-    "></span>
-
-                       Then I should be on &quot;/farticle-farchive/&quot;
-                                            </li>
-                                       <li class="list-group-item disabled">
-                         <span class="glyphicon
-      glyphicon-ban-circle
-    "></span>
-
-                       And I should see &quot;Some failures in my report&quot;
-                                            </li>
-                                    </ul>
-                                  </div>
-              </div>
-            </div>
-                        <div class="panel           panel-danger
-    ">
-              <div class="panel-heading" data-toggle="collapse" data-target="#scenario-10-1">
-                  <span class="glyphicon
-      glyphicon-remove-circle
-    "></span>
-
-                <b>Scenario:</b> Generate some MOAR failures for our report
-                <span class="badge pull-right">6</span>
-              </div>
-              <div class="panel-collapse collapse" id="scenario-10-1">
-                <div class="panel-body">
-                  <ul class="list-group">
-                                       <li class="list-group-item list-group-item-success">
-                         <span class="glyphicon
-      glyphicon-ok-circle
-    "></span>
-
-                       Given I am on &quot;/&quot;
-                                            </li>
-                                       <li class="list-group-item list-group-item-success">
-                         <span class="glyphicon
-      glyphicon-ok-circle
-    "></span>
-
-                       Then I should see &quot;HTML5 Doctor&quot;
-                                            </li>
-                                       <li class="list-group-item list-group-item-success">
-                         <span class="glyphicon
-      glyphicon-ok-circle
-    "></span>
-
-                       And the response should contain &quot;banner&quot;
-                                            </li>
-                                       <li class="list-group-item list-group-item-success">
-                         <span class="glyphicon
-      glyphicon-ok-circle
-    "></span>
-
-                       When I follow &quot;Element Index&quot;
-                                            </li>
-                                       <li class="list-group-item list-group-item-danger">
-                         <span class="glyphicon
-      glyphicon-remove-circle
-    "></span>
-
-                       Then I should be on &quot;/felement-findex/&quot;
-                                            </li>
-                                       <li class="list-group-item disabled">
-                         <span class="glyphicon
-      glyphicon-ban-circle
-    "></span>
-
-                       And I should see &quot;Some failures in my report&quot;
-                                            </li>
-                                    </ul>
-                                  </div>
-              </div>
-            </div>
-                        <div class="panel           panel-default
-    ">
-              <div class="panel-heading" data-toggle="collapse" data-target="#scenario-11-1">
-                  <span class="glyphicon
-      glyphicon-ban-circle
-    "></span>
-
-                <b>Scenario:</b> Generate some snippets and skipped steps for our report
-                <span class="badge pull-right">6</span>
-              </div>
-              <div class="panel-collapse collapse" id="scenario-11-1">
-                <div class="panel-body">
-                  <ul class="list-group">
-                                       <li class="list-group-item list-group-item-success">
-                         <span class="glyphicon
-      glyphicon-ok-circle
-    "></span>
-
-                       Given I am on &quot;/&quot;
-                                            </li>
-                                       <li class="list-group-item list-group-item-success">
-                         <span class="glyphicon
-      glyphicon-ok-circle
-    "></span>
-
-                       Then I should see &quot;HTML5 Doctor&quot;
-                                            </li>
-                                       <li class="list-group-item list-group-item-success">
-                         <span class="glyphicon
-      glyphicon-ok-circle
-    "></span>
-
-                       And the response should contain &quot;banner&quot;
-                                            </li>
-                                       <li class="list-group-item list-group-item-success">
-                         <span class="glyphicon
-      glyphicon-ban-circle
-    "></span>
-
-                       When I do some fancy ass shit
-                                            </li>
-                                       <li class="list-group-item list-group-item-success">
-                         <span class="glyphicon
-      glyphicon-ban-circle
-    "></span>
-
-                       Then the rest of this test should be skipped
-                                            </li>
-                                       <li class="list-group-item disabled">
-                         <span class="glyphicon
-      glyphicon-ban-circle
-    "></span>
-
-                       And I should see &quot;Some skipped steps` in my report&quot;
-                                            </li>
+                       Then I should see:
+                                               <pre class="stepargument"><code>origin
+sajjad
+saucey
+withpulp</code></pre>                                                                  </li>
                                     </ul>
                                   </div>
               </div>
@@ -887,17 +185,17 @@ So that I can automate continuous integration and regression tests using it</p>
 
 <h3 class="page-header">Scenarios</h3>
 <div class="progress">
-  <div class="progress-bar progress-bar-success" style="width: 72.727272727273%">8 passed</div>
+  <div class="progress-bar progress-bar-success" style="width: 100%">3 passed</div>
   <div class="progress-bar progress-bar-warning" style="width: 0%">0 pending</div>
-  <div class="progress-bar progress-bar-danger" style="width: 18.181818181818%">2 failed</div>
-  <div class="progress-bar progress-bar-info" style="width: 9.0909090909091%">1 skipped</div>
+  <div class="progress-bar progress-bar-danger" style="width: 0%">0 failed</div>
+  <div class="progress-bar progress-bar-info" style="width: 0%">0 skipped</div>
 </div>
 <h3 class="page-header">Steps</h3>
 <div class="progress">
-  <div class="progress-bar progress-bar-success" style="width: 94.214876033058%">114 passed</div>
+  <div class="progress-bar progress-bar-success" style="width: 100%">9 passed</div>
   <div class="progress-bar progress-bar-warning" style="width: 0%">0 pending</div>
-  <div class="progress-bar progress-bar-danger" style="width: 1.6528925619835%">2 failed</div>
-  <div class="progress-bar progress-bar-info" style="width: 4.1322314049587%">5 skipped</div>
+  <div class="progress-bar progress-bar-danger" style="width: 0%">0 failed</div>
+  <div class="progress-bar progress-bar-info" style="width: 0%">0 skipped</div>
 </div>
 </div>
 </body>

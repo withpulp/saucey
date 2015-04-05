@@ -105,7 +105,7 @@ Feature: SOAP & REST API Funtionality
 2. To point **saucey** to SauceLabs, you'd need your `user_name` and `access_key`. Sign up and register for a **free** [SauceLabs](https://saucelabs.com/) account.
 3. Get your username and api-key. *Should be available via /account.* Copy the info into your clipboard.
 4. Open the `behat.yml` file with your favorite IDE and replace all instances of `adcadeQA:d3daa8f1-147e-4655-aa25-49606f633afa` with your username (used to log in) and api-key. Save.
-5. Run a sanity suite via:5. 
+5. Run a sanity suite via:  
 
 		./saucey drunk web mac chrome
 
