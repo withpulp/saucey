@@ -9,27 +9,43 @@ use Behat\MinkExtension\Context\MinkContext;
 use Behat\Behat\Context\Step;
 
 /**
- * Defines application features from the SHELL context.
- */
+* Defines application features from the SHELL context.
+*/
 
- class ShellContext implements Context, SnippetAcceptingContext
+class ShellContext implements Context, SnippetAcceptingContext
 {
+  private $basePath;
+
+  /*WEB CONTEXT*/
+  /**
+  * Initializes context.
+  * Every scenario gets it's own context object.
+  *
+  */
+  public function __construct($basePath)
+  {
+    $this->basePath = $basePath;
+  }
 
   /**
   * Changes directory to :directory requested.
+  * Example: Given I am in "/Users/bWayne/secretfiles/batman"
+  * Example: And I am in "/Users/bWayne/secretfiles/batman"
   *
-  * @Given /^I am in a directory "([^"]*)"$/
+  * @Given I am in :dir directory
   */
-  public function iAmInADirectory($dir)
+  public function iAmInDirectory($dir)
   {
-      //if (!file_exists($dir)) {
-      //    mkdir($dir);
-      //}
-      chdir($dir);
+    //if (!file_exists($dir)) {
+    //    mkdir($dir);
+    //}
+    chdir($dir);
   }
 
   /**
   * Runs a command line argument.
+  * Example: When I run ".openCaveEntrance"
+  * Example: And I run ".openCaveEntrance"
   *
   * @When /^I run "([^"]*)"$/
   */
@@ -41,7 +57,14 @@ use Behat\Behat\Context\Step;
 
   /**
   * Asserts against previously run command line argument.
-  *
+  * Example: Then I should see:
+  *          """
+  *          Opening cave, master Bruce.
+  *          """
+  * Example: And I should see:
+  *          """
+  *          Opening cave, master Bruce.
+  *          """
   * @Then I should see:
   */
   public function iShouldSee(PyStringNode $string)

@@ -9,19 +9,19 @@ use Behat\MinkExtension\Context\MinkContext;
 use Behat\Behat\Context\Step;
 
 /**
- * Defines application features from the feature specific context.
- */
+* Defines application features from the feature specific context.
+*/
 
- class FeatureContext implements Context, SnippetAcceptingContext
+class FeatureContext implements Context, SnippetAcceptingContext
 {
   /*FEATURE CONTEXT*/
   /**
-   * Initializes context.
-   * Every scenario gets it's own context object.
-   *
-   */
-   public function __construct($baseUrl)
-   {
-     $this->baseUrl = $baseUrl;
-   }
+  * Initializes context.
+  * Every scenario gets it's own context object.
+  *
+  */
+  public function __construct($baseUrl)
+  {
+    $this->baseUrl = $baseUrl;
+  }
 }

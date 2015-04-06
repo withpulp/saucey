@@ -6,35 +6,21 @@ Feature: Shell Functionality
 
     @shell @ls
     Scenario: Run 'ls -a' and verify output
-      Given I am in a directory "/Users/EnderWiggin/Sites/saucey"
+      Given I am in "/Users/EnderWiggin/Sites/saucey/run" directory
       When I run "ls -a"
       Then I should see:
       """
       .
       ..
-      .DS_Store
-      .git
-      .gitignore
-      README.md
-      behat.yml
-      bin
-      composer.json
-      composer.lock
-      composer.phar
-      config
-      features
-      gitty
-      images
-      reports
-      run
-      saucey
-      start_selenium
-      vendor
+      git.sh
+      saucey.sh
+      saucey.txt
+      start_selenium.sh
       """
 
     @shell @saucey
     Scenario: Run './saucey test' and verify output
-      Given I am in a directory "/Users/EnderWiggin/Sites/saucey"
+      Given I am in "/Users/EnderWiggin/Sites/saucey" directory
       When I run "./saucey test"
       Then I should see:
       """
@@ -43,7 +29,7 @@ Feature: Shell Functionality
 
     @shell @git
     Scenario: Run 'git remote' and verify output
-      Given I am in a directory "/Users/EnderWiggin/Sites/saucey"
+      Given I am in "/Users/EnderWiggin/Sites/saucey" directory
       When I run "git remote"
       Then I should see:
       """

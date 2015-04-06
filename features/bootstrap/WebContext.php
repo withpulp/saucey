@@ -9,24 +9,30 @@ use Behat\MinkExtension\Context\MinkContext;
 use Behat\Behat\Context\Step;
 
 /**
- * Defines application features from the WEB context.
- */
+* Defines application features from the WEB context.
+*/
 
- class WebContext extends MinkContext implements Context, SnippetAcceptingContext
+class WebContext extends MinkContext implements Context, SnippetAcceptingContext
 {
+  private $webUrl;
+
   /*WEB CONTEXT*/
   /**
-   * Initializes context.
-   * Every scenario gets it's own context object.
-   *
-   */
-   public function __construct($baseUrl)
-   {
-     $this->baseUrl = $baseUrl;
-   }
+  * Initializes context.
+  * Every scenario gets it's own context object.
+  *
+  */
+  public function __construct($webUrl)
+  {
+    $this->webUrl = $webUrl;
+  }
 
   /**
   * @Given /^I wait for (\d+) seconds$/
+  * Example: Given I wait for 10 seconds
+  * Example: When I wait for 9 seconds
+  * Example: And I wait for 8 seconds
+  *
   */
   public function iWaitForSeconds($seconds)
   {
@@ -34,17 +40,59 @@ use Behat\Behat\Context\Step;
   }
 
   /**
-   * @Given /^I set browser window size to "([^"]*)" x "([^"]*)"$/
-   *
-   * @param string $width, $height The message.
-   */
+  * @Given /^I set browser window size to "([^"]*)" x "([^"]*)"$/
+  * Example: Given I set browser window size to "1900" x "1200"
+  * Example: When I set browser window size to "1900" x "1200"
+  * Example: And I set browser window size to "1900" x "1200"
+  *
+  * @param string $width, $height The message.
+  */
   public function iSetBrowserWindowSizeToX($width, $height) {
     $this->getSession()->getDriver()->resizeWindow((int)$width, (int)$height, 'current');
   }
 
   /**
-   * @When /^I hover over the element "([^"]*)"$/
-   */
+  * @Given I set my browser window size to MacBook Standard
+  * Example: Given I set my browser window size to MacBook Standard
+  * Example: When I set my browser window size to MacBook Standard
+  * Example: And I set my browser window size to MacBook Standard
+  *
+  */
+  public function iSetMyBrowserWindowSizeToMacbookStandard()
+  {
+    $this->getSession()->getDriver()->resizeWindow((int)'1366', (int)'768', 'current');
+  }
+
+  /**
+  * @Given I set my browser window size to MacBook Retina
+  * Example: Given I set my browser window size to MacBook Retina
+  * Example: When I set my browser window size to MacBook Retina
+  * Example: And I set my browser window size to MacBook Retina
+  *
+  */
+  public function iSetMyBrowserWindowSizeToMacbookRetina()
+  {
+    $this->getSession()->getDriver()->resizeWindow((int)'2880', (int)'1800', 'current');
+  }
+
+  /**
+  * @Given I set my browser window size to Windows Standard
+  * Example: Given I set my browser window size to Windows Standard
+  * Example: When I set my browser window size to Windows Standard
+  * Example: And I set my browser window size to Windows Standard
+  *
+  */
+  public function iSetMyBrowserWindowSizeToWindowsStandard()
+  {
+    $this->getSession()->getDriver()->resizeWindow((int)'1280', (int)'1084', 'current');
+  }
+
+  /**
+  * @When /^I hover over the element "([^"]*)"$/
+  * Example: When I hover over the element "sign-up-button"
+  * Example: And I hover over the element "sign-up-button"
+  *
+  */
   public function iHoverOverTheElement($locator)
   {
     $session = $this->getSession(); // get the mink session
@@ -61,13 +109,19 @@ use Behat\Behat\Context\Step;
 
   /**
   * @When /^I confirm the popup$/
+  * Example: When I confirm the popup
+  * Example: And I confirm the popup
+  *
   */
   public function confirmPopup()
   {
     $this->getSession()->getDriver()->getWebDriverSession()->accept_alert();
   }
   /**
-  * @when /^(?:|I )cancel the popup$/
+  * @When /^(?:|I )cancel the popup$/
+  * Example: When I cancel the popup
+  * Example: And I cancel the popup
+  *
   */
   public function cancelPopup()
   {
@@ -76,6 +130,8 @@ use Behat\Behat\Context\Step;
 
   /**
   * @When /^I should see "([^"]*)" in popup$/
+  * Example: And I should see "Bruce Wayne is not Batman" in popup
+  * Example: Then I should see "Bruce Wayne is not Batman" in popup
   *
   * @param string $message The message.
   */
@@ -89,6 +145,8 @@ use Behat\Behat\Context\Step;
 
   /**
   * @When /^(?:|I )fill "([^"]*)" in popup$/
+  * Example: When I fill "Then why does he hang out with Dick Grayson?" in popup
+  * Example: And I fill "Then why does he hang out with Dick Grayson?" in popup
   *
   * @param string $message The message.
   */
@@ -98,27 +156,11 @@ use Behat\Behat\Context\Step;
   }
 
   /**
-  * @Given /^I click on the element with xpath "([^"]*)"$/
-  */
-  public function iClickOnTheElementWithXpath2($xpath)
-  {
-    $session = $this->getSession(); // get the mink session
-    $element = $session->getPage()->find(
-      'xpath',
-    $session->getSelectorsHandler()->selectorToXpath('xpath', $xpath)
-    ); // runs the actual query and returns the element
-
-    // errors must not pass silently
-    if (null === $element) {
-      throw new \InvalidArgumentException(sprintf('Could not evaluate XPath: "%s"', $xpath));
-    }
-
-    // ok, let's click on it
-    $element->click();
-  }
-
-  /**
   * @When /^I click on the element with xpath \'([^\']*)\'$/
+  * @Given /^I click on the element with xpath "([^"]*)"$/
+  *
+  * Example: When I click on the element with xpath '//*[@id="find-out-who-batman-is"]'
+  * Example: And I click on the element with xpath '//*[@id="find-out-who-batman-is"]'
   *
   * @param string $xpath is an XPath for an object
   */
@@ -141,6 +183,9 @@ use Behat\Behat\Context\Step;
 
   /**
   * @Given /^I click "([^"]*)"/
+  * Example: Given I click "css-class"
+  * Example: And I click "css-class"
+  *
   */
   public function iClick($css)
   {
@@ -151,6 +196,10 @@ use Behat\Behat\Context\Step;
 
   /**
   * @Given /^I scroll to the bottom$/
+  * Example: Given I scroll to the bottom
+  * Example: When I scroll to the bottom
+  * Example: And I scroll to the bottom
+  *
   */
   public function iScrollToBottom() {
     $javascript = 'window.scrollTo(0, Math.max(document.documentElement.scrollHeight, document.body.scrollHeight, document.documentElement.clientHeight));';
@@ -159,6 +208,10 @@ use Behat\Behat\Context\Step;
 
   /**
   * @Given /^I scroll to the top$/
+  * Example: Given I scroll to the top
+  * Example: When I scroll to the top
+  * Example: And I scroll to the top
+  *
   */
   public function iScrollToTop() {
     $this->getSession()->executeScript('window.scrollTo(0,0);');
@@ -187,13 +240,14 @@ use Behat\Behat\Context\Step;
 
   /**
   * @Given /^I am on a new session$/
+  * Example: Given I am on a new session
+  * Example: And I am on a new session
+  *
   */
   public function iAmOnANewSession()
   {
     $this->getSession()->restart();
   }
-
-
 
   #
   # WORK IN PROGRESS
