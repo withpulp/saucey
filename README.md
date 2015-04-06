@@ -105,7 +105,7 @@ Feature: SOAP & REST API Funtionality
 2. To point **saucey** to SauceLabs, you'd need your `user_name` and `access_key`. Sign up and register for a **free** [SauceLabs](https://saucelabs.com/) account.
 3. Get your username and api-key. *Should be available via /account.* Copy the info into your clipboard.
 4. Open the `behat.yml` file with your favorite IDE and replace all instances of `adcadeQA:d3daa8f1-147e-4655-aa25-49606f633afa` with your username (used to log in) and api-key. Save.
-5. Run a sanity suite via:5. 
+5. Run a sanity suite via:  
 
 		./saucey drunk web mac chrome
 
@@ -210,8 +210,8 @@ The issues listed below are some known issues with the Selenium WebDriver.
 2. How to write custom step definitions
 3. How to add saucey to a project
 4. How to add/modify yaml and composer dependancies
-5. *Refactor and add comments to all step definitions*
+5. ~~Refactor and add comments to all step definitions~~
 
 ###frontend tasks
-1. *saucey.io*
-2. saucey app, finish UI/UX and app skeleton
+1. *get.saucey.io*
+2. app.saucey.io, finish UI/UX and app skeleton
