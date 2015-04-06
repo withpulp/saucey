@@ -210,8 +210,8 @@ The issues listed below are some known issues with the Selenium WebDriver.
 2. How to write custom step definitions
 3. How to add saucey to a project
 4. How to add/modify yaml and composer dependancies
-5. *Refactor and add comments to all step definitions*
+5. ~~Refactor and add comments to all step definitions~~
 
 ###frontend tasks
-1. *saucey.io*
-2. saucey app, finish UI/UX and app skeleton
+1. *get.saucey.io*
+2. app.saucey.io, finish UI/UX and app skeleton
