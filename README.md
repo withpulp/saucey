@@ -104,8 +104,8 @@ Feature: SOAP & REST API Funtionality
 
 2. To point **saucey** to SauceLabs, you'd need your `user_name` and `access_key`. Sign up and register for a **free** [SauceLabs](https://saucelabs.com/) account.
 3. Get your username and api-key. *Should be available via /account.* Copy the info into your clipboard.
-4. Open the `behat.yml` file with your favorite IDE and replace all instances of `username:api-key` with your username (used to log in) and api-key. Save.
-5. Run a sanity suite via:5. 
+4. Open the `behat.yml` file with your favorite IDE and replace all instances of `adcadeQA:d3daa8f1-147e-4655-aa25-49606f633afa` with your username (used to log in) and api-key. Save.
+5. Run a sanity suite via:  
 
 		./saucey drunk web mac chrome
 
@@ -114,11 +114,11 @@ Feature: SOAP & REST API Funtionality
 ####localhost testing on the cloud
 To test something on a localhost in the cloud, you can open a tunnel with sauce connect. With your username and api-key/access_key from the steps above, run:
 
-		vendor/bin/sauce_config user_name access_key
+	vendor/bin/sauce_config user_name access_key
 
-	To start the connect tunnel:
+To start the connect tunnel:
 
-		vendor/sauce/connect/bin/sauce_connect 
+	vendor/sauce/connect/bin/sauce_connect 
 
 
 ###Mobile & Tablet
@@ -198,20 +198,20 @@ The issues listed below are some known issues with the Selenium WebDriver.
 
 ###base tasks
 1. ~~Contextualize shell functionality for reusability~~
-2. *Make context for clicking XY coordinates*
-3. *Make context for dragging and dropping with XY coordinates*
-4. Load test automation with JMeter API
-5. Connect to its own Jenkins CI instance
-6. Dockerize!!!
+2. ~~Change FeatureContext to WebContext of its' own.~~
+3. *Make context for clicking XY coordinates*
+4. *Make context for dragging and dropping with XY coordinates*
+5. Load test automation with JMeter API
+6. Connect to its own Jenkins CI instance
+7. Dockerize!!!
 
 ###readme tasks
 1. *How to write functional Gherkin tests*
 2. How to write custom step definitions
 3. How to add saucey to a project
 4. How to add/modify yaml and composer dependancies
-5. *Refactor and add comments to all step definitions*
-6. *Change FeatureContext to WebContext of its' own.*
+5. ~~Refactor and add comments to all step definitions~~
 
 ###frontend tasks
-1. *saucey.io*
-2. saucey app, finish UI/UX and app skeleton
+1. *get.saucey.io*
+2. app.saucey.io, finish UI/UX and app skeleton
