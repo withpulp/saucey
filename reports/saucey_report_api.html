@@ -27,11 +27,11 @@
   <div class="panel           panel-success
     ">
     <div class="panel-heading" data-toggle="collapse" data-target="#feature1">
-      <span class="badge pull-right">3</span>
+      <span class="badge pull-right">1</span>
         <span class="glyphicon
       glyphicon-ok-circle
     "></span>
-Shell Functionality
+Browser sizes
     </div>
         <div class="panel-collapse collapse" id="feature1">
       <div class="panel-body">
@@ -57,8 +57,8 @@ So that I can automate continuous integration and regression tests using it</p>
       glyphicon-ok-circle
     "></span>
 
-                <b>Scenario:</b> Run &#039;ls -a&#039; and verify output
-                <span class="badge pull-right">3</span>
+                <b>Scenario:</b> Set all browser window sizes to test resolution and rendering
+                <span class="badge pull-right">4</span>
               </div>
               <div class="panel-collapse collapse" id="scenario-1-1">
                 <div class="panel-body">
@@ -68,106 +68,29 @@ So that I can automate continuous integration and regression tests using it</p>
       glyphicon-ok-circle
     "></span>
 
-                       Given I am in &quot;/Users/EnderWiggin/Sites/saucey/run&quot; directory
+                       Given I am on &quot;/&quot;
                                             </li>
                                        <li class="list-group-item list-group-item-success">
                          <span class="glyphicon
       glyphicon-ok-circle
     "></span>
 
-                       When I run &quot;ls -a&quot;
+                       And I set my browser window size to MacBook Standard
                                             </li>
                                        <li class="list-group-item list-group-item-success">
                          <span class="glyphicon
       glyphicon-ok-circle
     "></span>
 
-                       Then I should see:
-                                               <pre class="stepargument"><code>.
-..
-git.sh
-saucey.sh
-saucey.txt
-start_selenium.sh</code></pre>                                                                  </li>
-                                    </ul>
-                                  </div>
-              </div>
-            </div>
-                        <div class="panel           panel-success
-    ">
-              <div class="panel-heading" data-toggle="collapse" data-target="#scenario-2-1">
-                  <span class="glyphicon
-      glyphicon-ok-circle
-    "></span>
-
-                <b>Scenario:</b> Run &#039;./saucey test&#039; and verify output
-                <span class="badge pull-right">3</span>
-              </div>
-              <div class="panel-collapse collapse" id="scenario-2-1">
-                <div class="panel-body">
-                  <ul class="list-group">
-                                       <li class="list-group-item list-group-item-success">
-                         <span class="glyphicon
-      glyphicon-ok-circle
-    "></span>
-
-                       Given I am in &quot;/Users/EnderWiggin/Sites/saucey&quot; directory
+                       And I set my browser window size to MacBook Retina
                                             </li>
                                        <li class="list-group-item list-group-item-success">
                          <span class="glyphicon
       glyphicon-ok-circle
     "></span>
 
-                       When I run &quot;./saucey test&quot;
+                       And I set my browser window size to Windows Standard
                                             </li>
-                                       <li class="list-group-item list-group-item-success">
-                         <span class="glyphicon
-      glyphicon-ok-circle
-    "></span>
-
-                       Then I should see:
-                                               <pre class="stepargument"><code>Yo, you try&#039;na get saucey?</code></pre>                                                                  </li>
-                                    </ul>
-                                  </div>
-              </div>
-            </div>
-                        <div class="panel           panel-success
-    ">
-              <div class="panel-heading" data-toggle="collapse" data-target="#scenario-3-1">
-                  <span class="glyphicon
-      glyphicon-ok-circle
-    "></span>
-
-                <b>Scenario:</b> Run &#039;git remote&#039; and verify output
-                <span class="badge pull-right">3</span>
-              </div>
-              <div class="panel-collapse collapse" id="scenario-3-1">
-                <div class="panel-body">
-                  <ul class="list-group">
-                                       <li class="list-group-item list-group-item-success">
-                         <span class="glyphicon
-      glyphicon-ok-circle
-    "></span>
-
-                       Given I am in &quot;/Users/EnderWiggin/Sites/saucey&quot; directory
-                                            </li>
-                                       <li class="list-group-item list-group-item-success">
-                         <span class="glyphicon
-      glyphicon-ok-circle
-    "></span>
-
-                       When I run &quot;git remote&quot;
-                                            </li>
-                                       <li class="list-group-item list-group-item-success">
-                         <span class="glyphicon
-      glyphicon-ok-circle
-    "></span>
-
-                       Then I should see:
-                                               <pre class="stepargument"><code>origin
-sajjad
-saucey
-withpulp</code></pre>                                                                  </li>
                                     </ul>
                                   </div>
               </div>
@@ -185,14 +108,14 @@ withpulp</code></pre>                                                           
 
 <h3 class="page-header">Scenarios</h3>
 <div class="progress">
-  <div class="progress-bar progress-bar-success" style="width: 100%">3 passed</div>
+  <div class="progress-bar progress-bar-success" style="width: 100%">1 passed</div>
   <div class="progress-bar progress-bar-warning" style="width: 0%">0 pending</div>
   <div class="progress-bar progress-bar-danger" style="width: 0%">0 failed</div>
   <div class="progress-bar progress-bar-info" style="width: 0%">0 skipped</div>
 </div>
 <h3 class="page-header">Steps</h3>
 <div class="progress">
-  <div class="progress-bar progress-bar-success" style="width: 100%">9 passed</div>
+  <div class="progress-bar progress-bar-success" style="width: 100%">4 passed</div>
   <div class="progress-bar progress-bar-warning" style="width: 0%">0 pending</div>
   <div class="progress-bar progress-bar-danger" style="width: 0%">0 failed</div>
   <div class="progress-bar progress-bar-info" style="width: 0%">0 skipped</div>

@@ -29,6 +29,10 @@ class WebContext extends MinkContext implements Context, SnippetAcceptingContext
 
   /**
   * @Given /^I wait for (\d+) seconds$/
+  * Example: Given I wait for 10 seconds
+  * Example: When I wait for 9 seconds
+  * Example: And I wait for 8 seconds
+  *
   */
   public function iWaitForSeconds($seconds)
   {
@@ -37,6 +41,9 @@ class WebContext extends MinkContext implements Context, SnippetAcceptingContext
 
   /**
   * @Given /^I set browser window size to "([^"]*)" x "([^"]*)"$/
+  * Example: Given I set browser window size to "1900" x "1200"
+  * Example: When I set browser window size to "1900" x "1200"
+  * Example: And I set browser window size to "1900" x "1200"
   *
   * @param string $width, $height The message.
   */
@@ -45,7 +52,46 @@ class WebContext extends MinkContext implements Context, SnippetAcceptingContext
   }
 
   /**
+  * @Given I set my browser window size to MacBook Standard
+  * Example: Given I set my browser window size to MacBook Standard
+  * Example: When I set my browser window size to MacBook Standard
+  * Example: And I set my browser window size to MacBook Standard
+  *
+  */
+  public function iSetMyBrowserWindowSizeToMacbookStandard()
+  {
+    $this->getSession()->getDriver()->resizeWindow((int)'1366', (int)'768', 'current');
+  }
+
+  /**
+  * @Given I set my browser window size to MacBook Retina
+  * Example: Given I set my browser window size to MacBook Retina
+  * Example: When I set my browser window size to MacBook Retina
+  * Example: And I set my browser window size to MacBook Retina
+  *
+  */
+  public function iSetMyBrowserWindowSizeToMacbookRetina()
+  {
+    $this->getSession()->getDriver()->resizeWindow((int)'2880', (int)'1800', 'current');
+  }
+
+  /**
+  * @Given I set my browser window size to Windows Standard
+  * Example: Given I set my browser window size to Windows Standard
+  * Example: When I set my browser window size to Windows Standard
+  * Example: And I set my browser window size to Windows Standard
+  *
+  */
+  public function iSetMyBrowserWindowSizeToWindowsStandard()
+  {
+    $this->getSession()->getDriver()->resizeWindow((int)'1280', (int)'1084', 'current');
+  }
+
+  /**
   * @When /^I hover over the element "([^"]*)"$/
+  * Example: When I hover over the element "sign-up-button"
+  * Example: And I hover over the element "sign-up-button"
+  *
   */
   public function iHoverOverTheElement($locator)
   {
@@ -63,13 +109,19 @@ class WebContext extends MinkContext implements Context, SnippetAcceptingContext
 
   /**
   * @When /^I confirm the popup$/
+  * Example: When I confirm the popup
+  * Example: And I confirm the popup
+  *
   */
   public function confirmPopup()
   {
     $this->getSession()->getDriver()->getWebDriverSession()->accept_alert();
   }
   /**
-  * @when /^(?:|I )cancel the popup$/
+  * @When /^(?:|I )cancel the popup$/
+  * Example: When I cancel the popup
+  * Example: And I cancel the popup
+  *
   */
   public function cancelPopup()
   {
@@ -78,6 +130,8 @@ class WebContext extends MinkContext implements Context, SnippetAcceptingContext
 
   /**
   * @When /^I should see "([^"]*)" in popup$/
+  * Example: And I should see "Bruce Wayne is not Batman" in popup
+  * Example: Then I should see "Bruce Wayne is not Batman" in popup
   *
   * @param string $message The message.
   */
