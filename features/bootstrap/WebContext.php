@@ -145,6 +145,8 @@ class WebContext extends MinkContext implements Context, SnippetAcceptingContext
 
   /**
   * @When /^(?:|I )fill "([^"]*)" in popup$/
+  * Example: When I fill "Then why does he hang out with Dick Grayson?" in popup
+  * Example: And I fill "Then why does he hang out with Dick Grayson?" in popup
   *
   * @param string $message The message.
   */
@@ -154,27 +156,11 @@ class WebContext extends MinkContext implements Context, SnippetAcceptingContext
   }
 
   /**
-  * @Given /^I click on the element with xpath "([^"]*)"$/
-  */
-  public function iClickOnTheElementWithXpath2($xpath)
-  {
-    $session = $this->getSession(); // get the mink session
-    $element = $session->getPage()->find(
-      'xpath',
-    $session->getSelectorsHandler()->selectorToXpath('xpath', $xpath)
-    ); // runs the actual query and returns the element
-
-    // errors must not pass silently
-    if (null === $element) {
-      throw new \InvalidArgumentException(sprintf('Could not evaluate XPath: "%s"', $xpath));
-    }
-
-    // ok, let's click on it
-    $element->click();
-  }
-
-  /**
   * @When /^I click on the element with xpath \'([^\']*)\'$/
+  * @Given /^I click on the element with xpath "([^"]*)"$/
+  *
+  * Example: When I click on the element with xpath '//*[@id="find-out-who-batman-is"]'
+  * Example: And I click on the element with xpath '//*[@id="find-out-who-batman-is"]'
   *
   * @param string $xpath is an XPath for an object
   */
@@ -197,6 +183,9 @@ class WebContext extends MinkContext implements Context, SnippetAcceptingContext
 
   /**
   * @Given /^I click "([^"]*)"/
+  * Example: Given I click "css-class"
+  * Example: And I click "css-class"
+  *
   */
   public function iClick($css)
   {
@@ -207,6 +196,10 @@ class WebContext extends MinkContext implements Context, SnippetAcceptingContext
 
   /**
   * @Given /^I scroll to the bottom$/
+  * Example: Given I scroll to the bottom
+  * Example: When I scroll to the bottom
+  * Example: And I scroll to the bottom
+  *
   */
   public function iScrollToBottom() {
     $javascript = 'window.scrollTo(0, Math.max(document.documentElement.scrollHeight, document.body.scrollHeight, document.documentElement.clientHeight));';
@@ -215,6 +208,10 @@ class WebContext extends MinkContext implements Context, SnippetAcceptingContext
 
   /**
   * @Given /^I scroll to the top$/
+  * Example: Given I scroll to the top
+  * Example: When I scroll to the top
+  * Example: And I scroll to the top
+  *
   */
   public function iScrollToTop() {
     $this->getSession()->executeScript('window.scrollTo(0,0);');
@@ -243,13 +240,14 @@ class WebContext extends MinkContext implements Context, SnippetAcceptingContext
 
   /**
   * @Given /^I am on a new session$/
+  * Example: Given I am on a new session
+  * Example: And I am on a new session
+  *
   */
   public function iAmOnANewSession()
   {
     $this->getSession()->restart();
   }
-
-
 
   #
   # WORK IN PROGRESS
