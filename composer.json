@@ -15,6 +15,7 @@
     "require": {
         "php": ">=5.3.0",
         "phpunit/phpunit": "~4.3",
+        "facebook/webdriver": "dev-master",
         "behat/behat": "3.0.*",
         "doctrine/doctrine-bundle": "*",
         "doctrine/data-fixtures": "*",

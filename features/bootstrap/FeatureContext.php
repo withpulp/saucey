@@ -14,7 +14,7 @@ use Behat\Behat\Context\Step;
 
 class FeatureContext implements Context, SnippetAcceptingContext
 {
-  /*FEATURE CONTEXT*/
+  /*EXAMPLE FEATURE CONTEXT*/
   /**
   * Initializes context.
   * Every scenario gets it's own context object.
@@ -24,4 +24,5 @@ class FeatureContext implements Context, SnippetAcceptingContext
   {
     $this->baseUrl = $baseUrl;
   }
+
 }
