@@ -1,3 +1,6 @@
+.idea
+*.swp
+
 # Mac OSX
 .DS_Store
 .AppleDouble
