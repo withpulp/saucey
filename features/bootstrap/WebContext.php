@@ -14,7 +14,7 @@ use Behat\Behat\Context\Step;
 
 class WebContext extends MinkContext implements Context, SnippetAcceptingContext
 {
-  private $webUrl;
+  public $webUrl;
 
   /*WEB CONTEXT*/
   /**
@@ -257,13 +257,5 @@ class WebContext extends MinkContext implements Context, SnippetAcceptingContext
   // 3. Connect to its own Jenkins CI instance
   // 4. Dockerize!!!
 
-  /**
-  * @When /^I click ad coordinates$/
-  */
-  public function iClickAdCoordinates()
-  {
-    //$session->moveto(array('xoffset' => 3, 'yoffset' => 300));
-    //$this->getSession()->click();
-  }
 
 }
