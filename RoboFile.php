@@ -66,6 +66,7 @@ class RoboFile extends \Robo\Tasks
             ->run();
 
         $this->taskGitStack()
+            ->dir('.')
             ->add('-A')
             ->commit('robo saucey:work is shoving to all remote:develops')
             ->push('origin', 'develop')
@@ -75,7 +76,12 @@ class RoboFile extends \Robo\Tasks
             ->run();
 
         // commit work to saucey/drivers
-        $this->taskExec('cd vendor/saucey/drivers && git add -A && git commit -m \'robo saucey:work is shoving to all remote:develops\' && git push saucey master && git push sajjad master')
+        $this->taskGitStack()
+            ->dir('.')
+            ->add('-A')
+            ->commit('robo saucey:work is shoving to all remote:develops') ->dir('./vendor/saucey/drivers/')
+            ->push('sajjad', 'master')
+            ->push('saucey', 'master')
             ->run();
     }
 
