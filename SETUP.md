@@ -48,7 +48,7 @@ To:
 
 Start Selenium with the chromeDriver as a parameter `java -jar selenium-server-standalone-2.44.0.jar -Dwebdriver.chrome.driver=vendor/saucey/drivers/chromedriver`
 Open a new window/tab, then `vendor/bin/behat
- 
+
 ### Safari
 In Terminal or Finder open `behat.yml` in the root of the project directory.
 
@@ -84,9 +84,7 @@ If you're on a Virtual Machine, there are a couple of things needed to get behat
 5. Depending on your Internet Explorer settings, you may need to [Enable Protection Mode](http://stackoverflow.com/questions/14952348/not-able-to-launch-ie-browser-using-selenium2-webdriver-with-java)
 
 
-Open Command Prompt, then navigate to the project directory:
-
-  cd path\to\saucey
+Open Command Prompt, then navigate to project folder: `cd path\to\saucey`
 
 ### Internet Explorer
 Start Selenium with the ieDriver as a parameter: `java -jar selenium-server-standalone-2.44.0.jar -Dwebdriver.ie.driver=Drivers\IEDriverServer.exe`
@@ -109,11 +107,11 @@ To:
 Start Selenium:
 
   java -jar selenium-server-standalone-2.44.0.jar
- 
+
 Open a new window/tab, then:
 
   vendor/bin/behat
- 
+
 ###Chrome
 In Terminal or Finder open `behat.yml` in the root of the project directory.
 
@@ -130,7 +128,7 @@ To:
 Start Selenium with the firefoxDriver (default) as a parameter:
 
   java -jar selenium-server-standalone-2.44.0.jar -Dwebdriver.chrome.driver=Drivers\chromedriver.exe
- 
+
 Open a new window/tab, then:
 
   vendor/bin/behat
@@ -168,7 +166,7 @@ Make sure you've changed the `name`.
 Then:
 
   vendor/bin/behat
- 
+
 ### Chrome
 In Terminal or Finder open `behat.yml` in the root of the project directory.
 
@@ -191,7 +189,7 @@ Make sure you've changed the `name`.
 Then:
 
   vendor/bin/behat
- 
+
 ### Safari
 In Terminal or Finder open `behat.yml` in the root of the project directory.
 
@@ -214,7 +212,7 @@ Make sure you've changed the `name`.
 Then:
 
   vendor/bin/behat
- 
+
 ##Windows Simulating
 ### Internet Explorer
 In Terminal or Finder open `behat.yml` in the root of the project directory.
@@ -235,10 +233,8 @@ To:
 
 Make sure you've changed the `name`.
 
-Then:
+Then `./vendor/bin/behat`
 
-  vendor/bin/behat
- 
 ### Firefox
 In Terminal or Finder open `behat.yml` in the root of the project directory.
 
@@ -251,9 +247,7 @@ Make sure the `selenium2` instance is called as:
 
 Make sure you've changed the `name`.
 
-Then:
-
-  vendor/bin/behat
+Then `./vendor/bin/behat`
 
 ### Chrome
 In Terminal or Finder open `behat.yml` in the root of the project directory.
@@ -274,9 +268,7 @@ To:
 
 Make sure you've changed the `name`.
 
-Then:
-
-  vendor/bin/behat
+Then `./vendor/bin/behat`
 
 ## Cloud Mobile Automated Testing
 ## iPad
@@ -298,9 +290,7 @@ To:
 
 Make sure you've changed the `name`. Additionally, you can add `"deviceOrientation": "landscape",` or `portrait` to test orientation.
 
-Then:
-
-  vendor/bin/behat
+Then `./vendor/bin/behat`
 
 ## iPhone
 In Terminal or Finder open `behat.yml` in the root of the project directory.
