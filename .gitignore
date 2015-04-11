@@ -36,5 +36,3 @@ vendor/
 #wiki, etc
 saucey.wiki/*
 
-#robo
-RoboFile.php
