@@ -2,20 +2,72 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e16cbb2c-4538-496c-a09f-d9f55c1246f2" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/features/bootstrap/Saucey.php" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/reports/saucey_report_api.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/reports/saucey_report_shell.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/reports/saucey_report_web.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/features/getSaucey/Saucey.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/features/getSaucey/localApp.feature" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/game/README.md" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/game/_tuts/class-basics-adding-a-property.diff" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/game/_tuts/class-basics-changing-the-property.diff" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/game/_tuts/class-basics-create-play-php-file.diff" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/game/_tuts/class-basics-create-the-class.diff" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/game/_tuts/class-basics-instantiate.diff" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/game/_tuts/constructor-adding-it-printing-something.diff" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/game/_tuts/constructor-passing-an-argument.diff" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/game/_tuts/constructor-setting-underrepair-and-adding-an-isfunctional-method-that-we-use.diff" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/game/_tuts/fixing-battle-php-dumping-outcome-to-see-objects.diff" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/game/_tuts/fixing-battle-php-dumping-ship1-and-ship2.diff" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/game/_tuts/fixing-battle-php-finishing-object-syntax-in-battle-php.diff" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/game/_tuts/fixing-battle-php-fixing-syntax-in-battle.diff" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/game/_tuts/fixing-battle-php-removing-array-type-hint.diff" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/game/_tuts/fixing-battle-php-starting-to-use-correct-syntax.diff" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/game/_tuts/method-basics-add-the-other-properties.diff" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/game/_tuts/method-basics-adding-default-args.diff" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/game/_tuts/method-basics-adding-getname-with-fake-implementation.diff" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/game/_tuts/method-basics-adding-gettacticaldescription.diff" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/game/_tuts/method-basics-adding-sayhello.diff" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/game/_tuts/method-basics-finishing-getname-with-this.diff" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/game/_tuts/method-basics-giving-getnameandspecs-and-arg.diff" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/game/_tuts/method-basics-printing-weaponpower.diff" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/game/_tuts/method-basics-setting-weaponpower.diff" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/game/_tuts/multiple-objects-adding-doesgivenshiphavemorestrength.diff" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/game/_tuts/multiple-objects-adding-helper-printshipsummary.diff" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/game/_tuts/multiple-objects-adding-phpdoc-for-ship-argument.diff" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/game/_tuts/multiple-objects-create-a-second-ship.diff" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/game/_tuts/organization-moving-ship-class-to-ship-php.diff" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/game/_tuts/property-visibility-adding-is-numeric-check-in-setstrength.diff" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/game/_tuts/property-visibility-adding-other-3-ships.diff" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/game/_tuts/property-visibility-adding-setstrength-and-getstrength.diff" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/game/_tuts/property-visibility-making-all-other-properties-private.diff" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/game/_tuts/property-visibility-making-strength-private.diff" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/game/_tuts/property-visibility-putting-back-good-strength-value.diff" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/game/_tuts/property-visibility-setting-a-bad-strength.diff" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/game/_tuts/steps.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/game/_tuts/type-hinting-pass-bad-type-of-argument-to-battle.diff" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/game/_tuts/type-hinting-type-hint-the-arguments-to-battle.diff" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/game/_tuts/using-objects-call-getnameandspecs-for-options.diff" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/game/_tuts/using-objects-create-one-ship-and-var-dump.diff" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/game/_tuts/using-objects-fixing-syntax-in-select.diff" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/game/_tuts/using-objects-use-getname-method.diff" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/game/_tuts/using-objects-using-proper-syntax-in-table.diff" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/game/knpu/episode1/basic-class.md" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/game/knpu/episode1/constructor.md" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/game/knpu/episode1/editor-autocomplete.md" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/game/knpu/episode1/metadata.yml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/game/knpu/episode1/methods-work.md" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/game/knpu/episode1/methods.md" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/game/knpu/episode1/multiple-objects.md" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/game/knpu/episode1/objects-interact.md" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/game/knpu/episode1/oo.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/game/knpu/episode1/private-access.md" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/game/knpu/episode1/the-project.md" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/game/knpu/episode1/type-hinting.md" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/game/knpu/episode1/using-objects.md" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/game/play.php" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/saucey.wiki" afterPath="$PROJECT_DIR$/saucey.wiki" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/features/bootstrap/APIContext.php" afterPath="$PROJECT_DIR$/features/bootstrap/APIContext.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/features/api/APIRegression.feature" afterPath="$PROJECT_DIR$/features/api/APIRegression.feature" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/saucey.wiki/Caveats-&amp;-Issues.md" afterPath="$PROJECT_DIR$/saucey.wiki/Caveats-&amp;-Issues.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/features/bootstrap/FeatureContext.php" afterPath="$PROJECT_DIR$/features/bootstrap/FeatureContext.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/features/bootstrap/ShellContext.php" afterPath="$PROJECT_DIR$/features/bootstrap/ShellContext.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/features/bootstrap/WebContext.php" afterPath="$PROJECT_DIR$/features/bootstrap/WebContext.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/features/bootstrap/XYContext.php" afterPath="$PROJECT_DIR$/features/bootstrap/XYContext.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/composer.json" afterPath="$PROJECT_DIR$/composer.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/features/shell/shellRegression.feature" afterPath="$PROJECT_DIR$/features/shell/shellRegression.feature" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="saucey.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -45,7 +97,7 @@
     <favorites_list name="saucey">
       <favorite_root url="file://$PROJECT_DIR$/features/bootstrap/FeatureContext.php" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
       <favorite_root url="file://$PROJECT_DIR$/features/bootstrap/ShellContext.php" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
-      <favorite_root url="file://$PROJECT_DIR$/features/bootstrap/Saucey.php" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
+      <favorite_root url="file://$PROJECT_DIR$/features/getSaucey/Saucey.php" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
       <favorite_root url="file://$PROJECT_DIR$/features/bootstrap/WebContext.php" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
       <favorite_root url="file://$PROJECT_DIR$/features/bootstrap/APIContext.php" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
       <favorite_root url="file://$PROJECT_DIR$/behat.yml" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
@@ -56,8 +108,8 @@
       <file leaf-file-name="behat.yml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/behat.yml">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="150" max-vertical-offset="3150">
-              <caret line="28" column="46" selection-start-line="28" selection-start-column="23" selection-end-line="28" selection-end-column="46" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="15" max-vertical-offset="3060">
+              <caret line="14" column="0" selection-start-line="14" selection-start-column="0" selection-end-line="15" selection-end-column="30" />
               <folding />
             </state>
           </provider>
@@ -66,31 +118,19 @@
       <file leaf-file-name="composer.json" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/composer.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-12.208333" vertical-offset="127" max-vertical-offset="720">
-              <caret line="28" column="36" selection-start-line="28" selection-start-column="36" selection-end-line="28" selection-end-column="36" />
+            <state vertical-scroll-proportion="-4.7083335" vertical-offset="127" max-vertical-offset="720">
+              <caret line="16" column="29" selection-start-line="16" selection-start-column="29" selection-end-line="16" selection-end-column="29" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="localApp.feature" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/features/getSaucey/localApp.feature">
+      <file leaf-file-name="Saucey.feature" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/features/getSaucey/Saucey.feature">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="510">
-              <caret line="27" column="47" selection-start-line="27" selection-start-column="47" selection-end-line="27" selection-end-column="47" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="645">
+              <caret line="19" column="7" selection-start-line="19" selection-start-column="7" selection-end-line="19" selection-end-column="7" />
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="XYContext.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/features/bootstrap/XYContext.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.94699645" vertical-offset="334" max-vertical-offset="960">
-              <caret line="58" column="1" selection-start-line="58" selection-start-column="1" selection-end-line="58" selection-end-column="1" />
-              <folding>
-                <element signature="e#7#57#0#PHP" expanded="true" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -98,11 +138,45 @@
       <file leaf-file-name="ShellContext.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/features/bootstrap/ShellContext.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-8.125" vertical-offset="60" max-vertical-offset="1290">
-              <caret line="17" column="19" selection-start-line="17" selection-start-column="19" selection-end-line="17" selection-end-column="19" />
+            <state vertical-scroll-proportion="-13.125" vertical-offset="525" max-vertical-offset="1290">
+              <caret line="56" column="3" selection-start-line="56" selection-start-column="3" selection-end-line="56" selection-end-column="3" />
               <folding>
                 <element signature="e#6#56#0#PHP" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="XYContext.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/features/bootstrap/XYContext.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.7335582" vertical-offset="0" max-vertical-offset="593">
+              <caret line="29" column="5" selection-start-line="29" selection-start-column="5" selection-end-line="29" selection-end-column="5" />
+              <folding>
+                <element signature="e#6#42#0#PHP" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="WebContext.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/features/bootstrap/WebContext.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-19.083334" vertical-offset="3412" max-vertical-offset="4005">
+              <caret line="258" column="0" selection-start-line="258" selection-start-column="0" selection-end-line="258" selection-end-column="0" />
+              <folding>
+                <element signature="e#6#56#0#PHP" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="RoboFile.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/RoboFile.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-6.25" vertical-offset="0" max-vertical-offset="795">
+              <caret line="10" column="56" selection-start-line="10" selection-start-column="56" selection-end-line="10" selection-end-column="56" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -117,16 +191,20 @@
       <list>
         <option value="$PROJECT_DIR$/features/bootstrap/SauceyContext.php" />
         <option value="$PROJECT_DIR$/features/bootstrap/Saucey.php" />
-        <option value="$PROJECT_DIR$/features/bootstrap/WebContext.php" />
-        <option value="$PROJECT_DIR$/features/bootstrap/ShellContext.php" />
         <option value="$PROJECT_DIR$/features/bootstrap/FeatureContext.php" />
         <option value="$PROJECT_DIR$/features/bootstrap/APIContext.php" />
         <option value="$PROJECT_DIR$/features/api/APIRegression.feature" />
         <option value="$PROJECT_DIR$/features/xy/localApp.feature" />
         <option value="$PROJECT_DIR$/features/shell/shellRegression.feature" />
+        <option value="$PROJECT_DIR$/composer.json" />
+        <option value="$PROJECT_DIR$/.gitignore" />
+        <option value="$PROJECT_DIR$/vendor/chartinger/behat-twig-report-extension/src/chartinger/Behat/TwigReportExtension/EventListener.php" />
         <option value="$PROJECT_DIR$/features/getSaucey/localApp.feature" />
         <option value="$PROJECT_DIR$/behat.yml" />
-        <option value="$PROJECT_DIR$/composer.json" />
+        <option value="$PROJECT_DIR$/features/bootstrap/WebContext.php" />
+        <option value="$PROJECT_DIR$/RoboFile.php" />
+        <option value="$PROJECT_DIR$/features/getSaucey/Saucey.feature" />
+        <option value="$PROJECT_DIR$/features/bootstrap/ShellContext.php" />
         <option value="$PROJECT_DIR$/features/bootstrap/XYContext.php" />
       </list>
     </option>
@@ -192,56 +270,6 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="vendor" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="saucey" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="saucey" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="vendor" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="codegyre" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="robo" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="saucey" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="saucey" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="reports" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="saucey" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="saucey" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
               <option name="myItemId" value="features" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -260,7 +288,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="shell" />
+              <option name="myItemId" value="getSaucey" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -290,6 +318,12 @@
     <property name="options.lastSelected" value="editor.preferences.appearance" />
     <property name="options.splitter.main.proportions" value="0.3" />
     <property name="options.splitter.details.proportions" value="0.2" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../xycontext" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/features/getSaucey" />
+    </key>
   </component>
   <component name="RunManager">
     <configuration default="true" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
@@ -354,7 +388,7 @@
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3298647" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32882413" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32960597" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3298647" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32882413" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
@@ -362,7 +396,7 @@
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3298647" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.21033014" sideWeight="0.5" order="1" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2087327" sideWeight="0.5" order="1" side_tool="false" content_ui="combo" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -390,7 +424,7 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="3" />
+      <option name="time" value="4" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -403,29 +437,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/features/bootstrap/Saucey.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="617">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/vendor/teaandcode/behat-guzzle-extension/src/Behat/GuzzleExtension/Context/GuzzleContext.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.34569982" vertical-offset="290" max-vertical-offset="5970">
           <caret line="45" column="55" selection-start-line="45" selection-start-column="55" selection-end-line="45" selection-end-column="55" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/features/bootstrap/WebContext.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="2.0588236" vertical-offset="270" max-vertical-offset="4125">
-          <caret line="11" column="40" selection-start-line="11" selection-start-column="36" selection-end-line="11" selection-end-column="40" />
-          <folding>
-            <element signature="e#6#56#0#PHP" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -481,35 +497,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/vendor/phpunit/phpunit/src/Framework/TestCase.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.34569982" vertical-offset="3980" max-vertical-offset="31290">
-          <caret line="279" column="20" selection-start-line="279" selection-start-column="20" selection-end-line="279" selection-end-column="20" />
-          <folding>
-            <element signature="e#6#227#0#PHP" expanded="true" />
-            <element signature="e#229#272#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/behat.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="150" max-vertical-offset="3150">
-          <caret line="28" column="46" selection-start-line="28" selection-start-column="23" selection-end-line="28" selection-end-column="46" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/features/bootstrap/ShellContext.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-8.125" vertical-offset="60" max-vertical-offset="1290">
-          <caret line="17" column="19" selection-start-line="17" selection-start-column="19" selection-end-line="17" selection-end-column="19" />
-          <folding>
-            <element signature="e#6#56#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/features/shell/shellRegression.feature">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.17017828" vertical-offset="15" max-vertical-offset="690">
@@ -518,25 +505,33 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/composer.json">
+    <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-12.208333" vertical-offset="127" max-vertical-offset="720">
-          <caret line="28" column="36" selection-start-line="28" selection-start-column="36" selection-end-line="28" selection-end-column="36" />
+        <state vertical-scroll-proportion="-19.48" vertical-offset="98" max-vertical-offset="690">
+          <caret line="39" column="12" selection-start-line="39" selection-start-column="12" selection-end-line="39" selection-end-column="12" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/features/getSaucey/localApp.feature">
+    <entry file="file://$PROJECT_DIR$/vendor/codegyre/robo/src/Common/CommandReceiver.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="510">
-          <caret line="27" column="47" selection-start-line="27" selection-start-column="47" selection-end-line="27" selection-end-column="47" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="617">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/vendor/codegyre/robo/src/Tasks.php">
+    <entry file="file://$PROJECT_DIR$/vendor/codegyre/robo/src/Common/ExecCommand.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.2647555" vertical-offset="157" max-vertical-offset="750">
+        <state vertical-scroll-proportion="-0.062394604" vertical-offset="37" max-vertical-offset="1200">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vendor/codegyre/robo/src/Common/TaskIO.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.3406408" vertical-offset="202" max-vertical-offset="795">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
@@ -544,18 +539,187 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/vendor/codegyre/robo/src/Runner.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2730">
+        <state vertical-scroll-proportion="-0.08768971" vertical-offset="52" max-vertical-offset="2730">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vendor/codegyre/robo/src/Tasks.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.0" vertical-offset="0" max-vertical-offset="750">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vendor/phpunit/phpunit/src/Framework/TestCase.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.3204047" vertical-offset="3980" max-vertical-offset="31290">
+          <caret line="278" column="0" selection-start-line="278" selection-start-column="0" selection-end-line="279" selection-end-column="0" />
+          <folding>
+            <element signature="e#6#227#0#PHP" expanded="true" />
+            <element signature="e#229#272#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vendor/codegyre/robo/src/Task/CommandStack.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.49241146" vertical-offset="292" max-vertical-offset="1035">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vendor/codegyre/robo/docs/started.md">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="5340">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vendor/chartinger/behat-twig-report-extension/src/chartinger/Behat/TwigReportExtension/EventListener.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.80944353" vertical-offset="1500" max-vertical-offset="2655">
+          <caret line="132" column="30" selection-start-line="132" selection-start-column="30" selection-end-line="132" selection-end-column="30" />
+          <folding>
+            <element signature="e#56#119#0#PHP" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bin/robo">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="617">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/game/functions.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1965">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/game/css/bootstrap.min.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-2.9464285" vertical-offset="1815" max-vertical-offset="9585">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/game/css/style.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="616">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/game/js/npm.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.29220778" vertical-offset="0" max-vertical-offset="616">
+          <caret line="12" column="28" selection-start-line="12" selection-start-column="28" selection-end-line="12" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/game/lib/Ship.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-1.0132014" vertical-offset="921" max-vertical-offset="1830">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/game/index.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.9489796" vertical-offset="348" max-vertical-offset="1845">
+          <caret line="79" column="21" selection-start-line="79" selection-start-column="21" selection-end-line="79" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vendor/codegyre/robo/src/Task/Base/Exec.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.7841484" vertical-offset="1530" max-vertical-offset="2550">
+          <caret line="137" column="54" selection-start-line="137" selection-start-column="54" selection-end-line="137" selection-end-column="54" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/behat.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="15" max-vertical-offset="3060">
+          <caret line="14" column="0" selection-start-line="14" selection-start-column="0" selection-end-line="15" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/composer.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-4.7083335" vertical-offset="127" max-vertical-offset="720">
+          <caret line="16" column="29" selection-start-line="16" selection-start-column="29" selection-end-line="16" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/features/bootstrap/WebContext.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-19.083334" vertical-offset="3412" max-vertical-offset="4005">
+          <caret line="258" column="0" selection-start-line="258" selection-start-column="0" selection-end-line="258" selection-end-column="0" />
+          <folding>
+            <element signature="e#6#56#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/saucey">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1125">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/RoboFile.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-6.25" vertical-offset="0" max-vertical-offset="795">
+          <caret line="10" column="56" selection-start-line="10" selection-start-column="56" selection-end-line="10" selection-end-column="56" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/features/bootstrap/ShellContext.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-13.125" vertical-offset="525" max-vertical-offset="1290">
+          <caret line="56" column="3" selection-start-line="56" selection-start-column="3" selection-end-line="56" selection-end-column="3" />
+          <folding>
+            <element signature="e#6#56#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/features/getSaucey/Saucey.feature">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="645">
+          <caret line="19" column="7" selection-start-line="19" selection-start-column="7" selection-end-line="19" selection-end-column="7" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/features/bootstrap/XYContext.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.94699645" vertical-offset="334" max-vertical-offset="960">
-          <caret line="58" column="1" selection-start-line="58" selection-start-column="1" selection-end-line="58" selection-end-column="1" />
+        <state vertical-scroll-proportion="0.7335582" vertical-offset="0" max-vertical-offset="593">
+          <caret line="29" column="5" selection-start-line="29" selection-start-column="5" selection-end-line="29" selection-end-column="5" />
           <folding>
-            <element signature="e#7#57#0#PHP" expanded="true" />
+            <element signature="e#6#42#0#PHP" expanded="true" />
           </folding>
         </state>
       </provider>

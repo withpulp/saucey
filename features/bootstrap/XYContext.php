@@ -1,4 +1,5 @@
 <?php
+use Symfony\Component\Finder\Finder;
 
 use Behat\Behat\Tester\Exception\PendingException;
 use Behat\Behat\Context\Context;
@@ -9,17 +10,14 @@ use Behat\Gherkin\Node\TableNode;
 use Behat\MinkExtension\Context\MinkContext;
 use Behat\Behat\Context\Step;
 
-use Robo;
-
 /**
 * Defines application features from the this kick-ass context.
 */
 
-class XYContext extends PHPUnit_Framework_TestCase implements Context, SnippetAcceptingContext
+class XYContext implements Context, SnippetAcceptingContext
 {
-    public $aut;
-    public $run;
-
+    private $aut;
+    private $run;
 
     /**
      * @param $aut
@@ -31,31 +29,4 @@ class XYContext extends PHPUnit_Framework_TestCase implements Context, SnippetAc
         $this->run = $run;
     }
 
-
-}
-
-class RoboContext extends \Robo\Tasks
-{
-    public function iStartTheAppInTheBackground()
-    {
-        /**
-         * @When I start the app in the background
-         * @param string $run the system call to make
-         */
-
-        // starts PHP server in background
-        $this->taskPhpServer(8000)
-            ->background()
-            ->dir('../../games')
-            ->run();
-
-        // launches Selenium server
-        $this->taskExec('java -jar ' . $pathToSelenium)
-            ->background()
-            ->run();
-
-        // runs PHPUnit tests
-        $this->taskPHPUnit()
-            ->run();
-    }
 }
