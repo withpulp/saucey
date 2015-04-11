@@ -77,7 +77,7 @@ class RoboFile extends \Robo\Tasks
 
         // commit work to saucey/drivers
         $this->taskGitStack()
-            ->dir('.')
+            ->dir('./vendor/saucey/drivers')
             ->add('-A')
             ->commit('robo saucey:work is shoving to all remote:develops') ->dir('./vendor/saucey/drivers/')
             ->push('sajjad', 'master')
