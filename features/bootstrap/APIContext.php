@@ -1,4 +1,5 @@
 <?php
+use Behat\Behat\Tester\Exception\PendingException;
 use Behat\Behat\Context\Context;
 use Behat\Behat\Context\SnippetAcceptingContext;
 
@@ -19,8 +20,8 @@ use Buzz\Browser;
 
 class APIContext extends GuzzleContext implements Context, SnippetAcceptingContext
 {
-  private $browser;
-  private $apiUrl;
+  public $browser;
+  public $apiUrl;
   private $authorization;
   private $placeHolders = array();
   private $headers = array();
@@ -205,9 +206,9 @@ class APIContext extends GuzzleContext implements Context, SnippetAcceptingConte
   *
   * @param string $text
   *
-  * @Then /^(?:the )?response should contain "([^"]*)"$/
+  * @Then /^(?:the )?response needs to contain "([^"]*)"$/
   */
-  public function theResponseShouldContain($text)
+  public function theResponseNeedsToContain($text)
   {
      \PHPUnit_Framework_Assert::assertRegExp('/'.preg_quote($text).'/', $this->browser->getLastResponse()->getContent());
   }
@@ -218,9 +219,9 @@ class APIContext extends GuzzleContext implements Context, SnippetAcceptingConte
   *
   * @param string $text
   *
-  * @Then /^(?:the )?response should not contain "([^"]*)"$/
+  * @Then /^(?:the )?response can not contain "([^"]*)"$/
   */
-  public function theResponseShouldNotContain($text)
+  public function theResponseCanNotContain($text)
   {
      \PHPUnit_Framework_Assert::assertNotRegExp('/'.preg_quote($text).'/', $this->browser->getLastResponse()->getContent());
   }
@@ -353,3 +354,5 @@ class APIContext extends GuzzleContext implements Context, SnippetAcceptingConte
   }
 
 }
+
+?>

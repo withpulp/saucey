@@ -184,13 +184,13 @@ The issues listed below are some known issues with the Selenium WebDriver.
 
 1. Firefox ≤36.0.3 does not render ANY web driver functions from selenium, fixed in v36.0.4 with selenium 
 2. Most of the major web driver functionality, i.e. pressing buttons, following links are completely non-functional for the Safari Web Driver.
-
+3. Locally, some step functionality is non-functional: `iMoveBackwardOnePage`, `iMoveForwardOnePage`,`iRefreshThePage`
 
 ##Saucey Issues
 1. ~~API functionality is not implemented currently because of  aug blocking functionality.~~
 2. ~~Using the current HTML output generator, there is no shell output when running `./saucey`~~
 3. Dynamic reporting of error types. Steps that failed are shown, but the output is generic.
-4. *Duplicate context and usage of FeatureContext* -- **High Priority !!!**
+4. ~~Duplicate context and usage of FeatureContext~~
 
 ##TODO
 

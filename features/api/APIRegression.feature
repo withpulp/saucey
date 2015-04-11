@@ -1,4 +1,4 @@
-Feature: SOAP & REST API Funtionality
+Feature: SOAP & REST API Functionality
 
   As a tester
   I want to make sure api features are up and running
@@ -39,7 +39,7 @@ Feature: SOAP & REST API Funtionality
       Scenario: Make and validate a DELETE request
         Given send a DELETE request to "/posts/1"
         Then  the response code should be 204
-        And the response should not contain "id"
+        And the response can not contain "id"
 
       @api @getHeader
       Scenario: Make and validate a GET request with a header

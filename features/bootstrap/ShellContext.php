@@ -8,13 +8,14 @@ use Behat\Gherkin\Node\TableNode;
 use Behat\MinkExtension\Context\MinkContext;
 use Behat\Behat\Context\Step;
 
+
 /**
 * Defines application features from the SHELL context.
 */
 
 class ShellContext implements Context, SnippetAcceptingContext
 {
-  private $basePath;
+  public $basePath;
 
   /*WEB CONTEXT*/
   /**
