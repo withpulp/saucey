@@ -2,73 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e16cbb2c-4538-496c-a09f-d9f55c1246f2" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/xy" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/features/getSaucey/Saucey.feature" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/features/bootstrap/Saucey.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/features/getSaucey/localApp.feature" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/game/README.md" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/game/_tuts/class-basics-adding-a-property.diff" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/game/_tuts/class-basics-changing-the-property.diff" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/game/_tuts/class-basics-create-play-php-file.diff" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/game/_tuts/class-basics-create-the-class.diff" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/game/_tuts/class-basics-instantiate.diff" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/game/_tuts/constructor-adding-it-printing-something.diff" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/game/_tuts/constructor-passing-an-argument.diff" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/game/_tuts/constructor-setting-underrepair-and-adding-an-isfunctional-method-that-we-use.diff" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/game/_tuts/fixing-battle-php-dumping-outcome-to-see-objects.diff" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/game/_tuts/fixing-battle-php-dumping-ship1-and-ship2.diff" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/game/_tuts/fixing-battle-php-finishing-object-syntax-in-battle-php.diff" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/game/_tuts/fixing-battle-php-fixing-syntax-in-battle.diff" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/game/_tuts/fixing-battle-php-removing-array-type-hint.diff" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/game/_tuts/fixing-battle-php-starting-to-use-correct-syntax.diff" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/game/_tuts/method-basics-add-the-other-properties.diff" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/game/_tuts/method-basics-adding-default-args.diff" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/game/_tuts/method-basics-adding-getname-with-fake-implementation.diff" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/game/_tuts/method-basics-adding-gettacticaldescription.diff" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/game/_tuts/method-basics-adding-sayhello.diff" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/game/_tuts/method-basics-finishing-getname-with-this.diff" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/game/_tuts/method-basics-giving-getnameandspecs-and-arg.diff" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/game/_tuts/method-basics-printing-weaponpower.diff" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/game/_tuts/method-basics-setting-weaponpower.diff" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/game/_tuts/multiple-objects-adding-doesgivenshiphavemorestrength.diff" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/game/_tuts/multiple-objects-adding-helper-printshipsummary.diff" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/game/_tuts/multiple-objects-adding-phpdoc-for-ship-argument.diff" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/game/_tuts/multiple-objects-create-a-second-ship.diff" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/game/_tuts/organization-moving-ship-class-to-ship-php.diff" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/game/_tuts/property-visibility-adding-is-numeric-check-in-setstrength.diff" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/game/_tuts/property-visibility-adding-other-3-ships.diff" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/game/_tuts/property-visibility-adding-setstrength-and-getstrength.diff" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/game/_tuts/property-visibility-making-all-other-properties-private.diff" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/game/_tuts/property-visibility-making-strength-private.diff" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/game/_tuts/property-visibility-putting-back-good-strength-value.diff" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/game/_tuts/property-visibility-setting-a-bad-strength.diff" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/game/_tuts/steps.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/game/_tuts/type-hinting-pass-bad-type-of-argument-to-battle.diff" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/game/_tuts/type-hinting-type-hint-the-arguments-to-battle.diff" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/game/_tuts/using-objects-call-getnameandspecs-for-options.diff" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/game/_tuts/using-objects-create-one-ship-and-var-dump.diff" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/game/_tuts/using-objects-fixing-syntax-in-select.diff" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/game/_tuts/using-objects-use-getname-method.diff" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/game/_tuts/using-objects-using-proper-syntax-in-table.diff" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/game/knpu/episode1/basic-class.md" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/game/knpu/episode1/constructor.md" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/game/knpu/episode1/editor-autocomplete.md" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/game/knpu/episode1/metadata.yml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/game/knpu/episode1/methods-work.md" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/game/knpu/episode1/methods.md" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/game/knpu/episode1/multiple-objects.md" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/game/knpu/episode1/objects-interact.md" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/game/knpu/episode1/oo.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/game/knpu/episode1/private-access.md" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/game/knpu/episode1/the-project.md" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/game/knpu/episode1/type-hinting.md" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/game/knpu/episode1/using-objects.md" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/game/play.php" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/saucey.wiki" afterPath="$PROJECT_DIR$/saucey.wiki" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/xy" afterPath="$PROJECT_DIR$/bin/xy" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/saucey.wiki/Caveats-&amp;-Issues.md" afterPath="$PROJECT_DIR$/saucey.wiki/Caveats-&amp;-Issues.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/features/bootstrap/WebContext.php" afterPath="$PROJECT_DIR$/features/bootstrap/WebContext.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/features/bootstrap/XYContext.php" afterPath="$PROJECT_DIR$/features/bootstrap/XYContext.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="saucey.iws" />
@@ -120,8 +56,8 @@
       <file leaf-file-name=".gitignore" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/.gitignore">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.3158784" vertical-offset="98" max-vertical-offset="690">
-              <caret line="19" column="0" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.8226351" vertical-offset="68" max-vertical-offset="660">
+              <caret line="37" column="0" selection-start-line="37" selection-start-column="0" selection-end-line="37" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -163,7 +99,6 @@
         <option value="$PROJECT_DIR$/features/xy/localApp.feature" />
         <option value="$PROJECT_DIR$/features/shell/shellRegression.feature" />
         <option value="$PROJECT_DIR$/composer.json" />
-        <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/vendor/chartinger/behat-twig-report-extension/src/chartinger/Behat/TwigReportExtension/EventListener.php" />
         <option value="$PROJECT_DIR$/features/getSaucey/localApp.feature" />
         <option value="$PROJECT_DIR$/behat.yml" />
@@ -172,6 +107,7 @@
         <option value="$PROJECT_DIR$/features/getSaucey/Saucey.feature" />
         <option value="$PROJECT_DIR$/features/bootstrap/ShellContext.php" />
         <option value="$PROJECT_DIR$/features/bootstrap/XYContext.php" />
+        <option value="$PROJECT_DIR$/.gitignore" />
       </list>
     </option>
   </component>
@@ -652,8 +588,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.3158784" vertical-offset="98" max-vertical-offset="690">
-          <caret line="19" column="0" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.8226351" vertical-offset="68" max-vertical-offset="660">
+          <caret line="37" column="0" selection-start-line="37" selection-start-column="0" selection-end-line="37" selection-end-column="0" />
           <folding />
         </state>
       </provider>
