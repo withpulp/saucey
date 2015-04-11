@@ -18,4 +18,10 @@ class FeatureContext implements Context, SnippetAcceptingContext
     {
         //todo
     }
+
+    # TODO:
+    // 1. Connect to its own Jenkins CI instance
+    // 2. Dockerize with Robo
+    // 3. Further abstract XY Context in to reusable functions in XYContext
+
 }
