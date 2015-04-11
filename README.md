@@ -1,71 +1,76 @@
 # [saucey](http://www.urbandictionary.com/define.php?term=saucey)
+
 *intoxicated, drunk, or under the influence*
-> Last night we went out to celebrate and got saucey at the bar off henessy.
+> Last night we went out to celebrate and got saucey at the bar off Henessy.
 
 Saucey is an Automation framework written in mainly PHP, using Behat and Mink. This framework allows testers to:
 
-* Control selenium & headless drivers with [Gherkin](http://blog.sajjad.pw/technology/2014/07/15/Behavior-Driven-Development-And-Gherkin.html)
-* Evaluate API endpoints with business-logic driven code
-* Test UI elements with user-driven logic
-* Verify arrangement of files and directories; availability of assets
-* Set server-side, front-end and functional assertions
-* Report coverage and pass-fail status of suites
-* Connect test suite(s) to a continuous integration system of choice
+    - Control selenium & headless drivers with [Gherkin](http://blog.sajjad.pw/technology/2014/07/15/Behavior-Driven-Development-And-Gherkin.html)
+    - Evaluate API endpoints with business-logic driven code
+    - Test UI elements with user-driven logic
+    - Verify arrangement of files and directories; availability of assets
+    - Set server-side, front-end and functional assertions
+    - Report coverage and pass-fail status of suites
+    - Connect test suite(s) to a continuous integration system of choice
 
-Find out more @ [http://saucey.io](http://saucey.io)  
-Fork the repo @ [https://github.com/saucey-io/saucey.git](https://github.com/sajjadhossain/saucey.git)  
-
-
-
-## Dependancies
-On Mac OS X, (with the exception of LAMP for Windows) this requires:
+Find out more @ [saucey.io](http://saucey.io)
+Fork the repo @ <http://github.com/withpulp/saucey>
 
 
-1. [XCode](https://developer.apple.com/xcode/downloads/) & [Developer Tools](http://stackoverflow.com/questions/9329243/xcode-4-4-and-later-install-command-line-tools)
-2. [PHP](http://php-osx.liip.ch/)
-3. [Java JDK](http://www.oracle.com/technetwork/java/javase/downloads/jdk7-downloads-1880260.html), see [documentation](http://docs.oracle.com/javase/7/docs/webnotes/install/mac/mac-jdk.html)
-4. [cURL](http://curl.haxx.se/download.html)
-5. [WAMP](http://www.wampserver.com/en/) `Windows Only`
+## Dependencies
+
+    - [PHP](http://php-osx.liip.ch/)
+    - [Java JDK](http://www.oracle.com/technetwork/java/javase/downloads/jdk7-downloads-1880260.html), see [documentation](http://docs.oracle.com/javase/7/docs/webnotes/install/mac/mac-jdk.html)
+    - [cURL](http://curl.haxx.se/download.html)
+
+### OS X
+
+    - [XCode](https://developer.apple.com/xcode/downloads/)
+    - [Developer Tools](http://stackoverflow.com/questions/9329243/xcode-4-4-and-later-install-command-line-tools)
+
+### Linux
+
+### Windows
+
+- [WAMP](http://www.wampserver.com/en/) *or equivalent*
 
 
 ##Get Started
-Hit the ground running. Install all dependancies with composer (may require a php installation, see [php-documents](http://php-osx.liip.ch/)).
+
+Hit the ground running. Install all dependencies with composer
 
 From the root of the project, run:
 
-	php composer.phar install
-
--or-
-
-	php composer.phar update
+  - clone/fork repo and `cd` into project root
+  - ./composer.phar install
 
 To obtain the REQUIRED the `behat.yml` file, go to [http://testweb.pw/adcade/Default/behat.yml](http://testweb.pw/adcade/Default/behat.yml). Copy and paste the contents of that file in to a file named `behat.yml`. Then save.
 
-Running your first suite as easy as:  
+Running your first suite:
 
 1. For testing against the `cloud`:
 
-		./saucey drunk @<tag> <environment> <browser>
+  `./saucey drunk @<tag> <environment> <browser>`
 
 2. For testing `locally`:
 
-		./start_selnium <environment>
+  `./start_selenium <environment>`
 
-	*then*
+Then
 
-		./saucey sober @<tag> <browser>
-
+  `./saucey sober @<tag> <browser>`
 
 #Examples
+
 ##Local - Tipsy
 
 1. View saucy intro by running:
 
-		./saucey
+`./saucey`
 
 2. Start selenium via:
 
-		./start_selenium mac
+`./start_selenium mac`
 
 3. Open a new tab with `CMD` + `T`
 4. Run a sanity suite via:
@@ -140,11 +145,11 @@ So for our example above the report would be available by opening `reports/check
 
 ###More
 
-See `./setup.md` for more on how this framework was set up.  
+See `./setup.md` for more on how this framework was set up.
 
-* More on Behat [here](http://docs.behat.org/en/v3.0/)  
-* More on Mink [here](http://mink.behat.org/en/latest/)  
-* More on Pear [here](http://pear.php.net/)  
+* More on Behat [here](http://docs.behat.org/en/v3.0/)
+* More on Mink [here](http://mink.behat.org/en/latest/)
+* More on Pear [here](http://pear.php.net/)
 
 #Caveats
 ##Issues
