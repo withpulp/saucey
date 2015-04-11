@@ -249,13 +249,4 @@ class WebContext extends MinkContext implements Context, SnippetAcceptingContext
     $this->getSession()->restart();
   }
 
-  #
-  # WORK IN PROGRESS
-  # TO DO:
-  // 1. Make context for clicking XY coordinates
-  // 2. Make context for dragging and dropping with XY coordinates
-  // 3. Connect to its own Jenkins CI instance
-  // 4. Dockerize!!!
-
-
 }
