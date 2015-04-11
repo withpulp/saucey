@@ -102,6 +102,7 @@ class RoboFile extends \Robo\Tasks
     {
         // pull
         $this->taskGitStack()
+            ->dir('./saucey.wiki/')
             ->pull('origin', 'master')
             ->pull('sajjad', 'master')
             ->pull('saucey', 'master')
@@ -109,7 +110,7 @@ class RoboFile extends \Robo\Tasks
             ->run();
 
         $this->taskGitStack()
-            ->dir('.')
+            ->dir('./saucey.wiki/')
             ->add('-A')
             ->commit('robo saucey:wiki is shoving to all remote:develops:wikis')
             ->push('origin', 'master')
