@@ -57,7 +57,7 @@ class RoboFile extends \Robo\Tasks
     public function sauceyWork()
     {
         // starts Selenium for mac in background
-        $this->taskExec('cp -r ./behat.yml vendor/saucey/ymls/behat.yml.master.dist')
+        $this->taskExec('cp -r ./behat.yml vendor/saucey/drivers/ymls/behat.yml.master.dist')
             ->run();
 
         $this->taskGitStack()
