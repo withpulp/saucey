@@ -47,13 +47,17 @@ class RoboFile extends \Robo\Tasks
             ->pull('sajjad', 'master')
             ->pull('saucey', 'master')
             ->pull('withpulp', 'master')
+            ->pull('origin', 'develop')
+            ->pull('sajjad', 'develop')
+            ->pull('saucey', 'develop')
+            ->pull('withpulp', 'develop')
             ->run();
     }
 
     public function sauceyWork()
     {
         // starts Selenium for mac in background
-        $this->taskExec(' cat run/saucey.txt && cp -r vendor/saucey/ymls/behat.yml.master.dist ./behat.yml')
+        $this->taskExec('cp -r ./behat.yml vendor/saucey/ymls/behat.yml.master.dist')
             ->run();
 
         $this->taskGitStack()
