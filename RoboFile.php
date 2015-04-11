@@ -21,28 +21,50 @@ class RoboFile extends \Robo\Tasks
             ->run();
     }
 
-    public function test()
+    public function sauceyTest()
     {
-        // starts PHP server in background
-        $this->taskServer(8000)
-            ->host('localhost')
-            ->background()
-            ->dir('game')
-            ->run();
-
         // starts Selenium for mac in background
         $this->taskExec('./start_selenium mac')
             ->background()
             ->run();
 
         // runs Behat tests
-        $this->taskExec('./bin/behat --tags @start')
+        $this->taskExec('./bin/behat --tags @saucey')
             ->run();
 
-        // runs Behat tests
-        $this->taskExec('./bin/behat --tags @play')
+        $this->taskExec('open ./reports/saucey_report.html');
+    }
+
+    public function sauceyInit()
+    {
+        // starts Selenium for mac in background
+        $this->taskExec(' cat run/saucey.txt && cp -r vendor/saucey/drivers/ymls/behat.yml.master.dist ./behat.yml')
             ->run();
 
+        $this->taskGitStack()
+            ->stopOnFail()
+            ->pull('origin', 'master')
+            ->pull('sajjad', 'master')
+            ->pull('saucey', 'master')
+            ->pull('withpulp', 'master')
+            ->run();
+    }
+
+    public function sauceyWork()
+    {
+        // starts Selenium for mac in background
+        $this->taskExec(' cat run/saucey.txt && cp -r vendor/saucey/ymls/behat.yml.master.dist ./behat.yml')
+            ->run();
+
+        $this->taskGitStack()
+            ->stopOnFail()
+            ->add('-A')
+            ->commit('robo saucey:work is shoving to all remote:develops')
+            ->push('origin', 'develop')
+            ->push('sajjad', 'develop')
+            ->push('saucey', 'develop')
+            ->push('withpulp', 'develop')
+            ->run();
     }
 
 }
