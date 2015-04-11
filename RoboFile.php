@@ -47,6 +47,7 @@ class RoboFile extends \Robo\Tasks
         $this->taskExec(' cat run/saucey.txt && cp -r vendor/saucey/drivers/ymls/behat.yml.master.dist ./behat.yml')
             ->run();
 
+        // pull
         $this->taskGitStack()
             ->pull('origin', 'master')
             ->pull('sajjad', 'master')
@@ -61,9 +62,20 @@ class RoboFile extends \Robo\Tasks
 
     public function sauceyWork()
     {
-
         // cat saucey and copy over develop yaml
         $this->taskExec('cp -r ./behat.yml vendor/saucey/drivers/ymls/behat.yml.master.dist')
+            ->run();
+
+        // pull
+        $this->taskGitStack()
+            ->pull('origin', 'master')
+            ->pull('sajjad', 'master')
+            ->pull('saucey', 'master')
+            ->pull('withpulp', 'master')
+            ->pull('origin', 'develop')
+            ->pull('sajjad', 'develop')
+            ->pull('saucey', 'develop')
+            ->pull('withpulp', 'develop')
             ->run();
 
         $this->taskGitStack()
