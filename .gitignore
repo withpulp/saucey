@@ -33,9 +33,6 @@ reports/*.html
 # Behat directories
 vendor/
 
-#wiki, etc
-saucey.wiki/*
-
 # Covers JetBrains IDEs: IntelliJ, RubyMine, PhpStorm, AppCode, PyCharm
 *.iml
 
