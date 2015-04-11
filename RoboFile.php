@@ -23,7 +23,7 @@ class RoboFile extends \Robo\Tasks
     public function sauceyTest()
     {
         // starts Selenium for mac in background
-        $this->taskExec('./start_selenium mac')
+        $this->taskExec('sh ./run/start_selenium mac')
             ->background()
             ->run();
 
@@ -47,6 +47,7 @@ class RoboFile extends \Robo\Tasks
         $this->taskExec(' cat run/saucey.txt && cp -r vendor/saucey/drivers/ymls/behat.yml.master.dist ./behat.yml')
             ->run();
 
+        // pull
         $this->taskGitStack()
             ->pull('origin', 'master')
             ->pull('sajjad', 'master')
@@ -63,6 +64,18 @@ class RoboFile extends \Robo\Tasks
     {
         // cat saucey and copy over develop yaml
         $this->taskExec('cp -r ./behat.yml vendor/saucey/drivers/ymls/behat.yml.master.dist')
+            ->run();
+
+        // pull
+        $this->taskGitStack()
+            ->pull('origin', 'master')
+            ->pull('sajjad', 'master')
+            ->pull('saucey', 'master')
+            ->pull('withpulp', 'master')
+            ->pull('origin', 'develop')
+            ->pull('sajjad', 'develop')
+            ->pull('saucey', 'develop')
+            ->pull('withpulp', 'develop')
             ->run();
 
         $this->taskGitStack()
@@ -83,6 +96,29 @@ class RoboFile extends \Robo\Tasks
             ->push('sajjad', 'master')
             ->push('saucey', 'master')
             ->run();
+    }
+
+    public function sauceyWiki()
+    {
+        // pull
+        $this->taskGitStack()
+            ->dir('./saucey.wiki/')
+            ->pull('origin', 'master')
+            ->pull('sajjad', 'master')
+            ->pull('saucey', 'master')
+            ->pull('withpulp', 'master')
+            ->run();
+
+        $this->taskGitStack()
+            ->dir('./saucey.wiki/')
+            ->add('-A')
+            ->commit('robo saucey:wiki is shoving to all remote:develops:wikis')
+            ->push('origin', 'master')
+            ->push('sajjad', 'master')
+            ->push('saucey', 'master')
+            ->push('withpulp', 'master')
+            ->run();
+
     }
 
 }
