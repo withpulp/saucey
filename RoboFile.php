@@ -98,5 +98,26 @@ class RoboFile extends \Robo\Tasks
             ->run();
     }
 
+    public function sauceyWiki()
+    {
+        // pull
+        $this->taskGitStack()
+            ->pull('origin', 'master')
+            ->pull('sajjad', 'master')
+            ->pull('saucey', 'master')
+            ->pull('withpulp', 'master')
+            ->run();
+
+        $this->taskGitStack()
+            ->dir('.')
+            ->add('-A')
+            ->commit('robo saucey:wiki is shoving to all remote:develops:wikis')
+            ->push('origin', 'master')
+            ->push('sajjad', 'master')
+            ->push('saucey', 'master')
+            ->push('withpulp', 'master')
+            ->run();
+
+    }
 
 }
