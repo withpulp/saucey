@@ -76,11 +76,7 @@ class RoboFile extends \Robo\Tasks
 
         // commit work to saucey/drivers
         $this->taskExec('cd vendor/saucey/drivers');
-        $this->taskGitStack()
-            ->push('saucey', 'master')
-            ->push('sajjad', 'master')
-            ->run();
-
+        $this->taskExec('git add -A && git commit -m \'robo saucey:work is shoving to all remote:develops\' && git push saucey master && git push sajjad master');
     }
 
 }
