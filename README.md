@@ -1,166 +1,191 @@
-# [saucey](http://www.urbandictionary.com/define.php?term=saucey)
+# sauc·ey[*](http://www.urbandictionary.com/define.php?term=saucey)
 
-*intoxicated, drunk, or under the influence*
+[ /ˈsɑː-/ ] *intoxicated, drunk, or under the influence*
 > Last night we went out to celebrate and got saucey at the bar off Henessy.
 
-Saucey is an Automation framework written in mainly PHP, using Behat and Mink. This framework allows testers to:
+## What this is?
+Saucey is an Automation framework written in mainly PHP. Designed to kick-ass and take names.
 
-    - Control selenium & headless drivers with [Gherkin](http://blog.sajjad.pw/technology/2014/07/15/Behavior-Driven-Development-And-Gherkin.html)
-    - Evaluate API endpoints with business-logic driven code
-    - Test UI elements with user-driven logic
-    - Verify arrangement of files and directories; availability of assets
-    - Set server-side, front-end and functional assertions
-    - Report coverage and pass-fail status of suites
-    - Connect test suite(s) to a continuous integration system of choice
+## What's it do?
+This framework allows testers to:
 
-Find out more @ [saucey.io](http://saucey.io)
-Fork the repo @ <http://github.com/withpulp/saucey>
+* Control selenium & headless drivers with Gherkin
+* Evaluate API endpoints with business-logic driven code
+* Test UI elements with user-driven logic
+* Verify arrangement of files and directories; availability of assets
+* Set server-side, front-end and functional assertions
+* Report coverage and pass-fail status of suites
+* Connect test suite(s) to a continuous integration system of choice
 
+# Get Started
 
-## Dependencies
+## Pour a glass
 
-    - [PHP](http://php-osx.liip.ch/)
-    - [Java JDK](http://www.oracle.com/technetwork/java/javase/downloads/jdk7-downloads-1880260.html), see [documentation](http://docs.oracle.com/javase/7/docs/webnotes/install/mac/mac-jdk.html)
-    - [cURL](http://curl.haxx.se/download.html)
+Install all dependencies through composer, if you run in to any issues please see `Dependancies` below examples.
 
-### OS X
+1. From the root dir run: `php composer.phar install`
+2. Then `./saucey init`
+3. For testing against ze *cloud*:
 
-    - [XCode](https://developer.apple.com/xcode/downloads/)
-    - [Developer Tools](http://stackoverflow.com/questions/9329243/xcode-4-4-and-later-install-command-line-tools)
+  - `vendor/sauce/connect/bin/sauce_connect user_name access_key`
+  - `vendor/sauce_config user_name access_key`
+  - `./saucey drunk @<tag> <environment> <browser>
 
-### Linux
+4. For testing `locally`:
 
-### Windows
+  - `./start_selnium <environment>`
+  - `./saucey sober @<tag> <browser>`
 
-- [WAMP](http://www.wampserver.com/en/) *or equivalent*
+## Shots! (examples)
 
+### Local w/ [Selenium](http://docs.seleniumhq.org/) - Tipsy
 
-##Get Started
-
-Hit the ground running. Install all dependencies with composer
-
-From the root of the project, run:
-
-  - clone/fork repo and `cd` into project root
-  - ./composer.phar install
-
-To obtain the REQUIRED the `behat.yml` file, go to [http://testweb.pw/adcade/Default/behat.yml](http://testweb.pw/adcade/Default/behat.yml). Copy and paste the contents of that file in to a file named `behat.yml`. Then save.
-
-Running your first suite:
-
-1. For testing against the `cloud`:
-
-  `./saucey drunk @<tag> <environment> <browser>`
-
-2. For testing `locally`:
-
-  `./start_selenium <environment>`
-
-Then
-
-  `./saucey sober @<tag> <browser>`
-
-#Examples
-
-##Local - Tipsy
-
-1. View saucy intro by running:
-
-`./saucey`
-
-2. Start selenium via:
-
-`./start_selenium mac`
-
-3. Open a new tab with `CMD` + `T`
-4. Run a sanity suite via:
-
-		./saucey tipsy check chrome
-
-5. Open a new finder window, then open `reports/check_suite/report.html`
-6. Press "Feature: I want to make sure this test suite is up and running" to open detail view for that test suite. You should see:
+1. Initialize saucey by running `./saucey init`
+2. Start selenium via `./start_selenium mac`
+3. Open new tab
+4. Run a sanity suite via: ./saucey tipsy api chrome
+5. Open a new finder window, then open `reports/saucey_report_api.html`
+6. Press "Feature: I want to make sure this test suite is up and running" to open detail view for that test suite. You should see a bunch of tests running, like:
 
 ```gherkin
+Feature: SOAP & REST API Funtionality
 
-	Feature: I want to make sure this test suite is up and running
+  As a tester
+  I want to make sure api features are up and running
+  So that I can automate continuous integration and regression tests using it
 
-	  As a tester
-	  I want to make sure this test suite is up and running
-	  So that I can automate continuous integration and regression tests
-
-	@javascript @check
-	  Scenario: Check against google.com and search # features/check.feature:8
-	    Given I am on "http://google.com"           # FeatureContext::visit()
-	    Then the response should contain "Google"   # FeatureContext::assertResponseContains()
-	    And I should see "Google Search"            # FeatureContext::assertPageContainsText()
-	    When I fill in "q" with "Adcade"            # FeatureContext::fillField()
-	    And I wait for 5 seconds                    # FeatureContext::iWaitForSeconds()
-	    Then I should see "Adcade"                  # FeatureContext::assertPageContainsText()
-
-
+    @api @get
+    Scenario: Make and validate a GET request
+      Given send a GET request to "/comments?postId=1&id=1"
+      Then  the response code should be 200
+      And the response should contain json:
+      """
+        [
+          {
+            "postId": 1,
+            "id": 1,
+            "name": "id labore ex et quam laborum",
+            "email": "Eliseo@gardner.biz",
+            "body": "laudantium enim quasi est quidem magnam voluptate ipsam eos\ntempora quo necessitatibus\ndolor quam autem quasi\nreiciendis et nam sapiente accusantium"
+          }
+        ]
 ```
 
+###Cloud w/ [SauceLabs](saucelabs.com) - Drunk
 
-##Cloud w/ [SauceLabs](saucelabs.com) - Drunk
-1. Sign up and register for a FREE [SauceLabs](https://saucelabs.com/) account.
-2. Get your username and api-key. *Should be available via /account.* Copy the info into your clipboard.
-3. Download the REQUIRED behat.yml from [source](http://testweb.pw/adcade/Default/behat.yml)
-4. Open the file with your favorite IDE and replace username:api-key with your real user name and api-key. Save.
-5. View saucy intro by running:
+1. Initialize saucey by running `./saucey init`
+2. To point **saucey** to SauceLabs, you'd need your `user_name` and `access_key`. Sign up and register for a **free** [SauceLabs](https://saucelabs.com/) account.
+3. Get your username and api-key. *Should be available via /account.* Copy the info into your clipboard.
+4. Open the `behat.yml` file with your favorite IDE and replace all instances of `adcadeQA:d3daa8f1-147e-4655-aa25-49606f633afa` with your username (used to log in) and api-key. Save
+5. Run a sanity suite via:
+    `./saucey drunk web mac chrome`
 
-		./saucey
+6. Then, go to [https://saucelabs.com/account](https://saucelabs.com/) and view your running/completed tests. Navigate through and download meta-data, screenshots and video recordings of the entire suite.
 
-6. Run a sanity suite via:
+#### Localhost testing on the cloud
 
-		./saucey drunk check mac chrome
+To test something on a localhost in the cloud, you can open a tunnel with sauce connect. With your username and api-key/access_key from the steps above, run:
 
-7. Open a new finder window, then open `reports/check_suite/report.html`
-8. Press "Feature: I want to make sure this test suite is up and running" to open detail view for that test suite. You should see the same out put as above.
+  - `vendor/bin/sauce_config user_name access_key
+
+To start the connect tunnel:
+
+  - `vendor/sauce/connect/bin/sauce_connect`
 
 
 ###Mobile & Tablet
+
 For iOS:
 
-	./saucey drunk check ios_phone
-
-	./saucey drunk check ios_tablet
-
-	./saucey drunk check ios_tablet_landscape
+  - `./saucey drunk check ios_phone`
+  - `./saucey drunk check ios_tablet`
+  - `./saucey drunk check ios_tablet_landscape`
 
 For Android:
 
-	./saucey drunk check android_phone
+  - `./saucey drunk check android_phone`
+  - `./saucey drunk check android_tablet`
+  - `./saucey drunk check android_tablet_landscape`
 
-	./saucey drunk check android_tablet
+## Dependencies
 
-	./saucey drunk check android_tablet_landscape
+On Mac OS X, (with the exception of LAMP for Windows) saucey requires the below dependencies. For now, the `Pour a glass` section above should cover all dependencies. However, if there are errors thrown upon running `php composer.phar install` or `php composer.phar update` in terminal you can reference the sources below. They should also be maintained.
 
+1. [XCode](https://developer.apple.com/xcode/downloads/) & [Developer Tools](http://stackoverflow.com/questions/9329243/xcode-4-4-and-later-install-command-line-tools)
+2. [Java JDK](http://www.oracle.com/technetwork/java/javase/downloads/jdk7-downloads-1880260.html), see [documentation](http://docs.oracle.com/javase/7/docs/webnotes/install/mac/mac-jdk.html)
+3. [cURL](http://curl.haxx.se/download.html)
+4. [WAMP](http://www.wampserver.com/en/) or equivalent `Windows Only`
+5. [PHP](http://php-osx.liip.ch/) *of course*
 
-##Reporting & More
+# Reporting & MOAR
+
+## Reporting
+
 By default, reports are saved to the `reports/` directory. If you ran a suite via `./saucey drunk` or `./saucey tipsy`, you can see the report in:
 
-	reports/<tag>_suite/
+  reports/
 
-So for our example above the report would be available by opening `reports/check_suite/report.html`.
+View real output reports below:
 
-###More
+* [http://testweb.pw/adcade/Default/reports/saucey_report_web.html](http://testweb.pw/adcade/Default/reports/saucey_report_web.html)
+* [http://testweb.pw/adcade/Default/reports/saucey_report_api.html](http://testweb.pw/adcade/Default/reports/saucey_report_api.html)
+* [http://testweb.pw/adcade/Default/reports/saucey_report_shell.html](http://testweb.pw/adcade/Default/reports/saucey_report_shell.html)
 
-See `./setup.md` for more on how this framework was set up.
+## MOAR
 
+* Find out more @ [http://saucey.io](http://saucey.io)
+* Fork the repo @ [https://github.com/saucey-io/saucey.git](https://github.com/saucey-io/saucey.git)
+* See [wiki](https://github.com/getsaucey/saucey/wiki/)
+* See the [winery-setup](https://github.com/getsaucey/saucey/wiki/The-Winery) for more on how this framework was set up.
 * More on Behat [here](http://docs.behat.org/en/v3.0/)
-* More on Mink [here](http://mink.behat.org/en/latest/)
-* More on Pear [here](http://pear.php.net/)
+* .. Mink [here](http://mink.behat.org/en/latest/)
+* .. Pear [here](http://pear.php.net/)
 
-#Caveats
-##Issues
-1. API functionality is not implemented currently because of  aug blocking functionality.
-2. Using the current HTML output generator, there is no shell  when running `./saucey`
+# Caveats & Issues
 
-##TODO
+## Caveats
 
-1. Contextualize shell functionality for reusability
-2. Make context for clicking XY coordinates
-3. Make context for dragging and dropping with XY coordinates
-4. Load test automation with JMeter API
-5. Connect to its own Jenkins CI instance
-6. Dockerize!!!
+1. To use the `local_safari` profile, in other words to test against a local version of Safari, go to `vendor/saucey/drivers/`
+2. And install the `safari_extension.cert`
+3. Go `Safari`>`Preferences` and make sure it is enabled.
+
+## Selenium Issues
+
+The issues listed below are some known issues with the Selenium WebDriver.
+
+1. Firefox ≤36.0.3 does not render ANY web driver functions from selenium, fixed in v36.0.4 with selenium
+2. Most of the major web driver functionality, i.e. pressing buttons, following links are completely non-functional for the Safari Web Driver.
+3. Locally, some step functionality is non-functional: `iMoveBackwardOnePage`, `iMoveForwardOnePage`,`iRefreshThePage`
+
+## Saucey Issues
+
+1. ~~API functionality is not implemented currently because of  aug blocking functionality.~~
+2. ~~Using the current HTML output generator, there is no shell output when running `./saucey`~~
+3. Dynamic reporting of error types. Steps that failed are shown, but the output is generic.
+4. ~~Duplicate context and usage of FeatureContext~~
+
+## TODO
+
+[ ~~Done~~ / *In Progress* ]
+
+### base tasks
+
+1. ~~Contextualize shell functionality for reusability~~
+2. ~~Change FeatureContext to WebContext of its' own.~~
+3. *Make context for clicking XY coordinates*
+4. *Make context for dragging and dropping with XY coordinates*
+5. Load test automation with JMeter API
+6. Connect to its own Jenkins CI instance
+7. Dockerize!!!
+
+### readme tasks
+
+1. *How to write functional Gherkin tests*
+2. How to write custom step definitions
+3. How to add saucey to a project
+4. How to add/modify yaml and composer dependencies
+5. ~~Refactor and add comments to all step definitions~~
+
+### frontend tasks
+1. *get.saucey.io*
+2. app.saucey.io, finish UI/UX and app skeleton

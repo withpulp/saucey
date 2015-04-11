@@ -5,6 +5,7 @@
 .DS_Store
 .AppleDouble
 .LSOverride
+*/.DS_Store
 
 # Icon must end with two \r
 Icon
@@ -30,6 +31,11 @@ Temporary Items
 # Behat files
 composer.lock
 behat.yml
+reports/*.html
 
 # Behat directories
 vendor/
+
+#wiki, etc
+saucey.wiki/*
+
