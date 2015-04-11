@@ -1,0 +1,22 @@
+diff --git a/index.php b/index.php
+index 63c12ba..b039369 100644
+--- a/index.php
++++ b/index.php
+@@ -82,7 +82,7 @@ if (isset($_GET['error'])) {
+                         <select class="center-block form-control btn drp-dwn-width btn-default btn-lg dropdown-toggle" name="ship1_name">
+                             <option value="">Choose a Ship</option>
+                             <?php foreach ($ships as $key => $ship): ?>
+-                                <option value="<?php echo $key; ?>"><?php echo $ship['name']; ?></option>
++                                <option value="<?php echo $key; ?>"><?php echo $ship->getName(); ?></option>
+                             <?php endforeach; ?>
+                         </select>
+                         <br>
+@@ -92,7 +92,7 @@ if (isset($_GET['error'])) {
+                         <select class="center-block form-control btn drp-dwn-width btn-default btn-lg dropdown-toggle" name="ship2_name">
+                             <option value="">Choose a Ship</option>
+                             <?php foreach ($ships as $key => $ship): ?>
+-                                <option value="<?php echo $key; ?>"><?php echo $ship['name']; ?></option>
++                                <option value="<?php echo $key; ?>"><?php echo $ship->getName(); ?></option>
+                             <?php endforeach; ?>
+                         </select>
+                         <br>

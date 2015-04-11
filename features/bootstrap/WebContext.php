@@ -14,7 +14,7 @@ use Behat\Behat\Context\Step;
 
 class WebContext extends MinkContext implements Context, SnippetAcceptingContext
 {
-  private $webUrl;
+  public $webUrl;
 
   /*WEB CONTEXT*/
   /**

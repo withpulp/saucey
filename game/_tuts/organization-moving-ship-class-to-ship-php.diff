@@ -1,0 +1,113 @@
+diff --git a/lib/Ship.php b/lib/Ship.php
+new file mode 100644
+index 0000000..c405292
+--- /dev/null
++++ b/lib/Ship.php
+@@ -0,0 +1,49 @@
++<?php
++
++class Ship
++{
++    public $name;
++
++    public $weaponPower = 0;
++
++    public $jediFactor = 0;
++
++    public $strength = 0;
++
++    public function sayHello()
++    {
++        echo 'Hello!';
++    }
++
++    public function getName()
++    {
++        return $this->name;
++    }
++
++    public function getNameAndSpecs($useShortFormat)
++    {
++        if ($useShortFormat) {
++            return sprintf(
++                '%s: %s/%s/%s',
++                $this->name,
++                $this->weaponPower,
++                $this->jediFactor,
++                $this->strength
++            );
++        } else {
++            return sprintf(
++                '%s: w:%s, j:%s, s:%s',
++                $this->name,
++                $this->weaponPower,
++                $this->jediFactor,
++                $this->strength
++            );
++        }
++    }
++
++    public function doesGivenShipHaveMoreStrength($givenShip)
++    {
++        return $givenShip->strength > $this->strength;
++    }
++
++}
+diff --git a/play.php b/play.php
+index ecda441..2626b1f 100644
+--- a/play.php
++++ b/play.php
+@@ -1,52 +1,6 @@
+ <?php
+ 
+-class Ship
+-{
+-    public $name;
+-
+-    public $weaponPower = 0;
+-
+-    public $jediFactor = 0;
+-
+-    public $strength = 0;
+-
+-    public function sayHello()
+-    {
+-        echo 'Hello!';
+-    }
+-
+-    public function getName()
+-    {
+-        return $this->name;
+-    }
+-
+-    public function getNameAndSpecs($useShortFormat)
+-    {
+-        if ($useShortFormat) {
+-            return sprintf(
+-                '%s: %s/%s/%s',
+-                $this->name,
+-                $this->weaponPower,
+-                $this->jediFactor,
+-                $this->strength
+-            );
+-        } else {
+-            return sprintf(
+-                '%s: w:%s, j:%s, s:%s',
+-                $this->name,
+-                $this->weaponPower,
+-                $this->jediFactor,
+-                $this->strength
+-            );
+-        }
+-    }
+-
+-    public function doesGivenShipHaveMoreStrength($givenShip)
+-    {
+-        return $givenShip->strength > $this->strength;
+-    }
+-
+-}
++require_once __DIR__.'/lib/Ship.php';
+ 
+ /**
+  * @param Ship $someShip

@@ -7,7 +7,6 @@ Feature: Shell Functionality
     @shell @ls
     Scenario: Run 'ls -a' and verify output
       Given I am in "/Users/EnderWiggin/Sites/saucey/run" directory
-      And I wait for 3 seconds
       When I run "ls -a"
       Then I should see:
       """

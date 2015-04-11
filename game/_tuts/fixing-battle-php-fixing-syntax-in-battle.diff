@@ -1,0 +1,52 @@
+diff --git a/battle.php b/battle.php
+index c4a2de0..441b04d 100644
+--- a/battle.php
++++ b/battle.php
+@@ -26,7 +26,7 @@ if ($ship1Quantity <= 0 || $ship2Quantity <= 0) {
+ $ship1 = $ships[$ship1Name];
+ $ship2 = $ships[$ship2Name];
+ 
+-$outcome = battle('foo', $ship1Quantity, $ship2, $ship2Quantity);
++$outcome = battle($ship1, $ship1Quantity, $ship2, $ship2Quantity);
+ ?>
+ 
+ <html>
+diff --git a/functions.php b/functions.php
+index 9b4e740..b785b68 100644
+--- a/functions.php
++++ b/functions.php
+@@ -74,8 +74,7 @@ function get_ships()
+ function battle(Ship $ship1, $ship1Quantity, Ship $ship2, $ship2Quantity)
+ {
+     $ship1Health = $ship1->getStrength() * $ship1Quantity;
+-    var_dump($ship1Health);die;
+-    $ship2Health = $ship2['strength'] * $ship2Quantity;
++    $ship2Health = $ship2->getStrength() * $ship2Quantity;
+ 
+     $ship1UsedJediPowers = false;
+     $ship2UsedJediPowers = false;
+@@ -95,8 +94,8 @@ function battle(Ship $ship1, $ship1Quantity, Ship $ship2, $ship2Quantity)
+         }
+ 
+         // now battle them normally
+-        $ship1Health = $ship1Health - ($ship2['weapon_power'] * $ship2Quantity);
+-        $ship2Health = $ship2Health - ($ship1['weapon_power'] * $ship1Quantity);
++        $ship1Health = $ship1Health - ($ship2->getWeaponPower() * $ship2Quantity);
++        $ship2Health = $ship2Health - ($ship1->getWeaponPower() * $ship1Quantity);
+     }
+ 
+     if ($ship1Health <= 0 && $ship2Health <= 0) {
+@@ -121,9 +120,9 @@ function battle(Ship $ship1, $ship1Quantity, Ship $ship2, $ship2Quantity)
+     );
+ }
+ 
+-function didJediDestroyShipUsingTheForce(array $ship)
++function didJediDestroyShipUsingTheForce(Ship $ship)
+ {
+-    $jediHeroProbability = $ship['jedi_factor'] / 100;
++    $jediHeroProbability = $ship->getJediFactor() / 100;
+ 
+     return mt_rand(1, 100) <= ($jediHeroProbability*100);
+-}
+\ No newline at end of file
++}

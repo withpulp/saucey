@@ -1,0 +1,23 @@
+diff --git a/play.php b/play.php
+index 8617f97..13d3825 100644
+--- a/play.php
++++ b/play.php
+@@ -8,12 +8,17 @@ class Ship
+     {
+         echo 'Hello!';
+     }
++
++    public function getName()
++    {
++        return 'FAKE NAME';
++    }
+ }
+ 
+ // but it doesn't do anything yet...
+ $myShip = new Ship();
+ $myShip->name = 'TIE Fighter';
+ 
+-echo 'Ship Name: '.$myShip->name;
++echo 'Ship Name: '.$myShip->getName();
+ echo '<hr/>';
+ $myShip->sayHello();

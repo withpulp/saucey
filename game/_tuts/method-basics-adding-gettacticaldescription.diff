@@ -1,0 +1,29 @@
+diff --git a/play.php b/play.php
+index 6bfc169..e3a58ea 100644
+--- a/play.php
++++ b/play.php
+@@ -19,6 +19,17 @@ class Ship
+     {
+         return $this->name;
+     }
++
++    public function getNameAndSpecs()
++    {
++        return sprintf(
++            '%s (w:%s, j:%s, s:%s)',
++            $this->name,
++            $this->weaponPower,
++            $this->jediFactor,
++            $this->strength
++        );
++    }
+ }
+ 
+ // but it doesn't do anything yet...
+@@ -30,4 +41,5 @@ echo 'Ship Name: '.$myShip->getName();
+ echo '<hr/>';
+ $myShip->sayHello();
+ echo '<hr/>';
+-var_dump($myShip->weaponPower);
++echo 'Ship Description: '.$myShip->getNameAndSpecs();
++echo '<hr/>';

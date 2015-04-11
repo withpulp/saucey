@@ -1,0 +1,12 @@
+diff --git a/play.php b/play.php
+index e659268..6bfc169 100644
+--- a/play.php
++++ b/play.php
+@@ -24,6 +24,7 @@ class Ship
+ // but it doesn't do anything yet...
+ $myShip = new Ship();
+ $myShip->name = 'TIE Fighter';
++$myShip->weaponPower = 10;
+ 
+ echo 'Ship Name: '.$myShip->getName();
+ echo '<hr/>';

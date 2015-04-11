@@ -1,0 +1,19 @@
+diff --git a/battle.php b/battle.php
+index 441b04d..13c114c 100644
+--- a/battle.php
++++ b/battle.php
+@@ -58,11 +58,12 @@ $outcome = battle($ship1, $ship1Quantity, $ship2, $ship2Quantity);
+                 <h2 class="text-center">The Matchup:</h2>
+                 <p class="text-center">
+                     <br>
+-                    <?php echo $ship1Quantity; ?> <?php echo $ship1['name']; ?><?php echo $ship1Quantity > 1 ? 's': ''; ?>
++                    <?php echo $ship1Quantity; ?> <?php echo $ship1->getName(); ?><?php echo $ship1Quantity > 1 ? 's': ''; ?>
+                     VS.
+-                    <?php echo $ship2Quantity; ?> <?php echo $ship2['name']; ?><?php echo $ship2Quantity > 1 ? 's': ''; ?>
++                    <?php echo $ship2Quantity; ?> <?php echo $ship2->getName(); ?><?php echo $ship2Quantity > 1 ? 's': ''; ?>
+                 </p>
+             </div>
++            <?php var_dump($outcome); ?>
+             <div class="result-box center-block">
+                 <h3 class="text-center audiowide">
+                     Winner:

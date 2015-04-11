@@ -1,0 +1,16 @@
+diff --git a/play.php b/play.php
+index f8ac131..728745d 100644
+--- a/play.php
++++ b/play.php
+@@ -62,3 +62,11 @@ $myShip->name = 'TIE Fighter';
+ $myShip->weaponPower = 10;
+ 
+ printShipSummary($myShip);
++
++$otherShip = new Ship();
++$otherShip->name = 'Imperial Shuttle';
++$otherShip->weaponPower = 5;
++$otherShip->strength = 50;
++
++echo '<hr/>';
++printShipSummary($otherShip);

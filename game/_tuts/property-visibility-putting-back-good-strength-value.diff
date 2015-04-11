@@ -1,0 +1,13 @@
+diff --git a/functions.php b/functions.php
+index 6369448..4876bb7 100644
+--- a/functions.php
++++ b/functions.php
+@@ -10,7 +10,7 @@ function get_ships()
+     $ship->name = 'Jedi Starfighter';
+     $ship->weaponPower = 5;
+     $ship->jediFactor = 15;
+-    $ship->setStrength('Jar Jar Binks');
++    $ship->setStrength(30);
+     $ships['starfighter'] = $ship;
+ 
+     return $ships;

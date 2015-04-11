@@ -1,0 +1,47 @@
+diff --git a/functions.php b/functions.php
+index f76135c..6369448 100644
+--- a/functions.php
++++ b/functions.php
+@@ -10,7 +10,7 @@ function get_ships()
+     $ship->name = 'Jedi Starfighter';
+     $ship->weaponPower = 5;
+     $ship->jediFactor = 15;
+-    $ship->strength = 'Jar Jar Binks';
++    $ship->setStrength('Jar Jar Binks');
+     $ships['starfighter'] = $ship;
+ 
+     return $ships;
+diff --git a/index.php b/index.php
+index 3ee610c..af5c34e 100644
+--- a/index.php
++++ b/index.php
+@@ -68,7 +68,7 @@ if (isset($_GET['error'])) {
+                             <td><?php echo $ship->getName(); ?></td>
+                             <td><?php echo $ship->weaponPower; ?></td>
+                             <td><?php echo $ship->jediFactor; ?></td>
+-                            <td><?php echo $ship->strength; ?></td>
++                            <td><?php echo $ship->getStrength(); ?></td>
+                         </tr>
+                     <?php endforeach; ?>
+                 </tbody>
+diff --git a/lib/Ship.php b/lib/Ship.php
+index 1620d21..b3ea40a 100644
+--- a/lib/Ship.php
++++ b/lib/Ship.php
+@@ -19,6 +19,16 @@ class Ship
+     {
+         return $this->name;
+     }
++    
++    public function setStrength($number)
++    {
++        $this->strength = $number;
++    }
++
++    public function getStrength()
++    {
++        return $this->strength;
++    }
+ 
+     public function getNameAndSpecs($useShortFormat = false)
+     {

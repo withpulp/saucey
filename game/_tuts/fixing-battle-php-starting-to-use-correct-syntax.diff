@@ -1,0 +1,14 @@
+diff --git a/functions.php b/functions.php
+index d13276b..241523d 100644
+--- a/functions.php
++++ b/functions.php
+@@ -73,7 +73,8 @@ function get_ships()
+  */
+ function battle($ship1, $ship1Quantity, $ship2, $ship2Quantity)
+ {
+-    $ship1Health = $ship1['strength'] * $ship1Quantity;
++    $ship1Health = $ship1->getStrength() * $ship1Quantity;
++    var_dump($ship1Health);die;
+     $ship2Health = $ship2['strength'] * $ship2Quantity;
+ 
+     $ship1UsedJediPowers = false;

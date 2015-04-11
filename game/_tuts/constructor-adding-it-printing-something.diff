@@ -1,0 +1,18 @@
+diff --git a/lib/Ship.php b/lib/Ship.php
+index 770306e..b333c72 100644
+--- a/lib/Ship.php
++++ b/lib/Ship.php
+@@ -10,6 +10,13 @@ class Ship
+ 
+     private $strength = 0;
+ 
++    private $underRepair;
++
++    public function __construct()
++    {
++        echo 'Automatically called!';
++    }
++
+     public function sayHello()
+     {
+         echo 'Hello!';

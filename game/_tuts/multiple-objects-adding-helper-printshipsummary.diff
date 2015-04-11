@@ -1,0 +1,33 @@
+diff --git a/play.php b/play.php
+index da328a7..70e7b27 100644
+--- a/play.php
++++ b/play.php
+@@ -42,16 +42,20 @@ class Ship
+     }
+ }
+ 
++function printShipSummary($someShip)
++{
++    echo 'Ship Name: '.$someShip->getName();
++    echo '<hr/>';
++    $someShip->sayHello();
++    echo '<hr/>';
++    echo $someShip->getNameAndSpecs(false);
++    echo '<hr/>';
++    echo $someShip->getNameAndSpecs(true);
++}
++
+ // but it doesn't do anything yet...
+ $myShip = new Ship();
+ $myShip->name = 'TIE Fighter';
+ $myShip->weaponPower = 10;
+ 
+-echo 'Ship Name: '.$myShip->getName();
+-echo '<hr/>';
+-$myShip->sayHello();
+-echo '<hr/>';
+-echo $myShip->getNameAndSpecs(false);
+-echo '<hr/>';
+-echo $myShip->getNameAndSpecs(true);
+-
++printShipSummary($myShip);

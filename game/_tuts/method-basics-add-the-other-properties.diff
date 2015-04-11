@@ -1,0 +1,17 @@
+diff --git a/play.php b/play.php
+index b6242bf..98b6617 100644
+--- a/play.php
++++ b/play.php
+@@ -4,6 +4,12 @@ class Ship
+ {
+     public $name;
+ 
++    public $weaponPower;
++
++    public $jediFactor;
++
++    public $strength;
++
+     public function sayHello()
+     {
+         echo 'Hello!';

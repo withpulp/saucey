@@ -1,0 +1,47 @@
+diff --git a/play.php b/play.php
+index e3a58ea..da328a7 100644
+--- a/play.php
++++ b/play.php
+@@ -20,15 +20,25 @@ class Ship
+         return $this->name;
+     }
+ 
+-    public function getNameAndSpecs()
++    public function getNameAndSpecs($useShortFormat)
+     {
+-        return sprintf(
+-            '%s (w:%s, j:%s, s:%s)',
+-            $this->name,
+-            $this->weaponPower,
+-            $this->jediFactor,
+-            $this->strength
+-        );
++        if ($useShortFormat) {
++            return sprintf(
++                '%s: %s/%s/%s',
++                $this->name,
++                $this->weaponPower,
++                $this->jediFactor,
++                $this->strength
++            );
++        } else {
++            return sprintf(
++                '%s: w:%s, j:%s, s:%s',
++                $this->name,
++                $this->weaponPower,
++                $this->jediFactor,
++                $this->strength
++            );
++        }
+     }
+ }
+ 
+@@ -41,5 +51,7 @@ echo 'Ship Name: '.$myShip->getName();
+ echo '<hr/>';
+ $myShip->sayHello();
+ echo '<hr/>';
+-echo 'Ship Description: '.$myShip->getNameAndSpecs();
++echo $myShip->getNameAndSpecs(false);
+ echo '<hr/>';
++echo $myShip->getNameAndSpecs(true);
++

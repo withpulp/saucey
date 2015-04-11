@@ -1,0 +1,46 @@
+diff --git a/functions.php b/functions.php
+index bcf21f1..4ce35fa 100644
+--- a/functions.php
++++ b/functions.php
+@@ -1,7 +1,21 @@
+ <?php
+ 
++require_once __DIR__.'/lib/Ship.php';
++
+ function get_ships()
+ {
++    $ships = array();
++
++    $ship = new Ship();
++    $ship->name = 'Jedi Starfighter';
++    $ship->weaponPower = 5;
++    $ship->jediFactor = 15;
++    $ship->strength = 30;
++    $ships['starfighter'] = $ship;
++
++    return $ships;
++
++    /*
+     return array(
+         'starfighter' => array(
+             'name' => 'Jedi Starfighter',
+@@ -28,6 +42,7 @@ function get_ships()
+             'strength' => 50,
+         ),
+     );
++    */
+ }
+ 
+ /**
+diff --git a/index.php b/index.php
+index cd72373..8ae39e1 100644
+--- a/index.php
++++ b/index.php
+@@ -2,6 +2,7 @@
+ require __DIR__.'/functions.php';
+ 
+ $ships = get_ships();
++var_dump($ships);die;
+ 
+ $errorMessage = '';
+ if (isset($_GET['error'])) {

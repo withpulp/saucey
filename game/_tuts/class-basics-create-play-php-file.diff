@@ -1,0 +1,9 @@
+diff --git a/play.php b/play.php
+new file mode 100644
+index 0000000..749d346
+--- /dev/null
++++ b/play.php
+@@ -0,0 +1,3 @@
++<?php
++
++echo 'IT\'S A TRAAAAAAPPPP!';

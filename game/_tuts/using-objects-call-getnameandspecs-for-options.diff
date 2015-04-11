@@ -1,0 +1,35 @@
+diff --git a/index.php b/index.php
+index b039369..3ee610c 100644
+--- a/index.php
++++ b/index.php
+@@ -82,7 +82,7 @@ if (isset($_GET['error'])) {
+                         <select class="center-block form-control btn drp-dwn-width btn-default btn-lg dropdown-toggle" name="ship1_name">
+                             <option value="">Choose a Ship</option>
+                             <?php foreach ($ships as $key => $ship): ?>
+-                                <option value="<?php echo $key; ?>"><?php echo $ship->getName(); ?></option>
++                                <option value="<?php echo $key; ?>"><?php echo $ship->getNameAndSpecs(); ?></option>
+                             <?php endforeach; ?>
+                         </select>
+                         <br>
+@@ -92,7 +92,7 @@ if (isset($_GET['error'])) {
+                         <select class="center-block form-control btn drp-dwn-width btn-default btn-lg dropdown-toggle" name="ship2_name">
+                             <option value="">Choose a Ship</option>
+                             <?php foreach ($ships as $key => $ship): ?>
+-                                <option value="<?php echo $key; ?>"><?php echo $ship->getName(); ?></option>
++                                <option value="<?php echo $key; ?>"><?php echo $ship->getNameAndSpecs(); ?></option>
+                             <?php endforeach; ?>
+                         </select>
+                         <br>
+diff --git a/lib/Ship.php b/lib/Ship.php
+index c405292..07c567d 100644
+--- a/lib/Ship.php
++++ b/lib/Ship.php
+@@ -20,7 +20,7 @@ class Ship
+         return $this->name;
+     }
+ 
+-    public function getNameAndSpecs($useShortFormat)
++    public function getNameAndSpecs($useShortFormat = false)
+     {
+         if ($useShortFormat) {
+             return sprintf(

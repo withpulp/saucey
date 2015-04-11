@@ -1,0 +1,13 @@
+diff --git a/battle.php b/battle.php
+index 441b04d..c4a2de0 100644
+--- a/battle.php
++++ b/battle.php
+@@ -26,7 +26,7 @@ if ($ship1Quantity <= 0 || $ship2Quantity <= 0) {
+ $ship1 = $ships[$ship1Name];
+ $ship2 = $ships[$ship2Name];
+ 
+-$outcome = battle($ship1, $ship1Quantity, $ship2, $ship2Quantity);
++$outcome = battle('foo', $ship1Quantity, $ship2, $ship2Quantity);
+ ?>
+ 
+ <html>

@@ -1,0 +1,12 @@
+diff --git a/play.php b/play.php
+index 6a8fb0c..f9e8fb0 100644
+--- a/play.php
++++ b/play.php
+@@ -5,4 +5,7 @@ class Ship
+     
+ }
+ 
++// but it doesn't do anything yet...
++$myShip = new Ship();
++
+ echo 'IT\'S A TRAAAAAAPPPP!';

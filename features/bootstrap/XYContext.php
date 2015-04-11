@@ -1,4 +1,5 @@
 <?php
+
 use Behat\Behat\Tester\Exception\PendingException;
 use Behat\Behat\Context\Context;
 use Behat\Behat\Context\SnippetAcceptingContext;
@@ -8,48 +9,53 @@ use Behat\Gherkin\Node\TableNode;
 use Behat\MinkExtension\Context\MinkContext;
 use Behat\Behat\Context\Step;
 
+use Robo;
+
 /**
-* Defines application features from the WEB context.
+* Defines application features from the this kick-ass context.
 */
 
 class XYContext extends PHPUnit_Framework_TestCase implements Context, SnippetAcceptingContext
 {
-  /**
-  * @var \RemoteWebDriver
-  */
-  protected $webDriver;
-
-  public function setUp()
-  {
-      $capabilities = array(\WebDriverCapabilityType::BROWSER_NAME => 'firefox');
-      $this->webDriver = RemoteWebDriver::create('http://localhost:4444/wd/hub', $capabilities);
-  }
-
-  protected $url = 'http://demo.adcade.com/refinery29/banana_republic/the_new_br/marquee/';
-
-  public function testBanana()
-  {
-      $this->webDriver->get($this->url);
-      // checking that page title contains word 'GitHub'
-      $this->assertContains('2015 Levis hunit', $this->webDriver->getTitle());
-  }
+    public $aut;
+    public $run;
 
 
-  /**
-  * @param WebDriverCoordinates $where
-  * @param int $x_offset
-  * @param int $y_offset
-  * @return WebDriverMouse
-  */
-  public function moveToThenClick()
-  {
-      $this->mouseMove($x_offset = 400, $y_offset = 50);
-      $this->click($x_offset = 400, $y_offset = 50);
-  }
+    /**
+     * @param $aut
+     * @param $run
+     */
+    public function __construct($aut, $run)
+    {
+        $this->aut = $aut;
+        $this->run = $run;
+    }
 
-  public function tearDown()
-  {
-      $this->webDriver->close();
-  }
 
+}
+
+class RoboContext extends \Robo\Tasks
+{
+    public function iStartTheAppInTheBackground()
+    {
+        /**
+         * @When I start the app in the background
+         * @param string $run the system call to make
+         */
+
+        // starts PHP server in background
+        $this->taskPhpServer(8000)
+            ->background()
+            ->dir('../../games')
+            ->run();
+
+        // launches Selenium server
+        $this->taskExec('java -jar ' . $pathToSelenium)
+            ->background()
+            ->run();
+
+        // runs PHPUnit tests
+        $this->taskPHPUnit()
+            ->run();
+    }
 }

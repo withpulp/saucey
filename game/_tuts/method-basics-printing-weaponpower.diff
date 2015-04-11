@@ -1,0 +1,10 @@
+diff --git a/play.php b/play.php
+index 97a85f4..e659268 100644
+--- a/play.php
++++ b/play.php
+@@ -28,3 +28,5 @@ $myShip->name = 'TIE Fighter';
+ echo 'Ship Name: '.$myShip->getName();
+ echo '<hr/>';
+ $myShip->sayHello();
++echo '<hr/>';
++var_dump($myShip->weaponPower);

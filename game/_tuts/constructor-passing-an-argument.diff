@@ -1,0 +1,54 @@
+diff --git a/functions.php b/functions.php
+index b785b68..3f5d812 100644
+--- a/functions.php
++++ b/functions.php
+@@ -6,29 +6,26 @@ function get_ships()
+ {
+     $ships = array();
+ 
+-    $ship = new Ship();
+-    $ship->setName('Jedi Starfighter');
++    $ship = new Ship('Jedi Starfighter');
++    //$ship->setName('Jedi Starfighter');
+     $ship->setWeaponPower(5);
+     $ship->setJediFactor(15);
+     $ship->setStrength(30);
+     $ships['starfighter'] = $ship;
+ 
+-    $ship2 = new Ship();
+-    $ship2->setName('CloakShape Fighter');
++    $ship2 = new Ship('CloakShape Fighter');
+     $ship2->setWeaponPower(2);
+     $ship2->setJediFactor(2);
+     $ship2->setStrength(70);
+     $ships['cloakshape_fighter'] = $ship2;
+ 
+-    $ship3 = new Ship();
+-    $ship3->setName('Super Star Destroyer');
++    $ship3 = new Ship('Super Star Destroyer');
+     $ship3->setWeaponPower(70);
+     $ship3->setJediFactor(0);
+     $ship3->setStrength(500);
+     $ships['super_star_destroyer'] = $ship3;
+ 
+-    $ship4 = new Ship();
+-    $ship4->setName('RZ-1 A-wing interceptor');
++    $ship4 = new Ship('RZ-1 A-wing interceptor');
+     $ship4->setWeaponPower(4);
+     $ship4->setJediFactor(4);
+     $ship4->setStrength(50);
+diff --git a/lib/Ship.php b/lib/Ship.php
+index 58a73b1..76b164e 100644
+--- a/lib/Ship.php
++++ b/lib/Ship.php
+@@ -12,8 +12,9 @@ class Ship
+ 
+     private $underRepair;
+ 
+-    public function __construct()
++    public function __construct($name)
+     {
++        $this->name = $name;
+         // randomly put this ship under repair
+         $this->underRepair = mt_rand(1, 100) < 30;
+     }

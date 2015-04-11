@@ -1,0 +1,67 @@
+diff --git a/index.php b/index.php
+index 5069fc7..0266821 100644
+--- a/index.php
++++ b/index.php
+@@ -60,6 +60,7 @@ if (isset($_GET['error'])) {
+                         <th>Weapon Power</th>
+                         <th>Jedi Factor</th>
+                         <th>Strength</th>
++                        <th>Status</th>
+                     </tr>
+                 </thead>
+                 <tbody>
+@@ -69,6 +70,13 @@ if (isset($_GET['error'])) {
+                             <td><?php echo $ship->getWeaponPower(); ?></td>
+                             <td><?php echo $ship->getJediFactor(); ?></td>
+                             <td><?php echo $ship->getStrength(); ?></td>
++                            <td>
++                                <?php if ($ship->isFunctional()): ?>
++                                    <i class="fa fa-sun-o"></i>
++                                <?php else: ?>
++                                    <i class="fa fa-cloud"></i>
++                                <?php endif; ?>
++                            </td>
+                         </tr>
+                     <?php endforeach; ?>
+                 </tbody>
+@@ -82,7 +90,9 @@ if (isset($_GET['error'])) {
+                         <select class="center-block form-control btn drp-dwn-width btn-default btn-lg dropdown-toggle" name="ship1_name">
+                             <option value="">Choose a Ship</option>
+                             <?php foreach ($ships as $key => $ship): ?>
+-                                <option value="<?php echo $key; ?>"><?php echo $ship->getNameAndSpecs(); ?></option>
++                                <?php if ($ship->isFunctional()): ?>
++                                    <option value="<?php echo $key; ?>"><?php echo $ship->getNameAndSpecs(); ?></option>
++                                <?php endif; ?>
+                             <?php endforeach; ?>
+                         </select>
+                         <br>
+@@ -92,7 +102,9 @@ if (isset($_GET['error'])) {
+                         <select class="center-block form-control btn drp-dwn-width btn-default btn-lg dropdown-toggle" name="ship2_name">
+                             <option value="">Choose a Ship</option>
+                             <?php foreach ($ships as $key => $ship): ?>
+-                                <option value="<?php echo $key; ?>"><?php echo $ship->getNameAndSpecs(); ?></option>
++                                <?php if ($ship->isFunctional()): ?>
++                                    <option value="<?php echo $key; ?>"><?php echo $ship->getNameAndSpecs(); ?></option>
++                                <?php endif; ?>
+                             <?php endforeach; ?>
+                         </select>
+                         <br>
+diff --git a/lib/Ship.php b/lib/Ship.php
+index b333c72..58a73b1 100644
+--- a/lib/Ship.php
++++ b/lib/Ship.php
+@@ -14,7 +14,13 @@ class Ship
+ 
+     public function __construct()
+     {
+-        echo 'Automatically called!';
++        // randomly put this ship under repair
++        $this->underRepair = mt_rand(1, 100) < 30;
++    }
++
++    public function isFunctional()
++    {
++        return !$this->underRepair;
+     }
+ 
+     public function sayHello()

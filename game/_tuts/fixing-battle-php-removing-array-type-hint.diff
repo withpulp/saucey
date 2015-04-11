@@ -1,0 +1,26 @@
+diff --git a/battle.php b/battle.php
+index ac733e3..441b04d 100644
+--- a/battle.php
++++ b/battle.php
+@@ -26,8 +26,6 @@ if ($ship1Quantity <= 0 || $ship2Quantity <= 0) {
+ $ship1 = $ships[$ship1Name];
+ $ship2 = $ships[$ship2Name];
+ 
+-var_dump($ship1, $ship2);die;
+-
+ $outcome = battle($ship1, $ship1Quantity, $ship2, $ship2Quantity);
+ ?>
+ 
+diff --git a/functions.php b/functions.php
+index 2b4a457..d13276b 100644
+--- a/functions.php
++++ b/functions.php
+@@ -71,7 +71,7 @@ function get_ships()
+  *
+  * @return array With keys winning_ship, losing_ship & used_jedi_powers
+  */
+-function battle(array $ship1, $ship1Quantity, array $ship2, $ship2Quantity)
++function battle($ship1, $ship1Quantity, $ship2, $ship2Quantity)
+ {
+     $ship1Health = $ship1['strength'] * $ship1Quantity;
+     $ship2Health = $ship2['strength'] * $ship2Quantity;

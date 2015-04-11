@@ -1,0 +1,13 @@
+diff --git a/lib/Ship.php b/lib/Ship.php
+index 07c567d..1620d21 100644
+--- a/lib/Ship.php
++++ b/lib/Ship.php
+@@ -8,7 +8,7 @@ class Ship
+ 
+     public $jediFactor = 0;
+ 
+-    public $strength = 0;
++    private $strength = 0;
+ 
+     public function sayHello()
+     {

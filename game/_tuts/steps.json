@@ -1,0 +1,220 @@
+{
+    "steps": [
+        {
+            "id": "start",
+            "name": "start",
+            "description": null
+        },
+        {
+            "id": "class-basics-create-play-php-file",
+            "name": "Class Basics: Create play.php file",
+            "description": null
+        },
+        {
+            "id": "class-basics-create-the-class",
+            "name": "Class Basics: Create the class",
+            "description": null
+        },
+        {
+            "id": "class-basics-instantiate",
+            "name": "Class Basics: Instantiate",
+            "description": null
+        },
+        {
+            "id": "class-basics-adding-a-property",
+            "name": "Class Basics: Adding a property",
+            "description": null
+        },
+        {
+            "id": "class-basics-changing-the-property",
+            "name": "Class Basics: Changing the property",
+            "description": null
+        },
+        {
+            "id": "method-basics-adding-sayhello",
+            "name": "Method Basics: Adding sayHello()",
+            "description": null
+        },
+        {
+            "id": "method-basics-adding-getname-with-fake-implementation",
+            "name": "Method Basics: Adding getName() with fake implementation",
+            "description": null
+        },
+        {
+            "id": "method-basics-finishing-getname-with-this",
+            "name": "Method Basics: Finishing getName() with $this",
+            "description": null
+        },
+        {
+            "id": "method-basics-add-the-other-properties",
+            "name": "Method Basics: Add the other properties",
+            "description": null
+        },
+        {
+            "id": "method-basics-adding-default-args",
+            "name": "Method Basics: Adding default args",
+            "description": null
+        },
+        {
+            "id": "method-basics-printing-weaponpower",
+            "name": "Method Basics: Printing weaponPower",
+            "description": null
+        },
+        {
+            "id": "method-basics-setting-weaponpower",
+            "name": "Method Basics: Setting weaponPower",
+            "description": null
+        },
+        {
+            "id": "method-basics-adding-gettacticaldescription",
+            "name": "Method Basics: Adding getTacticalDescription()",
+            "description": null
+        },
+        {
+            "id": "method-basics-giving-getnameandspecs-and-arg",
+            "name": "Method Basics: Giving getNameAndSpecs and arg",
+            "description": null
+        },
+        {
+            "id": "multiple-objects-adding-helper-printshipsummary",
+            "name": "Multiple Objects: Adding helper printShipSummary()",
+            "description": null
+        },
+        {
+            "id": "multiple-objects-adding-phpdoc-for-ship-argument",
+            "name": "Multiple Objects: Adding PHPDoc for Ship argument",
+            "description": null
+        },
+        {
+            "id": "multiple-objects-create-a-second-ship",
+            "name": "Multiple Objects: Create a second Ship",
+            "description": null
+        },
+        {
+            "id": "multiple-objects-adding-doesgivenshiphavemorestrength",
+            "name": "Multiple Objects: Adding doesGivenShipHaveMoreStrength()",
+            "description": null
+        },
+        {
+            "id": "organization-moving-ship-class-to-ship-php",
+            "name": "Organization: Moving Ship class to Ship.php",
+            "description": null
+        },
+        {
+            "id": "using-objects-create-one-ship-and-var-dump",
+            "name": "Using Objects: Create one Ship and var_dump",
+            "description": null
+        },
+        {
+            "id": "using-objects-using-proper-syntax-in-table",
+            "name": "Using Objects: Using proper syntax in table",
+            "description": null
+        },
+        {
+            "id": "using-objects-use-getname-method",
+            "name": "Using Objects: Use getName() method",
+            "description": null
+        },
+        {
+            "id": "using-objects-fixing-syntax-in-select",
+            "name": "Using Objects: Fixing syntax in select",
+            "description": null
+        },
+        {
+            "id": "using-objects-call-getnameandspecs-for-options",
+            "name": "Using Objects: Call getNameAndSpecs for options",
+            "description": null
+        },
+        {
+            "id": "property-visibility-setting-a-bad-strength",
+            "name": "Property Visibility: Setting a bad strength",
+            "description": null
+        },
+        {
+            "id": "property-visibility-making-strength-private",
+            "name": "Property Visibility: Making strength private",
+            "description": null
+        },
+        {
+            "id": "property-visibility-adding-setstrength-and-getstrength",
+            "name": "Property Visibility: adding setStrength and getStrength",
+            "description": null
+        },
+        {
+            "id": "property-visibility-adding-is-numeric-check-in-setstrength",
+            "name": "Property Visibility: Adding is_numeric check in setStrength",
+            "description": null
+        },
+        {
+            "id": "property-visibility-putting-back-good-strength-value",
+            "name": "Property Visibility: Putting back good strength value",
+            "description": null
+        },
+        {
+            "id": "property-visibility-making-all-other-properties-private",
+            "name": "Property Visibility: Making all other properties private",
+            "description": null
+        },
+        {
+            "id": "property-visibility-adding-other-3-ships",
+            "name": "Property Visibility: Adding other 3 ships",
+            "description": null
+        },
+        {
+            "id": "fixing-battle-php-dumping-ship1-and-ship2",
+            "name": "Fixing battle.php: Dumping $ship1 and $ship2",
+            "description": null
+        },
+        {
+            "id": "fixing-battle-php-removing-array-type-hint",
+            "name": "Fixing battle.php: Removing array type-hint",
+            "description": null
+        },
+        {
+            "id": "fixing-battle-php-starting-to-use-correct-syntax",
+            "name": "Fixing battle.php: Starting to use correct syntax",
+            "description": null
+        },
+        {
+            "id": "type-hinting-pass-bad-type-of-argument-to-battle",
+            "name": "Type-Hinting: Pass bad type of argument to battle()",
+            "description": null
+        },
+        {
+            "id": "type-hinting-type-hint-the-arguments-to-battle",
+            "name": "Type-Hinting: Type-hint the arguments to Battle",
+            "description": null
+        },
+        {
+            "id": "fixing-battle-php-fixing-syntax-in-battle",
+            "name": "Fixing battle.php: Fixing syntax in battle()",
+            "description": null
+        },
+        {
+            "id": "fixing-battle-php-dumping-outcome-to-see-objects",
+            "name": "Fixing battle.php: Dumping $outcome to see objects",
+            "description": null
+        },
+        {
+            "id": "fixing-battle-php-finishing-object-syntax-in-battle-php",
+            "name": "Fixing battle.php: Finishing object syntax in battle.php",
+            "description": null
+        },
+        {
+            "id": "constructor-adding-it-printing-something",
+            "name": "Constructor: Adding it, printing something",
+            "description": null
+        },
+        {
+            "id": "constructor-setting-underrepair-and-adding-an-isfunctional-method-that-we-use",
+            "name": "Constructor: Setting underRepair and adding an isFunctional() method that we use",
+            "description": null
+        },
+        {
+            "id": "constructor-passing-an-argument",
+            "name": "Constructor: Passing an argument",
+            "description": null
+        }
+    ],
+    "sha": "bb88501d19a3068e0a8366389c058f2842dffa0f"
+}

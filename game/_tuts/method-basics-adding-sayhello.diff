@@ -1,0 +1,22 @@
+diff --git a/play.php b/play.php
+index 786d3f9..8617f97 100644
+--- a/play.php
++++ b/play.php
+@@ -3,6 +3,11 @@
+ class Ship
+ {
+     public $name;
++
++    public function sayHello()
++    {
++        echo 'Hello!';
++    }
+ }
+ 
+ // but it doesn't do anything yet...
+@@ -10,3 +15,5 @@ $myShip = new Ship();
+ $myShip->name = 'TIE Fighter';
+ 
+ echo 'Ship Name: '.$myShip->name;
++echo '<hr/>';
++$myShip->sayHello();
