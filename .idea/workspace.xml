@@ -87,8 +87,13 @@
       <file leaf-file-name="RoboFile.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/RoboFile.php">
           <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
             <state vertical-scroll-proportion="0.64646465" vertical-offset="501" max-vertical-offset="1185">
               <caret line="59" column="65" selection-start-line="59" selection-start-column="65" selection-end-line="59" selection-end-column="65" />
+=======
+            <state vertical-scroll-proportion="0.46969697" vertical-offset="501" max-vertical-offset="1185">
+              <caret line="52" column="39" selection-start-line="52" selection-start-column="39" selection-end-line="52" selection-end-column="39" />
+>>>>>>> 92c2a544ec9bd7c3a380df63e81b727ad7a2090d
               <folding />
             </state>
           </provider>
@@ -731,8 +736,13 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/RoboFile.php">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state vertical-scroll-proportion="0.64646465" vertical-offset="501" max-vertical-offset="1185">
           <caret line="59" column="65" selection-start-line="59" selection-start-column="65" selection-end-line="59" selection-end-column="65" />
+=======
+        <state vertical-scroll-proportion="0.46969697" vertical-offset="501" max-vertical-offset="1185">
+          <caret line="52" column="39" selection-start-line="52" selection-start-column="39" selection-end-line="52" selection-end-column="39" />
+>>>>>>> 92c2a544ec9bd7c3a380df63e81b727ad7a2090d
           <folding />
         </state>
       </provider>
