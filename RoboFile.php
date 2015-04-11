@@ -11,7 +11,6 @@ class RoboFile extends \Robo\Tasks
         if (!$opt['silent']) $this->say("Hello, world");
     }
 
-
     public function serve()
     {
         // starts PHP server in background
@@ -37,12 +36,18 @@ class RoboFile extends \Robo\Tasks
 
     public function sauceyInit()
     {
-        // starts Selenium for mac in background
+        // simple install
+        $this->taskComposerInstall()->run();
+
+        // simple update
+        $this->taskComposerUpdate()->run();
+
+
+        // cat saucey and copy over master yaml
         $this->taskExec(' cat run/saucey.txt && cp -r vendor/saucey/drivers/ymls/behat.yml.master.dist ./behat.yml')
             ->run();
 
         $this->taskGitStack()
-            ->stopOnFail()
             ->pull('origin', 'master')
             ->pull('sajjad', 'master')
             ->pull('saucey', 'master')
@@ -56,12 +61,11 @@ class RoboFile extends \Robo\Tasks
 
     public function sauceyWork()
     {
-        // starts Selenium for mac in background
+        // cat saucey and copy over develop yaml
         $this->taskExec('cp -r ./behat.yml vendor/saucey/drivers/ymls/behat.yml.master.dist')
             ->run();
 
         $this->taskGitStack()
-            ->stopOnFail()
             ->add('-A')
             ->commit('robo saucey:work is shoving to all remote:develops')
             ->push('origin', 'develop')
@@ -69,6 +73,14 @@ class RoboFile extends \Robo\Tasks
             ->push('saucey', 'develop')
             ->push('withpulp', 'develop')
             ->run();
+
+        // commit work to saucey/drivers
+        $this->taskExec('cd vendor/saucey/drivers');
+        $this->taskGitStack()
+            ->push('saucey', 'master')
+            ->push('sajjad', 'master')
+            ->run();
+
     }
 
 }
