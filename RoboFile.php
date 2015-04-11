@@ -61,6 +61,7 @@ class RoboFile extends \Robo\Tasks
 
     public function sauceyWork()
     {
+
         // cat saucey and copy over develop yaml
         $this->taskExec('cp -r ./behat.yml vendor/saucey/drivers/ymls/behat.yml.master.dist')
             ->run();
