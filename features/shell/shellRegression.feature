@@ -21,10 +21,10 @@ Feature: Shell Functionality
   @saucey @shell @saucey
   Scenario: Run './saucey test' and verify output
     Given I am in "/Users/EnderWiggin/Sites/saucey" directory
-    When I run "./saucey test"
+    When I run "sh ./run/saucey.sh test"
     Then I should see:
     """
-    Yo, you try'na get saucey?
+    -e Yo, you try'na get saucey?
     """
 
   @saucey @shell @git

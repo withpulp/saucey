@@ -16,18 +16,22 @@
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
-Saucey is an Automation framework written in mainly PHP. This framework allows testers to:
+An Automation framework written in mainly PHP, using Behat and Mink. Designed to kick-ass and take names.
 
-* Control selenium & headless drivers with Gherkin
-* Evaluate API endpoints with business-logic driven code
-* Test UI elements with user-driven logic
-* Verify arrangement of files and directories; availability of assets
-* Set server-side, front-end and functional assertions
-* Report coverage and pass-fail status of suites
-* Connect test suite(s) to a continuous integration system of choice
+This framework allows testers to:
 
-Find out more @ http://saucey.io
-Fork the repo @ https://github.com/saucey-io/saucey.git
+* Control most aspects of the PC, i.e open a native iOS app with Xcode's iOS Simulator, etc.
+* Click, right-click, double-click, triple-click & drag via X/Y coordinates.
+* Press any keyboard key(s) either in conjunction or individually.
+* iOS/Android gestures, i.e. 4-finger swipe left/right.
+* Create & maintain tests for selenium & headless drivers with [Gherkin](https://github.com/cucumber/cucumber/wiki/Gherkin).
+* Evaluate API endpoints with business-logic driven code.
+* Run load & performance tests.
+* Test UI elements with user-driven logic.
+* Verify arrangement of files and directories; availability of assets.
+* Set server-side, front-end and functional assertions.
+* Report coverage and pass-fail status of suites for tests using ALL saucey functionality.
+* Connect test suite(s) to a continuous integration system of choice.
 
 MMMMMMMMMMMMMMM
 MMMMMMMMMMMMMMMMMM
@@ -100,11 +104,7 @@ MMMMMMMMNDDNNNNDDDMNNMMMMMMMMMMM
 
 ==========================================================================================
 
-Getting started is as easy as:
-1) For testing against the cloud:
-1.1) saucey drunk @<tag> <environment> <browser>
-2) For testing locally:
-2.1) start_selnium <environment>
-2.2) saucey tipsy @<tag> <browser>
+Find out more @ https://github.com/adcade/saucey
+Read the wiki @ https://github.com/adcade/saucey/wiki
 
 ==========================================================================================
