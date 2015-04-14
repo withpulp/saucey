@@ -104,7 +104,7 @@ MMMMMMMMNDDNNNNDDDMNNMMMMMMMMMMM
 
 ==========================================================================================
 
-Find out more @ https://github.com/adcade/saucey
-Read the wiki @ https://github.com/adcade/saucey/wiki
+Find out more @ https://github.com/withpulp/saucey
+Read the wiki @ https://github.com/withpulp/saucey/wiki
 
 ==========================================================================================
