@@ -68,6 +68,36 @@ class RoboFile extends \Robo\Tasks
             ->run();
     }
 
+
+    public function sauceyTipsy($browser)
+    {
+        //Starts Selenium for mac in background, with default to Firefox, can use Chrome & Safari with '-p local_chrome' and '-p local_safari' respectively
+        $this->taskExec('sh ./run/start_selenium.sh mac')
+            ->background()
+            ->run();
+
+        //Starts behat with $tags $browser
+        $this->taskExec('sh ./run/saucey.sh tipsy')
+            ->args($browser)
+            ->run();
+
+        $this->taskExec('open ./reports/saucey_report.html')
+            ->run();
+    }
+
+
+    public function sauceyDrunk($env)
+    {
+        //Starts behat with $tags $browser
+        $this->taskExec('sh ./run/saucey.sh drunk')
+            ->args($env)
+            ->run();
+
+        $this->taskExec('open ./reports/saucey_report.html')
+            ->run();
+    }
+
+
     public function sauceyPush($msg)
     {
         //Copy over development yaml
