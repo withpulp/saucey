@@ -23,7 +23,7 @@ class RoboFile extends \Robo\Tasks
     public function sauceyTest()
     {
         // starts Selenium for mac in background
-        $this->taskExec('sh ./run/start_selenium mac')
+        $this->taskExec('sh ./run/start_selenium.sh mac')
             ->background()
             ->run();
 
