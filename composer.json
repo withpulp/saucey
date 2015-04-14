@@ -32,7 +32,7 @@
         "teaandcode/behat-guzzle-extension": "1.0.*@dev",
         "sauce/sausage": ">=0.5",
         "sauce/connect": ">=3.0",
-        "saucey/drivers": "dev-master"
+        "saucey/framework": "dev-master"
     },
 
     "minimum-stability": "dev",

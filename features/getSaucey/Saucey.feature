@@ -22,7 +22,7 @@ Feature: Cool ass functionality
 
   @saucey @javascript @game @play
   Scenario: Play the app
-    Given I set my browser window size to MacBook Retina
+    Given I set my browser window size to MacBook Standard
     And I am on "http://demo.adcade.com/demo/yahoo/testtags/160x600_expandable/index.html"
     And I run "./bin/xy/cliclick c:80,420 w:1000"
     And I run "./bin/xy/cliclick dd:300,420 w:1000"
