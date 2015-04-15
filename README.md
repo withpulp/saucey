@@ -157,7 +157,7 @@ On Mac OS X, (with the exception of LAMP for Windows) saucey requires the below 
 #Reporting & MOAR
 
 ##Reporting
-By default, reports are saved to the `reports/` directory. If you ran a suite via `./saucey drunk` or `./saucey tipsy`, you can see the report in:
+By default, reports are saved to the `reports/` directory. If you ran a suite via `saucey:drunk` or `saucey:tipsy`, you can see the report in:
 
 	reports/
 
