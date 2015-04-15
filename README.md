@@ -15,6 +15,8 @@ This framework allows testers to:
 * Create & maintain tests for selenium & headless drivers with [Gherkin](https://github.com/cucumber/cucumber/wiki/Gherkin).
 * Evaluate API endpoints with business-logic driven code.
 * Run load & performance tests.
+* Hook a Browser-Based Web Inspector to your app
+* Interact & Assert against Network/XHR logs, console logs, DOM, etc.
 * Test UI elements with user-driven logic.
 * Verify arrangement of files and directories; availability of assets.
 * Set server-side, front-end and functional assertions.
