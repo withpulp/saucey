@@ -58,7 +58,6 @@ class RoboFile extends \Robo\Tasks
     {
         //Starts Weinre for mac in background, @http://127.0.0.1:7890
         $this->taskExec('weinre --verbose true --debug true --boundHost 127.0.0.1 --httpPort 7890')
-            ->background()
             ->run();
 
         $this->say('http://127.0.0.1:7890');
