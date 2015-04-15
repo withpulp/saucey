@@ -29,8 +29,6 @@ Temporary Items
 composer.phar
 composer.lock
 behat.yml
-reports/*.html
-
 # Behat directories
 vendor/
 bin/
