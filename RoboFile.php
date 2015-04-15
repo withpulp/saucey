@@ -20,13 +20,6 @@ class RoboFile extends \Robo\Tasks
         //    ->run();
     }
 
-    public function composer()
-    {
-        //Install composer.phar
-        $this->taskExec('curl -sS https://getcomposer.org/installer | php')
-            ->run();
-    }
-
     public function sauceyInit()
     {
         //Install the dependancies/requirements through composer
@@ -41,7 +34,11 @@ class RoboFile extends \Robo\Tasks
         $this->taskExec('cp -r ./vendor/saucey/framework/ymls/behat.yml.master.dist ./behat.yml')
             ->run();
 
-        //Pull develop oand
+        //Copy over bin
+        $this->taskExec('cp -R ./vendor/saucey/framework/bin/ ./bin/')
+            ->run();
+
+        //Pull develop and master
         $this->taskGitStack()
             ->pull('origin', 'master')
             ->pull('origin', 'develop')
