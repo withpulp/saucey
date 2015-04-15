@@ -15,6 +15,8 @@ This framework allows testers to:
 * Create & maintain tests for selenium & headless drivers with [Gherkin](https://github.com/cucumber/cucumber/wiki/Gherkin).
 * Evaluate API endpoints with business-logic driven code.
 * Run load & performance tests.
+* Hook a Browser-Based Web Inspector to your app
+* Interact & Assert against Network/XHR logs, console logs, DOM, etc.
 * Test UI elements with user-driven logic.
 * Verify arrangement of files and directories; availability of assets.
 * Set server-side, front-end and functional assertions.
@@ -29,6 +31,7 @@ This framework allows testers to:
 * [CLIClick](https://github.com/cucumber/cucumber/wiki/Gherkin)
 * [Composer](https://getcomposer.org/)
 * [Robo](https://github.com/Codegyre/Robo)
+* [Weinre](http://people.apache.org/~pmuellr/weinre-docs/latest/Home.html)
 
 ##MOAR
 * Find out more @ [http://saucey.io](http://saucey.io)  
@@ -157,7 +160,7 @@ On Mac OS X, (with the exception of LAMP for Windows) saucey requires the below 
 #Reporting & MOAR
 
 ##Reporting
-By default, reports are saved to the `reports/` directory. If you ran a suite via `./saucey drunk` or `./saucey tipsy`, you can see the report in:
+By default, reports are saved to the `reports/` directory. If you ran a suite via `saucey:drunk` or `saucey:tipsy`, you can see the report in:
 
 	reports/
 
