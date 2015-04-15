@@ -192,10 +192,6 @@ class RoboFile extends \Robo\Tasks
             ->pull('origin', 'master')
             ->run();
 
-        //Copy replace wiki from wiki/
-        $this->taskExec('cp -r ./wiki/* ./saucey.wiki/')
-            ->run();
-
         //Push wiki
         $this->taskGitStack()
             ->dir('./saucey.wiki/')

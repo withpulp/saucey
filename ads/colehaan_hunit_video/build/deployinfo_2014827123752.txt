@@ -1,7 +1,0 @@
-
-Features disabled: 
-
-
-Deploy date: 2014/8/27 12:37:52
-Framework path: /Users/Xingyiguo/Sites/ads/framework/sources/src/com/adcade
-Version: v2.7
