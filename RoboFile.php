@@ -101,6 +101,14 @@ class RoboFile extends \Robo\Tasks
         $this->taskExec('cp -r ./behat.yml vendor/saucey/framework/ymls/behat.yml.master.dist')
             ->run();
 
+        //Push to remote frameworks
+        $this->taskGitStack()
+            ->dir('./vendor/saucey/framework')
+            ->add('-A')
+            ->commit('robo saucey:work is shoving to all remote:masters:')
+            ->push('origin', 'master')
+            ->run();
+
         //Pull from remotes
         $this->taskGitStack()
             ->pull('origin', 'master')
@@ -114,6 +122,13 @@ class RoboFile extends \Robo\Tasks
             ->commit($msg)
             ->push('origin', 'develop')
             ->run();
+    }
+
+    public function sauceyFramework()
+    {
+        //Copy over development yaml
+        $this->taskExec('cp -r ./behat.yml vendor/saucey/framework/ymls/behat.yml.master.dist')
+            ->run();
 
         //Push to remote frameworks
         $this->taskGitStack()
@@ -122,7 +137,10 @@ class RoboFile extends \Robo\Tasks
             ->commit('robo saucey:work is shoving to all remote:masters:')
             ->push('origin', 'master')
             ->run();
+    }
 
+    public function sauceyWiki()
+    {
         //Pull wiki
         $this->taskGitStack()
             ->dir('./saucey.wiki/')
@@ -136,7 +154,6 @@ class RoboFile extends \Robo\Tasks
             ->commit('robo saucey:wiki is shoving to all remote:masters:wikis')
             ->push('origin', 'master')
             ->run();
-
     }
 
 }
