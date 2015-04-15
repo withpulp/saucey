@@ -24,7 +24,7 @@ Feature: Shell Functionality
     When I run "sh ./run/saucey.sh test"
     Then I should see:
     """
-    -e Yo, you try'na get saucey?
+    Yo, you try'na get saucey?
     """
 
   @saucey @shell @git

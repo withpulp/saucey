@@ -33,6 +33,7 @@ reports/*.html
 
 # Behat directories
 vendor/
+bin/
 
 # Covers JetBrains IDEs: IntelliJ, RubyMine, PhpStorm, AppCode, PyCharm
 *.iml
