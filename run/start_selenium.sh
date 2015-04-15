@@ -23,7 +23,7 @@ then
   start_selenium $1
 
 else
-  echo -e "${red}ERROR: Check your statement. You can only use windows or mac"
-  echo -e "${yellow}EXAMPLE: start_selenium windows -or- start_selenium mac"
+  echo "${red}ERROR: Check your statement. You can only use windows or mac"
+  echo "${yellow}EXAMPLE: start_selenium windows -or- start_selenium mac"
 
 fi

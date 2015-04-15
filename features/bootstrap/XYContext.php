@@ -29,4 +29,29 @@ class XYContext implements Context, SnippetAcceptingContext
         $this->run = $run;
     }
 
+    /**
+     * @Given I tap :x x :y coordinates
+     */
+    public function iTapXCoordinates($x, $y)
+    {
+        exec('./bin/cliclick c:"'.$x.'","'.$y.'" w:1000');
+    }
+
+    /**
+     * @Given I drag :x x :y coordinates
+     */
+    public function iDragXCoordinates($x, $y)
+    {
+        exec('./bin/cliclick dd:"'.$x.'","'.$y.'" w:1000');
+    }
+
+    /**
+     * @Given I release :x x :y coordinates
+     */
+    public function iReleaseXCoordinates($x, $y)
+    {
+        exec('./bin/cliclick du:"'.$x.'","'.$y.'" w:1000');
+    }
+
+
 }

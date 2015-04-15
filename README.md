@@ -15,6 +15,8 @@ This framework allows testers to:
 * Create & maintain tests for selenium & headless drivers with [Gherkin](https://github.com/cucumber/cucumber/wiki/Gherkin).
 * Evaluate API endpoints with business-logic driven code.
 * Run load & performance tests.
+* Hook a Browser-Based Web Inspector to your app
+* Interact & Assert against Network/XHR logs, console logs, DOM, etc.
 * Test UI elements with user-driven logic.
 * Verify arrangement of files and directories; availability of assets.
 * Set server-side, front-end and functional assertions.
@@ -29,6 +31,7 @@ This framework allows testers to:
 * [CLIClick](https://github.com/cucumber/cucumber/wiki/Gherkin)
 * [Composer](https://getcomposer.org/)
 * [Robo](https://github.com/Codegyre/Robo)
+* [Weinre](http://people.apache.org/~pmuellr/weinre-docs/latest/Home.html)
 
 ##MOAR
 * Find out more @ [http://saucey.io](http://saucey.io)  
@@ -38,18 +41,20 @@ This framework allows testers to:
 	* See [The Cellar](https://github.com/withpulp/saucey/wiki/The-Cellar) for available functionality.  
 
 #Get Started
-##Pour a glass
-To make things simpler, we'll use [Robo](https://github.com/Codegyre/Robo) for all of our task management needs. Install all dependancies through composer, if you run in to any issues please see the [wiki](https://github.com/withpulp/saucey/wiki/). For all instances of `<tag>` replace it with the tag for the test suite. For example, for my tests in **features/getSaucey** the tag is `saucey`.
+##Pour a glass (Init & Install)
+To make things simpler, we'll use [Robo](https://github.com/Codegyre/Robo) for all of our task management needs. Lets install it! Install all dependancies through composer, if you run in to any issues please see the [wiki](https://github.com/withpulp/saucey/wiki/). 
+
+For all instances of `<tag>` replace it with the tag for the test suite. For example, for my tests in **features/getSaucey** the tag is `saucey`.
 
 1. From the root of the project, run:
 
-		bin/robo composer
+		sh run/saucey.sh init
 
 2. Then run:
 
-		bin/robo saucey:init
-
-3. For testing `locally`:
+		sh run/saucey.sh install
+		
+3. From here, robo takes control, for testing `locally`:
 
 		bin/robo saucey:tipsy <tag> <browser>
 
@@ -68,17 +73,14 @@ To make things simpler, we'll use [Robo](https://github.com/Codegyre/Robo) for a
 ##Shots! (examples)
 ###Local w/ [Selenium](http://docs.seleniumhq.org/) - Tipsy
 
-1. Initialize the framework by running:
-
-		bin/robo saucey:init
-
-2. Run a sanity suite via:
+1. Given you've installed via `init & install` from above
+3. Run local examples via:
 
 		bin/robo saucey:tipsy 'saucey chrome'
 
 3. Robo should be running the test suite, upon completion it should open a newly generated report.
 
-4. Upon opening `reports/saucey_report.html` You should see a bunch of tests that look like:
+4. `reports/saucey_report.html` should be opened, you should see a bunch of tests that look like:
 
 ```gherkin
 Feature: SOAP & REST API Funtionality
@@ -158,7 +160,7 @@ On Mac OS X, (with the exception of LAMP for Windows) saucey requires the below 
 #Reporting & MOAR
 
 ##Reporting
-By default, reports are saved to the `reports/` directory. If you ran a suite via `./saucey drunk` or `./saucey tipsy`, you can see the report in:
+By default, reports are saved to the `reports/` directory. If you ran a suite via `saucey:drunk` or `saucey:tipsy`, you can see the report in:
 
 	reports/
 
