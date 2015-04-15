@@ -29,6 +29,7 @@ This framework allows testers to:
 * [CLIClick](https://github.com/cucumber/cucumber/wiki/Gherkin)
 * [Composer](https://getcomposer.org/)
 * [Robo](https://github.com/Codegyre/Robo)
+* [Weinre](http://people.apache.org/~pmuellr/weinre-docs/latest/Home.html)
 
 ##MOAR
 * Find out more @ [http://saucey.io](http://saucey.io)  
