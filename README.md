@@ -56,7 +56,7 @@ For all instances of `<tag>` replace it with the tag for the test suite. For exa
 		
 3. From here, robo takes control, for testing `locally`:
 
-		bin/robo saucey:tipsy <tag> <browser>
+		bin/robo saucey:tipsy '<tag> <browser>'
 
 4. For testing against the `cloud`, you have to do three things (see [drunk](https://github.com/withpulp/saucey#cloud-w-saucelabs---drunk)). Set up SauceLabs to use your account:
 
@@ -68,13 +68,13 @@ For all instances of `<tag>` replace it with the tag for the test suite. For exa
 	
 	then, run:
 
-		bin/robo saucey:tipsy <tag> <environment> <browser>
+		bin/robo saucey:tipsy '<tag> <environment>' <browser>
 
 ##Shots! (examples)
 ###Local w/ [Selenium](http://docs.seleniumhq.org/) - Tipsy
 
 1. Given you've installed via `init & install` from above
-3. Run local examples via:
+2. Run local examples via:
 
 		bin/robo saucey:tipsy 'saucey chrome'
 
@@ -107,10 +107,7 @@ Feature: SOAP & REST API Funtionality
 ```
 
 ###Cloud w/ [SauceLabs](saucelabs.com) - Drunk
-1. Initialize saucey by running:
-
-		bin/robo saucey:init
-
+1. Given you've installed via `init & install` from above
 2. To point **saucey** to SauceLabs, you'd need your `user_name` and `access_key`. Sign up and register for a **free** [SauceLabs](https://saucelabs.com/) account.
 3. Get your username and api-key. *Should be available via /account.* Copy the info into your clipboard.
 4. Open the `behat.yml` file with your favorite IDE and replace all instances of `username:api-key` with your username (used to log in) and api-key. Save.
