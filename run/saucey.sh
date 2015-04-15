@@ -27,13 +27,32 @@ then
   echo -e "${green}$1 @$2 $3"
   echo -e "${nc}Go to ${yellow}reports/saucey_report_$2.html${nc}"
 
+# If init
+elif [ "$1" = "init" ]
+then
+  # init.sh : Use $FUNCNAME
+  init(){
+    curl -sS https://getcomposer.org/installer | php
+  }
+  init
+
+# If install/update
+elif [ "$1" = "install" ]
+then
+  # init.sh : Use $FUNCNAME
+  init(){
+    php composer.phar install && php composer.phar update
+  }
+  init
+
 # If test
 elif [ "$1" = "test" ]
 then
 
-  echo -e "Yo, you try'na get saucey?"
+  echo "Yo, you try'na get saucey?"
 
 else
   echo -e "${red}ERROR: ${red}Check your statement. You can only use drunk [cloud] or sober [local]${nc}"
   echo -e "${yellow}EXAMPLE: ./saucey drunk @check mac safari -or- ./saucey tipsy @check safari -or- ./saucey drunk @check ios tablet_landscape${nc}"
 fi
+
