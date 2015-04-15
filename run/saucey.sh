@@ -9,7 +9,7 @@ if [ "$1" = "drunk" ]
 then
   # drunk.sh : Use $FUNCNAME
   drunk(){
-    vendor/bin/behat --tags "$2" -p "sauce_$3_$4"
+    bin/behat --tags "$2" -p "sauce_$3_$4"
   }
   drunk $1 $2 $3 $4 $5
   echo -e "${green}$1 @$2 $3 $4 $5${nc}"
@@ -21,11 +21,11 @@ elif [ "$1" = "tipsy" ]
 then
   # tipsy.sh : Use $FUNCNAME
   tipsy(){
-    vendor/bin/behat --tags "$2" -p "local_$3"
+    bin/behat --tags "$2" -p "local_$3"
   }
   tipsy $1 $2 $3
-  echo -e "${green}$1 @$2 $3"
-  echo -e "${nc}Go to ${yellow}reports/saucey_report_$2.html${nc}"
+  echo "${green}$1 @$2 $3"
+  echo "${nc}Go to ${yellow}reports/saucey_report_$2.html${nc}"
 
 # If init
 elif [ "$1" = "init" ]
@@ -39,11 +39,11 @@ then
 # If install/update
 elif [ "$1" = "install" ]
 then
-  # init.sh : Use $FUNCNAME
-  init(){
+  # install.sh : Use $FUNCNAME
+  install(){
     php composer.phar install && php composer.phar update
   }
-  init
+  install
 
 # If test
 elif [ "$1" = "test" ]
@@ -52,7 +52,7 @@ then
   echo "Yo, you try'na get saucey?"
 
 else
-  echo -e "${red}ERROR: ${red}Check your statement. You can only use drunk [cloud] or sober [local]${nc}"
-  echo -e "${yellow}EXAMPLE: ./saucey drunk @check mac safari -or- ./saucey tipsy @check safari -or- ./saucey drunk @check ios tablet_landscape${nc}"
+  echo "${red}ERROR: ${red}Check your statement. You can only use drunk [cloud] or sober [local]${nc}"
+  echo "${yellow}EXAMPLE: ./saucey drunk @check mac safari -or- ./saucey tipsy @check safari -or- ./saucey drunk @check ios tablet_landscape${nc}"
 fi
 
