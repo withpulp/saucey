@@ -53,5 +53,12 @@ class XYContext implements Context, SnippetAcceptingContext
         exec('./bin/cliclick du:"'.$x.'","'.$y.'" w:1000');
     }
 
+    /**
+     * @When I move to :x x :y coordinates
+     */
+    public function iMoveToXCoordinates($x, $y)
+    {
+        exec('./bin/cliclick m:"'.$x.'","'.$y.'" w:1000');    }
+
 
 }
