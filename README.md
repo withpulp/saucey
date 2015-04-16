@@ -54,11 +54,15 @@ For all instances of `<tag>` replace it with the tag for the test suite. For exa
 
 		sh run/saucey.sh install
 		
-3. From here, robo takes control, for testing `locally`:
+3. From here, robo takes control, run:
 
-		bin/robo saucey:tipsy <tag> <browser>
+		bin/robo saucey:init
 
-4. For testing against the `cloud`, you have to do three things (see [drunk](https://github.com/withpulp/saucey#cloud-w-saucelabs---drunk)). Set up SauceLabs to use your account:
+4. For testing `locally`:
+
+		bin/robo saucey:tipsy '<tag> <browser>'
+
+5. For testing against the `cloud`, you have to do three things (see [drunk](https://github.com/withpulp/saucey#cloud-w-saucelabs---drunk)). Set up SauceLabs to use your account:
 
 		vendor/sauce/connect/bin/sauce_connect user_name access_key
 		
@@ -68,15 +72,31 @@ For all instances of `<tag>` replace it with the tag for the test suite. For exa
 	
 	then, run:
 
-		bin/robo saucey:tipsy <tag> <environment> <browser>
+		bin/robo saucey:tipsy '<tag> <environment>' <browser>
+
+##Winery
+
+1. Run the `Winery-Test-Suite` with:
+
+		bin/robo saucey:winery-test
+
+	Notice this opens `report/saucey_report.html`
+
+2. Additionally, you can just open the `winery` via:
+
+		bin/robo saucey:winery
+		
+	Then, go to [http://127.0.0.1:7890](http://127.0.0.1:7890) 
+	
+	Be sure to checkout the `Browser-Based Inspector` @ [http://127.0.0.1:7890/client/#anonymous](http://127.0.0.1:7890/client/#anonymous)
 
 ##Shots! (examples)
 ###Local w/ [Selenium](http://docs.seleniumhq.org/) - Tipsy
 
-1. Given you've installed via `init & install` from above
-3. Run local examples via:
+1. Given you've installed via `init`, `install` & `bin/robo sauce:init` from above...
+2. Run local examples via:
 
-		bin/robo saucey:tipsy 'saucey chrome'
+		bin/robo saucey:tipsy 'saucey firefox'
 
 3. Robo should be running the test suite, upon completion it should open a newly generated report.
 
@@ -107,10 +127,7 @@ Feature: SOAP & REST API Funtionality
 ```
 
 ###Cloud w/ [SauceLabs](saucelabs.com) - Drunk
-1. Initialize saucey by running:
-
-		bin/robo saucey:init
-
+1. Given you've installed via `init`, `install` & `bin/robo sauce:init` from above...
 2. To point **saucey** to SauceLabs, you'd need your `user_name` and `access_key`. Sign up and register for a **free** [SauceLabs](https://saucelabs.com/) account.
 3. Get your username and api-key. *Should be available via /account.* Copy the info into your clipboard.
 4. Open the `behat.yml` file with your favorite IDE and replace all instances of `username:api-key` with your username (used to log in) and api-key. Save.
