@@ -79,8 +79,7 @@ class RoboFile extends \Robo\Tasks
             ->run();
 
         //Runs tags
-        $this->taskParallelExec()
-            ->process('./bin/behat --tags @play')
+        $this->taskExec('./bin/behat --tags @play')
             ->process('./bin/behat --tags @metrics -p local_chrome')
             ->run();
 
