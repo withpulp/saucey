@@ -72,13 +72,13 @@ For all instances of `<tag>` replace it with the tag for the test suite. For exa
 	
 	then, run:
 
-		bin/robo saucey:tipsy '<tag> <environment>' <browser>
+		bin/robo saucey:drunk '<tag> <environment> <browser>'
 
 ##Winery
 
 1. Run the `Winery-Test-Suite` with:
 
-		bin/robo saucey:winery-test
+		//TODO make bin/robo saucey:winery-test (THIS WILL NOT WORK!!!)
 
 	Notice this opens `report/saucey_report.html`
 
@@ -98,6 +98,20 @@ For all instances of `<tag>` replace it with the tag for the test suite. For exa
 
 		bin/robo saucey:tipsy 'saucey firefox'
 
+	or 
+	
+		bin/robo saucey:tipsy 'web chrome'
+		
+	or 
+
+		bin/robo saucey:tipsy 'api firefox'
+		//TODO make saucey:tipsy 'api'
+		
+	or 
+		
+		bin/robo saucey:tipsy 'shell firefox'
+		//TODO make saucey:tipsy 'shell'
+		
 3. Robo should be running the test suite, upon completion it should open a newly generated report.
 
 4. `reports/saucey_report.html` should be opened, you should see a bunch of tests that look like:

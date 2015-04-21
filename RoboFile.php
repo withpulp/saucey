@@ -49,6 +49,10 @@ class RoboFile extends \Robo\Tasks
             ->run();
 
         //View saucey introduction
+        $this->taskExec('mkdir reports/')
+            ->run();
+
+        //View saucey introduction
         $this->taskExec('cat ./run/saucey.txt')
             ->run();
 
