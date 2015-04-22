@@ -75,8 +75,8 @@ class RoboFile extends \Robo\Tasks
         $this->taskParallelExec()
             ->process('weinre --verbose true --debug true --boundHost 127.0.0.1 --httpPort 7890')
             ->process('sh ./run/start_selenium.sh mac')
-            ->process('./bin/behat --tags @metrics -p local_chrome --rerun')
-            ->process('./bin/behat --tags @play')
+            ->process('./bin/behat --tags @adscr736Metrics -p local_chrome --rerun')
+            ->process('./bin/behat --tags @adscr736')
             ->run();
 
         $t=time();
@@ -85,6 +85,58 @@ class RoboFile extends \Robo\Tasks
         $this->taskExec("mv ./reports/saucey_report.html ./reports/saucey_report_{$t}.html")
             ->run();
 
+    }
+
+    public function sauceyWineryTest()
+    {
+        //Start server in background
+        $this->taskServer(9987)
+            ->dir('app')
+            ->background()
+            ->run();
+
+        //Start selenium
+        $this->taskExec('sh ./run/start_selenium.sh')
+            ->arg('mac')
+            ->background()
+            ->idleTimeout(10)
+            ->run();
+
+        //Starts Weinre for mac in background, @http://127.0.0.1:7890
+        $this->taskParallelExec()
+            ->process('weinre --verbose true --debug true --boundHost 127.0.0.1 --httpPort 7890')
+            ->process('./bin/behat --tags "@metrics" -p local_chrome --rerun')
+            ->process('./bin/behat --tags "@initial" --rerun')
+            ->process('./bin/behat --tags "@adcade"')
+            ->process("mv ./reports/saucey_report.html ./reports/saucey_report_winery_test.html")
+            ->idleTimeout(10)
+            ->run();
+    }
+
+    public function shit()
+    {
+        //Start server in background
+        $this->taskServer(9987)
+            ->dir('app')
+            ->host('127.0.0.1')
+            ->background()
+            ->run();
+
+        //Start selenium
+        $this->taskExec('sh ./run/start_selenium.sh')
+            ->arg('mac')
+            ->background()
+            ->idleTimeout(10)
+            ->run();
+
+        //Starts Weinre for mac in background, @http://127.0.0.1:7890
+        $this->taskParallelExec()
+            ->process('weinre --verbose true --debug true --boundHost 127.0.0.1 --httpPort 7890')
+            ->process('./bin/behat --tags "@metrics" -p local_chrome')
+            ->process('./bin/behat --tags "@initial"')
+            ->process("mv ./reports/saucey_report.html ./reports/saucey_report_winery_test.html")
+            ->idleTimeout(10)
+            ->run();
     }
 
     public function sauceyTest()

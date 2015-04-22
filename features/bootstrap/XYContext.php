@@ -58,7 +58,8 @@ class XYContext implements Context, SnippetAcceptingContext
      */
     public function iMoveToXCoordinates($x, $y)
     {
-        exec('./bin/cliclick m:"'.$x.'","'.$y.'" w:1000');    }
+        exec('./bin/cliclick m:"'.$x.'","'.$y.'" w:1000');
+    }
 
 
 }
