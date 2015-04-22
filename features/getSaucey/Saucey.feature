@@ -15,36 +15,39 @@ Feature: Cool ass functionality
     And I tap "1876" x "160" coordinates
     Then I should see "Sajjad Hossain"
 
+  @saucey @javascript @initial
+  Scenario: Initiate app metrics
+    Given I am on "http://127.0.0.1:9987/"
+    And I wait for 6 seconds
+    Then I should see "Hello world!"
+
+  @saucey @javascript @metrics
+  Scenario: Look at app metrics
+    Given I am on "http://127.0.0.1:7890/client/#anonymous"
+    And I wait for 3 seconds
+    Then I should see "Elements"
+    And I should see "Network"
+    And I should see "Console"
+    And I go to elements tab
+    And I wait for 1 seconds
+    Then I should see "Computed Style"
+    When I go to console tab
+    And I wait for 1 seconds
+    Then I should see "All"
+    When I go to network tab
+    And I wait for 1 seconds
+    Then I should see "Name"
+
   @saucey @javascript @inpage @play @adscr736
-  Scenario: Play the app
+  Scenario: Test against PLID issues
     Given I set my browser window size to MacBook Retina
     And I am on "http:.///adcade.dev/adz/tnbr_pushdown_marquee/deploy/index.html"
     And I wait for 15 seconds
     When I tap "1540" x "130" coordinates
     And I wait for 10 seconds
 
-  @saucey @javascript @initial
-  Scenario: Start at app metrics
-    Given I am on "http://127.0.0.1:9987/"
-    Then I should see "Hello world!"
-    And I wait for 10 seconds
-
-  @saucey @javascript @metrics
-  Scenario: Look at app metrics
-    Given I am on "http://127.0.0.1:7890/client/#anonymous"
-    And I wait for 5 seconds
-    Then I should see "Elements"
-    And I should see "Network"
-    And I should see "Console"
-    And I go to network tab
-    And I wait for 5 seconds
-    And I select request 1
-    And I am on the header tab
-    Then I should see "GET"
-
-
   @saucey @javascript @inpage @adscr736Metrics
-  Scenario: Look at app metrics
+  Scenario: Look at app metrics for PLID issues
     Given I am on "http://127.0.0.1:7890/client/#anonymous"
     Then I should see "Elements"
     And I should see "Network"

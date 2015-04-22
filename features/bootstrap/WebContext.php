@@ -270,6 +270,46 @@ class WebContext extends MinkContext implements Context, SnippetAcceptingContext
     }
 
     /**
+     * @Then I go to elements tab
+     */
+    public function iGoToElementsTab($xpath = '//*[@id="toolbar"]/button[2]/div[1]')
+    {
+        $session = $this->getSession(); // get the mink session
+        $element = $session->getPage()->find(
+            'xpath',
+            $session->getSelectorsHandler()->selectorToXpath('xpath', $xpath)
+        ); // runs the actual query and returns the element
+
+        // errors must not pass silently
+        if (null === $element) {
+            throw new \InvalidArgumentException(sprintf('Could not evaluate XPath: "%s"', $xpath));
+        }
+
+        // ok, let's click on it
+        $element->click();
+    }
+
+    /**
+     * @Then I go to console tab
+     */
+    public function iGoToConsoleTab($xpath = '//*[@id="toolbar"]/button[7]/div[2]')
+    {
+        $session = $this->getSession(); // get the mink session
+        $element = $session->getPage()->find(
+            'xpath',
+            $session->getSelectorsHandler()->selectorToXpath('xpath', $xpath)
+        ); // runs the actual query and returns the element
+
+        // errors must not pass silently
+        if (null === $element) {
+            throw new \InvalidArgumentException(sprintf('Could not evaluate XPath: "%s"', $xpath));
+        }
+
+        // ok, let's click on it
+        $element->click();
+    }
+
+    /**
      * @Then I select request 1
      */
     public function iSelectRequest($xpath = '//*[@id="network-container"]/div/div[1]/table/tbody/tr[1]/td[1]')
