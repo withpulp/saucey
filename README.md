@@ -56,7 +56,7 @@ For all instances of `<tag>` replace it with the tag for the test suite. For exa
 		
 3. From here, robo takes control, run:
 
-		bin/robo saucey:init
+		bin/robo init
 
 4. For testing `locally`:
 
@@ -76,11 +76,11 @@ For all instances of `<tag>` replace it with the tag for the test suite. For exa
 
 ##Winery
 
-1. Run the `Winery-Test-Suite` with:
+1. Run the `Winery Test Suite` with:
 
-		//TODO make bin/robo saucey:winery-test (THIS WILL NOT WORK!!!)
+		bin/robo winery:test
 
-	Notice this opens `report/saucey_report.html`
+	Notice this opens `report/saucey_report_winery_test.html`
 
 2. Additionally, you can just open the `winery` via:
 
@@ -117,7 +117,7 @@ For all instances of `<tag>` replace it with the tag for the test suite. For exa
 4. `reports/saucey_report.html` should be opened, you should see a bunch of tests that look like:
 
 ```gherkin
-Feature: SOAP & REST API Funtionality
+Feature: SOAP & REST API Functionality
 
   As a tester
   I want to make sure api features are up and running
@@ -141,7 +141,7 @@ Feature: SOAP & REST API Funtionality
 ```
 
 ###Cloud w/ [SauceLabs](saucelabs.com) - Drunk
-1. Given you've installed via `init`, `install` & `bin/robo sauce:init` from above...
+1. Given you've installed via `init`, `install` & `bin/robo init` from above...
 2. To point **saucey** to SauceLabs, you'd need your `user_name` and `access_key`. Sign up and register for a **free** [SauceLabs](https://saucelabs.com/) account.
 3. Get your username and api-key. *Should be available via /account.* Copy the info into your clipboard.
 4. Open the `behat.yml` file with your favorite IDE and replace all instances of `username:api-key` with your username (used to log in) and api-key. Save.
@@ -162,7 +162,7 @@ To start the connect tunnel:
 
 
 ###Mobile & Tablet
-For iOS:
+####For iOS:
 
 	bin/robo saucey:drunk '<tag> ios_phone'
 
@@ -170,7 +170,7 @@ For iOS:
 
 	bin/robo saucey:drunk '<tag> ios_tablet_landscape'
 
-For Android:
+####For Android:
 
 	bin/robo saucey:drunk '<tag> android_phone'
 
@@ -195,7 +195,7 @@ By default, reports are saved to the `reports/` directory. If you ran a suite vi
 
 	reports/
 
-View real output reports below:  
+View real reports below:  
 
 * [http://testweb.pw/adcade/Default/reports/saucey_report_web.html](http://testweb.pw/adcade/Default/reports/saucey_report_web.html)
 * [http://testweb.pw/adcade/Default/reports/saucey_report_api.html](http://testweb.pw/adcade/Default/reports/saucey_report_api.html)

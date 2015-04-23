@@ -13,14 +13,15 @@ class RoboFile extends \Robo\Tasks
 
     public function serve()
     {
-        // starts PHP server in background
-        // $this->taskServer(8000)
-        //    ->host('localhost')
-        //    ->dir('game')
-        //    ->run();
+        //Starts app in background
+        $this->taskServer(9987)
+            ->host('127.0.0.1')
+            ->dir('app')
+            ->run();
+
     }
 
-    public function sauceyInit()
+    public function init()
     {
         //Install the dependancies/requirements through composer
         $this->taskComposerInstall('./composer.phar')
@@ -55,39 +56,20 @@ class RoboFile extends \Robo\Tasks
         //View saucey introduction
         $this->taskExec('cat ./run/saucey.txt')
             ->run();
-
     }
 
-    public function sauceyWinery()
+    public function winery()
     {
         //Starts Weinre for mac in background, @http://127.0.0.1:7890
         $this->taskExec('weinre --verbose true --debug true --boundHost 127.0.0.1 --httpPort 7890')
             ->run();
 
-        $this->say('http://127.0.0.1:7890');
-
+        //Opens http://127.0.0.1:7890
+        $this->taskExec('open http://127.0.0.1:7890')
+            ->run();
     }
 
-    public function sauceyADSCR726()
-    {
-
-        //Starts Weinre for mac in background, @http://127.0.0.1:7890
-        $this->taskParallelExec()
-            ->process('weinre --verbose true --debug true --boundHost 127.0.0.1 --httpPort 7890')
-            ->process('sh ./run/start_selenium.sh mac')
-            ->process('./bin/behat --tags @adscr736Metrics -p local_chrome --rerun')
-            ->process('./bin/behat --tags @adscr736')
-            ->run();
-
-        $t=time();
-
-        //Opens reports/saucey_report.html
-        $this->taskExec("mv ./reports/saucey_report.html ./reports/saucey_report_{$t}.html")
-            ->run();
-
-    }
-
-    public function sauceyWineryTest()
+    public function wineryTest()
     {
         //Start server in background
         $this->taskServer(9987)
@@ -106,14 +88,17 @@ class RoboFile extends \Robo\Tasks
         $this->taskParallelExec()
             ->process('weinre --verbose true --debug true --boundHost 127.0.0.1 --httpPort 7890')
             ->process('./bin/behat --tags "@metrics" -p local_chrome --rerun')
-            ->process('./bin/behat --tags "@initial" --rerun')
+            ->process('./bin/behat --tags "@initial" -p local_chrome --rerun')
             ->process('./bin/behat --tags "@adcade"')
-            ->process("mv ./reports/saucey_report.html ./reports/saucey_report_winery_test.html")
             ->idleTimeout(10)
+            ->run();
+
+        //Save report
+        $this->taskExec("mv ./reports/saucey_report.html ./reports/saucey_report_winery_test.html && open ./reports/saucey_report_winery_test.html")
             ->run();
     }
 
-    public function shit()
+    public function test()
     {
         //Start server in background
         $this->taskServer(9987)
@@ -122,20 +107,16 @@ class RoboFile extends \Robo\Tasks
             ->background()
             ->run();
 
-        //Start selenium
-        $this->taskExec('sh ./run/start_selenium.sh')
-            ->arg('mac')
-            ->background()
-            ->idleTimeout(10)
-            ->run();
-
         //Starts Weinre for mac in background, @http://127.0.0.1:7890
         $this->taskParallelExec()
             ->process('weinre --verbose true --debug true --boundHost 127.0.0.1 --httpPort 7890')
             ->process('./bin/behat --tags "@metrics" -p local_chrome')
-            ->process('./bin/behat --tags "@initial"')
-            ->process("mv ./reports/saucey_report.html ./reports/saucey_report_winery_test.html")
+            ->process('./bin/behat --tags "@initial"  -p local_chrome')
             ->idleTimeout(10)
+            ->run();
+
+        //Copy and move over report
+        $this->taskExec('mv ./reports/saucey_report.html ./reports/saucey_report_basic_test.html && open ./reports/saucey_report_basic_test.html')
             ->run();
     }
 
@@ -155,7 +136,6 @@ class RoboFile extends \Robo\Tasks
             ->run();
     }
 
-
     public function sauceyTipsy($browser)
     {
         //Starts Selenium for mac in background, with default to Firefox, can use Chrome & Safari with '-p local_chrome' and '-p local_safari' respectively
@@ -173,7 +153,6 @@ class RoboFile extends \Robo\Tasks
             ->run();
     }
 
-
     public function sauceyDrunk($env)
     {
         //Starts behat with $tags $browser
@@ -185,7 +164,6 @@ class RoboFile extends \Robo\Tasks
         $this->taskExec('open ./reports/saucey_report.html')
             ->run();
     }
-
 
     public function sauceyIo($msg)
     {
@@ -245,6 +223,23 @@ class RoboFile extends \Robo\Tasks
             ->add('-A')
             ->commit('robo saucey:wiki is shoving to all remote:master:wiki')
             ->push('origin', 'master')
+            ->run();
+    }
+
+    public function sauceyADSCR726()
+    {
+        //Starts Weinre for mac in background, @http://127.0.0.1:7890
+        $this->taskParallelExec()
+            ->process('weinre --verbose true --debug true --boundHost 127.0.0.1 --httpPort 7890')
+            ->process('sh ./run/start_selenium.sh mac')
+            ->process('./bin/behat --tags @adscr736Metrics -p local_chrome --rerun')
+            ->process('./bin/behat --tags @adscr736')
+            ->run();
+
+        $t=time();
+
+        //Opens reports/saucey_report.html
+        $this->taskExec("mv ./reports/saucey_report.html ./reports/saucey_report_{$t}.html")
             ->run();
     }
 
