@@ -63,9 +63,12 @@ class RoboFile extends \Robo\Tasks
         //Starts Weinre for mac in background, @http://127.0.0.1:7890
         $this->taskExec('weinre --verbose true --debug true --boundHost 127.0.0.1 --httpPort 7890')
             ->run();
+    }
 
-        //Opens http://127.0.0.1:7890
-        $this->taskExec('open http://127.0.0.1:7890')
+    public function selenium()
+    {
+        //Starts Selenium for mac in background, @http://127.0.0.1:7890
+        $this->taskExec('sh ./run/start_selenium.sh mac')
             ->run();
     }
 
@@ -106,6 +109,13 @@ class RoboFile extends \Robo\Tasks
             ->host('127.0.0.1')
             ->background()
             ->run();
+
+        //Start selenium
+        $this->taskExec('sh ./run/start_selenium.sh')
+            ->arg('mac')
+            ->background()
+            ->run();
+
 
         //Starts Weinre for mac in background, @http://127.0.0.1:7890
         $this->taskParallelExec()
@@ -229,17 +239,31 @@ class RoboFile extends \Robo\Tasks
     public function sauceyADSCR726()
     {
         //Starts Weinre for mac in background, @http://127.0.0.1:7890
-        $this->taskParallelExec()
-            ->process('weinre --verbose true --debug true --boundHost 127.0.0.1 --httpPort 7890')
-            ->process('sh ./run/start_selenium.sh mac')
-            ->process('./bin/behat --tags @adscr736Metrics -p local_chrome --rerun')
-            ->process('./bin/behat --tags @adscr736')
+        $this->taskExec('weinre --verbose true --debug true --boundHost 127.0.0.1 --httpPort 7890')
+            ->background()
+            ->idleTimeout(10)
             ->run();
 
-        $t=time();
+        //Start selenium
+        $this->taskExec('sh ./run/start_selenium.sh')
+            ->arg('mac')
+            ->background()
+            ->idleTimeout(10)
+            ->run();
+
+        //Starts Weinre for mac in background, @http://127.0.0.1:7890
+        $this->taskParallelExec()
+            ->process('./bin/behat --tags "@adscr736Metrics" -p local_chrome --rerun')
+            ->process('./bin/behat --tags "@adscr736Ad"')
+            ->printed(true)
+            ->run();
+
+        //Moves saucey_report.html
+        $this->taskExec("mv ./reports/saucey_report.html ./reports/ADSCR726/saucey_report.html")
+            ->run();
 
         //Opens reports/saucey_report.html
-        $this->taskExec("mv ./reports/saucey_report.html ./reports/saucey_report_{$t}.html")
+        $this->taskExec("php features/ADSCR-726/ModFile.php")
             ->run();
     }
 

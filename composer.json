@@ -29,7 +29,6 @@
         "behat/web-api-extension": "~1.0@dev",
         "behat/mink-zombie-driver": "~1.2",
         "bossa/phpspec2-expect": "~1.0",
-        "teaandcode/behat-guzzle-extension": "1.0.*@dev",
         "sauce/sausage": ">=0.5",
         "sauce/connect": ">=3.0",
         "saucey/framework": "dev-master",
@@ -41,5 +40,8 @@
     "minimum-stability": "dev",
     "config": {
             "bin-dir": "bin/"
-        }
+        },
+    "require-dev": {
+      "teaandcode/behat-guzzle-extension": "0.3.*@dev"
+  }
 }
