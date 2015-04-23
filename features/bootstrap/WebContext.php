@@ -310,9 +310,169 @@ class WebContext extends MinkContext implements Context, SnippetAcceptingContext
     }
 
     /**
-     * @Then I select request 1
+     * @Then I select the first request
      */
-    public function iSelectRequest($xpath = '//*[@id="network-container"]/div/div[1]/table/tbody/tr[1]/td[1]')
+    public function iSelectFirstRequest($xpath = '//*[@id="network-container"]/div/div[1]/table/tbody/tr[1]/td[1]/div')
+    {
+        $session = $this->getSession(); // get the mink session
+        $element = $session->getPage()->find(
+            'xpath',
+            $session->getSelectorsHandler()->selectorToXpath('xpath', $xpath)
+        ); // runs the actual query and returns the element
+
+        // errors must not pass silently
+        if (null === $element) {
+            throw new \InvalidArgumentException(sprintf('Could not evaluate XPath: "%s"', $xpath));
+        }
+
+        // ok, let's click on it
+        $element->click();
+    }
+
+    /**
+     * @Then I select the second request
+     */
+    public function iSelectSecondRequest($xpath = '//*[@id="network-container"]/div/div[1]/table/tbody/tr[2]/td[1]/div')
+    {
+        $session = $this->getSession(); // get the mink session
+        $element = $session->getPage()->find(
+            'xpath',
+            $session->getSelectorsHandler()->selectorToXpath('xpath', $xpath)
+        ); // runs the actual query and returns the element
+
+        // errors must not pass silently
+        if (null === $element) {
+            throw new \InvalidArgumentException(sprintf('Could not evaluate XPath: "%s"', $xpath));
+        }
+
+        // ok, let's click on it
+        $element->click();
+    }
+
+    /**
+     * @Then I select the third request
+     */
+    public function iSelectThirdRequest($xpath = '//*[@id="network-container"]/div/div[1]/table/tbody/tr[3]/td[1]/div')
+    {
+        $session = $this->getSession(); // get the mink session
+        $element = $session->getPage()->find(
+            'xpath',
+            $session->getSelectorsHandler()->selectorToXpath('xpath', $xpath)
+        ); // runs the actual query and returns the element
+
+        // errors must not pass silently
+        if (null === $element) {
+            throw new \InvalidArgumentException(sprintf('Could not evaluate XPath: "%s"', $xpath));
+        }
+
+        // ok, let's click on it
+        $element->click();
+    }
+
+    /**
+     * @Then I select the fourth request
+     */
+    public function iSelectFourthRequest($xpath = '//*[@id="network-container"]/div/div[1]/table/tbody/tr[4]/td[1]/div')
+    {
+        $session = $this->getSession(); // get the mink session
+        $element = $session->getPage()->find(
+            'xpath',
+            $session->getSelectorsHandler()->selectorToXpath('xpath', $xpath)
+        ); // runs the actual query and returns the element
+
+        // errors must not pass silently
+        if (null === $element) {
+            throw new \InvalidArgumentException(sprintf('Could not evaluate XPath: "%s"', $xpath));
+        }
+
+        // ok, let's click on it
+        $element->click();
+    }
+
+    /**
+     * @Then I select the fifth request
+     */
+    public function iSelectFifthRequest($xpath = '//*[@id="network-container"]/div/div[1]/table/tbody/tr[5]/td[1]/div')
+    {
+        $session = $this->getSession(); // get the mink session
+        $element = $session->getPage()->find(
+            'xpath',
+            $session->getSelectorsHandler()->selectorToXpath('xpath', $xpath)
+        ); // runs the actual query and returns the element
+
+        // errors must not pass silently
+        if (null === $element) {
+            throw new \InvalidArgumentException(sprintf('Could not evaluate XPath: "%s"', $xpath));
+        }
+
+        // ok, let's click on it
+        $element->click();
+    }
+
+    /**
+     * @Then I select the sixth request
+     */
+    public function iSelectSixthRequest($xpath = '//*[@id="network-container"]/div/div[1]/table/tbody/tr[6]/td[1]/div')
+    {
+        $session = $this->getSession(); // get the mink session
+        $element = $session->getPage()->find(
+            'xpath',
+            $session->getSelectorsHandler()->selectorToXpath('xpath', $xpath)
+        ); // runs the actual query and returns the element
+
+        // errors must not pass silently
+        if (null === $element) {
+            throw new \InvalidArgumentException(sprintf('Could not evaluate XPath: "%s"', $xpath));
+        }
+
+        // ok, let's click on it
+        $element->click();
+    }
+
+    /**
+     * @Then I select the seventh request
+     */
+    public function iSelectSeventhRequest($xpath = '//*[@id="network-container"]/div/div[1]/table/tbody/tr[7]/td[1]/div')
+    {
+        $session = $this->getSession(); // get the mink session
+        $element = $session->getPage()->find(
+            'xpath',
+            $session->getSelectorsHandler()->selectorToXpath('xpath', $xpath)
+        ); // runs the actual query and returns the element
+
+        // errors must not pass silently
+        if (null === $element) {
+            throw new \InvalidArgumentException(sprintf('Could not evaluate XPath: "%s"', $xpath));
+        }
+
+        // ok, let's click on it
+        $element->click();
+    }
+
+    /**
+     * @Then I select the eighth request
+     */
+    public function iSelectEighthRequest($xpath = '//*[@id="network-container"]/div/div[1]/table/tbody/tr[8]/td[1]/div')
+    {
+        $session = $this->getSession(); // get the mink session
+        $element = $session->getPage()->find(
+            'xpath',
+            $session->getSelectorsHandler()->selectorToXpath('xpath', $xpath)
+        ); // runs the actual query and returns the element
+
+        // errors must not pass silently
+        if (null === $element) {
+            throw new \InvalidArgumentException(sprintf('Could not evaluate XPath: "%s"', $xpath));
+        }
+
+        // ok, let's click on it
+        $element->click();
+    }
+
+    /**
+     * @Then I select the ninth request
+     */
+    public function iSelectNinthRequest($xpath = '//*[@id="network-container"]/div/div[1]/table/tbody/tr[9]/td[1]/div')
     {
         $session = $this->getSession(); // get the mink session
         $element = $session->getPage()->find(
