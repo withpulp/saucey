@@ -32,7 +32,10 @@
         "teaandcode/behat-guzzle-extension": "1.0.*@dev",
         "sauce/sausage": ">=0.5",
         "sauce/connect": ">=3.0",
-        "saucey/framework": "dev-master"
+        "saucey/framework": "dev-master",
+        "justinrainbow/json-schema": "~1.4",
+        "symfony/property-access": "~2.3",
+        "behatch/contexts": "*"
     },
 
     "minimum-stability": "dev",
