@@ -38,7 +38,7 @@ Scenario: Make and validate a PUT request
 @saucey @api @delete
 Scenario: Make and validate a DELETE request
   Given send a DELETE request to "/posts/1"
-  Then  the response code should be 204
+  Then  the response code should be 200
   And the response can not contain "id"
 
 @saucey @api @getHeader

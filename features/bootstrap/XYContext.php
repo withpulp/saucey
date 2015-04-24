@@ -21,12 +21,10 @@ class XYContext implements Context, SnippetAcceptingContext
 
     /**
      * @param $aut
-     * @param $run
      */
-    public function __construct($aut, $run)
+    public function __construct($aut)
     {
         $this->aut = $aut;
-        $this->run = $run;
     }
 
     /**

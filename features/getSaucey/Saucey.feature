@@ -4,17 +4,6 @@ Feature: Cool ass functionality
   I want to showcase the big bang of saucey
   So that I can automate continuous integration and regression tests using it
 
-  @saucey @javascript @adcade
-  Scenario: Play the app
-    Given I set my browser window size to MacBook Retina
-    And I am on "https://www.adcade.com/"
-    And I wait for 1 seconds
-    When I move to "1476" x "160" coordinates
-    And I move to "1576" x "160" coordinates
-    And I move to "1876" x "160" coordinates
-    And I tap "1876" x "160" coordinates
-    Then I should see "Sajjad Hossain"
-
   @saucey @javascript @initial
   Scenario: Initiate app metrics
     Given I am on "http://127.0.0.1:9987/"

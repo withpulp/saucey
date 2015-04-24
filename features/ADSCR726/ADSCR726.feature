@@ -2,9 +2,20 @@ Feature: Cool ass functionality
 
   As a tester
   I want to run a regression suite against ADSCR-726
-  So that I can mark it as PASSED QA or
+  So that I can mark it as PASSED QA or BACK TO DEV
 
-  @saucey @javascript @inpage @adscr736Ad
+  @javascript @adcade
+  Scenario: Play the app
+    Given I set my browser window size to MacBook Retina
+    And I am on "https://www.adcade.com/"
+    And I wait for 1 seconds
+    When I move to "1476" x "160" coordinates
+    And I move to "1576" x "160" coordinates
+    And I move to "1876" x "160" coordinates
+    And I tap "1876" x "160" coordinates
+    Then I should see "Sajjad Hossain"
+
+  @javascript @inpage @adscr736Ad
   Scenario: Test against PLID issues
     Given I set my browser window size to MacBook Retina
     And I am on "http://adcade.dev/adz/tnbr_pushdown_marquee/deploy/index.html"
@@ -12,14 +23,14 @@ Feature: Cool ass functionality
     When I tap "1540" x "125" coordinates
     And I wait for 5 seconds
 
-  @saucey @javascript @inpage @adscr736Metrics
+  @javascript @inpage @adscr736Metrics
   Scenario: Look at app metrics for PLID issues
     Given I am on "http://127.0.0.1:7890/client/#anonymous"
     Then I should see "Elements"
     And I should see "Network"
     And I should see "Console"
     And I go to network tab
-    And I wait for 20 seconds
+    And I wait for 30 seconds
     Then I should see "ad-stage.adcade.com"
     When I select the first request
     And I am on the header tab
@@ -28,6 +39,7 @@ Feature: Cool ass functionality
     And the response should contain "2e29ff49-0fb1-48dc-8374-9565d430b9c3"
     And the response should contain "88f87a37-491e-4372-b762-f0b9a568c418"
     When I select the second request
+    And I am on the header tab
     Then I should see "POST"
     And the response should contain "std.auto.expansion"
     And the response should contain "2e29ff49-0fb1-48dc-8374-9565d430b9c3"

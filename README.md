@@ -24,6 +24,9 @@ This framework allows testers to:
 * Connect test suite(s) to a continuous integration system of choice.
 
 ##What's inside
+
+* [Selenium](http://docs.seleniumhq.org/)
+* [PhantomJS](http://phantomjs.org/)
 * [Behat](http://docs.behat.org/en/v3.0/)  
 * [Pear](http://pear.php.net/)
 * [Mink](http://mink.behat.org/en/latest/)  
@@ -58,9 +61,15 @@ For all instances of `<tag>` replace it with the tag for the test suite. For exa
 
 		bin/robo init
 
-4. For testing `locally`:
+4. For testing with Selenium `locally`:
 
 		bin/robo saucey:tipsy '<tag> <browser>'
+	
+	or, if you want to test with PhantomJS (Headless/Lightweight)
+	
+		bin/robo saucey:tipsy '<tag>'
+		
+	***Note:** Not all tests will work with PhantomJS, i.e. @alert*
 
 5. For testing against the `cloud`, you have to do three things (see [drunk](https://github.com/withpulp/saucey#cloud-w-saucelabs---drunk)). Set up SauceLabs to use your account:
 
@@ -84,7 +93,7 @@ For all instances of `<tag>` replace it with the tag for the test suite. For exa
 
 2. Additionally, you can just open the `winery` via:
 
-		bin/robo saucey:winery
+		bin/robo winery
 		
 	Then, go to [http://127.0.0.1:7890](http://127.0.0.1:7890) 
 	
@@ -93,10 +102,10 @@ For all instances of `<tag>` replace it with the tag for the test suite. For exa
 ##Shots! (examples)
 ###Local w/ [Selenium](http://docs.seleniumhq.org/) - Tipsy
 
-1. Given you've installed via `init`, `install` & `bin/robo sauce:init` from above...
+1. Given you've installed via `init`, `install` & `bin/robo init` from above...
 2. Run local examples via:
 
-		bin/robo saucey:tipsy 'saucey firefox'
+		bin/robo saucey:tipsy 'form firefox'
 
 	or 
 	
@@ -104,13 +113,11 @@ For all instances of `<tag>` replace it with the tag for the test suite. For exa
 		
 	or 
 
-		bin/robo saucey:tipsy 'api firefox'
-		//TODO make saucey:tipsy 'api'
+		bin/robo saucey:tipsy 'api'
 		
 	or 
 		
-		bin/robo saucey:tipsy 'shell firefox'
-		//TODO make saucey:tipsy 'shell'
+		bin/robo saucey:tipsy 'shell'
 		
 3. Robo should be running the test suite, upon completion it should open a newly generated report.
 
