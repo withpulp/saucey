@@ -8,7 +8,7 @@
   "authors": [
       {
           "name": "Sajjad Hossain",
-          "email": "me@sajjad.pw"
+          "email": "sajjad@withpulp.com"
       }
     ],
 
@@ -34,7 +34,8 @@
         "saucey/framework": "dev-master",
         "justinrainbow/json-schema": "~1.4",
         "symfony/property-access": "~2.3",
-        "behatch/contexts": "*"
+        "behatch/contexts": "*",
+        "jakoch/phantomjs-installer": "2.0.0"
     },
 
     "minimum-stability": "dev",
@@ -43,5 +44,14 @@
         },
     "require-dev": {
       "teaandcode/behat-guzzle-extension": "0.3.*@dev"
-  }
+    },
+
+    "scripts": {
+      "post-install-cmd": [
+        "PhantomInstaller\\Installer::installPhantomJS"
+      ],
+      "post-update-cmd": [
+        "PhantomInstaller\\Installer::installPhantomJS"
+      ]
+    }
 }
