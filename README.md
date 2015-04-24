@@ -69,7 +69,7 @@ For all instances of `<tag>` replace it with the tag for the test suite. For exa
 	
 		bin/robo saucey:tipsy '<tag>'
 		
-	***Note:** Not all tests will work with PhantomJS, i.e. @alert*
+	***Note: Not all tests will work with PhantomJS, i.e. @alert*
 
 5. For testing against the `cloud`, you have to do three things (see [drunk](https://github.com/withpulp/saucey#cloud-w-saucelabs---drunk)). Set up SauceLabs to use your account:
 
