@@ -241,7 +241,7 @@ class RoboFile extends \Robo\Tasks
         $this->taskGitStack()
             ->dir('./vendor/saucey/framework')
             ->add('-A')
-            ->commit('robo saucey:work is shoving to all remote:master:framework')
+            ->commit('robo is shoving to all remote:master:framework')
             ->push('origin', 'master')
             ->run();
     }
