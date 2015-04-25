@@ -9,19 +9,21 @@ Saucey is an Automation framework written in mainly PHP. Designed to kick-ass an
 This framework allows testers to:
 
 * Control most aspects of the PC, i.e open a native iOS app with Xcode's iOS Simulator, etc.
-* Click, right-click, double-click, triple-click & drag via X/Y coordinates.
-* Press any keyboard key(s) either in conjunction or individually.
-* iOS/Android gestures, i.e. 4-finger swipe left/right.
-* Create & maintain tests for selenium & headless drivers with [Gherkin](https://github.com/cucumber/cucumber/wiki/Gherkin).
-* Evaluate API endpoints with business-logic driven code.
-* Run load & performance tests.
+* `Click`, `right-click`, `double-click`, `triple-click` & `drag` via X/Y coordinates.
+* `Press any keyboard key(s)` either in conjunction or individually.
+* `iOS/Android gestures`, i.e. 4-finger swipe left/right.
+* Create & maintain tests for `Selenium` & headless drivers with [Gherkin](https://github.com/cucumber/cucumber/wiki/Gherkin).
+* Evaluate `REST/SOAP API` endpoints with business-logic driven code.
+* Run `load & performance` tests.
 * Hook a Browser-Based Web Inspector to your app
-* Interact & Assert against Network/XHR logs, console logs, DOM, etc.
+* Assert against `Network/XHR` & `console logs`, DOM`, etc.
 * Test UI elements with user-driven logic.
 * Verify arrangement of files and directories; availability of assets.
 * Set server-side, front-end and functional assertions.
-* Report coverage and pass-fail status of suites for tests using ALL saucey functionality.
-* Connect test suite(s) to a continuous integration system of choice.
+* A reporting engine, with pass-fail statuses of all test cases, scenarios, and features
+* Design `End-To-End`, `User Acceptance`, `Regression` & `Functional` test suites & cases
+* Connect test suite(s) to a `continuous integration` system of choice.
+* It's a Docker & Vagrant Image. Yes. The whole damn thing.
 
 ##What's inside
 

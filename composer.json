@@ -1,9 +1,17 @@
 {
   "name": "saucey",
-  "type": "behat-mink-selenium-guzzle",
+  "type": "behat-mink-selenium-guzzle-phantomJS-robo",
   "license": "MIT",
-  "description": "Automation of HTTP, HTTPS, API and UI using PHPUnit, Behat, Mink, Guzzle and Selenium 2.",
-  "keywords": ["automation", "bdd", "testing", "selenium"],
+  "description": "An Automation framework written in mainly PHP, using Behat and Mink. Designed to kick-ass and take names.",
+  "keywords": [
+    "automation",
+    "bdd",
+    "testing",
+    "selenium",
+    "saucelabs",
+    "phantomJS",
+    "click xy coordinates"
+  ],
   "homepage": "http://saucey.io",
   "authors": [
       {
