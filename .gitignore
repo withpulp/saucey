@@ -29,9 +29,11 @@ Temporary Items
 composer.phar
 composer.lock
 behat.yml
+
 # Behat directories
 vendor/
 bin/
+reports/*
 
 # Covers JetBrains IDEs: IntelliJ, RubyMine, PhpStorm, AppCode, PyCharm
 *.iml

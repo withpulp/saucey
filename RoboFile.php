@@ -6,21 +6,23 @@
  */
 class RoboFile extends \Robo\Tasks
 {
-    function hello($opt = ['silent|s' => false])
+    function yo()
     {
-        if (!$opt['silent']) $this->say("Hello, world");
+        $this->taskExec('cat ./run/saucey.txt')
+            ->run();
     }
 
     public function serve()
     {
-        // starts PHP server in background
-        // $this->taskServer(8000)
-        //    ->host('localhost')
-        //    ->dir('game')
-        //    ->run();
+        //Starts app/ in background
+        $this->taskServer(9987)
+            ->host('127.0.0.1')
+            ->dir('get.saucey.io')
+            ->run();
+
     }
 
-    public function sauceyInit()
+    public function init()
     {
         //Install the dependancies/requirements through composer
         $this->taskComposerInstall('./composer.phar')
@@ -30,8 +32,12 @@ class RoboFile extends \Robo\Tasks
         $this->taskComposerUpdate('./composer.phar')
             ->run();
 
-        //Install wienre
+        //Install Wienre
         $this->taskExec('sudo npm -g install weinre')
+            ->run();
+
+        //Install PhantomJS
+        $this->taskExec('npm install phantomjs')
             ->run();
 
         //Copy over master yaml
@@ -39,7 +45,7 @@ class RoboFile extends \Robo\Tasks
             ->run();
 
         //Copy over bin
-        $this->taskExec('cp -R ./vendor/saucey/framework/bin/ ./bin/')
+        $this->taskExec('cp -R ./vendor/saucey/framework/bin/* ./bin/')
             ->run();
 
         //Pull develop and master
@@ -48,67 +54,74 @@ class RoboFile extends \Robo\Tasks
             ->pull('origin', 'develop')
             ->run();
 
+        //Make directory for reports
+        $this->taskExec('mkdir reports/')
+            ->run();
+
+        //Make directory for ADSCR726
+        $this->taskExec('mkdir reports/ADSCR726/')
+            ->run();
+
         //View saucey introduction
         $this->taskExec('cat ./run/saucey.txt')
             ->run();
-
     }
 
-    public function sauceyWinery()
+    public function winery()
     {
         //Starts Weinre for mac in background, @http://127.0.0.1:7890
         $this->taskExec('weinre --verbose true --debug true --boundHost 127.0.0.1 --httpPort 7890')
             ->run();
-
-        $this->say('http://127.0.0.1:7890');
-
     }
 
-    public function sauceyWineryTest()
+    public function selenium()
     {
+        //Starts Selenium for mac
+        $this->taskExec('sh ./run/start_selenium.sh')
+            ->arg('mac')
+            ->run();
+    }
+
+    public function phantom()
+    {
+        //Starts PhantomJS for mac
+        $this->taskExec(' /usr/local/bin/phantomjs --webdriver=8643')
+            ->run();
+    }
+
+    public function test()
+    {
+        //Start server in background
+        $this->taskServer(9987)
+            ->dir('app')
+            ->host('127.0.0.1')
+            ->background()
+            ->run();
+
+        //Start Selenium
+        $this->taskExec('sh ./run/start_selenium.sh')
+            ->arg('mac')
+            ->background()
+            ->idleTimeout(10)
+            ->run();
 
         //Starts Weinre for mac in background, @http://127.0.0.1:7890
-        $this->taskExec('weinre --verbose true --debug true --boundHost 127.0.0.1 --httpPort 7890')
+        $this->taskExec('weinre --boundHost 127.0.0.1 --httpPort 7890')
             ->background()
+            ->idleTimeout(10)
             ->run();
 
-
-        //Starts Selenium for mac in background, with default to Firefox, can use Chrome & Safari with '-p local_chrome' and '-p local_safari' respectively
-        $this->taskExec('sh ./run/start_selenium.sh mac')
-            ->background()
-            ->run();
-
-        //Runs tags
+        //Starts tests in parallel
         $this->taskParallelExec()
-            ->process('./bin/behat --tags @play')
-            ->process('./bin/behat --tags @metrics -p local_chrome')
+            ->process('./bin/behat --tags "@metrics" -p local_chrome')
+            ->process('./bin/behat --tags "@initial"  -p local_chrome')
+            ->idleTimeout(10)
             ->run();
 
-        //Opens reports/saucey_report.html
-        $this->taskExec('open ./reports/saucey_report.html')
-            ->run();
-
-        //Where's my wine?
-        // $this->taskExec('open http://127.0.0.1:7890/client/#anonymous')
-        //    ->run();
-    }
-
-    public function sauceyTest()
-    {
-        //Starts Selenium for mac in background, with default to Firefox, can use Chrome & Safari with '-p local_chrome' and '-p local_safari' respectively
-        $this->taskExec('sh ./run/start_selenium.sh mac')
-            ->background()
-            ->run();
-
-        //Runs tag
-        $this->taskExec('./bin/behat --tags @saucey')
-            ->run();
-
-        //Opens reports/saucey_report.html
-        $this->taskExec('open ./reports/saucey_report.html')
+        //Copy and move over report
+        $this->taskExec('mv ./reports/saucey_report.html ./reports/saucey_report_basic_test.html && open ./reports/saucey_report_basic_test.html')
             ->run();
     }
-
 
     public function sauceyTipsy($browser)
     {
@@ -122,78 +135,61 @@ class RoboFile extends \Robo\Tasks
             ->args($browser)
             ->run();
 
+        //Opens reports/saucey_report.html
         $this->taskExec('open ./reports/saucey_report.html')
             ->run();
     }
 
-
-    public function sauceyDrunk($env)
+    public function sauceyDrunk($envBrowser)
     {
         //Starts behat with $tags $browser
         $this->taskExec('sh ./run/saucey.sh drunk')
-            ->args($env)
+            ->args($envBrowser)
             ->run();
 
+        //Opens reports/saucey_report.html
         $this->taskExec('open ./reports/saucey_report.html')
             ->run();
     }
 
-
-    public function sauceyIo($msg)
+    public function sauceyShove($msg)
     {
         //Copy over development yaml
         $this->taskExec('cp -r ./behat.yml vendor/saucey/framework/ymls/behat.yml.master.dist')
             ->run();
 
-        //Push to remote frameworks
+        //Push to remote for framework
         $this->taskGitStack()
             ->dir('./vendor/saucey/framework')
             ->add('-A')
-            ->commit('robo saucey:work is shoving to all remote:master:')
+            ->commit('robo saucey:work is shoving to all remote:master:framework')
             ->push('origin', 'master')
             ->run();
 
-        //Pull from remotes
+        //Pull from remotes for saucey
         $this->taskGitStack()
+            ->dir('.')
             ->pull('origin', 'master')
             ->pull('origin', 'develop')
             ->run();
 
-        //Push to remotes
+        //Push to remotes for saucey
         $this->taskGitStack()
             ->dir('.')
             ->add('-A')
             ->commit($msg)
             ->push('origin', 'develop')
             ->run();
-    }
 
-    public function sauceyFramework()
-    {
-        //Copy over development yaml
-        $this->taskExec('cp -r ./behat.yml vendor/saucey/framework/ymls/behat.yml.master.dist')
-            ->run();
-
-        //Push to remote frameworks
+        //Pull from remotes for wiki
         $this->taskGitStack()
-            ->dir('./vendor/saucey/framework')
-            ->add('-A')
-            ->commit('robo saucey:work is shoving to all remote:master:')
-            ->push('origin', 'master')
-            ->run();
-    }
-
-    public function sauceyWiki()
-    {
-        //Pull wiki
-        $this->taskGitStack()
-            ->dir('./saucey.wiki/')
+            ->dir('./saucey.wiki')
             ->pull('origin', 'master')
             ->run();
 
-        //Push wiki
+        //Push to remotes for wiki
         $this->taskGitStack()
-            ->dir('./saucey.wiki/')
+            ->dir('./saucey.wiki')
             ->add('-A')
             ->commit('robo saucey:wiki is shoving to all remote:master:wiki')
             ->push('origin', 'master')

@@ -9,21 +9,26 @@ Saucey is an Automation framework written in mainly PHP. Designed to kick-ass an
 This framework allows testers to:
 
 * Control most aspects of the PC, i.e open a native iOS app with Xcode's iOS Simulator, etc.
-* Click, right-click, double-click, triple-click & drag via X/Y coordinates.
-* Press any keyboard key(s) either in conjunction or individually.
-* iOS/Android gestures, i.e. 4-finger swipe left/right.
-* Create & maintain tests for selenium & headless drivers with [Gherkin](https://github.com/cucumber/cucumber/wiki/Gherkin).
-* Evaluate API endpoints with business-logic driven code.
-* Run load & performance tests.
+* `Click`, `right-click`, `double-click`, `triple-click` & `drag` via X/Y coordinates.
+* `Press any keyboard key(s)` either in conjunction or individually.
+* `iOS/Android gestures`, i.e. 4-finger swipe left/right.
+* Create & maintain tests for `Selenium` & headless drivers with [Gherkin](https://github.com/cucumber/cucumber/wiki/Gherkin).
+* Evaluate `REST/SOAP API` endpoints with business-logic driven code.
+* Run `load & performance` tests.
 * Hook a Browser-Based Web Inspector to your app
-* Interact & Assert against Network/XHR logs, console logs, DOM, etc.
+* Assert against `Network/XHR` & `console logs`, `DOM`, etc.
 * Test UI elements with user-driven logic.
 * Verify arrangement of files and directories; availability of assets.
 * Set server-side, front-end and functional assertions.
-* Report coverage and pass-fail status of suites for tests using ALL saucey functionality.
-* Connect test suite(s) to a continuous integration system of choice.
+* A reporting engine, with pass-fail statuses of all test cases, scenarios, and features
+* Design `End-To-End`, `User Acceptance`, `Regression` & `Functional` test suites & cases
+* Connect test suite(s) to a `continuous integration` system of choice.
+* It's a Docker & Vagrant Image. Yes. The whole damn thing.
 
 ##What's inside
+
+* [Selenium](http://docs.seleniumhq.org/)
+* [PhantomJS](http://phantomjs.org/)
 * [Behat](http://docs.behat.org/en/v3.0/)  
 * [Pear](http://pear.php.net/)
 * [Mink](http://mink.behat.org/en/latest/)  
@@ -48,19 +53,25 @@ For all instances of `<tag>` replace it with the tag for the test suite. For exa
 
 1. From the root of the project, run:
 
-		sh run/saucey.sh init
+		curl -sS https://getcomposer.org/installer | php
 
 2. Then run:
 
-		sh run/saucey.sh install
+		php composer.phar install
 		
 3. From here, robo takes control, run:
 
-		bin/robo saucey:init
+		bin/robo init
 
-4. For testing `locally`:
+4. For testing with Selenium `locally`:
 
 		bin/robo saucey:tipsy '<tag> <browser>'
+	
+	or, if you want to test with PhantomJS (Headless/Lightweight)
+	
+		bin/robo saucey:tipsy '<tag>'
+		
+	***Note: Not all tests will work with PhantomJS, i.e. @alert*
 
 5. For testing against the `cloud`, you have to do three things (see [drunk](https://github.com/withpulp/saucey#cloud-w-saucelabs---drunk)). Set up SauceLabs to use your account:
 
@@ -72,19 +83,19 @@ For all instances of `<tag>` replace it with the tag for the test suite. For exa
 	
 	then, run:
 
-		bin/robo saucey:tipsy '<tag> <environment>' <browser>
+		bin/robo saucey:drunk '<tag> <environment> <browser>'
 
 ##Winery
 
-1. Run the `Winery-Test-Suite` with:
+1. Run the `Winery Test Suite` with:
 
-		bin/robo saucey:winery-test
+		bin/robo winery:test
 
-	Notice this opens `report/saucey_report.html`
+	Notice this opens `report/saucey_report_winery_test.html`
 
 2. Additionally, you can just open the `winery` via:
 
-		bin/robo saucey:winery
+		bin/robo winery
 		
 	Then, go to [http://127.0.0.1:7890](http://127.0.0.1:7890) 
 	
@@ -93,17 +104,29 @@ For all instances of `<tag>` replace it with the tag for the test suite. For exa
 ##Shots! (examples)
 ###Local w/ [Selenium](http://docs.seleniumhq.org/) - Tipsy
 
-1. Given you've installed via `init`, `install` & `bin/robo sauce:init` from above...
+1. Given you've installed via `init`, `install` & `bin/robo init` from above...
 2. Run local examples via:
 
-		bin/robo saucey:tipsy 'saucey firefox'
+		bin/robo saucey:tipsy 'form firefox'
 
+	or 
+	
+		bin/robo saucey:tipsy 'web chrome'
+		
+	or 
+
+		bin/robo saucey:tipsy 'api'
+		
+	or 
+		
+		bin/robo saucey:tipsy 'shell'
+		
 3. Robo should be running the test suite, upon completion it should open a newly generated report.
 
 4. `reports/saucey_report.html` should be opened, you should see a bunch of tests that look like:
 
 ```gherkin
-Feature: SOAP & REST API Funtionality
+Feature: SOAP & REST API Functionality
 
   As a tester
   I want to make sure api features are up and running
@@ -127,7 +150,7 @@ Feature: SOAP & REST API Funtionality
 ```
 
 ###Cloud w/ [SauceLabs](saucelabs.com) - Drunk
-1. Given you've installed via `init`, `install` & `bin/robo sauce:init` from above...
+1. Given you've installed via `init`, `install` & `bin/robo init` from above...
 2. To point **saucey** to SauceLabs, you'd need your `user_name` and `access_key`. Sign up and register for a **free** [SauceLabs](https://saucelabs.com/) account.
 3. Get your username and api-key. *Should be available via /account.* Copy the info into your clipboard.
 4. Open the `behat.yml` file with your favorite IDE and replace all instances of `username:api-key` with your username (used to log in) and api-key. Save.
@@ -148,7 +171,7 @@ To start the connect tunnel:
 
 
 ###Mobile & Tablet
-For iOS:
+####For iOS:
 
 	bin/robo saucey:drunk '<tag> ios_phone'
 
@@ -156,7 +179,7 @@ For iOS:
 
 	bin/robo saucey:drunk '<tag> ios_tablet_landscape'
 
-For Android:
+####For Android:
 
 	bin/robo saucey:drunk '<tag> android_phone'
 
@@ -181,7 +204,7 @@ By default, reports are saved to the `reports/` directory. If you ran a suite vi
 
 	reports/
 
-View real output reports below:  
+View real reports below:  
 
 * [http://testweb.pw/adcade/Default/reports/saucey_report_web.html](http://testweb.pw/adcade/Default/reports/saucey_report_web.html)
 * [http://testweb.pw/adcade/Default/reports/saucey_report_api.html](http://testweb.pw/adcade/Default/reports/saucey_report_api.html)
