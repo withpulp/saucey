@@ -18,8 +18,7 @@
           "name": "Sajjad Hossain",
           "email": "sajjad@withpulp.com"
       }
-    ],
-
+    ]
     "require": {
         "php": ">=5.4.0",
         "codegyre/robo": "*",

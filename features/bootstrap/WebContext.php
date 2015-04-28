@@ -64,15 +64,27 @@ class WebContext extends MinkContext implements Context, SnippetAcceptingContext
     }
 
     /**
-    * @Given I set my browser window size to MacBook Retina
-    * Example: Given I set my browser window size to MacBook Retina
-    * Example: When I set my browser window size to MacBook Retina
-    * Example: And I set my browser window size to MacBook Retina
+    * @Given I set my browser window size to 15 inch MacBook Retina
+    * Example: Given I set my browser window size to 15 inch MacBook Retina
+    * Example: When I set my browser window size to 15 inch MacBook Retina
+    * Example: And I set my browser window size to 15 inch MacBook Retina
     *
     */
-    public function iSetMyBrowserWindowSizeToMacbookRetina()
+    public function iSetMyBrowserWindowSizeTo15InchMacbookRetina()
     {
         $this->getSession()->getDriver()->resizeWindow((int)'2880', (int)'1800', 'current');
+    }
+
+    /**
+     * @Given I set my browser window size to 13 inch MacBook Retina
+     * Example: Given I set my browser window size to 13 inch MacBook Retina
+     * Example: When I set my browser window size to 13 inch MacBook Retina
+     * Example: And I set my browser window size to 13 inch MacBook Retina
+     *
+     */
+    public function iSetMyBrowserWindowSizeTo13InchMacbookRetina()
+    {
+        $this->getSession()->getDriver()->resizeWindow((int)'2560', (int)'1600', 'current');
     }
 
     /**
@@ -86,6 +98,18 @@ class WebContext extends MinkContext implements Context, SnippetAcceptingContext
     {
         $this->getSession()->getDriver()->resizeWindow((int)'1280', (int)'1084', 'current');
     }
+
+    /**
+     * @Given I set my browser window size to :x x :y
+     * Example: Given I set my browser window size to "500" x "500"
+     * Example: When I set my browser window size to "500" x "500"
+     * Example: And I set my browser window size to "500" x "500"
+     */
+    public function iSetMyBrowserWindowSizeToX($x, $y)
+    {
+        $this->getSession()->getDriver()->resizeWindow((int)"'.$x.'", (int)"'.$y.'", 'current');
+    }
+
 
     /**
     * @When /^I hover over the element "([^"]*)"$/
@@ -251,6 +275,9 @@ class WebContext extends MinkContext implements Context, SnippetAcceptingContext
 
     /**
      * @Then I go to network tab
+     * Example: When I go to network tab
+     * Example: Then I go to network tab
+     * Example: And I go to network tab
      */
     public function iGoToNetworkTab($xpath = '//*[@id="toolbar"]/button[4]')
     {
@@ -271,6 +298,9 @@ class WebContext extends MinkContext implements Context, SnippetAcceptingContext
 
     /**
      * @Then I go to elements tab
+     * Example: When I go to elements tab
+     * Example: Then I go to elements tab
+     * Example: And I go to elements tab
      */
     public function iGoToElementsTab($xpath = '//*[@id="toolbar"]/button[2]/div[1]')
     {
@@ -291,6 +321,9 @@ class WebContext extends MinkContext implements Context, SnippetAcceptingContext
 
     /**
      * @Then I go to console tab
+     * Example: When I go to console tab
+     * Example: Then I go to console tab
+     * Example: And I go to console tab
      */
     public function iGoToConsoleTab($xpath = '//*[@id="toolbar"]/button[7]/div[2]')
     {
@@ -311,6 +344,9 @@ class WebContext extends MinkContext implements Context, SnippetAcceptingContext
 
     /**
      * @Then I select the first request
+     * Example: When I select the first request
+     * Example: Then I select the first request
+     * Example: And I select the first request
      */
     public function iSelectFirstRequest($xpath = '//*[@id="network-container"]/div/div[1]/table/tbody/tr[1]/td[1]/div')
     {
@@ -331,6 +367,9 @@ class WebContext extends MinkContext implements Context, SnippetAcceptingContext
 
     /**
      * @Then I select the second request
+     * Example: When I select the second request
+     * Example: Then I select the second request
+     * Example: And I select the second request
      */
     public function iSelectSecondRequest($xpath = '//*[@id="network-container"]/div/div[1]/table/tbody/tr[2]/td[1]/div')
     {
@@ -351,6 +390,9 @@ class WebContext extends MinkContext implements Context, SnippetAcceptingContext
 
     /**
      * @Then I select the third request
+     * Example: When I select the third request
+     * Example: Then I select the third request
+     * Example: And I select the third request
      */
     public function iSelectThirdRequest($xpath = '//*[@id="network-container"]/div/div[1]/table/tbody/tr[3]/td[1]/div')
     {
@@ -371,6 +413,9 @@ class WebContext extends MinkContext implements Context, SnippetAcceptingContext
 
     /**
      * @Then I select the fourth request
+     * Example: When I select the fourth request
+     * Example: Then I select the fourth request
+     * Example: And I select the fourth request
      */
     public function iSelectFourthRequest($xpath = '//*[@id="network-container"]/div/div[1]/table/tbody/tr[4]/td[1]/div')
     {
@@ -391,6 +436,9 @@ class WebContext extends MinkContext implements Context, SnippetAcceptingContext
 
     /**
      * @Then I select the fifth request
+     * Example: When I select the fifth request
+     * Example: Then I select the fifth request
+     * Example: And I select the fifth request
      */
     public function iSelectFifthRequest($xpath = '//*[@id="network-container"]/div/div[1]/table/tbody/tr[5]/td[1]/div')
     {
@@ -411,6 +459,9 @@ class WebContext extends MinkContext implements Context, SnippetAcceptingContext
 
     /**
      * @Then I select the sixth request
+     * Example: When I select the sixth request
+     * Example: Then I select the sixth request
+     * Example: And I select the sixth request
      */
     public function iSelectSixthRequest($xpath = '//*[@id="network-container"]/div/div[1]/table/tbody/tr[6]/td[1]/div')
     {
@@ -431,6 +482,9 @@ class WebContext extends MinkContext implements Context, SnippetAcceptingContext
 
     /**
      * @Then I select the seventh request
+     * Example: When I select the seventh request
+     * Example: Then I select the seventh request
+     * Example: And I select the seventh request
      */
     public function iSelectSeventhRequest($xpath = '//*[@id="network-container"]/div/div[1]/table/tbody/tr[7]/td[1]/div')
     {
@@ -451,6 +505,9 @@ class WebContext extends MinkContext implements Context, SnippetAcceptingContext
 
     /**
      * @Then I select the eighth request
+     * Example: When I select the eighth request
+     * Example: Then I select the eighth request
+     * Example: And I select the eighth request
      */
     public function iSelectEighthRequest($xpath = '//*[@id="network-container"]/div/div[1]/table/tbody/tr[8]/td[1]/div')
     {
@@ -471,6 +528,9 @@ class WebContext extends MinkContext implements Context, SnippetAcceptingContext
 
     /**
      * @Then I select the ninth request
+     * Example: When I select the ninth request
+     * Example: Then I select the ninth request
+     * Example: And I select the ninth request
      */
     public function iSelectNinthRequest($xpath = '//*[@id="network-container"]/div/div[1]/table/tbody/tr[9]/td[1]/div')
     {
@@ -490,7 +550,10 @@ class WebContext extends MinkContext implements Context, SnippetAcceptingContext
     }
 
     /**
-     * @Then I am on the header tab
+     * @Then I am on the network header tab
+     * Example: When I go to network header tab
+     * Example: Then I go to network header tab
+     * Example: And I go to network header tab
      */
     public function iAmOnTheHeaderTab($xpath = '//*[@id="network-views"]/div/div[1]/li[1]')
     {

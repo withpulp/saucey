@@ -33,7 +33,7 @@ behat.yml
 # Behat directories
 vendor/
 bin/
-reports/
+reports/*
 
 # Covers JetBrains IDEs: IntelliJ, RubyMine, PhpStorm, AppCode, PyCharm
 *.iml

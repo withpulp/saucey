@@ -16,7 +16,7 @@ This framework allows testers to:
 * Evaluate `REST/SOAP API` endpoints with business-logic driven code.
 * Run `load & performance` tests.
 * Hook a Browser-Based Web Inspector to your app
-* Assert against `Network/XHR` & `console logs`, DOM`, etc.
+* Assert against `Network/XHR` & `console logs`, `DOM`, etc.
 * Test UI elements with user-driven logic.
 * Verify arrangement of files and directories; availability of assets.
 * Set server-side, front-end and functional assertions.
@@ -53,11 +53,11 @@ For all instances of `<tag>` replace it with the tag for the test suite. For exa
 
 1. From the root of the project, run:
 
-		sh run/saucey.sh init
+		curl -sS https://getcomposer.org/installer | php
 
 2. Then run:
 
-		sh run/saucey.sh install
+		php composer.phar install
 		
 3. From here, robo takes control, run:
 

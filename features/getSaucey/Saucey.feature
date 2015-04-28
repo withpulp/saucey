@@ -26,4 +26,3 @@ Feature: Cool ass functionality
     When I go to network tab
     And I wait for 1 seconds
     Then I should see "Name"
-

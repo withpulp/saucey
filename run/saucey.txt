@@ -43,8 +43,10 @@ This framework allows testers to:
 -> Test UI elements with user-driven logic.
 -> Verify arrangement of files and directories; availability of assets.
 -> Set server-side, front-end and functional assertions.
--> Report coverage and pass-fail status of suites for tests using ALL saucey functionality.
+-> A reporting engine, with pass-fail statuses of all test cases, scenarios, and features
+-> Design End-To-End, User Acceptance, Regression & Functional test suites & cases
 -> Connect test suite(s) to a continuous integration system of choice.
+-> It's a Docker & Vagrant Image. Yes. The whole damn thing.
 
 MMMMMMMMMMMMMMM
 MMMMMMMMMMMMMMMMMM
@@ -117,20 +119,7 @@ MMMMMMMMNDDNNNNDDDMNNMMMMMMMMMMM
 
 ==========================================================================================
 
-Find out more @ https://github.com/withpulp/saucey
-Read the wiki @ https://github.com/withpulp/saucey/wiki
+Find out more @ https://github.com/adcade/saucey
+Read the wiki @ https://github.com/adcade/saucey/wiki
 
 ==========================================================================================
-
-
-         .8.          8 888888888o.          ,o888888o.           .8.          8 888888888o.      8 8888888888
-        .888.         8 8888    `^888.      8888     `88.        .888.         8 8888    `^888.   8 8888
-       :88888.        8 8888        `88. ,8 8888       `8.      :88888.        8 8888        `88. 8 8888
-      . `88888.       8 8888         `88 88 8888               . `88888.       8 8888         `88 8 8888
-     .8. `88888.      8 8888          88 88 8888              .8. `88888.      8 8888          88 8 888888888888
-    .8`8. `88888.     8 8888          88 88 8888             .8`8. `88888.     8 8888          88 8 8888
-   .8' `8. `88888.    8 8888         ,88 88 8888            .8' `8. `88888.    8 8888         ,88 8 8888
-  .8'   `8. `88888.   8 8888        ,88' `8 8888       .8' .8'   `8. `88888.   8 8888        ,88' 8 8888
- .888888888. `88888.  8 8888    ,o88P'      8888     ,88' .888888888. `88888.  8 8888    ,o88P'   8 8888
-.8'       `8. `88888. 8 888888888P'          `8888888P'  .8'       `8. `88888. 8 888888888P'      8 888888888888
-
