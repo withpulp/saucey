@@ -1,0 +1,60 @@
+    public function sauceyADSCR726()
+    {
+        //Starts Weinre for mac in background, @http://127.0.0.1:7890
+        $this->taskExec('weinre --boundHost 127.0.0.1 --httpPort 7890')
+            ->background()
+            ->idleTimeout(10)
+            ->run();
+
+        //Start selenium
+        $this->taskExec('sh ./run/start_selenium.sh')
+            ->arg('mac')
+            ->background()
+            ->idleTimeout(10)
+            ->run();
+
+        //Starts tests in parallel
+        $this->taskParallelExec()
+            ->process('./bin/behat --tags "@adscr736Metrics" -p local_chrome')
+            ->process('./bin/behat --tags "@adscr736Ad"')
+            ->printed(true)
+            ->run();
+
+        //Moves saucey_report.html to ADSCR726 folder
+        $this->taskExec("mv ./reports/saucey_report.html ./reports/ADSCR726/saucey_report.html")
+            ->run();
+
+        //Adds timestamp and ID to saucey_report.html
+        $this->taskExec("php features/ADSCR-726/ModFile.php")
+            ->run();
+    }
+
+    public function sauceyXAXS()
+    {
+        //Starts Weinre for mac in background, @http://127.0.0.1:7890
+        $this->taskExec('weinre --boundHost 192.168.17.60 --httpPort 7890')
+            ->background()
+            ->idleTimeout(10)
+            ->run();
+
+        //Start selenium
+        $this->taskExec('sh ./run/start_selenium.sh')
+            ->arg('mac')
+            ->background()
+            ->idleTimeout(10)
+            ->run();
+
+        //Starts tests in parallel
+        $this->taskParallelExec()
+            ->process('./bin/behat --tags "@r1_300250"')
+            ->process('./bin/behat --tags "@r1_300250Metrics"  -p local_chrome')
+            ->run();
+
+        //Moves saucey_report.html to XAXS_LetsTalkCost folder
+        $this->taskExec("mv ./reports/saucey_report.html ./reports/XAXS_LetsTalkCost/saucey_report.html")
+            ->run();
+
+        //Adds timestamp and ID to saucey_report.html
+        $this->taskExec("php features/adcade/ModFile.php")
+            ->run();
+    }

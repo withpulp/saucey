@@ -6,9 +6,10 @@
  */
 class RoboFile extends \Robo\Tasks
 {
-    function hello($opt = ['silent|s' => false])
+    function yo()
     {
-        if (!$opt['silent']) $this->say("Hello, world");
+        $this->taskExec('cat ./run/saucey.txt')
+            ->run();
     }
 
     public function serve()
@@ -16,7 +17,7 @@ class RoboFile extends \Robo\Tasks
         //Starts app/ in background
         $this->taskServer(9987)
             ->host('127.0.0.1')
-            ->dir('app')
+            ->dir('get.saucey.io')
             ->run();
 
     }
@@ -73,42 +74,7 @@ class RoboFile extends \Robo\Tasks
             ->run();
     }
 
-
-    public function wineryTest()
-    {
-        //Start server in background
-        $this->taskServer(9987)
-            ->dir('app')
-            ->background()
-            ->run();
-
-        //Start Selenium
-        $this->taskExec('sh ./run/start_selenium.sh')
-            ->arg('mac')
-            ->background()
-            ->idleTimeout(10)
-            ->run();
-
-        //Starts Weinre for mac in background, @http://127.0.0.1:7890
-        $this->taskExec('weinre --boundHost 127.0.0.1 --httpPort 7890')
-            ->background()
-            ->idleTimeout(10)
-            ->run();
-
-        //Starts tests in parallel
-        $this->taskParallelExec()
-            ->process('./bin/behat --tags "@metrics" -p local_chrome --rerun')
-            ->process('./bin/behat --tags "@initial" -p local_chrome --rerun')
-            ->process('./bin/behat --tags "@adcade"')
-            ->idleTimeout(10)
-            ->run();
-
-        //Save report
-        $this->taskExec("mv ./reports/saucey_report.html ./reports/saucey_report_winery_test.html && open ./reports/saucey_report_winery_test.html")
-            ->run();
-    }
-
-    public function seleniumMac()
+    public function selenium()
     {
         //Starts Selenium for mac
         $this->taskExec('sh ./run/start_selenium.sh')
@@ -157,22 +123,6 @@ class RoboFile extends \Robo\Tasks
             ->run();
     }
 
-    public function sauceyTest()
-    {
-        //Starts Selenium for mac in background, with default to Firefox, can use Chrome & Safari with '-p local_chrome' and '-p local_safari' respectively
-        $this->taskExec('sh ./run/start_selenium.sh mac')
-            ->background()
-            ->run();
-
-        //Runs tag
-        $this->taskExec('./bin/behat --tags @saucey')
-            ->run();
-
-        //Opens reports/saucey_report.html
-        $this->taskExec('open ./reports/saucey_report.html')
-            ->run();
-    }
-
     public function sauceyTipsy($browser)
     {
         //Starts Selenium for mac in background, with default to Firefox, can use Chrome & Safari with '-p local_chrome' and '-p local_safari' respectively
@@ -190,11 +140,11 @@ class RoboFile extends \Robo\Tasks
             ->run();
     }
 
-    public function sauceyDrunk($env)
+    public function sauceyDrunk($envBrowser)
     {
         //Starts behat with $tags $browser
         $this->taskExec('sh ./run/saucey.sh drunk')
-            ->args($env)
+            ->args($envBrowser)
             ->run();
 
         //Opens reports/saucey_report.html
@@ -202,95 +152,47 @@ class RoboFile extends \Robo\Tasks
             ->run();
     }
 
-    public function sauceyIo($msg)
+    public function sauceyShove($msg)
     {
         //Copy over development yaml
         $this->taskExec('cp -r ./behat.yml vendor/saucey/framework/ymls/behat.yml.master.dist')
             ->run();
 
-        //Push to remote frameworks
+        //Push to remote for framework
         $this->taskGitStack()
             ->dir('./vendor/saucey/framework')
             ->add('-A')
-            ->commit('robo saucey:work is shoving to all remote:master:')
+            ->commit('robo saucey:work is shoving to all remote:master:framework')
             ->push('origin', 'master')
             ->run();
 
-        //Pull from remotes
+        //Pull from remotes for saucey
         $this->taskGitStack()
+            ->dir('.')
             ->pull('origin', 'master')
             ->pull('origin', 'develop')
             ->run();
 
-        //Push to remotes
+        //Push to remotes for saucey
         $this->taskGitStack()
             ->dir('.')
             ->add('-A')
             ->commit($msg)
             ->push('origin', 'develop')
             ->run();
-    }
 
-    public function sauceyFramework()
-    {
-        //Copy over development yaml
-        $this->taskExec('cp -r ./behat.yml vendor/saucey/framework/ymls/behat.yml.master.dist')
-            ->run();
-
-        //Push to remote framework
-        $this->taskGitStack()
-            ->dir('./vendor/saucey/framework')
-            ->add('-A')
-            ->commit('robo is shoving to all remote:master:framework')
-            ->push('origin', 'master')
-            ->run();
-    }
-
-    public function sauceyWiki()
-    {
-        //Pull wiki
+        //Pull from remotes for wiki
         $this->taskGitStack()
             ->dir('./saucey.wiki/')
             ->pull('origin', 'master')
             ->run();
 
-        //Push wiki
+        //Push to remotes for wiki
         $this->taskGitStack()
             ->dir('./saucey.wiki/')
             ->add('-A')
             ->commit('robo saucey:wiki is shoving to all remote:master:wiki')
             ->push('origin', 'master')
-            ->run();
-    }
-
-    public function sauceyADSCR726()
-    {
-        //Starts Weinre for mac in background, @http://127.0.0.1:7890
-        $this->taskExec('weinre --boundHost 127.0.0.1 --httpPort 7890')
-            ->background()
-            ->idleTimeout(10)
-            ->run();
-
-        //Start selenium
-        $this->taskExec('sh ./run/start_selenium.sh')
-            ->arg('mac')
-            ->background()
-            ->idleTimeout(10)
-            ->run();
-
-        //Starts tests in parallel
-        $this->taskParallelExec()
-            ->process('./bin/behat --tags "@adscr736Metrics" -p local_chrome')
-            ->process('./bin/behat --tags "@adscr736Ad"')
-            ->printed(true)
-            ->run();
-
-        //Moves saucey_report.html to ADSCR726 folder
-        $this->taskExec("mv ./reports/saucey_report.html ./reports/ADSCR726/saucey_report.html")
-            ->run();
-
-        //Adds timestamp and ID to saucey_report.html
-        $this->taskExec("php features/ADSCR-726/ModFile.php")
             ->run();
     }
 
