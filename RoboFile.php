@@ -183,13 +183,13 @@ class RoboFile extends \Robo\Tasks
 
         //Pull from remotes for wiki
         $this->taskGitStack()
-            ->dir('./saucey.wiki/')
+            ->dir('./saucey.wiki')
             ->pull('origin', 'master')
             ->run();
 
         //Push to remotes for wiki
         $this->taskGitStack()
-            ->dir('./saucey.wiki/')
+            ->dir('./saucey.wiki')
             ->add('-A')
             ->commit('robo saucey:wiki is shoving to all remote:master:wiki')
             ->push('origin', 'master')
