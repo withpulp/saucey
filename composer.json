@@ -18,7 +18,7 @@
           "name": "Sajjad Hossain",
           "email": "sajjad@withpulp.com"
       }
-    ]
+    ],
     "require": {
         "php": ">=5.4.0",
         "codegyre/robo": "*",
@@ -41,8 +41,7 @@
         "saucey/framework": "dev-master",
         "justinrainbow/json-schema": "~1.4",
         "symfony/property-access": "~2.3",
-        "behatch/contexts": "*",
-        "jakoch/phantomjs-installer": "2.0.0"
+        "behatch/contexts": "*"
     },
 
     "minimum-stability": "dev",
@@ -51,14 +50,5 @@
         },
     "require-dev": {
       "teaandcode/behat-guzzle-extension": "0.3.*@dev"
-    },
-
-    "scripts": {
-      "post-install-cmd": [
-        "PhantomInstaller\\Installer::installPhantomJS"
-      ],
-      "post-update-cmd": [
-        "PhantomInstaller\\Installer::installPhantomJS"
-      ]
     }
 }

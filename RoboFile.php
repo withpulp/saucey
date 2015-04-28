@@ -37,7 +37,7 @@ class RoboFile extends \Robo\Tasks
             ->run();
 
         //Install PhantomJS
-        $this->taskExec('npm install phantomjs')
+        $this->taskExec('sudo npm -g install phantomjs')
             ->run();
 
         //Copy over master yaml
@@ -56,10 +56,6 @@ class RoboFile extends \Robo\Tasks
 
         //Make directory for reports
         $this->taskExec('mkdir reports/')
-            ->run();
-
-        //Make directory for ADSCR726
-        $this->taskExec('mkdir reports/ADSCR726/')
             ->run();
 
         //View saucey introduction
@@ -85,41 +81,102 @@ class RoboFile extends \Robo\Tasks
     public function phantom()
     {
         //Starts PhantomJS for mac
-        $this->taskExec(' /usr/local/bin/phantomjs --webdriver=8643')
+        $this->taskExec('/usr/local/bin/phantomjs --webdriver=8643')
             ->run();
     }
 
-    public function test()
+    public function sauce()
     {
-        //Start server in background
-        $this->taskServer(9987)
-            ->dir('app')
-            ->host('127.0.0.1')
-            ->background()
-            ->run();
+        $feature = $this->ask("What is the name of your feature?");
 
         //Start Selenium
-        $this->taskExec('sh ./run/start_selenium.sh')
+        $this->taskExec(mkdir('./features'))
             ->arg('mac')
             ->background()
             ->idleTimeout(10)
             ->run();
 
-        //Starts Weinre for mac in background, @http://127.0.0.1:7890
-        $this->taskExec('weinre --boundHost 127.0.0.1 --httpPort 7890')
+    }
+
+    public function tipsyTest()
+    {
+        $feature = $this->ask("What is the '@tag' for feature? [string]");
+        $browser = $this->ask("Which browser is this to be test this in? [string]");
+        $isMetrics = $this->ask("Is metrics testing involved? [y/n]");
+
+
+        //Start server in background
+        $this->taskServer(9987)
+            ->dir('./apps/get.saucey.io')
+            ->host('127.0.0.1')
             ->background()
-            ->idleTimeout(10)
             ->run();
 
-        //Starts tests in parallel
-        $this->taskParallelExec()
-            ->process('./bin/behat --tags "@metrics" -p local_chrome')
-            ->process('./bin/behat --tags "@initial"  -p local_chrome')
-            ->idleTimeout(10)
+        //Starts Selenium, tests in parallel
+        if ($isMetrics == 'y') {
+            $metrics = $this->ask("What is the '@tag' for metrics? [string]");
+            $this->taskParallelExec()
+                //->process('sh ./run/start_selenium.sh mac')
+                ->process('weinre --boundHost 127.0.0.1 --httpPort 7890')
+                ->process("./run/saucey.sh tipsy '{$metrics} chrome'")
+                ->process("./run/saucey.sh tipsy '{$feature} {$browser}'")
+                ->idleTimeout(10)
+                ->run();
+
+            $this->taskExec("mv ./reports/saucey_report.html ./reports/saucey_report_{$feature}.html && open ./reports/saucey_report_{$feature}.html")
+                ->idleTimeout(10)
+                ->run();
+
+        }
+
+        if ($isMetrics == 'n') {
+            $this->taskParallelExec()
+                //->process('sh ./run/start_selenium.sh mac')
+                ->process("./run/saucey.sh tipsy '{$feature} {$browser}'")
+                ->idleTimeout(10)
+                ->run();
+
+            $this->taskExec("mv ./reports/saucey_report.html ./reports/saucey_report_{$feature}.html && open ./reports/saucey_report_{$feature}.html")
+                ->idleTimeout(10)
+                ->run();
+
+            $this->taskExec("curl -X GET 'http://localhost:4444/selenium-server/driver/?cmd=shutDownSeleniumServer'")
+                ->run();
+
+        }
+    }
+
+    public function sauceyConnect()
+    {
+        $un = $this->ask("What is your username?");
+        $key = $this->ask("What is your api-key?");
+        $unkey = "{$un}:{$key}";
+        $un_key = "{$un} {$key}";
+
+        $this->taskReplaceInFile('./vendor/saucey/framework/ymls/behat.yml.master.dist')
+            ->from('username:api-key')
+            ->to($unkey)
             ->run();
 
-        //Copy and move over report
-        $this->taskExec('mv ./reports/saucey_report.html ./reports/saucey_report_basic_test.html && open ./reports/saucey_report_basic_test.html')
+        $this->taskReplaceInFile('./behat.yml')
+            ->from('username:api-key')
+            ->to($unkey)
+            ->run();
+
+        $this->taskExec('./bin/sauce_config')
+            ->arg($un_key)
+            ->run();
+    }
+
+
+    public function sauceyTunnel()
+    {
+        $un = $this->ask("What is your username?");
+        $key = $this->ask("What is your api-key?");
+        $un_key = "{$un} {$key}";
+
+        $this->taskExec('./vendor/sauce/connect/bin/sauce_connect')
+            ->arg($un_key)
             ->run();
     }
 
@@ -140,11 +197,11 @@ class RoboFile extends \Robo\Tasks
             ->run();
     }
 
-    public function sauceyDrunk($envBrowser)
+    public function sauceyDrunk($environment)
     {
         //Starts behat with $tags $browser
         $this->taskExec('sh ./run/saucey.sh drunk')
-            ->args($envBrowser)
+            ->args($environment)
             ->run();
 
         //Opens reports/saucey_report.html
@@ -162,7 +219,7 @@ class RoboFile extends \Robo\Tasks
         $this->taskGitStack()
             ->dir('./vendor/saucey/framework')
             ->add('-A')
-            ->commit('robo saucey:work is shoving to all remote:master:framework')
+            ->commit($msg)
             ->push('origin', 'master')
             ->run();
 
@@ -191,8 +248,11 @@ class RoboFile extends \Robo\Tasks
         $this->taskGitStack()
             ->dir('./saucey.wiki')
             ->add('-A')
-            ->commit('robo saucey:wiki is shoving to all remote:master:wiki')
+            ->commit($msg)
             ->push('origin', 'master')
+            ->run();
+
+        $this->taskExec('cp -R ./saucey.wiki ./docs/github/')
             ->run();
     }
 
