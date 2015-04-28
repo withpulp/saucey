@@ -12,7 +12,6 @@ Feature: Shell Functionality
     """
     .
     ..
-    git.sh
     saucey.sh
     saucey.txt
     start_selenium.sh
@@ -34,7 +33,4 @@ Feature: Shell Functionality
     Then I should see:
     """
     origin
-    sajjad
-    saucey
-    withpulp
     """

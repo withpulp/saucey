@@ -1,17 +1,24 @@
 {
   "name": "saucey",
-  "type": "behat-mink-selenium-guzzle",
+  "type": "behat-mink-selenium-guzzle-phantomJS-robo",
   "license": "MIT",
-  "description": "Automation of HTTP, HTTPS, API and UI using PHPUnit, Behat, Mink, Guzzle and Selenium 2.",
-  "keywords": ["automation", "bdd", "testing", "selenium"],
+  "description": "An Automation framework written in mainly PHP, using Behat and Mink. Designed to kick-ass and take names.",
+  "keywords": [
+    "automation",
+    "bdd",
+    "testing",
+    "selenium",
+    "saucelabs",
+    "phantomJS",
+    "click xy coordinates"
+  ],
   "homepage": "http://saucey.io",
   "authors": [
       {
           "name": "Sajjad Hossain",
-          "email": "me@sajjad.pw"
+          "email": "sajjad@withpulp.com"
       }
     ],
-
     "require": {
         "php": ">=5.4.0",
         "codegyre/robo": "*",
@@ -29,14 +36,19 @@
         "behat/web-api-extension": "~1.0@dev",
         "behat/mink-zombie-driver": "~1.2",
         "bossa/phpspec2-expect": "~1.0",
-        "teaandcode/behat-guzzle-extension": "1.0.*@dev",
         "sauce/sausage": ">=0.5",
         "sauce/connect": ">=3.0",
-        "saucey/framework": "dev-master"
+        "saucey/framework": "dev-master",
+        "justinrainbow/json-schema": "~1.4",
+        "symfony/property-access": "~2.3",
+        "behatch/contexts": "*"
     },
 
     "minimum-stability": "dev",
     "config": {
             "bin-dir": "bin/"
-        }
+        },
+    "require-dev": {
+      "teaandcode/behat-guzzle-extension": "0.3.*@dev"
+    }
 }
