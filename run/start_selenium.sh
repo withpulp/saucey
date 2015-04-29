@@ -17,7 +17,7 @@ elif [ "$1" = "mac" ]
 then
   # start_selenium.sh : Use $FUNCNAME
   start_selenium(){
-    java -jar ../vendor/saucey/framework/selenium/selenium-server-standalone-2.45.0.jar -Dwebdriver.chrome.driver=../vendor/saucey/framework/drivers/chromedriver
+    java -jar ./vendor/saucey/framework/selenium/selenium-server-standalone-2.45.0.jar -Dwebdriver.chrome.driver=./vendor/saucey/framework/drivers/chromedriver
   }
 
   start_selenium $1

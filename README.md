@@ -80,6 +80,9 @@ For all instances of `<tag>` replace it with the tag for the test suite. For exa
 5. For testing against the `cloud`, obtain your `username` & `api-key` from [https://saucelabs.com/account](https://saucelabs.com/account) then set up your account with:
 
 		
+		robo saucey:connect
+		
+	Answer the following two questions with the information from your clipboard, and your project should be initialized.
 		
 	then, run:
 
