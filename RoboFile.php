@@ -92,12 +92,11 @@ class RoboFile extends \Robo\Tasks
 
     /**
      * Starts Winery (Weinre) in foreground, at $host $port
-     *
-     * @param string $host Host for winery (weinre)
-     * @param int $port Port for winery (weinre)
      */
-    public function winery($host, $port)
+    public function winery()
     {
+        $host = $this->ask('What host?');
+        $port = $this->ask('What port?');
         //Starts winery (weinre) in foreground, at $host $port
         $this->taskExec("weinre --verbose true --debug true --boundHost {$host} --httpPort {$port}")
             ->run();
@@ -352,14 +351,6 @@ class RoboFile extends \Robo\Tasks
         $this->taskExec('cp -r ./behat.yml vendor/saucey/framework/ymls/behat.yml.master.dist')
             ->run();
 
-        //Push to remote for framework
-        $this->taskGitStack()
-            ->dir('./vendor/saucey/framework')
-            ->add('-A')
-            ->commit($msg)
-            ->push('origin', 'master')
-            ->run();
-
         //Pull from remotes for saucey
         $this->taskGitStack()
             ->dir('.')
@@ -375,35 +366,28 @@ class RoboFile extends \Robo\Tasks
             ->push('origin', 'develop')
             ->run();
 
-        //Pull from remotes for wiki
-        $this->taskGitStack()
-            ->dir('./saucey.wiki')
-            ->pull('origin', 'master')
-            ->run();
-
-        //Push to remotes for wiki
-        $this->taskGitStack()
-            ->dir('./saucey.wiki')
-            ->add('-A')
-            ->commit($msg)
-            ->push('origin', 'master')
-            ->run();
-
-        $this->taskExec('cp -R ./saucey.wiki ./docs/docs.saucey.io/')
-            ->run();
     }
 
     public function adcadeTORAPR15()
     {
+        // Tests Metrics by testing the app locally and verifying metrics locally
+        $this->taskParallelExec()
+            ->process('./bin/behat --tags "@Regression_TOR_Fragrance_APR15"')
+            ->process('./bin/behat --tags "@Regression_TOR_Fragrance_APR15_Metrics" -p local_chrome')
+            ->printed(true)
+            ->run();
 
+        // Tests against ie8 for Backup image
         $this->taskExec('./bin/behat --tags "@IE_Backup_TOR_Fragrance_APR15" -p sauce_windows_ie8')
             ->printed(true)
             ->run();
 
+        // Tests against Windows Chrome
         $this->taskExec('./bin/behat --tags "@Compatibility_TOR_Fragrance_APR15" -p sauce_windows_chrome')
             ->printed(true)
             ->run();
 
+        // Tests against i
         $this->taskExec('./bin/behat --tags "@IE_Backup_TOR_Fragrance_APR15" -p sauce_windows_ie8')
             ->printed(true)
             ->run();
@@ -420,19 +404,37 @@ class RoboFile extends \Robo\Tasks
             ->printed(true)
             ->run();
 
-        //Starts tests in parallel
-        $this->taskParallelExec()
-            ->process('./bin/behat --tags "@Regression_TOR_Fragrance_APR15"')
-            ->process('./bin/behat --tags "@Regression_TOR_Fragrance_APR15_Metrics" -p local_chrome')
-            ->process('./bin/behat --tags "@Compatibility_TOR_Fragrance_APR15" -p sauce_windows_chrome')
-            ->process('./bin/behat --tags "@Compatibility_TOR_Fragrance_APR15" -p sauce_windows_firefox')
-            ->process('./bin/behat --tags "@Compatibility_TOR_Fragrance_APR15" -p sauce_mac_safari')
-            ->process('./bin/behat --tags "@Compatibility_TOR_Fragrance_APR15" -p sauce_mac_chrome')
-            ->process('./bin/behat --tags "@TOR_Fragrance_1032x1100_Tablet" -p sauce_ios_tablet_landscape')
-            ->process('./bin/behat --tags "@TOR_Fragrance_1032x1100_Tablet" -p sauce_android_tablet_landscape')
+        $this->taskExec('./bin/behat --tags "@Compatibility_TOR_Fragrance_APR15" -p sauce_mac_chrome')
             ->printed(true)
             ->run();
 
+        $this->taskExec('./bin/behat --tags "@TOR_Fragrance_1032x1100_Tablet" -p sauce_ios_tablet_landscape')
+            ->printed(true)
+            ->run();
+
+        $this->taskExec('./bin/behat --tags "@TOR_Fragrance_1032x1100_Tablet" -p sauce_android_tablet_landscape')
+            ->printed(true)
+            ->run();
+
+        $this->taskExec('./bin/behat --tags "@TOR_Fragrance_1032x1100_Tablet" -p sauce_ios_tablet')
+            ->printed(true)
+            ->run();
+
+        $this->taskExec('./bin/behat --tags "@TOR_Fragrance_1032x1100_Tablet" -p sauce_android_tablet')
+            ->printed(true)
+            ->run();
+
+    }
+
+    public function adcadeADSCR726()
+    {
+
+        // Tests Metrics by testing the app locally and verifying metrics locally
+        $this->taskParallelExec()
+            ->process('./bin/behat --tags "@ADSCR_726_Desktop" -p local_chrome')
+            ->process('./bin/behat --tags "@ADSCR_726_Desktop_Metrics" -p local_chrome')
+            ->printed(true)
+            ->run();
     }
 
 }

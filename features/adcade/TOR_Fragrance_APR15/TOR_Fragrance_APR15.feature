@@ -16,7 +16,7 @@ Feature: TOR_Fragrance_APR15
 
   @javascript @Regression_TOR_Fragrance_APR15_Metrics
   Scenario: Click-through and metrics testing for HTTPS requests
-    Given I am on "http://192.168.17.69:7890/client/#anonymous"
+    Given I am on "http://adcade.dev:7890/client/#anonymous"
     Then I should see "Elements"
     And I should see "Network"
     And I should see "Console"
@@ -86,15 +86,15 @@ Feature: TOR_Fragrance_APR15
     Then the response should contain "wallpaper.png"
 
   @javascript @TOR_Fragrance_1032x1100_Tablet
-  Scenario: Compatibility tests for the campaign
-    Given I am on "http://demo.adcade.com/timeInc/2015/toryBurch/desktop_qa.html"
+  Scenario: Compatibility tests on Mobile Devices for the campaign
+    Given I am on "http://demo.adcade.com/timeInc/2015/toryBurch/tablet_qa.html"
     Then the response should contain "2015 Tory Burch Fragrence Desktop"
     When I am on "https://resource.adcade.com/fa3fedc3-c00e-4fbb-8f43-174577fbde99/7081a21a-c754-42c8-b6a6-cb2aad449671/20150427200014/img/wallpaper.png"
     Then the response should contain "wallpaper.png"
 
   @javascript @TOR_Fragrance_1032x1100_Desktop @IE_Backup_TOR_Fragrance_APR15
-  Scenario: Compatibility tests for the campaign
+  Scenario: IE 8 Back up tests for the campaign
     Given I am on "http://demo.adcade.com/timeInc/2015/toryBurch/desktop_qa.html"
     Then the response should contain "2015 Tory Burch Fragrence Desktop"
-    When I am on "https://resource.adcade.com/fa3fedc3-c00e-4fbb-8f43-174577fbde99/7081a21a-c754-42c8-b6a6-cb2aad449671/20150427200014/img/wallpaper.png"
-    Then the response should contain "wallpaper.png"
+    When I am on "https://ad.adcade.com/2/backup/imp/7081a21a-c754-42c8-b6a6-cb2aad449671/pl/e0804edc-fb19-472d-b315-9f84979e5b43/key/ie8/?"
+    Then I should not see "wallpaper.png"
