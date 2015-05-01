@@ -435,6 +435,11 @@ class RoboFile extends \Robo\Tasks
             ->process('./bin/behat --tags "@ADSCR_726_Desktop_Metrics" -p local_chrome')
             ->printed(true)
             ->run();
+
+        // Moves file over and renames with timestamp
+        $this->taskExec('php ./features/adcade/ADSCR_726/ModFile.php')
+            ->printed(true)
+            ->run();
     }
 
 }
