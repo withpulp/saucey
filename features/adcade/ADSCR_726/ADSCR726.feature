@@ -6,7 +6,7 @@ Feature: Cool ass functionality
 
   @javascript @ADSCR_726_Desktop
   Scenario: Testing functionality and assets for campaign
-    Given I set my browser window size to 15 inch MacBook Retina
+    Given I set my browser window size to MacBook Standard
     And I am on "http://adcade.dev/saucey/apps/ads/tnbr_pushdown_marquee/deploy/index.html"
     And I wait for 15 seconds
     When I tap "1540" x "125" coordinates
