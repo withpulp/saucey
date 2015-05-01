@@ -428,7 +428,6 @@ class RoboFile extends \Robo\Tasks
 
     public function adcadeADSCR726()
     {
-
         // Tests Metrics by testing the app locally and verifying metrics locally
         $this->taskParallelExec()
             ->process('./bin/behat --tags "@ADSCR_726_Desktop" -p local_chrome && sleep 3')
@@ -438,6 +437,13 @@ class RoboFile extends \Robo\Tasks
 
         // Moves file over and renames with timestamp
         $this->taskExec('php ./features/adcade/ADSCR_726/ModFile.php')
+            ->run();
+    }
+
+    public function adcadeADSCR726Overdose()
+    {
+        // Runs overdose.sh for ADSCR_726
+        $this->taskExec('sh ./features/adcade/ADSCR_726/Overdose.sh')
             ->printed(true)
             ->run();
     }
