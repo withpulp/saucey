@@ -64,12 +64,14 @@ Feature: Cool ass functionality
     And I am on the network header tab
     Then I should see "POST"
     And the response should contain "tdn"
+    And the response should contain "std.interact.expansion"
     And the response should contain "2e29ff49-0fb1-48dc-8374-9565d430b9c3"
     And the response should contain "88f87a37-491e-4372-b762-f0b9a568c418"
     When I select request "8"
     And I am on the network header tab
     Then I should see "POST"
-    And the response should contain "std.interact.expansion"
+    And the response should contain "std.auto.video.mute.video"
+    And the response should contain "std.auto.video.play.video"
     And the response should contain "2e29ff49-0fb1-48dc-8374-9565d430b9c3"
     And the response should contain "88f87a37-491e-4372-b762-f0b9a568c418"
     When I select request "9"
