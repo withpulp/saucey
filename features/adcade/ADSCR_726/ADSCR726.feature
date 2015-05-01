@@ -7,11 +7,12 @@ Feature: Cool ass functionality
   @javascript @ADSCR_726_Desktop
   Scenario: Testing functionality and assets for campaign
     Given I set my browser window size to MacBook Standard
+    And I tap "81" x "43" coordinates
     And I am on "http://adcade.dev/saucey/apps/ads/tnbr_pushdown_marquee/deploy/index.html"
     And I wait for 15 seconds
-    When I tap "1315" x "130" coordinates
+    When I tap "1320" x "120" coordinates
     And I wait for 5 seconds
-    And I tap "1315" x "130" coordinates
+    And I tap "1320" x "120" coordinates
     Then the response should contain "2015 Levis"
 
   @javascript @ADSCR_726_Desktop_Metrics
