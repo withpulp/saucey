@@ -431,8 +431,7 @@ class RoboFile extends \Robo\Tasks
 
         // Tests Metrics by testing the app locally and verifying metrics locally
         $this->taskParallelExec()
-            ->process('./bin/behat --tags "@ADSCR_726_Desktop" -p local_chrome')
-            ->process('sleep 3')
+            ->process('./bin/behat --tags "@ADSCR_726_Desktop" -p local_chrome && sleep 3')
             ->process('./bin/behat --tags "@ADSCR_726_Desktop_Metrics" -p local_chrome')
             ->printed(true)
             ->run();
