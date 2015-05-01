@@ -60,7 +60,7 @@ class WebContext extends MinkContext implements Context, SnippetAcceptingContext
     */
     public function iSetMyBrowserWindowSizeToMacbookStandard()
     {
-        $this->getSession()->getDriver()->resizeWindow((int)'1366', (int)'768', 'current');
+        $this->getSession()->getDriver()->resizeWindow((int)'1440', (int)'900', 'current');
     }
 
     /**
@@ -86,6 +86,8 @@ class WebContext extends MinkContext implements Context, SnippetAcceptingContext
     {
         $this->getSession()->getDriver()->resizeWindow((int)'2560', (int)'1600', 'current');
     }
+
+
 
     /**
     * @Given I set my browser window size to Windows Standard
