@@ -9,9 +9,9 @@ Feature: Cool ass functionality
     Given I set my browser window size to MacBook Standard
     And I am on "http://adcade.dev/saucey/apps/ads/tnbr_pushdown_marquee/deploy/index.html"
     And I wait for 15 seconds
-    When I tap "1540" x "125" coordinates
+    When I tap "1315" x "130" coordinates
     And I wait for 5 seconds
-    And I tap "1540" x "125" coordinates
+    And I tap "1315" x "130" coordinates
     Then the response should contain "2015 Levis"
 
   @javascript @ADSCR_726_Desktop_Metrics
