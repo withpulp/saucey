@@ -79,8 +79,6 @@ For all instances of `<tag>` replace it with the tag for the test suite. For exa
 
 5. For testing against the `cloud`, obtain your `username` & `api-key` from [https://saucelabs.com/account](https://saucelabs.com/account) then set up your account with:
 
-
-
   then, run:
 
     bin/robo saucey:drunk '<tag> <environment> <browser>'
