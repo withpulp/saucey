@@ -1,4 +1,4 @@
-Feature: Cool ass functionality
+Feature: ADSCR-726
 
   As a tester
   I want to run a regression suite against ADSCR-726
