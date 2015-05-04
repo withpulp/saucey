@@ -230,6 +230,20 @@ View real reports below:
 * [http://testweb.pw/adcade/Default/reports/saucey_report_api.html](http://testweb.pw/adcade/Default/reports/saucey_report_api.html)
 * [http://testweb.pw/adcade/Default/reports/saucey_report_shell.html](http://testweb.pw/adcade/Default/reports/saucey_report_shell.html)
 
+
+##MOAR
+
+1. [Docet](https://github.com/withpulp/MouMe) - A documentation engine
+2. [t](http://stevelosh.com/projects/t/) - A task manager, literally to track tasks in `var/tasks/`
+		
+	Optionally, you can use this by running:
+	
+		mkdir var/tasks/
+	
+	and...
+		
+		alias t='python ~/Sites/saucey/vendor/saucey/framework/var/t-task/t.py --task-dir ~/Sites/saucey/var/tasks --list tasks'
+
 #Caveats
 1. To use the `local_safari` profile, in other words to test against a local version of Safari, go to:
 

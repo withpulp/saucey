@@ -35,7 +35,7 @@ class FeatureContext implements Context, SnippetAcceptingContext
      */
     public function cleanDB(AfterScenarioScope $scope)
     {
-        $this->getSession()->restart();
+
     }
 
     /**
