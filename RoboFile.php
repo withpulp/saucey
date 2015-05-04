@@ -422,7 +422,6 @@ class RoboFile extends \Robo\Tasks
         $this->taskGitStack()
             ->dir('./vendor/saucey/framework/')
             ->pull('origin', 'master')
-            ->pull('origin', 'develop')
             ->run();
 
         //Push to remotes for saucey/framework
@@ -430,7 +429,7 @@ class RoboFile extends \Robo\Tasks
             ->dir('./vendor/saucey/framework/')
             ->add('-A')
             ->commit($msg)
-            ->push('origin', 'develop')
+            ->push('origin', 'master')
             ->run();
 
         //Pull from remotes for saucey/wiki
