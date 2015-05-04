@@ -17,7 +17,6 @@ use Behat\Behat\Context\Step;
 class XYContext implements Context, SnippetAcceptingContext
 {
     private $aut;
-    private $run;
 
     /**
      * @param $aut
