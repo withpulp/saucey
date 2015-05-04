@@ -9,7 +9,7 @@ Feature: Cool ass functionality
     Given I set my browser window size to MacBook Standard
     And I tap "760" x "40" coordinates
     And I tap "81" x "43" coordinates
-    And I am on "http://adcade.dev/saucey/apps/ads/tnbr_pushdown_marquee/deploy/index.html"
+    And I am on "http://adcade.dev/saucey/apps/qa-ads/tnbr_pushdown_marquee/deploy/index.html"
     And I wait for 15 seconds
     Then the response should contain "2015 Levis"
 
