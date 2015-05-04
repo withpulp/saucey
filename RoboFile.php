@@ -151,7 +151,8 @@ class RoboFile extends \Robo\Tasks
         //Makes directories in feature/ and touches feature file
         $this->taskFileSystemStack()
             ->mkdir("./features/{$project}")
-            ->mkdir("./reports/{$feature}")
+            ->mkdir("./reports/{$project}")
+            ->mkdir("./reports/{$project}/{$feature}")
             ->touch("./features/{$project}/{$feature}.feature")
             ->run();
 
@@ -159,7 +160,7 @@ class RoboFile extends \Robo\Tasks
         $this->taskExec("cp ./config/Reporting.php ./features/{$project}/{$feature}/")
             ->run();
 
-        //Copies over overdose script
+        //Copies over run script
         $this->taskExec("cp ./config/Run.sh ./features/{$project}/{$feature}/")
             ->run();
 
@@ -213,7 +214,7 @@ class RoboFile extends \Robo\Tasks
 
 
     /**
-     * Asks and obtains $project, $feature, $browser and $isMetrics status to run Behat, report, Weinre and
+     * Asks and obtains $project, $feature, $browser and $isMetrics status to run Behat, Reporting, Weinre and PhantomJS
      */
     public function tipsyTest()
     {
@@ -222,28 +223,31 @@ class RoboFile extends \Robo\Tasks
         $browser = $this->ask("Which browser is this to be test this in? [string]");
         $isMetrics = $this->ask("Is metrics testing involved? [y | n]");
 
+        //Starts PhantomJS
+        $this->taskExec("/usr/local/bin/phantomjs --webdriver=8643")
+            ->background()
+            ->run();
 
-        //Start server in background
-        $this->taskServer(9987)
-            ->dir('./apps/get.saucey.io')
-            ->host('127.0.0.1')
+        //Starts Selenium
+        $this->taskExec("sh ./run/start_selenium.sh mac")
             ->background()
             ->run();
 
         //Starts drivers, tests in parallel
         if ($isMetrics == 'y') {
             $metrics = $this->ask("What is the '@tag' for metrics? [string]");
+            $host = $this->ask("What host? [string]");
+            $port = $this->ask("What port? [string]");
 
-            //Starts Phantom
-            $this->taskExec('')
+            //Starts Winery
+            $this->taskExec("weinre --verbose true --debug true --boundHost {$host} --httpPort {$port}")
                 ->background()
                 ->run();
 
             //Starts tests in parallel
             $this->taskParallelExec()
-                //->process('sh ./run/start_selenium.sh mac')
-                ->process("./run/saucey.sh tipsy '{$metrics} chrome'")
-                ->process("./run/saucey.sh tipsy '{$feature} {$browser}'")
+                ->process("sh ./run/saucey.sh tipsy '{$metrics} chrome'")
+                ->process("sh ./run/saucey.sh tipsy '{$feature} {$browser}'")
                 ->idleTimeout(10)
                 ->run();
 
@@ -265,7 +269,7 @@ class RoboFile extends \Robo\Tasks
         if ($isMetrics == 'n') {
             $this->taskParallelExec()
                 //->process('sh ./run/start_selenium.sh mac')
-                ->process("./run/saucey.sh tipsy '{$feature} {$browser}'")
+                ->process("sh ./run/saucey.sh tipsy '{$feature} {$browser}'")
                 ->idleTimeout(10)
                 ->run();
 
@@ -282,7 +286,6 @@ class RoboFile extends \Robo\Tasks
                 ->background()
                 ->idleTimeout(10)
                 ->run();
-
         }
     }
 
@@ -440,14 +443,14 @@ class RoboFile extends \Robo\Tasks
             ->run();
 
         // Moves file over and renames with timestamp
-        $this->taskExec('php ./features/adcade/ADSCR_726/ModFile.php')
+        $this->taskExec('php ./features/adcade/ADSCR_726/Reporting.php')
             ->run();
     }
 
     public function adcadeADSCR726Overdose()
     {
         // Runs overdose.sh for ADSCR_726
-        $this->taskExec('sh ./features/adcade/ADSCR_726/Overdose.sh')
+        $this->taskExec('sh ./features/adcade/ADSCR_726/Run.sh')
             ->printed(true)
             ->run();
     }

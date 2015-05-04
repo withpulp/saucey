@@ -171,9 +171,17 @@ Open the `winery` via:
 
 	bin/robo winery
 		
-Then, go to [http://127.0.0.1:7890](http://127.0.0.1:7890) 
+Select your host and port. Adcade testers should use:
+
+	adcade.dev:7890
+
+
+And add the below to your ad unit: 
+
+	<script src="http://adcade.dev:7890/target/target-script-min.js#anonymous"></script>
 	
-Be sure to checkout the `Browser-Based Inspector` @ [http://127.0.0.1:7890/client/#anonymous](http://127.0.0.1:7890/client/#anonymous)
+	
+Be sure to checkout the `Browser-Based Inspector` @ [http:adcade.dev:7890/client/#anonymous](http:adcade.dev:7890/client/#anonymous)
 		
 ####localhost testing on the cloud
 To test something on a localhost in the cloud, you can open a tunnel with sauce connect. With your username and api-key/access_key from the steps above, run:
