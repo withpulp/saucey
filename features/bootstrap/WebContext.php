@@ -153,12 +153,13 @@ class WebContext extends MinkContext implements Context, SnippetAcceptingContext
     }
 
     /**
-    * @When /^I should see "([^"]*)" in popup$/
-    * Example: And I should see "Bruce Wayne is not Batman" in popup
-    * Example: Then I should see "Bruce Wayne is not Batman" in popup
-    *
-    * @param string $message The message.
-    */
+     * @When /^I should see "([^"]*)" in popup$/
+     * Example: And I should see "Bruce Wayne is not Batman" in popup
+     * Example: Then I should see "Bruce Wayne is not Batman" in popup
+     *
+     * @param string $message The message.
+     * @throws Exception
+     */
     public function assertPopupMessage($message)
     {
         $alertText = $this->getSession()->getDriver()->getWebDriverSession()->getAlert_text();
@@ -343,197 +344,17 @@ class WebContext extends MinkContext implements Context, SnippetAcceptingContext
     }
 
     /**
-     * @Then I select the first request
-     * Example: When I select the first request
-     * Example: Then I select the first request
-     * Example: And I select the first request
+     * @Then I select request :number
+     * Example: When I select request 1
+     * Example: Then I select request 1
+     * Example: And I select request 1
+     *
+     * @param $number
      */
-    public function iSelectFirstRequest($xpath = '//*[@id="network-container"]/div/div[1]/table/tbody/tr[1]/td[1]/div')
+    public function iSelectRequest($number)
     {
-        $session = $this->getSession(); // get the mink session
-        $element = $session->getPage()->find(
-            'xpath',
-            $session->getSelectorsHandler()->selectorToXpath('xpath', $xpath)
-        ); // runs the actual query and returns the element
+        $xpath = "//*[@id='network-container']/div/div[1]/table/tbody/tr[{$number}]/td[1]/div";
 
-        // errors must not pass silently
-        if (null === $element) {
-            throw new \InvalidArgumentException(sprintf('Could not evaluate XPath: "%s"', $xpath));
-        }
-
-        // ok, let's click on it
-        $element->click();
-    }
-
-    /**
-     * @Then I select the second request
-     * Example: When I select the second request
-     * Example: Then I select the second request
-     * Example: And I select the second request
-     */
-    public function iSelectSecondRequest($xpath = '//*[@id="network-container"]/div/div[1]/table/tbody/tr[2]/td[1]/div')
-    {
-        $session = $this->getSession(); // get the mink session
-        $element = $session->getPage()->find(
-            'xpath',
-            $session->getSelectorsHandler()->selectorToXpath('xpath', $xpath)
-        ); // runs the actual query and returns the element
-
-        // errors must not pass silently
-        if (null === $element) {
-            throw new \InvalidArgumentException(sprintf('Could not evaluate XPath: "%s"', $xpath));
-        }
-
-        // ok, let's click on it
-        $element->click();
-    }
-
-    /**
-     * @Then I select the third request
-     * Example: When I select the third request
-     * Example: Then I select the third request
-     * Example: And I select the third request
-     */
-    public function iSelectThirdRequest($xpath = '//*[@id="network-container"]/div/div[1]/table/tbody/tr[3]/td[1]/div')
-    {
-        $session = $this->getSession(); // get the mink session
-        $element = $session->getPage()->find(
-            'xpath',
-            $session->getSelectorsHandler()->selectorToXpath('xpath', $xpath)
-        ); // runs the actual query and returns the element
-
-        // errors must not pass silently
-        if (null === $element) {
-            throw new \InvalidArgumentException(sprintf('Could not evaluate XPath: "%s"', $xpath));
-        }
-
-        // ok, let's click on it
-        $element->click();
-    }
-
-    /**
-     * @Then I select the fourth request
-     * Example: When I select the fourth request
-     * Example: Then I select the fourth request
-     * Example: And I select the fourth request
-     */
-    public function iSelectFourthRequest($xpath = '//*[@id="network-container"]/div/div[1]/table/tbody/tr[4]/td[1]/div')
-    {
-        $session = $this->getSession(); // get the mink session
-        $element = $session->getPage()->find(
-            'xpath',
-            $session->getSelectorsHandler()->selectorToXpath('xpath', $xpath)
-        ); // runs the actual query and returns the element
-
-        // errors must not pass silently
-        if (null === $element) {
-            throw new \InvalidArgumentException(sprintf('Could not evaluate XPath: "%s"', $xpath));
-        }
-
-        // ok, let's click on it
-        $element->click();
-    }
-
-    /**
-     * @Then I select the fifth request
-     * Example: When I select the fifth request
-     * Example: Then I select the fifth request
-     * Example: And I select the fifth request
-     */
-    public function iSelectFifthRequest($xpath = '//*[@id="network-container"]/div/div[1]/table/tbody/tr[5]/td[1]/div')
-    {
-        $session = $this->getSession(); // get the mink session
-        $element = $session->getPage()->find(
-            'xpath',
-            $session->getSelectorsHandler()->selectorToXpath('xpath', $xpath)
-        ); // runs the actual query and returns the element
-
-        // errors must not pass silently
-        if (null === $element) {
-            throw new \InvalidArgumentException(sprintf('Could not evaluate XPath: "%s"', $xpath));
-        }
-
-        // ok, let's click on it
-        $element->click();
-    }
-
-    /**
-     * @Then I select the sixth request
-     * Example: When I select the sixth request
-     * Example: Then I select the sixth request
-     * Example: And I select the sixth request
-     */
-    public function iSelectSixthRequest($xpath = '//*[@id="network-container"]/div/div[1]/table/tbody/tr[6]/td[1]/div')
-    {
-        $session = $this->getSession(); // get the mink session
-        $element = $session->getPage()->find(
-            'xpath',
-            $session->getSelectorsHandler()->selectorToXpath('xpath', $xpath)
-        ); // runs the actual query and returns the element
-
-        // errors must not pass silently
-        if (null === $element) {
-            throw new \InvalidArgumentException(sprintf('Could not evaluate XPath: "%s"', $xpath));
-        }
-
-        // ok, let's click on it
-        $element->click();
-    }
-
-    /**
-     * @Then I select the seventh request
-     * Example: When I select the seventh request
-     * Example: Then I select the seventh request
-     * Example: And I select the seventh request
-     */
-    public function iSelectSeventhRequest($xpath = '//*[@id="network-container"]/div/div[1]/table/tbody/tr[7]/td[1]/div')
-    {
-        $session = $this->getSession(); // get the mink session
-        $element = $session->getPage()->find(
-            'xpath',
-            $session->getSelectorsHandler()->selectorToXpath('xpath', $xpath)
-        ); // runs the actual query and returns the element
-
-        // errors must not pass silently
-        if (null === $element) {
-            throw new \InvalidArgumentException(sprintf('Could not evaluate XPath: "%s"', $xpath));
-        }
-
-        // ok, let's click on it
-        $element->click();
-    }
-
-    /**
-     * @Then I select the eighth request
-     * Example: When I select the eighth request
-     * Example: Then I select the eighth request
-     * Example: And I select the eighth request
-     */
-    public function iSelectEighthRequest($xpath = '//*[@id="network-container"]/div/div[1]/table/tbody/tr[8]/td[1]/div')
-    {
-        $session = $this->getSession(); // get the mink session
-        $element = $session->getPage()->find(
-            'xpath',
-            $session->getSelectorsHandler()->selectorToXpath('xpath', $xpath)
-        ); // runs the actual query and returns the element
-
-        // errors must not pass silently
-        if (null === $element) {
-            throw new \InvalidArgumentException(sprintf('Could not evaluate XPath: "%s"', $xpath));
-        }
-
-        // ok, let's click on it
-        $element->click();
-    }
-
-    /**
-     * @Then I select the ninth request
-     * Example: When I select the ninth request
-     * Example: Then I select the ninth request
-     * Example: And I select the ninth request
-     */
-    public function iSelectNinthRequest($xpath = '//*[@id="network-container"]/div/div[1]/table/tbody/tr[9]/td[1]/div')
-    {
         $session = $this->getSession(); // get the mink session
         $element = $session->getPage()->find(
             'xpath',
@@ -571,7 +392,6 @@ class WebContext extends MinkContext implements Context, SnippetAcceptingContext
         // ok, let's click on it
         $element->click();
     }
-
 
 
 }
