@@ -92,12 +92,11 @@ class RoboFile extends \Robo\Tasks
 
     /**
      * Starts Winery (Weinre) in foreground, at $host $port
-     *
-     * @param string $host Host for winery (weinre)
-     * @param int $port Port for winery (weinre)
      */
-    public function winery($host, $port)
+    public function winery()
     {
+        $host = $this->ask('What host?');
+        $port = $this->ask('What port?');
         //Starts winery (weinre) in foreground, at $host $port
         $this->taskExec("weinre --verbose true --debug true --boundHost {$host} --httpPort {$port}")
             ->run();
@@ -158,12 +157,10 @@ class RoboFile extends \Robo\Tasks
 
         //Copies over reporting script
         $this->taskExec("cp ./config/Reporting.php ./features/{$project}/{$feature}/")
-            ->background()
             ->run();
 
         //Copies over overdose script
         $this->taskExec("cp ./config/Run.sh ./features/{$project}/{$feature}/")
-            ->background()
             ->run();
 
         //Replaces items in Reporting.php
@@ -236,9 +233,15 @@ class RoboFile extends \Robo\Tasks
         //Starts drivers, tests in parallel
         if ($isMetrics == 'y') {
             $metrics = $this->ask("What is the '@tag' for metrics? [string]");
+
+            //Starts Phantom
+            $this->taskExec('')
+                ->background()
+                ->run();
+
+            //Starts tests in parallel
             $this->taskParallelExec()
                 //->process('sh ./run/start_selenium.sh mac')
-                ->process('weinre --boundHost 127.0.0.1 --httpPort 7890')
                 ->process("./run/saucey.sh tipsy '{$metrics} chrome'")
                 ->process("./run/saucey.sh tipsy '{$feature} {$browser}'")
                 ->idleTimeout(10)
@@ -352,14 +355,6 @@ class RoboFile extends \Robo\Tasks
         $this->taskExec('cp -r ./behat.yml vendor/saucey/framework/ymls/behat.yml.master.dist')
             ->run();
 
-        //Push to remote for framework
-        $this->taskGitStack()
-            ->dir('./vendor/saucey/framework')
-            ->add('-A')
-            ->commit($msg)
-            ->push('origin', 'master')
-            ->run();
-
         //Pull from remotes for saucey
         $this->taskGitStack()
             ->dir('.')
@@ -375,35 +370,28 @@ class RoboFile extends \Robo\Tasks
             ->push('origin', 'develop')
             ->run();
 
-        //Pull from remotes for wiki
-        $this->taskGitStack()
-            ->dir('./saucey.wiki')
-            ->pull('origin', 'master')
-            ->run();
-
-        //Push to remotes for wiki
-        $this->taskGitStack()
-            ->dir('./saucey.wiki')
-            ->add('-A')
-            ->commit($msg)
-            ->push('origin', 'master')
-            ->run();
-
-        $this->taskExec('cp -R ./saucey.wiki ./docs/docs.saucey.io/')
-            ->run();
     }
 
     public function adcadeTORAPR15()
     {
+        // Tests Metrics by testing the app locally and verifying metrics locally
+        $this->taskParallelExec()
+            ->process('./bin/behat --tags "@Regression_TOR_Fragrance_APR15"')
+            ->process('./bin/behat --tags "@Regression_TOR_Fragrance_APR15_Metrics" -p local_chrome')
+            ->printed(true)
+            ->run();
 
+        // Tests against ie8 for Backup image
         $this->taskExec('./bin/behat --tags "@IE_Backup_TOR_Fragrance_APR15" -p sauce_windows_ie8')
             ->printed(true)
             ->run();
 
+        // Tests against Windows Chrome
         $this->taskExec('./bin/behat --tags "@Compatibility_TOR_Fragrance_APR15" -p sauce_windows_chrome')
             ->printed(true)
             ->run();
 
+        // Tests against i
         $this->taskExec('./bin/behat --tags "@IE_Backup_TOR_Fragrance_APR15" -p sauce_windows_ie8')
             ->printed(true)
             ->run();
@@ -420,19 +408,48 @@ class RoboFile extends \Robo\Tasks
             ->printed(true)
             ->run();
 
-        //Starts tests in parallel
-        $this->taskParallelExec()
-            ->process('./bin/behat --tags "@Regression_TOR_Fragrance_APR15"')
-            ->process('./bin/behat --tags "@Regression_TOR_Fragrance_APR15_Metrics" -p local_chrome')
-            ->process('./bin/behat --tags "@Compatibility_TOR_Fragrance_APR15" -p sauce_windows_chrome')
-            ->process('./bin/behat --tags "@Compatibility_TOR_Fragrance_APR15" -p sauce_windows_firefox')
-            ->process('./bin/behat --tags "@Compatibility_TOR_Fragrance_APR15" -p sauce_mac_safari')
-            ->process('./bin/behat --tags "@Compatibility_TOR_Fragrance_APR15" -p sauce_mac_chrome')
-            ->process('./bin/behat --tags "@TOR_Fragrance_1032x1100_Tablet" -p sauce_ios_tablet_landscape')
-            ->process('./bin/behat --tags "@TOR_Fragrance_1032x1100_Tablet" -p sauce_android_tablet_landscape')
+        $this->taskExec('./bin/behat --tags "@Compatibility_TOR_Fragrance_APR15" -p sauce_mac_chrome')
             ->printed(true)
             ->run();
 
+        $this->taskExec('./bin/behat --tags "@TOR_Fragrance_1032x1100_Tablet" -p sauce_ios_tablet_landscape')
+            ->printed(true)
+            ->run();
+
+        $this->taskExec('./bin/behat --tags "@TOR_Fragrance_1032x1100_Tablet" -p sauce_android_tablet_landscape')
+            ->printed(true)
+            ->run();
+
+        $this->taskExec('./bin/behat --tags "@TOR_Fragrance_1032x1100_Tablet" -p sauce_ios_tablet')
+            ->printed(true)
+            ->run();
+
+        $this->taskExec('./bin/behat --tags "@TOR_Fragrance_1032x1100_Tablet" -p sauce_android_tablet')
+            ->printed(true)
+            ->run();
+
+    }
+
+    public function adcadeADSCR726()
+    {
+        // Tests Metrics by testing the app locally and verifying metrics locally
+        $this->taskParallelExec()
+            ->process('./bin/behat --tags "@ADSCR_726_Desktop" -p local_chrome && sleep 3')
+            ->process('./bin/behat --tags "@ADSCR_726_Desktop_Metrics" -p local_chrome')
+            ->printed(true)
+            ->run();
+
+        // Moves file over and renames with timestamp
+        $this->taskExec('php ./features/adcade/ADSCR_726/ModFile.php')
+            ->run();
+    }
+
+    public function adcadeADSCR726Overdose()
+    {
+        // Runs overdose.sh for ADSCR_726
+        $this->taskExec('sh ./features/adcade/ADSCR_726/Overdose.sh')
+            ->printed(true)
+            ->run();
     }
 
 }

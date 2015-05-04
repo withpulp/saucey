@@ -18,15 +18,15 @@ Icon
 Network Trash Folder
 Temporary Items
 .apdisk
-
-# Behat files
 composer.phar
 composer.lock
-behat.yml
-
-# saucey directories
 vendor/
 bin/
+behat.yml
+*.iml
+.idea/
+# Apps/
+# apps/ads
 var/
 reports/*
 sauce_connect.log
