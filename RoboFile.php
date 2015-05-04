@@ -105,11 +105,22 @@ class RoboFile extends \Robo\Tasks
     /**
      * Starts Selenium for mac in foreground, at default http://localhost:4444/wd/hub/static/resource/hub.html
      */
-    public function selenium()
+    public function seleniumStart()
     {
-        //Starts Selenium for mac
+        //Starts Selenium
         $this->taskExec('sh ./run/start_selenium.sh')
             ->arg('mac')
+            ->run();
+    }
+
+    /**
+     * Kills Selenium at default http://localhost:4444/wd/hub/static/resource/hub.html
+     */
+    public function seleniumKill()
+    {
+        //Kills Selenium
+        $this->taskExec("curl -X GET 'http://localhost:4444/selenium-server/driver/?cmd=shutDownSeleniumServer'")
+            ->background()
             ->run();
     }
 
