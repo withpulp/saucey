@@ -157,12 +157,10 @@ class RoboFile extends \Robo\Tasks
 
         //Copies over reporting script
         $this->taskExec("cp ./config/Reporting.php ./features/{$project}/{$feature}/")
-            ->background()
             ->run();
 
         //Copies over overdose script
         $this->taskExec("cp ./config/Run.sh ./features/{$project}/{$feature}/")
-            ->background()
             ->run();
 
         //Replaces items in Reporting.php
@@ -235,9 +233,15 @@ class RoboFile extends \Robo\Tasks
         //Starts drivers, tests in parallel
         if ($isMetrics == 'y') {
             $metrics = $this->ask("What is the '@tag' for metrics? [string]");
+
+            //Starts Phantom
+            $this->taskExec('')
+                ->background()
+                ->run();
+
+            //Starts tests in parallel
             $this->taskParallelExec()
                 //->process('sh ./run/start_selenium.sh mac')
-                ->process('weinre --boundHost 127.0.0.1 --httpPort 7890')
                 ->process("./run/saucey.sh tipsy '{$metrics} chrome'")
                 ->process("./run/saucey.sh tipsy '{$feature} {$browser}'")
                 ->idleTimeout(10)

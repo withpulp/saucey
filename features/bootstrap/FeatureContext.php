@@ -2,6 +2,8 @@
 use Behat\Behat\Tester\Exception\PendingException;
 use Behat\Behat\Context\Context;
 use Behat\Behat\Context\SnippetAcceptingContext;
+use Behat\Testwork\Hook\Scope\BeforeSuiteScope;
+use Behat\Behat\Hook\Scope\AfterScenarioScope;
 
 /**
  * Class FeatureContext
@@ -17,6 +19,39 @@ class FeatureContext implements Context, SnippetAcceptingContext
     public function __construct()
     {
         //todo
+    }
+
+    /**
+     * @BeforeSuite
+     */
+    public static function prepare(BeforeSuiteScope $scope)
+    {
+        // prepare system for test suite
+        // before it runs
+    }
+
+    /**
+     * @AfterScenario @database
+     */
+    public function cleanDB(AfterScenarioScope $scope)
+    {
+        $this->getSession()->restart();
+    }
+
+    /**
+     * @BeforeFeature
+     */
+    public static function setupFeature(FeatureEvent $event)
+    {
+
+    }
+
+    /**
+     * @AfterFeature
+     */
+    public static function teardownFeature(FeatureEvent $event)
+    {
+
     }
 
     # TODO:
