@@ -28,13 +28,11 @@ Temporary Items
 # Behat files
 composer.phar
 composer.lock
-behat.yml
 
 # saucey directories
 vendor/
 bin/
-reports/*
-sauce_connect.log
+behat.yml
 
 # Covers JetBrains IDEs: IntelliJ, RubyMine, PhpStorm, AppCode, PyCharm
 *.iml

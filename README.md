@@ -152,7 +152,7 @@ Feature: SOAP & REST API Functionality
 		
 		bin/robo init
 		
-2. Point your **saucey** installation to SauceLabs, you'd need your `username` and `api-key`. Sign up and register for a **free** [SauceLabs](https://saucelabs.com/) account. Then get your username and api-key via `/account.` Copy the info into your clipboard.
+2. To point your **saucey** installation to SauceLabs, you'd need your `username` and `api-key`. Sign up and register for a **free** [SauceLabs](https://saucelabs.com/) account. Then get your username and api-key via `/account.` Copy the info into your clipboard.
 4. Run:
 
 		robo saucey:connect
@@ -161,7 +161,7 @@ Feature: SOAP & REST API Functionality
 
 5. Run a sanity suite via:  
 
-		bin/robo saucey:drunk 'saucey mac chrome'
+		bin/robo saucey:drunk 'form mac chrome'
 
 6. Then, go to [https://saucelabs.com/account](https://saucelabs.com/) and view your running/completed tests. Navigate through and download meta-data, screenshots and video recordings of the entire suite.
 

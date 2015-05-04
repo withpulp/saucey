@@ -1,0 +1,294 @@
+<html>
+<head>
+  <title>Behat Twig Output</title>
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="http://yandex.st/highlightjs/8.0/styles/default.min.css">
+  <script src="http://yandex.st/highlightjs/8.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  <style type="text/css">
+   .table-condensed
+   {
+     font-size: 14px;
+     margin-bottom: 0px;
+   }
+   .stepargument
+   {
+     margin-top: 10px;
+     margin-bottom: 10px;
+   }
+  </style>
+</head>
+<body>
+<div class="container">
+<h1 class="page-header">Features</h1>
+  <div class="panel           panel-danger
+    ">
+    <div class="panel-heading" data-toggle="collapse" data-target="#feature1">
+      <span class="badge pull-right">2</span>
+        <span class="glyphicon
+      glyphicon-remove-circle
+    "></span>
+Web API Functionality
+    </div>
+        <div class="panel-collapse collapse" id="feature1">
+      <div class="panel-body">
+        <div class="row">
+        <div class="col-md-2">
+        <ul class="nav nav-pills nav-stacked" role="tablist">
+          <li class="active"><a href="#description-tab-1" role="tab" data-toggle="tab">Description</a></li>                    <li ><a href="#scenario-tab-1" role="tab" data-toggle="tab">Scenarios</a></li>
+        </ul>
+        </div>
+        <div class="col-md-10">
+        <div class="tab-content">
+                    <div class="tab-pane active" id="description-tab-1">
+            <p><br />
+As a tester<br />
+I want to make sure this test suite is up and running<br />
+So that I can automate continuous integration and regression tests using it</p>
+          </div>
+                              <div class="tab-pane " id="scenario-tab-1">
+                                    <div class="panel           panel-danger
+    ">
+              <div class="panel-heading" data-toggle="collapse" data-target="#scenario-1-1">
+                  <span class="glyphicon
+      glyphicon-remove-circle
+    "></span>
+
+                <b>Scenario:</b> Fill out a form
+                <span class="badge pull-right">6</span>
+              </div>
+              <div class="panel-collapse collapse" id="scenario-1-1">
+                <div class="panel-body">
+                  <ul class="list-group">
+                                       <li class="list-group-item list-group-item-danger">
+                         <span class="glyphicon
+      glyphicon-remove-circle
+    "></span>
+
+                       Given I am on &quot;http://www.html5rocks.com/en/tutorials/forms/html5forms/input-types.html&quot;
+                                            </li>
+                                       <li class="list-group-item disabled">
+                         <span class="glyphicon
+      glyphicon-ban-circle
+    "></span>
+
+                       Then I should see &quot;Before you may cross the bridge, you must answer these questions!&quot;
+                                            </li>
+                                       <li class="list-group-item disabled">
+                         <span class="glyphicon
+      glyphicon-ban-circle
+    "></span>
+
+                       When I fill in the following:
+                                                                                               <div class="panel panel-default stepargument"><div class="panel-body">
+                        <table class="table table-condensed">
+                                                    <tr>
+                                                          <th>                              first_last
+                              </th>                                                          <th>                              Bruce Wayne
+                              </th>                                                      </tr>
+                                                    <tr>
+                                                          <td>                              email_addr
+                              </td>                                                          <td>                              bruce@wayneenterprises.com
+                              </td>                                                      </tr>
+                                                    <tr>
+                                                          <td>                              email_addr_confirm
+                              </td>                                                          <td>                              bruce@wayneenterprises.com
+                              </td>                                                      </tr>
+                                                    <tr>
+                                                          <td>                              fav_website
+                              </td>                                                          <td>                              http://whoisbatman.com
+                              </td>                                                      </tr>
+                                                    <tr>
+                                                          <td>                              fav_pizza
+                              </td>                                                          <td>                              555-111-1234
+                              </td>                                                      </tr>
+                                                    <tr>
+                                                          <td>                              dob
+                              </td>                                                          <td>                              02191915
+                              </td>                                                      </tr>
+                                                    <tr>
+                                                          <td>                              age
+                              </td>                                                          <td>                              51
+                              </td>                                                      </tr>
+                                                    <tr>
+                                                          <td>                              chocolate
+                              </td>                                                          <td>                              Dark Chocolate with Almonds
+                              </td>                                                      </tr>
+                                                    <tr>
+                                                          <td>                              part_number
+                              </td>                                                          <td>                              XXX9999XX
+                              </td>                                                      </tr>
+                                                 </table>
+                       </div></div>
+                                                                 </li>
+                                       <li class="list-group-item disabled">
+                         <span class="glyphicon
+      glyphicon-ban-circle
+    "></span>
+
+                       And I wait for 3 seconds
+                                            </li>
+                                       <li class="list-group-item disabled">
+                         <span class="glyphicon
+      glyphicon-ban-circle
+    "></span>
+
+                       Then I should be on &quot;http://www.html5rocks.com/en/tutorials/forms/html5forms/input-types.html&quot;
+                                            </li>
+                                       <li class="list-group-item disabled">
+                         <span class="glyphicon
+      glyphicon-ban-circle
+    "></span>
+
+                       And I should see &quot;Before you may cross the bridge, you must answer these questions!&quot;
+                                            </li>
+                                    </ul>
+                                  </div>
+              </div>
+            </div>
+                        <div class="panel           panel-danger
+    ">
+              <div class="panel-heading" data-toggle="collapse" data-target="#scenario-2-1">
+                  <span class="glyphicon
+      glyphicon-remove-circle
+    "></span>
+
+                <b>Scenario:</b> Fill out a form
+                <span class="badge pull-right">14</span>
+              </div>
+              <div class="panel-collapse collapse" id="scenario-2-1">
+                <div class="panel-body">
+                  <ul class="list-group">
+                                       <li class="list-group-item list-group-item-danger">
+                         <span class="glyphicon
+      glyphicon-remove-circle
+    "></span>
+
+                       Given I am on &quot;http://www.html5rocks.com/en/tutorials/forms/html5forms/input-types.html&quot;
+                                            </li>
+                                       <li class="list-group-item disabled">
+                         <span class="glyphicon
+      glyphicon-ban-circle
+    "></span>
+
+                       Then I should see &quot;Before you may cross the bridge, you must answer these questions!&quot;
+                                            </li>
+                                       <li class="list-group-item disabled">
+                         <span class="glyphicon
+      glyphicon-ban-circle
+    "></span>
+
+                       When I fill in &quot;first_last&quot; with &quot;Bruce Wayne&quot;
+                                            </li>
+                                       <li class="list-group-item disabled">
+                         <span class="glyphicon
+      glyphicon-ban-circle
+    "></span>
+
+                       And I fill in &quot;email_addr&quot; with &quot;bruce@wayneenterprises.com&quot;
+                                            </li>
+                                       <li class="list-group-item disabled">
+                         <span class="glyphicon
+      glyphicon-ban-circle
+    "></span>
+
+                       And I fill in &quot;email_addr_confirm&quot; with &quot;bruce@wayneenterprises.com&quot;
+                                            </li>
+                                       <li class="list-group-item disabled">
+                         <span class="glyphicon
+      glyphicon-ban-circle
+    "></span>
+
+                       And I fill in &quot;fav_website&quot; with &quot;http://whoisbatman.com&quot;
+                                            </li>
+                                       <li class="list-group-item disabled">
+                         <span class="glyphicon
+      glyphicon-ban-circle
+    "></span>
+
+                       And I fill in &quot;fav_pizza&quot; with &quot;555-111-1234&quot;
+                                            </li>
+                                       <li class="list-group-item disabled">
+                         <span class="glyphicon
+      glyphicon-ban-circle
+    "></span>
+
+                       And I fill in &quot;dob&quot; with &quot;02191915&quot;
+                                            </li>
+                                       <li class="list-group-item disabled">
+                         <span class="glyphicon
+      glyphicon-ban-circle
+    "></span>
+
+                       And I fill in &quot;age&quot; with &quot;51&quot;
+                                            </li>
+                                       <li class="list-group-item disabled">
+                         <span class="glyphicon
+      glyphicon-ban-circle
+    "></span>
+
+                       And I fill in &quot;chocolate&quot; with &quot;Dark Chocolate with Almonds&quot;
+                                            </li>
+                                       <li class="list-group-item disabled">
+                         <span class="glyphicon
+      glyphicon-ban-circle
+    "></span>
+
+                       And I fill in &quot;part_number&quot; with &quot;XXX9999XX&quot;
+                                            </li>
+                                       <li class="list-group-item disabled">
+                         <span class="glyphicon
+      glyphicon-ban-circle
+    "></span>
+
+                       And I wait for 2 seconds
+                                            </li>
+                                       <li class="list-group-item disabled">
+                         <span class="glyphicon
+      glyphicon-ban-circle
+    "></span>
+
+                       Then I should be on &quot;http://www.html5rocks.com/en/tutorials/forms/html5forms/input-types.html&quot;
+                                            </li>
+                                       <li class="list-group-item disabled">
+                         <span class="glyphicon
+      glyphicon-ban-circle
+    "></span>
+
+                       And I should see &quot;Before you may cross the bridge, you must answer these questions!&quot;
+                                            </li>
+                                    </ul>
+                                  </div>
+              </div>
+            </div>
+                                  </div>
+        </div>
+        </div>
+        </div>
+
+        
+      </div>
+    </div>
+      </div>
+<h1 class="page-header">Statistics</h1>
+
+<h3 class="page-header">Scenarios</h3>
+<div class="progress">
+  <div class="progress-bar progress-bar-success" style="width: 0%">0 passed</div>
+  <div class="progress-bar progress-bar-warning" style="width: 0%">0 pending</div>
+  <div class="progress-bar progress-bar-danger" style="width: 100%">2 failed</div>
+  <div class="progress-bar progress-bar-info" style="width: 0%">0 skipped</div>
+</div>
+<h3 class="page-header">Steps</h3>
+<div class="progress">
+  <div class="progress-bar progress-bar-success" style="width: 0%">0 passed</div>
+  <div class="progress-bar progress-bar-warning" style="width: 0%">0 pending</div>
+  <div class="progress-bar progress-bar-danger" style="width: 10%">2 failed</div>
+  <div class="progress-bar progress-bar-info" style="width: 90%">18 skipped</div>
+</div>
+</div>
+</body>
+</html>
