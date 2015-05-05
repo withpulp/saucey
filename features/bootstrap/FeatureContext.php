@@ -1,9 +1,10 @@
 <?php
-use Behat\Behat\Tester\Exception\PendingException;
-use Behat\Behat\Context\Context;
-use Behat\Behat\Context\SnippetAcceptingContext;
-use Behat\Testwork\Hook\Scope\BeforeSuiteScope;
-use Behat\Behat\Hook\Scope\AfterScenarioScope;
+
+use Behat\Behat\Tester\Exception\PendingException,
+    Behat\Behat\Context\Context,
+    Behat\Behat\Context\SnippetAcceptingContext,
+    Behat\Testwork\Hook\Scope\BeforeSuiteScope,
+    Behat\Behat\Hook\Scope\AfterScenarioScope;
 
 /**
  * Class FeatureContext
@@ -18,7 +19,12 @@ class FeatureContext implements Context, SnippetAcceptingContext
      */
     public function __construct()
     {
-        //todo
+
+    }
+
+    public static function getAcceptedSnippetType()
+    {
+        return 'regex';
     }
 
     /**
@@ -26,8 +32,6 @@ class FeatureContext implements Context, SnippetAcceptingContext
      */
     public static function prepare(BeforeSuiteScope $scope)
     {
-        // prepare system for test suite
-        // before it runs
     }
 
     /**
@@ -38,25 +42,5 @@ class FeatureContext implements Context, SnippetAcceptingContext
 
     }
 
-    /**
-     * @BeforeFeature
-     */
-    public static function setupFeature(FeatureEvent $event)
-    {
-
-    }
-
-    /**
-     * @AfterFeature
-     */
-    public static function teardownFeature(FeatureEvent $event)
-    {
-
-    }
-
-    # TODO:
-    // 1. Connect to its own Jenkins CI instance
-    // 2. Dockerize with Robo
-    // 3. Further abstract XY Context in to reusable functions in XYContext
 
 }

@@ -449,6 +449,9 @@ class RoboFile extends \Robo\Tasks
 
     # ADCADE TASKS
 
+    /**
+     * Tests against campaign: tor_fragrance_2015
+     */
     public function adcadeTORAPR15()
     {
         // Tests Metrics by testing the app locally and verifying metrics locally
@@ -507,6 +510,9 @@ class RoboFile extends \Robo\Tasks
 
     }
 
+    /**
+     * Tests against ADSCR-726, tnbr_pushdown_marquee
+     */
     public function adcadeADSCR726()
     {
         // Tests Metrics by testing the app locally and verifying metrics locally
@@ -521,11 +527,89 @@ class RoboFile extends \Robo\Tasks
             ->run();
     }
 
+    /**
+     * Runs ADSCR-726 suite +10,000 times
+     */
     public function adcadeADSCR726Overdose()
     {
         // Runs overdose.sh for ADSCR_726
         $this->taskExec('sh ./features/adcade/ADSCR_726/Run.sh')
             ->printed(true)
+            ->run();
+    }
+
+    /**
+     * Tests HelpCenter against local browsers
+     */
+    public function adcadeHelpCenterLocal()
+    {
+        // Tests HelpCenter Locally
+        $this->taskExec('./bin/behat --suite=help_center')
+            ->printed(true)
+            ->run();
+
+        // Moves Report
+        $this->taskExec('php ./features/adcade/Help_Center/Reporting.php')
+            ->run();
+    }
+
+    /**
+     * Tests HelpCenter against SauceLabs browsers and environments
+     */
+    public function adcadeHelpCenterCloud()
+    {
+        // Tests HelpCenter against Mac, Chrome
+        $this->taskExec('./bin/behat --suite=help_center -p sauce_mac_chrome')
+            ->printed(true)
+            ->run();
+
+        // Moves Report
+        $this->taskExec('php ./features/adcade/Help_Center/Reporting.php')
+            ->run();
+
+        // Tests HelpCenter against Mac, Safari
+        $this->taskExec('./bin/behat --suite=help_center -p sauce_mac_safari')
+            ->printed(true)
+            ->run();
+
+        // Moves Report
+        $this->taskExec('php ./features/adcade/Help_Center/Reporting.php')
+            ->run();
+
+        // Tests HelpCenter against Windows, IE9
+        $this->taskExec('./bin/behat --suite=help_center -p sauce_windows_ie9')
+            ->printed(true)
+            ->run();
+
+        // Moves Report
+        $this->taskExec('php ./features/adcade/Help_Center/Reporting.php')
+            ->run();
+
+        // Tests HelpCenter against Windows, Firefox
+        $this->taskExec('./bin/behat --suite=help_center -p sauce_windows_firefox')
+            ->printed(true)
+            ->run();
+
+        // Moves Report
+        $this->taskExec('php ./features/adcade/Help_Center/Reporting.php')
+            ->run();
+
+        // Tests HelpCenter against iOS, Safari, Landscape
+        $this->taskExec('./bin/behat --suite=help_center -p sauce_ios_tablet_landscape')
+            ->printed(true)
+            ->run();
+
+        // Moves Report
+        $this->taskExec('php ./features/adcade/Help_Center/Reporting.php')
+            ->run();
+
+        // Tests HelpCenter against Android, Native, Landscape
+        $this->taskExec('./bin/behat --suite=help_center -p sauce_android_tablet_landscape')
+            ->printed(true)
+            ->run();
+
+        // Moves Report
+        $this->taskExec('php ./features/adcade/Help_Center/Reporting.php')
             ->run();
     }
 
