@@ -98,8 +98,6 @@ class HelpCenterContext extends MinkContext implements Context, SnippetAccepting
         $this->assertSession()->pageTextContains('Epoch');
         $this->assertSession()->pageTextContains('AdScript API');
         $this->assertSession()->pageTextContains('Downloads');
-        $this->assertSession()->pageTextContains('Resources');
-        $this->assertSession()->pageTextContains('Sign Out');
 
     }
 

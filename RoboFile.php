@@ -507,7 +507,6 @@ class RoboFile extends \Robo\Tasks
         $this->taskExec('./bin/behat --tags "@TOR_Fragrance_1032x1100_Tablet" -p sauce_android_tablet')
             ->printed(true)
             ->run();
-
     }
 
     /**
