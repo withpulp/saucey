@@ -452,7 +452,7 @@ class RoboFile extends \Robo\Tasks
     /**
      * Tests against campaign: tor_fragrance_2015
      */
-    public function adcadeTORAPR15()
+    public function adcadeCampaign()
     {
         // Tests Metrics by testing the app locally and verifying metrics locally
         $this->taskParallelExec()
