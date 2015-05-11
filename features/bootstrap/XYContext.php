@@ -1,14 +1,17 @@
 <?php
+
+use Behat\Gherkin\Node\PyStringNode,
+    Behat\Gherkin\Node\TableNode,
+    Behat\MinkExtension\Context\MinkContext,
+    Behat\MinkExtension\Context\MinkAwareContext,
+    Behat\Behat\Context\Step,
+    Behat\Behat\Context\Context,
+    Behat\Behat\Context\SnippetAcceptingContext,
+    Behat\Behat\Hook\Scope\BeforeScenarioScope,
+    Behat\Testwork\Hook\Scope\BeforeSuiteScope,
+    Behat\Behat\Hook\Scope\AfterScenarioScope;
+
 use Symfony\Component\Finder\Finder;
-
-use Behat\Behat\Tester\Exception\PendingException;
-use Behat\Behat\Context\Context;
-use Behat\Behat\Context\SnippetAcceptingContext;
-
-use Behat\Gherkin\Node\PyStringNode;
-use Behat\Gherkin\Node\TableNode;
-use Behat\MinkExtension\Context\MinkContext;
-use Behat\Behat\Context\Step;
 
 /**
 * Defines application features from the this kick-ass context.

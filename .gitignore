@@ -34,3 +34,4 @@ sauce_connect.log
 *.ipr
 *.iws
 out/
+var/tasks/
