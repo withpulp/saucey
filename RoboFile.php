@@ -105,11 +105,22 @@ class RoboFile extends \Robo\Tasks
     /**
      * Starts Selenium for mac in foreground, at default http://localhost:4444/wd/hub/static/resource/hub.html
      */
-    public function selenium()
+    public function seleniumStart()
     {
-        //Starts Selenium for mac
+        //Starts Selenium
         $this->taskExec('sh ./run/start_selenium.sh')
             ->arg('mac')
+            ->run();
+    }
+
+    /**
+     * Kills Selenium at default http://localhost:4444/wd/hub/static/resource/hub.html
+     */
+    public function seleniumKill()
+    {
+        //Kills Selenium
+        $this->taskExec("open http://localhost:4444/selenium-server/driver/?cmd=shutDownSeleniumServer")
+            ->background()
             ->run();
     }
 
@@ -127,44 +138,50 @@ class RoboFile extends \Robo\Tasks
 
 
     /**
-     * Asks and obtains $project, $feature, and $shortName. Copies over required scripts, makes directories and touches files
+     * Asks for and obtains $folder, $project, $feature, and $shortName. Makes directories, copies and touches files.
      *
+     * @internal param string $folder
      * @internal param string $project
      * @internal param string $feature
      * @internal param string $robo
      */
-    public function sauce()
+    public function sauceyBundle()
     {
+        /**
+         * @var string $folder
+         */
+        $folder = $this->ask("Which folder will this test(s) reside in? [string]");
         /**
          * @var string $project
          */
-        $project = $this->ask("What is the name of the folder in which this test will reside? [string]");
+        $project = $this->ask("What is the name of the project? [string]");
         /**
          * @var string $feature
          */
         $feature = $this->ask("What is the name of the feature file? [string]");
         /**
-         * @var string $robo
+         * @var string $shortName
          */
-        $robo = $this->ask("What is the short-name for this test suite? (i.e. ticket123, adJan15) [string]");
+        $shortName = $this->ask("What is the short name for your robo function? [string]");
 
         //Makes directories in feature/ and touches feature file
         $this->taskFileSystemStack()
-            ->mkdir("./features/{$project}")
-            ->mkdir("./reports/{$feature}")
-            ->touch("./features/{$project}/{$feature}.feature")
+            ->mkdir("./features/{$folder}")
+            ->mkdir("./features/{$folder}/{$project}")
+            ->mkdir("./reports/{$folder}/{$project}")
+            ->touch("./features/{$folder}/{$project}/{$feature}.feature")
             ->run();
 
-        //Copies over reporting script
-        $this->taskExec("cp ./config/Reporting.php ./features/{$project}/{$feature}/")
+        //Copies over Reporting/Run scripts
+        $this->taskExec("sleep 10 && cp -R ./config/ ./features/{$folder}/{$project}/")
             ->run();
 
-        //Copies over overdose script
-        $this->taskExec("cp ./config/Run.sh ./features/{$project}/{$feature}/")
+        //Removes Services
+        $this->taskExec("rm -rf ./features/{$folder}/{$project}/service.json")
             ->run();
 
         //Replaces items in Reporting.php
-        $this->taskReplaceInFile("./features/{$project}/{$feature}/Reporting.php")
+        $this->taskReplaceInFile("./features/{$folder}/{$project}/Reporting.php")
             ->from('project')
             ->to($project)
             ->from('feature')
@@ -172,25 +189,30 @@ class RoboFile extends \Robo\Tasks
             ->run();
 
         //Replaces items in Run.sh
-        $this->taskReplaceInFile("./features/{$project}/{$feature}/Run.sh")
+        $this->taskReplaceInFile("./features/{$folder}/{$project}/Run.sh")
             ->from('function')
-            ->to($robo)
+            ->to($shortName)
             ->run();
     }
 
     /**
-     * Asks and obtains $project, $feature, and $number to update the Run.sh in feature directory,
+     * Asks for and obtains $project, $feature, and $number to update the Run.sh in feature directory. INIT, initializes script. RUN, runs script.
+     *
+     * @internal param string $folder
+     * @internal param string $project
+     * @internal param string $feature
+     * @internal param string $number
      */
-    public function overdose()
+    public function sauceyOverdose()
     {
         $action = $this->ask("Would you like to init or run overdose? You have to init before running! [init | run]");
+        $folder = $this->ask("Which folder does the test live in? [string]");
         $project = $this->ask("Which project? [string]");
-        $feature = $this->ask("Which feature? [string]");
         $number = $this->ask("How many times do you want to run this test? [int]");
 
         if ($action == 'init') {
             //Replaces number value in Run.sh
-            $this->taskReplaceInFile("./features/{$project}/{$feature}/Run.sh")
+            $this->taskReplaceInFile("./features/{$folder}/{$project}/Run.sh")
                 ->from('((n=0;n<1;n++))')
                 ->to("((n=0;n<{$number};n++))")
                 ->run();
@@ -199,7 +221,7 @@ class RoboFile extends \Robo\Tasks
             $confirm = $this->ask("Are you sure you want to run your suite {$number} times? [y | n]");
             if ($confirm == 'y') {
                 //Confirm then run
-                $this->taskExec("sh ./features/{$project}/{$feature}/Run.sh")
+                $this->taskExec("sh ./features/{$folder}/{$project}/Run.sh")
                     ->run();
             }
             if ($confirm == 'n') {
@@ -211,9 +233,13 @@ class RoboFile extends \Robo\Tasks
         }
     }
 
-
     /**
-     * Asks and obtains $project, $feature, $browser and $isMetrics status to run Behat, report, Weinre and
+     * Asks and obtains $project, $feature, $browser and $isMetrics status to run Behat, Reporting, Weinre, Selenium and PhantomJS
+     *
+     * @internal param string $folder
+     * @internal param string $project
+     * @internal param string $feature
+     * @internal param string $isMetrics
      */
     public function tipsyTest()
     {
@@ -222,32 +248,35 @@ class RoboFile extends \Robo\Tasks
         $browser = $this->ask("Which browser is this to be test this in? [string]");
         $isMetrics = $this->ask("Is metrics testing involved? [y | n]");
 
+        //Starts PhantomJS
+        $this->taskExec("/usr/local/bin/phantomjs --webdriver=8643")
+            ->background()
+            ->run();
 
-        //Start server in background
-        $this->taskServer(9987)
-            ->dir('./apps/get.saucey.io')
-            ->host('127.0.0.1')
+        //Starts Selenium
+        $this->taskExec("sh ./run/start_selenium.sh mac")
             ->background()
             ->run();
 
         //Starts drivers, tests in parallel
         if ($isMetrics == 'y') {
             $metrics = $this->ask("What is the '@tag' for metrics? [string]");
+            $host = $this->ask("What host? [string]");
+            $port = $this->ask("What port? [string]");
 
-            //Starts Phantom
-            $this->taskExec('')
+            //Starts Winery
+            $this->taskExec("weinre --verbose true --debug true --boundHost {$host} --httpPort {$port}")
                 ->background()
                 ->run();
 
             //Starts tests in parallel
             $this->taskParallelExec()
-                //->process('sh ./run/start_selenium.sh mac')
-                ->process("./run/saucey.sh tipsy '{$metrics} chrome'")
-                ->process("./run/saucey.sh tipsy '{$feature} {$browser}'")
+                ->process("sh ./run/saucey.sh tipsy '{$metrics} chrome'")
+                ->process("sh ./run/saucey.sh tipsy '{$feature} {$browser}'")
                 ->idleTimeout(10)
                 ->run();
 
-            $this->taskExec("curl -X GET 'http://localhost:4444/selenium-server/driver/?cmd=shutDownSeleniumServer'")
+            $this->taskExec("open http://localhost:4444/selenium-server/driver/?cmd=shutDownSeleniumServer")
                 ->background()
                 ->run();
 
@@ -265,11 +294,11 @@ class RoboFile extends \Robo\Tasks
         if ($isMetrics == 'n') {
             $this->taskParallelExec()
                 //->process('sh ./run/start_selenium.sh mac')
-                ->process("./run/saucey.sh tipsy '{$feature} {$browser}'")
+                ->process("sh ./run/saucey.sh tipsy '{$feature} {$browser}'")
                 ->idleTimeout(10)
                 ->run();
 
-            $this->taskExec("curl -X GET 'http://localhost:4444/selenium-server/driver/?cmd=shutDownSeleniumServer'")
+            $this->taskExec("open http://localhost:4444/selenium-server/driver/?cmd=shutDownSeleniumServer")
                 ->background()
                 ->run();
 
@@ -282,10 +311,47 @@ class RoboFile extends \Robo\Tasks
                 ->background()
                 ->idleTimeout(10)
                 ->run();
-
         }
     }
 
+    /**
+     * Asks and obtains $project, $feature, $env and $browser to run Behat, Reporting and SauceLabs
+     *
+     * @internal param string $folder
+     * @internal param string $project
+     * @internal param string $env
+     * @internal param string $browser
+     */
+    public function drunkTest()
+    {
+        $project = $this->ask("What is the name of the parent folder in which this test resides? [string]");
+        $feature = $this->ask("What is the '@tag' for feature? [string -- without '@']");
+        $env = $this->ask("What environment is this to be test this on? [string]");
+        $browser = $this->ask("Which browser is this to be test this in? [string]");
+
+        //Starts tests in parallel
+        $this->taskParallelExec()
+            ->process("sh ./run/saucey.sh drunk '{$feature} {$env} {$browser}'")
+            ->idleTimeout(10)
+            ->run();
+
+        $this->taskExec("mv ./reports/saucey_report.html ./reports/{$project}/{$feature}.html")
+            ->background()
+            ->idleTimeout(10)
+            ->run();
+
+        $this->taskExec("php ./feature/{$project}/{$feature}/Reporting.php")
+            ->background()
+            ->idleTimeout(10)
+            ->run();
+    }
+
+    /**
+     * Connects instance of sauce_connect to SauceLabs API, requires api_key and username
+     *
+     * @internal param string $un
+     * @internal param string $key
+     */
     public function sauceyConnect()
     {
         $un = $this->ask("What is your username?");
@@ -308,7 +374,12 @@ class RoboFile extends \Robo\Tasks
             ->run();
     }
 
-
+    /**
+     * Starts a Sauce Tunnel, allowing testing on the local host against hosted selenium, with all SauceLabs functions
+     *
+     * @internal param string $un
+     * @internal param string $key
+     */
     public function sauceyTunnel()
     {
         $un = $this->ask("What is your username?");
@@ -320,35 +391,12 @@ class RoboFile extends \Robo\Tasks
             ->run();
     }
 
-    public function sauceyTipsy($browser)
-    {
-        //Starts Selenium for mac in background, with default to Firefox, can use Chrome & Safari with '-p local_chrome' and '-p local_safari' respectively
-        $this->taskExec('sh ./run/start_selenium.sh mac')
-            ->background()
-            ->run();
-
-        //Starts behat with $tags $browser
-        $this->taskExec('sh ./run/saucey.sh tipsy')
-            ->args($browser)
-            ->run();
-
-        //Opens reports/saucey_report.html
-        $this->taskExec('open ./reports/saucey_report.html')
-            ->run();
-    }
-
-    public function sauceyDrunk($environment)
-    {
-        //Starts behat with $tags $browser
-        $this->taskExec('sh ./run/saucey.sh drunk')
-            ->args($environment)
-            ->run();
-
-        //Opens reports/saucey_report.html
-        $this->taskExec('open ./reports/saucey_report.html')
-            ->run();
-    }
-
+    /**
+     * For saucey developers, push and pull from framework GitHub with this task command
+     *
+     * @internal param string $un
+     * @internal param string $key
+     */
     public function sauceyShove($msg)
     {
         //Copy over development yaml
@@ -370,9 +418,41 @@ class RoboFile extends \Robo\Tasks
             ->push('origin', 'develop')
             ->run();
 
+        //Pull from remotes for saucey/framework
+        $this->taskGitStack()
+            ->dir('./vendor/saucey/framework/')
+            ->pull('origin', 'master')
+            ->run();
+
+        //Push to remotes for saucey/framework
+        $this->taskGitStack()
+            ->dir('./vendor/saucey/framework/')
+            ->add('-A')
+            ->commit($msg)
+            ->push('origin', 'master')
+            ->run();
+
+        //Pull from remotes for saucey/wiki
+        $this->taskGitStack()
+            ->dir('./docs/saucey.wiki/')
+            ->pull('origin', 'master')
+            ->run();
+
+        //Push to remotes for saucey/wiki
+        $this->taskGitStack()
+            ->dir('./docs/saucey.wiki/')
+            ->add('-A')
+            ->commit($msg)
+            ->push('origin', 'master')
+            ->run();
     }
 
-    public function adcadeTORAPR15()
+    # ADCADE TASKS
+
+    /**
+     * Tests against campaign: tor_fragrance_2015
+     */
+    public function adcadeCampaign()
     {
         // Tests Metrics by testing the app locally and verifying metrics locally
         $this->taskParallelExec()
@@ -427,9 +507,11 @@ class RoboFile extends \Robo\Tasks
         $this->taskExec('./bin/behat --tags "@TOR_Fragrance_1032x1100_Tablet" -p sauce_android_tablet')
             ->printed(true)
             ->run();
-
     }
 
+    /**
+     * Tests against ADSCR-726, tnbr_pushdown_marquee
+     */
     public function adcadeADSCR726()
     {
         // Tests Metrics by testing the app locally and verifying metrics locally
@@ -440,15 +522,93 @@ class RoboFile extends \Robo\Tasks
             ->run();
 
         // Moves file over and renames with timestamp
-        $this->taskExec('php ./features/adcade/ADSCR_726/ModFile.php')
+        $this->taskExec('php ./features/adcade/ADSCR_726/Reporting.php')
             ->run();
     }
 
+    /**
+     * Runs ADSCR-726 suite +10,000 times
+     */
     public function adcadeADSCR726Overdose()
     {
         // Runs overdose.sh for ADSCR_726
-        $this->taskExec('sh ./features/adcade/ADSCR_726/Overdose.sh')
+        $this->taskExec('sh ./features/adcade/ADSCR_726/Run.sh')
             ->printed(true)
+            ->run();
+    }
+
+    /**
+     * Tests HelpCenter against local browsers
+     */
+    public function adcadeHelpCenterLocal()
+    {
+        // Tests HelpCenter Locally
+        $this->taskExec('./bin/behat --suite=help_center')
+            ->printed(true)
+            ->run();
+
+        // Moves Report
+        $this->taskExec('php ./features/adcade/Help_Center/Reporting.php')
+            ->run();
+    }
+
+    /**
+     * Tests HelpCenter against SauceLabs browsers and environments
+     */
+    public function adcadeHelpCenterCloud()
+    {
+        // Tests HelpCenter against Mac, Chrome
+        $this->taskExec('./bin/behat --suite=help_center -p sauce_mac_chrome')
+            ->printed(true)
+            ->run();
+
+        // Moves Report
+        $this->taskExec('php ./features/adcade/Help_Center/Reporting.php')
+            ->run();
+
+        // Tests HelpCenter against Mac, Safari
+        $this->taskExec('./bin/behat --suite=help_center -p sauce_mac_safari')
+            ->printed(true)
+            ->run();
+
+        // Moves Report
+        $this->taskExec('php ./features/adcade/Help_Center/Reporting.php')
+            ->run();
+
+        // Tests HelpCenter against Windows, IE9
+        $this->taskExec('./bin/behat --suite=help_center -p sauce_windows_ie9')
+            ->printed(true)
+            ->run();
+
+        // Moves Report
+        $this->taskExec('php ./features/adcade/Help_Center/Reporting.php')
+            ->run();
+
+        // Tests HelpCenter against Windows, Firefox
+        $this->taskExec('./bin/behat --suite=help_center -p sauce_windows_firefox')
+            ->printed(true)
+            ->run();
+
+        // Moves Report
+        $this->taskExec('php ./features/adcade/Help_Center/Reporting.php')
+            ->run();
+
+        // Tests HelpCenter against iOS, Safari, Landscape
+        $this->taskExec('./bin/behat --suite=help_center -p sauce_ios_tablet_landscape')
+            ->printed(true)
+            ->run();
+
+        // Moves Report
+        $this->taskExec('php ./features/adcade/Help_Center/Reporting.php')
+            ->run();
+
+        // Tests HelpCenter against Android, Native, Landscape
+        $this->taskExec('./bin/behat --suite=help_center -p sauce_android_tablet_landscape')
+            ->printed(true)
+            ->run();
+
+        // Moves Report
+        $this->taskExec('php ./features/adcade/Help_Center/Reporting.php')
             ->run();
     }
 

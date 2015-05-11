@@ -1,18 +1,22 @@
 <?php
-use Behat\Behat\Tester\Exception\PendingException;
-use Behat\Behat\Context\Context;
-use Behat\Behat\Context\SnippetAcceptingContext;
 
-use Behat\GuzzleExtension\Context\GuzzleContext;
-use GuzzleHttp\Client;
-use GuzzleHttp\ClientInterface;
-use GuzzleHttp\Message\ResponseInterface;
+use Behat\Gherkin\Node\PyStringNode,
+    Behat\Gherkin\Node\TableNode,
+    Behat\MinkExtension\Context\MinkContext,
+    Behat\MinkExtension\Context\MinkAwareContext,
+    Behat\Behat\Context\Step,
+    Behat\Behat\Context\Context,
+    Behat\Behat\Context\SnippetAcceptingContext,
+    Behat\Behat\Hook\Scope\BeforeScenarioScope,
+    Behat\Testwork\Hook\Scope\BeforeSuiteScope,
+    Behat\Behat\Hook\Scope\AfterScenarioScope;
 
-use Behat\Gherkin\Node\PyStringNode;
-use Behat\Gherkin\Node\TableNode;
-use Behat\Behat\Context\BehatContext;
-use Buzz\Message\Request;
-use Buzz\Browser;
+use Behat\GuzzleExtension\Context\GuzzleContext,
+    GuzzleHttp\Client,
+    GuzzleHttp\ClientInterface,
+    GuzzleHttp\Message\ResponseInterface,
+    Buzz\Message\Request,
+    Buzz\Browser;
 
 /**
 * Defines application features from the API context.
