@@ -72,6 +72,8 @@ class RoboFile extends \Robo\Tasks
         //Make directory for reports
         $this->taskFileSystemStack()
             ->mkdir('reports')
+            ->mkdir('screenshots')
+            ->mkdir('var/tasks')
             ->run();
 
         //View saucey introduction
