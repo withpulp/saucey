@@ -41,7 +41,9 @@
         "saucey/framework": "dev-master",
         "justinrainbow/json-schema": "~1.4",
         "symfony/property-access": "~2.3",
-        "behatch/contexts": "*"
+        "behatch/contexts": "*",
+        "laravel/homestead": "dev-master",
+        "laravel/lumen": "dev-master"
     },
 
     "minimum-stability": "dev",

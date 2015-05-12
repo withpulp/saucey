@@ -242,15 +242,11 @@ View real reports below:
 ##MOAR
 
 1. [Docet](https://github.com/withpulp/MouMe) - A documentation engine
-2. [t](http://stevelosh.com/projects/t/) - A task manager, literally to track tasks in `var/tasks/`
+2. [t](http://stevelosh.com/projects/t/) - A task manager, tracking tasks in `var/tasks/`
 		
-	Optionally, you can use this by running:
+You can use this by adding the below alias to `~/.bash_profile`:
 	
-		mkdir var/tasks/
-	
-	and...
-		
-		alias t='python ~/Sites/saucey/vendor/saucey/framework/var/t-task/t.py --task-dir ~/Sites/saucey/var/tasks --list tasks'
+	alias t='python ~/Sites/saucey/vendor/saucey/framework/var/tasks/t/t.py --task-dir ~/Sites/saucey/var/tasks --list tasks'
 
 #Caveats
 1. To use the `local_safari` profile, in other words to test against a local version of Safari, go to:

@@ -1,0 +1,114 @@
+# behat.yml
+default:
+    suites:
+#        example:
+#           paths: [ %paths.base%/features/ ]
+#           contexts:
+#             - WebContext
+#             - APIContext
+#             - ShellContext
+#             - FeatureContext:
+#                 baseUrl: http://example.com
+#             - XYContext
+#           filters:
+#               tags: @example
+        default:
+            paths: [ %paths.base%/features/ ]
+            contexts:
+
+    extensions:
+        Sanpi\Behatch\Extension: ~
+        chartinger\Behat\TwigReportExtension\Extension:
+          output:
+            file: ./reports/saucey_report.html
+          templates:
+            file: default.twig
+        Behat\MinkExtension:
+            base_url: 'http://html5doctor.com'
+            files_path: 'vendor'
+            javascript_session:  'selenium2'
+            goutte:              ~
+            selenium2:
+              wd_host: "http://localhost:4444/wd/hub"
+
+phantomjs:
+    extensions:
+        Behat\MinkExtension:
+            base_url: http://dev.local
+            goutte: ~
+            selenium2:
+              wd_host: "http://localhost:8643/wd/hub"
+
+local_:
+    extensions:
+        Behat\MinkExtension:
+            base_url: 'http://html5doctor.com'
+            goutte: ~
+            selenium2:
+              wd_host: "http://localhost:8643/wd/hub"
+
+local_firefox:
+    extensions:
+        Behat\MinkExtension:
+            javascript_session:  'selenium2'
+            goutte:              ~
+            selenium2:
+              browser: firefox
+              wd_host: "http://localhost:4444/"
+
+local_chrome:
+    extensions:
+        Behat\MinkExtension:
+            javascript_session:  'selenium2'
+            goutte:              ~
+            selenium2:
+              browser: chrome
+              wd_host: "http://localhost:4444/wd/hub"
+
+local_safari:
+    extensions:
+        Behat\MinkExtension:
+            javascript_session:  'selenium2'
+            goutte:              ~
+            selenium2:
+              browser: safari
+              wd_host: "http://localhost:4444/wd/hub"
+
+local_ie:
+    extensions:
+        Behat\MinkExtension:
+            javascript_session:  'selenium2'
+            goutte:              ~
+            selenium2:
+              browser: ie
+              wd_host: "http://localhost:4444/wd/hub"
+
+sauce_mac_chrome:
+    extensions:
+        Behat\MinkExtension:
+            javascript_session:  'selenium2'
+            goutte:              ~
+            selenium2:
+              browser: chrome
+              wd_host: username:api-key@ondemand.saucelabs.com/wd/hub
+              capabilities: {  "platform": "OS X 10.8", "version": "38", "name": "Mac OS X Chrome Regression Suite"}
+
+sauce_mac_firefox:
+    extensions:
+        Behat\MinkExtension:
+            javascript_session:  'selenium2'
+            goutte:              ~
+            selenium2:
+              browser: firefox
+              wd_host: username:api-key@ondemand.saucelabs.com/wd/hub
+              capabilities: {"platform": "OS X 10.9", "version": "33", "name": "Mac OS X Firefox Regression Suite"}
+
+sauce_mac_safari:
+    extensions:
+        Behat\MinkExtension:
+            javascript_session:  'selenium2'
+            goutte:              ~
+            selenium2:
+              browser: safari
+              wd_host: username:api-key@ondemand.saucelabs.com/wd/hub
+              capabilities: {"platform": "OS X 10.8", "version": "6", "name": "Mac OS X Safari Regression Suite"}

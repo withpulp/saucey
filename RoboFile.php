@@ -56,7 +56,7 @@ class RoboFile extends \Robo\Tasks
             ->run();
 
         //Copy over behat.yml.master.dist to root as behat.yml
-        $this->taskExec('cp -r ./vendor/saucey/framework/ymls/behat.yml.master.dist ./behat.yml')
+        $this->taskExec('cp -r ./vendor/saucey/framework/ymls/behat.yml.master.dist ./behat.yml.master.dist')
             ->run();
 
         //Copy over bin from vendor/saucey/framework
@@ -416,34 +416,6 @@ class RoboFile extends \Robo\Tasks
             ->add('-A')
             ->commit($msg)
             ->push('origin', 'develop')
-            ->run();
-
-        //Pull from remotes for saucey/framework
-        $this->taskGitStack()
-            ->dir('./vendor/saucey/framework/')
-            ->pull('origin', 'master')
-            ->run();
-
-        //Push to remotes for saucey/framework
-        $this->taskGitStack()
-            ->dir('./vendor/saucey/framework/')
-            ->add('-A')
-            ->commit($msg)
-            ->push('origin', 'master')
-            ->run();
-
-        //Pull from remotes for saucey/wiki
-        $this->taskGitStack()
-            ->dir('./docs/saucey.wiki/')
-            ->pull('origin', 'master')
-            ->run();
-
-        //Push to remotes for saucey/wiki
-        $this->taskGitStack()
-            ->dir('./docs/saucey.wiki/')
-            ->add('-A')
-            ->commit($msg)
-            ->push('origin', 'master')
             ->run();
     }
 
