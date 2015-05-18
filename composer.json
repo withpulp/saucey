@@ -1,6 +1,6 @@
 {
   "name": "saucey",
-  "type": "behat-mink-selenium-guzzle-phantomJS-robo",
+  "type": "library",
   "license": "MIT",
   "description": "An Automation framework written in mainly PHP, using Behat and Mink. Designed to kick-ass and take names.",
   "keywords": [

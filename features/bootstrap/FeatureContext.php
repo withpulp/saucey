@@ -4,12 +4,13 @@ use Behat\Behat\Tester\Exception\PendingException,
     Behat\Behat\Context\Context,
     Behat\Behat\Context\SnippetAcceptingContext,
     Behat\Testwork\Hook\Scope\BeforeSuiteScope,
+    Behat\MinkExtension\Context\MinkContext,
     Behat\Behat\Hook\Scope\AfterScenarioScope;
 
 /**
  * Class FeatureContext
  */
-class FeatureContext implements Context, SnippetAcceptingContext
+class FeatureContext extends MinkContext implements Context, SnippetAcceptingContext
 {
     /*FEATURE CONTEXT*/
     /**
