@@ -16,21 +16,19 @@ class RoboFile extends \Robo\Tasks
     function info()
     {
         //Cat run/saucey.txt
-        $this->taskExec('cat ./run/saucey.txt')
+        $this->taskExec('cat ./bin/saucey.txt')
             ->run();
     }
 
     /**
      * Starts apps/get.saucey.io in foreground at http://127.0.0.1:9987, kill with 'Control + C'
-     *
-     * @param string $app Directory from apps/ to serve
      */
-    public function serve($app)
+    public function serve()
     {
-        //Serve app/$app
-        $this->taskServer(9987)
+        //Serve .
+        $this->taskServer(8000)
             ->host('127.0.0.1')
-            ->dir("./apps/{$app}")
+            ->dir(".")
             ->run();
     }
 
@@ -56,7 +54,7 @@ class RoboFile extends \Robo\Tasks
             ->run();
 
         //Copy over behat.yml.master.dist to root as behat.yml
-        $this->taskExec('cp -r ./vendor/saucey/framework/ymls/behat.yml.master.dist ./behat.yml')
+        $this->taskExec('cp -r ./vendor/saucey/framework/ymls/behat.yml.master.dist ./behat.yml.master.dist')
             ->run();
 
         //Copy over bin from vendor/saucey/framework
@@ -72,10 +70,12 @@ class RoboFile extends \Robo\Tasks
         //Make directory for reports
         $this->taskFileSystemStack()
             ->mkdir('reports')
+            ->mkdir('screenshots')
+            ->mkdir('var/tasks')
             ->run();
 
         //View saucey introduction
-        $this->taskExec('cat ./run/saucey.txt')
+        $this->taskExec('cat ./bin/saucey.txt')
             ->run();
     }
 
@@ -108,7 +108,7 @@ class RoboFile extends \Robo\Tasks
     public function seleniumStart()
     {
         //Starts Selenium
-        $this->taskExec('sh ./run/start_selenium.sh')
+        $this->taskExec('sh ./bin/start_selenium.sh')
             ->arg('mac')
             ->run();
     }
@@ -416,34 +416,6 @@ class RoboFile extends \Robo\Tasks
             ->add('-A')
             ->commit($msg)
             ->push('origin', 'develop')
-            ->run();
-
-        //Pull from remotes for saucey/framework
-        $this->taskGitStack()
-            ->dir('./vendor/saucey/framework/')
-            ->pull('origin', 'master')
-            ->run();
-
-        //Push to remotes for saucey/framework
-        $this->taskGitStack()
-            ->dir('./vendor/saucey/framework/')
-            ->add('-A')
-            ->commit($msg)
-            ->push('origin', 'master')
-            ->run();
-
-        //Pull from remotes for saucey/wiki
-        $this->taskGitStack()
-            ->dir('./docs/saucey.wiki/')
-            ->pull('origin', 'master')
-            ->run();
-
-        //Push to remotes for saucey/wiki
-        $this->taskGitStack()
-            ->dir('./docs/saucey.wiki/')
-            ->add('-A')
-            ->commit($msg)
-            ->push('origin', 'master')
             ->run();
     }
 

@@ -1,6 +1,6 @@
 {
   "name": "saucey",
-  "type": "behat-mink-selenium-guzzle-phantomJS-robo",
+  "type": "library",
   "license": "MIT",
   "description": "An Automation framework written in mainly PHP, using Behat and Mink. Designed to kick-ass and take names.",
   "keywords": [
@@ -41,7 +41,9 @@
         "saucey/framework": "dev-master",
         "justinrainbow/json-schema": "~1.4",
         "symfony/property-access": "~2.3",
-        "behatch/contexts": "*"
+        "behatch/contexts": "*",
+        "laravel/homestead": "dev-master",
+        "laravel/lumen": "dev-master"
     },
 
     "minimum-stability": "dev",

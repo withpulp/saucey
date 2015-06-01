@@ -1,0 +1,236 @@
+# behat.yml
+default:
+    suites:
+#        example:
+#           paths: [ %paths.base%/features/ ]
+#           contexts:
+#             - WebContext
+#             - APIContext
+#             - ShellContext
+#             - FeatureContext:
+#                 baseUrl: http://example.com
+#             - XYContext
+#           filters:
+#               tags: @example
+        default:
+            paths: [ %paths.base%/features/ ]
+            contexts:
+              - APIContext:
+                  apiUrl: 'http://jsonplaceholder.typicode.com'
+              - ShellContext:
+                  basePath: .
+              - WebContext:
+                  webUrl: http://html5doctor.com
+              - XYContext:
+                  aut: 'http://localhost:8000/index.php'
+        help_center:
+            paths: [ %paths.base%/features/adcade/Help_Center/ ]
+            contexts:
+              - HelpCenterContext
+    extensions:
+        Sanpi\Behatch\Extension: ~
+        chartinger\Behat\TwigReportExtension\Extension:
+          output:
+            file: ./reports/saucey_report.html
+          templates:
+            file: default.twig
+        Behat\MinkExtension:
+            base_url: 'http://html5doctor.com'
+            files_path: 'vendor'
+            javascript_session:  'selenium2'
+            goutte:              ~
+            selenium2:
+              wd_host: "http://localhost:4444/wd/hub"
+
+phantomjs:
+    extensions:
+        Behat\MinkExtension:
+            base_url: http://dev.local
+            goutte: ~
+            selenium2:
+              wd_host: "http://localhost:8643/wd/hub"
+
+local_:
+    extensions:
+        Behat\MinkExtension:
+            base_url: 'http://html5doctor.com'
+            goutte: ~
+            selenium2:
+              wd_host: "http://localhost:8643/wd/hub"
+
+local_firefox:
+    extensions:
+        Behat\MinkExtension:
+            javascript_session:  'selenium2'
+            goutte:              ~
+            selenium2:
+              browser: firefox
+              wd_host: "http://localhost:4444/"
+
+local_chrome:
+    extensions:
+        Behat\MinkExtension:
+            javascript_session:  'selenium2'
+            goutte:              ~
+            selenium2:
+              browser: chrome
+              wd_host: "http://localhost:4444/wd/hub"
+
+local_safari:
+    extensions:
+        Behat\MinkExtension:
+            javascript_session:  'selenium2'
+            goutte:              ~
+            selenium2:
+              browser: safari
+              wd_host: "http://localhost:4444/wd/hub"
+
+local_ie:
+    extensions:
+        Behat\MinkExtension:
+            javascript_session:  'selenium2'
+            goutte:              ~
+            selenium2:
+              browser: ie
+              wd_host: "http://localhost:4444/wd/hub"
+
+sauce_mac_chrome:
+    extensions:
+        Behat\MinkExtension:
+            javascript_session:  'selenium2'
+            goutte:              ~
+            selenium2:
+              browser: chrome
+              wd_host: username:api-key@ondemand.saucelabs.com/wd/hub
+              capabilities: {  "platform": "OS X 10.8", "version": "38", "name": "Mac OS X Chrome Regression Suite"}
+
+sauce_mac_firefox:
+    extensions:
+        Behat\MinkExtension:
+            javascript_session:  'selenium2'
+            goutte:              ~
+            selenium2:
+              browser: firefox
+              wd_host: username:api-key@ondemand.saucelabs.com/wd/hub
+              capabilities: {"platform": "OS X 10.9", "version": "33", "name": "Mac OS X Firefox Regression Suite"}
+
+sauce_mac_safari:
+    extensions:
+        Behat\MinkExtension:
+            javascript_session:  'selenium2'
+            goutte:              ~
+            selenium2:
+              browser: safari
+              wd_host: username:api-key@ondemand.saucelabs.com/wd/hub
+              capabilities: {"platform": "OS X 10.8", "version": "6", "name": "Mac OS X Safari Regression Suite"}
+
+sauce_windows_firefox:
+    extensions:
+        Behat\MinkExtension:
+            javascript_session:  'selenium2'
+            goutte:              ~
+            selenium2:
+              browser: firefox
+              wd_host: username:api-key@ondemand.saucelabs.com/wd/hub
+              capabilities: {"platform": "Windows 7", "version": "33", "name": "Windows 7 Firefox Regression Suite"}
+
+sauce_windows_ie8:
+    extensions:
+        Behat\MinkExtension:
+            javascript_session:  'selenium2'
+            goutte:              ~
+            selenium2:
+              browser: internet explorer
+              wd_host: username:api-key@ondemand.saucelabs.com/wd/hub
+              capabilities: {"platform": "Windows 7", "version": "8.0", "name": "Windows 7 IE 8 Regression Suite"}
+
+sauce_windows_ie9:
+    extensions:
+        Behat\MinkExtension:
+            javascript_session:  'selenium2'
+            goutte:              ~
+            selenium2:
+              browser: internet explorer
+              wd_host: username:api-key@ondemand.saucelabs.com/wd/hub
+              capabilities: {"platform": "Windows 7", "version": "9.0", "name": "Windows 7 IE 9 Regression Suite"}
+
+sauce_windows_ie10:
+    extensions:
+        Behat\MinkExtension:
+            javascript_session:  'selenium2'
+            goutte:              ~
+            selenium2:
+              browser: internet explorer
+              wd_host: username:api-key@ondemand.saucelabs.com/wd/hub
+              capabilities: {"platform": "Windows 8", "version": "10.0", "name": "Windows 7 IE 10 Regression Suite"}
+
+sauce_windows_chrome:
+    extensions:
+        Behat\MinkExtension:
+            javascript_session:  'selenium2'
+            goutte:              ~
+            selenium2:
+              browser: chrome
+              wd_host: username:api-key@ondemand.saucelabs.com/wd/hub
+              capabilities: {"platform": "Windows 7", "version": "38", "name": "Windows 7 Chrome Regression Suite"}
+
+
+sauce_android_phone:
+    extensions:
+        Behat\MinkExtension:
+            javascript_session:  'selenium2'
+            goutte:              ~
+            selenium2:
+              browser: android
+              wd_host: username:api-key@ondemand.saucelabs.com/wd/hub
+              capabilities: {"platform": "Linux", "version": "4.4", "name": "Android Phone Regression Suite", "deviceType": "phone"}
+
+sauce_android_tablet:
+    extensions:
+        Behat\MinkExtension:
+            javascript_session:  'selenium2'
+            goutte:              ~
+            selenium2:
+              browser: android
+              wd_host: username:api-key@ondemand.saucelabs.com/wd/hub
+              capabilities: {  "platform": "Linux", "version": "4.4", "name": "Android Tablet Regression Suite", "deviceType": "tablet"}
+
+sauce_android_tablet_landscape:
+    extensions:
+        Behat\MinkExtension:
+            javascript_session:  'selenium2'
+            goutte:              ~
+            selenium2:
+              browser: android
+              wd_host: username:api-key@ondemand.saucelabs.com/wd/hub
+              capabilities: {"platform": "Linux", "version": "4.4", "name": "Android Tablet Regression Suite", "deviceOrientation": "landscape", "deviceType": "tablet"}
+
+sauce_ios_phone:
+    extensions:
+        Behat\MinkExtension:
+            javascript_session:  'selenium2'
+            goutte:              ~
+            selenium2:
+              browser: iphone
+              wd_host: username:api-key@ondemand.saucelabs.com/wd/hub
+              capabilities: {"platform": "OS X 10.9", "version": "8.1", "name": "iPhone Regression Suite"}
+
+sauce_ios_tablet:
+    extensions:
+        Behat\MinkExtension:
+            javascript_session:  'selenium2'
+            goutte:              ~
+            selenium2:
+              browser: iPad
+              wd_host: username:api-key@ondemand.saucelabs.com/wd/hub
+              capabilities: {"platform": "OS X 10.9", "version": "8.1", "name": "iPad Regression Suite"}
+
+sauce_ios_tablet_landscape:
+    extensions:
+        Behat\MinkExtension:
+            javascript_session:  'selenium2'
+            goutte:              ~
+            selenium2:
+              browser: iPad
+              wd_host: username:api-key@ondemand.saucelabs.com/wd/hub
+              capabilities: {"platform": "OS X 10.9", "version": "8.1", "name": "iPad Regression Suite", "deviceOrientation": "landscape"}

@@ -30,10 +30,13 @@ class XYContext implements Context, SnippetAcceptingContext
     }
 
     /**
-     * @Given I tap :x x :y coordinates
      * Clicks or taps based on x,y coordinates
      * Example: When I tap "10" x "10" coordinates
      * Example: And I tap "10" x "10" coordinates
+     *
+     * @Given I tap :x x :y coordinates
+     * @param $x
+     * @param $y
      */
     public function iTapXCoordinates($x, $y)
     {
@@ -41,10 +44,13 @@ class XYContext implements Context, SnippetAcceptingContext
     }
 
     /**
-     * @Given I initiate drag at :x x :y coordinates
      * Initiates drag based on x,y coordinates
      * Example: When I initiate drag at "10" x "10" coordinates
      * Example: And I initiate drag at "10" x "10" coordinates
+     *
+     * @Given I initiate drag at :x x :y coordinates
+     * @param $x
+     * @param $y
      */
     public function iDragXCoordinates($x, $y)
     {
@@ -52,10 +58,13 @@ class XYContext implements Context, SnippetAcceptingContext
     }
 
     /**
-     * @Given I release drag at :x x :y coordinates
      * Releases drag based on x,y coordinates
      * Example: When I release drag at "10" x "10" coordinates
      * Example: And I release drag at "10" x "10" coordinates
+     *
+     * @Given I release drag at :x x :y coordinates
+     * @param $x
+     * @param $y
      */
     public function iReleaseXCoordinates($x, $y)
     {
@@ -63,10 +72,13 @@ class XYContext implements Context, SnippetAcceptingContext
     }
 
     /**
-     * @When I move to :x x :y coordinates
      * Moves mouse based on x,y coordinates
      * Example: When I move to "10" x "10" coordinates
      * Example: And I move to "10" x "10" coordinates
+     *
+     * @When I move to :x x :y coordinates
+     * @param $x
+     * @param $y
      */
     public function iMoveToXCoordinates($x, $y)
     {
@@ -74,10 +86,14 @@ class XYContext implements Context, SnippetAcceptingContext
     }
 
     /**
-     * @Given I move along x axis :x from y :y1 to :y2
      * Moves mouse along x axis based on x, y1 & y2 coordinates
      * Example: When I move along x axis "10" from y "10" to "20"
      * Example: And I move along x axis "10" from y "10" to "20"
+     *
+     * @Given I move along x axis :x from y :y1 to :y2
+     * @param $x
+     * @param $y1
+     * @param $y2
      */
     public function iMoveAlongXAxisFromYTo($x, $y1, $y2)
     {
@@ -85,10 +101,14 @@ class XYContext implements Context, SnippetAcceptingContext
     }
 
     /**
-     * @Given I move along y axis :arg1 from x :x1 to :x2
      * Moves mouse along y axis based on y, x1 & x2 coordinates
      * Example: When I move along y axis "10" from x "10" to "20"
      * Example: And I move along y axis "10" from x "10" to "20"
+     *
+     * @Given I move along y axis :y from x :x1 to :x2
+     * @param $y
+     * @param $x1
+     * @param $x2
      */
     public function iMoveAlongYAxisFromXTo($y, $x1, $x2)
     {
@@ -96,10 +116,13 @@ class XYContext implements Context, SnippetAcceptingContext
     }
 
     /**
-     * @Given I drag from :xy1 to :xy2
      * Initiates drag, then drags from x1,y1 to x2,y2, then releases
      * Example: When I drag from "100,100" to "200,200"
      * Example: And I drag from "100,100" to "200,200"
+     *
+     * @Given I drag from :xy1 to :xy2
+     * @param $xy1
+     * @param $xy2
      */
     public function iDragFromTo($xy1, $xy2)
     {
@@ -107,10 +130,13 @@ class XYContext implements Context, SnippetAcceptingContext
     }
 
     /**
-     * @Given I move from :arg1 to :arg2
      * Moves from x1,y1 to x2,y2
      * Example: When I move from "100,100" to "200,200"
      * Example: And I move from "100,100" to "200,200"
+     *
+     * @Given I move from :xy1 to :xy2
+     * @param $xy1
+     * @param $xy2
      */
     public function iMoveFromTo($xy1, $xy2)
     {
