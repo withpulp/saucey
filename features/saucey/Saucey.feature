@@ -44,14 +44,24 @@ Feature: Testing browser functionality
     And I press "Epoch to Human date (with support for milliseconds and microseconds)"
     Then I should see "GMT"
 
-  @saucey @javascript @browser @hover
+  @saucey @javascript @browser @hover @navigation
   Scenario: Test some cool browser functionality, specifically hover
     Given I am on "http://google.com"
     And I hover "input#gbqfbb"
     And I wait 1 second
     Then I should not see "I'm Feeling Lucky"
+    When I go to "https://www.google.com/earth/explore/showcase/"
+    And I wait 1 second until I see "Google Earth Showcase"
+    And I move backward one page
+    Then I should be on "http://www.google.com/"
+    When I move forward one page
+    And I reload the page
+    Then I should see "Showcase"
 
-
+  @saucey @api
+  Scenario: Test some cool api functionality
+    Given I send a GET request to "http://jsonplaceholder.typicode.com/posts"
+    Then the response status code should be 200
 
 
 
